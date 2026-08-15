@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # FVG Monitor
 
 Scaffold del progetto — Fase 0 del [piano di lavoro](piano-lavoro-fvg-monitor.md).
@@ -59,3 +60,4 @@ supabase/       schema.sql del database
 Fase 1 del piano: job di ingestione meteo (OSMER), embedding del Widget Allerta
 Protezione Civile, ingestione RSS notizie — e sostituzione dei dati segnaposto in
 `app/page.tsx` con letture reali da Supabase.
+=======
