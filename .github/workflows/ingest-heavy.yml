@@ -1,0 +1,32 @@
+name: Ingestion pesante (placeholder)
+
+# Job di prova per validare la pipeline schedulata, come da Fase 0
+# del piano di lavoro. Il vero script Playwright (TPL FVG,
+# InfoViaggiando) sostituirà lo "step di prova" in Fase 2, dopo
+# la validazione tecnica degli endpoint via devtools.
+
+on:
+  schedule:
+    - cron: "*/30 * * * *" # ogni 30 minuti
+  workflow_dispatch: {} # permette di lanciarlo manualmente da GitHub
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Step di prova (da sostituire con lo script Playwright in Fase 2)
+        run: |
+          echo "Pipeline di ingestione pesante attiva."
+          echo "Timestamp: $(date -u)"
+        # In Fase 2:
+        # - npm install playwright
+        # - node scripts/ingest-tpl-fvg.js
+        # - scrittura risultato su Supabase via @supabase/supabase-js
