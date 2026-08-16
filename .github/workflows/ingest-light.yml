@@ -19,11 +19,11 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
-        # niente cache npm per ora: richiederebbe un package-lock.json
-        # committato nel repository, che non generiamo automaticamente
-        # da qui. Si può riattivare in futuro con `npm install` in
-        # locale + commit del lock file, per velocizzare il job.
+          node-version: "22"
+        # Node 22+ richiesto: @supabase/supabase-js inizializza sempre
+        # il modulo "realtime" (anche se qui usiamo solo scritture
+        # dirette, non sottoscrizioni), e quel modulo richiede il
+        # supporto nativo a WebSocket presente solo da Node 22 in su.
 
       - name: Install dependencies
         run: npm install
