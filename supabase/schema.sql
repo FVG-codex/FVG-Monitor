@@ -27,3 +27,18 @@ create index if not exists idx_history_module_time
 
 create index if not exists idx_snapshots_module
   on snapshots (module);
+
+-- Row Level Security: il sito legge queste tabelle tramite la chiave
+-- pubblica "anon", quindi va abilitata la sola lettura pubblica.
+-- Le scritture avverranno dai job di ingestione con una chiave con
+-- privilegi maggiori (service role), che bypassa RLS di default.
+alter table snapshots enable row level security;
+alter table history enable row level security;
+
+create policy "Lettura pubblica snapshots"
+  on snapshots for select
+  using (true);
+
+create policy "Lettura pubblica history"
+  on history for select
+  using (true);

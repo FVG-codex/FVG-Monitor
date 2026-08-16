@@ -1,0 +1,35 @@
+name: Ingestion leggera (meteo + notizie)
+
+# Fonti API/RSS dirette, nessun browser headless necessario.
+# Per la mappa TPL FVG / InfoViaggiando (JS-heavy) vedi invece
+# ingest-heavy.yml, riservato alla Fase 2.
+
+on:
+  schedule:
+    - cron: "*/15 * * * *" # ogni 15 minuti
+  workflow_dispatch: {}
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm install
+        # installa anche Next.js/React, non strettamente necessari allo
+        # script — accettabile per l'MVP; si può ottimizzare più avanti
+        # con un package.json separato solo per gli script
+
+      - name: Esegui ingestione
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: npm run ingest:light

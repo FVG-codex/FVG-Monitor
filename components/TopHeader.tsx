@@ -1,13 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import { PROVINCE_LIST } from "@/lib/province";
 
-const CITTA = ["Tutta la regione", "Trieste", "Udine", "Gorizia", "Pordenone"];
-
-export function TopHeader() {
+export function TopHeader({ paginaAttiva }: { paginaAttiva?: "regione" | string }) {
   const [ora, setOra] = useState<string>("");
   const [data, setData] = useState<string>("");
-  const [attiva, setAttiva] = useState(0);
 
   useEffect(() => {
     const tick = () => {
@@ -23,27 +22,29 @@ export function TopHeader() {
     return () => clearInterval(id);
   }, []);
 
+  const voci = [{ label: "Tutta la regione", href: "/", key: "regione" }, ...PROVINCE_LIST.map((p) => ({ label: p.nome, href: `/${p.slug}`, key: p.slug }))];
+
   return (
     <header className="sticky top-0 z-20 border-b border-line bg-bg/95 backdrop-blur">
       <div className="max-w-[1180px] mx-auto px-5 py-3.5 flex items-center justify-between gap-3 flex-wrap">
-        <div className="font-cond font-bold text-[22px] tracking-[0.06em] uppercase flex items-baseline gap-2">
+        <Link href="/" className="font-cond font-bold text-[22px] tracking-[0.06em] uppercase flex items-baseline gap-2">
           <span className="w-[7px] h-[7px] rounded-full bg-cool inline-block pulse-dot" />
           FVG Monitor
-        </div>
+        </Link>
 
         <nav className="flex gap-0.5 font-cond font-semibold text-sm flex-wrap">
-          {CITTA.map((citta, i) => (
-            <button
-              key={citta}
-              onClick={() => setAttiva(i)}
+          {voci.map((voce) => (
+            <Link
+              key={voce.key}
+              href={voce.href}
               className={`px-3 py-1.5 rounded border transition-colors ${
-                i === attiva
+                voce.key === paginaAttiva
                   ? "bg-cool border-cool text-bg"
                   : "border-line text-ink-dim hover:text-ink hover:border-ink-faint"
               }`}
             >
-              {citta}
-            </button>
+              {voce.label}
+            </Link>
           ))}
         </nav>
 
