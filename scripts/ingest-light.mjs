@@ -21,6 +21,17 @@ if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
 const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
 const xml = new XMLParser({ ignoreAttributes: false, attributeNamePrefix: "@_" });
 
+// Quando un tag XML ha sia un attributo che del testo (es.
+// <TMIN um="°C">21</TMIN>), fast-xml-parser restituisce un oggetto
+// { "@_um": "°C", "#text": "21" } invece di una stringa semplice.
+// Questo helper normalizza entrambi i casi, per evitare di scrivere
+// oggetti dove il frontend si aspetta testo (causa un crash React).
+function testo(v) {
+  if (v === null || v === undefined) return null;
+  if (typeof v === "object") return v["#text"] !== undefined ? String(v["#text"]) : null;
+  return String(v);
+}
+
 async function upsertSnapshot(id, module, zone, data) {
   const { error } = await supabase
     .from("snapshots")
@@ -85,46 +96,50 @@ async function ingestMeteo() {
       const z = zoneByNome[codiceZona];
       const fascia = zoneByNome[FASCIA_TEMP_PER_CITTA[citta]];
       perCitta[citta] = {
-        cielo: z?.CIELO_DESCRIZIONE || null,
-        pioggia: z?.PIOGGIA_DESCRIZIONE || null,
-        temporale: z?.TEMPORALE_DESCRIZIONE || null,
-        tmin: fascia?.TMIN || null,
-        tmax: fascia?.TMAX || null,
+        cielo: testo(z?.CIELO_DESCRIZIONE),
+        pioggia: testo(z?.PIOGGIA_DESCRIZIONE),
+        temporale: testo(z?.TEMPORALE_DESCRIZIONE),
+        tmin: testo(fascia?.TMIN),
+        tmax: testo(fascia?.TMAX),
       };
     }
 
     return {
-      giorno: s["@_giorno"], // "DOMANI" | "DOPODOMANI"
-      data_validita: s["@_data_validita"],
-      regione_testo: zoneByNome.REGIONE?.TESTO || null,
+      giorno: testo(s["@_giorno"]), // "DOMANI" | "DOPODOMANI"
+      data_validita: testo(s["@_data_validita"]),
+      regione_testo: testo(zoneByNome.REGIONE?.TESTO),
       per_citta: perCitta,
     };
   });
 
   // Osservazioni del giorno precedente (già >24h, pubblicabili)
-  const osservazioniData = root.osservazioni?.["@_data"] || null;
+  const osservazioniData = testo(root.osservazioni?.["@_data"]);
   const stazioniRaw = root.osservazioni?.stazioni?.stazione;
   const stazioniList = stazioniRaw ? (Array.isArray(stazioniRaw) ? stazioniRaw : [stazioniRaw]) : [];
   const ieri = Object.fromEntries(
     stazioniList
       .filter((s) => s["@_nome"])
-      .map((s) => [
-        s["@_nome"],
-        { tmin: s.TMIN === "n.d." ? null : s.TMIN, tmax: s.TMAX === "n.d." ? null : s.TMAX },
-      ])
+      .map((s) => {
+        const tmin = testo(s.TMIN);
+        const tmax = testo(s.TMAX);
+        return [
+          testo(s["@_nome"]),
+          { tmin: tmin === "n.d." ? null : tmin, tmax: tmax === "n.d." ? null : tmax },
+        ];
+      })
   );
 
   const payload = {
-    bollettino_emesso: previsioni.emissione,
-    situazione_generale: previsioni.SITUAZIONEGENERALE_TESTO,
-    tendenza: previsioni.TENDENZA_TESTO,
+    bollettino_emesso: testo(previsioni.emissione),
+    situazione_generale: testo(previsioni.SITUAZIONEGENERALE_TESTO),
+    tendenza: testo(previsioni.TENDENZA_TESTO),
     scadenze,
     osservazioni_data: osservazioniData,
     ieri,
   };
 
   await upsertSnapshot("meteo:previsioni", "meteo", null, payload);
-  console.log("Meteo aggiornato:", previsioni.emissione);
+  console.log("Meteo aggiornato:", testo(previsioni.emissione));
 }
 
 // ---------------------------------------------------------------------
@@ -150,9 +165,9 @@ async function ingestNotizie() {
   const parsed = xml.parse(await res.text());
   const itemsRaw = parsed.rss?.channel?.item || [];
   const items = (Array.isArray(itemsRaw) ? itemsRaw : [itemsRaw]).slice(0, 10).map((item) => ({
-    titolo: item.title,
-    link: item.link,
-    data: item.pubDate,
+    titolo: testo(item.title),
+    link: testo(item.link),
+    data: testo(item.pubDate),
   }));
 
   await upsertSnapshot("notizie:ansa-fvg", "notizie", null, {
