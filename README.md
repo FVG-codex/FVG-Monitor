@@ -144,16 +144,11 @@ richiesta — API pubblica). Il job `ingest:light` ora aggiorna
 `vento:trieste`, `vento:udine`, `vento:gorizia`, `vento:pordenone` nella
 tabella `snapshots` — nessun secret aggiuntivo necessario.
 
-**Nota**: solo la stazione di **Trieste** (id 212) è stata verificata
-manualmente (ha tutti i sensori vento: Dv, Vv, VvMax, DvMax). Le altre 3
-(Udine S+M, Gorizia aeroporto, Pordenone S+M) sono scelte plausibili in base
-al nome, non ancora confermate — lo script le risolve dinamicamente
-interrogando `/sensors` per ciascuna, quindi se una di queste non ha
-davvero un sensore vento, il pannello di quella provincia mostrerà "dati non
-disponibili" invece di rompersi, ma andrebbe controllato via Swagger UI
-(`GET /stations/{stationId}/sensors`) e corretto in
-`scripts/ingest-light.mjs` → `STAZIONE_VENTO_PER_PROVINCIA` se serve una
-stazione diversa.
+**Verifica completata**: tutte e 4 le stazioni sono confermate funzionanti con dati
+reali — Trieste (212), Udine S+M (558), Gorizia aeroporto (65), Pordenone meteo
+(131). Nota: la stazione "Pordenone S+M" (567) ha il sensore vento configurato ma
+non restituiva misure recenti al momento della verifica — sostituita con
+"Pordenone meteo" (131), che invece funziona.
 
 ## Prossimo passo
 

@@ -217,10 +217,10 @@ async function ingestNotizie() {
 const PC_API_BASE = "https://monitor.protezionecivile.fvg.it/api";
 
 const STAZIONE_VENTO_PER_PROVINCIA = {
-  trieste: 212, // "Trieste" — verificata, ha tutti i sensori vento
-  udine: 558, // "Udine S+M" — da verificare
-  gorizia: 65, // "Gorizia aeroporto" — da verificare
-  pordenone: 567, // "Pordenone S+M" — da verificare
+  trieste: 212, // "Trieste" — verificata
+  udine: 558, // "Udine S+M" — verificata
+  gorizia: 65, // "Gorizia aeroporto" — verificata
+  pordenone: 131, // "Pordenone meteo" — verificata (567 "Pordenone S+M" ha il sensore ma nessuna misura recente)
 };
 
 const CODICI_SENSORE_VENTO = {
@@ -284,7 +284,7 @@ async function ingestVentoProvincia(provincia, stationId, nomeStazione, zona) {
 
 async function ingestVento() {
   const ZONA_PER_PROVINCIA = { trieste: "C", udine: "B", gorizia: "C", pordenone: "A" };
-  const nomiStazioni = { trieste: "Trieste", udine: "Udine S+M", gorizia: "Gorizia aeroporto", pordenone: "Pordenone S+M" };
+  const nomiStazioni = { trieste: "Trieste", udine: "Udine S+M", gorizia: "Gorizia aeroporto", pordenone: "Pordenone meteo" };
 
   await Promise.all(
     Object.entries(STAZIONE_VENTO_PER_PROVINCIA).map(([provincia, stationId]) =>
