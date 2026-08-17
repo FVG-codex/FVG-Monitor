@@ -1,7 +1,9 @@
 import { AlertBanner } from "@/components/AlertBanner";
+import { EventiPanel } from "@/components/EventiPanel";
 import { MeteoOverview } from "@/components/MeteoPanel";
 import { NotiziePanel } from "@/components/NotiziePanel";
 import { Panel } from "@/components/Panel";
+import { TgrCard } from "@/components/TgrCard";
 import { TopHeader } from "@/components/TopHeader";
 import { VentoPanel } from "@/components/VentoPanel";
 import { ViabilitaPanel } from "@/components/ViabilitaPanel";
@@ -78,15 +80,19 @@ export default function Home() {
             <ViabilitaPanel />
           </Panel>
 
-          <Panel title="Trasporto pubblico" linkLabel="TPL FVG →" linkHref="#">
-            <p className="text-ink-faint text-sm font-mono">placeholder — Fase 2</p>
+          <Panel title="TGR FVG">
+            <TgrCard />
+          </Panel>
+
+          <Panel title="Eventi in regione" linkLabel="Tutti →" linkHref="https://www.turismofvg.it/eventi" span={2}>
+            <EventiPanel />
           </Panel>
         </div>
       </main>
 
       <footer className="max-w-[1180px] mx-auto px-5 py-6 border-t border-line font-mono text-[11px] text-ink-faint flex justify-between flex-wrap gap-2">
-        <span>FVG Monitor — Fase 2 (in corso)</span>
-        <span>Fonti: OSMER ARPA FVG · ANSA FVG · Protezione Civile FVG (CC BY 4.0)</span>
+        <span>FVG Monitor — Fase 3 (in corso)</span>
+        <span>Fonti: OSMER ARPA FVG · ANSA FVG · Protezione Civile FVG (CC BY 4.0) · InfoViaggiando · Turismo FVG · RAI TGR FVG</span>
       </footer>
     </>
   );

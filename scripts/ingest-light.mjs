@@ -9,6 +9,7 @@
 
 import { createClient } from "@supabase/supabase-js";
 import { XMLParser } from "fast-xml-parser";
+import * as cheerio from "cheerio";
 
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -354,8 +355,71 @@ async function ingestViabilita() {
 
 // ---------------------------------------------------------------------
 
+// ---------------------------------------------------------------------
+// EVENTI — scraping HTML della pagina eventi di turismofvg.it
+// (portale ufficiale PromoTurismoFVG). La pagina è renderizzata
+// server-side (verificato: un semplice fetch restituisce già tutti gli
+// eventi, senza bisogno di eseguire JavaScript), quindi niente browser
+// headless necessario. Struttura HTML verificata manualmente via
+// devtools — se il sito cambia layout, questo parser andrà aggiornato.
+//
+// Estraiamo solo i campi presenti in modo coerente in entrambe le
+// varianti di card osservate (big/small): titolo, data, luogo, link —
+// non l'ora o la categoria, che variano tra le due varianti.
+// ---------------------------------------------------------------------
+
+async function ingestEventi() {
+  const res = await fetch("https://www.turismofvg.it/eventi", {
+    headers: { "User-Agent": "Mozilla/5.0 (compatible; FVGMonitorBot/1.0)" },
+  });
+  if (!res.ok) {
+    console.warn(`Pagina eventi non disponibile (HTTP ${res.status})`);
+    return;
+  }
+
+  const html = await res.text();
+  const $ = cheerio.load(html);
+
+  const eventi = [];
+  $("a.c-eventsResults__item").each((_, el) => {
+    const $el = $(el);
+    const href = $el.attr("href");
+    if (!href) return;
+    const link = href.startsWith("http") ? href : `https://www.turismofvg.it${href}`;
+
+    const giorno = $el.find(".info_date strong").first().text().trim();
+    const mese = $el.find(".info_date p").first().text().trim();
+    const luogo = $el.find(".col2").first().text().trim();
+    const dataTesto = $el.find(".item_title p strong").first().text().trim();
+    const titolo = $el.find(".item_title h1 strong, .item_title h2 strong").first().text().trim();
+
+    if (titolo) {
+      eventi.push({ titolo, luogo, giorno, mese, data_testo: dataTesto, link });
+    }
+  });
+
+  if (eventi.length === 0) {
+    console.warn("Nessun evento estratto — la struttura HTML della pagina potrebbe essere cambiata");
+    return;
+  }
+
+  await upsertSnapshot("eventi:turismofvg", "eventi", null, {
+    eventi: eventi.slice(0, 20),
+    aggiornato_al: new Date().toISOString(),
+  });
+  console.log(`Eventi aggiornati: ${eventi.length} trovati`);
+}
+
+// ---------------------------------------------------------------------
+
 async function main() {
-  const risultati = await Promise.allSettled([ingestMeteo(), ingestNotizie(), ingestVento(), ingestViabilita()]);
+  const risultati = await Promise.allSettled([
+    ingestMeteo(),
+    ingestNotizie(),
+    ingestVento(),
+    ingestViabilita(),
+    ingestEventi(),
+  ]);
   let fallito = false;
   risultati.forEach((r, i) => {
     if (r.status === "rejected") {

@@ -152,8 +152,10 @@ non restituiva misure recenti al momento della verifica — sostituita con
 
 ## Prossimo passo
 
-Fase 2 del piano, parte restante: trasporto pubblico (TPL FVG) — richiede
-la validazione tecnica dell'endpoint via devtools (vedi piano di lavoro).
+Fase 2 del piano, parte restante: trasporto pubblico (TPL FVG) — **abbandonato
+per decisione** (nessun endpoint pubblico per il tracciamento GPS in tempo
+reale trovato via devtools/WebSocket; trovato solo l'elenco statico delle
+fermate, ritenuto di scarso interesse per il progetto).
 
 ## Fase 2 — Viabilità (fatto)
 
@@ -171,3 +173,26 @@ vedrebbero eventi di altre regioni.
 usata internamente dalla loro mappa) — trattata con la stessa cautela di ANSA:
 solo dati essenziali, da rivalutare se il progetto cresce oltre l'uso
 dimostrativo.
+
+## Fase 3 — TGR ed Eventi (fatto)
+
+**TGR**: nessun feed/RSS pubblico trovato (verificato più volte) — resta un
+link statico alla sezione ufficiale (`components/TgrCard.tsx`), nessuna
+ingestione automatica, come deciso nel piano di lavoro.
+
+**Eventi**: `ingestEventi()` fa scraping HTML della pagina eventi di
+turismofvg.it (portale ufficiale PromoTurismoFVG). La pagina è renderizzata
+server-side (un semplice fetch restituisce già tutti gli eventi, verificato),
+quindi niente browser headless necessario — parsing con `cheerio` sulla
+struttura HTML reale, ispezionata manualmente via devtools.
+
+**Nota di fragilità**: essendo scraping HTML (non un'API dichiarata), il
+parser si basa su classi CSS specifiche (`c-eventsResults__item`, `info_date`,
+`item_title`, ecc.) che potrebbero cambiare se il sito viene ridisegnato — in
+quel caso `ingestEventi()` in `scripts/ingest-light.mjs` andrà aggiornato
+seguendo lo stesso procedimento di ispezione HTML usato per costruirlo.
+
+## Prossimo passo
+
+Fase 4 del piano: rifinitura (responsive, accessibilità, performance,
+dominio personalizzato) — vedi piano di lavoro per il dettaglio.
