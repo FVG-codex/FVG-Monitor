@@ -538,6 +538,62 @@ async function ingestVoli() {
 
 // ---------------------------------------------------------------------
 
+// ---------------------------------------------------------------------
+// PIOGGIA — stessa API PC FVG, stesse 4 stazioni già verificate per il
+// vento (probabile abbiano anche il sensore pioggia, essendo stazioni
+// meteo complete). Sensori risolti dinamicamente come per il vento.
+// ---------------------------------------------------------------------
+
+const CODICI_SENSORE_PIOGGIA = {
+  ultimaOra: "P_1h",
+  ultime24Ore: "Prec_24_ore",
+};
+
+async function ingestPioggiaProvincia(provincia, stationId, nomeStazione, zona) {
+  const sensori = await sensoriStazione(stationId);
+  const trovaId = (codice) => sensori.find((s) => s.code === codice)?.id ?? null;
+
+  const idOra = trovaId(CODICI_SENSORE_PIOGGIA.ultimaOra);
+  const id24Ore = trovaId(CODICI_SENSORE_PIOGGIA.ultime24Ore);
+  if (!idOra && !id24Ore) {
+    console.warn(`Stazione "${nomeStazione}" (${provincia}) non ha sensori pioggia — salto`);
+    return;
+  }
+
+  const [ultimaOra, ultime24Ore] = await Promise.all([
+    idOra ? ultimaMisura(stationId, idOra) : null,
+    id24Ore ? ultimaMisura(stationId, id24Ore) : null,
+  ]);
+
+  if (!ultimaOra && !ultime24Ore) {
+    console.warn(`Nessuna misura pioggia disponibile per "${nomeStazione}" (${provincia})`);
+    return;
+  }
+
+  const payload = {
+    stazione: nomeStazione,
+    aggiornato_al: (ultimaOra || ultime24Ore).dt,
+    pioggia_1h_mm: ultimaOra?.value ?? null,
+    pioggia_24h_mm: ultime24Ore?.value ?? null,
+  };
+
+  await upsertSnapshot(`pioggia:${provincia}`, "pioggia", zona, payload);
+  console.log(`Pioggia aggiornata (${provincia}):`, payload.pioggia_24h_mm, "mm/24h");
+}
+
+async function ingestPioggia() {
+  const ZONA_PER_PROVINCIA = { trieste: "C", udine: "B", gorizia: "C", pordenone: "A" };
+  const nomiStazioni = { trieste: "Trieste", udine: "Udine S+M", gorizia: "Gorizia aeroporto", pordenone: "Pordenone meteo" };
+
+  await Promise.all(
+    Object.entries(STAZIONE_VENTO_PER_PROVINCIA).map(([provincia, stationId]) =>
+      ingestPioggiaProvincia(provincia, stationId, nomiStazioni[provincia], ZONA_PER_PROVINCIA[provincia])
+    )
+  );
+}
+
+// ---------------------------------------------------------------------
+
 async function main() {
   const risultati = await Promise.allSettled([
     ingestMeteo(),
@@ -547,6 +603,7 @@ async function main() {
     ingestEventi(),
     ingestQualitaAria(),
     ingestVoli(),
+    ingestPioggia(),
   ]);
   let fallito = false;
   risultati.forEach((r, i) => {

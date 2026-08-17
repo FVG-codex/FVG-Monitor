@@ -4,6 +4,7 @@ import { EventiPanel } from "@/components/EventiPanel";
 import { MeteoOverview } from "@/components/MeteoPanel";
 import { NotiziePanel } from "@/components/NotiziePanel";
 import { Panel } from "@/components/Panel";
+import { PioggiaPanel } from "@/components/PioggiaPanel";
 import { TgrCard } from "@/components/TgrCard";
 import { TopHeader } from "@/components/TopHeader";
 import { VentoPanel } from "@/components/VentoPanel";
@@ -76,6 +77,14 @@ export default function Home() {
             linkHref="https://monitor.protezionecivile.fvg.it"
           >
             <VentoPanel />
+          </Panel>
+
+          <Panel
+            title="Pioggia"
+            linkLabel="Protezione Civile FVG →"
+            linkHref="https://monitor.protezionecivile.fvg.it"
+          >
+            <PioggiaPanel />
           </Panel>
 
           <Panel title="Viabilità" linkLabel="InfoViaggiando →" linkHref="https://infoviaggiando.it">
