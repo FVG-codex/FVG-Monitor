@@ -152,8 +152,22 @@ non restituiva misure recenti al momento della verifica — sostituita con
 
 ## Prossimo passo
 
-Fase 2 del piano, parte restante: viabilità (InfoViaggiando) e trasporto
-pubblico (TPL FVG) — richiedono prima la validazione tecnica degli endpoint
-via devtools (vedi piano di lavoro) per capire se espongono un endpoint JSON
-riutilizzabile o se serve scraping via browser headless (workflow
-`ingest-heavy.yml`, già predisposto come scheletro).
+Fase 2 del piano, parte restante: trasporto pubblico (TPL FVG) — richiede
+la validazione tecnica dell'endpoint via devtools (vedi piano di lavoro).
+
+## Fase 2 — Viabilità (fatto)
+
+Sorpresa positiva: InfoViaggiando espone un feed **WFS pubblico** (standard
+GIS) dietro la propria mappa — niente scraping via browser headless
+necessario, si legge come le altre API. Endpoint:
+`infoviaggiando.it/WFS/?service=WFS&request=GetFeature&...&typename=PortaleWeb:EVENTI_LINEARI`.
+
+Il feed copre una rete molto più ampia del FVG (fino a Brescia/Padova) —
+`ingestViabilita()` filtra per autostrade rilevanti (A4, A23, A28, A34) **e**
+per area geografica (bounding box approssimativo del FVG), altrimenti si
+vedrebbero eventi di altre regioni.
+
+**Nota sulla fonte**: non è documentata come API pubblica ufficiale (è quella
+usata internamente dalla loro mappa) — trattata con la stessa cautela di ANSA:
+solo dati essenziali, da rivalutare se il progetto cresce oltre l'uso
+dimostrativo.

@@ -4,6 +4,7 @@ import { NotiziePanel } from "@/components/NotiziePanel";
 import { Panel } from "@/components/Panel";
 import { TopHeader } from "@/components/TopHeader";
 import { VentoPanel } from "@/components/VentoPanel";
+import { ViabilitaPanel } from "@/components/ViabilitaPanel";
 import { ZoneChip } from "@/components/ZoneChip";
 import { PROVINCE_LIST } from "@/lib/province";
 
@@ -73,8 +74,8 @@ export default function Home() {
             <VentoPanel />
           </Panel>
 
-          <Panel title="Viabilità" linkLabel="InfoViaggiando →" linkHref="#">
-            <p className="text-ink-faint text-sm font-mono">placeholder — Fase 2</p>
+          <Panel title="Viabilità" linkLabel="InfoViaggiando →" linkHref="https://infoviaggiando.it">
+            <ViabilitaPanel />
           </Panel>
 
           <Panel title="Trasporto pubblico" linkLabel="TPL FVG →" linkHref="#">

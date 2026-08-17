@@ -295,8 +295,67 @@ async function ingestVento() {
 
 // ---------------------------------------------------------------------
 
+// ---------------------------------------------------------------------
+// VIABILITÀ — feed WFS pubblico di InfoViaggiando (Autostrade Alto
+// Adriatico / rete BS-PD). Nessuna documentazione ufficiale trovata
+// per questo endpoint (è quello usato internamente dalla loro mappa,
+// non un'API dichiaratamente pubblica) — dato che i dati risultanti
+// sono comunque informazioni di viabilità già mostrate pubblicamente
+// sul loro sito, lo trattiamo con la stessa cautela riservata al feed
+// ANSA: solo dati essenziali, nessuna rielaborazione oltre il
+// filtraggio geografico, da rivalutare se il progetto cresce.
+//
+// Il feed copre una rete molto più ampia del FVG (fino a Brescia/
+// Padova) — filtriamo per autostrade rilevanti E per area geografica.
+// ---------------------------------------------------------------------
+
+const AUTOSTRADE_FVG = new Set(["A4", "A23", "A28", "A34"]);
+const BBOX_FVG = { latMin: 45.5, latMax: 46.7, lonMin: 12.3, lonMax: 13.9 };
+
+function dentroFVG(lat, lon) {
+  if (lat == null || lon == null) return false;
+  return lat >= BBOX_FVG.latMin && lat <= BBOX_FVG.latMax && lon >= BBOX_FVG.lonMin && lon <= BBOX_FVG.lonMax;
+}
+
+async function ingestViabilita() {
+  const url =
+    "https://infoviaggiando.it/WFS/?service=WFS&request=GetFeature&version=1.1.0" +
+    "&typename=PortaleWeb:EVENTI_LINEARI&outputFormat=application/json&CQL_FILTER=VIS_WEB=%27S%27";
+
+  const res = await fetch(url);
+  if (!res.ok) {
+    console.warn(`Feed viabilità non disponibile (HTTP ${res.status})`);
+    return;
+  }
+
+  const json = await res.json();
+  const eventi = (json.features || [])
+    .map((f) => f.properties)
+    .filter(
+      (p) =>
+        AUTOSTRADE_FVG.has(p.AUTOSTRADA) &&
+        (dentroFVG(p.LAT_INIZIO, p.LON_INIZIO) || dentroFVG(p.LAT_FINE, p.LON_FINE))
+    )
+    .map((p) => ({
+      autostrada: p.AUTOSTRADA,
+      carreggiata: p.CARREGGIATA,
+      testo: p.TESTO_IT,
+      inizio: p.DATA_INIZIO,
+      fine: p.DATA_FINE,
+      fonte: p.FONTE,
+    }));
+
+  await upsertSnapshot("viabilita:autostrade", "viabilita", null, {
+    eventi,
+    aggiornato_al: new Date().toISOString(),
+  });
+  console.log(`Viabilità aggiornata: ${eventi.length} eventi in FVG`);
+}
+
+// ---------------------------------------------------------------------
+
 async function main() {
-  const risultati = await Promise.allSettled([ingestMeteo(), ingestNotizie(), ingestVento()]);
+  const risultati = await Promise.allSettled([ingestMeteo(), ingestNotizie(), ingestVento(), ingestViabilita()]);
   let fallito = false;
   risultati.forEach((r, i) => {
     if (r.status === "rejected") {
