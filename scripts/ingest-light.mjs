@@ -21,15 +21,31 @@ if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
 const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
 const xml = new XMLParser({ ignoreAttributes: false, attributeNamePrefix: "@_" });
 
+// Il testo del bollettino contiene entità HTML (es. "igrave;" per "ì")
+// che fast-xml-parser non decodifica automaticamente, non essendo
+// entità XML standard — solo &amp; &lt; &gt; &quot; &apos; lo sono.
+const ENTITA_HTML = {
+  agrave: "à", egrave: "è", igrave: "ì", ograve: "ò", ugrave: "ù",
+  Agrave: "À", Egrave: "È", Igrave: "Ì", Ograve: "Ò", Ugrave: "Ù",
+  aacute: "á", eacute: "é", iacute: "í", oacute: "ó", uacute: "ú",
+  ecirc: "ê", ocirc: "ô", nbsp: " ", ndash: "–", mdash: "—",
+  laquo: "«", raquo: "»", deg: "°", agrave1: "à",
+};
+
+function decodeEntitaHtml(str) {
+  return str.replace(/&([a-zA-Z]+);/g, (match, nome) => ENTITA_HTML[nome] ?? match);
+}
+
 // Quando un tag XML ha sia un attributo che del testo (es.
 // <TMIN um="°C">21</TMIN>), fast-xml-parser restituisce un oggetto
 // { "@_um": "°C", "#text": "21" } invece di una stringa semplice.
 // Questo helper normalizza entrambi i casi, per evitare di scrivere
-// oggetti dove il frontend si aspetta testo (causa un crash React).
+// oggetti dove il frontend si aspetta testo (causa un crash React),
+// e decodifica le entità HTML residue.
 function testo(v) {
   if (v === null || v === undefined) return null;
-  if (typeof v === "object") return v["#text"] !== undefined ? String(v["#text"]) : null;
-  return String(v);
+  const s = typeof v === "object" ? (v["#text"] !== undefined ? String(v["#text"]) : null) : String(v);
+  return s === null ? null : decodeEntitaHtml(s);
 }
 
 async function upsertSnapshot(id, module, zone, data) {
