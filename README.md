@@ -196,3 +196,19 @@ seguendo lo stesso procedimento di ispezione HTML usato per costruirlo.
 
 Fase 4 del piano: rifinitura (responsive, accessibilità, performance,
 dominio personalizzato) — vedi piano di lavoro per il dettaglio.
+
+## Fase 3 — Qualità dell'aria (fatto)
+
+`ingestQualitaAria()` legge il dataset **"Aria - Particelle Sospese PM10"**
+(id `qp5k-6pvm`) dal portale open data regionale (Socrata,
+`dati.friuliveneziagiulia.it`) — dato giornaliero (non orario, coerente col
+processo di validazione ARPA), con qualche giorno di ritardo rispetto a
+oggi: normale, non un errore. Come per il vento, la stazione di ciascuna
+provincia viene cercata dinamicamente per nome (contiene "Trieste"/"Udine"/
+ecc.) invece di un ID fisso, per resilienza.
+
+Soglia di legge: 50 µg/m³ media giornaliera — il pannello colora il valore
+in verde/rosso di conseguenza.
+
+**Fase 3 completa**: TGR, Eventi, Qualità dell'aria — tutti i moduli
+previsti dal concept iniziale sono ora coperti.

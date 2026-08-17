@@ -1,4 +1,5 @@
 import { AlertBanner } from "@/components/AlertBanner";
+import { AriaPanel } from "@/components/AriaPanel";
 import { EventiPanel } from "@/components/EventiPanel";
 import { MeteoOverview } from "@/components/MeteoPanel";
 import { NotiziePanel } from "@/components/NotiziePanel";
@@ -80,6 +81,10 @@ export default function Home() {
             <ViabilitaPanel />
           </Panel>
 
+          <Panel title="Qualità dell'aria · PM10" linkLabel="ARPA FVG →" linkHref="https://www.arpa.fvg.it">
+            <AriaPanel />
+          </Panel>
+
           <Panel title="TGR FVG">
             <TgrCard />
           </Panel>
@@ -91,7 +96,7 @@ export default function Home() {
       </main>
 
       <footer className="max-w-[1180px] mx-auto px-5 py-6 border-t border-line font-mono text-[11px] text-ink-faint flex justify-between flex-wrap gap-2">
-        <span>FVG Monitor — Fase 3 (in corso)</span>
+        <span>FVG Monitor — Fase 3</span>
         <span>Fonti: OSMER ARPA FVG · ANSA FVG · Protezione Civile FVG (CC BY 4.0) · InfoViaggiando · Turismo FVG · RAI TGR FVG</span>
       </footer>
     </>

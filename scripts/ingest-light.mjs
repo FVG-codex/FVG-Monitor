@@ -412,6 +412,74 @@ async function ingestEventi() {
 
 // ---------------------------------------------------------------------
 
+// ---------------------------------------------------------------------
+// QUALITÀ ARIA — dataset PM10 su dati.friuliveneziagiulia.it (Socrata)
+// Fonte: ARPA FVG, dataset "Aria - Particelle Sospese PM10" (id
+// qp5k-6pvm). Dato giornaliero (non orario), con qualche giorno di
+// ritardo per via del processo di validazione ARPA — normale, non un
+// errore di ingestione.
+//
+// Come per il vento, cerchiamo dinamicamente una stazione per
+// provincia (per nome contenente il capoluogo) invece di ID fissi,
+// perché non sappiamo a priori quali stazioni saranno presenti nei
+// dati più recenti.
+// ---------------------------------------------------------------------
+
+const ARIA_DATASET_URL = "https://www.dati.friuliveneziagiulia.it/resource/qp5k-6pvm.json";
+const SOGLIA_PM10_UGM3 = 50; // limite giornaliero di legge
+
+async function ingestQualitaAria() {
+  const url = `${ARIA_DATASET_URL}?$order=data_misura DESC&$limit=300`;
+  const res = await fetch(url);
+  if (!res.ok) {
+    console.warn(`Dataset qualità aria non disponibile (HTTP ${res.status})`);
+    return;
+  }
+
+  const rows = await res.json();
+  if (!Array.isArray(rows) || rows.length === 0) {
+    console.warn("Dataset qualità aria vuoto");
+    return;
+  }
+
+  // I dati più recenti disponibili (tutte le stazioni misurate quel giorno)
+  const dataPiuRecente = rows[0].data_misura;
+  const righeRecenti = rows.filter((r) => r.data_misura === dataPiuRecente);
+
+  const NOMI_CITTA_PROVINCIA = { trieste: "Trieste", udine: "Udine", gorizia: "Gorizia", pordenone: "Pordenone" };
+
+  const perProvincia = {};
+  for (const provincia of Object.keys(NOMI_CITTA_PROVINCIA)) {
+    const nomeCitta = NOMI_CITTA_PROVINCIA[provincia];
+    const riga = righeRecenti.find((r) =>
+      r.ubicazione?.toLowerCase().includes(nomeCitta.toLowerCase())
+    );
+    if (!riga) continue;
+
+    const media = riga.media_giornaliera ? Number(riga.media_giornaliera) : null;
+    perProvincia[provincia] = {
+      stazione: riga.ubicazione,
+      media_giornaliera: media,
+      superamento: media !== null ? media > SOGLIA_PM10_UGM3 : null,
+      dati_insufficienti: riga.dati_insuff === "True",
+    };
+  }
+
+  if (Object.keys(perProvincia).length === 0) {
+    console.warn("Nessuna stazione PM10 trovata per le 4 province");
+    return;
+  }
+
+  await upsertSnapshot("aria:pm10", "aria", null, {
+    data_misura: dataPiuRecente,
+    soglia_ugm3: SOGLIA_PM10_UGM3,
+    per_provincia: perProvincia,
+  });
+  console.log(`Qualità aria aggiornata (${Object.keys(perProvincia).length} province):`, dataPiuRecente);
+}
+
+// ---------------------------------------------------------------------
+
 async function main() {
   const risultati = await Promise.allSettled([
     ingestMeteo(),
@@ -419,6 +487,7 @@ async function main() {
     ingestVento(),
     ingestViabilita(),
     ingestEventi(),
+    ingestQualitaAria(),
   ]);
   let fallito = false;
   risultati.forEach((r, i) => {
