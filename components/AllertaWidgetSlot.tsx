@@ -14,10 +14,10 @@ import type { ProvinciaSlug } from "@/lib/province";
  * di ArpaWidgetEmbed.tsx (vedi MeteoWidgetSlot.tsx per l'esempio).
  */
 const SNIPPET_PER_CITTA: Record<ProvinciaSlug, string | null> = {
-  trieste: "<script type="text/javascript" src="https://www.protezionecivile.fvg.it/widgets/pcrfvgit_alert.js"></script><div class="pcrfvgit_alert_widget" data-istatcode="32006"></div>",
-  udine: "<script type="text/javascript" src="https://www.protezionecivile.fvg.it/widgets/pcrfvgit_alert.js"></script><div class="pcrfvgit_alert_widget" data-istatcode="30129"></div>",
-  gorizia: "<script type="text/javascript" src="https://www.protezionecivile.fvg.it/widgets/pcrfvgit_alert.js"></script><div class="pcrfvgit_alert_widget" data-istatcode="31007"></div>",
-  pordenone: "<script type="text/javascript" src="https://www.protezionecivile.fvg.it/widgets/pcrfvgit_alert.js"></script><div class="pcrfvgit_alert_widget" data-istatcode="93033"></div>",
+  trieste: `<script type="text/javascript" src="https://www.protezionecivile.fvg.it/widgets/pcrfvgit_alert.js"></script><div class="pcrfvgit_alert_widget" data-istatcode="32006"></div>`,
+  udine: `<script type="text/javascript" src="https://www.protezionecivile.fvg.it/widgets/pcrfvgit_alert.js"></script><div class="pcrfvgit_alert_widget" data-istatcode="30129"></div>`,
+  gorizia: `<script type="text/javascript" src="https://www.protezionecivile.fvg.it/widgets/pcrfvgit_alert.js"></script><div class="pcrfvgit_alert_widget" data-istatcode="31007"></div>`,
+  pordenone: `<script type="text/javascript" src="https://www.protezionecivile.fvg.it/widgets/pcrfvgit_alert.js"></script><div class="pcrfvgit_alert_widget" data-istatcode="93033"></div>`,
 };
 
 export function AllertaWidgetSlot({ slug, cittaNome }: { slug: ProvinciaSlug; cittaNome: string }) {
