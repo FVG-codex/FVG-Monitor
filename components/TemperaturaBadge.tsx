@@ -23,7 +23,10 @@ export function TemperaturaBadge({
         .single();
       if (!attivo || error || !data) return;
       const d = data.data as { temperatura_c: number };
-      setTemp(d.temperatura_c);
+      // arrotondato anche qui come protezione in più, oltre allo
+      // script di ingestione — non deve mai arrivare a schermo un
+      // numero con troppi decimali
+      setTemp(Math.round(d.temperatura_c * 10) / 10);
     }
     carica();
     const id = setInterval(carica, 5 * 60 * 1000);

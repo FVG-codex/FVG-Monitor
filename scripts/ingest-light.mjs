@@ -619,7 +619,7 @@ async function ingestTemperaturaProvincia(provincia, stationId, nomeStazione, zo
   await upsertSnapshot(`temperatura:${provincia}`, "temperatura", zona, {
     stazione: nomeStazione,
     aggiornato_al: misura.dt,
-    temperatura_c: misura.value,
+    temperatura_c: Math.round(misura.value * 10) / 10,
   });
   console.log(`Temperatura aggiornata (${provincia}):`, misura.value, "°C");
 }
