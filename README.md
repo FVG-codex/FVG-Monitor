@@ -137,12 +137,23 @@ oltre l'uso personale/dimostrativo.
 
 ## Fase 2 — Bora/Vento (fatto)
 
-Il pannello Bora/Vento in homepage legge dati reali dall'**API di monitoraggio
-della Protezione Civile FVG** (`monitor.protezionecivile.fvg.it/api`, licenza
-CC BY 4.0, nessuna chiave richiesta — API pubblica). Usa la stazione Trieste
-(id 212), la più rappresentativa per la Bora tra quelle disponibili. Il job
-`ingest:light` ora aggiorna anche `vento:trieste` nella tabella `snapshots`,
-insieme a meteo e notizie — nessun secret aggiuntivo necessario.
+Il pannello Vento (in homepage e in ciascuna delle 4 pagine provincia) legge
+dati reali dall'**API di monitoraggio della Protezione Civile FVG**
+(`monitor.protezionecivile.fvg.it/api`, licenza CC BY 4.0, nessuna chiave
+richiesta — API pubblica). Il job `ingest:light` ora aggiorna
+`vento:trieste`, `vento:udine`, `vento:gorizia`, `vento:pordenone` nella
+tabella `snapshots` — nessun secret aggiuntivo necessario.
+
+**Nota**: solo la stazione di **Trieste** (id 212) è stata verificata
+manualmente (ha tutti i sensori vento: Dv, Vv, VvMax, DvMax). Le altre 3
+(Udine S+M, Gorizia aeroporto, Pordenone S+M) sono scelte plausibili in base
+al nome, non ancora confermate — lo script le risolve dinamicamente
+interrogando `/sensors` per ciascuna, quindi se una di queste non ha
+davvero un sensore vento, il pannello di quella provincia mostrerà "dati non
+disponibili" invece di rompersi, ma andrebbe controllato via Swagger UI
+(`GET /stations/{stationId}/sensors`) e corretto in
+`scripts/ingest-light.mjs` → `STAZIONE_VENTO_PER_PROVINCIA` se serve una
+stazione diversa.
 
 ## Prossimo passo
 

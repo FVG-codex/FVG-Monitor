@@ -205,18 +205,37 @@ async function ingestNotizie() {
 // ---------------------------------------------------------------------
 // VENTO / BORA — API Monitoraggio Protezione Civile FVG
 // Fonte: monitor.protezionecivile.fvg.it/api, licenza CC BY 4.0.
-// Stazione Trieste (id 212, istat 32006) — coordinate sul lungomare,
-// la più rappresentativa per la Bora tra quelle mappate.
+//
+// Una stazione candidata per ciascuna provincia (scelte tra quelle con
+// nome "meteo"/"S+M", più probabile abbiano un sensore vento — non
+// verificato singolarmente come per Trieste). Per questo i sensori
+// vengono risolti DINAMICAMENTE via /sensors invece di assumere ID
+// fissi: se una stazione non ha il sensore vento, la ingestione per
+// quella provincia viene saltata con un avviso, senza rompersi.
 // ---------------------------------------------------------------------
 
 const PC_API_BASE = "https://monitor.protezionecivile.fvg.it/api";
-const STAZIONE_VENTO_TRIESTE = 212;
-const SENSORI_VENTO = {
-  direzione: 5, // Dv — °N
-  velocita: 6, // Vv — m/s
-  raffica: 7, // VvMax — m/s
-  direzioneRaffica: 8, // DvMax — °N
+
+const STAZIONE_VENTO_PER_PROVINCIA = {
+  trieste: 212, // "Trieste" — verificata, ha tutti i sensori vento
+  udine: 558, // "Udine S+M" — da verificare
+  gorizia: 65, // "Gorizia aeroporto" — da verificare
+  pordenone: 567, // "Pordenone S+M" — da verificare
 };
+
+const CODICI_SENSORE_VENTO = {
+  direzione: "Dv",
+  velocita: "Vv",
+  raffica: "VvMax",
+  direzioneRaffica: "DvMax",
+};
+
+async function sensoriStazione(stationId) {
+  const res = await fetch(`${PC_API_BASE}/stations/${stationId}/sensors`);
+  if (!res.ok) return [];
+  const json = await res.json();
+  return json.sensors ?? [];
+}
 
 async function ultimaMisura(stationId, sensorId) {
   const res = await fetch(`${PC_API_BASE}/stations/${stationId}/sensors/${sensorId}/measures/latest`);
@@ -225,24 +244,33 @@ async function ultimaMisura(stationId, sensorId) {
   return json.measures?.[0] ?? null;
 }
 
-async function ingestVento() {
-  const [direzione, velocita, raffica, direzioneRaffica] = await Promise.all([
-    ultimaMisura(STAZIONE_VENTO_TRIESTE, SENSORI_VENTO.direzione),
-    ultimaMisura(STAZIONE_VENTO_TRIESTE, SENSORI_VENTO.velocita),
-    ultimaMisura(STAZIONE_VENTO_TRIESTE, SENSORI_VENTO.raffica),
-    ultimaMisura(STAZIONE_VENTO_TRIESTE, SENSORI_VENTO.direzioneRaffica),
-  ]);
+// m/s → km/h, unità più familiare per il pubblico italiano
+const msToKmh = (v) => (v == null ? null : Math.round(v * 3.6 * 10) / 10);
 
-  if (!velocita) {
-    console.warn("Nessuna misura vento disponibile dalla stazione Trieste");
+async function ingestVentoProvincia(provincia, stationId, nomeStazione, zona) {
+  const sensori = await sensoriStazione(stationId);
+  const trovaId = (codice) => sensori.find((s) => s.code === codice)?.id ?? null;
+
+  const idVelocita = trovaId(CODICI_SENSORE_VENTO.velocita);
+  if (!idVelocita) {
+    console.warn(`Stazione "${nomeStazione}" (${provincia}) non ha un sensore vento — salto`);
     return;
   }
 
-  // m/s → km/h, unità più familiare per il pubblico italiano
-  const msToKmh = (v) => (v == null ? null : Math.round(v * 3.6 * 10) / 10);
+  const [direzione, velocita, raffica, direzioneRaffica] = await Promise.all([
+    ultimaMisura(stationId, trovaId(CODICI_SENSORE_VENTO.direzione)),
+    ultimaMisura(stationId, idVelocita),
+    ultimaMisura(stationId, trovaId(CODICI_SENSORE_VENTO.raffica)),
+    ultimaMisura(stationId, trovaId(CODICI_SENSORE_VENTO.direzioneRaffica)),
+  ]);
+
+  if (!velocita) {
+    console.warn(`Nessuna misura vento disponibile per "${nomeStazione}" (${provincia})`);
+    return;
+  }
 
   const payload = {
-    stazione: "Trieste",
+    stazione: nomeStazione,
     aggiornato_al: velocita.dt,
     velocita_kmh: msToKmh(velocita.value),
     raffica_kmh: msToKmh(raffica?.value),
@@ -250,8 +278,19 @@ async function ingestVento() {
     direzione_raffica_gradi: direzioneRaffica?.value ?? null,
   };
 
-  await upsertSnapshot("vento:trieste", "vento", "C", payload);
-  console.log("Vento aggiornato:", payload.velocita_kmh, "km/h");
+  await upsertSnapshot(`vento:${provincia}`, "vento", zona, payload);
+  console.log(`Vento aggiornato (${provincia}):`, payload.velocita_kmh, "km/h");
+}
+
+async function ingestVento() {
+  const ZONA_PER_PROVINCIA = { trieste: "C", udine: "B", gorizia: "C", pordenone: "A" };
+  const nomiStazioni = { trieste: "Trieste", udine: "Udine S+M", gorizia: "Gorizia aeroporto", pordenone: "Pordenone S+M" };
+
+  await Promise.all(
+    Object.entries(STAZIONE_VENTO_PER_PROVINCIA).map(([provincia, stationId]) =>
+      ingestVentoProvincia(provincia, stationId, nomiStazioni[provincia], ZONA_PER_PROVINCIA[provincia])
+    )
+  );
 }
 
 // ---------------------------------------------------------------------

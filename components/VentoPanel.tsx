@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
+import type { ProvinciaSlug } from "@/lib/province";
 
 type VentoData = {
   stazione: string;
@@ -19,17 +20,18 @@ function puntoCardinale(gradi: number | null): string {
   return punti[Math.round(gradi / 45) % 8];
 }
 
-export function VentoPanel() {
+export function VentoPanel({ provincia = "trieste" }: { provincia?: ProvinciaSlug }) {
   const [dati, setDati] = useState<VentoData | null>(null);
   const [stato, setStato] = useState<"loading" | "ready" | "error">("loading");
 
   useEffect(() => {
     let attivo = true;
+    setStato("loading");
     async function carica() {
       const { data, error } = await supabase
         .from("snapshots")
         .select("data, updated_at")
-        .eq("id", "vento:trieste")
+        .eq("id", `vento:${provincia}`)
         .single();
       if (!attivo) return;
       if (error || !data) {
@@ -45,13 +47,17 @@ export function VentoPanel() {
       attivo = false;
       clearInterval(id);
     };
-  }, []);
+  }, [provincia]);
 
   if (stato === "loading") {
     return <p className="text-ink-faint text-sm font-mono">Caricamento dati vento…</p>;
   }
   if (stato === "error" || !dati || dati.velocita_kmh === null) {
-    return <p className="text-ink-faint text-sm font-mono">Dati vento non disponibili al momento.</p>;
+    return (
+      <p className="text-ink-faint text-sm font-mono">
+        Dati vento non disponibili per questa stazione al momento.
+      </p>
+    );
   }
 
   return (
