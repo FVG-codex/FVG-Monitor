@@ -76,15 +76,23 @@ function pad2(n) {
 
 async function ingestMeteo() {
   const now = new Date();
-  const dateStr = `${now.getUTCFullYear()}${pad2(now.getUTCMonth() + 1)}${pad2(now.getUTCDate())}`;
-  const url = `https://dev.meteo.fvg.it/xml/previsioni/PW${dateStr}.xml`;
+  const oggi = `${now.getUTCFullYear()}${pad2(now.getUTCMonth() + 1)}${pad2(now.getUTCDate())}`;
+  const ieriDate = new Date(now);
+  ieriDate.setUTCDate(ieriDate.getUTCDate() - 1);
+  const ieri = `${ieriDate.getUTCFullYear()}${pad2(ieriDate.getUTCMonth() + 1)}${pad2(ieriDate.getUTCDate())}`;
 
-  const res = await fetch(url);
+  // Il bollettino di oggi viene pubblicato di solito verso mezzogiorno
+  // UTC — nelle ore prima non esiste ancora (404). In quel caso usiamo
+  // quello di ieri, così il dato viene comunque rielaborato con il
+  // codice più recente invece di lasciare ferma una riga vecchia su
+  // Supabase fino alla pubblicazione.
+  let res = await fetch(`https://dev.meteo.fvg.it/xml/previsioni/PW${oggi}.xml`);
   if (!res.ok) {
-    // Il bollettino del giorno potrebbe non essere ancora stato emesso
-    // (emissione tipica verso le 12:00 UTC) — non è un errore fatale,
-    // il job successivo (15 min dopo) riproverà.
-    console.warn(`Bollettino non disponibile per ${dateStr} (HTTP ${res.status})`);
+    console.warn(`Bollettino di oggi (${oggi}) non disponibile, provo con quello di ieri (${ieri})`);
+    res = await fetch(`https://dev.meteo.fvg.it/xml/previsioni/PW${ieri}.xml`);
+  }
+  if (!res.ok) {
+    console.warn(`Nessun bollettino disponibile (né oggi né ieri, HTTP ${res.status})`);
     return;
   }
 
