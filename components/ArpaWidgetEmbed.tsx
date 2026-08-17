@@ -12,12 +12,15 @@
  * una card compatta orizzontale) — aggiustala guardando il risultato
  * reale una volta deployato.
  *
- * sandbox="allow-scripts allow-same-origin": senza allow-same-origin
- * l'iframe ha un'origine "null", e alcune richieste di rete che lo
- * script fa al proprio dominio vengono bloccate dal CORS (visibile
- * in console, ma senza impatto sul contenuto principale del widget,
- * che comunque funziona). Con allow-same-origin l'iframe ha
- * un'origine reale, evitando quell'errore.
+ * Nota: lo script ARPA prova a fare una richiesta di rete aggiuntiva
+ * includendo l'indirizzo dell'iframe come parametro — che con srcDoc è
+ * sempre "about:srcdoc" (comportamento fisso del browser, non
+ * dipendente dal sandbox), quindi quella richiesta fallisce con 404.
+ * È innocuo: il contenuto principale del widget si carica comunque
+ * correttamente. Provato ad aggiungere allow-same-origin per
+ * sistemarlo, ma non risolve il problema (l'indirizzo resta
+ * "about:srcdoc" in ogni caso) e introduce solo un avviso di sicurezza
+ * del browser — quindi si resta con il sandbox più restrittivo.
  */
 export function ArpaWidgetEmbed({ scriptUrl, height = 210 }: { scriptUrl: string; height?: number }) {
   const srcDoc = `<!DOCTYPE html>
@@ -36,7 +39,7 @@ export function ArpaWidgetEmbed({ scriptUrl, height = 210 }: { scriptUrl: string
   return (
     <iframe
       srcDoc={srcDoc}
-      sandbox="allow-scripts allow-same-origin"
+      sandbox="allow-scripts"
       style={{ width: "100%", height, border: "none", background: "transparent" }}
       title="Widget meteo ARPA FVG"
     />
