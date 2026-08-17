@@ -79,7 +79,7 @@ async function ingestMeteo() {
   const oggi = `${now.getUTCFullYear()}${pad2(now.getUTCMonth() + 1)}${pad2(now.getUTCDate())}`;
   const ieriDate = new Date(now);
   ieriDate.setUTCDate(ieriDate.getUTCDate() - 1);
-  const ieri = `${ieriDate.getUTCFullYear()}${pad2(ieriDate.getUTCMonth() + 1)}${pad2(ieriDate.getUTCDate())}`;
+  const dataIeriStr = `${ieriDate.getUTCFullYear()}${pad2(ieriDate.getUTCMonth() + 1)}${pad2(ieriDate.getUTCDate())}`;
 
   // Il bollettino di oggi viene pubblicato di solito verso mezzogiorno
   // UTC — nelle ore prima non esiste ancora (404). In quel caso usiamo
@@ -88,8 +88,8 @@ async function ingestMeteo() {
   // Supabase fino alla pubblicazione.
   let res = await fetch(`https://dev.meteo.fvg.it/xml/previsioni/PW${oggi}.xml`);
   if (!res.ok) {
-    console.warn(`Bollettino di oggi (${oggi}) non disponibile, provo con quello di ieri (${ieri})`);
-    res = await fetch(`https://dev.meteo.fvg.it/xml/previsioni/PW${ieri}.xml`);
+    console.warn(`Bollettino di oggi (${oggi}) non disponibile, provo con quello di ieri (${dataIeriStr})`);
+    res = await fetch(`https://dev.meteo.fvg.it/xml/previsioni/PW${dataIeriStr}.xml`);
   }
   if (!res.ok) {
     console.warn(`Nessun bollettino disponibile (né oggi né ieri, HTTP ${res.status})`);
