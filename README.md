@@ -109,17 +109,22 @@ o con troppo spazio vuoto, aggiusta il parametro `height` passato ad
 
 ### 3. Widget ufficiale allerte Protezione Civile
 
-Analogo discorso per le allerte: vai su
-[protezionecivile.fvg.it/it/widget-allerta](https://www.protezionecivile.fvg.it/it/widget-allerta),
-genera il codice per il comune/area di interesse, e incolla lo snippet ricevuto in
-`components/AllertaWidgetSlot.tsx`, sostituendo `null` nella costante `SNIPPET` con
-la stringa ricevuta (tra backtick, es. `` `<iframe .../>` ``).
+Stesso discorso del widget meteo: il sito è organizzato per provincia, quindi
+servono **4 richieste separate**, una per capoluogo:
+
+1. Vai su [protezionecivile.fvg.it/it/widget-allerta](https://www.protezionecivile.fvg.it/it/widget-allerta)
+   e genera il codice per **Trieste**
+2. Ripeti per **Udine**, **Gorizia** e **Pordenone**
+3. Incolla ciascuno snippet ricevuto in `components/AllertaWidgetSlot.tsx`,
+   nell'oggetto `SNIPPET_PER_CITTA`, sostituendo `null` con la stringa ricevuta
+   (tra backtick, es. `` `<iframe .../>` ``)
 
 **Attenzione**: se lo snippet ricevuto è anch'esso uno `<script src="...">` (non un
 `<iframe>` già pronto), controlla se il file JS collegato usa `document.write()`
-come i widget meteo — in tal caso non va incollato con `AllertaWidgetSlot`/`HtmlEmbed`,
+come i widget meteo — in tal caso non va incollato con `HtmlEmbed`,
 ma gestito con lo stesso pattern a iframe isolato di `ArpaWidgetEmbed.tsx`
-(puoi copiarlo e adattarlo). Se invece è già un `<iframe>` diretto, `HtmlEmbed` va bene
+(puoi copiarlo e adattarlo, vedi `MeteoWidgetSlot.tsx` per l'esempio). Se invece
+è già un `<iframe>` diretto, `HtmlEmbed` va bene
 così com'è.
 
 ### 4. Nota sul feed notizie ANSA

@@ -1,9 +1,11 @@
 "use client";
 
+import { AllertaWidgetSlot } from "@/components/AllertaWidgetSlot";
 import { MeteoDettaglio } from "@/components/MeteoPanel";
 import { MeteoWidgetSlot } from "@/components/MeteoWidgetSlot";
 import { Panel } from "@/components/Panel";
 import { TopHeader } from "@/components/TopHeader";
+import { ZoneChip } from "@/components/ZoneChip";
 import { PROVINCE, type ProvinciaSlug } from "@/lib/province";
 
 export function ProvinciaPage({ slug }: { slug: ProvinciaSlug }) {
@@ -23,11 +25,24 @@ export function ProvinciaPage({ slug }: { slug: ProvinciaSlug }) {
           <Panel title={`Condizioni live — ${provincia.nome}`}>
             <MeteoWidgetSlot slug={slug} cittaNome={provincia.nome} />
           </Panel>
+
+          <Panel
+            title="Allerta Protezione Civile"
+            linkLabel="Storico →"
+            linkHref="https://www.protezionecivile.fvg.it/it/allerte-tutte"
+            span={2}
+          >
+            <div className="flex items-center gap-2 mb-3">
+              <span className="text-sm text-ink-dim">Zona di allertamento:</span>
+              <ZoneChip zone={provincia.zona} size="md" />
+            </div>
+            <AllertaWidgetSlot slug={slug} cittaNome={provincia.nome} />
+          </Panel>
         </div>
 
         <p className="text-ink-faint text-xs font-mono mt-6">
-          Altri moduli specifici per {provincia.nome} (allerte, viabilità, notizie locali)
-          arrivano nelle fasi successive del piano.
+          Altri moduli specifici per {provincia.nome} (viabilità, notizie locali) arrivano
+          nelle fasi successive del piano.
         </p>
       </main>
     </>

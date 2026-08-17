@@ -1,14 +1,15 @@
 import { AlertBanner } from "@/components/AlertBanner";
-import { AllertaWidgetSlot } from "@/components/AllertaWidgetSlot";
 import { MeteoOverview } from "@/components/MeteoPanel";
 import { NotiziePanel } from "@/components/NotiziePanel";
 import { Panel } from "@/components/Panel";
 import { TopHeader } from "@/components/TopHeader";
 import { ZoneChip } from "@/components/ZoneChip";
+import { PROVINCE_LIST } from "@/lib/province";
 
 // Il banner allerta resta manuale finché non ingeriamo lo stato zone
-// dal Widget PC (vedi AllertaWidgetSlot) — per ora placeholder di
-// esempio, da rimuovere/collegare quando il widget è integrato.
+// dal Widget PC — per ora placeholder di esempio, da rimuovere/
+// collegare quando il widget è integrato in tutte e 4 le pagine
+// provincia (vedi ProvinciaPage.tsx).
 const ALLERTA_ATTIVA = {
   livello: "gialla" as const,
   messaggio: "Vento forte da Bora su zona costiera FVG-C — validità fino alle 20:00",
@@ -32,7 +33,7 @@ export default function Home() {
             <MeteoOverview />
           </Panel>
 
-          <Panel title="Allerte · Zone" linkLabel="Storico →" linkHref="#">
+          <Panel title="Allerte · Zone" linkLabel="Storico →" linkHref="https://www.protezionecivile.fvg.it/it/allerte-tutte">
             <div className="flex gap-1.5 mb-4">
               {(["A", "B", "C", "D"] as const).map((z) => (
                 <div key={z} className="flex-1 border border-line rounded p-2 text-center">
@@ -43,7 +44,20 @@ export default function Home() {
                 </div>
               ))}
             </div>
-            <AllertaWidgetSlot />
+            <p className="text-ink-faint text-xs font-mono mb-2">
+              Dettaglio e widget ufficiale per provincia:
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {PROVINCE_LIST.map((p) => (
+                <a
+                  key={p.slug}
+                  href={`/${p.slug}`}
+                  className="text-xs font-mono text-cool hover:underline"
+                >
+                  {p.nome} →
+                </a>
+              ))}
+            </div>
           </Panel>
 
           <Panel title="Notizie locali" linkLabel="Tutte →" linkHref="https://www.ansa.it/friuliveneziagiulia/">
