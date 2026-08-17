@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { HtmlEmbed } from "@/components/HtmlEmbed";
 import type { ProvinciaSlug } from "@/lib/province";
 
@@ -7,11 +10,11 @@ import type { ProvinciaSlug } from "@/lib/province";
  * per Trieste / Udine / Gorizia / Pordenone su
  * protezionecivile.fvg.it/it/widget-allerta — vedi README, sezione Fase 1.
  *
- * IMPORTANTE: se lo snippet ricevuto è uno <script src="..."> (non un
- * <iframe> diretto), controlla se il file JS collegato usa
- * document.write() come i widget meteo — in tal caso non va incollato
- * qui con HtmlEmbed, ma gestito con lo stesso pattern a iframe isolato
- * di ArpaWidgetEmbed.tsx (vedi MeteoWidgetSlot.tsx per l'esempio).
+ * Il widget ufficiale si mostra da solo (rimuove `display: none` dal
+ * proprio div) SOLO quando c'è un'allerta attiva per quel comune —
+ * altrimenti resta invisibile by design. Mostriamo un messaggio
+ * "nessuna allerta attiva" di cortesia quando resta nascosto, per non
+ * lasciare il pannello con un vuoto che sembra rotto.
  */
 const SNIPPET_PER_CITTA: Record<ProvinciaSlug, string | null> = {
   trieste: `<script type="text/javascript" src="https://www.protezionecivile.fvg.it/widgets/pcrfvgit_alert.js"></script><div class="pcrfvgit_alert_widget" data-istatcode="32006"></div>`,
@@ -22,6 +25,21 @@ const SNIPPET_PER_CITTA: Record<ProvinciaSlug, string | null> = {
 
 export function AllertaWidgetSlot({ slug, cittaNome }: { slug: ProvinciaSlug; cittaNome: string }) {
   const snippet = SNIPPET_PER_CITTA[slug];
+  const [nessunaAllerta, setNessunaAllerta] = useState(false);
+
+  useEffect(() => {
+    if (!snippet) return;
+    // Il widget ufficiale carica in modo asincrono; controlliamo dopo
+    // un breve ritardo se il suo div è rimasto display:none — in tal
+    // caso non c'è un'allerta attiva, mostriamo il nostro messaggio.
+    const id = setTimeout(() => {
+      const el = document.querySelector(`.pcrfvgit_alert_widget[data-istatcode]`);
+      if (el && getComputedStyle(el).display === "none") {
+        setNessunaAllerta(true);
+      }
+    }, 1500);
+    return () => clearTimeout(id);
+  }, [snippet]);
 
   if (!snippet) {
     return (
@@ -32,5 +50,12 @@ export function AllertaWidgetSlot({ slug, cittaNome }: { slug: ProvinciaSlug; ci
     );
   }
 
-  return <HtmlEmbed html={snippet} />;
+  return (
+    <div>
+      <HtmlEmbed html={snippet} />
+      {nessunaAllerta && (
+        <p className="text-ink-faint text-sm font-mono">Nessuna allerta attiva al momento.</p>
+      )}
+    </div>
+  );
 }
