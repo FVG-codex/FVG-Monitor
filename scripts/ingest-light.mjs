@@ -480,6 +480,64 @@ async function ingestQualitaAria() {
 
 // ---------------------------------------------------------------------
 
+// ---------------------------------------------------------------------
+// VOLI TRIESTE AIRPORT — scraping HTML, stesso approccio degli eventi:
+// la pagina è renderizzata server-side (verificato), niente browser
+// headless necessario. Struttura HTML verificata manualmente via
+// devtools — se il sito cambia layout, questo parser andrà aggiornato.
+// ---------------------------------------------------------------------
+
+async function ingestVoli() {
+  const res = await fetch("https://triesteairport.it/it/airport/voli-e-destinazioni/voli-in-tempo-reale/", {
+    headers: { "User-Agent": "Mozilla/5.0 (compatible; FVGMonitorBot/1.0)" },
+  });
+  if (!res.ok) {
+    console.warn(`Pagina voli non disponibile (HTTP ${res.status})`);
+    return;
+  }
+
+  const html = await res.text();
+  const $ = cheerio.load(html);
+
+  const aggiornatoAlTesto = $(".updated-date").first().text().replace("Ultimo aggiornamento:", "").trim();
+
+  const risultato = { partenze: [], arrivi: [] };
+  $("div.voli-diretti").each((_, div) => {
+    const titolo = $(div).find("h3").first().text().trim().toLowerCase();
+    const chiave = titolo.includes("arriv") ? "arrivi" : titolo.includes("parten") ? "partenze" : null;
+    if (!chiave) return;
+
+    const righe = $(div).find("table tr").slice(1); // salta l'intestazione (th)
+    righe.each((_, tr) => {
+      const celle = $(tr).find("td");
+      if (celle.length < 5) return;
+      risultato[chiave].push({
+        volo: $(celle[0]).text().trim().replace(/\s+/g, " "),
+        luogo: $(celle[1]).text().trim(),
+        previsto: $(celle[2]).text().trim(),
+        effettivo: $(celle[3]).text().trim(),
+        note: $(celle[4]).text().trim(),
+      });
+    });
+  });
+
+  if (risultato.partenze.length === 0 && risultato.arrivi.length === 0) {
+    console.warn("Nessun volo estratto — la struttura HTML della pagina potrebbe essere cambiata");
+    return;
+  }
+
+  await upsertSnapshot("voli:trieste-airport", "voli", "C", {
+    aggiornato_al_testo: aggiornatoAlTesto,
+    aggiornato_al: new Date().toISOString(),
+    ...risultato,
+  });
+  console.log(
+    `Voli aggiornati: ${risultato.partenze.length} partenze, ${risultato.arrivi.length} arrivi`
+  );
+}
+
+// ---------------------------------------------------------------------
+
 async function main() {
   const risultati = await Promise.allSettled([
     ingestMeteo(),
@@ -488,6 +546,7 @@ async function main() {
     ingestViabilita(),
     ingestEventi(),
     ingestQualitaAria(),
+    ingestVoli(),
   ]);
   let fallito = false;
   risultati.forEach((r, i) => {

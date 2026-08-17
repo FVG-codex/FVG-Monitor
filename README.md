@@ -197,6 +197,18 @@ seguendo lo stesso procedimento di ispezione HTML usato per costruirlo.
 Fase 4 del piano: rifinitura (responsive, accessibilità, performance,
 dominio personalizzato) — vedi piano di lavoro per il dettaglio.
 
+## Modulo extra — Trieste Airport (fatto)
+
+Non previsto nel piano originale, aggiunto su richiesta. `ingestVoli()` fa
+scraping HTML della pagina "Voli in tempo reale" di triesteairport.it —
+stesso approccio degli Eventi (pagina server-rendered, niente browser
+headless necessario). Partenze e arrivi con orario previsto/effettivo e
+note (check-in aperto, cambio gate, ecc.).
+
+**Stessa nota di fragilità** degli Eventi: essendo scraping HTML, dipende da
+classi CSS specifiche (`voli-diretti`, `updated-date`) — da aggiornare se il
+sito viene ridisegnato.
+
 ## Fase 3 — Qualità dell'aria (fatto)
 
 `ingestQualitaAria()` legge il dataset **"Aria - Particelle Sospese PM10"**

@@ -8,6 +8,7 @@ import { TgrCard } from "@/components/TgrCard";
 import { TopHeader } from "@/components/TopHeader";
 import { VentoPanel } from "@/components/VentoPanel";
 import { ViabilitaPanel } from "@/components/ViabilitaPanel";
+import { VoliPanel } from "@/components/VoliPanel";
 import { ZoneChip } from "@/components/ZoneChip";
 import { PROVINCE_LIST } from "@/lib/province";
 
@@ -85,6 +86,15 @@ export default function Home() {
             <AriaPanel />
           </Panel>
 
+          <Panel
+            title="Trieste Airport"
+            linkLabel="Tutti i voli →"
+            linkHref="https://triesteairport.it/it/airport/voli-e-destinazioni/voli-in-tempo-reale/"
+            span={2}
+          >
+            <VoliPanel />
+          </Panel>
+
           <Panel title="TGR FVG">
             <TgrCard />
           </Panel>
@@ -97,7 +107,7 @@ export default function Home() {
 
       <footer className="max-w-[1180px] mx-auto px-5 py-6 border-t border-line font-mono text-[11px] text-ink-faint flex justify-between flex-wrap gap-2">
         <span>FVG Monitor — Fase 3</span>
-        <span>Fonti: OSMER ARPA FVG · ANSA FVG · Protezione Civile FVG (CC BY 4.0) · InfoViaggiando · Turismo FVG · RAI TGR FVG</span>
+        <span>Fonti: OSMER ARPA FVG · ANSA FVG · Protezione Civile FVG (CC BY 4.0) · InfoViaggiando · Turismo FVG · RAI TGR FVG · Trieste Airport</span>
       </footer>
     </>
   );
