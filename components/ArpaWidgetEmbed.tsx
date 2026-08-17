@@ -11,6 +11,13 @@
  * L'altezza è indicativa (il widget ARPA in formato "h-extended" è
  * una card compatta orizzontale) — aggiustala guardando il risultato
  * reale una volta deployato.
+ *
+ * sandbox="allow-scripts allow-same-origin": senza allow-same-origin
+ * l'iframe ha un'origine "null", e alcune richieste di rete che lo
+ * script fa al proprio dominio vengono bloccate dal CORS (visibile
+ * in console, ma senza impatto sul contenuto principale del widget,
+ * che comunque funziona). Con allow-same-origin l'iframe ha
+ * un'origine reale, evitando quell'errore.
  */
 export function ArpaWidgetEmbed({ scriptUrl, height = 210 }: { scriptUrl: string; height?: number }) {
   const srcDoc = `<!DOCTYPE html>
@@ -29,7 +36,7 @@ export function ArpaWidgetEmbed({ scriptUrl, height = 210 }: { scriptUrl: string
   return (
     <iframe
       srcDoc={srcDoc}
-      sandbox="allow-scripts"
+      sandbox="allow-scripts allow-same-origin"
       style={{ width: "100%", height, border: "none", background: "transparent" }}
       title="Widget meteo ARPA FVG"
     />
