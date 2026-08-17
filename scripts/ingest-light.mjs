@@ -502,12 +502,12 @@ async function ingestVoli() {
   const aggiornatoAlTesto = $(".updated-date").first().text().replace("Ultimo aggiornamento:", "").trim();
 
   const risultato = { partenze: [], arrivi: [] };
-  $("div.voli-diretti").each((_, div) => {
-    const titolo = $(div).find("h3").first().text().trim().toLowerCase();
+  $("table").each((_, table) => {
+    const titolo = $(table).prevAll("h3").first().text().trim().toLowerCase();
     const chiave = titolo.includes("arriv") ? "arrivi" : titolo.includes("parten") ? "partenze" : null;
     if (!chiave) return;
 
-    const righe = $(div).find("table tr").slice(1); // salta l'intestazione (th)
+    const righe = $(table).find("tr").slice(1); // salta l'intestazione (th)
     righe.each((_, tr) => {
       const celle = $(tr).find("td");
       if (celle.length < 5) return;
