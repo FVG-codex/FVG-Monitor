@@ -135,8 +135,19 @@ all'originale — uno schema di aggregazione standard — ma vale la pena rivalu
 questo punto, eventualmente contattando ANSA, se il progetto dovesse crescere
 oltre l'uso personale/dimostrativo.
 
+## Fase 2 — Bora/Vento (fatto)
+
+Il pannello Bora/Vento in homepage legge dati reali dall'**API di monitoraggio
+della Protezione Civile FVG** (`monitor.protezionecivile.fvg.it/api`, licenza
+CC BY 4.0, nessuna chiave richiesta — API pubblica). Usa la stazione Trieste
+(id 212), la più rappresentativa per la Bora tra quelle disponibili. Il job
+`ingest:light` ora aggiorna anche `vento:trieste` nella tabella `snapshots`,
+insieme a meteo e notizie — nessun secret aggiuntivo necessario.
+
 ## Prossimo passo
 
-Fase 2 del piano: viabilità (InfoViaggiando), trasporto pubblico (TPL FVG) e
-vento/Bora — richiede prima la validazione tecnica degli endpoint via devtools
-(vedi piano di lavoro).
+Fase 2 del piano, parte restante: viabilità (InfoViaggiando) e trasporto
+pubblico (TPL FVG) — richiedono prima la validazione tecnica degli endpoint
+via devtools (vedi piano di lavoro) per capire se espongono un endpoint JSON
+riutilizzabile o se serve scraping via browser headless (workflow
+`ingest-heavy.yml`, già predisposto come scheletro).

@@ -203,9 +203,61 @@ async function ingestNotizie() {
 }
 
 // ---------------------------------------------------------------------
+// VENTO / BORA — API Monitoraggio Protezione Civile FVG
+// Fonte: monitor.protezionecivile.fvg.it/api, licenza CC BY 4.0.
+// Stazione Trieste (id 212, istat 32006) — coordinate sul lungomare,
+// la più rappresentativa per la Bora tra quelle mappate.
+// ---------------------------------------------------------------------
+
+const PC_API_BASE = "https://monitor.protezionecivile.fvg.it/api";
+const STAZIONE_VENTO_TRIESTE = 212;
+const SENSORI_VENTO = {
+  direzione: 5, // Dv — °N
+  velocita: 6, // Vv — m/s
+  raffica: 7, // VvMax — m/s
+  direzioneRaffica: 8, // DvMax — °N
+};
+
+async function ultimaMisura(stationId, sensorId) {
+  const res = await fetch(`${PC_API_BASE}/stations/${stationId}/sensors/${sensorId}/measures/latest`);
+  if (!res.ok) return null;
+  const json = await res.json();
+  return json.measures?.[0] ?? null;
+}
+
+async function ingestVento() {
+  const [direzione, velocita, raffica, direzioneRaffica] = await Promise.all([
+    ultimaMisura(STAZIONE_VENTO_TRIESTE, SENSORI_VENTO.direzione),
+    ultimaMisura(STAZIONE_VENTO_TRIESTE, SENSORI_VENTO.velocita),
+    ultimaMisura(STAZIONE_VENTO_TRIESTE, SENSORI_VENTO.raffica),
+    ultimaMisura(STAZIONE_VENTO_TRIESTE, SENSORI_VENTO.direzioneRaffica),
+  ]);
+
+  if (!velocita) {
+    console.warn("Nessuna misura vento disponibile dalla stazione Trieste");
+    return;
+  }
+
+  // m/s → km/h, unità più familiare per il pubblico italiano
+  const msToKmh = (v) => (v == null ? null : Math.round(v * 3.6 * 10) / 10);
+
+  const payload = {
+    stazione: "Trieste",
+    aggiornato_al: velocita.dt,
+    velocita_kmh: msToKmh(velocita.value),
+    raffica_kmh: msToKmh(raffica?.value),
+    direzione_gradi: direzione?.value ?? null,
+    direzione_raffica_gradi: direzioneRaffica?.value ?? null,
+  };
+
+  await upsertSnapshot("vento:trieste", "vento", "C", payload);
+  console.log("Vento aggiornato:", payload.velocita_kmh, "km/h");
+}
+
+// ---------------------------------------------------------------------
 
 async function main() {
-  const risultati = await Promise.allSettled([ingestMeteo(), ingestNotizie()]);
+  const risultati = await Promise.allSettled([ingestMeteo(), ingestNotizie(), ingestVento()]);
   let fallito = false;
   risultati.forEach((r, i) => {
     if (r.status === "rejected") {

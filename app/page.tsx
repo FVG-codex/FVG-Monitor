@@ -3,6 +3,7 @@ import { MeteoOverview } from "@/components/MeteoPanel";
 import { NotiziePanel } from "@/components/NotiziePanel";
 import { Panel } from "@/components/Panel";
 import { TopHeader } from "@/components/TopHeader";
+import { VentoPanel } from "@/components/VentoPanel";
 import { ZoneChip } from "@/components/ZoneChip";
 import { PROVINCE_LIST } from "@/lib/province";
 
@@ -64,6 +65,14 @@ export default function Home() {
             <NotiziePanel />
           </Panel>
 
+          <Panel
+            title="Bora · Vento"
+            linkLabel="Protezione Civile FVG →"
+            linkHref="https://monitor.protezionecivile.fvg.it"
+          >
+            <VentoPanel />
+          </Panel>
+
           <Panel title="Viabilità" linkLabel="InfoViaggiando →" linkHref="#">
             <p className="text-ink-faint text-sm font-mono">placeholder — Fase 2</p>
           </Panel>
@@ -75,8 +84,8 @@ export default function Home() {
       </main>
 
       <footer className="max-w-[1180px] mx-auto px-5 py-6 border-t border-line font-mono text-[11px] text-ink-faint flex justify-between flex-wrap gap-2">
-        <span>FVG Monitor — Fase 1</span>
-        <span>Fonti: OSMER ARPA FVG · ANSA FVG · Protezione Civile FVG</span>
+        <span>FVG Monitor — Fase 2 (in corso)</span>
+        <span>Fonti: OSMER ARPA FVG · ANSA FVG · Protezione Civile FVG (CC BY 4.0)</span>
       </footer>
     </>
   );
