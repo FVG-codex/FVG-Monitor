@@ -5,6 +5,7 @@ import { MeteoDettaglio } from "@/components/MeteoPanel";
 import { MeteoWidgetSlot } from "@/components/MeteoWidgetSlot";
 import { Panel } from "@/components/Panel";
 import { PioggiaPanel } from "@/components/PioggiaPanel";
+import { TemperaturaBadge } from "@/components/TemperaturaBadge";
 import { TopHeader } from "@/components/TopHeader";
 import { VentoPanel } from "@/components/VentoPanel";
 import { ZoneChip } from "@/components/ZoneChip";
@@ -25,7 +26,10 @@ export function ProvinciaPage({ slug }: { slug: ProvinciaSlug }) {
           </Panel>
 
           <Panel title={`Condizioni live — ${provincia.nome}`}>
-            <MeteoWidgetSlot slug={slug} cittaNome={provincia.nome} />
+            <TemperaturaBadge provincia={slug} size="lg" />
+            <div className="mt-3">
+              <MeteoWidgetSlot slug={slug} cittaNome={provincia.nome} />
+            </div>
           </Panel>
 
           <Panel

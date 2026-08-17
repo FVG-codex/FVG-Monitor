@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
+import { TemperaturaBadge } from "@/components/TemperaturaBadge";
 import { ZoneChip } from "@/components/ZoneChip";
 import { PROVINCE, PROVINCE_LIST, type ProvinciaSlug } from "@/lib/province";
 
@@ -103,6 +104,7 @@ export function MeteoOverview() {
                 ) : (
                   <span className="text-ink-faint flex-1 font-mono text-xs">n.d.</span>
                 )}
+                <TemperaturaBadge provincia={p.slug} />
                 <span className="text-cool text-xs font-mono flex-shrink-0">Dettagli →</span>
               </a>
             );

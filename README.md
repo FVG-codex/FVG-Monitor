@@ -197,6 +197,15 @@ seguendo lo stesso procedimento di ispezione HTML usato per costruirlo.
 Fase 4 del piano: rifinitura (responsive, accessibilità, performance,
 dominio personalizzato) — vedi piano di lavoro per il dettaglio.
 
+## Modulo extra — Temperatura live (fatto)
+
+Come per vento e pioggia, sfrutta l'API di monitoraggio PC FVG (sensore
+`T`, stesse 4 stazioni) invece del bollettino OSMER — essendo una fonte
+diversa con licenza CC BY 4.0 esplicita, non è soggetta al vincolo delle
+24h che ci impediva di mostrare la temperatura "adesso" da OSMER. Badge
+compatto (`TemperaturaBadge.tsx`) riusato sia nell'overview homepage sia
+nelle pagine provincia.
+
 ## Modulo extra — Trieste Airport (fatto)
 
 Non previsto nel piano originale, aggiunto su richiesta. `ingestVoli()` fa

@@ -594,6 +594,49 @@ async function ingestPioggia() {
 
 // ---------------------------------------------------------------------
 
+// ---------------------------------------------------------------------
+// TEMPERATURA LIVE — stessa API PC FVG, stesse 4 stazioni di vento e
+// pioggia (sensore "T"). A differenza del bollettino OSMER, questa
+// fonte ha licenza CC BY 4.0 esplicita e non è soggetta al vincolo
+// delle 24h sui dati real-time — possiamo mostrare la temperatura
+// "adesso" legittimamente.
+// ---------------------------------------------------------------------
+
+async function ingestTemperaturaProvincia(provincia, stationId, nomeStazione, zona) {
+  const sensori = await sensoriStazione(stationId);
+  const idTemp = sensori.find((s) => s.code === "T")?.id ?? null;
+  if (!idTemp) {
+    console.warn(`Stazione "${nomeStazione}" (${provincia}) non ha un sensore temperatura — salto`);
+    return;
+  }
+
+  const misura = await ultimaMisura(stationId, idTemp);
+  if (!misura) {
+    console.warn(`Nessuna misura temperatura disponibile per "${nomeStazione}" (${provincia})`);
+    return;
+  }
+
+  await upsertSnapshot(`temperatura:${provincia}`, "temperatura", zona, {
+    stazione: nomeStazione,
+    aggiornato_al: misura.dt,
+    temperatura_c: misura.value,
+  });
+  console.log(`Temperatura aggiornata (${provincia}):`, misura.value, "°C");
+}
+
+async function ingestTemperatura() {
+  const ZONA_PER_PROVINCIA = { trieste: "C", udine: "B", gorizia: "C", pordenone: "A" };
+  const nomiStazioni = { trieste: "Trieste", udine: "Udine S+M", gorizia: "Gorizia aeroporto", pordenone: "Pordenone meteo" };
+
+  await Promise.all(
+    Object.entries(STAZIONE_VENTO_PER_PROVINCIA).map(([provincia, stationId]) =>
+      ingestTemperaturaProvincia(provincia, stationId, nomiStazioni[provincia], ZONA_PER_PROVINCIA[provincia])
+    )
+  );
+}
+
+// ---------------------------------------------------------------------
+
 async function main() {
   const risultati = await Promise.allSettled([
     ingestMeteo(),
@@ -604,6 +647,7 @@ async function main() {
     ingestQualitaAria(),
     ingestVoli(),
     ingestPioggia(),
+    ingestTemperatura(),
   ]);
   let fallito = false;
   risultati.forEach((r, i) => {
