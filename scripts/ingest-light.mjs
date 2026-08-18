@@ -759,11 +759,11 @@ async function ingestOzono() {
   const dataPiuRecente = rows[0].data_misura;
   const righeRecenti = rows.filter((r) => r.data_misura === dataPiuRecente);
 
-  const NOMI_RETE_PROVINCIA = { trieste: "Trieste", udine: "Udine", gorizia: "Gorizia", pordenone: "Pordenone" };
+  const NOMI_CITTA_PROVINCIA = { trieste: "Trieste", udine: "Udine", gorizia: "Gorizia", pordenone: "Pordenone" };
 
   const perProvincia = {};
-  for (const [provincia, rete] of Object.entries(NOMI_RETE_PROVINCIA)) {
-    const riga = righeRecenti.find((r) => r.rete === rete);
+  for (const [provincia, nomeCitta] of Object.entries(NOMI_CITTA_PROVINCIA)) {
+    const riga = righeRecenti.find((r) => r.ubicazione?.toLowerCase().includes(nomeCitta.toLowerCase()));
     if (!riga) continue;
 
     const media8h = riga.media_mobile_8h_max ? Number(riga.media_mobile_8h_max) : null;
