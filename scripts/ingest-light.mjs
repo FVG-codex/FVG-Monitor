@@ -672,7 +672,7 @@ async function ingestFiumeProvincia(provincia, stazione, zona) {
     stazione: stazione.nome,
     fiume: stazione.fiume,
     aggiornato_al: misura.dt,
-    livello_m: misura.value,
+    livello_m: Math.round(misura.value * 100) / 100,
   });
   console.log(`Livello fiume aggiornato (${provincia}, ${stazione.fiume}):`, misura.value, "m");
 }
@@ -720,13 +720,72 @@ async function ingestMareStazione(stazione) {
   await upsertSnapshot(`mare:${stazione.slug}`, "mare", null, {
     stazione: stazione.nome,
     aggiornato_al: misura.dt,
-    livello_m: misura.value,
+    livello_m: Math.round(misura.value * 100) / 100,
   });
   console.log(`Livello mare aggiornato (${stazione.nome}):`, misura.value, "m IGM42");
 }
 
 async function ingestMare() {
   await Promise.all(STAZIONI_MARE.map((s) => ingestMareStazione(s)));
+}
+
+// ---------------------------------------------------------------------
+
+// ---------------------------------------------------------------------
+// QUALITÀ ARIA — OZONO — dataset "Aria - Ozono" (id 7vnx-28uy) sullo
+// stesso portale Socrata del PM10. Il campo "rete" corrisponde
+// direttamente al nome provincia (più affidabile del confronto per
+// nome stazione usato per il PM10). Soglia di legge: 120 µg/m³ media
+// mobile 8h (obiettivo di protezione della salute).
+// ---------------------------------------------------------------------
+
+const OZONO_DATASET_URL = "https://www.dati.friuliveneziagiulia.it/resource/7vnx-28uy.json";
+const SOGLIA_OZONO_UGM3 = 120;
+
+async function ingestOzono() {
+  const url = `${OZONO_DATASET_URL}?$order=data_misura DESC&$limit=300`;
+  const res = await fetch(url);
+  if (!res.ok) {
+    console.warn(`Dataset ozono non disponibile (HTTP ${res.status})`);
+    return;
+  }
+
+  const rows = await res.json();
+  if (!Array.isArray(rows) || rows.length === 0) {
+    console.warn("Dataset ozono vuoto");
+    return;
+  }
+
+  const dataPiuRecente = rows[0].data_misura;
+  const righeRecenti = rows.filter((r) => r.data_misura === dataPiuRecente);
+
+  const NOMI_RETE_PROVINCIA = { trieste: "Trieste", udine: "Udine", gorizia: "Gorizia", pordenone: "Pordenone" };
+
+  const perProvincia = {};
+  for (const [provincia, rete] of Object.entries(NOMI_RETE_PROVINCIA)) {
+    const riga = righeRecenti.find((r) => r.rete === rete);
+    if (!riga) continue;
+
+    const media8h = riga.media_mobile_8h_max ? Number(riga.media_mobile_8h_max) : null;
+    perProvincia[provincia] = {
+      stazione: riga.ubicazione,
+      media_mobile_8h_max: media8h !== null ? Math.round(media8h) : null,
+      superamento: media8h !== null ? media8h > SOGLIA_OZONO_UGM3 : null,
+      dati_insufficienti: riga.dati_insuff === "True",
+    };
+  }
+
+  if (Object.keys(perProvincia).length === 0) {
+    console.warn("Nessuna stazione ozono trovata per le 4 province");
+    return;
+  }
+
+  await upsertSnapshot("aria:ozono", "aria", null, {
+    data_misura: dataPiuRecente,
+    soglia_ugm3: SOGLIA_OZONO_UGM3,
+    per_provincia: perProvincia,
+  });
+  console.log(`Ozono aggiornato (${Object.keys(perProvincia).length} province):`, dataPiuRecente);
 }
 
 // ---------------------------------------------------------------------
@@ -744,6 +803,7 @@ async function main() {
     ingestTemperatura(),
     ingestFiumi(),
     ingestMare(),
+    ingestOzono(),
   ]);
   let fallito = false;
   risultati.forEach((r, i) => {

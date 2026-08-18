@@ -29,7 +29,10 @@ export function FiumePanel({ provincia }: { provincia: ProvinciaSlug }) {
         setStato("error");
         return;
       }
-      setDati(data.data as FiumeData);
+      const dati = data.data as FiumeData;
+      // arrotondato anche qui come protezione in più, oltre allo
+      // script di ingestione
+      setDati({ ...dati, livello_m: Math.round(dati.livello_m * 100) / 100 });
       setStato("ready");
     }
     carica();

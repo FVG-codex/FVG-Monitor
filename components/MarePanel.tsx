@@ -23,7 +23,8 @@ export function MarePanel() {
       }
       const mappa: Partial<Record<string, MareData>> = {};
       for (const row of data) {
-        mappa[row.id.replace("mare:", "")] = row.data as MareData;
+        const d = row.data as MareData;
+        mappa[row.id.replace("mare:", "")] = { ...d, livello_m: Math.round(d.livello_m * 100) / 100 };
       }
       setDatiPerLocalita(mappa);
       setStato("ready");

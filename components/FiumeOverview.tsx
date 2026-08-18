@@ -23,7 +23,8 @@ export function FiumeOverview() {
       const mappa: Partial<Record<ProvinciaSlug, FiumeData>> = {};
       for (const row of data) {
         const slug = row.id.replace("fiume:", "") as ProvinciaSlug;
-        mappa[slug] = row.data as FiumeData;
+        const d = row.data as FiumeData;
+        mappa[slug] = { ...d, livello_m: Math.round(d.livello_m * 100) / 100 };
       }
       setDatiPerProvincia(mappa);
       setStato("ready");

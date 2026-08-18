@@ -4,6 +4,7 @@ import { EventiPanel } from "@/components/EventiPanel";
 import { FiumeOverview } from "@/components/FiumeOverview";
 import { MeteoOverview } from "@/components/MeteoPanel";
 import { NotiziePanel } from "@/components/NotiziePanel";
+import { OzonoPanel } from "@/components/OzonoPanel";
 import { Panel } from "@/components/Panel";
 import { MarePanel } from "@/components/MarePanel";
 import { PioggiaPanel } from "@/components/PioggiaPanel";
@@ -95,6 +96,10 @@ export default function Home() {
 
           <Panel title="Qualità dell'aria · PM10" linkLabel="ARPA FVG →" linkHref="https://www.arpa.fvg.it">
             <AriaPanel />
+          </Panel>
+
+          <Panel title="Qualità dell'aria · Ozono" linkLabel="ARPA FVG →" linkHref="https://www.arpa.fvg.it">
+            <OzonoPanel />
           </Panel>
 
           <Panel
