@@ -98,6 +98,14 @@ Pordenone):
   (`SNIPPET_PER_CITTA`, tra backtick). Se lo snippet è uno `<script src="...">`
   che usa `document.write()`, va isolato come sopra invece di `HtmlEmbed`.
 
+## Resilienza di rete
+
+Tutte le chiamate `fetch` dello script passano da `fetchConRetry()` (3
+tentativi, con breve pausa crescente tra uno e l'altro) — le fonti esterne
+hanno occasionalmente timeout transitori (`ETIMEDOUT`), e senza retry un
+singolo timeout fa fallire l'intero job anche se gli altri 20+ moduli sono
+andati a buon fine.
+
 ## Note di fragilità
 
 I moduli **Eventi** e **Trieste Airport** fanno scraping HTML (non un'API

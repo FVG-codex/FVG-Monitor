@@ -20,6 +20,23 @@ if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
 }
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
+
+// Le fonti esterne a volte hanno timeout transitori (visto con
+// dati.friuliveneziagiulia.it: ETIMEDOUT). Un solo tentativo fallito
+// non deve far cadere l'intero job — 2 retry con una breve pausa,
+// usato per tutte le chiamate di rete dello script.
+async function fetchConRetry(url, options = {}, tentativi = 3) {
+  let ultimoErrore;
+  for (let i = 0; i < tentativi; i++) {
+    try {
+      return await fetch(url, options);
+    } catch (err) {
+      ultimoErrore = err;
+      if (i < tentativi - 1) await new Promise((r) => setTimeout(r, 1000 * (i + 1)));
+    }
+  }
+  throw ultimoErrore;
+}
 const xml = new XMLParser({ ignoreAttributes: false, attributeNamePrefix: "@_" });
 
 // Il testo del bollettino contiene entità HTML (es. "igrave;" per "ì")
@@ -87,10 +104,10 @@ async function ingestMeteo() {
   // quello di ieri, così il dato viene comunque rielaborato con il
   // codice più recente invece di lasciare ferma una riga vecchia su
   // Supabase fino alla pubblicazione.
-  let res = await fetch(`https://dev.meteo.fvg.it/xml/previsioni/PW${oggi}.xml`);
+  let res = await fetchConRetry(`https://dev.meteo.fvg.it/xml/previsioni/PW${oggi}.xml`);
   if (!res.ok) {
     console.warn(`Bollettino di oggi (${oggi}) non disponibile, provo con quello di ieri (${dataIeriStr})`);
-    res = await fetch(`https://dev.meteo.fvg.it/xml/previsioni/PW${dataIeriStr}.xml`);
+    res = await fetchConRetry(`https://dev.meteo.fvg.it/xml/previsioni/PW${dataIeriStr}.xml`);
   }
   if (!res.ok) {
     console.warn(`Nessun bollettino disponibile (né oggi né ieri, HTTP ${res.status})`);
@@ -181,7 +198,7 @@ async function ingestMeteo() {
 
 async function ingestNotizie() {
   const url = "https://www.ansa.it/friuliveneziagiulia/notizie/friuliveneziagiulia_rss.xml";
-  const res = await fetch(url);
+  const res = await fetchConRetry(url);
   if (!res.ok) {
     console.warn(`RSS ANSA non disponibile (HTTP ${res.status})`);
     return;
@@ -232,14 +249,14 @@ const CODICI_SENSORE_VENTO = {
 };
 
 async function sensoriStazione(stationId) {
-  const res = await fetch(`${PC_API_BASE}/stations/${stationId}/sensors`);
+  const res = await fetchConRetry(`${PC_API_BASE}/stations/${stationId}/sensors`);
   if (!res.ok) return [];
   const json = await res.json();
   return json.sensors ?? [];
 }
 
 async function ultimaMisura(stationId, sensorId) {
-  const res = await fetch(`${PC_API_BASE}/stations/${stationId}/sensors/${sensorId}/measures/latest`);
+  const res = await fetchConRetry(`${PC_API_BASE}/stations/${stationId}/sensors/${sensorId}/measures/latest`);
   if (!res.ok) return null;
   const json = await res.json();
   return json.measures?.[0] ?? null;
@@ -323,7 +340,7 @@ async function ingestViabilita() {
     "https://infoviaggiando.it/WFS/?service=WFS&request=GetFeature&version=1.1.0" +
     "&typename=PortaleWeb:EVENTI_LINEARI&outputFormat=application/json&CQL_FILTER=VIS_WEB=%27S%27";
 
-  const res = await fetch(url);
+  const res = await fetchConRetry(url);
   if (!res.ok) {
     console.warn(`Feed viabilità non disponibile (HTTP ${res.status})`);
     return;
@@ -369,7 +386,7 @@ async function ingestViabilita() {
 // ---------------------------------------------------------------------
 
 async function ingestEventi() {
-  const res = await fetch("https://www.turismofvg.it/eventi", {
+  const res = await fetchConRetry("https://www.turismofvg.it/eventi", {
     headers: { "User-Agent": "Mozilla/5.0 (compatible; FVGMonitorBot/1.0)" },
   });
   if (!res.ok) {
@@ -430,7 +447,7 @@ const SOGLIA_PM10_UGM3 = 50; // limite giornaliero di legge
 
 async function ingestQualitaAria() {
   const url = `${ARIA_DATASET_URL}?$order=data_misura DESC&$limit=300`;
-  const res = await fetch(url);
+  const res = await fetchConRetry(url);
   if (!res.ok) {
     console.warn(`Dataset qualità aria non disponibile (HTTP ${res.status})`);
     return;
@@ -488,7 +505,7 @@ async function ingestQualitaAria() {
 // ---------------------------------------------------------------------
 
 async function ingestVoli() {
-  const res = await fetch("https://triesteairport.it/it/airport/voli-e-destinazioni/voli-in-tempo-reale/", {
+  const res = await fetchConRetry("https://triesteairport.it/it/airport/voli-e-destinazioni/voli-in-tempo-reale/", {
     headers: { "User-Agent": "Mozilla/5.0 (compatible; FVGMonitorBot/1.0)" },
   });
   if (!res.ok) {
@@ -744,7 +761,7 @@ const SOGLIA_OZONO_UGM3 = 120;
 
 async function ingestOzono() {
   const url = `${OZONO_DATASET_URL}?$order=data_misura DESC&$limit=300`;
-  const res = await fetch(url);
+  const res = await fetchConRetry(url);
   if (!res.ok) {
     console.warn(`Dataset ozono non disponibile (HTTP ${res.status})`);
     return;
@@ -803,7 +820,7 @@ const SOGLIA_NO2_UGM3 = 200;
 
 async function ingestNo2() {
   const url = `${NO2_DATASET_URL}?$order=data_misura DESC&$limit=300`;
-  const res = await fetch(url);
+  const res = await fetchConRetry(url);
   if (!res.ok) {
     console.warn(`Dataset NO2 non disponibile (HTTP ${res.status})`);
     return;
@@ -862,7 +879,7 @@ const SOGLIA_PM25_OMS_UGM3 = 15;
 
 async function ingestPm25() {
   const url = `${PM25_DATASET_URL}?$order=data_misura DESC&$limit=300`;
-  const res = await fetch(url);
+  const res = await fetchConRetry(url);
   if (!res.ok) {
     console.warn(`Dataset PM2.5 non disponibile (HTTP ${res.status})`);
     return;
@@ -927,7 +944,7 @@ const COMPETIZIONI_CALCIO = [
 ];
 
 async function ingestCalcioCompetizione(comp) {
-  const res = await fetch(comp.url, {
+  const res = await fetchConRetry(comp.url, {
     headers: { "User-Agent": "Mozilla/5.0 (compatible; FVGMonitorBot/1.0)" },
   });
   if (!res.ok) {
