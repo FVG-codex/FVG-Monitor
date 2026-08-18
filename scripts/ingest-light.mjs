@@ -908,6 +908,93 @@ async function ingestPm25() {
 
 // ---------------------------------------------------------------------
 
+// ---------------------------------------------------------------------
+// CALCIO — Eccellenza FVG Girone A (gare.lnd.it). La pagina è
+// un'app Inertia.js: al primo caricamento normale (nessun header
+// speciale necessario) incorpora l'intero stato in un tag
+// <script data-page="app" type="application/json"> — lo estraiamo
+// con cheerio invece di scrapare l'HTML visibile, stesso principio
+// degli altri moduli ma sorgente diversa (JSON incorporato).
+//
+// Per ora solo Eccellenza Girone A (il livello regionale più seguito).
+// Altri campionati (Promozione, Prima Categoria, ecc.) hanno la
+// stessa struttura URL — estendibile in futuro aggiungendo altre
+// voci a COMPETIZIONI_CALCIO.
+// ---------------------------------------------------------------------
+
+const COMPETIZIONI_CALCIO = [
+  { slug: "eccellenza-a", nome: "Eccellenza", girone: "Girone A", url: "https://gare.lnd.it/?campionato=EC&girone=A&stagione=2025&cr=07" },
+];
+
+async function ingestCalcioCompetizione(comp) {
+  const res = await fetch(comp.url, {
+    headers: { "User-Agent": "Mozilla/5.0 (compatible; FVGMonitorBot/1.0)" },
+  });
+  if (!res.ok) {
+    console.warn(`Pagina calcio "${comp.nome}" non disponibile (HTTP ${res.status})`);
+    return;
+  }
+
+  const html = await res.text();
+  const $ = cheerio.load(html);
+  const scriptTag = $('script[data-page="app"]').first().html();
+  if (!scriptTag) {
+    console.warn(`Tag dati non trovato per "${comp.nome}" — la struttura della pagina potrebbe essere cambiata`);
+    return;
+  }
+
+  let dati;
+  try {
+    dati = JSON.parse(scriptTag);
+  } catch {
+    console.warn(`JSON non valido per "${comp.nome}"`);
+    return;
+  }
+
+  const props = dati.props;
+  const partite = (props.matches || []).map((m) => ({
+    casa: m.home,
+    ospite: m.away,
+    golCasa: m.homeGoals,
+    golOspite: m.awayGoals,
+    data: m.date,
+    ora: m.time,
+    campo: m.field,
+    logoCasa: m.homeLogo,
+    logoOspite: m.awayLogo,
+    inCorso: m.isLive,
+  }));
+
+  const classifica = (props.standings || []).map((s) => ({
+    posizione: s.position,
+    squadra: s.team,
+    logo: s.logo,
+    punti: s.points,
+    giocate: s.played,
+    vittorie: s.wins,
+    pareggi: s.draws,
+    sconfitte: s.losses,
+    golFatti: s.goalsFor,
+    golSubiti: s.goalsAgainst,
+  }));
+
+  await upsertSnapshot(`calcio:${comp.slug}`, "calcio", null, {
+    campionato: comp.nome,
+    girone: comp.girone,
+    giornata_corrente: props.currentMatchday || null,
+    partite,
+    classifica,
+    aggiornato_al: new Date().toISOString(),
+  });
+  console.log(`Calcio aggiornato (${comp.nome} ${comp.girone}): ${partite.length} partite, ${classifica.length} squadre`);
+}
+
+async function ingestCalcio() {
+  await Promise.all(COMPETIZIONI_CALCIO.map((c) => ingestCalcioCompetizione(c)));
+}
+
+// ---------------------------------------------------------------------
+
 async function main() {
   const risultati = await Promise.allSettled([
     ingestMeteo(),
@@ -924,6 +1011,7 @@ async function main() {
     ingestOzono(),
     ingestNo2(),
     ingestPm25(),
+    ingestCalcio(),
   ]);
   let fallito = false;
   risultati.forEach((r, i) => {

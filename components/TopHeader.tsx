@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { MenuHamburger } from "@/components/MenuHamburger";
 import { PROVINCE_LIST } from "@/lib/province";
 
 export function TopHeader({ paginaAttiva }: { paginaAttiva?: "regione" | string }) {
@@ -27,10 +28,13 @@ export function TopHeader({ paginaAttiva }: { paginaAttiva?: "regione" | string 
   return (
     <header className="sticky top-0 z-20 border-b border-line bg-bg/95 backdrop-blur">
       <div className="max-w-[1180px] mx-auto px-5 py-3.5 flex items-center justify-between gap-3 flex-wrap">
-        <Link href="/" className="font-cond font-bold text-[22px] tracking-[0.06em] uppercase flex items-baseline gap-2">
-          <span className="w-[7px] h-[7px] rounded-full bg-cool inline-block pulse-dot" />
-          FVG Monitor
-        </Link>
+        <div className="flex items-center gap-3">
+          <MenuHamburger />
+          <Link href="/" className="font-cond font-bold text-[22px] tracking-[0.06em] uppercase flex items-baseline gap-2">
+            <span className="w-[7px] h-[7px] rounded-full bg-cool inline-block pulse-dot" />
+            FVG Monitor
+          </Link>
+        </div>
 
         <nav className="flex gap-0.5 font-cond font-semibold text-sm flex-wrap">
           {voci.map((voce) => (
