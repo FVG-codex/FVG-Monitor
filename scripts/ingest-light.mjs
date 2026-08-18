@@ -941,6 +941,10 @@ async function ingestPm25() {
 
 const COMPETIZIONI_CALCIO = [
   { slug: "eccellenza-a", nome: "Eccellenza", girone: "Girone A", url: "https://gare.lnd.it/?campionato=EC&girone=A&stagione=2025&cr=07" },
+  { slug: "promozione-a", nome: "Promozione", girone: "Girone A", url: "https://gare.lnd.it/?campionato=PR&girone=A&stagione=2025&cr=07" },
+  { slug: "prima-categoria-a", nome: "Prima Categoria", girone: "Girone A", url: "https://gare.lnd.it/?campionato=1C&girone=A&stagione=2025&cr=07" },
+  { slug: "prima-categoria-b", nome: "Prima Categoria", girone: "Girone B", url: "https://gare.lnd.it/?campionato=1C&girone=B&stagione=2025&cr=07" },
+  { slug: "prima-categoria-c", nome: "Prima Categoria", girone: "Girone C", url: "https://gare.lnd.it/?campionato=1C&girone=C&stagione=2025&cr=07" },
 ];
 
 async function ingestCalcioCompetizione(comp) {

@@ -53,18 +53,29 @@ function nomeSquadra(s: string): string {
     .join(" ");
 }
 
+// Deve corrispondere a COMPETIZIONI_CALCIO in scripts/ingest-light.mjs
+const COMPETIZIONI = [
+  { slug: "eccellenza-a", label: "Eccellenza" },
+  { slug: "promozione-a", label: "Promozione" },
+  { slug: "prima-categoria-a", label: "1ª Cat. — Girone A" },
+  { slug: "prima-categoria-b", label: "1ª Cat. — Girone B" },
+  { slug: "prima-categoria-c", label: "1ª Cat. — Girone C" },
+];
+
 export function CalcioPage() {
   const [dati, setDati] = useState<CalcioData | null>(null);
   const [stato, setStato] = useState<"loading" | "ready" | "error">("loading");
   const [tab, setTab] = useState<"calendario" | "classifica">("calendario");
+  const [competizione, setCompetizione] = useState(COMPETIZIONI[0].slug);
 
   useEffect(() => {
     let attivo = true;
+    setStato("loading");
     async function carica() {
       const { data, error } = await supabase
         .from("snapshots")
         .select("data")
-        .eq("id", "calcio:eccellenza-a")
+        .eq("id", `calcio:${competizione}`)
         .single();
       if (!attivo) return;
       if (error || !data) {
@@ -80,7 +91,7 @@ export function CalcioPage() {
       attivo = false;
       clearInterval(id);
     };
-  }, []);
+  }, [competizione]);
 
   return (
     <>
@@ -91,9 +102,23 @@ export function CalcioPage() {
         <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1">
           {stato === "ready" && dati ? `${dati.campionato} — ${dati.girone}` : "Risultati calcistici"}
         </h1>
-        <p className="text-ink-faint text-xs font-mono mb-6">
+        <p className="text-ink-faint text-xs font-mono mb-4">
           Campionati dilettantistici regionali FVG — fonte: LND Comitato Regionale FVG
         </p>
+
+        <div className="flex gap-1.5 flex-wrap mb-6">
+          {COMPETIZIONI.map((c) => (
+            <button
+              key={c.slug}
+              onClick={() => setCompetizione(c.slug)}
+              className={`px-3 py-1.5 rounded text-xs font-cond font-semibold uppercase tracking-wide transition-colors ${
+                competizione === c.slug ? "bg-cool text-bg" : "border border-line text-ink-dim hover:text-ink"
+              }`}
+            >
+              {c.label}
+            </button>
+          ))}
+        </div>
 
         {stato === "loading" && <p className="text-ink-faint text-sm font-mono">Caricamento…</p>}
         {stato === "error" && (
