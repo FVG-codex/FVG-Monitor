@@ -689,6 +689,48 @@ async function ingestFiumi() {
 
 // ---------------------------------------------------------------------
 
+// ---------------------------------------------------------------------
+// LIVELLO MARE — stessa API PC FVG, sensore "LIV_MARE_IGM42" (m, datum
+// geodetico IGM42). Rilevante soprattutto per Trieste (fenomeno
+// dell'acqua alta), ma disponibile anche per Grado e Lignano — le 3
+// stazioni costiere della regione. Sensore risolto dinamicamente per
+// coerenza con gli altri moduli, anche se finora sempre con id 86.
+// ---------------------------------------------------------------------
+
+const STAZIONI_MARE = [
+  { slug: "trieste", id: 502, nome: "Trieste" },
+  { slug: "grado", id: 68, nome: "Grado" },
+  { slug: "lignano", id: 77, nome: "Lignano" },
+];
+
+async function ingestMareStazione(stazione) {
+  const sensori = await sensoriStazione(stazione.id);
+  const idLivello = sensori.find((s) => s.code === "LIV_MARE_IGM42")?.id ?? null;
+  if (!idLivello) {
+    console.warn(`Stazione "${stazione.nome}" non ha il sensore livello mare — salto`);
+    return;
+  }
+
+  const misura = await ultimaMisura(stazione.id, idLivello);
+  if (!misura) {
+    console.warn(`Nessuna misura livello mare disponibile per "${stazione.nome}"`);
+    return;
+  }
+
+  await upsertSnapshot(`mare:${stazione.slug}`, "mare", null, {
+    stazione: stazione.nome,
+    aggiornato_al: misura.dt,
+    livello_m: misura.value,
+  });
+  console.log(`Livello mare aggiornato (${stazione.nome}):`, misura.value, "m IGM42");
+}
+
+async function ingestMare() {
+  await Promise.all(STAZIONI_MARE.map((s) => ingestMareStazione(s)));
+}
+
+// ---------------------------------------------------------------------
+
 async function main() {
   const risultati = await Promise.allSettled([
     ingestMeteo(),
@@ -701,6 +743,7 @@ async function main() {
     ingestPioggia(),
     ingestTemperatura(),
     ingestFiumi(),
+    ingestMare(),
   ]);
   let fallito = false;
   risultati.forEach((r, i) => {

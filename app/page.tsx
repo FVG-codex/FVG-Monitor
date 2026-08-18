@@ -5,6 +5,7 @@ import { FiumeOverview } from "@/components/FiumeOverview";
 import { MeteoOverview } from "@/components/MeteoPanel";
 import { NotiziePanel } from "@/components/NotiziePanel";
 import { Panel } from "@/components/Panel";
+import { MarePanel } from "@/components/MarePanel";
 import { PioggiaPanel } from "@/components/PioggiaPanel";
 import { TgrCard } from "@/components/TgrCard";
 import { TopHeader } from "@/components/TopHeader";
@@ -102,6 +103,14 @@ export default function Home() {
             linkHref="https://monitor.protezionecivile.fvg.it"
           >
             <FiumeOverview />
+          </Panel>
+
+          <Panel
+            title="Livello mare"
+            linkLabel="Protezione Civile FVG →"
+            linkHref="https://monitor.protezionecivile.fvg.it"
+          >
+            <MarePanel />
           </Panel>
 
           <Panel
