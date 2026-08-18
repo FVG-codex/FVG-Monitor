@@ -73,7 +73,9 @@ componente React che legge da Supabase con lo stesso nome.
 | **Livelli fiumi** (4 province) | Stessa API, stazioni idrometriche dedicate | Gorizia idro/Isonzo (66), Latisana 1 idro/Tagliamento (240), Pordenone Noncello (132), Francovez Rosandra/Trieste (602) |
 | **Livello mare** | Stessa API, 3 stazioni costiere | Trieste (502), Grado (68), Lignano (77) — sensore `LIV_MARE_IGM42`, rilevante per l'acqua alta a Trieste |
 | **Qualità aria PM10** (4 province) | Dataset Socrata ARPA FVG (`qp5k-6pvm`) | Dato giornaliero con qualche giorno di ritardo (validazione ARPA) — soglia legge 50 µg/m³ |
-| **Qualità aria Ozono** (4 province) | Dataset Socrata ARPA FVG (`7vnx-28uy`) | Campo `rete` = nome provincia (più affidabile del match per nome stazione) — soglia legge 120 µg/m³ media mobile 8h |
+| **Qualità aria Ozono** (4 province) | Dataset Socrata ARPA FVG (`7vnx-28uy`) | Match per nome città in `ubicazione` (il campo `rete` esisteva nei dati storici ma non in quelli recenti) — soglia legge 120 µg/m³ media mobile 8h. Pordenone spesso "n.d.": la stazione storica è dismessa dal 2013-2014 |
+| **Qualità aria NO2** (4 province) | Dataset Socrata ARPA FVG (`ke9b-p6z2`) | Media oraria max — soglia legge 200 µg/m³ |
+| **Qualità aria PM2.5** (4 province) | Dataset Socrata ARPA FVG (`d63p-pqpr`) | Media giornaliera — l'Italia fissa solo un limite ANNUALE (25 µg/m³), usiamo la linea guida OMS 24h (15 µg/m³) come riferimento indicativo, non un vero limite di legge |
 | **Viabilità** | Feed WFS InfoViaggiando | Non è un'API dichiarata pubblica (uso della stessa cautela di ANSA) — filtrato per autostrade FVG + area geografica |
 | **Eventi** | Scraping HTML turismofvg.it | Pagina server-rendered, no browser headless — fragile per natura (classi CSS specifiche) |
 | **TGR** | — | Nessun feed trovato, link statico alla sezione ufficiale |

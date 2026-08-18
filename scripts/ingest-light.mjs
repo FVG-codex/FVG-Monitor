@@ -790,6 +790,124 @@ async function ingestOzono() {
 
 // ---------------------------------------------------------------------
 
+// ---------------------------------------------------------------------
+// QUALITÀ ARIA — BIOSSIDO DI AZOTO (NO2) — dataset "Aria - Biossido
+// d'Azoto" (id ke9b-p6z2), stesso portale Socrata. Soglia di legge:
+// 200 µg/m³ media oraria massima. Stesso approccio di match per nome
+// città in "ubicazione" usato per ozono e PM10 (niente campo "rete"
+// nei dati recenti).
+// ---------------------------------------------------------------------
+
+const NO2_DATASET_URL = "https://www.dati.friuliveneziagiulia.it/resource/ke9b-p6z2.json";
+const SOGLIA_NO2_UGM3 = 200;
+
+async function ingestNo2() {
+  const url = `${NO2_DATASET_URL}?$order=data_misura DESC&$limit=300`;
+  const res = await fetch(url);
+  if (!res.ok) {
+    console.warn(`Dataset NO2 non disponibile (HTTP ${res.status})`);
+    return;
+  }
+
+  const rows = await res.json();
+  if (!Array.isArray(rows) || rows.length === 0) {
+    console.warn("Dataset NO2 vuoto");
+    return;
+  }
+
+  const dataPiuRecente = rows[0].data_misura;
+  const righeRecenti = rows.filter((r) => r.data_misura === dataPiuRecente);
+
+  const NOMI_CITTA_PROVINCIA = { trieste: "Trieste", udine: "Udine", gorizia: "Gorizia", pordenone: "Pordenone" };
+
+  const perProvincia = {};
+  for (const [provincia, nomeCitta] of Object.entries(NOMI_CITTA_PROVINCIA)) {
+    const riga = righeRecenti.find((r) => r.ubicazione?.toLowerCase().includes(nomeCitta.toLowerCase()));
+    if (!riga) continue;
+
+    const media = riga.media_oraria_max ? Number(riga.media_oraria_max) : null;
+    perProvincia[provincia] = {
+      stazione: riga.ubicazione,
+      media_oraria_max: media !== null ? Math.round(media) : null,
+      superamento: media !== null ? media > SOGLIA_NO2_UGM3 : null,
+      dati_insufficienti: riga.dati_insuff === "True",
+    };
+  }
+
+  if (Object.keys(perProvincia).length === 0) {
+    console.warn("Nessuna stazione NO2 trovata per le 4 province");
+    return;
+  }
+
+  await upsertSnapshot("aria:no2", "aria", null, {
+    data_misura: dataPiuRecente,
+    soglia_ugm3: SOGLIA_NO2_UGM3,
+    per_provincia: perProvincia,
+  });
+  console.log(`NO2 aggiornato (${Object.keys(perProvincia).length} province):`, dataPiuRecente);
+}
+
+// ---------------------------------------------------------------------
+
+// ---------------------------------------------------------------------
+// QUALITÀ ARIA — PM2.5 — dataset "Aria - Particelle Sospese PM2.5"
+// (id d63p-pqpr), stessa struttura del PM10. La normativa italiana
+// fissa solo un limite ANNUALE per il PM2.5 (25 µg/m³), non uno
+// giornaliero — usiamo quindi la linea guida OMS per le 24h
+// (15 µg/m³) come riferimento indicativo, non un vero limite di legge.
+// ---------------------------------------------------------------------
+
+const PM25_DATASET_URL = "https://www.dati.friuliveneziagiulia.it/resource/d63p-pqpr.json";
+const SOGLIA_PM25_OMS_UGM3 = 15;
+
+async function ingestPm25() {
+  const url = `${PM25_DATASET_URL}?$order=data_misura DESC&$limit=300`;
+  const res = await fetch(url);
+  if (!res.ok) {
+    console.warn(`Dataset PM2.5 non disponibile (HTTP ${res.status})`);
+    return;
+  }
+
+  const rows = await res.json();
+  if (!Array.isArray(rows) || rows.length === 0) {
+    console.warn("Dataset PM2.5 vuoto");
+    return;
+  }
+
+  const dataPiuRecente = rows[0].data_misura;
+  const righeRecenti = rows.filter((r) => r.data_misura === dataPiuRecente);
+
+  const NOMI_CITTA_PROVINCIA = { trieste: "Trieste", udine: "Udine", gorizia: "Gorizia", pordenone: "Pordenone" };
+
+  const perProvincia = {};
+  for (const [provincia, nomeCitta] of Object.entries(NOMI_CITTA_PROVINCIA)) {
+    const riga = righeRecenti.find((r) => r.ubicazione?.toLowerCase().includes(nomeCitta.toLowerCase()));
+    if (!riga) continue;
+
+    const media = riga.media_giornaliera ? Number(riga.media_giornaliera) : null;
+    perProvincia[provincia] = {
+      stazione: riga.ubicazione,
+      media_giornaliera: media,
+      superamento_oms: media !== null ? media > SOGLIA_PM25_OMS_UGM3 : null,
+      dati_insufficienti: riga.dati_insuff === "True",
+    };
+  }
+
+  if (Object.keys(perProvincia).length === 0) {
+    console.warn("Nessuna stazione PM2.5 trovata per le 4 province");
+    return;
+  }
+
+  await upsertSnapshot("aria:pm25", "aria", null, {
+    data_misura: dataPiuRecente,
+    soglia_oms_ugm3: SOGLIA_PM25_OMS_UGM3,
+    per_provincia: perProvincia,
+  });
+  console.log(`PM2.5 aggiornato (${Object.keys(perProvincia).length} province):`, dataPiuRecente);
+}
+
+// ---------------------------------------------------------------------
+
 async function main() {
   const risultati = await Promise.allSettled([
     ingestMeteo(),
@@ -804,6 +922,8 @@ async function main() {
     ingestFiumi(),
     ingestMare(),
     ingestOzono(),
+    ingestNo2(),
+    ingestPm25(),
   ]);
   let fallito = false;
   risultati.forEach((r, i) => {
