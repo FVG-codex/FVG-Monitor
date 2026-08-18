@@ -1,13 +1,10 @@
 import { AlertBanner } from "@/components/AlertBanner";
-import { AriaPanel } from "@/components/AriaPanel";
+import { AriaQualitaPanel } from "@/components/AriaQualitaPanel";
 import { EventiPanel } from "@/components/EventiPanel";
 import { FiumeOverview } from "@/components/FiumeOverview";
 import { MeteoOverview } from "@/components/MeteoPanel";
 import { NotiziePanel } from "@/components/NotiziePanel";
-import { No2Panel } from "@/components/No2Panel";
-import { OzonoPanel } from "@/components/OzonoPanel";
 import { Panel } from "@/components/Panel";
-import { Pm25Panel } from "@/components/Pm25Panel";
 import { MarePanel } from "@/components/MarePanel";
 import { PioggiaPanel } from "@/components/PioggiaPanel";
 import { TgrCard } from "@/components/TgrCard";
@@ -96,20 +93,8 @@ export default function Home() {
             <ViabilitaPanel />
           </Panel>
 
-          <Panel title="Qualità dell'aria · PM10" linkLabel="ARPA FVG →" linkHref="https://www.arpa.fvg.it">
-            <AriaPanel />
-          </Panel>
-
-          <Panel title="Qualità dell'aria · Ozono" linkLabel="ARPA FVG →" linkHref="https://www.arpa.fvg.it">
-            <OzonoPanel />
-          </Panel>
-
-          <Panel title="Qualità dell'aria · NO2" linkLabel="ARPA FVG →" linkHref="https://www.arpa.fvg.it">
-            <No2Panel />
-          </Panel>
-
-          <Panel title="Qualità dell'aria · PM2.5" linkLabel="ARPA FVG →" linkHref="https://www.arpa.fvg.it">
-            <Pm25Panel />
+          <Panel title="Qualità dell'aria" linkLabel="ARPA FVG →" linkHref="https://www.arpa.fvg.it">
+            <AriaQualitaPanel />
           </Panel>
 
           <Panel
