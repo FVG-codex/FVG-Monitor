@@ -637,6 +637,58 @@ async function ingestTemperatura() {
 
 // ---------------------------------------------------------------------
 
+// ---------------------------------------------------------------------
+// LIVELLI FIUMI — stessa API PC FVG, sensore "IDRO" (m). A differenza
+// di vento/pioggia/temperatura, qui le stazioni NON sono le stesse 4
+// meteo (i fiumi non passano per i capoluoghi) — stazioni idrometriche
+// verificate singolarmente via /sensors: Gorizia idro (Isonzo),
+// Latisana 1 idro (Tagliamento, provincia di Udine), Pordenone
+// Noncello (il fiume che attraversa la città), Francovez Rosandra
+// (Trieste non ha grandi fiumi, torrente Rosandra come rappresentante).
+// ---------------------------------------------------------------------
+
+const STAZIONE_IDRO_PER_PROVINCIA = {
+  gorizia: { id: 66, nome: "Gorizia idro", fiume: "Isonzo" },
+  udine: { id: 240, nome: "Latisana 1 idro", fiume: "Tagliamento" },
+  pordenone: { id: 132, nome: "Pordenone Noncello", fiume: "Noncello" },
+  trieste: { id: 602, nome: "Francovez Rosandra", fiume: "Rosandra" },
+};
+
+async function ingestFiumeProvincia(provincia, stazione, zona) {
+  const sensori = await sensoriStazione(stazione.id);
+  const idIdro = sensori.find((s) => s.code === "IDRO")?.id ?? null;
+  if (!idIdro) {
+    console.warn(`Stazione "${stazione.nome}" (${provincia}) non ha il sensore IDRO — salto`);
+    return;
+  }
+
+  const misura = await ultimaMisura(stazione.id, idIdro);
+  if (!misura) {
+    console.warn(`Nessuna misura livello disponibile per "${stazione.nome}" (${provincia})`);
+    return;
+  }
+
+  await upsertSnapshot(`fiume:${provincia}`, "fiume", zona, {
+    stazione: stazione.nome,
+    fiume: stazione.fiume,
+    aggiornato_al: misura.dt,
+    livello_m: misura.value,
+  });
+  console.log(`Livello fiume aggiornato (${provincia}, ${stazione.fiume}):`, misura.value, "m");
+}
+
+async function ingestFiumi() {
+  const ZONA_PER_PROVINCIA = { trieste: "C", udine: "B", gorizia: "C", pordenone: "A" };
+
+  await Promise.all(
+    Object.entries(STAZIONE_IDRO_PER_PROVINCIA).map(([provincia, stazione]) =>
+      ingestFiumeProvincia(provincia, stazione, ZONA_PER_PROVINCIA[provincia])
+    )
+  );
+}
+
+// ---------------------------------------------------------------------
+
 async function main() {
   const risultati = await Promise.allSettled([
     ingestMeteo(),
@@ -648,6 +700,7 @@ async function main() {
     ingestVoli(),
     ingestPioggia(),
     ingestTemperatura(),
+    ingestFiumi(),
   ]);
   let fallito = false;
   risultati.forEach((r, i) => {

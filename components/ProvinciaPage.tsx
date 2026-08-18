@@ -1,6 +1,7 @@
 "use client";
 
 import { AllertaWidgetSlot } from "@/components/AllertaWidgetSlot";
+import { FiumePanel } from "@/components/FiumePanel";
 import { MeteoDettaglio } from "@/components/MeteoPanel";
 import { MeteoWidgetSlot } from "@/components/MeteoWidgetSlot";
 import { Panel } from "@/components/Panel";
@@ -49,10 +50,17 @@ export function ProvinciaPage({ slug }: { slug: ProvinciaSlug }) {
           </Panel>
 
           <Panel
+            title="Livello fiume"
+            linkLabel="Protezione Civile FVG →"
+            linkHref="https://monitor.protezionecivile.fvg.it"
+          >
+            <FiumePanel provincia={slug} />
+          </Panel>
+
+          <Panel
             title="Allerta Protezione Civile"
             linkLabel="Storico →"
             linkHref="https://www.protezionecivile.fvg.it/it/allerte-tutte"
-            span={2}
           >
             <div className="flex items-center gap-2 mb-3">
               <span className="text-sm text-ink-dim">Zona di allertamento:</span>

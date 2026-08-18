@@ -1,6 +1,7 @@
 import { AlertBanner } from "@/components/AlertBanner";
 import { AriaPanel } from "@/components/AriaPanel";
 import { EventiPanel } from "@/components/EventiPanel";
+import { FiumeOverview } from "@/components/FiumeOverview";
 import { MeteoOverview } from "@/components/MeteoPanel";
 import { NotiziePanel } from "@/components/NotiziePanel";
 import { Panel } from "@/components/Panel";
@@ -93,6 +94,14 @@ export default function Home() {
 
           <Panel title="Qualità dell'aria · PM10" linkLabel="ARPA FVG →" linkHref="https://www.arpa.fvg.it">
             <AriaPanel />
+          </Panel>
+
+          <Panel
+            title="Livelli fiumi"
+            linkLabel="Protezione Civile FVG →"
+            linkHref="https://monitor.protezionecivile.fvg.it"
+          >
+            <FiumeOverview />
           </Panel>
 
           <Panel
