@@ -6,7 +6,10 @@ import Link from "next/link";
 // Sezioni extra del sito, distinte dalla navigazione principale per
 // provincia (già visibile nei tab dell'header). Aggiungi qui nuove
 // voci man mano che si aggiungono sezioni indipendenti.
-const SEZIONI_EXTRA = [{ label: "Risultati calcistici", href: "/calcio" }];
+const SEZIONI_EXTRA = [
+  { label: "Risultati calcistici", href: "/calcio" },
+  { label: "Risultati basket", href: "/basket" },
+];
 
 export function MenuHamburger() {
   const [aperto, setAperto] = useState(false);

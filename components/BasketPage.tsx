@@ -8,42 +8,30 @@ import { TopHeader } from "@/components/TopHeader";
 type Partita = {
   casa: string;
   ospite: string;
-  golCasa: number | null;
-  golOspite: number | null;
+  puntiCasa: string | null;
+  puntiOspite: string | null;
   data: string;
   ora: string;
-  campo: string;
-  logoCasa: string;
-  logoOspite: string;
-  inCorso: boolean;
 };
 
 type RigaClassifica = {
-  posizione: number;
+  posizione: string;
   squadra: string;
-  logo: string;
-  punti: number;
-  giocate: number;
-  vittorie: number;
-  pareggi: number;
-  sconfitte: number;
-  golFatti: number;
-  golSubiti: number;
+  punti: string;
+  giocate: string;
+  vittorie: string;
+  sconfitte: string;
+  puntiFatti: string;
+  puntiSubiti: string;
 };
 
-type CalcioData = {
+type BasketData = {
   campionato: string;
   girone: string;
-  giornata_corrente: { number: number; leg: string; startDate: string; endDate: string } | null;
   partite: Partita[];
   classifica: RigaClassifica[];
   aggiornato_al: string;
 };
-
-function formattaData(iso: string): string {
-  const d = new Date(iso);
-  return d.toLocaleDateString("it-IT", { weekday: "short", day: "numeric", month: "short" });
-}
 
 function nomeSquadra(s: string): string {
   return s
@@ -53,21 +41,11 @@ function nomeSquadra(s: string): string {
     .join(" ");
 }
 
-// Deve corrispondere a COMPETIZIONI_CALCIO in scripts/ingest-light.mjs
-const COMPETIZIONI = [
-  { slug: "eccellenza-a", label: "Eccellenza" },
-  { slug: "promozione-a", label: "Promozione" },
-  { slug: "prima-categoria-a", label: "1ª Cat. — Girone A" },
-  { slug: "prima-categoria-b", label: "1ª Cat. — Girone B" },
-  { slug: "prima-categoria-c", label: "1ª Cat. — Girone C" },
-  { slug: "seconda-categoria-gorizia", label: "2ª Cat. Gorizia" },
-  { slug: "seconda-categoria-pordenone", label: "2ª Cat. Pordenone" },
-  { slug: "seconda-categoria-udine-b", label: "2ª Cat. Udine — B" },
-  { slug: "seconda-categoria-udine-c", label: "2ª Cat. Udine — C" },
-];
+// Deve corrispondere a COMPETIZIONI_BASKET in scripts/ingest-light.mjs
+const COMPETIZIONI = [{ slug: "trieste-serie-c", label: "Serie C — Divisione Regionale 1" }];
 
-export function CalcioPage() {
-  const [dati, setDati] = useState<CalcioData | null>(null);
+export function BasketPage() {
+  const [dati, setDati] = useState<BasketData | null>(null);
   const [stato, setStato] = useState<"loading" | "ready" | "error">("loading");
   const [competizione, setCompetizione] = useState(COMPETIZIONI[0].slug);
 
@@ -78,14 +56,14 @@ export function CalcioPage() {
       const { data, error } = await supabase
         .from("snapshots")
         .select("data")
-        .eq("id", `calcio:${competizione}`)
+        .eq("id", `basket:${competizione}`)
         .single();
       if (!attivo) return;
       if (error || !data) {
         setStato("error");
         return;
       }
-      setDati(data.data as CalcioData);
+      setDati(data.data as BasketData);
       setStato("ready");
     }
     carica();
@@ -103,10 +81,10 @@ export function CalcioPage() {
 
       <main className="max-w-[1180px] mx-auto px-5 py-6">
         <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1">
-          {stato === "ready" && dati ? `${dati.campionato} — ${dati.girone}` : "Risultati calcistici"}
+          {stato === "ready" && dati ? `${dati.campionato} — ${dati.girone}` : "Risultati basket"}
         </h1>
         <p className="text-ink-faint text-xs font-mono mb-4">
-          Campionati dilettantistici regionali FVG — fonte: LND Comitato Regionale FVG
+          Campionati regionali FIP FVG — fonte: Federazione Italiana Pallacanestro
         </p>
 
         <div className="flex gap-1.5 flex-wrap mb-6">
@@ -131,23 +109,18 @@ export function CalcioPage() {
         {stato === "ready" && dati && (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-line border border-line">
             <Panel title={`${dati.campionato} — Calendario`}>
-              {dati.giornata_corrente && (
-                <div className="font-cond font-semibold text-xs uppercase tracking-wide text-ink-faint mb-3">
-                  Giornata {dati.giornata_corrente.number} · {dati.giornata_corrente.leg === "first" ? "andata" : "ritorno"}
-                </div>
-              )}
               {dati.partite.length === 0 ? (
                 <p className="text-ink-faint text-sm font-mono">Nessuna partita in programma.</p>
               ) : (
                 dati.partite.map((p, i) => (
                   <div key={i} className={`py-3 ${i > 0 ? "border-t border-line" : ""}`}>
                     <div className="font-mono text-[10px] text-ink-faint mb-1.5 uppercase">
-                      {formattaData(p.data)} · {p.ora.slice(0, 5)} · {p.campo}
+                      {p.data} · {p.ora}
                     </div>
                     <div className="flex items-center justify-between text-sm">
                       <span className="flex-1">{nomeSquadra(p.casa)}</span>
                       <span className="font-cond font-bold text-lg px-3">
-                        {p.golCasa ?? "–"} : {p.golOspite ?? "–"}
+                        {p.puntiCasa || "–"} : {p.puntiOspite || "–"}
                       </span>
                       <span className="flex-1 text-right">{nomeSquadra(p.ospite)}</span>
                     </div>
@@ -166,25 +139,22 @@ export function CalcioPage() {
                       <th className="text-right py-2 px-2">Pt</th>
                       <th className="text-right py-2 px-2">G</th>
                       <th className="text-right py-2 px-2">V</th>
-                      <th className="text-right py-2 px-2">N</th>
                       <th className="text-right py-2 px-2">P</th>
-                      <th className="text-right py-2 pl-2">DR</th>
+                      <th className="text-right py-2 px-2">PF</th>
+                      <th className="text-right py-2 pl-2">PS</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {dati.classifica.map((r) => (
-                      <tr key={r.posizione} className="border-b border-line">
+                    {dati.classifica.map((r, i) => (
+                      <tr key={i} className="border-b border-line">
                         <td className="py-2 pr-2 font-mono text-ink-faint">{r.posizione}</td>
                         <td className="py-2">{nomeSquadra(r.squadra)}</td>
                         <td className="py-2 px-2 text-right font-mono font-bold">{r.punti}</td>
                         <td className="py-2 px-2 text-right font-mono text-ink-dim">{r.giocate}</td>
                         <td className="py-2 px-2 text-right font-mono text-ink-dim">{r.vittorie}</td>
-                        <td className="py-2 px-2 text-right font-mono text-ink-dim">{r.pareggi}</td>
                         <td className="py-2 px-2 text-right font-mono text-ink-dim">{r.sconfitte}</td>
-                        <td className="py-2 pl-2 text-right font-mono text-ink-dim">
-                          {r.golFatti - r.golSubiti > 0 ? "+" : ""}
-                          {r.golFatti - r.golSubiti}
-                        </td>
+                        <td className="py-2 px-2 text-right font-mono text-ink-dim">{r.puntiFatti}</td>
+                        <td className="py-2 pl-2 text-right font-mono text-ink-dim">{r.puntiSubiti}</td>
                       </tr>
                     ))}
                   </tbody>

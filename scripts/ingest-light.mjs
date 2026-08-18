@@ -1020,6 +1020,99 @@ async function ingestCalcio() {
 
 // ---------------------------------------------------------------------
 
+// ---------------------------------------------------------------------
+// BASKET — fip.it/risultati (Federazione Italiana Pallacanestro).
+// A differenza di gare.lnd.it, qui i dati sono già presenti nell'HTML
+// servito dal server (nessun tag JSON incorporato) — scraping diretto
+// con cheerio, struttura verificata manualmente via devtools.
+//
+// Nota: l'URL usato non specifica un girone/comitato esplicito come
+// per il calcio — la pagina mostra un default (al momento: Trieste,
+// Serie C/Divisione Regionale 1, Girone D) che potrebbe cambiare nel
+// tempo lato FIP. Se in futuro i dati non tornano coerenti, va
+// verificato se l'URL richiede parametri più specifici.
+// ---------------------------------------------------------------------
+
+const COMPETIZIONI_BASKET = [
+  {
+    slug: "trieste-serie-c",
+    nome: "Serie C — Divisione Regionale 1",
+    girone: "Girone D",
+    url: "https://fip.it/risultati/?group=campionati-regionali&regione_codice=FR&comitato_codice=RFR",
+  },
+];
+
+async function ingestBasketCompetizione(comp) {
+  const res = await fetchConRetry(comp.url, {
+    headers: { "User-Agent": "Mozilla/5.0 (compatible; FVGMonitorBot/1.0)" },
+  });
+  if (!res.ok) {
+    console.warn(`Pagina basket "${comp.nome}" non disponibile (HTTP ${res.status})`);
+    return;
+  }
+
+  const html = await res.text();
+  const $ = cheerio.load(html);
+
+  const partite = [];
+  $(".results-matches__match").each((_, el) => {
+    const squadre = $(el).find(".teams .team");
+    if (squadre.length < 2) return;
+    const casa = $(squadre[0]).find(".team__name").text().trim();
+    const ospite = $(squadre[1]).find(".team__name").text().trim();
+    const puntiCasa = $(squadre[0]).find(".team__points").text().trim();
+    const puntiOspite = $(squadre[1]).find(".team__points").text().trim();
+    const data = $(el).find(".date").first().text().trim();
+    const ora = $(el).find(".time").first().text().trim();
+    if (casa && ospite) {
+      partite.push({
+        casa,
+        ospite,
+        puntiCasa: puntiCasa || null,
+        puntiOspite: puntiOspite || null,
+        data,
+        ora,
+      });
+    }
+  });
+
+  const classifica = [];
+  $(".results-tab.results-ranking-full table tbody tr").each((_, tr) => {
+    const celle = $(tr).find("td");
+    if (celle.length < 8) return;
+    classifica.push({
+      posizione: $(celle[0]).text().trim(),
+      squadra: $(celle[1]).find(".team__name").text().trim(),
+      punti: $(celle[2]).text().trim(),
+      giocate: $(celle[3]).text().trim(),
+      vittorie: $(celle[4]).text().trim(),
+      sconfitte: $(celle[5]).text().trim(),
+      puntiFatti: $(celle[6]).text().trim(),
+      puntiSubiti: $(celle[7]).text().trim(),
+    });
+  });
+
+  if (partite.length === 0 && classifica.length === 0) {
+    console.warn(`Nessun dato basket estratto per "${comp.nome}" — la struttura HTML potrebbe essere cambiata`);
+    return;
+  }
+
+  await upsertSnapshot(`basket:${comp.slug}`, "basket", null, {
+    campionato: comp.nome,
+    girone: comp.girone,
+    partite,
+    classifica,
+    aggiornato_al: new Date().toISOString(),
+  });
+  console.log(`Basket aggiornato (${comp.nome} ${comp.girone}): ${partite.length} partite, ${classifica.length} squadre`);
+}
+
+async function ingestBasket() {
+  await Promise.all(COMPETIZIONI_BASKET.map((c) => ingestBasketCompetizione(c)));
+}
+
+// ---------------------------------------------------------------------
+
 async function main() {
   const risultati = await Promise.allSettled([
     ingestMeteo(),
@@ -1037,6 +1130,7 @@ async function main() {
     ingestNo2(),
     ingestPm25(),
     ingestCalcio(),
+    ingestBasket(),
   ]);
   let fallito = false;
   risultati.forEach((r, i) => {
