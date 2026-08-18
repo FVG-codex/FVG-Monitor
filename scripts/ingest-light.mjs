@@ -945,6 +945,10 @@ const COMPETIZIONI_CALCIO = [
   { slug: "prima-categoria-a", nome: "Prima Categoria", girone: "Girone A", url: "https://gare.lnd.it/?campionato=1C&girone=A&stagione=2025&cr=07" },
   { slug: "prima-categoria-b", nome: "Prima Categoria", girone: "Girone B", url: "https://gare.lnd.it/?campionato=1C&girone=B&stagione=2025&cr=07" },
   { slug: "prima-categoria-c", nome: "Prima Categoria", girone: "Girone C", url: "https://gare.lnd.it/?campionato=1C&girone=C&stagione=2025&cr=07" },
+  { slug: "seconda-categoria-gorizia", nome: "Seconda Categoria Gorizia", girone: "Girone D", url: "https://gare.lnd.it/?campionato=22&girone=D&stagione=2025&cr=07" },
+  { slug: "seconda-categoria-pordenone", nome: "Seconda Categoria Pordenone", girone: "Girone A", url: "https://gare.lnd.it/?campionato=23&girone=A&stagione=2025&cr=07" },
+  { slug: "seconda-categoria-udine-b", nome: "Seconda Categoria Udine", girone: "Girone B", url: "https://gare.lnd.it/?campionato=26&girone=B&stagione=2025&cr=07" },
+  { slug: "seconda-categoria-udine-c", nome: "Seconda Categoria Udine", girone: "Girone C", url: "https://gare.lnd.it/?campionato=26&girone=C&stagione=2025&cr=07" },
 ];
 
 async function ingestCalcioCompetizione(comp) {

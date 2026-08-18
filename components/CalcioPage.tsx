@@ -60,6 +60,10 @@ const COMPETIZIONI = [
   { slug: "prima-categoria-a", label: "1ª Cat. — Girone A" },
   { slug: "prima-categoria-b", label: "1ª Cat. — Girone B" },
   { slug: "prima-categoria-c", label: "1ª Cat. — Girone C" },
+  { slug: "seconda-categoria-gorizia", label: "2ª Cat. Gorizia" },
+  { slug: "seconda-categoria-pordenone", label: "2ª Cat. Pordenone" },
+  { slug: "seconda-categoria-udine-b", label: "2ª Cat. Udine — B" },
+  { slug: "seconda-categoria-udine-c", label: "2ª Cat. Udine — C" },
 ];
 
 export function CalcioPage() {
