@@ -9,6 +9,7 @@ import Link from "next/link";
 const SEZIONI_EXTRA = [
   { label: "Risultati calcistici", href: "/calcio" },
   { label: "Risultati basket", href: "/basket" },
+  { label: "Risultati baseball", href: "/baseball" },
 ];
 
 export function MenuHamburger() {
