@@ -148,6 +148,16 @@ async function ingestBaseballCompetizione(browser, comp) {
 // ---------------------------------------------------------------------
 
 async function main() {
+  // Rete di sicurezza aggiuntiva: se qualcosa si blocca in modo
+  // imprevisto (oltre ai timeout già impostati sulle singole pagine),
+  // lo script termina comunque entro pochi minuti invece di restare
+  // appeso indefinitamente.
+  const timeoutGlobale = setTimeout(() => {
+    console.error("Timeout globale raggiunto (5 minuti) — interruzione forzata.");
+    process.exit(1);
+  }, 5 * 60 * 1000);
+  timeoutGlobale.unref();
+
   const browser = await chromium.launch();
   try {
     for (const comp of COMPETIZIONI_BASEBALL) {

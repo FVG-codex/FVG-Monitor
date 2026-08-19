@@ -12,6 +12,7 @@ on:
 jobs:
   ingest:
     runs-on: ubuntu-latest
+    timeout-minutes: 10 # non deve mai restare bloccato indefinitamente
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -25,6 +26,8 @@ jobs:
         run: npm install
 
       - name: Install Playwright browser (Chromium)
+        env:
+          DEBIAN_FRONTEND: noninteractive # evita che apt-get resti in attesa di una conferma interattiva
         run: npx playwright install --with-deps chromium
 
       - name: Esegui ingestione pesante
