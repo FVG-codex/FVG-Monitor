@@ -1,14 +1,13 @@
-name: Ingestion pesante (placeholder)
+name: Ingestion pesante (Playwright)
 
-# Job di prova per validare la pipeline schedulata, come da Fase 0
-# del piano di lavoro. Il vero script Playwright (TPL FVG,
-# InfoViaggiando) sostituirà lo "step di prova" in Fase 2, dopo
-# la validazione tecnica degli endpoint via devtools.
+# Per le fonti che bloccano un fetch semplice (rilevamento bot, es.
+# fibs.it) — usa un browser reale invece di una richiesta HTTP diretta.
+# Gira meno spesso del job leggero perché più costoso in tempo/risorse.
 
 on:
   schedule:
     - cron: "*/30 * * * *" # ogni 30 minuti
-  workflow_dispatch: {} # permette di lanciarlo manualmente da GitHub
+  workflow_dispatch: {}
 
 jobs:
   ingest:
@@ -22,11 +21,14 @@ jobs:
         with:
           node-version: "22"
 
-      - name: Step di prova (da sostituire con lo script Playwright in Fase 2)
-        run: |
-          echo "Pipeline di ingestione pesante attiva."
-          echo "Timestamp: $(date -u)"
-        # In Fase 2:
-        # - npm install playwright
-        # - node scripts/ingest-tpl-fvg.js
-        # - scrittura risultato su Supabase via @supabase/supabase-js
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install Playwright browser (Chromium)
+        run: npx playwright install --with-deps chromium
+
+      - name: Esegui ingestione pesante
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: npm run ingest:heavy

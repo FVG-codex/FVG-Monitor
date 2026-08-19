@@ -1113,117 +1113,6 @@ async function ingestBasket() {
 
 // ---------------------------------------------------------------------
 
-// ---------------------------------------------------------------------
-// BASEBALL — fibs.it (Federazione Italiana Baseball Softball). Come
-// FIP, dati già nell'HTML servito dal server — ma il sito blocca il
-// nostro User-Agent di default (rilevamento bot), serve uno che
-// assomigli a un browser reale. Struttura verificata manualmente via
-// devtools (il fetch diretto da qui è bloccato anche per l'ispezione).
-//
-// Solo Serie A Silver per ora, squadra FVG di riferimento: GEREON
-// Engineering NBP Ronchi (Ronchi dei Legionari).
-// ---------------------------------------------------------------------
-
-const COMPETIZIONI_BASEBALL = [
-  {
-    slug: "serie-a-silver",
-    nome: "Serie A Silver",
-    urlCalendario: "https://www.fibs.it/it/events/2026-serie-a-silver-baseball/calendars?committee=0&round=&team=Squadra&date=",
-    urlClassifica: "https://www.fibs.it/it/events/2026-serie-a-silver-baseball/standings",
-  },
-];
-
-const HEADERS_FIBS = {
-  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
-  Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
-  "Accept-Language": "it-IT,it;q=0.9,en;q=0.8",
-  Referer: "https://www.fibs.it/",
-  "Sec-Fetch-Dest": "document",
-  "Sec-Fetch-Mode": "navigate",
-  "Sec-Fetch-Site": "same-origin",
-};
-
-async function ingestBaseballCompetizione(comp) {
-  const [resCal, resClass] = await Promise.all([
-    fetchConRetry(comp.urlCalendario, { headers: HEADERS_FIBS }),
-    fetchConRetry(comp.urlClassifica, { headers: HEADERS_FIBS }),
-  ]);
-
-  const partite = [];
-  if (resCal.ok) {
-    const $ = cheerio.load(await resCal.text());
-    $(".schedule-item.baseball").each((_, el) => {
-      const divs = $(el).find("> a > div");
-      const dataOra = $(divs[1]).find("p").eq(1).text().trim();
-      const luogo = $(divs[0]).find("p").eq(1).text().trim();
-
-      const squadre = $(el).find(".team-info");
-      if (squadre.length < 2) return;
-      const ospite = $(squadre[0]).find("p").eq(2).text().trim();
-      const locali = $(squadre[1]).find("p").eq(2).text().trim();
-
-      const punteggioTesto = $(el).find(".baseball-score-bug > div").eq(1).find("p").first().text().trim();
-      const [puntiOspite, puntiLocali] = punteggioTesto.split(":").map((s) => s.trim());
-
-      const stato = $(el).find(".game-label strong").text().trim();
-
-      if (ospite && locali) {
-        partite.push({
-          ospite,
-          locali,
-          puntiOspite: puntiOspite || null,
-          puntiLocali: puntiLocali || null,
-          dataOra,
-          luogo,
-          stato: stato || null,
-        });
-      }
-    });
-  } else {
-    console.warn(`Calendario baseball "${comp.nome}" non disponibile (HTTP ${resCal.status})`);
-  }
-
-  const classifica = [];
-  if (resClass.ok) {
-    const $ = cheerio.load(await resClass.text());
-    $("tr").each((_, tr) => {
-      const nomeSmall = $(tr).find(".team-name small");
-      if (!nomeSmall.length) return;
-      const celle = $(tr).find("td");
-      if (celle.length < 8) return;
-      classifica.push({
-        posizione: $(celle[0]).text().trim(),
-        squadra: nomeSmall.text().trim(),
-        vittorie: $(celle[3]).text().trim(),
-        sconfitte: $(celle[4]).text().trim(),
-        percentuale: $(celle[6]).text().trim(),
-        partiteDietro: $(celle[7]).text().trim(),
-      });
-    });
-  } else {
-    console.warn(`Classifica baseball "${comp.nome}" non disponibile (HTTP ${resClass.status})`);
-  }
-
-  if (partite.length === 0 && classifica.length === 0) {
-    console.warn(`Nessun dato baseball estratto per "${comp.nome}" — la struttura HTML potrebbe essere cambiata`);
-    return;
-  }
-
-  await upsertSnapshot(`baseball:${comp.slug}`, "baseball", null, {
-    campionato: comp.nome,
-    partite,
-    classifica,
-    aggiornato_al: new Date().toISOString(),
-  });
-  console.log(`Baseball aggiornato (${comp.nome}): ${partite.length} partite, ${classifica.length} squadre`);
-}
-
-async function ingestBaseball() {
-  await Promise.all(COMPETIZIONI_BASEBALL.map((c) => ingestBaseballCompetizione(c)));
-}
-
-// ---------------------------------------------------------------------
-
 async function main() {
   const risultati = await Promise.allSettled([
     ingestMeteo(),
@@ -1242,7 +1131,6 @@ async function main() {
     ingestPm25(),
     ingestCalcio(),
     ingestBasket(),
-    ingestBaseball(),
   ]);
   let fallito = false;
   risultati.forEach((r, i) => {
