@@ -1,18 +1,21 @@
-name: Ingestion pesante (Playwright)
+name: Ingestion pesante (placeholder)
 
-# Per le fonti che bloccano un fetch semplice (rilevamento bot, es.
-# fibs.it) — usa un browser reale invece di una richiesta HTTP diretta.
-# Gira meno spesso del job leggero perché più costoso in tempo/risorse.
+# Riservato a fonti future che dovessero bloccare un fetch semplice
+# (rilevamento bot) e richiedere un browser reale. Il baseball, che
+# inizialmente usava questo workflow con Playwright per fibs.it, è
+# stato spostato sul job leggero: la fonte usata ora
+# (live.baseballfvg.it, sito proprio dell'utente) non ha protezioni
+# anti-bot, quindi basta un fetch semplice.
 
 on:
   schedule:
-    - cron: "*/30 * * * *" # ogni 30 minuti
+    - cron: "*/30 * * * *"
   workflow_dispatch: {}
 
 jobs:
   ingest:
     runs-on: ubuntu-latest
-    timeout-minutes: 10 # non deve mai restare bloccato indefinitamente
+    timeout-minutes: 10
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -22,16 +25,5 @@ jobs:
         with:
           node-version: "22"
 
-      - name: Install dependencies
-        run: npm install
-
-      - name: Install Playwright browser (Chromium)
-        env:
-          DEBIAN_FRONTEND: noninteractive # evita che apt-get resti in attesa di una conferma interattiva
-        run: npx playwright install --with-deps chromium
-
-      - name: Esegui ingestione pesante
-        env:
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
-        run: npm run ingest:heavy
+      - name: Step di prova (nessuna fonte assegnata al momento)
+        run: echo "Workflow pesante inattivo — nessuna fonte lo richiede attualmente."

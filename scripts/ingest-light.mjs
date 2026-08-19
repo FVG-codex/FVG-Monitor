@@ -1113,6 +1113,95 @@ async function ingestBasket() {
 
 // ---------------------------------------------------------------------
 
+// ---------------------------------------------------------------------
+// BASEBALL — live.baseballfvg.it (sito dell'utente stesso, con due
+// route API dedicate create apposta per FVG Monitor). Nessuna
+// protezione anti-bot, fetch semplice — a differenza del tentativo
+// iniziale con fibs.it direttamente (bloccato con HTTP 403).
+//
+// Le competizioni vengono scoperte dinamicamente dalla risposta del
+// calendario (filtrata fvg=true) invece di essere elencate a mano,
+// dato che coprono sia baseball che softball con squadre FVG diverse.
+// ---------------------------------------------------------------------
+
+const BASEBALLFVG_BASE = "https://live.baseballfvg.it/api";
+
+async function ingestBaseballFvg() {
+  const res = await fetchConRetry(`${BASEBALLFVG_BASE}/calendario?sport=all&fvg=true`);
+  if (!res.ok) {
+    console.warn(`Calendario baseball FVG non disponibile (HTTP ${res.status})`);
+    return;
+  }
+
+  const { games } = await res.json();
+  if (!Array.isArray(games) || games.length === 0) {
+    console.warn("Nessuna partita trovata sul calendario baseball FVG");
+    return;
+  }
+
+  // Raggruppa le partite per competizione (id univoco lato sorgente)
+  const competizioni = new Map();
+  for (const g of games) {
+    const id = g.competition?.id;
+    if (!id) continue;
+    if (!competizioni.has(id)) {
+      competizioni.set(id, { id, nome: g.competition.name, sport: g.competition.sport, partite: [] });
+    }
+    competizioni.get(id).partite.push(g);
+  }
+
+  for (const comp of competizioni.values()) {
+    const partiteRecenti = comp.partite
+      .slice()
+      .sort((a, b) => new Date(b.startsAt) - new Date(a.startsAt))
+      .slice(0, 10)
+      .map((g) => ({
+        casa: g.homeTeam?.name ?? "?",
+        casaFvg: !!g.homeTeam?.isFvg,
+        ospite: g.awayTeam?.name ?? "?",
+        ospiteFvg: !!g.awayTeam?.isFvg,
+        punteggioCasa: g.homeScore,
+        punteggioOspite: g.awayScore,
+        data: g.startsAt,
+        stato: g.status,
+        luogo: g.venue,
+      }));
+
+    let classifica = [];
+    try {
+      const resClass = await fetchConRetry(`${BASEBALLFVG_BASE}/classifiche?competition=${comp.id}`);
+      if (resClass.ok) {
+        const { rows } = await resClass.json();
+        classifica = (rows || []).map((r) => ({
+          girone: r.groupName,
+          posizione: r.position,
+          squadra: r.team?.name ?? "?",
+          squadraFvg: !!r.team?.isFvg,
+          vittorie: r.wins,
+          sconfitte: r.losses,
+          percentuale: r.percentage,
+          partiteDietro: r.gamesBehind,
+        }));
+      } else {
+        console.warn(`Classifica baseball "${comp.nome}" non disponibile (HTTP ${resClass.status})`);
+      }
+    } catch (err) {
+      console.warn(`Errore classifica baseball "${comp.nome}": ${err.message}`);
+    }
+
+    await upsertSnapshot(`baseball:${comp.id}`, "baseball", null, {
+      campionato: comp.nome,
+      sport: comp.sport,
+      partite: partiteRecenti,
+      classifica,
+      aggiornato_al: new Date().toISOString(),
+    });
+    console.log(`Baseball aggiornato (${comp.nome}): ${partiteRecenti.length} partite, ${classifica.length} squadre in classifica`);
+  }
+}
+
+// ---------------------------------------------------------------------
+
 async function main() {
   const risultati = await Promise.allSettled([
     ingestMeteo(),
@@ -1131,6 +1220,7 @@ async function main() {
     ingestPm25(),
     ingestCalcio(),
     ingestBasket(),
+    ingestBaseballFvg(),
   ]);
   let fallito = false;
   risultati.forEach((r, i) => {
