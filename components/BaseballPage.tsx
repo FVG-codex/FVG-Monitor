@@ -169,7 +169,7 @@ export function BaseballPage() {
                       </thead>
                       <tbody>
                         {righe
-                          .sort((a, b) => a.posizione - b.posizione)
+                          .sort((a: RigaClassifica, b: RigaClassifica) => a.posizione - b.posizione)
                           .map((r) => (
                             <tr key={r.posizione} className="border-b border-line">
                               <td className="py-2 pr-2 font-mono text-ink-faint">{r.posizione}</td>
