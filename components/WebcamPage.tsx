@@ -15,17 +15,17 @@ const ZONE_ESCLUSE = new Set(["A4", "A23", "A28", "SR354"]);
 // Panorami 360° di turismofvg.it — widget di terze parti (Panomax e
 // Feratel), elenco statico: sono pochi e non cambiano spesso, non
 // serve un'ingestione dedicata.
-const PANORAMI_360 = [
-  { nome: "Monte Lussari", src: "https://webtv.feratel.com/webtv/?design=v4&t=1&cam=6270" },
-  { nome: "Forni di Sopra", src: "https://www.turismofvg.it/StaticPage/PanomaxWidget?code=2668&mode=simple-square" },
-  { nome: "Piancavallo", src: "https://www.turismofvg.it/StaticPage/PanomaxWidget?code=2662&mode=simple-square" },
-  { nome: "Sappada", src: "https://www.turismofvg.it/StaticPage/PanomaxWidget?code=2556&mode=simple-square" },
-  { nome: "Sella Nevea", src: "https://www.turismofvg.it/StaticPage/PanomaxWidget?code=2665&mode=simple-square" },
-  { nome: "Zoncolan", src: "https://www.turismofvg.it/StaticPage/PanomaxWidget?code=2669&mode=simple-square" },
-  { nome: "Grado", src: "https://www.turismofvg.it/StaticPage/PanomaxWidget?code=3011&mode=simple-square" },
-  { nome: "Lignano", src: "https://www.turismofvg.it/StaticPage/PanomaxWidget?code=3383&mode=simple-square" },
-  { nome: "San Daniele del Friuli", src: "https://www.turismofvg.it/StaticPage/PanomaxWidget?code=4053520&mode=simple-square" },
-  { nome: "Trieste San Giusto", src: "https://www.turismofvg.it/StaticPage/PanomaxWidget?code=2925487&mode=simple-square" },
+const PANORAMI_360: { nome: string; src: string; provincia: ProvinciaSlug }[] = [
+  { nome: "Monte Lussari", src: "https://webtv.feratel.com/webtv/?design=v4&t=1&cam=6270", provincia: "udine" },
+  { nome: "Forni di Sopra", src: "https://www.turismofvg.it/StaticPage/PanomaxWidget?code=2668&mode=simple-square", provincia: "udine" },
+  { nome: "Piancavallo", src: "https://www.turismofvg.it/StaticPage/PanomaxWidget?code=2662&mode=simple-square", provincia: "pordenone" },
+  { nome: "Sappada", src: "https://www.turismofvg.it/StaticPage/PanomaxWidget?code=2556&mode=simple-square", provincia: "udine" },
+  { nome: "Sella Nevea", src: "https://www.turismofvg.it/StaticPage/PanomaxWidget?code=2665&mode=simple-square", provincia: "udine" },
+  { nome: "Zoncolan", src: "https://www.turismofvg.it/StaticPage/PanomaxWidget?code=2669&mode=simple-square", provincia: "udine" },
+  { nome: "Grado", src: "https://www.turismofvg.it/StaticPage/PanomaxWidget?code=3011&mode=simple-square", provincia: "gorizia" },
+  { nome: "Lignano", src: "https://www.turismofvg.it/StaticPage/PanomaxWidget?code=3383&mode=simple-square", provincia: "udine" },
+  { nome: "San Daniele del Friuli", src: "https://www.turismofvg.it/StaticPage/PanomaxWidget?code=4053520&mode=simple-square", provincia: "udine" },
+  { nome: "Trieste San Giusto", src: "https://www.turismofvg.it/StaticPage/PanomaxWidget?code=2925487&mode=simple-square", provincia: "trieste" },
 ];
 
 export function WebcamPage() {
@@ -60,6 +60,8 @@ export function WebcamPage() {
   const webcamRegionali = (dati?.webcam ?? []).filter((w) => !ZONE_ESCLUSE.has(w.zona));
   const webcamFiltrate =
     filtro === "tutte" ? webcamRegionali : webcamRegionali.filter((w) => w.provincia === filtro);
+  const panoramiFiltrati =
+    filtro === "tutte" ? PANORAMI_360 : PANORAMI_360.filter((p) => p.provincia === filtro);
 
   return (
     <>
@@ -111,14 +113,18 @@ export function WebcamPage() {
         <h2 className="font-cond font-bold text-xl uppercase tracking-wide mt-10 mb-1">Panorami 360°</h2>
         <p className="text-ink-faint text-xs font-mono mb-4">Fonte: Turismo FVG (Panomax / Feratel)</p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {PANORAMI_360.map((p) => (
-            <div key={p.nome} className="border border-line rounded overflow-hidden bg-panel">
-              <div className="px-3 py-2 font-cond font-semibold text-sm border-b border-line">{p.nome}</div>
-              <iframe src={p.src} title={p.nome} className="w-full h-64 border-0" loading="lazy" />
-            </div>
-          ))}
-        </div>
+        {panoramiFiltrati.length === 0 ? (
+          <p className="text-ink-faint text-sm font-mono">Nessun panorama disponibile per questa provincia.</p>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {panoramiFiltrati.map((p) => (
+              <div key={p.nome} className="border border-line rounded overflow-hidden bg-panel">
+                <div className="px-3 py-2 font-cond font-semibold text-sm border-b border-line">{p.nome}</div>
+                <iframe src={p.src} title={p.nome} className="w-full h-64 border-0" loading="lazy" />
+              </div>
+            ))}
+          </div>
+        )}
       </main>
     </>
   );
