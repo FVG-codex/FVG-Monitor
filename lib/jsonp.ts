@@ -4,9 +4,10 @@
 // chiamata (o in caso di timeout/errore).
 let contatoreJsonp = 0;
 
-export function fetchJsonp(url: string, timeoutMs = 8000): Promise<unknown> {
+export function fetchJsonp(url: string, opzioni?: { timeoutMs?: number; nomeCallback?: string }): Promise<unknown> {
+  const timeoutMs = opzioni?.timeoutMs ?? 8000;
   return new Promise((resolve, reject) => {
-    const nomeCallback = `jsonp_cb_${Date.now()}_${contatoreJsonp++}`;
+    const nomeCallback = opzioni?.nomeCallback ?? `jsonp_cb_${Date.now()}_${contatoreJsonp++}`;
     const script = document.createElement("script");
     let concluso = false;
 

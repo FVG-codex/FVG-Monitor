@@ -33,7 +33,8 @@ export type EsitoProvincia = { zona: "A" | "B" | "C" | "D" | null; allerte: Alle
 
 export async function fetchAllertaProvincia(istat: number): Promise<EsitoProvincia> {
   const dati = (await fetchJsonp(
-    `https://pianiemergenza.protezionecivile.fvg.it/api/alerts.jsonp?istat=${istat}&tk=001`
+    `https://pianiemergenza.protezionecivile.fvg.it/api/alerts.jsonp?istat=${istat}&tk=001`,
+    { nomeCallback: "pcrfvgit_widget_setup" }
   )) as RispostaApi;
 
   const allerte: AllertaSingola[] = (dati.alerts || []).map((a) => ({
@@ -50,19 +51,20 @@ export async function fetchAllertaProvincia(istat: number): Promise<EsitoProvinc
   return { zona, allerte };
 }
 
-// Recupera le allerte per tutte e 4 le province in parallelo — usato
-// dalla homepage (banner regionale + pannello zone). Ogni chiamata
-// fallita viene ignorata singolarmente (non blocca le altre).
+// Recupera le allerte per tutte e 4 le province — usato dalla
+// homepage (banner regionale + pannello zone). Le chiamate sono
+// SEQUENZIALI (non in parallelo): condividono lo stesso nome di
+// callback fisso ("pcrfvgit_widget_setup", quello che il server si
+// aspetta), quindi farle in parallelo causerebbe collisioni tra loro.
+// Ogni chiamata fallita viene ignorata singolarmente.
 export async function fetchTutteLeAllerte(): Promise<Partial<Record<ProvinciaSlug, EsitoProvincia>>> {
   const risultato: Partial<Record<ProvinciaSlug, EsitoProvincia>> = {};
-  await Promise.all(
-    (Object.entries(ISTATCODE_PROVINCIA) as [ProvinciaSlug, number][]).map(async ([provincia, istat]) => {
-      try {
-        risultato[provincia] = await fetchAllertaProvincia(istat);
-      } catch {
-        // provincia singola non disponibile — le altre proseguono comunque
-      }
-    })
-  );
+  for (const [provincia, istat] of Object.entries(ISTATCODE_PROVINCIA) as [ProvinciaSlug, number][]) {
+    try {
+      risultato[provincia] = await fetchAllertaProvincia(istat);
+    } catch {
+      // provincia singola non disponibile — le altre proseguono comunque
+    }
+  }
   return risultato;
 }
