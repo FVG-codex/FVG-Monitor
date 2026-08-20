@@ -105,8 +105,16 @@ Pordenone):
 Tutte le chiamate `fetch` dello script passano da `fetchConRetry()` (3
 tentativi, con breve pausa crescente tra uno e l'altro) — le fonti esterne
 hanno occasionalmente timeout transitori (`ETIMEDOUT`), e senza retry un
-singolo timeout fa fallire l'intero job anche se gli altri 20+ moduli sono
+singolo timeout fa fallire l'intero job anche se gli altri moduli sono
 andati a buon fine.
+
+L'esecuzione risulta "rossa" su GitHub Actions solo se **tutti** i moduli
+falliscono (segno di un problema comune e serio, es. credenziali Supabase
+rotte) — non più per il fallimento persistente di un singolo modulo (es.
+un blocco di rete specifico verso una fonte, come capitato con
+`pianiemergenza.protezionecivile.fvg.it` da GitHub Actions). Ogni job
+fallito viene comunque loggato per nome, per capire subito cosa non ha
+funzionato in una singola esecuzione.
 
 ## Fix — Allerte mai realmente collegate (fatto)
 

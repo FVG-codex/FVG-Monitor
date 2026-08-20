@@ -1297,34 +1297,51 @@ async function ingestAllerte() {
 // ---------------------------------------------------------------------
 
 async function main() {
-  const risultati = await Promise.allSettled([
-    ingestMeteo(),
-    ingestNotizie(),
-    ingestVento(),
-    ingestViabilita(),
-    ingestEventi(),
-    ingestQualitaAria(),
-    ingestVoli(),
-    ingestPioggia(),
-    ingestTemperatura(),
-    ingestFiumi(),
-    ingestMare(),
-    ingestOzono(),
-    ingestNo2(),
-    ingestPm25(),
-    ingestCalcio(),
-    ingestBasket(),
-    ingestBaseballFvg(),
-    ingestAllerte(),
-  ]);
-  let fallito = false;
+  const jobs = [
+    ["meteo", ingestMeteo()],
+    ["notizie", ingestNotizie()],
+    ["vento", ingestVento()],
+    ["viabilita", ingestViabilita()],
+    ["eventi", ingestEventi()],
+    ["qualita-aria", ingestQualitaAria()],
+    ["voli", ingestVoli()],
+    ["pioggia", ingestPioggia()],
+    ["temperatura", ingestTemperatura()],
+    ["fiumi", ingestFiumi()],
+    ["mare", ingestMare()],
+    ["ozono", ingestOzono()],
+    ["no2", ingestNo2()],
+    ["pm25", ingestPm25()],
+    ["calcio", ingestCalcio()],
+    ["basket", ingestBasket()],
+    ["baseball", ingestBaseballFvg()],
+    ["allerte", ingestAllerte()],
+  ];
+
+  const risultati = await Promise.allSettled(jobs.map(([, p]) => p));
+
+  let falliti = 0;
   risultati.forEach((r, i) => {
     if (r.status === "rejected") {
-      fallito = true;
-      console.error(`Job #${i} fallito:`, r.reason);
+      falliti++;
+      console.error(`Job "${jobs[i][0]}" fallito:`, r.reason);
     }
   });
-  if (fallito) process.exit(1);
+
+  const totale = risultati.length;
+  if (falliti > 0) {
+    console.warn(`${falliti}/${totale} moduli falliti — vedi sopra per i dettagli.`);
+  }
+
+  // L'esecuzione fallisce (rosso su GitHub Actions) solo se TUTTI i
+  // moduli sono falliti — quasi certamente un problema serio e comune
+  // a tutti (es. credenziali Supabase rotte), non il blocco di rete
+  // su una singola fonte. Se anche solo un modulo va a buon fine, i
+  // dati continuano ad aggiornarsi correttamente per tutto il resto.
+  if (falliti === totale) {
+    console.error("Tutti i moduli sono falliti — interrompo con errore.");
+    process.exit(1);
+  }
 }
 
 main();
