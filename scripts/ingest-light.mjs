@@ -1202,6 +1202,100 @@ async function ingestBaseballFvg() {
 
 // ---------------------------------------------------------------------
 
+// ---------------------------------------------------------------------
+// ALLERTE PROTEZIONE CIVILE — endpoint reale dietro il widget
+// ufficiale (trovato via devtools, la pagina "allerte-tutte" blocca
+// il fetch diretto via robots.txt). Risposta in formato JSONP, non
+// JSON puro — va spacchettata dal wrapper "callback(...)" prima del
+// parsing.
+//
+// L'API restituisce la zona di allertamento REALE per ciascun comune
+// interrogato (per istatcode) — abbiamo scoperto che non coincide
+// sempre con la mappa statica provincia→zona usata altrove nel
+// progetto (es. Trieste risultava zona D per un'allerta, non C come
+// assunto altrove). Qui usiamo sempre il dato live dall'API, più
+// affidabile della nostra mappa.
+// ---------------------------------------------------------------------
+
+const ALLERTE_API_BASE = "https://pianiemergenza.protezionecivile.fvg.it/api/alerts.jsonp";
+const ISTATCODE_PROVINCIA = { trieste: 32006, udine: 30129, gorizia: 31007, pordenone: 93033 };
+
+const LIVELLO_NOME = { 0: "verde", 1: "gialla", 2: "arancione", 3: "rossa" };
+
+function spacchettaJsonp(testo) {
+  const match = testo.match(/\(([\s\S]*)\)\s*;?\s*$/);
+  if (!match) return null;
+  try {
+    return JSON.parse(match[1]);
+  } catch {
+    return null;
+  }
+}
+
+async function ingestAllertaProvincia(provincia, istat) {
+  const url = `${ALLERTE_API_BASE}?istat=${istat}&tk=001&callback=pcrfvgit_widget_setup`;
+  const res = await fetchConRetry(url);
+  if (!res.ok) {
+    console.warn(`Allerte non disponibili per ${provincia} (HTTP ${res.status})`);
+    return null;
+  }
+
+  const dati = spacchettaJsonp(await res.text());
+  if (!dati) {
+    console.warn(`Risposta allerte non valida per ${provincia}`);
+    return null;
+  }
+
+  const allerte = (dati.alerts || []).map((a) => ({
+    titolo: a.title,
+    messaggio: a.description,
+    livello: a.level,
+    livelloNome: LIVELLO_NOME[a.level] ?? "gialla",
+    dataInizio: a.dt_start,
+    dataFine: a.dt_end,
+    link: a.link_url,
+  }));
+
+  // La zona restituita dall'API (es. "FVG-D") — normalizzata alla sola lettera
+  const zonaGrezza = dati.alerts?.[0]?.zone;
+  const zona = zonaGrezza ? zonaGrezza.replace("FVG-", "") : null;
+
+  return { provincia, zona, allerte };
+}
+
+async function ingestAllerte() {
+  const risultati = await Promise.all(
+    Object.entries(ISTATCODE_PROVINCIA).map(([provincia, istat]) => ingestAllertaProvincia(provincia, istat))
+  );
+
+  const perProvincia = {};
+  let allerteAttive = [];
+  for (const r of risultati) {
+    if (!r) continue;
+    perProvincia[r.provincia] = { zona: r.zona, livelloMax: r.allerte[0]?.livello ?? 0, allerte: r.allerte };
+    allerteAttive.push(...r.allerte);
+  }
+
+  if (Object.keys(perProvincia).length === 0) {
+    console.warn("Nessun dato allerte disponibile per nessuna provincia");
+    return;
+  }
+
+  // Banner: l'allerta più severa tra quelle attive (deduplicata per titolo,
+  // dato che un'allerta regionale spesso compare identica su più province)
+  const allerteUniche = [...new Map(allerteAttive.map((a) => [a.titolo, a])).values()];
+  const banner = allerteUniche.sort((a, b) => b.livello - a.livello)[0] ?? null;
+
+  await upsertSnapshot("allerta:overview", "allerta", null, {
+    per_provincia: perProvincia,
+    banner,
+    aggiornato_al: new Date().toISOString(),
+  });
+  console.log(`Allerte aggiornate: ${allerteUniche.length} allerte uniche attive`);
+}
+
+// ---------------------------------------------------------------------
+
 async function main() {
   const risultati = await Promise.allSettled([
     ingestMeteo(),
@@ -1221,6 +1315,7 @@ async function main() {
     ingestCalcio(),
     ingestBasket(),
     ingestBaseballFvg(),
+    ingestAllerte(),
   ]);
   let fallito = false;
   risultati.forEach((r, i) => {

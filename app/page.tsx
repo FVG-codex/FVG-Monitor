@@ -1,4 +1,5 @@
-import { AlertBanner } from "@/components/AlertBanner";
+import { AlertBannerLive } from "@/components/AlertBannerLive";
+import { AllertaZonePanel } from "@/components/AllertaZonePanel";
 import { AriaQualitaPanel } from "@/components/AriaQualitaPanel";
 import { EventiPanel } from "@/components/EventiPanel";
 import { FiumeOverview } from "@/components/FiumeOverview";
@@ -12,17 +13,7 @@ import { TopHeader } from "@/components/TopHeader";
 import { VentoPanel } from "@/components/VentoPanel";
 import { ViabilitaPanel } from "@/components/ViabilitaPanel";
 import { VoliPanel } from "@/components/VoliPanel";
-import { ZoneChip } from "@/components/ZoneChip";
 import { PROVINCE_LIST } from "@/lib/province";
-
-// Il banner allerta resta manuale finché non ingeriamo lo stato zone
-// dal Widget PC — per ora placeholder di esempio, da rimuovere/
-// collegare quando il widget è integrato in tutte e 4 le pagine
-// provincia (vedi ProvinciaPage.tsx).
-const ALLERTA_ATTIVA = {
-  livello: "gialla" as const,
-  messaggio: "Vento forte da Bora su zona costiera FVG-C — validità fino alle 20:00",
-};
 
 export default function Home() {
   return (
@@ -31,9 +22,7 @@ export default function Home() {
       <div className="isobar" />
 
       <div className="max-w-[1180px] mx-auto px-5">
-        {ALLERTA_ATTIVA && (
-          <AlertBanner livello={ALLERTA_ATTIVA.livello} messaggio={ALLERTA_ATTIVA.messaggio} />
-        )}
+        <AlertBannerLive />
       </div>
 
       <main className="max-w-[1180px] mx-auto px-5 py-6">
@@ -43,16 +32,7 @@ export default function Home() {
           </Panel>
 
           <Panel title="Allerte · Zone" linkLabel="Storico →" linkHref="https://www.protezionecivile.fvg.it/it/allerte-tutte">
-            <div className="flex gap-1.5 mb-4">
-              {(["A", "B", "C", "D"] as const).map((z) => (
-                <div key={z} className="flex-1 border border-line rounded p-2 text-center">
-                  <ZoneChip zone={z} size="md" />
-                  <div className="font-mono text-[9px] uppercase text-ink-faint mt-1.5">
-                    {z === "C" ? "Gialla" : "Verde"}
-                  </div>
-                </div>
-              ))}
-            </div>
+            <AllertaZonePanel />
             <p className="text-ink-faint text-xs font-mono mb-2">
               Dettaglio e widget ufficiale per provincia:
             </p>

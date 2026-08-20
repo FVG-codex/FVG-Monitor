@@ -9,7 +9,7 @@ import { PioggiaPanel } from "@/components/PioggiaPanel";
 import { TemperaturaBadge } from "@/components/TemperaturaBadge";
 import { TopHeader } from "@/components/TopHeader";
 import { VentoPanel } from "@/components/VentoPanel";
-import { ZoneChip } from "@/components/ZoneChip";
+import { ZonaAllertamentoLive } from "@/components/ZonaAllertamentoLive";
 import { PROVINCE, type ProvinciaSlug } from "@/lib/province";
 
 export function ProvinciaPage({ slug }: { slug: ProvinciaSlug }) {
@@ -64,7 +64,7 @@ export function ProvinciaPage({ slug }: { slug: ProvinciaSlug }) {
           >
             <div className="flex items-center gap-2 mb-3">
               <span className="text-sm text-ink-dim">Zona di allertamento:</span>
-              <ZoneChip zone={provincia.zona} size="md" />
+              <ZonaAllertamentoLive provincia={slug} />
             </div>
             <AllertaWidgetSlot slug={slug} cittaNome={provincia.nome} />
           </Panel>

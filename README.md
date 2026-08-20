@@ -108,6 +108,23 @@ hanno occasionalmente timeout transitori (`ETIMEDOUT`), e senza retry un
 singolo timeout fa fallire l'intero job anche se gli altri 20+ moduli sono
 andati a buon fine.
 
+## Fix — Allerte mai realmente collegate (fatto)
+
+Scoperto che il banner allerta in homepage e il pannello "Allerte · Zone"
+erano rimasti **dati statici scritti a mano** fin dallo scaffold iniziale
+(mai collegati a una fonte reale) — un'allerta nuova non veniva mai
+rilevata. Risolto trovando l'endpoint reale dietro il widget ufficiale
+(`pianiemergenza.protezionecivile.fvg.it/api/alerts.jsonp`, formato JSONP
+da spacchettare) — la pagina `allerte-tutte` stessa blocca il fetch diretto
+via robots.txt, ma questo endpoint no.
+
+**Scoperta importante**: l'API restituisce la zona di allertamento reale
+per comune (via istatcode), e non sempre coincide con la mappa statica
+provincia→zona in `lib/province.ts` (es. Trieste risultata zona D per
+un'allerta, non C come assunto lì). Questo endpoint mostra la zona **solo
+quando c'è un'allerta attiva** — senza allerte attive, i chip di zona
+mostrano "—" invece di indovinare una lettera potenzialmente sbagliata.
+
 ## Note di fragilità
 
 I moduli **Eventi** e **Trieste Airport** fanno scraping HTML (non un'API
