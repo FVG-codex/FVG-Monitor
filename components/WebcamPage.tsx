@@ -11,6 +11,7 @@ type Webcam = {
   provincia: ProvinciaSlug | null;
   immagine: string;
   descrizione: string | null;
+  link: string | null;
 };
 
 type WebcamData = { webcam: Webcam[]; aggiornato_al: string };
@@ -104,16 +105,33 @@ export function WebcamPage() {
 
         {stato === "ready" && (
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-            {webcamFiltrate.map((w, i) => (
-              <div key={i} className="border border-line rounded overflow-hidden bg-panel">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={w.immagine} alt={w.nome} loading="lazy" className="w-full h-32 object-cover" />
-                <div className="p-2">
-                  <div className="font-cond font-semibold text-sm leading-tight">{w.nome}</div>
-                  <div className="font-mono text-[10px] text-ink-faint mt-0.5">{w.zona}</div>
+            {webcamFiltrate.map((w, i) => {
+              const Card = (
+                <>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={w.immagine} alt={w.nome} loading="lazy" className="w-full h-32 object-cover" />
+                  <div className="p-2">
+                    <div className="font-cond font-semibold text-sm leading-tight">{w.nome}</div>
+                    <div className="font-mono text-[10px] text-ink-faint mt-0.5">{w.zona}</div>
+                  </div>
+                </>
+              );
+              return w.link ? (
+                <a
+                  key={i}
+                  href={w.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="border border-line rounded overflow-hidden bg-panel hover:border-cool transition-colors"
+                >
+                  {Card}
+                </a>
+              ) : (
+                <div key={i} className="border border-line rounded overflow-hidden bg-panel">
+                  {Card}
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         )}
 

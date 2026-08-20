@@ -24,6 +24,8 @@ export function Panel({
         {linkLabel && linkHref && (
           <a
             href={linkHref}
+            target="_blank"
+            rel="noopener noreferrer"
             className="font-mono text-[11px] text-ink-faint hover:text-cool transition-colors"
           >
             {linkLabel}

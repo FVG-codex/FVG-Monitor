@@ -44,7 +44,7 @@ export function AlertBannerLive() {
         Allerta {banner.livelloNome}
       </span>
       <span className="text-ink-dim">{banner.messaggio}</span>
-      <a href={banner.link} className="ml-auto text-cool text-sm flex-shrink-0 whitespace-nowrap">
+      <a href={banner.link} target="_blank" rel="noopener noreferrer" className="ml-auto text-cool text-sm flex-shrink-0 whitespace-nowrap">
         Dettagli ufficiali →
       </a>
     </div>

@@ -1328,6 +1328,7 @@ async function ingestWebcamOsmer() {
       if (!nome || !dataSrc) return;
 
       webcam.push({
+        link: img.attr("data-url") || null,
         nome,
         zona: zonaNome,
         provincia: provinciaWebcam(nome, zonaId),
