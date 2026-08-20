@@ -1218,6 +1218,139 @@ async function ingestBaseballFvg() {
 
 // ---------------------------------------------------------------------
 
+// ---------------------------------------------------------------------
+// WEBCAM OSMER — osmer.fvg.it/webcam_img.php. Licenza CC BY-SA 3.0
+// esplicita. OSMER fa da specchio/proxy delle immagini di terze parti
+// sul proprio dominio (data-src relativo) — mostriamo quelle, comode
+// perché su un unico dominio invece di tante fonti diverse.
+//
+// Le "zone geografiche" di OSMER non coincidono sempre con i confini
+// provinciali (es. "Costa ovest e Laguna" include sia Grado, provincia
+// di Gorizia, sia Lignano, provincia di Udine) — usiamo una mappa
+// comune→provincia il più precisa possibile, con fallback sulla zona
+// quando il nome non è riconosciuto. Approssimazione nota e accettata.
+//
+// Escluse le zone fuori regione (Veneto, Austria, Slovenia, Croazia) —
+// non pertinenti per un sito di webcam "regionali" FVG.
+// ---------------------------------------------------------------------
+
+const OSMER_ZONE_FVG = new Set([
+  "Alpi_Carniche",
+  "Alpi_Giulie",
+  "Prealpi_Carniche",
+  "Prealpi_Giulie",
+  "Pianura_Pordenonese",
+  "Pianura_Udinese",
+  "Pianura_Goriziana",
+  "Costa_ovest_e_Laguna",
+  "Carso_e_Trieste",
+  "A4",
+  "A23",
+  "A28",
+  "SR354",
+]);
+
+// Fallback quando il nome della webcam non contiene un comune riconosciuto
+const OSMER_ZONA_PROVINCIA_FALLBACK = {
+  Alpi_Carniche: "udine",
+  Alpi_Giulie: "udine",
+  Prealpi_Carniche: "pordenone",
+  Prealpi_Giulie: "udine",
+  Pianura_Pordenonese: "pordenone",
+  Pianura_Udinese: "udine",
+  Pianura_Goriziana: "gorizia",
+  Costa_ovest_e_Laguna: "udine",
+  Carso_e_Trieste: "trieste",
+  A4: "udine",
+  A23: "udine",
+  A28: "pordenone",
+  SR354: "udine",
+};
+
+// Comuni riconosciuti nel nome della webcam → provincia (più precisa
+// del fallback per zona, dove disponibile)
+const OSMER_COMUNE_PROVINCIA = {
+  sappada: "udine", "arta terme": "udine", ampezzo: "udine", enemonzo: "udine",
+  "forni avoltri": "udine", "forni di sopra": "udine", liariis: "udine",
+  "monte tenchia": "udine", zoncolan: "udine", zoufplan: "udine",
+  "passo monte croce carnico": "udine", paularo: "udine", ravascletto: "udine",
+  "val pesarina": "udine", montasio: "udine", "monte acomizza": "udine",
+  "monte canin": "udine", lussari: "udine", pramollo: "udine", planica: "udine",
+  "sella nevea": "udine", tarvisio: "udine", matajur: "udine", resia: "udine",
+  tarcento: "udine", bordano: "udine", "lago di cavazzo": "udine", verzegnis: "udine",
+  barcis: "pordenone", budoia: "pordenone", cansiglio: "pordenone",
+  cimolais: "pordenone", claut: "pordenone", piancavallo: "pordenone",
+  polcenigo: "pordenone", fontanafredda: "pordenone", maniago: "pordenone",
+  sacile: "pordenone", "san vito al tagliamento": "pordenone", spilimbergo: "pordenone",
+  zoppola: "pordenone", "sesto al reghena": "pordenone", "azzano": "pordenone",
+  brugnera: "pordenone", pordenone: "pordenone",
+  aquileia: "udine", basiliano: "udine", bertiolo: "udine", carlino: "udine",
+  cervignano: "udine", cividale: "udine", gemona: "udine", martignacco: "udine",
+  moruzzo: "udine", ragogna: "udine", osoppo: "udine", "san daniele": "udine",
+  udine: "udine", gonars: "udine", latisana: "udine", palmanova: "udine",
+  cormons: "gorizia", gorizia: "gorizia", "ronchi dei legionari": "gorizia",
+  grado: "gorizia", monfalcone: "gorizia", lisert: "gorizia",
+  lignano: "udine",
+  "duino aurisina": "trieste", trieste: "trieste", sistiana: "trieste",
+};
+
+function provinciaWebcam(nome, zonaId) {
+  const nomeLower = nome.toLowerCase();
+  for (const [comune, provincia] of Object.entries(OSMER_COMUNE_PROVINCIA)) {
+    if (nomeLower.includes(comune)) return provincia;
+  }
+  return OSMER_ZONA_PROVINCIA_FALLBACK[zonaId] ?? null;
+}
+
+async function ingestWebcamOsmer() {
+  const res = await fetchConRetry("https://www.osmer.fvg.it/webcam_img.php?ln=", {
+    headers: { "User-Agent": "Mozilla/5.0 (compatible; FVGMonitorBot/1.0)" },
+  });
+  if (!res.ok) {
+    console.warn(`Pagina webcam OSMER non disponibile (HTTP ${res.status})`);
+    return;
+  }
+
+  const $ = cheerio.load(await res.text());
+  const webcam = [];
+
+  $("div[id]").each((_, headerEl) => {
+    const zonaId = $(headerEl).attr("id");
+    if (!OSMER_ZONE_FVG.has(zonaId)) return; // salta le zone fuori regione
+
+    const zonaNome = zonaId.replace(/_/g, " ");
+    const siblings = $(headerEl).nextUntil("div[id]");
+
+    siblings.find(".lazy-container").each((_, camEl) => {
+      const nome = $(camEl).find(".panel-heading").first().text().trim();
+      const img = $(camEl).find("img").first();
+      const dataSrc = img.attr("data-src");
+      if (!nome || !dataSrc) return;
+
+      webcam.push({
+        nome,
+        zona: zonaNome,
+        provincia: provinciaWebcam(nome, zonaId),
+        immagine: `https://www.osmer.fvg.it/${dataSrc}`,
+        descrizione: img.attr("data-desc") || null,
+      });
+    });
+  });
+
+  if (webcam.length === 0) {
+    console.warn("Nessuna webcam OSMER estratta — la struttura HTML potrebbe essere cambiata");
+    return;
+  }
+
+  await upsertSnapshot("webcam:osmer", "webcam", null, {
+    webcam,
+    aggiornato_al: new Date().toISOString(),
+  });
+  console.log(`Webcam OSMER aggiornate: ${webcam.length} trovate`);
+}
+
+// ---------------------------------------------------------------------
+
 async function main() {
   const jobs = [
     ["meteo", ingestMeteo()],
@@ -1237,6 +1370,7 @@ async function main() {
     ["calcio", ingestCalcio()],
     ["basket", ingestBasket()],
     ["baseball", ingestBaseballFvg()],
+    ["webcam-osmer", ingestWebcamOsmer()],
   ];
 
   const risultati = await Promise.allSettled(jobs.map(([, p]) => p));

@@ -10,6 +10,7 @@ const SEZIONI_EXTRA = [
   { label: "Risultati calcistici", href: "/calcio" },
   { label: "Risultati basket", href: "/basket" },
   { label: "Risultati baseball", href: "/baseball" },
+  { label: "Webcam regionali", href: "/webcam" },
 ];
 
 export function MenuHamburger() {
