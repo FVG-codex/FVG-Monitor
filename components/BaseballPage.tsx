@@ -90,7 +90,7 @@ export function BaseballPage() {
     };
   }, [competizione]);
 
-  const gironi = dati ? raggruppaPerGirone(dati.classifica) : new Map();
+  const gironi = dati ? raggruppaPerGirone(dati.classifica) : new Map<string, RigaClassifica[]>();
 
   return (
     <>
