@@ -1352,6 +1352,53 @@ async function ingestWebcamOsmer() {
 
 // ---------------------------------------------------------------------
 
+// ---------------------------------------------------------------------
+// RADAR METEO — stessa API PC FVG (monitor.protezionecivile.fvg.it),
+// gruppo "radar" mai usato prima. Solo il radar di Fossalon (id 1) è
+// attivo al momento (Lussari e Mosaico risultano spenti, status "X").
+//
+// Prodotto scelto: "SRTLBM_1" formato PNG — mappa colorata
+// dell'intensità di pioggia (mm), quella che corrisponde all'idea
+// comune di "radar meteo". Altri prodotti disponibili sullo stesso
+// radar (velocità Doppler, classificazione idrometeore, ecc.) restano
+// per ora non utilizzati.
+//
+// Salviamo solo l'URL dell'immagine (l'API la serve direttamente come
+// PNG binario) — nessun bisogno di scaricare/ricodificare i byte,
+// il tag <img> del browser la richiede direttamente dall'API PC FVG.
+// ---------------------------------------------------------------------
+
+async function ingestRadarMeteo() {
+  const ora = new Date();
+  const daOra = new Date(ora.getTime() - 30 * 60 * 1000); // ultimi 30 minuti
+  const fmt = (d) => d.toISOString().slice(0, 19).replace("T", " ");
+
+  const url = `${PC_API_BASE}/radars/1/products?from=${encodeURIComponent(fmt(daOra))}&to=${encodeURIComponent(fmt(ora))}`;
+  const res = await fetchConRetry(url);
+  if (!res.ok) {
+    console.warn(`Radar meteo non disponibile (HTTP ${res.status})`);
+    return;
+  }
+
+  const json = await res.json();
+  const prodotti = json.products || [];
+  const candidati = prodotti.filter((p) => p.name === "SRTLBM_1" && p.format === "image/png");
+  if (candidati.length === 0) {
+    console.warn("Nessuna immagine radar (SRTLBM_1) trovata negli ultimi 30 minuti");
+    return;
+  }
+
+  const piuRecente = candidati.sort((a, b) => new Date(b.dt) - new Date(a.dt))[0];
+
+  await upsertSnapshot("radar:fossalon", "radar", null, {
+    immagine: `${PC_API_BASE}/products/${piuRecente.id}`,
+    aggiornato_al: piuRecente.dt,
+  });
+  console.log(`Radar meteo aggiornato: ${piuRecente.dt}`);
+}
+
+// ---------------------------------------------------------------------
+
 async function main() {
   const jobs = [
     ["meteo", ingestMeteo()],
@@ -1372,6 +1419,7 @@ async function main() {
     ["basket", ingestBasket()],
     ["baseball", ingestBaseballFvg()],
     ["webcam-osmer", ingestWebcamOsmer()],
+    ["radar-meteo", ingestRadarMeteo()],
   ];
 
   const risultati = await Promise.allSettled(jobs.map(([, p]) => p));

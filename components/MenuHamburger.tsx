@@ -7,6 +7,7 @@ import Link from "next/link";
 // provincia (già visibile nei tab dell'header). Aggiungi qui nuove
 // voci man mano che si aggiungono sezioni indipendenti.
 const SEZIONI_EXTRA = [
+  { label: "Meteo", href: "/meteo" },
   { label: "Risultati calcistici", href: "/calcio" },
   { label: "Risultati basket", href: "/basket" },
   { label: "Risultati baseball", href: "/baseball" },
