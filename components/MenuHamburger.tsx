@@ -11,6 +11,7 @@ const SEZIONI_EXTRA = [
   { label: "Risultati basket", href: "/basket" },
   { label: "Risultati baseball", href: "/baseball" },
   { label: "Webcam regionali", href: "/webcam" },
+  { label: "Viabilità", href: "/viabilita" },
 ];
 
 export function MenuHamburger() {

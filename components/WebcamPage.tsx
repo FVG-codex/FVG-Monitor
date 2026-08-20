@@ -3,18 +3,14 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { TopHeader } from "@/components/TopHeader";
+import { WebcamCard, type Webcam } from "@/components/WebcamCard";
 import { PROVINCE_LIST, type ProvinciaSlug } from "@/lib/province";
 
-type Webcam = {
-  nome: string;
-  zona: string;
-  provincia: ProvinciaSlug | null;
-  immagine: string;
-  descrizione: string | null;
-  link: string | null;
-};
-
 type WebcamData = { webcam: Webcam[]; aggiornato_al: string };
+
+// Le webcam autostradali (A4/A23/A28/SR354) vivono nella pagina
+// dedicata /viabilita, insieme agli eventi di traffico — non qui
+const ZONE_ESCLUSE = new Set(["A4", "A23", "A28", "SR354"]);
 
 // Panorami 360° di turismofvg.it — widget di terze parti (Panomax e
 // Feratel), elenco statico: sono pochi e non cambiano spesso, non
@@ -61,8 +57,9 @@ export function WebcamPage() {
     };
   }, []);
 
+  const webcamRegionali = (dati?.webcam ?? []).filter((w) => !ZONE_ESCLUSE.has(w.zona));
   const webcamFiltrate =
-    filtro === "tutte" ? dati?.webcam ?? [] : (dati?.webcam ?? []).filter((w) => w.provincia === filtro);
+    filtro === "tutte" ? webcamRegionali : webcamRegionali.filter((w) => w.provincia === filtro);
 
   return (
     <>
@@ -73,7 +70,7 @@ export function WebcamPage() {
         <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1">Webcam regionali</h1>
         <p className="text-ink-faint text-xs font-mono mb-4">
           Immagini fornite da OSMER ARPA FVG (CC BY-SA 3.0) — la validità dei dati non è garantita da ARPA FVG,
-          che aggrega webcam gestite da terzi
+          che aggrega webcam gestite da terzi. Clicca su una webcam per aprire la fonte originale
         </p>
 
         <div className="flex gap-1.5 flex-wrap mb-6">
@@ -105,33 +102,9 @@ export function WebcamPage() {
 
         {stato === "ready" && (
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-            {webcamFiltrate.map((w, i) => {
-              const Card = (
-                <>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={w.immagine} alt={w.nome} loading="lazy" className="w-full h-32 object-cover" />
-                  <div className="p-2">
-                    <div className="font-cond font-semibold text-sm leading-tight">{w.nome}</div>
-                    <div className="font-mono text-[10px] text-ink-faint mt-0.5">{w.zona}</div>
-                  </div>
-                </>
-              );
-              return w.link ? (
-                <a
-                  key={i}
-                  href={w.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="border border-line rounded overflow-hidden bg-panel hover:border-cool transition-colors"
-                >
-                  {Card}
-                </a>
-              ) : (
-                <div key={i} className="border border-line rounded overflow-hidden bg-panel">
-                  {Card}
-                </div>
-              );
-            })}
+            {webcamFiltrate.map((w, i) => (
+              <WebcamCard key={i} webcam={w} />
+            ))}
           </div>
         )}
 
