@@ -1,13 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { supabase } from "@/lib/supabase";
 import { ZoneChip } from "@/components/ZoneChip";
 import type { ProvinciaSlug } from "@/lib/province";
-
-type AllertaData = {
-  per_provincia: Partial<Record<ProvinciaSlug, { zona: "A" | "B" | "C" | "D" | null }>>;
-};
+import { fetchAllertaProvincia, ISTATCODE_PROVINCIA } from "@/lib/allerte";
 
 export function ZonaAllertamentoLive({ provincia }: { provincia: ProvinciaSlug }) {
   const [zona, setZona] = useState<"A" | "B" | "C" | "D" | null>(null);
@@ -15,17 +11,15 @@ export function ZonaAllertamentoLive({ provincia }: { provincia: ProvinciaSlug }
   useEffect(() => {
     let attivo = true;
     async function carica() {
-      const { data, error } = await supabase
-        .from("snapshots")
-        .select("data")
-        .eq("id", "allerta:overview")
-        .single();
-      if (!attivo || error || !data) return;
-      const d = data.data as AllertaData;
-      setZona(d.per_provincia[provincia]?.zona ?? null);
+      try {
+        const esito = await fetchAllertaProvincia(ISTATCODE_PROVINCIA[provincia]);
+        if (attivo) setZona(esito.zona);
+      } catch {
+        // fallisce silenziosamente: resta il fallback "n.d." sotto
+      }
     }
     carica();
-    const id = setInterval(carica, 15 * 60 * 1000);
+    const id = setInterval(carica, 10 * 60 * 1000);
     return () => {
       attivo = false;
       clearInterval(id);

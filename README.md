@@ -116,22 +116,30 @@ un blocco di rete specifico verso una fonte, come capitato con
 fallito viene comunque loggato per nome, per capire subito cosa non ha
 funzionato in una singola esecuzione.
 
-## Fix — Allerte mai realmente collegate (fatto)
+## Fix — Allerte mai realmente collegate, poi spostate lato client (fatto)
 
 Scoperto che il banner allerta in homepage e il pannello "Allerte · Zone"
 erano rimasti **dati statici scritti a mano** fin dallo scaffold iniziale
-(mai collegati a una fonte reale) — un'allerta nuova non veniva mai
-rilevata. Risolto trovando l'endpoint reale dietro il widget ufficiale
-(`pianiemergenza.protezionecivile.fvg.it/api/alerts.jsonp`, formato JSONP
-da spacchettare) — la pagina `allerte-tutte` stessa blocca il fetch diretto
-via robots.txt, ma questo endpoint no.
+(mai collegati a una fonte reale). Trovato l'endpoint reale dietro il
+widget ufficiale (`pianiemergenza.protezionecivile.fvg.it/api/alerts.jsonp`,
+formato JSONP) — ma si è rivelato **bloccato in modo persistente per le
+richieste da GitHub Actions** (timeout di connessione TCP puro, confermato
+su più tentativi anche a sito raggiungibile normalmente da browser).
+
+**Soluzione finale**: spostato interamente lato client (`lib/jsonp.ts` +
+`lib/allerte.ts`) — i componenti React (`AlertBannerLive`,
+`AllertaZonePanel`, `ZonaAllertamentoLive`) interrogano l'endpoint JSONP
+**direttamente dal browser** di chi visita il sito, esattamente come fa
+già il widget ufficiale — bypassa il blocco perché usa l'indirizzo IP del
+visitatore, non quello di GitHub Actions. Nessun dato passa più da
+Supabase per questo modulo.
 
 **Scoperta importante**: l'API restituisce la zona di allertamento reale
 per comune (via istatcode), e non sempre coincide con la mappa statica
 provincia→zona in `lib/province.ts` (es. Trieste risultata zona D per
-un'allerta, non C come assunto lì). Questo endpoint mostra la zona **solo
-quando c'è un'allerta attiva** — senza allerte attive, i chip di zona
-mostrano "—" invece di indovinare una lettera potenzialmente sbagliata.
+un'allerta, non C come assunto lì). La zona è disponibile **solo quando
+c'è un'allerta attiva** — senza allerte attive, i chip di zona mostrano
+"—" invece di indovinare una lettera potenzialmente sbagliata.
 
 ## Note di fragilità
 

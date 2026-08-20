@@ -1,50 +1,39 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { supabase } from "@/lib/supabase";
+import { fetchTutteLeAllerte, type AllertaSingola } from "@/lib/allerte";
 
-type Livello = "gialla" | "arancione" | "rossa";
-
-const LIVELLO_STYLES: Record<Livello, string> = {
+const LIVELLO_STYLES: Record<string, string> = {
   gialla: "bg-allerta-gialla text-[#241B04]",
   arancione: "bg-allerta-arancione text-[#241B04]",
   rossa: "bg-allerta-rossa text-ink",
 };
 
-type Banner = {
-  titolo: string;
-  messaggio: string;
-  livelloNome: Livello;
-  link: string;
-} | null;
-
-type AllertaData = { banner: Banner };
-
 export function AlertBannerLive() {
-  const [banner, setBanner] = useState<Banner>(null);
+  const [banner, setBanner] = useState<AllertaSingola | null>(null);
 
   useEffect(() => {
     let attivo = true;
     async function carica() {
-      const { data, error } = await supabase
-        .from("snapshots")
-        .select("data")
-        .eq("id", "allerta:overview")
-        .single();
-      if (!attivo || error || !data) return;
-      const d = data.data as AllertaData;
-      setBanner(d.banner);
+      const perProvincia = await fetchTutteLeAllerte();
+      if (!attivo) return;
+
+      const tutte = Object.values(perProvincia).flatMap((p) => p?.allerte ?? []);
+      // Deduplicata per titolo (un'allerta regionale compare identica su più province)
+      const uniche = [...new Map(tutte.map((a) => [a.titolo, a])).values()];
+      const piuSevera = uniche.sort((a, b) => b.livello - a.livello)[0] ?? null;
+      setBanner(piuSevera);
     }
     carica();
-    const id = setInterval(carica, 15 * 60 * 1000);
+    const id = setInterval(carica, 10 * 60 * 1000);
     return () => {
       attivo = false;
       clearInterval(id);
     };
   }, []);
 
-  // Nessuna allerta attiva: nessun banner mostrato (comportamento corretto,
-  // non un errore — è lo stato "normale" per la maggior parte del tempo)
+  // Nessuna allerta attiva (o dati non ancora caricati): nessun banner
+  // mostrato — comportamento corretto, non un errore
   if (!banner) return null;
 
   return (
