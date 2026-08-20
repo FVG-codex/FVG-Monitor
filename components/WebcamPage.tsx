@@ -21,6 +21,7 @@ const PANORAMI_360: { nome: string; src: string; provincia: ProvinciaSlug }[] = 
   { nome: "Piancavallo", src: "https://www.turismofvg.it/StaticPage/PanomaxWidget?code=2662&mode=simple-square", provincia: "pordenone" },
   { nome: "Sappada", src: "https://www.turismofvg.it/StaticPage/PanomaxWidget?code=2556&mode=simple-square", provincia: "udine" },
   { nome: "Sella Nevea", src: "https://www.turismofvg.it/StaticPage/PanomaxWidget?code=2665&mode=simple-square", provincia: "udine" },
+  { nome: "Sella Nevea - Campi scuola", src: "https://www.turismofvg.it/StaticPage/PanomaxWidget?code=1854783&mode=simple-square", provincia: "udine" },
   { nome: "Zoncolan", src: "https://www.turismofvg.it/StaticPage/PanomaxWidget?code=2669&mode=simple-square", provincia: "udine" },
   { nome: "Grado", src: "https://www.turismofvg.it/StaticPage/PanomaxWidget?code=3011&mode=simple-square", provincia: "gorizia" },
   { nome: "Lignano", src: "https://www.turismofvg.it/StaticPage/PanomaxWidget?code=3383&mode=simple-square", provincia: "udine" },
