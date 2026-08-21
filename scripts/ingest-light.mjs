@@ -1390,8 +1390,15 @@ async function ingestRadarMeteo() {
 
   const piuRecente = candidati.sort((a, b) => new Date(b.dt) - new Date(a.dt))[0];
 
+  // details.extent è [minLon, maxLat, maxLon, minLat] — i confini
+  // geografici esatti dell'immagine, necessari per sovrapporla a una
+  // vera mappa (l'immagine stessa è trasparente fuori dalle zone di
+  // pioggia, senza base geografica non si capisce cosa si sta vedendo)
+  const extent = piuRecente.details?.extent ?? null;
+
   await upsertSnapshot("radar:fossalon", "radar", null, {
     immagine: `${PC_API_BASE}/products/${piuRecente.id}`,
+    extent,
     aggiornato_al: piuRecente.dt,
   });
   console.log(`Radar meteo aggiornato: ${piuRecente.dt}`);
