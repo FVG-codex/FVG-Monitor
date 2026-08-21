@@ -9,9 +9,7 @@ import Link from "next/link";
 const SEZIONI_EXTRA = [
   { label: "Meteo", href: "/meteo" },
   { label: "Terremoti", href: "/terremoti" },
-  { label: "Risultati calcistici", href: "/calcio" },
-  { label: "Risultati basket", href: "/basket" },
-  { label: "Risultati baseball", href: "/baseball" },
+  { label: "Sport", href: "/sport" },
   { label: "Webcam regionali", href: "/webcam" },
   { label: "Viabilità", href: "/viabilita" },
 ];

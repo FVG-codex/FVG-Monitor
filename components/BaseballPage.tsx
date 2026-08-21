@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import { Panel } from "@/components/Panel";
 import { TopHeader } from "@/components/TopHeader";
@@ -98,8 +99,11 @@ export function BaseballPage() {
       <div className="isobar" />
 
       <main className="max-w-[1180px] mx-auto px-5 py-6">
-        <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1">
-          {stato === "ready" && dati ? dati.campionato : "Risultati baseball"}
+        <Link href="/sport" className="text-cool text-xs font-mono hover:underline">
+          ← Sport
+        </Link>
+        <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1 mt-1">
+          {stato === "ready" && dati ? dati.campionato : "Baseball & Softball"}
         </h1>
         <p className="text-ink-faint text-xs font-mono mb-4">
           Baseball e softball FVG — squadre in evidenza — fonte: live.baseballfvg.it

@@ -29,7 +29,14 @@ export function PioggiaPanel({ provincia = "trieste" }: { provincia?: ProvinciaS
         setStato("error");
         return;
       }
-      setDati(data.data as PioggiaData);
+      const d = data.data as PioggiaData;
+      // arrotondato anche qui come protezione in più, oltre allo
+      // script di ingestione
+      setDati({
+        ...d,
+        pioggia_1h_mm: d.pioggia_1h_mm !== null ? Math.round(d.pioggia_1h_mm * 10) / 10 : null,
+        pioggia_24h_mm: d.pioggia_24h_mm !== null ? Math.round(d.pioggia_24h_mm * 10) / 10 : null,
+      });
       setStato("ready");
     }
     carica();

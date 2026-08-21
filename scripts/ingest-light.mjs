@@ -590,8 +590,8 @@ async function ingestPioggiaProvincia(provincia, stationId, nomeStazione, zona) 
   const payload = {
     stazione: nomeStazione,
     aggiornato_al: (ultimaOra || ultime24Ore).dt,
-    pioggia_1h_mm: ultimaOra?.value ?? null,
-    pioggia_24h_mm: ultime24Ore?.value ?? null,
+    pioggia_1h_mm: ultimaOra?.value !== undefined && ultimaOra?.value !== null ? Math.round(ultimaOra.value * 10) / 10 : null,
+    pioggia_24h_mm: ultime24Ore?.value !== undefined && ultime24Ore?.value !== null ? Math.round(ultime24Ore.value * 10) / 10 : null,
   };
 
   await upsertSnapshot(`pioggia:${provincia}`, "pioggia", zona, payload);
