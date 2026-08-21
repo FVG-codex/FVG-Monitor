@@ -1382,26 +1382,40 @@ async function ingestRadarMeteo() {
 
   const json = await res.json();
   const prodotti = json.products || [];
-  const candidati = prodotti.filter((p) => p.name === "SRTLBM_1" && p.format === "image/png");
-  if (candidati.length === 0) {
-    console.warn("Nessuna immagine radar (SRTLBM_1) trovata negli ultimi 30 minuti");
+
+  // Tutti e 4 i prodotti sono nella stessa risposta — non serve una
+  // chiamata separata per ciascuno
+  const PRODOTTI_RADAR = {
+    srtlbm_1: "SRTLBM_1", // intensità pioggia (mm)
+    ssi: "SSI", // storm severity index
+    hmc: "HMC", // classificazione idrometeore (pioggia/neve/grandine)
+    lbm_v: "LBM_V", // velocità Doppler (m/s)
+  };
+
+  const risultato = {};
+  for (const [chiave, nomeProdotto] of Object.entries(PRODOTTI_RADAR)) {
+    const candidati = prodotti.filter((p) => p.name === nomeProdotto && p.format === "image/png");
+    if (candidati.length === 0) continue;
+    const piuRecente = candidati.sort((a, b) => new Date(b.dt) - new Date(a.dt))[0];
+
+    // details.extent è [minLon, maxLat, maxLon, minLat] — i confini
+    // geografici esatti dell'immagine, necessari per sovrapporla a una
+    // vera mappa (l'immagine stessa è trasparente fuori dalle zone
+    // colorate, senza base geografica non si capisce cosa si sta vedendo)
+    risultato[chiave] = {
+      immagine: `${PC_API_BASE}/products/${piuRecente.id}`,
+      extent: piuRecente.details?.extent ?? null,
+      aggiornato_al: piuRecente.dt,
+    };
+  }
+
+  if (Object.keys(risultato).length === 0) {
+    console.warn("Nessun prodotto radar trovato negli ultimi 30 minuti");
     return;
   }
 
-  const piuRecente = candidati.sort((a, b) => new Date(b.dt) - new Date(a.dt))[0];
-
-  // details.extent è [minLon, maxLat, maxLon, minLat] — i confini
-  // geografici esatti dell'immagine, necessari per sovrapporla a una
-  // vera mappa (l'immagine stessa è trasparente fuori dalle zone di
-  // pioggia, senza base geografica non si capisce cosa si sta vedendo)
-  const extent = piuRecente.details?.extent ?? null;
-
-  await upsertSnapshot("radar:fossalon", "radar", null, {
-    immagine: `${PC_API_BASE}/products/${piuRecente.id}`,
-    extent,
-    aggiornato_al: piuRecente.dt,
-  });
-  console.log(`Radar meteo aggiornato: ${piuRecente.dt}`);
+  await upsertSnapshot("radar:fossalon", "radar", null, risultato);
+  console.log(`Radar meteo aggiornato: ${Object.keys(risultato).join(", ")}`);
 }
 
 // ---------------------------------------------------------------------

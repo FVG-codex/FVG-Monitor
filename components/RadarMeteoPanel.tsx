@@ -11,15 +11,25 @@ const RadarMeteoMap = dynamic(() => import("@/components/RadarMeteoMap").then((m
   loading: () => <p className="text-ink-faint text-sm font-mono">Caricamento mappa…</p>,
 });
 
-type RadarData = {
+type ProdottoRadar = {
   immagine: string;
   extent: [number, number, number, number] | null; // [minLon, maxLat, maxLon, minLat]
   aggiornato_al: string;
 };
 
+type RadarData = Partial<Record<"srtlbm_1" | "ssi" | "hmc" | "lbm_v", ProdottoRadar>>;
+
+const PRODOTTI = [
+  { chiave: "srtlbm_1" as const, label: "Pioggia", unita: "mm" },
+  { chiave: "ssi" as const, label: "Severità", unita: null },
+  { chiave: "hmc" as const, label: "Idrometeore", unita: null },
+  { chiave: "lbm_v" as const, label: "Vento Doppler", unita: "m/s" },
+];
+
 export function RadarMeteoPanel() {
   const [dati, setDati] = useState<RadarData | null>(null);
   const [stato, setStato] = useState<"loading" | "ready" | "error">("loading");
+  const [prodotto, setProdotto] = useState<(typeof PRODOTTI)[number]["chiave"]>("srtlbm_1");
 
   useEffect(() => {
     let attivo = true;
@@ -49,39 +59,60 @@ export function RadarMeteoPanel() {
     return <p className="text-ink-faint text-sm font-mono">Caricamento radar…</p>;
   }
   if (stato === "error" || !dati) {
-    return <p className="text-ink-faint text-sm font-mono">Immagine radar non disponibile al momento.</p>;
+    return <p className="text-ink-faint text-sm font-mono">Dati radar non disponibili al momento.</p>;
   }
 
-  // Fallback se manca l'extent (non dovrebbe succedere, ma per sicurezza
-  // mostriamo comunque l'immagine da sola invece di nascondere tutto)
-  if (!dati.extent) {
-    return (
-      <div>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={dati.immagine} alt="Radar meteo — intensità pioggia" className="max-w-full rounded" />
-        <p className="text-ink-faint text-[10px] font-mono mt-2">
-          Aggiornato {dati.aggiornato_al} · fonte: Protezione Civile FVG (CC BY 4.0)
-        </p>
-      </div>
-    );
-  }
-
-  const [minLon, maxLat, maxLon, minLat] = dati.extent;
-  const bounds: [[number, number], [number, number]] = [
-    [minLat, minLon],
-    [maxLat, maxLon],
-  ];
-  const centro: [number, number] = [(minLat + maxLat) / 2, (minLon + maxLon) / 2];
+  const attivo = PRODOTTI.find((p) => p.chiave === prodotto)!;
+  const corrente = dati[prodotto];
 
   return (
     <div>
-      <div className="rounded overflow-hidden" style={{ height: 320 }}>
-        <RadarMeteoMap immagine={dati.immagine} bounds={bounds} centro={centro} />
+      <div className="flex gap-1 mb-3">
+        {PRODOTTI.map((p) => (
+          <button
+            key={p.chiave}
+            onClick={() => setProdotto(p.chiave)}
+            className={`px-2.5 py-1 rounded text-xs font-cond font-semibold uppercase tracking-wide transition-colors ${
+              prodotto === p.chiave ? "bg-cool text-bg" : "border border-line text-ink-dim hover:text-ink"
+            }`}
+          >
+            {p.label}
+          </button>
+        ))}
       </div>
-      <p className="text-ink-faint text-[10px] font-mono mt-2">
-        Intensità pioggia (mm) · radar Fossalon · aggiornato {dati.aggiornato_al} · fonte: Protezione Civile FVG
-        (CC BY 4.0) · mappa: © OpenStreetMap
-      </p>
+
+      {!corrente ? (
+        <p className="text-ink-faint text-sm font-mono">Dati "{attivo.label}" non disponibili al momento.</p>
+      ) : !corrente.extent ? (
+        <div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={corrente.immagine} alt={`Radar meteo — ${attivo.label}`} className="max-w-full rounded" />
+          <p className="text-ink-faint text-[10px] font-mono mt-2">
+            Aggiornato {corrente.aggiornato_al} · fonte: Protezione Civile FVG (CC BY 4.0)
+          </p>
+        </div>
+      ) : (
+        (() => {
+          const [minLon, maxLat, maxLon, minLat] = corrente.extent;
+          const bounds: [[number, number], [number, number]] = [
+            [minLat, minLon],
+            [maxLat, maxLon],
+          ];
+          const centro: [number, number] = [(minLat + maxLat) / 2, (minLon + maxLon) / 2];
+          return (
+            <div>
+              <div className="rounded overflow-hidden" style={{ height: 320 }}>
+                <RadarMeteoMap immagine={corrente.immagine} bounds={bounds} centro={centro} />
+              </div>
+              <p className="text-ink-faint text-[10px] font-mono mt-2">
+                {attivo.label}
+                {attivo.unita ? ` (${attivo.unita})` : ""} · radar Fossalon · aggiornato {corrente.aggiornato_al} ·
+                fonte: Protezione Civile FVG (CC BY 4.0) · mappa: © OpenStreetMap
+              </p>
+            </div>
+          );
+        })()
+      )}
     </div>
   );
 }
