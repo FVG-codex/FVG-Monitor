@@ -1420,6 +1420,56 @@ async function ingestRadarMeteo() {
 
 // ---------------------------------------------------------------------
 
+// ---------------------------------------------------------------------
+// TERREMOTI — INGV (Istituto Nazionale di Geofisica e Vulcanologia),
+// servizio standard internazionale FDSN Event Web Service. L'API PC
+// FVG ha uno schema dati "Earthquake" predisposto ma nessun endpoint
+// GET pubblicato per interrogarlo — usiamo quindi la fonte ufficiale
+// italiana per la sismologia, gratuita e senza chiave.
+//
+// Filtrato per area geografica FVG (bounding box), ultimi 30 giorni.
+// ---------------------------------------------------------------------
+
+const INGV_BBOX = { minLat: 45.3, maxLat: 46.9, minLon: 12.2, maxLon: 14.0 };
+
+async function ingestTerremoti() {
+  const ora = new Date();
+  const trentaGiorniFa = new Date(ora.getTime() - 30 * 24 * 60 * 60 * 1000);
+  const fmt = (d) => d.toISOString().slice(0, 10);
+
+  const url =
+    `https://webservices.ingv.it/fdsnws/event/1/query?format=geojson` +
+    `&starttime=${fmt(trentaGiorniFa)}&endtime=${fmt(ora)}` +
+    `&minlatitude=${INGV_BBOX.minLat}&maxlatitude=${INGV_BBOX.maxLat}` +
+    `&minlongitude=${INGV_BBOX.minLon}&maxlongitude=${INGV_BBOX.maxLon}&orderby=time`;
+
+  const res = await fetchConRetry(url);
+  if (!res.ok) {
+    console.warn(`Terremoti INGV non disponibili (HTTP ${res.status})`);
+    return;
+  }
+
+  const geojson = await res.json();
+  const eventi = (geojson.features || []).map((f) => ({
+    id: f.properties.eventId,
+    data: f.properties.time,
+    magnitudo: f.properties.mag,
+    tipoMagnitudo: f.properties.magType,
+    luogo: f.properties.place,
+    lat: f.geometry.coordinates[1],
+    lon: f.geometry.coordinates[0],
+    profonditaKm: f.geometry.coordinates[2],
+  }));
+
+  await upsertSnapshot("terremoti:fvg", "terremoti", null, {
+    eventi,
+    aggiornato_al: new Date().toISOString(),
+  });
+  console.log(`Terremoti aggiornati: ${eventi.length} eventi negli ultimi 30 giorni`);
+}
+
+// ---------------------------------------------------------------------
+
 async function main() {
   const jobs = [
     ["meteo", ingestMeteo()],
@@ -1441,6 +1491,7 @@ async function main() {
     ["baseball", ingestBaseballFvg()],
     ["webcam-osmer", ingestWebcamOsmer()],
     ["radar-meteo", ingestRadarMeteo()],
+    ["terremoti", ingestTerremoti()],
   ];
 
   const risultati = await Promise.allSettled(jobs.map(([, p]) => p));

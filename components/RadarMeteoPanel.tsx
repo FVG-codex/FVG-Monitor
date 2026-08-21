@@ -20,10 +20,30 @@ type ProdottoRadar = {
 type RadarData = Partial<Record<"srtlbm_1" | "ssi" | "hmc" | "lbm_v", ProdottoRadar>>;
 
 const PRODOTTI = [
-  { chiave: "srtlbm_1" as const, label: "Pioggia", unita: "mm" },
-  { chiave: "ssi" as const, label: "Severità", unita: null },
-  { chiave: "hmc" as const, label: "Idrometeore", unita: null },
-  { chiave: "lbm_v" as const, label: "Vento Doppler", unita: "m/s" },
+  {
+    chiave: "srtlbm_1" as const,
+    label: "Pioggia",
+    unita: "mm",
+    spiegazione: "Intensità della pioggia in corso — più il colore è intenso (verso il rosso/viola), più forte è la precipitazione.",
+  },
+  {
+    chiave: "ssi" as const,
+    label: "Severità",
+    unita: null,
+    spiegazione: "Indice sintetico di severità del temporale (Storm Severity Index), da moderato a molto forte — pensato per una lettura rapida.",
+  },
+  {
+    chiave: "hmc" as const,
+    label: "Idrometeore",
+    unita: null,
+    spiegazione: "Tipo di precipitazione rilevata: pioggia leggera/moderata/forte, grandine, neve secca o bagnata, cristalli di ghiaccio.",
+  },
+  {
+    chiave: "lbm_v" as const,
+    label: "Vento Doppler",
+    unita: "m/s",
+    spiegazione: "Velocità del vento in quota rilevata dal radar — utile per individuare rotazione nelle celle temporalesche (dato più tecnico).",
+  },
 ];
 
 export function RadarMeteoPanel() {
@@ -80,6 +100,8 @@ export function RadarMeteoPanel() {
           </button>
         ))}
       </div>
+
+      <p className="text-ink-dim text-xs mb-3">{attivo.spiegazione}</p>
 
       {!corrente ? (
         <p className="text-ink-faint text-sm font-mono">Dati "{attivo.label}" non disponibili al momento.</p>
