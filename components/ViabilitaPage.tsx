@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
+import { CarburantiPanel } from "@/components/CarburantiPanel";
 import { Panel } from "@/components/Panel";
 import { TopHeader } from "@/components/TopHeader";
 import { ViabilitaPanel } from "@/components/ViabilitaPanel";
@@ -52,9 +53,17 @@ export function ViabilitaPage() {
           Eventi di traffico e webcam autostradali — fonte: InfoViaggiando, OSMER ARPA FVG
         </p>
 
-        <div className="mb-8">
-          <Panel title="Eventi in corso" linkLabel="InfoViaggiando →" linkHref="https://infoviaggiando.it">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-line border border-line mb-8">
+          <Panel title="Eventi in corso" linkLabel="InfoViaggiando →" linkHref="https://infoviaggiando.it" span={2}>
             <ViabilitaPanel />
+          </Panel>
+
+          <Panel
+            title="Prezzo benzina"
+            linkLabel="MIMIT →"
+            linkHref="https://www.mimit.gov.it/it/prezzo-medio-carburanti/regioni"
+          >
+            <CarburantiPanel />
           </Panel>
         </div>
 

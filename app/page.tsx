@@ -1,6 +1,7 @@
 import { AlertBannerLive } from "@/components/AlertBannerLive";
 import { AllertaZonePanel } from "@/components/AllertaZonePanel";
 import { AriaQualitaPanel } from "@/components/AriaQualitaPanel";
+import { CarburantiPanel } from "@/components/CarburantiPanel";
 import { EventiPanel } from "@/components/EventiPanel";
 import { FiumeOverview } from "@/components/FiumeOverview";
 import { MeteoOverview } from "@/components/MeteoPanel";
@@ -72,6 +73,14 @@ export default function Home() {
 
           <Panel title="Viabilità" linkLabel="InfoViaggiando →" linkHref="https://infoviaggiando.it">
             <ViabilitaPanel />
+          </Panel>
+
+          <Panel
+            title="Prezzo benzina"
+            linkLabel="MIMIT →"
+            linkHref="https://www.mimit.gov.it/it/prezzo-medio-carburanti/regioni"
+          >
+            <CarburantiPanel />
           </Panel>
 
           <Panel title="Qualità dell'aria" linkLabel="ARPA FVG →" linkHref="https://www.arpa.fvg.it">

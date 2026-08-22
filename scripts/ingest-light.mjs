@@ -373,6 +373,73 @@ async function ingestViabilita() {
 // ---------------------------------------------------------------------
 
 // ---------------------------------------------------------------------
+// CARBURANTI — prezzo medio regionale, fonte ufficiale MIMIT
+// (Ministero delle Imprese e del Made in Italy), CSV pubblicato ogni
+// mattina alle 8:00 con i prezzi medi di tutte le regioni italiane.
+// A differenza di quasi tutti gli altri moduli, qui il dato è
+// UN SOLO VALORE per l'intera regione (non per provincia) — è così
+// che il ministero lo pubblica, non una nostra semplificazione.
+//
+// Solo benzina self-service (self è l'unica modalità rilevante per la
+// benzina in Italia — il file riporta anche gasolio, GPL e metano,
+// non ingeriti qui perché non richiesti, ma stessa riga/formato:
+// estendibile in futuro aggiungendo un altro TIPOLOGIA al filtro).
+//
+// Formato CSV non standard: prima riga "Aggiornamento DD-MM-YYYY",
+// seconda riga intestazione, poi un blocco di 4 righe per regione
+// (Gasolio/Benzina self, GPL/Metano servito) in ordine alfabetico —
+// verificato manualmente, nessun bisogno di una libreria CSV per un
+// formato così semplice (solo ";" come separatore, nessun campo
+// quotato).
+// ---------------------------------------------------------------------
+
+const CARBURANTI_CSV_URL = "https://www.mimit.gov.it/images/stories/carburanti/MediaRegionaleStradale.csv";
+const REGIONE_CARBURANTI = "Friuli Venezia Giulia";
+
+async function ingestCarburanti() {
+  const res = await fetchConRetry(CARBURANTI_CSV_URL);
+  if (!res.ok) {
+    console.warn(`CSV prezzi carburanti MIMIT non disponibile (HTTP ${res.status})`);
+    return;
+  }
+
+  const testo = await res.text();
+  const righe = testo.split("\n").map((r) => r.trim()).filter(Boolean);
+  if (righe.length < 2) {
+    console.warn("CSV prezzi carburanti vuoto o troppo corto");
+    return;
+  }
+
+  const matchData = righe[0].match(/(\d{2})-(\d{2})-(\d{4})/);
+  const aggiornatoAl = matchData ? `${matchData[3]}-${matchData[2]}-${matchData[1]}` : null;
+
+  const rigaBenzina = righe
+    .slice(2) // salta "Aggiornamento ..." e l'intestazione
+    .map((r) => r.split(";"))
+    .find(([regione, tipologia, erogazione]) => regione === REGIONE_CARBURANTI && tipologia === "Benzina" && erogazione === "SELF");
+
+  if (!rigaBenzina) {
+    console.warn(`Riga benzina non trovata per "${REGIONE_CARBURANTI}" nel CSV MIMIT`);
+    return;
+  }
+
+  const prezzo = Number(rigaBenzina[3]);
+  if (!Number.isFinite(prezzo)) {
+    console.warn(`Prezzo benzina non numerico nel CSV MIMIT: "${rigaBenzina[3]}"`);
+    return;
+  }
+
+  await upsertSnapshot("carburanti:benzina", "carburanti", null, {
+    prezzo_medio_eur_litro: Math.round(prezzo * 1000) / 1000,
+    erogazione: "self",
+    aggiornato_al: aggiornatoAl,
+  });
+  console.log(`Prezzo medio benzina FVG aggiornato: ${prezzo} €/litro (${aggiornatoAl})`);
+}
+
+// ---------------------------------------------------------------------
+
+// ---------------------------------------------------------------------
 // EVENTI — scraping HTML della pagina eventi di turismofvg.it
 // (portale ufficiale PromoTurismoFVG). La pagina è renderizzata
 // server-side (verificato: un semplice fetch restituisce già tutti gli
@@ -1568,6 +1635,7 @@ async function main() {
     ["notizie", ingestNotizie()],
     ["vento", ingestVento()],
     ["viabilita", ingestViabilita()],
+    ["carburanti", ingestCarburanti()],
     ["eventi", ingestEventi()],
     ["qualita-aria", ingestQualitaAria()],
     ["voli", ingestVoli()],
