@@ -59,7 +59,7 @@ export function ViabilitaPage() {
           </Panel>
 
           <Panel
-            title="Prezzo benzina"
+            title="Carburanti"
             linkLabel="MIMIT →"
             linkHref="https://www.mimit.gov.it/it/prezzo-medio-carburanti/regioni"
           >

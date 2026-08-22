@@ -380,10 +380,12 @@ async function ingestViabilita() {
 // UN SOLO VALORE per l'intera regione (non per provincia) — è così
 // che il ministero lo pubblica, non una nostra semplificazione.
 //
-// Solo benzina self-service (self è l'unica modalità rilevante per la
-// benzina in Italia — il file riporta anche gasolio, GPL e metano,
-// non ingeriti qui perché non richiesti, ma stessa riga/formato:
-// estendibile in futuro aggiungendo un altro TIPOLOGIA al filtro).
+// Benzina e gasolio self-service (self è l'unica modalità rilevante
+// per questi due in Italia), GPL alla modalità servito (idem, il GPL
+// non si fa self in Italia) — il file riporta anche il metano
+// (servito), non ingerito perché non richiesto, ma stessa riga/
+// formato: estendibile in futuro aggiungendo un'altra voce a
+// CARBURANTI_TIPI.
 //
 // Formato CSV non standard: prima riga "Aggiornamento DD-MM-YYYY",
 // seconda riga intestazione, poi un blocco di 4 righe per regione
@@ -395,6 +397,12 @@ async function ingestViabilita() {
 
 const CARBURANTI_CSV_URL = "https://www.mimit.gov.it/images/stories/carburanti/MediaRegionaleStradale.csv";
 const REGIONE_CARBURANTI = "Friuli Venezia Giulia";
+
+const CARBURANTI_TIPI = [
+  { chiave: "benzina", tipologia: "Benzina", erogazione: "SELF" },
+  { chiave: "gasolio", tipologia: "Gasolio", erogazione: "SELF" },
+  { chiave: "gpl", tipologia: "GPL", erogazione: "SERVITO" },
+];
 
 async function ingestCarburanti() {
   const res = await fetchConRetry(CARBURANTI_CSV_URL);
@@ -413,28 +421,41 @@ async function ingestCarburanti() {
   const matchData = righe[0].match(/(\d{2})-(\d{2})-(\d{4})/);
   const aggiornatoAl = matchData ? `${matchData[3]}-${matchData[2]}-${matchData[1]}` : null;
 
-  const rigaBenzina = righe
-    .slice(2) // salta "Aggiornamento ..." e l'intestazione
-    .map((r) => r.split(";"))
-    .find(([regione, tipologia, erogazione]) => regione === REGIONE_CARBURANTI && tipologia === "Benzina" && erogazione === "SELF");
+  const righeDati = righe.slice(2).map((r) => r.split(";")); // salta "Aggiornamento ..." e l'intestazione
 
-  if (!rigaBenzina) {
-    console.warn(`Riga benzina non trovata per "${REGIONE_CARBURANTI}" nel CSV MIMIT`);
+  const carburanti = {};
+  for (const t of CARBURANTI_TIPI) {
+    const riga = righeDati.find(
+      ([regione, tipologia, erogazione]) =>
+        regione === REGIONE_CARBURANTI && tipologia === t.tipologia && erogazione === t.erogazione
+    );
+    if (!riga) {
+      console.warn(`Riga ${t.tipologia} non trovata per "${REGIONE_CARBURANTI}" nel CSV MIMIT`);
+      continue;
+    }
+    const prezzo = Number(riga[3]);
+    if (!Number.isFinite(prezzo)) {
+      console.warn(`Prezzo ${t.tipologia} non numerico nel CSV MIMIT: "${riga[3]}"`);
+      continue;
+    }
+    carburanti[t.chiave] = {
+      prezzo_medio_eur_litro: Math.round(prezzo * 1000) / 1000,
+      erogazione: t.erogazione === "SELF" ? "self" : "servito",
+    };
+  }
+
+  if (Object.keys(carburanti).length === 0) {
+    console.warn("Nessun prezzo carburante trovato nel CSV MIMIT");
     return;
   }
 
-  const prezzo = Number(rigaBenzina[3]);
-  if (!Number.isFinite(prezzo)) {
-    console.warn(`Prezzo benzina non numerico nel CSV MIMIT: "${rigaBenzina[3]}"`);
-    return;
-  }
-
-  await upsertSnapshot("carburanti:benzina", "carburanti", null, {
-    prezzo_medio_eur_litro: Math.round(prezzo * 1000) / 1000,
-    erogazione: "self",
+  await upsertSnapshot("carburanti", "carburanti", null, {
+    carburanti,
     aggiornato_al: aggiornatoAl,
   });
-  console.log(`Prezzo medio benzina FVG aggiornato: ${prezzo} €/litro (${aggiornatoAl})`);
+  console.log(
+    `Prezzi medi carburanti FVG aggiornati (${Object.keys(carburanti).length}): ${aggiornatoAl}`
+  );
 }
 
 // ---------------------------------------------------------------------
