@@ -12,6 +12,7 @@ const SEZIONI_EXTRA = [
   { label: "Sport", href: "/sport" },
   { label: "Webcam regionali", href: "/webcam" },
   { label: "Viabilità", href: "/viabilita" },
+  { label: "Trasporti", href: "/trasporti" },
 ];
 
 export function MenuHamburger() {
