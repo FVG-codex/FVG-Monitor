@@ -837,6 +837,131 @@ async function ingestMare() {
 // ---------------------------------------------------------------------
 
 // ---------------------------------------------------------------------
+// BALNEAZIONE — qualità delle acque di balneazione, dataset Socrata
+// "Acqua - Acque di Balneazione" (id fpj6-y9vk) su
+// dati.friuliveneziagiulia.it, esiti dei prelievi ARPA FVG (rete
+// ufficiale ex D.Lgs 116/2008). 66 punti di monitoraggio in tutta la
+// regione, sia acque marino-costiere (mare) sia acque interne (laghi,
+// fiumi torrenti) — non solo le 4 città capoluogo come quasi tutti gli
+// altri moduli.
+//
+// Provincia ricavata dal codice `id_area_balneazione` stesso invece
+// che dal nome (più affidabile, verificato manualmente sui 66 punti):
+// formato "IT006" + codice provincia ISTAT a 3 cifre + comune + id
+// progressivo, es. "IT006032001007" → 032 = Trieste. Codici FVG:
+// 030 Udine, 031 Gorizia, 032 Trieste, 093 Pordenone.
+//
+// Esito "favorevole/sfavorevole" calcolato sul singolo prelievo più
+// recente per ciascun punto, confrontando enterococchi intestinali ed
+// Escherichia coli con i valori limite per singolo campione
+// dell'Allegato A del D.Lgs 116/2008 (diversi tra acque marine e
+// acque interne — verificati su testo del decreto e su una fonte
+// indipendente per le sole acque marine, che coincide):
+//   acque marino-costiere: enterococchi > 200 e/o E. coli > 500 UFC/100ml
+//   acque interne:         enterococchi > 500 e/o E. coli > 1000 UFC/100ml
+// Non è la classificazione stagionale eccellente/buona/sufficiente/
+// scarsa (quella si basa sul 95°/90° percentile di 4 stagioni di
+// prelievi, non riproducibile da qui) — è l'indicatore "si può fare il
+// bagno adesso o no", lo stesso usato per i divieti temporanei
+// comunali. Va comunque intesa come indicazione, non sostituisce
+// un'eventuale ordinanza sindacale ufficiale.
+//
+// I valori dei parametri nel dataset sono stringhe tipo "< 10" (sotto
+// il limite di rilevabilità) invece di numeri puri — estraiamo la
+// parte numerica con una regex, sufficiente per il confronto con la
+// soglia (un "< 10" è comunque ben sotto qualsiasi soglia rilevante).
+// ---------------------------------------------------------------------
+
+const BALNEAZIONE_DATASET_URL = "https://www.dati.friuliveneziagiulia.it/resource/fpj6-y9vk.json";
+
+const PROVINCIA_DA_CODICE_ISTAT = { "030": "udine", "031": "gorizia", "032": "trieste", "093": "pordenone" };
+
+const SOGLIE_BALNEAZIONE = {
+  marine: { enterococchi: 200, ecoli: 500 },
+  interne: { enterococchi: 500, ecoli: 1000 },
+};
+
+function parseValoreMicrobiologico(v) {
+  if (v === null || v === undefined) return null;
+  // Richiede almeno una cifra (non solo un punto) — valori come "N.D."
+  // (non determinato) non devono essere interpretati come 0.
+  const m = String(v).replace(",", ".").match(/\d+(\.\d+)?/);
+  return m ? Number(m[0]) : null;
+}
+
+function provinciaDaIdBalneazione(id) {
+  const m = /^IT006(\d{3})/.exec(id ?? "");
+  return m ? PROVINCIA_DA_CODICE_ISTAT[m[1]] ?? null : null;
+}
+
+async function ingestBalneazione() {
+  const url = `${BALNEAZIONE_DATASET_URL}?$order=data DESC&$limit=1000`;
+  const res = await fetchConRetry(url);
+  if (!res.ok) {
+    console.warn(`Dataset balneazione non disponibile (HTTP ${res.status})`);
+    return;
+  }
+
+  const rows = await res.json();
+  if (!Array.isArray(rows) || rows.length === 0) {
+    console.warn("Dataset balneazione vuoto");
+    return;
+  }
+
+  // Un solo prelievo per punto — il più recente (righe già ordinate
+  // per data decrescente, teniamo la prima occorrenza di ogni id)
+  const puntiPerId = new Map();
+  for (const r of rows) {
+    if (!r.id_area_balneazione || puntiPerId.has(r.id_area_balneazione)) continue;
+    puntiPerId.set(r.id_area_balneazione, r);
+  }
+
+  const perProvincia = {};
+  for (const r of puntiPerId.values()) {
+    const provincia = provinciaDaIdBalneazione(r.id_area_balneazione);
+    if (!provincia) continue; // punto fuori regione o codice non riconosciuto — non dovrebbe capitare
+
+    const interna = r.categoria_acque?.toLowerCase().includes("interna") ?? false;
+    const soglie = interna ? SOGLIE_BALNEAZIONE.interne : SOGLIE_BALNEAZIONE.marine;
+
+    const enterococchi = parseValoreMicrobiologico(r.enterococchi_intestinali);
+    const ecoli = parseValoreMicrobiologico(r.escherichia_coli);
+
+    let esito = "nd";
+    if (enterococchi !== null || ecoli !== null) {
+      const supera =
+        (enterococchi !== null && enterococchi > soglie.enterococchi) ||
+        (ecoli !== null && ecoli > soglie.ecoli);
+      esito = supera ? "sfavorevole" : "favorevole";
+    }
+
+    if (!perProvincia[provincia]) {
+      perProvincia[provincia] = { totale: 0, favorevoli: 0, sfavorevoli: 0, nd: 0, punti_sfavorevoli: [], aggiornato_al: r.data };
+    }
+    const p = perProvincia[provincia];
+    p.totale++;
+    p[esito === "nd" ? "nd" : esito === "favorevole" ? "favorevoli" : "sfavorevoli"]++;
+    if (esito === "sfavorevole") {
+      p.punti_sfavorevoli.push({ nome: r.nome, enterococchi, ecoli, data: r.data });
+    }
+    if (r.data > p.aggiornato_al) p.aggiornato_al = r.data;
+  }
+
+  if (Object.keys(perProvincia).length === 0) {
+    console.warn("Nessun punto di balneazione trovato");
+    return;
+  }
+
+  await upsertSnapshot("balneazione", "balneazione", null, { per_provincia: perProvincia });
+  const puntiSfavorevoli = Object.values(perProvincia).reduce((n, p) => n + p.sfavorevoli, 0);
+  console.log(
+    `Balneazione aggiornata: ${puntiPerId.size} punti, ${puntiSfavorevoli} sfavorevoli`
+  );
+}
+
+// ---------------------------------------------------------------------
+
+// ---------------------------------------------------------------------
 // QUALITÀ ARIA — OZONO — dataset "Aria - Ozono" (id 7vnx-28uy) sullo
 // stesso portale Socrata del PM10. Il campo "rete" corrisponde
 // direttamente al nome provincia (più affidabile del confronto per
@@ -1664,6 +1789,7 @@ async function main() {
     ["temperatura", ingestTemperatura()],
     ["fiumi", ingestFiumi()],
     ["mare", ingestMare()],
+    ["balneazione", ingestBalneazione()],
     ["ozono", ingestOzono()],
     ["no2", ingestNo2()],
     ["pm25", ingestPm25()],

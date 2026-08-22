@@ -1,6 +1,7 @@
 import { AlertBannerLive } from "@/components/AlertBannerLive";
 import { AllertaZonePanel } from "@/components/AllertaZonePanel";
 import { AriaQualitaPanel } from "@/components/AriaQualitaPanel";
+import { BalneazionePanel } from "@/components/BalneazionePanel";
 import { CarburantiPanel } from "@/components/CarburantiPanel";
 import { EventiPanel } from "@/components/EventiPanel";
 import { FiumeOverview } from "@/components/FiumeOverview";
@@ -105,6 +106,15 @@ export default function Home() {
             linkHref="https://monitor.protezionecivile.fvg.it"
           >
             <MarePanel />
+          </Panel>
+
+          <Panel
+            title="Qualità acque di balneazione"
+            linkLabel="ARPA FVG →"
+            linkHref="https://www.arpa.fvg.it/temi/temi/acqua/sezioni-principali/balneazione/"
+            span={2}
+          >
+            <BalneazionePanel />
           </Panel>
 
           <Panel
