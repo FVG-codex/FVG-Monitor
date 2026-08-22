@@ -8,6 +8,7 @@ import { NotiziePanel } from "@/components/NotiziePanel";
 import { Panel } from "@/components/Panel";
 import { MarePanel } from "@/components/MarePanel";
 import { PioggiaPanel } from "@/components/PioggiaPanel";
+import { PolliniPanel } from "@/components/PolliniPanel";
 import { TgrCard } from "@/components/TgrCard";
 import { TopHeader } from "@/components/TopHeader";
 import { VentoPanel } from "@/components/VentoPanel";
@@ -75,6 +76,10 @@ export default function Home() {
 
           <Panel title="Qualità dell'aria" linkLabel="ARPA FVG →" linkHref="https://www.arpa.fvg.it">
             <AriaQualitaPanel />
+          </Panel>
+
+          <Panel title="Pollini" linkLabel="ARPA FVG →" linkHref="https://www.arpa.fvg.it/temi/temi/pollini/">
+            <PolliniPanel />
           </Panel>
 
           <Panel

@@ -926,6 +926,98 @@ async function ingestPm25() {
 // ---------------------------------------------------------------------
 
 // ---------------------------------------------------------------------
+// POLLINI — rete aerobiologica POLLnet, dataset "Aria - Pollini" (id
+// rnci-smsu) sullo stesso portale Socrata delle altre matrici aria.
+// A differenza di PM10/PM2.5/Ozono/NO2, qui non c'è un solo valore
+// per provincia ma decine di generi pollinici per stazione — teniamo
+// solo i generi con presenza rilevata questa settimana (media > 0),
+// i più alti per primi.
+//
+// Il dataset contiene insieme stazioni storiche dismesse e stazioni
+// attive (stesso "sito", ma dati fermi ad anni diversi) — le
+// associamo a provincia per nome e le consideriamo attive solo se
+// compaiono nella settimana più recente (stesso "al" della riga più
+// recente in assoluto). Verificato manualmente (agosto 2026): 4
+// stazioni attive — Trieste (Castello di S. Giusto), Lignano
+// Sabbiadoro e Tolmezzo (entrambe provincia di Udine), Pordenone.
+// **Nessuna stazione attiva in provincia di Gorizia** (Monfalcone,
+// l'unica storica lì, ferma al 2011) — gap noto e reale della rete
+// regionale, non un bug: stesso trattamento "n.d." già usato altrove
+// nel progetto (es. ozono a Pordenone, stazione dismessa dal 2013).
+//
+// Nessuna classificazione di rischio (assente/scarsa/media/alta):
+// ARPA FVG la pubblica ma con soglie diverse per ciascun genere,
+// documentate solo in una pagina che non è stato possibile estrarre
+// in modo affidabile in formato tabellare — mostriamo il dato grezzo
+// (media giornaliera della settimana, granuli/m³) rimandando al
+// bollettino ufficiale per l'interpretazione clinica.
+// ---------------------------------------------------------------------
+
+const POLLINI_DATASET_URL = "https://www.dati.friuliveneziagiulia.it/resource/rnci-smsu.json";
+
+const STAZIONI_POLLINI = [
+  { match: "trieste 1", provincia: "trieste", nome: "Trieste — Castello di S. Giusto" },
+  { match: "lignano", provincia: "udine", nome: "Lignano Sabbiadoro" },
+  { match: "tolmezzo", provincia: "udine", nome: "Tolmezzo" },
+  { match: "pordenone 1", provincia: "pordenone", nome: "Pordenone" },
+];
+
+async function ingestPollini() {
+  const url = `${POLLINI_DATASET_URL}?$order=al DESC&$limit=1000`;
+  const res = await fetchConRetry(url);
+  if (!res.ok) {
+    console.warn(`Dataset pollini non disponibile (HTTP ${res.status})`);
+    return;
+  }
+
+  const rows = await res.json();
+  if (!Array.isArray(rows) || rows.length === 0) {
+    console.warn("Dataset pollini vuoto");
+    return;
+  }
+
+  const alPiuRecente = rows[0].al;
+  const righeRecenti = rows.filter((r) => r.al === alPiuRecente);
+  const dalSettimana = righeRecenti[0]?.dal ?? null;
+
+  const perProvincia = {};
+  for (const staz of STAZIONI_POLLINI) {
+    const righeStazione = righeRecenti.filter((r) => r.sito?.toLowerCase().includes(staz.match));
+    if (righeStazione.length === 0) continue; // stazione non presente questa settimana
+
+    const pollini = righeStazione
+      .map((r) => ({
+        famiglia: r.famiglia ?? null,
+        genere: r.genere ?? null,
+        media: r.media !== undefined && r.media !== null ? Number(r.media) : null,
+      }))
+      .filter((p) => p.media !== null && p.media > 0 && p.genere)
+      .sort((a, b) => b.media - a.media)
+      .slice(0, 6)
+      .map((p) => ({ ...p, media: Math.round(p.media * 10) / 10 }));
+
+    if (!perProvincia[staz.provincia]) perProvincia[staz.provincia] = [];
+    perProvincia[staz.provincia].push({ stazione: staz.nome, pollini });
+  }
+
+  if (Object.keys(perProvincia).length === 0) {
+    console.warn("Nessuna stazione pollini attiva trovata nella settimana più recente");
+    return;
+  }
+
+  await upsertSnapshot("pollini", "pollini", null, {
+    dal: dalSettimana,
+    al: alPiuRecente,
+    per_provincia: perProvincia,
+  });
+  console.log(
+    `Pollini aggiornati (${Object.keys(perProvincia).length} province, settimana fino al ${alPiuRecente})`
+  );
+}
+
+// ---------------------------------------------------------------------
+
+// ---------------------------------------------------------------------
 // CALCIO — Eccellenza FVG Girone A (gare.lnd.it). La pagina è
 // un'app Inertia.js: al primo caricamento normale (nessun header
 // speciale necessario) incorpora l'intero stato in un tag
@@ -1486,6 +1578,7 @@ async function main() {
     ["ozono", ingestOzono()],
     ["no2", ingestNo2()],
     ["pm25", ingestPm25()],
+    ["pollini", ingestPollini()],
     ["calcio", ingestCalcio()],
     ["basket", ingestBasket()],
     ["baseball", ingestBaseballFvg()],
