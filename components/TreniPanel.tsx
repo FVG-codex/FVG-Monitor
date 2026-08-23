@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { fetchArrivi, fetchPartenze, STAZIONE_TRENI_PER_PROVINCIA, type Treno } from "@/lib/treni";
-import { PROVINCE_LIST, type ProvinciaSlug } from "@/lib/province";
+import { fetchArrivi, fetchPartenze, STAZIONI_TRENI, type Treno } from "@/lib/treni";
 
 const STATO_COLORE: Record<Treno["stato"], string> = {
   cancellato: "text-allerta-rossa",
@@ -14,14 +13,14 @@ const STATO_COLORE: Record<Treno["stato"], string> = {
 };
 
 export function TreniPanel() {
-  const [provincia, setProvincia] = useState<ProvinciaSlug>("trieste");
+  const [stazioneSlug, setStazioneSlug] = useState<string>(STAZIONI_TRENI[0].slug);
   const [sottoTab, setSottoTab] = useState<"partenze" | "arrivi">("partenze");
   const [treni, setTreni] = useState<Treno[] | null>(null);
   const [stato, setStato] = useState<"loading" | "ready" | "error">("loading");
 
   useEffect(() => {
     let attivo = true;
-    const stazione = STAZIONE_TRENI_PER_PROVINCIA[provincia];
+    const stazione = STAZIONI_TRENI.find((s) => s.slug === stazioneSlug) ?? STAZIONI_TRENI[0];
 
     async function carica() {
       setStato((s) => (s === "ready" ? s : "loading")); // niente flash "loading" sui refresh automatici
@@ -45,22 +44,22 @@ export function TreniPanel() {
       attivo = false;
       clearInterval(id);
     };
-  }, [provincia, sottoTab]);
+  }, [stazioneSlug, sottoTab]);
 
-  const stazione = STAZIONE_TRENI_PER_PROVINCIA[provincia];
+  const stazione = STAZIONI_TRENI.find((s) => s.slug === stazioneSlug) ?? STAZIONI_TRENI[0];
 
   return (
     <div>
       <div className="flex gap-1 mb-2 flex-wrap">
-        {PROVINCE_LIST.map((p) => (
+        {STAZIONI_TRENI.map((s) => (
           <button
-            key={p.slug}
-            onClick={() => setProvincia(p.slug)}
+            key={s.slug}
+            onClick={() => setStazioneSlug(s.slug)}
             className={`px-2.5 py-1 rounded text-xs font-cond font-semibold uppercase tracking-wide transition-colors ${
-              provincia === p.slug ? "bg-cool text-bg" : "border border-line text-ink-dim hover:text-ink"
+              stazioneSlug === s.slug ? "bg-cool text-bg" : "border border-line text-ink-dim hover:text-ink"
             }`}
           >
-            {p.nome}
+            {s.nome}
           </button>
         ))}
       </div>

@@ -160,10 +160,10 @@ stesso procedimento di ispezione.
 
 ## Ferrovie — dentro `/trasporti`
 
-Dati treni in tempo reale (partenze/arrivi) per i 4 capoluoghi, dentro la
-pagina `/trasporti` (distinta da `/viabilita`, che resta sul traffico
-stradale). Fonte: **ViaggiaTreno** (Trenitalia/RFI), API REST non
-ufficiale/non documentata pubblicamente — stessa cautela già usata per
+Dati treni in tempo reale (partenze/arrivi) per un elenco di stazioni della
+regione, dentro la pagina `/trasporti` (distinta da `/viabilita`, che resta
+sul traffico stradale). Fonte: **ViaggiaTreno** (Trenitalia/RFI), API REST
+non ufficiale/non documentata pubblicamente — stessa cautela già usata per
 InfoViaggiando e ANSA in questo progetto.
 
 Il sito ha un frontend nuovo (SPA) dal 2026: il vecchio percorso API
@@ -183,9 +183,12 @@ verificato manualmente in questa sessione (agosto 2026):
   stato, circolante, nonPartito, arrivato — testato con dati reali)
 - Arrivi: stessa struttura su `arrivi/{codiceStazione}/{orario}`
 
-Stazioni: solo i 4 capoluoghi per ora (scelta dell'utente, estendibile in
-futuro) — Trieste Centrale `S03317`, Udine `S03026`, Gorizia Centrale
-`S03304`, Pordenone `S02701`.
+Stazioni attive (elenco piatto in `STAZIONI_TRENI`, non più legato 1:1 alle
+4 province — vedi sotto): Trieste Centrale `S03317`, Udine `S03026`,
+Gorizia Centrale `S03304`, Pordenone `S02701`, Monfalcone `S03310`,
+Trieste Airport `S03213`, Tarvisio Boscoverde `S03015`. Altre stazioni
+verranno aggiunte in futuro su richiesta — codici sempre verificati
+manualmente con `autocompletaStazione/{testo}` prima di aggiungerle.
 
 **Cronologia bug "dati treni mai raccolti" (agosto 2026):**
 
@@ -255,9 +258,11 @@ il problema dovesse ripresentarsi anche col proxy.
 
 ## Prossimo passo
 
-Il modulo Ferrovie raccoglie ormai i dati regolarmente (confermato
-dall'utente dopo il fix 2, proxy server-side). Resta da confermare il fix 3
-(vedi nota "Ferrovie" sopra): i treni non ancora partiti non devono più
-comparire come "Cancellato". Oppure Fase 4 del piano: rifinitura
-(responsive, accessibilità, performance), dominio personalizzato — vedi
-piano di lavoro per il dettaglio.
+Il modulo Ferrovie funziona (dati raccolti correttamente, stati
+"cancellato"/"non partito" ora distinti come confermato dall'utente).
+Confermata anche l'aggiunta di 3 nuove stazioni (Monfalcone, Trieste
+Airport, Tarvisio Boscoverde) oltre ai 4 capoluoghi — altre stazioni
+verranno aggiunte in futuro su richiesta esplicita dell'utente (vedi nota
+"Ferrovie" sopra per l'elenco completo). Oppure Fase 4 del piano:
+rifinitura (responsive, accessibilità, performance), dominio
+personalizzato — vedi piano di lavoro per il dettaglio.

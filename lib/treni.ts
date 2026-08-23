@@ -17,15 +17,23 @@
 // mai da una restrizione CORS del browser.
 //
 // Interrogato lato client con polling ogni 60s da TreniPanel — vedi lì.
+//
+// Elenco stazioni: non più legato 1:1 alle 4 province (a differenza della
+// prima versione) — l'utente ha chiesto di aggiungere stazioni che non
+// sono un capoluogo (Monfalcone, Trieste Airport, Tarvisio Boscoverde),
+// quindi è un elenco piatto, non più un Record per ProvinciaSlug. Codici
+// stazione verificati manualmente via autocompletaStazione/{testo}.
+export type StazioneTreni = { slug: string; codice: string; nome: string };
 
-import type { ProvinciaSlug } from "@/lib/province";
-
-export const STAZIONE_TRENI_PER_PROVINCIA: Record<ProvinciaSlug, { codice: string; nome: string }> = {
-  trieste: { codice: "S03317", nome: "Trieste Centrale" },
-  udine: { codice: "S03026", nome: "Udine" },
-  gorizia: { codice: "S03304", nome: "Gorizia Centrale" },
-  pordenone: { codice: "S02701", nome: "Pordenone" },
-};
+export const STAZIONI_TRENI: StazioneTreni[] = [
+  { slug: "trieste-centrale", codice: "S03317", nome: "Trieste Centrale" },
+  { slug: "udine", codice: "S03026", nome: "Udine" },
+  { slug: "gorizia-centrale", codice: "S03304", nome: "Gorizia Centrale" },
+  { slug: "pordenone", codice: "S02701", nome: "Pordenone" },
+  { slug: "monfalcone", codice: "S03310", nome: "Monfalcone" },
+  { slug: "trieste-airport", codice: "S03213", nome: "Trieste Airport" },
+  { slug: "tarvisio-boscoverde", codice: "S03015", nome: "Tarvisio Boscoverde" },
+];
 
 export type Treno = {
   numeroTreno: number;
