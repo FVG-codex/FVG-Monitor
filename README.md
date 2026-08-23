@@ -84,7 +84,7 @@ componente React che legge da Supabase con lo stesso nome.
 | **Radar meteo** | API monitoraggio PC FVG, gruppo `radar` | Solo il radar di Fossalon (id 1) è attivo — Lussari e Mosaico risultano spenti (`status: "X"`). 4 prodotti selezionabili da tab, ciascuno con una breve spiegazione in pagina: `SRTLBM_1` (pioggia, mm), `SSI` (severità temporale), `HMC` (classificazione idrometeore — pioggia/neve/grandine), `LBM_V` (velocità Doppler, m/s) — tutti recuperati in un'unica chiamata (`/radars/1/products` restituisce già tutti i prodotti disponibili insieme). Le immagini sono **trasparenti fuori dalle zone colorate** (nessuna base geografica) — sovrapposte a una vera mappa (Leaflet + tile OpenStreetMap) usando l'`extent` fornito dall'API stessa (`RadarMeteoMap.tsx`, caricato dinamicamente lato client — Leaflet richiede il DOM del browser) |
 | **Terremoti** — pagina dedicata `/terremoti` | INGV (FDSN Event Web Service, standard internazionale, gratuito) | L'API PC FVG ha uno schema dati "Earthquake" predisposto ma **nessun endpoint GET pubblicato** per interrogarlo — usiamo quindi la fonte ufficiale italiana per la sismologia. Filtrato per area geografica FVG (bounding box), ultimi 30 giorni. Mappa Leaflet con marker colorati per magnitudo (`TerremotiMap.tsx`) + elenco cronologico |
 | **Viabilità** — pagina dedicata `/viabilita` (nel menù ad amburger) + pannello homepage | InfoViaggiando (eventi, feed WFS non dichiarato pubblico — stessa cautela di ANSA) + OSMER (webcam A4/A23/A28/SR354) | La pagina dedicata combina il pannello eventi (`ViabilitaPanel`, stesso dato del pannello homepage), il prezzo carburanti e le webcam autostradali filtrate dallo stesso snapshot `webcam:osmer` usato da `/webcam` |
-| **Trasporti** — pagina dedicata `/trasporti` (nel menù ad amburger) | Trieste Airport (voli) + ViaggiaTreno (treni, vedi nota "Ferrovie" sotto) | Pagina distinta da Viabilità (quella resta sul traffico stradale). Contiene il pannello voli (stesso `VoliPanel`/dato `voli:trieste-airport` della homepage) e il pannello treni (`TreniPanel.tsx`, fetch lato client verso una Route Handler nostra, che a sua volta interroga ViaggiaTreno lato server — vedi nota "Ferrovie" sotto) |
+| **Trasporti** — pagina dedicata `/trasporti` (nel menù ad amburger) | Trieste Airport (voli) + ViaggiaTreno (treni, vedi nota "Ferrovie" sotto) + TPL FVG (autobus, vedi nota "Autobus" sotto) | Pagina distinta da Viabilità (quella resta sul traffico stradale). Contiene il pannello voli (stesso `VoliPanel`/dato `voli:trieste-airport` della homepage), il pannello treni (`TreniPanel.tsx`) e il pannello autobus (`AutobusPanel.tsx`) — entrambi fetch lato client verso una Route Handler nostra, che a sua volta interroga la fonte esterna lato server |
 | **Prezzo carburanti** (benzina, gasolio, GPL) — homepage + pagina `/viabilita` | CSV ufficiale MIMIT (`MediaRegionaleStradale.csv`, pubblicato ogni mattina alle 8:00) | `CarburantiPanel.tsx`, un solo valore per l'intera regione per ciascun carburante (non per provincia — è così che il ministero lo pubblica, il dato regionale FVG non è scorporato per provincia). Benzina e gasolio self-service, GPL servito (unica modalità rilevante in Italia per ciascuno) — snapshot unico `carburanti` (`{ carburanti: { benzina, gasolio, gpl } }`). Il CSV include anche il metano (servito), non ingerito perché non richiesto — estendibile in futuro aggiungendo una voce a `CARBURANTI_TIPI`. Formato CSV non standard (riga "Aggiornamento" prima dell'intestazione, `;` come separatore) — parsing manuale in `ingest-light.mjs`, nessuna libreria CSV necessaria |
 | **Eventi** | Scraping HTML turismofvg.it | Pagina server-rendered, no browser headless — fragile per natura (classi CSS specifiche) |
 | **TGR** | — | Nessun feed trovato, link statico alla sezione ufficiale |
@@ -256,13 +256,69 @@ rilevare visto che ora il fetch verso ViaggiaTreno parte dal server Vercel
 e non più dal browser del visitatore, ma è un'ipotesi da tenere presente se
 il problema dovesse ripresentarsi anche col proxy.
 
+## Autobus — dentro `/trasporti`
+
+Passaggi (arrivi e partenze insieme, a differenza dei treni) in tempo
+reale per le fermate degli autobus, dentro `/trasporti` accanto a Voli e
+Treni. Fonte: **TPL FVG** (myCicero), API REST non ufficiale/non
+documentata pubblicamente — stessa cautela già usata per ViaggiaTreno.
+
+A differenza di ViaggiaTreno, questa sessione non è mai riuscita a
+raggiungere l'endpoint reale da sola: né WebFetch (vede solo l'HTML
+statico iniziale della pagina di ricerca fermate su tplfvg.it — i dati
+arrivano via chiamate JS che non può osservare) né un tentativo diretto
+sul sottodominio `realtime.tplfvg.it` (irraggiungibile anche solo per il
+suo `robots.txt`, verificato più volte). L'endpoint è stato scoperto
+dall'utente stesso, ispezionando la scheda Rete/Network del proprio
+browser mentre usava `https://tplfvg.it/it/orari/mappa/` e poi
+`https://realtime.tplfvg.it/?stopcode=...` (il sottodominio dedicato al
+tempo reale, linkato da un bottone "Realtime" nei risultati di ricerca
+fermata):
+
+- Base: `https://realtime.tplfvg.it/API/v1.0/polemonitor`
+- Passaggi (arrivi + partenze insieme): `mrcruns?StopCode={codice}&IsUrban=true`
+  — risponde con un array JSON (`Line`, `TransitType` — `"ArrivalAtStop"` o
+  `"DepartureFromStop"`, distingue arrivo/partenza — `Destination`,
+  `Departure`, `ArrivalTime` già in formato `HH:MM`, `Race`, `Direction`,
+  `Platform`, `IsStarted`, `Latitude`/`Longitude` — testato con dati reali)
+- Anagrafica fermata: `info?StopCode={codice}` — risponde con `Address`,
+  coordinate, `IsUrban`/`IsExtraUrban`/`IsMaritime`/`IsStation`
+
+**Nota su `IsUrban`**: per la fermata di verifica (`TS608`, "TRIESTE
+piazza della Libertà (autostazione)"), `/info` la classifica
+`IsUrban:false` / `IsExtraUrban:true` — eppure la richiesta reale del
+sito ufficiale a `/mrcruns` usa comunque `IsUrban=true` e riceve
+regolarmente corse extraurbane (Grado, Aeroporto). Il parametro non
+sembra quindi filtrare i risultati in base alla classificazione della
+fermata; per ora `IsUrban=true` è tenuto costante nella Route Handler,
+l'unico valore verificato con dati reali — da rivedere se una fermata
+futura restituisse un array sospettosamente vuoto.
+
+Fermate: si parte con una sola (Trieste — autostazione, `TS608`), stesso
+pattern di crescita incrementale già usato per le stazioni treni — le
+altre fermate verranno aggiunte via via su richiesta dell'utente, che le
+cerca su `tplfvg.it/it/orari/mappa/` e manda il codice dal link
+"Realtime" (`?stopcode=...`), senza bisogno di riaprire la scheda Rete
+ogni volta.
+
+**Scelta architetturale**: proxy server-side (`app/api/autobus/[stopCode]/route.ts`)
+fin dall'inizio, a differenza della prima versione del modulo Ferrovie
+che partiva con un fetch diretto dal browser e ha dovuto scoprire a sue
+spese mixed-content (bug 1) e CORS (bug 2) in due giri separati di
+segnalazioni utente. Qui la lezione è applicata subito: `lib/autobus.ts`
+lato client chiama solo `/api/autobus/{codice}` (same-origin, mai CORS),
+la route interroga TPL FVG lato server (mai soggetta a CORS né a
+mixed-content, insensibile allo schema http/https della pagina).
+
 ## Prossimo passo
 
-Il modulo Ferrovie funziona (dati raccolti correttamente, stati
-"cancellato"/"non partito" ora distinti come confermato dall'utente).
-Confermata anche l'aggiunta di 3 nuove stazioni (Monfalcone, Trieste
-Airport, Tarvisio Boscoverde) oltre ai 4 capoluoghi — altre stazioni
-verranno aggiunte in futuro su richiesta esplicita dell'utente (vedi nota
-"Ferrovie" sopra per l'elenco completo). Oppure Fase 4 del piano:
+Verificare con l'utente che il modulo Autobus funzioni in produzione (mai
+testato in un browser reale, solo con dati verificati dall'utente stesso
+via scheda Rete). Il modulo Ferrovie funziona (dati raccolti
+correttamente, stati "cancellato"/"non partito" distinti). Confermata
+anche l'aggiunta di 3 nuove stazioni treni (Monfalcone, Trieste Airport,
+Tarvisio Boscoverde) oltre ai 4 capoluoghi — altre stazioni (treni e
+autobus) verranno aggiunte in futuro su richiesta esplicita dell'utente.
+Oppure Fase 4 del piano:
 rifinitura (responsive, accessibilità, performance), dominio
 personalizzato — vedi piano di lavoro per il dettaglio.
