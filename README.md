@@ -296,12 +296,52 @@ fermata; per ora `IsUrban=true` è tenuto costante nella Route Handler,
 l'unico valore verificato con dati reali — da rivedere se una fermata
 futura restituisse un array sospettosamente vuoto.
 
-Fermate: si parte con una sola (Trieste — autostazione, `TS608`), stesso
-pattern di crescita incrementale già usato per le stazioni treni — le
-altre fermate verranno aggiunte via via su richiesta dell'utente, che le
-cerca su `tplfvg.it/it/orari/mappa/` e manda il codice dal link
-"Realtime" (`?stopcode=...`), senza bisogno di riaprire la scheda Rete
-ogni volta.
+**Confermato dall'utente in produzione** (screenshot: pannello popolato
+con corse reali, G51R per Aeroporto e G51A da Aeroporto).
+
+**Blocchi (aggiornamento 23/08/2026)**: TPL FVG usa più codici fermata
+distinti per pensiline/binari diversi che sono fisicamente lo stesso
+posto — l'utente ha chiesto di unire più fermate vicine in un'unica
+vista invece di una tab per codice. `BLOCCHI_AUTOBUS` in `lib/autobus.ts`
+sostituisce il vecchio `FERMATE_AUTOBUS`: ogni blocco ha uno slug/nome
+(diventa una tab nel pannello) e un elenco di fermate (`stopCode` +
+`nome`). `fetchPassaggiBlocco()` interroga tutte le fermate del blocco
+in parallelo (`Promise.allSettled`, non `Promise.all`: se una singola
+fermata ha un problema momentaneo le altre restano visibili — errore
+solo se **nessuna** fermata del blocco risponde), unisce i risultati e
+li ordina cronologicamente per orario di transito reale (campo `Time`
+dell'API, timestamp ISO completo — più preciso di `ArrivalTime`, che è
+solo `HH:MM`). Ogni passaggio mostra anche la fermata fisica di origine
+(`fermataNome` + `fermataCodice`), necessario perché più fermate di uno
+stesso blocco possono condividere lo stesso indirizzo pubblicato.
+
+Primo blocco: **Trieste**, 11 fermate intorno alla Stazione
+Ferroviaria/Piazza della Libertà — indirizzi e coordinate verificati
+dall'utente con una chiamata reale a `info?StopCode=...` per ciascuna
+(vedi tabella sotto). 9 delle 11 condividono l'indirizzo "STAZIONE
+FERROVIARIA" (pensiline diverse nello stesso piazzale, l'API non li
+distingue oltre al codice); `32206` non ha un indirizzo pubblicato
+dall'API ma le coordinate lo collocano a poche decine di metri dalle
+altre, quindi resta nel blocco mostrato col solo codice.
+
+| Codice | Nome mostrato | Indirizzo API | isUrban / isExtraUrban |
+| --- | --- | --- | --- |
+| `04007` | Stazione Ferroviaria | STAZIONE FERROVIARIA | true / false |
+| `04011` | Stazione Ferroviaria | STAZIONE FERROVIARIA | true / false |
+| `04022` | Stazione Ferroviaria | STAZIONE FERROVIARIA | true / false |
+| `32206` | *(nessuno — indirizzo non pubblicato)* | *(vuoto)* | true / true |
+| `04016` | Stazione Ferroviaria | STAZIONE FERROVIARIA | true / false |
+| `04018` | Stazione Ferroviaria | STAZIONE FERROVIARIA | true / false |
+| `04019` | Stazione Ferroviaria | STAZIONE FERROVIARIA | true / false |
+| `04023` | Stazione Ferroviaria (varco Porto Vecchio) | stazione ferroviaria (varco porto Vecchio) | true / false |
+| `TS608` | Piazza della Libertà (autostazione) | TRIESTE piazza della Libertà (autostazione) | false / true |
+| `04015` | Stazione Ferroviaria | STAZIONE FERROVIARIA | true / false |
+| `04014` | Stazione Ferroviaria | STAZIONE FERROVIARIA | true / false |
+
+Altre province verranno aggiunte come blocchi successivi, su richiesta
+esplicita dell'utente — stesso metodo di verifica (script dalla console
+del browser che interroga `info` + `mrcruns` per ogni codice e restituisce
+un riepilogo, invece di aggiungere codici "a naso").
 
 **Scelta architetturale, AGGIORNATA dopo il bug sotto**: fetch
 **direttamente dal browser** del visitatore, non un proxy server-side.
@@ -358,23 +398,26 @@ che cambiare regione Vercel (fix 2) non serviva a nulla per questo
 motivo: qualunque IP di un provider cloud, USA o EU, viene trattato
 uguale.
 
-**Fix 3 (applicato)**: rimosso il proxy server-side
-(`app/api/autobus/[stopCode]/route.ts`, cancellato) e la normalizzazione
-dei dati grezzi spostata in `lib/autobus.ts`, che ora chiama
-`https://realtime.tplfvg.it/API/v1.0/polemonitor/mrcruns?...`
+**Fix 3 (applicato, CONFERMATO risolto dall'utente)**: rimosso il proxy
+server-side (`app/api/autobus/[stopCode]/route.ts`, cancellato) e la
+normalizzazione dei dati grezzi spostata in `lib/autobus.ts`, che ora
+chiama `https://realtime.tplfvg.it/API/v1.0/polemonitor/mrcruns?...`
 **direttamente dal browser del visitatore** — bypassa il blocco alla
 radice perché l'IP è quello del visitatore, non di un server. Eccezione
 motivata e documentata al pattern standard "sempre proxy server-side"
-(che resta valido per Ferrovie, dove funziona). Consegnato, **non ancora
-confermato dall'utente in produzione**.
+(che resta valido per Ferrovie, dove funziona). Screenshot dell'utente:
+pannello Autobus popolato con corse reali (G51R/G51A per/da Aeroporto).
 
 ## Prossimo passo
 
-Verificare con l'utente se il fix 3 (fetch diretto dal browser, niente
-più proxy server-side per questo modulo) risolve definitivamente il bug
-"dati autobus non disponibili" in produzione. Il modulo Ferrovie
+Il modulo Autobus è stato appena riorganizzato in blocchi (blocco
+Trieste, 11 fermate unite — vedi nota "Autobus" sopra), consegnato ma
+**non ancora confermato dall'utente in produzione**. Il modulo Ferrovie
 funziona (dati raccolti correttamente, stati "cancellato"/"non partito"
-distinti, tutte le 7 stazioni confermate). Altre stazioni/fermate
-verranno aggiunte in futuro su richiesta esplicita dell'utente. Oppure
-Fase 4 del piano: rifinitura (responsive, accessibilità, performance),
-dominio personalizzato — vedi piano di lavoro per il dettaglio.
+distinti, tutte le 7 stazioni confermate). L'utente ha detto che dopo
+Trieste passerà alle fermate delle altre province — stesso metodo:
+script dalla console del browser per verificare `info`+`mrcruns` prima
+di aggiungere un nuovo blocco a `BLOCCHI_AUTOBUS` in `lib/autobus.ts`.
+Oppure Fase 4 del piano: rifinitura (responsive, accessibilità,
+performance), dominio personalizzato — vedi piano di lavoro per il
+dettaglio.
