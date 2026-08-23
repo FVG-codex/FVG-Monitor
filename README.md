@@ -84,7 +84,7 @@ componente React che legge da Supabase con lo stesso nome.
 | **Radar meteo** | API monitoraggio PC FVG, gruppo `radar` | Solo il radar di Fossalon (id 1) è attivo — Lussari e Mosaico risultano spenti (`status: "X"`). 4 prodotti selezionabili da tab, ciascuno con una breve spiegazione in pagina: `SRTLBM_1` (pioggia, mm), `SSI` (severità temporale), `HMC` (classificazione idrometeore — pioggia/neve/grandine), `LBM_V` (velocità Doppler, m/s) — tutti recuperati in un'unica chiamata (`/radars/1/products` restituisce già tutti i prodotti disponibili insieme). Le immagini sono **trasparenti fuori dalle zone colorate** (nessuna base geografica) — sovrapposte a una vera mappa (Leaflet + tile OpenStreetMap) usando l'`extent` fornito dall'API stessa (`RadarMeteoMap.tsx`, caricato dinamicamente lato client — Leaflet richiede il DOM del browser) |
 | **Terremoti** — pagina dedicata `/terremoti` | INGV (FDSN Event Web Service, standard internazionale, gratuito) | L'API PC FVG ha uno schema dati "Earthquake" predisposto ma **nessun endpoint GET pubblicato** per interrogarlo — usiamo quindi la fonte ufficiale italiana per la sismologia. Filtrato per area geografica FVG (bounding box), ultimi 30 giorni. Mappa Leaflet con marker colorati per magnitudo (`TerremotiMap.tsx`) + elenco cronologico |
 | **Viabilità** — pagina dedicata `/viabilita` (nel menù ad amburger) + pannello homepage | InfoViaggiando (eventi, feed WFS non dichiarato pubblico — stessa cautela di ANSA) + OSMER (webcam A4/A23/A28/SR354) | La pagina dedicata combina il pannello eventi (`ViabilitaPanel`, stesso dato del pannello homepage), il prezzo carburanti e le webcam autostradali filtrate dallo stesso snapshot `webcam:osmer` usato da `/webcam` |
-| **Trasporti** — pagina dedicata `/trasporti` (nel menù ad amburger) | Trieste Airport (voli) + ViaggiaTreno (treni, vedi nota "Ferrovie" sotto) + TPL FVG (autobus, vedi nota "Autobus" sotto) | Pagina distinta da Viabilità (quella resta sul traffico stradale). Contiene il pannello voli (stesso `VoliPanel`/dato `voli:trieste-airport` della homepage), il pannello treni (`TreniPanel.tsx`) e il pannello autobus (`AutobusPanel.tsx`) — entrambi fetch lato client verso una Route Handler nostra, che a sua volta interroga la fonte esterna lato server |
+| **Trasporti** — pagina dedicata `/trasporti` (nel menù ad amburger) | Trieste Airport (voli) + ViaggiaTreno (treni, vedi nota "Ferrovie" sotto) + TPL FVG (autobus, vedi nota "Autobus" sotto) | Pagina distinta da Viabilità (quella resta sul traffico stradale). Contiene il pannello voli (stesso `VoliPanel`/dato `voli:trieste-airport` della homepage), il pannello treni (`TreniPanel.tsx`, fetch lato client verso una Route Handler nostra che interroga ViaggiaTreno lato server) e il pannello autobus (`AutobusPanel.tsx`, fetch **diretto dal browser** verso TPL FVG, niente proxy — vedi nota "Autobus" per il perché) |
 | **Prezzo carburanti** (benzina, gasolio, GPL) — homepage + pagina `/viabilita` | CSV ufficiale MIMIT (`MediaRegionaleStradale.csv`, pubblicato ogni mattina alle 8:00) | `CarburantiPanel.tsx`, un solo valore per l'intera regione per ciascun carburante (non per provincia — è così che il ministero lo pubblica, il dato regionale FVG non è scorporato per provincia). Benzina e gasolio self-service, GPL servito (unica modalità rilevante in Italia per ciascuno) — snapshot unico `carburanti` (`{ carburanti: { benzina, gasolio, gpl } }`). Il CSV include anche il metano (servito), non ingerito perché non richiesto — estendibile in futuro aggiungendo una voce a `CARBURANTI_TIPI`. Formato CSV non standard (riga "Aggiornamento" prima dell'intestazione, `;` come separatore) — parsing manuale in `ingest-light.mjs`, nessuna libreria CSV necessaria |
 | **Eventi** | Scraping HTML turismofvg.it | Pagina server-rendered, no browser headless — fragile per natura (classi CSS specifiche) |
 | **TGR** | — | Nessun feed trovato, link statico alla sezione ufficiale |
@@ -268,7 +268,9 @@ raggiungere l'endpoint reale da sola: né WebFetch (vede solo l'HTML
 statico iniziale della pagina di ricerca fermate su tplfvg.it — i dati
 arrivano via chiamate JS che non può osservare) né un tentativo diretto
 sul sottodominio `realtime.tplfvg.it` (irraggiungibile anche solo per il
-suo `robots.txt`, verificato più volte). L'endpoint è stato scoperto
+suo `robots.txt`, verificato più volte — coerente col blocco IP di
+datacenter/cloud poi confermato per il bug sotto: questo stesso sandbox
+è quasi certamente un altro IP di quel tipo). L'endpoint è stato scoperto
 dall'utente stesso, ispezionando la scheda Rete/Network del proprio
 browser mentre usava `https://tplfvg.it/it/orari/mappa/` e poi
 `https://realtime.tplfvg.it/?stopcode=...` (il sottodominio dedicato al
@@ -301,14 +303,14 @@ cerca su `tplfvg.it/it/orari/mappa/` e manda il codice dal link
 "Realtime" (`?stopcode=...`), senza bisogno di riaprire la scheda Rete
 ogni volta.
 
-**Scelta architetturale**: proxy server-side (`app/api/autobus/[stopCode]/route.ts`)
-fin dall'inizio, a differenza della prima versione del modulo Ferrovie
-che partiva con un fetch diretto dal browser e ha dovuto scoprire a sue
-spese mixed-content (bug 1) e CORS (bug 2) in due giri separati di
-segnalazioni utente. Qui la lezione è applicata subito: `lib/autobus.ts`
-lato client chiama solo `/api/autobus/{codice}` (same-origin, mai CORS),
-la route interroga TPL FVG lato server (mai soggetta a CORS né a
-mixed-content, insensibile allo schema http/https della pagina).
+**Scelta architetturale, AGGIORNATA dopo il bug sotto**: fetch
+**direttamente dal browser** del visitatore, non un proxy server-side.
+Partito diversamente (proxy `app/api/autobus/[stopCode]/route.ts` fin
+dall'inizio, applicando la lezione di Ferrovie su mixed-content/CORS),
+ma quel proxy si è rivelato lui stesso bloccato lato server per un
+motivo diverso (vedi "Bug 1" sotto) — rimosso. `lib/autobus.ts` ora
+chiama direttamente `https://realtime.tplfvg.it/...` dal browser
+dell'utente finale.
 
 **Bug 1 (dati mai disponibili, nonostante il proxy)**: l'utente ha
 testato subito dopo la prima consegna — identico sintomo dei bug 1/2 di
@@ -329,27 +331,50 @@ il contenuto.
 
 Con l'ipotesi 1 smentita, l'utente ha visitato `/api/autobus/TS608`
 direttamente: `dettaglio` conteneva `"TypeError: fetch failed"` — errore
-generico di Node/undici per un fallimento di rete a basso livello (non
-un vero errore HTTP applicativo, che sarebbe arrivato comunque con uno
-status code). Conferma la seconda ipotesi: **geo-blocking a livello di
-rete/IP**. **Fix tentativo 2**: aggiunto `vercel.json` con
-`"regions": ["fra1"]` (Francoforte, EU) — di default le funzioni Vercel
-girano a Washington D.C. (USA) se non specificato, disponibile anche sul
-piano gratuito Hobby (una sola regione consentita, non serve il piano
-Pro). Il campo `dettaglio` ora include anche `err.cause` quando presente
-(Node lo popola spesso con l'errore di rete vero, es. `ECONNREFUSED`/
-`ETIMEDOUT`), per non dover indovinare una quarta volta se anche questo
-non bastasse. **Non ancora confermato dall'utente**.
+generico di Node/undici per un fallimento di rete a basso livello.
+**Fix tentativo 2**: `vercel.json` con `"regions": ["fra1"]`
+(Francoforte, EU) al posto del default USA. Deployato, **smentito
+anche questo**: dopo il redeploy `dettaglio` mostra ora
+`"TypeError: fetch failed | cause: ConnectTimeoutError: Connect Timeout
+Error (attempted address: realtime.tplfvg.it:443, timeout: 10000ms)"` —
+stesso identico fallimento (timeout in fase di connessione TCP/TLS,
+prima ancora di mandare l'HTTP request) da una regione USA E da una
+regione EU. Questo esclude un semplice blocco per paese/continente.
+
+**Ipotesi 3, CONFERMATA**: non è la geografia, ma la natura dell'IP. Un
+pattern comune per le protezioni anti-scraping (Cloudflare e simili
+offrono un'opzione dedicata) è bloccare a monte tutto il traffico
+proveniente da intervalli IP noti di datacenter/cloud (AWS, GCP, Azure,
+Vercel...) indipendentemente dal paese, lasciando passare solo IP
+residenziali/mobili — e spesso lo fanno scartando silenziosamente la
+connessione (da cui il timeout in fase di connect osservato nei fix 1 e
+2, non un 403 applicativo) invece di rispondere con un errore HTTP.
+Verificato chiedendo all'utente di lanciare, dalla console del browser
+sul sito fvgmonitor stesso, un fetch diretto e cross-origin verso
+`realtime.tplfvg.it`: **ha funzionato subito**, dati reali ricevuti,
+nessun errore CORS (quindi l'endpoint accetta richieste cross-origin dal
+browser — non lo si sapeva finché non è stato testato). Confermato anche
+che cambiare regione Vercel (fix 2) non serviva a nulla per questo
+motivo: qualunque IP di un provider cloud, USA o EU, viene trattato
+uguale.
+
+**Fix 3 (applicato)**: rimosso il proxy server-side
+(`app/api/autobus/[stopCode]/route.ts`, cancellato) e la normalizzazione
+dei dati grezzi spostata in `lib/autobus.ts`, che ora chiama
+`https://realtime.tplfvg.it/API/v1.0/polemonitor/mrcruns?...`
+**direttamente dal browser del visitatore** — bypassa il blocco alla
+radice perché l'IP è quello del visitatore, non di un server. Eccezione
+motivata e documentata al pattern standard "sempre proxy server-side"
+(che resta valido per Ferrovie, dove funziona). Consegnato, **non ancora
+confermato dall'utente in produzione**.
 
 ## Prossimo passo
 
-Verificare con l'utente se il fix tentativo 2 (regione Vercel spostata a
-`fra1`) ha risolto il bug "dati autobus non disponibili" — richiede un
-nuovo deploy per avere effetto. Se ancora non funzionasse, richiedere di
-nuovo il contenuto di `dettaglio` da `/api/autobus/TS608` (ora include
-anche `cause`). Il modulo Ferrovie funziona (dati raccolti correttamente,
-stati "cancellato"/"non partito" distinti, tutte le 7 stazioni
-confermate). Altre stazioni/fermate verranno aggiunte in futuro su
-richiesta esplicita dell'utente. Oppure Fase 4 del piano: rifinitura
-(responsive, accessibilità, performance), dominio personalizzato — vedi
-piano di lavoro per il dettaglio.
+Verificare con l'utente se il fix 3 (fetch diretto dal browser, niente
+più proxy server-side per questo modulo) risolve definitivamente il bug
+"dati autobus non disponibili" in produzione. Il modulo Ferrovie
+funziona (dati raccolti correttamente, stati "cancellato"/"non partito"
+distinti, tutte le 7 stazioni confermate). Altre stazioni/fermate
+verranno aggiunte in futuro su richiesta esplicita dell'utente. Oppure
+Fase 4 del piano: rifinitura (responsive, accessibilità, performance),
+dominio personalizzato — vedi piano di lavoro per il dettaglio.
