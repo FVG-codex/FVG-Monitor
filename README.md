@@ -310,11 +310,30 @@ lato client chiama solo `/api/autobus/{codice}` (same-origin, mai CORS),
 la route interroga TPL FVG lato server (mai soggetta a CORS né a
 mixed-content, insensibile allo schema http/https della pagina).
 
+**Bug 1 (dati mai disponibili, nonostante il proxy)**: l'utente ha
+testato subito dopo la prima consegna — identico sintomo dei bug 1/2 di
+Ferrovie ("Dati autobus non disponibili al momento"). Causa non ancora
+confermata con certezza (questa sessione non riesce a raggiungere
+`realtime.tplfvg.it` in nessun modo, nemmeno per leggerne il
+`robots.txt` — fallimento di rete/timeout, non un errore HTTP, vedi sopra
+— quindi non è possibile riprodurre il problema da qui). Ipotesi più
+probabile: una protezione anti-bot (WAF/CDN) che blocca richieste senza
+intestazioni "da browser vero". **Fix tentativo**: aggiunte intestazioni
+`User-Agent`/`Accept`/`Referer` da browser alla richiesta server-side.
+Aggiunto anche un campo `dettaglio` nella risposta JSON di errore della
+route (non visibile nell'interfaccia, solo visitando direttamente
+`/api/autobus/TS608` nel browser) con il messaggio reale dell'errore —
+se il fix tentativo non bastasse, quel dettaglio dice subito se è ancora
+un problema di timeout/rete o qualcos'altro, senza dover indovinare una
+seconda volta.
+
 ## Prossimo passo
 
-Verificare con l'utente che il modulo Autobus funzioni in produzione (mai
-testato in un browser reale, solo con dati verificati dall'utente stesso
-via scheda Rete). Il modulo Ferrovie funziona (dati raccolti
+Verificare con l'utente se il fix tentativo (intestazioni da browser) ha
+risolto il bug "dati autobus non disponibili" — se no, chiedere il
+contenuto del campo `dettaglio` visitando `/api/autobus/TS608`
+direttamente nel browser (vedi nota "Autobus" sopra). Il modulo Ferrovie
+funziona (dati raccolti
 correttamente, stati "cancellato"/"non partito" distinti). Confermata
 anche l'aggiunta di 3 nuove stazioni treni (Monfalcone, Trieste Airport,
 Tarvisio Boscoverde) oltre ai 4 capoluoghi — altre stazioni (treni e

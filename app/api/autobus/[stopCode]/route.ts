@@ -15,6 +15,21 @@
 // soggetto a CORS ed è insensibile allo schema http/https della pagina.
 //
 // Nessuna cache HTTP: il dato deve restare quasi in tempo reale.
+//
+// Bug segnalato dall'utente subito dopo la prima consegna: il pannello
+// resta sempre su "Dati autobus non disponibili", identico sintomo dei
+// bug 1/2 del modulo Ferrovie. Ipotesi più probabile qui (diversa dai
+// treni): realtime.tplfvg.it è risultato irraggiungibile anche da questa
+// sessione via WebFetch — non con un errore HTTP, ma con un fallimento a
+// livello di rete/robots.txt (vedi nota "Autobus" nel README) — un
+// pattern compatibile con una protezione anti-bot (WAF/CDN) che blocca
+// richieste senza intestazioni "da browser vero" (User-Agent, Accept,
+// Referer). Aggiunte quelle intestazioni qui sotto come tentativo più
+// probabile; aggiunto anche il dettaglio dell'errore reale nella
+// risposta JSON (mai visibile all'utente nell'interfaccia, ma visitando
+// direttamente questo URL nel browser il dettaglio si vede) per poter
+// diagnosticare senza dover indovinare una seconda volta se il problema
+// fosse un altro.
 
 import { NextResponse } from "next/server";
 
@@ -92,16 +107,33 @@ export async function GET(_req: Request, { params }: { params: { stopCode: strin
   const url = `${API_BASE}/mrcruns?StopCode=${encodeURIComponent(stopCode)}&IsUrban=true`;
 
   try {
-    const res = await fetch(url, { cache: "no-store" });
+    const res = await fetch(url, {
+      cache: "no-store",
+      headers: {
+        // Intestazioni "da browser vero" — tentativo più probabile per il
+        // bug "dati mai disponibili" segnalato dall'utente, vedi nota sopra.
+        "User-Agent":
+          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
+        Accept: "application/json, text/plain, */*",
+        Referer: "https://realtime.tplfvg.it/",
+      },
+    });
     if (!res.ok) {
-      return NextResponse.json({ error: `TPL FVG HTTP ${res.status}` }, { status: 502 });
+      const corpo = await res.text().catch(() => "");
+      return NextResponse.json({ error: `TPL FVG HTTP ${res.status}`, dettaglio: corpo.slice(0, 500) }, { status: 502 });
     }
     const righe: RigaGrezza[] = await res.json();
     if (!Array.isArray(righe)) {
       return NextResponse.json([]);
     }
     return NextResponse.json(righe.map(normalizzaRiga));
-  } catch {
-    return NextResponse.json({ error: "fetch a TPL FVG fallito" }, { status: 502 });
+  } catch (err) {
+    // Dettaglio incluso apposta nella risposta (non mostrato
+    // nell'interfaccia, ma visibile visitando questo URL direttamente nel
+    // browser) — se anche questo fix non bastasse, il messaggio qui sotto
+    // dice subito SE è di nuovo un problema di rete/timeout oppure altro,
+    // senza dover indovinare una seconda volta.
+    const dettaglio = err instanceof Error ? `${err.name}: ${err.message}` : String(err);
+    return NextResponse.json({ error: "fetch a TPL FVG fallito", dettaglio }, { status: 502 });
   }
 }
