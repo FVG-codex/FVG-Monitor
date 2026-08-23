@@ -34,7 +34,12 @@ export type Treno = {
   orarioTesto: string | null; // HH:MM già formattato dall'API
   ritardoMin: number | null;
   binario: string | null;
-  stato: "cancellato" | "non-partito" | "ritardo" | "anticipo" | "orario";
+  // "modificato" = treno deviato/parzialmente cancellato/riprogrammato,
+  // distinto da "cancellato" (soppressione totale) — vedi la Route
+  // Handler per come vengono distinti (campo "provvedimento" di
+  // ViaggiaTreno, non "circolante": quel campo indica solo se il treno è
+  // già partito, non se è cancellato — bug corretto in questa sessione).
+  stato: "cancellato" | "modificato" | "non-partito" | "ritardo" | "anticipo" | "orario";
   statoTesto: string;
 };
 

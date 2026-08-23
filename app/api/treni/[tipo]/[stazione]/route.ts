@@ -19,6 +19,12 @@
 // interroga ViaggiaTreno lato server.
 //
 // Nessuna cache HTTP: il dato deve restare quasi in tempo reale.
+//
+// Bug corretto in questa stessa sessione (dopo la migrazione al proxy
+// sopra): i treni non ancora partiti venivano mostrati come "Cancellato"
+// invece che "Non ancora partito" — vedi normalizzaRiga() per i dettagli,
+// causa era l'uso del campo sbagliato ("circolante" invece di
+// "provvedimento") per rilevare la cancellazione.
 
 import { NextResponse } from "next/server";
 
@@ -44,6 +50,19 @@ type RigaGrezza = {
   ritardo: number | null;
   nonPartito: boolean | null;
   circolante: boolean | null;
+  // Vero indicatore di cancellazione (vedi normalizzaRiga per la
+  // spiegazione — "circolante" NON lo è, nonostante il nome suggerisca il
+  // contrario). Valori osservati/documentati: 0 regolare, 1 treno
+  // cancellato, 2 treno parzialmente cancellato/deviato/riprogrammato.
+  provvedimento: number | null;
+  // Testo di stato ufficiale multilingua fornito direttamente da
+  // ViaggiaTreno (stesso testo del loro widget) — compRitardo[0] è
+  // l'italiano, es. "non partito", "ritardo 1 min.", "in orario".
+  // Preferito a una nostra ricostruzione manuale del testo.
+  compRitardo: string[] | null;
+  // Per treni parzialmente cancellati/deviati, testo tipo "Treno
+  // cancellato da X a Y" — non sempre presente.
+  subTitle: string | null;
 };
 
 // Stessa forma di Treno in lib/treni.ts — duplicata qui perché quel file
@@ -57,7 +76,7 @@ type Treno = {
   orarioTesto: string | null;
   ritardoMin: number | null;
   binario: string | null;
-  stato: "cancellato" | "non-partito" | "ritardo" | "anticipo" | "orario";
+  stato: "cancellato" | "modificato" | "non-partito" | "ritardo" | "anticipo" | "orario";
   statoTesto: string;
 };
 
@@ -107,6 +126,10 @@ function formattaOrarioRichiesta(d: Date): string {
   );
 }
 
+function primaLetteraMaiuscola(s: string): string {
+  return s.length > 0 ? s[0].toUpperCase() + s.slice(1) : s;
+}
+
 function normalizzaRiga(r: RigaGrezza, tipo: "partenze" | "arrivi"): Treno {
   const binario =
     tipo === "partenze"
@@ -115,26 +138,46 @@ function normalizzaRiga(r: RigaGrezza, tipo: "partenze" | "arrivi"): Treno {
 
   const ritardoMin = typeof r.ritardo === "number" && Math.abs(r.ritardo) < 500 ? r.ritardo : null;
 
+  // Testo ufficiale in italiano (stesso testo del widget ViaggiaTreno) —
+  // usato come base per statoTesto quando disponibile, con un fallback
+  // ricostruito a mano per i pochi casi in cui manca.
+  const testoUfficiale =
+    Array.isArray(r.compRitardo) && typeof r.compRitardo[0] === "string" && r.compRitardo[0].trim().length > 0
+      ? primaLetteraMaiuscola(r.compRitardo[0].trim())
+      : null;
+
+  // IMPORTANTE: "circolante" NON è un indicatore di cancellazione,
+  // nonostante sembri il contrario — dai dati reali risulta false per
+  // QUALSIASI treno non ancora partito (circolante true solo dopo la
+  // partenza effettiva), quindi usarlo per "cancellato" marcava come
+  // cancellato ogni treno semplicemente non ancora partito (bug segnalato
+  // dall'utente con screenshot). Il vero indicatore, verificato via
+  // documentazione di terze parti sull'API (non ufficiale) e ragionevole
+  // dato il nome del campo, è "provvedimento": 0 regolare, 1 treno
+  // cancellato, 2 treno parzialmente cancellato/deviato/riprogrammato.
   let stato: Treno["stato"];
   let statoTesto: string;
-  if (r.circolante === false) {
+  if (r.provvedimento === 1) {
     stato = "cancellato";
-    statoTesto = "Cancellato";
+    statoTesto = testoUfficiale ?? r.subTitle ?? "Cancellato";
+  } else if (r.provvedimento === 2) {
+    stato = "modificato";
+    statoTesto = testoUfficiale ?? r.subTitle ?? "Modificato (deviato o parzialmente cancellato)";
   } else if (r.nonPartito === true) {
     stato = "non-partito";
-    statoTesto = "Non ancora partito";
+    statoTesto = testoUfficiale ?? "Non ancora partito";
   } else if (ritardoMin === null) {
     stato = "orario";
-    statoTesto = "—";
+    statoTesto = testoUfficiale ?? "—";
   } else if (ritardoMin > 0) {
     stato = "ritardo";
-    statoTesto = `Ritardo ${ritardoMin} min`;
+    statoTesto = testoUfficiale ?? `Ritardo ${ritardoMin} min`;
   } else if (ritardoMin < 0) {
     stato = "anticipo";
-    statoTesto = `Anticipo ${Math.abs(ritardoMin)} min`;
+    statoTesto = testoUfficiale ?? `Anticipo ${Math.abs(ritardoMin)} min`;
   } else {
     stato = "orario";
-    statoTesto = "In orario";
+    statoTesto = testoUfficiale ?? "In orario";
   }
 
   return {

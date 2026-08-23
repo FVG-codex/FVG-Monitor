@@ -212,8 +212,28 @@ futuro) — Trieste Centrale `S03317`, Udine `S03026`, Gorizia Centrale
    browser). `lib/treni.ts`, lato client, chiama solo questa route sul
    nostro stesso dominio (`/api/treni/...`, same-origin, nessun CORS
    possibile) e la route interroga ViaggiaTreno lato server, normalizza i
-   dati e li restituisce già pronti. Non ancora confermato dall'utente in
-   produzione — questo è il prossimo passo.
+   dati e li restituisce già pronti. Confermato dall'utente: dopo questo
+   fix i dati arrivano regolarmente (voli e treni entrambi popolati).
+3. Con i dati finalmente in arrivo, l'utente ha segnalato un problema di
+   visualizzazione: treni non ancora partiti (es. partenza schedulata più
+   tardi nella mattinata) venivano mostrati come **"Cancellato"** invece
+   che "Non ancora partito" — confermato con screenshot a confronto col
+   widget ufficiale ViaggiaTreno, che per quegli stessi treni mostra
+   correttamente "non partito". Causa: la logica in `normalizzaRiga()`
+   usava `circolante === false` come indicatore di cancellazione, ma dai
+   dati reali (verificati con una nuova chiamata all'API) risulta che
+   `circolante` è `false` per **qualunque** treno non ancora partito
+   (diventa `true` solo dopo la partenza effettiva) — non è affatto un
+   indicatore di soppressione, nonostante il nome suggerisca il contrario.
+   **Fix 3**: sostituito con `provvedimento` (0 regolare, 1 treno
+   cancellato, 2 treno parzialmente cancellato/deviato/riprogrammato —
+   valori dedotti da documentazione di terze parti sull'API, dato che
+   ViaggiaTreno non pubblica una spec ufficiale), aggiunto un nuovo stato
+   intermedio `"modificato"` per il caso 2 (distinto da una cancellazione
+   piena), e il testo mostrato ora usa **il testo ufficiale di
+   ViaggiaTreno stesso** (`compRitardo[0]`, lo stesso testo del loro
+   widget, es. "non partito", "ritardo 1 min.") invece di una frase
+   ricostruita a mano, per restare sempre coerente con la fonte.
 
 Nota tecnica sulla Route Handler: gira su funzioni serverless che su Vercel
 girano in fuso orario UTC, non Europe/Rome — se il parametro `{orario}`
@@ -235,10 +255,9 @@ il problema dovesse ripresentarsi anche col proxy.
 
 ## Prossimo passo
 
-Confermare che il modulo Ferrovie funzioni ora che il fetch verso
-ViaggiaTreno è stato spostato lato server (proxy via Route Handler, vedi
-nota "Ferrovie" sopra) — architettura pensata per bypassare sia il bug
-HTTP/HTTPS sia il probabile blocco CORS, entrambi confermati come causa
-reale del malfunzionamento riportato in produzione. Oppure Fase 4 del
-piano: rifinitura (responsive, accessibilità, performance), dominio
-personalizzato — vedi piano di lavoro per il dettaglio.
+Il modulo Ferrovie raccoglie ormai i dati regolarmente (confermato
+dall'utente dopo il fix 2, proxy server-side). Resta da confermare il fix 3
+(vedi nota "Ferrovie" sopra): i treni non ancora partiti non devono più
+comparire come "Cancellato". Oppure Fase 4 del piano: rifinitura
+(responsive, accessibilità, performance), dominio personalizzato — vedi
+piano di lavoro per il dettaglio.

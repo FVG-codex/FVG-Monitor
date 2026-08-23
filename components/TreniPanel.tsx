@@ -6,6 +6,7 @@ import { PROVINCE_LIST, type ProvinciaSlug } from "@/lib/province";
 
 const STATO_COLORE: Record<Treno["stato"], string> = {
   cancellato: "text-allerta-rossa",
+  modificato: "text-allerta-arancione",
   "non-partito": "text-ink-faint",
   ritardo: "text-warm",
   anticipo: "text-cool",
