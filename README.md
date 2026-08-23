@@ -84,7 +84,7 @@ componente React che legge da Supabase con lo stesso nome.
 | **Radar meteo** | API monitoraggio PC FVG, gruppo `radar` | Solo il radar di Fossalon (id 1) è attivo — Lussari e Mosaico risultano spenti (`status: "X"`). 4 prodotti selezionabili da tab, ciascuno con una breve spiegazione in pagina: `SRTLBM_1` (pioggia, mm), `SSI` (severità temporale), `HMC` (classificazione idrometeore — pioggia/neve/grandine), `LBM_V` (velocità Doppler, m/s) — tutti recuperati in un'unica chiamata (`/radars/1/products` restituisce già tutti i prodotti disponibili insieme). Le immagini sono **trasparenti fuori dalle zone colorate** (nessuna base geografica) — sovrapposte a una vera mappa (Leaflet + tile OpenStreetMap) usando l'`extent` fornito dall'API stessa (`RadarMeteoMap.tsx`, caricato dinamicamente lato client — Leaflet richiede il DOM del browser) |
 | **Terremoti** — pagina dedicata `/terremoti` | INGV (FDSN Event Web Service, standard internazionale, gratuito) | L'API PC FVG ha uno schema dati "Earthquake" predisposto ma **nessun endpoint GET pubblicato** per interrogarlo — usiamo quindi la fonte ufficiale italiana per la sismologia. Filtrato per area geografica FVG (bounding box), ultimi 30 giorni. Mappa Leaflet con marker colorati per magnitudo (`TerremotiMap.tsx`) + elenco cronologico |
 | **Viabilità** — pagina dedicata `/viabilita` (nel menù ad amburger) + pannello homepage | InfoViaggiando (eventi, feed WFS non dichiarato pubblico — stessa cautela di ANSA) + OSMER (webcam A4/A23/A28/SR354) | La pagina dedicata combina il pannello eventi (`ViabilitaPanel`, stesso dato del pannello homepage), il prezzo carburanti e le webcam autostradali filtrate dallo stesso snapshot `webcam:osmer` usato da `/webcam` |
-| **Trasporti** — pagina dedicata `/trasporti` (nel menù ad amburger) | Trieste Airport (voli) — in futuro dati ferroviari, vedi nota "Ferrovie" sotto | Nuova pagina, distinta da Viabilità (quella resta sul traffico stradale). Per ora contiene solo il pannello voli (stesso `VoliPanel`/dato `voli:trieste-airport` della homepage) — pensata come hub multimodale dove far confluire anche i treni una volta implementati |
+| **Trasporti** — pagina dedicata `/trasporti` (nel menù ad amburger) | Trieste Airport (voli) + ViaggiaTreno (treni, vedi nota "Ferrovie" sotto) | Pagina distinta da Viabilità (quella resta sul traffico stradale). Contiene il pannello voli (stesso `VoliPanel`/dato `voli:trieste-airport` della homepage) e il pannello treni (`TreniPanel.tsx`, fetch lato client, 4 capoluoghi) |
 | **Prezzo carburanti** (benzina, gasolio, GPL) — homepage + pagina `/viabilita` | CSV ufficiale MIMIT (`MediaRegionaleStradale.csv`, pubblicato ogni mattina alle 8:00) | `CarburantiPanel.tsx`, un solo valore per l'intera regione per ciascun carburante (non per provincia — è così che il ministero lo pubblica, il dato regionale FVG non è scorporato per provincia). Benzina e gasolio self-service, GPL servito (unica modalità rilevante in Italia per ciascuno) — snapshot unico `carburanti` (`{ carburanti: { benzina, gasolio, gpl } }`). Il CSV include anche il metano (servito), non ingerito perché non richiesto — estendibile in futuro aggiungendo una voce a `CARBURANTI_TIPI`. Formato CSV non standard (riga "Aggiornamento" prima dell'intestazione, `;` come separatore) — parsing manuale in `ingest-light.mjs`, nessuna libreria CSV necessaria |
 | **Eventi** | Scraping HTML turismofvg.it | Pagina server-rendered, no browser headless — fragile per natura (classi CSS specifiche) |
 | **TGR** | — | Nessun feed trovato, link statico alla sezione ufficiale |
@@ -172,7 +172,15 @@ Il sito ha un frontend nuovo (SPA) dal 2026: il vecchio percorso API
 disponibile qui". L'API è però ancora viva sotto un percorso diverso,
 verificato manualmente in questa sessione (agosto 2026):
 
-- Base: `http://www.viaggiatreno.it/infomobilitamobile/resteasy/viaggiatreno/`
+- Base: `https://www.viaggiatreno.it/infomobilitamobile/resteasy/viaggiatreno/`
+  — **HTTPS, non HTTP**: la prima versione di `lib/treni.ts` usava
+  `http://`, funzionava nei test fatti da questa sessione (senza browser
+  reale) ma falliva sempre una volta online — con il sito servito in
+  HTTPS (Vercel forza HTTPS), il browser blocca in silenzio le richieste
+  "mixed content" verso un endpoint `http://`, senza errore visibile
+  all'utente (il modulo restava sul messaggio "dati non disponibili").
+  Corretto e verificato che l'endpoint supporta HTTPS senza redirect né
+  errori di certificato.
 - Ricerca stazione: `autocompletaStazione/{testo}` → testo semplice
   `NOME|CODICE` (es. `TRIESTE CENTRALE|S03317`)
 - Partenze: `partenze/{codiceStazione}/{orario}` — `{orario}` nel formato
@@ -191,10 +199,10 @@ le allerte (`lib/allerte.ts` + `lib/jsonp.ts`) — un tabellone partenze/arrivi
 ha senso solo se quasi in tempo reale, e l'ingestione ogni 15 minuti via
 GitHub Actions (usata per tutti gli altri moduli) produrrebbe uno snapshot
 spesso già superato. Il browser di chi visita la pagina interroga l'API
-direttamente. **Non verificato** (nessun accesso a un vero browser in questa
-sessione): se l'endpoint esponga header CORS che permettano la chiamata
-`fetch()` da un'origine diversa — se in produzione il browser blocca la
-richiesta con un errore CORS in console, il fix è un Next.js Route Handler
+direttamente. Non ancora confermato dall'utente se il modulo funzioni
+davvero end-to-end dopo il fix HTTPS — se dovesse ancora fallire (es.
+header CORS mancanti sull'endpoint, mai verificabile da questa sessione
+senza un browser reale), il piano B è un Next.js Route Handler
 (`app/api/.../route.ts`) che fa da proxy server-to-server (nessun vincolo
 CORS lato server) mantenendo comunque il dato quasi fresco ad ogni
 richiesta. Non verificato nemmeno se l'endpoint blocchi IP di datacenter in
@@ -202,9 +210,8 @@ generale (rischio già concretizzato altrove nel progetto per altre fonti).
 
 ## Prossimo passo
 
-Verificare in un vero browser (nessuno disponibile durante lo sviluppo) che
-il modulo Ferrovie funzioni davvero lato client — in particolare che
-l'endpoint ViaggiaTreno non risponda con un errore CORS (vedi nota
-"Ferrovie" sopra per il piano B pronto in caso). Oppure Fase 4 del piano:
-rifinitura (responsive, accessibilità, performance), dominio personalizzato
-— vedi piano di lavoro per il dettaglio.
+Confermare che il modulo Ferrovie funzioni ora che è stato corretto il bug
+HTTP/HTTPS (vedi nota "Ferrovie" sopra) — se il problema persiste, il piano
+B (proxy server-side) è già pronto da implementare. Oppure Fase 4 del
+piano: rifinitura (responsive, accessibilità, performance), dominio
+personalizzato — vedi piano di lavoro per il dettaglio.

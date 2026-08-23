@@ -11,16 +11,20 @@
 // Fetch LATO CLIENT (come le allerte in lib/allerte.ts), non dentro
 // scripts/ingest-light.mjs: un tabellone partenze/arrivi ha senso solo
 // se quasi in tempo reale — l'ingestione ogni 15 minuti degli altri
-// moduli produrrebbe uno snapshot spesso già superato. Non verificato se
-// l'endpoint esponga header CORS che permettano fetch() da un'origine
-// diversa (nessun accesso a un vero browser al momento in cui è stato
-// scritto questo modulo) — se in produzione compare un errore CORS in
-// console, il fix è un Next.js Route Handler che faccia da proxy
-// server-to-server (nessun vincolo CORS lato server).
+// moduli produrrebbe uno snapshot spesso già superato.
+//
+// IMPORTANTE: base HTTPS, non HTTP. Prima versione di questo file usava
+// http:// (funzionava nei test da questa sessione, che non passano da un
+// browser reale) — in produzione, con il sito servito in HTTPS (Vercel
+// forza HTTPS), il browser blocca silenziosamente le richieste "mixed
+// content" verso un endpoint http:// da una pagina https:// (nessun
+// errore visibile lato utente, solo un fetch che fallisce sempre — esatto
+// sintomo riportato: modulo presente ma dati mai raccolti). Verificato
+// che l'endpoint supporta HTTPS senza redirect né errori di certificato.
 
 import type { ProvinciaSlug } from "@/lib/province";
 
-const API_BASE = "http://www.viaggiatreno.it/infomobilitamobile/resteasy/viaggiatreno";
+const API_BASE = "https://www.viaggiatreno.it/infomobilitamobile/resteasy/viaggiatreno";
 
 export const STAZIONE_TRENI_PER_PROVINCIA: Record<ProvinciaSlug, { codice: string; nome: string }> = {
   trieste: { codice: "S03317", nome: "Trieste Centrale" },
