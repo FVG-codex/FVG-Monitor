@@ -316,28 +316,40 @@ Ferrovie ("Dati autobus non disponibili al momento"). Causa non ancora
 confermata con certezza (questa sessione non riesce a raggiungere
 `realtime.tplfvg.it` in nessun modo, nemmeno per leggerne il
 `robots.txt` — fallimento di rete/timeout, non un errore HTTP, vedi sopra
-— quindi non è possibile riprodurre il problema da qui). Ipotesi più
-probabile: una protezione anti-bot (WAF/CDN) che blocca richieste senza
-intestazioni "da browser vero". **Fix tentativo**: aggiunte intestazioni
-`User-Agent`/`Accept`/`Referer` da browser alla richiesta server-side.
-Aggiunto anche un campo `dettaglio` nella risposta JSON di errore della
-route (non visibile nell'interfaccia, solo visitando direttamente
-`/api/autobus/TS608` nel browser) con il messaggio reale dell'errore —
-se il fix tentativo non bastasse, quel dettaglio dice subito se è ancora
-un problema di timeout/rete o qualcos'altro, senza dover indovinare una
-seconda volta.
+— quindi non è possibile riprodurre il problema da qui). Prima ipotesi:
+una protezione anti-bot (WAF/CDN) che blocca richieste senza intestazioni
+"da browser vero". **Fix tentativo 1**: aggiunte intestazioni
+`User-Agent`/`Accept`/`Referer` da browser alla richiesta server-side —
+**confermato dall'utente che NON ha risolto** ("ancora una volta stesso
+problema"). Aggiunto anche un campo `dettaglio` nella risposta JSON di
+errore della route (non visibile nell'interfaccia, solo visitando
+direttamente `/api/autobus/TS608` nel browser) con il messaggio reale
+dell'errore — non ancora usato, in attesa che l'utente lo visiti e mandi
+il contenuto.
+
+Con l'ipotesi 1 smentita, l'utente ha visitato `/api/autobus/TS608`
+direttamente: `dettaglio` conteneva `"TypeError: fetch failed"` — errore
+generico di Node/undici per un fallimento di rete a basso livello (non
+un vero errore HTTP applicativo, che sarebbe arrivato comunque con uno
+status code). Conferma la seconda ipotesi: **geo-blocking a livello di
+rete/IP**. **Fix tentativo 2**: aggiunto `vercel.json` con
+`"regions": ["fra1"]` (Francoforte, EU) — di default le funzioni Vercel
+girano a Washington D.C. (USA) se non specificato, disponibile anche sul
+piano gratuito Hobby (una sola regione consentita, non serve il piano
+Pro). Il campo `dettaglio` ora include anche `err.cause` quando presente
+(Node lo popola spesso con l'errore di rete vero, es. `ECONNREFUSED`/
+`ETIMEDOUT`), per non dover indovinare una quarta volta se anche questo
+non bastasse. **Non ancora confermato dall'utente**.
 
 ## Prossimo passo
 
-Verificare con l'utente se il fix tentativo (intestazioni da browser) ha
-risolto il bug "dati autobus non disponibili" — se no, chiedere il
-contenuto del campo `dettaglio` visitando `/api/autobus/TS608`
-direttamente nel browser (vedi nota "Autobus" sopra). Il modulo Ferrovie
-funziona (dati raccolti
-correttamente, stati "cancellato"/"non partito" distinti). Confermata
-anche l'aggiunta di 3 nuove stazioni treni (Monfalcone, Trieste Airport,
-Tarvisio Boscoverde) oltre ai 4 capoluoghi — altre stazioni (treni e
-autobus) verranno aggiunte in futuro su richiesta esplicita dell'utente.
-Oppure Fase 4 del piano:
-rifinitura (responsive, accessibilità, performance), dominio
-personalizzato — vedi piano di lavoro per il dettaglio.
+Verificare con l'utente se il fix tentativo 2 (regione Vercel spostata a
+`fra1`) ha risolto il bug "dati autobus non disponibili" — richiede un
+nuovo deploy per avere effetto. Se ancora non funzionasse, richiedere di
+nuovo il contenuto di `dettaglio` da `/api/autobus/TS608` (ora include
+anche `cause`). Il modulo Ferrovie funziona (dati raccolti correttamente,
+stati "cancellato"/"non partito" distinti, tutte le 7 stazioni
+confermate). Altre stazioni/fermate verranno aggiunte in futuro su
+richiesta esplicita dell'utente. Oppure Fase 4 del piano: rifinitura
+(responsive, accessibilità, performance), dominio personalizzato — vedi
+piano di lavoro per il dettaglio.

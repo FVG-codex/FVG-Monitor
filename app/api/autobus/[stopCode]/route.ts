@@ -18,18 +18,27 @@
 //
 // Bug segnalato dall'utente subito dopo la prima consegna: il pannello
 // resta sempre su "Dati autobus non disponibili", identico sintomo dei
-// bug 1/2 del modulo Ferrovie. Ipotesi più probabile qui (diversa dai
-// treni): realtime.tplfvg.it è risultato irraggiungibile anche da questa
-// sessione via WebFetch — non con un errore HTTP, ma con un fallimento a
-// livello di rete/robots.txt (vedi nota "Autobus" nel README) — un
-// pattern compatibile con una protezione anti-bot (WAF/CDN) che blocca
-// richieste senza intestazioni "da browser vero" (User-Agent, Accept,
-// Referer). Aggiunte quelle intestazioni qui sotto come tentativo più
-// probabile; aggiunto anche il dettaglio dell'errore reale nella
-// risposta JSON (mai visibile all'utente nell'interfaccia, ma visitando
-// direttamente questo URL nel browser il dettaglio si vede) per poter
-// diagnosticare senza dover indovinare una seconda volta se il problema
-// fosse un altro.
+// bug 1/2 del modulo Ferrovie.
+//
+// Tentativo 1 (intestazioni "da browser vero" — User-Agent/Accept/
+// Referer, ancora sotto): confermato dall'utente che NON risolve.
+//
+// Tentativo 2 (questo): il campo `dettaglio` restituito dalla route ha
+// mostrato "TypeError: fetch failed" — l'errore generico che Node/undici
+// dà per un fallimento di rete a basso livello (connessione/DNS/TLS),
+// non un vero errore HTTP applicativo (che sarebbe arrivato comunque con
+// uno status code, anche un 403). Combinato col fatto che questa sessione
+// non riesce a raggiungere realtime.tplfvg.it in NESSUN modo (nemmeno il
+// suo robots.txt, con lo stesso tipo di timeout), l'ipotesi più probabile
+// ora è un blocco a livello di rete/IP verso richieste da fuori
+// Italia/UE, non un controllo sulle intestazioni. Le funzioni serverless
+// di Vercel girano di default a Washington D.C. (USA) se non si
+// specifica una regione — vedi vercel.json, aggiunto in questo stesso
+// giro per spostare le funzioni a Francoforte (fra1, EU), disponibile
+// anche sul piano gratuito Hobby (un solo valore consentito, non
+// multi-regione). Se anche questo non bastasse, il campo `dettaglio` ora
+// include anche `err.cause` quando presente, per avere più informazioni
+// al prossimo giro invece di indovinare una quarta volta.
 
 import { NextResponse } from "next/server";
 
@@ -132,8 +141,13 @@ export async function GET(_req: Request, { params }: { params: { stopCode: strin
     // nell'interfaccia, ma visibile visitando questo URL direttamente nel
     // browser) — se anche questo fix non bastasse, il messaggio qui sotto
     // dice subito SE è di nuovo un problema di rete/timeout oppure altro,
-    // senza dover indovinare una seconda volta.
-    const dettaglio = err instanceof Error ? `${err.name}: ${err.message}` : String(err);
+    // senza dover indovinare una seconda volta. Include anche `cause`
+    // quando presente: un TypeError "fetch failed" di Node/undici lo
+    // porta quasi sempre con l'errore di rete vero (es. ECONNREFUSED,
+    // ETIMEDOUT, un problema TLS) — informazione persa se si guarda solo
+    // `message`.
+    const causa = err instanceof Error && err.cause ? ` | cause: ${String(err.cause)}` : "";
+    const dettaglio = (err instanceof Error ? `${err.name}: ${err.message}` : String(err)) + causa;
     return NextResponse.json({ error: "fetch a TPL FVG fallito", dettaglio }, { status: 502 });
   }
 }
