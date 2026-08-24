@@ -338,10 +338,33 @@ altre, quindi resta nel blocco mostrato col solo codice.
 | `04015` | Stazione Ferroviaria | STAZIONE FERROVIARIA | true / false |
 | `04014` | Stazione Ferroviaria | STAZIONE FERROVIARIA | true / false |
 
-Altre province verranno aggiunte come blocchi successivi, su richiesta
-esplicita dell'utente — stesso metodo di verifica (script dalla console
-del browser che interroga `info` + `mrcruns` per ogni codice e restituisce
-un riepilogo, invece di aggiungere codici "a naso").
+**Altre province, aggiunte il 23/08/2026** con lo stesso metodo (script
+dalla console del browser, `info` + `mrcruns` per ogni codice, nessun
+dato "a naso"):
+
+| Blocco | Codice | Nome mostrato | Indirizzo API | isUrban / isExtraUrban |
+| --- | --- | --- | --- | --- |
+| Udine | `70101` | Viale Europa Unita (autostazione) | UDINE viale Europa Unita 37 (autostazione) | false / true |
+| Udine | `UD237` | Viale Europa Unita (lato Stazione FS) | UDINE viale Europa Unita 54 (lato stazione FS) | true / false |
+| Udine | `70C37` | Viale Europa Unita (fronte Stazione FS) | UDINE viale Europa Unita 99 (fronte stazione FS) | true / false |
+| Gorizia | `CIPN0` | Centro Intermodale Passeggeri | GORIZIA Centro Intermodale Passeggeri | false / true |
+| Gorizia | `CIPN1` | Centro Intermodale Passeggeri (corsia 1) | GORIZIA Centro Intermodale Passeggeri (corsia 1) | true / true |
+| Gorizia | `CIPN4` | Centro Intermodale Passeggeri (corsia 4) | GORIZIA Centro Intermodale Passeggeri (corsia 4) | true / true |
+| Gorizia | `CIPN5` | Centro Intermodale Passeggeri (corsia 5) | GORIZIA Centro Intermodale Passeggeri (corsia 5) | true / true |
+| Pordenone | `P3322` | Stazione Ferroviaria | PORDENONE Stazione Ferroviaria | false / true |
+| Pordenone | `UP129` | Stazione Ferroviaria | PORDENONE Stazione Ferroviaria | true / false |
+| Trieste Airport | `G1650` | Aeroporto Trieste Airport | AEROPORTO Trieste Airport | false / true |
+| Monfalcone | `M2033` | Stazione Ferroviaria | MONFALCONE stazione ferroviaria | true / true |
+| Monfalcone | `M2019` | Stazione Ferroviaria (lato entrata) | MONFALCONE stazione ferroviaria (lato entrata) | true / true |
+
+Nota: alcuni codici (es. `M2019`, `04022`, `32206`, `04016`, `04019`)
+hanno restituito 0 corse nel momento del test — verificato che sia un
+array vuoto valido, non un errore, quindi probabilmente solo un
+momento senza passaggi programmati su quella pensilina specifica; da
+tenere d'occhio se dovesse restare sempre vuoto.
+
+Altri blocchi/fermate verranno aggiunti in futuro su richiesta esplicita
+dell'utente, stesso metodo di verifica.
 
 **Scelta architetturale, AGGIORNATA dopo il bug sotto**: fetch
 **direttamente dal browser** del visitatore, non un proxy server-side.
@@ -408,16 +431,20 @@ motivata e documentata al pattern standard "sempre proxy server-side"
 (che resta valido per Ferrovie, dove funziona). Screenshot dell'utente:
 pannello Autobus popolato con corse reali (G51R/G51A per/da Aeroporto).
 
+## Idee future (annotate, non richieste esplicitamente per l'implementazione)
+
+- **Strutture ricettive** (B&B, agriturismi, hotel, ecc.): possibile nuovo modulo/pagina. Da definire quando richiesto: fonte dati (dataset regionale open data? scraping di un portale turistico, come già fatto per "Eventi"? un'API di settore?), se mostrare disponibilità/prezzi in tempo reale o solo un elenco/mappa statico aggiornato periodicamente, e se organizzarlo per provincia o come le stazioni/fermate (elenco piatto con tab). Nessuna ricerca di fonti fatta finora — da avviare quando l'utente vorrà procedere.
+
 ## Prossimo passo
 
-Il modulo Autobus è stato appena riorganizzato in blocchi (blocco
-Trieste, 11 fermate unite — vedi nota "Autobus" sopra), consegnato ma
+Il modulo Autobus ha ora 6 blocchi (Trieste, Udine, Gorizia, Pordenone,
+Trieste Airport, Monfalcone — vedi nota "Autobus" sopra), consegnato ma
 **non ancora confermato dall'utente in produzione**. Il modulo Ferrovie
 funziona (dati raccolti correttamente, stati "cancellato"/"non partito"
-distinti, tutte le 7 stazioni confermate). L'utente ha detto che dopo
-Trieste passerà alle fermate delle altre province — stesso metodo:
-script dalla console del browser per verificare `info`+`mrcruns` prima
-di aggiungere un nuovo blocco a `BLOCCHI_AUTOBUS` in `lib/autobus.ts`.
-Oppure Fase 4 del piano: rifinitura (responsive, accessibilità,
-performance), dominio personalizzato — vedi piano di lavoro per il
-dettaglio.
+distinti, tutte le 7 stazioni confermate). Idea annotata per il futuro
+(non richiesta per l'implementazione): modulo Strutture ricettive
+(B&B ecc.). Altri blocchi/fermate autobus verranno aggiunti in futuro
+su richiesta esplicita dell'utente, stesso metodo di verifica (script
+dalla console del browser). Oppure Fase 4 del piano: rifinitura
+(responsive, accessibilità, performance), dominio personalizzato — vedi
+piano di lavoro per il dettaglio.

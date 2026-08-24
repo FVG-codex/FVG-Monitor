@@ -35,22 +35,26 @@ const API_BASE = "https://realtime.tplfvg.it/API/v1.0/polemonitor";
 export type FermataAutobus = { stopCode: string; nome: string };
 export type BloccoAutobus = { slug: string; nome: string; fermate: FermataAutobus[] };
 
-// Blocchi: si parte con Trieste, 11 fermate intorno alla Stazione
-// Ferroviaria/Piazza della Libertà (autostazione) — indirizzi e
-// coordinate verificati dall'utente con una chiamata reale a
-// info?StopCode=... per ciascuna (23/08/2026). La maggior parte
-// condivide l'indirizzo "STAZIONE FERROVIARIA" (pensiline/binari diversi
-// nello stesso piazzale) — da qui il bisogno del blocco unico invece di
-// tab separate, altrimenti sarebbero 11 tab quasi indistinguibili.
-// 32206 non ha un indirizzo pubblicato dall'API (campo vuoto) ma le sue
-// coordinate (45.6566, 13.7731) sono a poche decine di metri dalle
-// altre, quindi resta nello stesso blocco — mostrato con il solo codice
-// in mancanza di un nome. Le altre province verranno aggiunte come
-// blocchi successivi, su richiesta esplicita dell'utente.
+// Blocchi: uno per provincia/hub, ognuno con più fermate fisicamente
+// vicine (pensiline/binari diversi dello stesso piazzale) unite in
+// un'unica vista. Indirizzi e coordinate di TUTTE le fermate qui sotto
+// sono stati verificati dall'utente con una chiamata reale a
+// info?StopCode=... per ciascuna (23/08/2026, due giri: prima Trieste,
+// poi le altre 5 province/hub in un solo giro) — nessun codice aggiunto
+// "a naso". Nuovi blocchi/fermate verranno aggiunti in futuro su
+// richiesta esplicita dell'utente, con lo stesso metodo di verifica.
 export const BLOCCHI_AUTOBUS: BloccoAutobus[] = [
   {
     slug: "trieste",
     nome: "Trieste",
+    // 11 fermate intorno alla Stazione Ferroviaria/Piazza della Libertà
+    // (autostazione). La maggior parte condivide l'indirizzo "STAZIONE
+    // FERROVIARIA" (pensiline/binari diversi nello stesso piazzale) — da
+    // qui il bisogno del blocco unico invece di 11 tab quasi
+    // indistinguibili. 32206 non ha un indirizzo pubblicato dall'API
+    // (campo vuoto) ma le sue coordinate (45.6566, 13.7731) sono a poche
+    // decine di metri dalle altre, quindi resta nello stesso blocco —
+    // mostrato con il solo codice in mancanza di un nome.
     fermate: [
       { stopCode: "04007", nome: "Stazione Ferroviaria" },
       { stopCode: "04011", nome: "Stazione Ferroviaria" },
@@ -63,6 +67,53 @@ export const BLOCCHI_AUTOBUS: BloccoAutobus[] = [
       { stopCode: "TS608", nome: "Piazza della Libertà (autostazione)" },
       { stopCode: "04015", nome: "Stazione Ferroviaria" },
       { stopCode: "04014", nome: "Stazione Ferroviaria" },
+    ],
+  },
+  {
+    slug: "udine",
+    nome: "Udine",
+    // Area di viale Europa Unita, tra l'autostazione e la Stazione FS
+    // (circa 100m tra loro secondo le coordinate).
+    fermate: [
+      { stopCode: "70101", nome: "Viale Europa Unita (autostazione)" },
+      { stopCode: "UD237", nome: "Viale Europa Unita (lato Stazione FS)" },
+      { stopCode: "70C37", nome: "Viale Europa Unita (fronte Stazione FS)" },
+    ],
+  },
+  {
+    slug: "gorizia",
+    nome: "Gorizia",
+    // Centro Intermodale Passeggeri: CIPN0 è la fermata generica, CIPN1/
+    // 4/5 le singole corsie (numerazione non consecutiva confermata
+    // dall'API, non un refuso).
+    fermate: [
+      { stopCode: "CIPN0", nome: "Centro Intermodale Passeggeri" },
+      { stopCode: "CIPN1", nome: "Centro Intermodale Passeggeri (corsia 1)" },
+      { stopCode: "CIPN4", nome: "Centro Intermodale Passeggeri (corsia 4)" },
+      { stopCode: "CIPN5", nome: "Centro Intermodale Passeggeri (corsia 5)" },
+    ],
+  },
+  {
+    slug: "pordenone",
+    nome: "Pordenone",
+    fermate: [
+      { stopCode: "P3322", nome: "Stazione Ferroviaria" },
+      { stopCode: "UP129", nome: "Stazione Ferroviaria" },
+    ],
+  },
+  {
+    slug: "trieste-airport",
+    nome: "Trieste Airport",
+    // Blocco di una sola fermata: il modello a blocchi funziona anche
+    // così, nessun trattamento speciale necessario.
+    fermate: [{ stopCode: "G1650", nome: "Aeroporto Trieste Airport" }],
+  },
+  {
+    slug: "monfalcone",
+    nome: "Monfalcone",
+    fermate: [
+      { stopCode: "M2033", nome: "Stazione Ferroviaria" },
+      { stopCode: "M2019", nome: "Stazione Ferroviaria (lato entrata)" },
     ],
   },
 ];
