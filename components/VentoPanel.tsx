@@ -20,7 +20,18 @@ function puntoCardinale(gradi: number | null): string {
   return punti[Math.round(gradi / 45) % 8];
 }
 
-export function VentoPanel({ provincia = "trieste" }: { provincia?: ProvinciaSlug }) {
+export function VentoPanel({
+  provincia = "trieste",
+  compatto = false,
+}: {
+  provincia?: ProvinciaSlug;
+  // Nasconde la riga "Fonte: ..." interna — usato in homepage quando il
+  // pannello è unito con PioggiaPanel dentro un unico Panel (altrimenti
+  // la fonte, identica per entrambi, comparirebbe due volte di fila).
+  // Default false: nelle altre pagine (ProvinciaPage, MeteoPage) resta
+  // un pannello a sé stante col comportamento di sempre.
+  compatto?: boolean;
+}) {
   const [dati, setDati] = useState<VentoData | null>(null);
   const [stato, setStato] = useState<"loading" | "ready" | "error">("loading");
 
@@ -76,9 +87,11 @@ export function VentoPanel({ provincia = "trieste" }: { provincia?: ProvinciaSlu
         </span>
         <span>{dati.aggiornato_al}</span>
       </div>
-      <p className="text-ink-faint text-[10px] font-mono mt-2">
-        Fonte: Protezione Civile FVG (CC BY 4.0)
-      </p>
+      {!compatto && (
+        <p className="text-ink-faint text-[10px] font-mono mt-2">
+          Fonte: Protezione Civile FVG (CC BY 4.0)
+        </p>
+      )}
     </div>
   );
 }

@@ -11,7 +11,16 @@ type PioggiaData = {
   pioggia_24h_mm: number | null;
 };
 
-export function PioggiaPanel({ provincia = "trieste" }: { provincia?: ProvinciaSlug }) {
+export function PioggiaPanel({
+  provincia = "trieste",
+  compatto = false,
+}: {
+  provincia?: ProvinciaSlug;
+  // Vedi VentoPanel.tsx per la spiegazione completa: nasconde la riga
+  // "Fonte: ..." interna quando il pannello è unito con VentoPanel in
+  // homepage. Default false altrove.
+  compatto?: boolean;
+}) {
   const [dati, setDati] = useState<PioggiaData | null>(null);
   const [stato, setStato] = useState<"loading" | "ready" | "error">("loading");
 
@@ -80,9 +89,11 @@ export function PioggiaPanel({ provincia = "trieste" }: { provincia?: ProvinciaS
         <span>Stazione {dati.stazione}</span>
         <span>{dati.aggiornato_al}</span>
       </div>
-      <p className="text-ink-faint text-[10px] font-mono mt-2">
-        Fonte: Protezione Civile FVG (CC BY 4.0)
-      </p>
+      {!compatto && (
+        <p className="text-ink-faint text-[10px] font-mono mt-2">
+          Fonte: Protezione Civile FVG (CC BY 4.0)
+        </p>
+      )}
     </div>
   );
 }

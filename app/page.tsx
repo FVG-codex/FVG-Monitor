@@ -57,19 +57,13 @@ export default function Home() {
           </Panel>
 
           <Panel
-            title="Bora · Vento"
+            title="Bora · Vento e Pioggia"
             linkLabel="Protezione Civile FVG →"
             linkHref="https://monitor.protezionecivile.fvg.it"
           >
-            <VentoPanel />
-          </Panel>
-
-          <Panel
-            title="Pioggia"
-            linkLabel="Protezione Civile FVG →"
-            linkHref="https://monitor.protezionecivile.fvg.it"
-          >
-            <PioggiaPanel />
+            <VentoPanel compatto />
+            <div className="border-t border-line my-4" />
+            <PioggiaPanel compatto />
           </Panel>
 
           <Panel title="Viabilità" linkLabel="InfoViaggiando →" linkHref="https://infoviaggiando.it">
@@ -93,19 +87,14 @@ export default function Home() {
           </Panel>
 
           <Panel
-            title="Livelli fiumi"
+            title="Livelli mare e fiumi"
             linkLabel="Protezione Civile FVG →"
             linkHref="https://monitor.protezionecivile.fvg.it"
           >
-            <FiumeOverview />
-          </Panel>
-
-          <Panel
-            title="Livello mare"
-            linkLabel="Protezione Civile FVG →"
-            linkHref="https://monitor.protezionecivile.fvg.it"
-          >
+            <p className="font-mono text-[10px] uppercase text-ink-faint mb-1.5">Mare</p>
             <MarePanel />
+            <p className="font-mono text-[10px] uppercase text-ink-faint mb-1.5 mt-4">Fiumi</p>
+            <FiumeOverview />
           </Panel>
 
           <Panel

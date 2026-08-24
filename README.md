@@ -479,6 +479,45 @@ telefono vero se possibile, specialmente sul pannello Autobus (quello
 con più elementi in riga) e sul banner allerta la prossima volta che è
 attivo.
 
+## Fusione pannelli homepage — Bora·Vento+Pioggia e Mare+Fiumi (24/08/2026)
+
+L'utente ha segnalato (con screenshot) molto spazio bianco sotto ai
+pannelli "Bora · Vento" e "Pioggia" in homepage, rispetto al pannello
+"Notizie locali" accanto a loro nella stessa riga della griglia a 3
+colonne. Soluzione: unire coppie di pannelli correlati in un unico
+`<Panel>` invece di uno ciascuno, così da riempire lo spazio verticale
+extra con contenuto reale invece di lasciarlo vuoto.
+
+- **"Bora · Vento e Pioggia"**: un solo `Panel` in `app/page.tsx`
+  contiene `<VentoPanel compatto />`, un separatore (`border-t`), poi
+  `<PioggiaPanel compatto />`.
+- **"Livelli mare e fiumi"**: un solo `Panel` contiene una piccola
+  etichetta "Mare" + `<MarePanel />`, poi una piccola etichetta "Fiumi"
+  + `<FiumeOverview />` (queste due non avevano bisogno del prop
+  `compatto`: non hanno una riga "Fonte: ..." interna da nascondere,
+  bastava un'etichetta perché il titolo del Panel unito non nomina più
+  esplicitamente "mare" o "fiumi" singolarmente).
+
+**Pattern nuovo: prop `compatto?: boolean`** (default `false`), aggiunto
+a `VentoPanel.tsx` e `PioggiaPanel.tsx`. Quando `true`, nasconde la riga
+`<p>Fonte: Protezione Civile FVG (CC BY 4.0)</p>` interna al componente
+— altrimenti, stando i due pannelli uno sopra l'altro nello stesso
+`Panel`, la stessa fonte sarebbe comparsa due volte di fila. Il default
+`false` lascia invariato il comportamento ovunque questi due componenti
+sono usati come pannelli a sé stanti: `ProvinciaPage.tsx` (pagina di
+dettaglio provincia, `<VentoPanel provincia={slug} />` e
+`<PioggiaPanel provincia={slug} />`) e `MeteoPage.tsx` (pagina meteo,
+stesso pattern con `provincia={filtro}`). Verificato via grep che
+`MarePanel`/`FiumeOverview` sono usati SOLO in homepage, quindi nessun
+vincolo di retrocompatibilità per quei due.
+
+Griglia homepage passata da 4 slot separati (Bora·Vento, Pioggia,
+Livelli fiumi, Livello mare) a 2 slot uniti — libera spazio nella
+griglia a 3 colonne e dovrebbe ridurre il vuoto segnalato. `npx tsc
+--noEmit` pulito dopo le modifiche. Come per il resto di Fase 4, nessuna
+verifica visiva diretta possibile da questa sessione — utile una
+conferma dell'utente dopo il redeploy.
+
 ## Idee future (annotate, non richieste esplicitamente per l'implementazione)
 
 - **Strutture ricettive** (B&B, agriturismi, hotel, ecc.): possibile nuovo modulo/pagina. Da definire quando richiesto: fonte dati (dataset regionale open data? scraping di un portale turistico, come già fatto per "Eventi"? un'API di settore?), se mostrare disponibilità/prezzi in tempo reale o solo un elenco/mappa statico aggiornato periodicamente, e se organizzarlo per provincia o come le stazioni/fermate (elenco piatto con tab). Nessuna ricerca di fonti fatta finora — da avviare quando l'utente vorrà procedere.
@@ -486,11 +525,14 @@ attivo.
 ## Prossimo passo
 
 Fatto un giro di audit + fix responsive (vedi sezione "Fase 4 —
-Responsive" sopra) — **non ancora confermato dall'utente su un telefono
-vero**, dato che questa sessione non ha accesso a un browser reale per
-verificarlo visivamente. Restano da fare le altre 3 aree di Fase 4:
-accessibilità, performance, dominio personalizzato (quest'ultimo non
-eseguibile da qui, è un passaggio nel pannello Vercel/DNS).
+Responsive" sopra) e poi la fusione dei pannelli homepage Bora·Vento +
+Pioggia e Livello mare + Livelli fiumi (vedi sezione sopra) per
+riempire lo spazio bianco segnalato dall'utente — **nessuna delle due
+cose ancora confermata dall'utente su un browser/telefono vero**, dato
+che questa sessione non ha accesso a un browser reale per verificarlo
+visivamente. Restano da fare le altre 3 aree di Fase 4: accessibilità,
+performance, dominio personalizzato (quest'ultimo non eseguibile da
+qui, è un passaggio nel pannello Vercel/DNS).
 
 Il modulo Autobus ha 6 blocchi (Trieste, Udine, Gorizia, Pordenone,
 Trieste Airport, Monfalcone — vedi nota "Autobus" sopra); solo Trieste è
