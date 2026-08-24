@@ -69,7 +69,7 @@ export function WebcamPage() {
       <TopHeader />
       <div className="isobar" />
 
-      <main className="max-w-[1180px] mx-auto px-5 py-6">
+      <main id="contenuto-principale" className="max-w-[1180px] mx-auto px-5 py-6">
         <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1">Webcam regionali</h1>
         <p className="text-ink-faint text-xs font-mono mb-4">
           Immagini fornite da OSMER ARPA FVG (CC BY-SA 3.0) — la validità dei dati non è garantita da ARPA FVG,
@@ -79,6 +79,7 @@ export function WebcamPage() {
         <div className="flex gap-1.5 flex-wrap mb-6">
           <button
             onClick={() => setFiltro("tutte")}
+            aria-pressed={filtro === "tutte"}
             className={`px-3 py-1.5 rounded text-xs font-cond font-semibold uppercase tracking-wide transition-colors ${
               filtro === "tutte" ? "bg-cool text-bg" : "border border-line text-ink-dim hover:text-ink"
             }`}
@@ -89,6 +90,7 @@ export function WebcamPage() {
             <button
               key={p.slug}
               onClick={() => setFiltro(p.slug)}
+              aria-pressed={filtro === p.slug}
               className={`px-3 py-1.5 rounded text-xs font-cond font-semibold uppercase tracking-wide transition-colors ${
                 filtro === p.slug ? "bg-cool text-bg" : "border border-line text-ink-dim hover:text-ink"
               }`}

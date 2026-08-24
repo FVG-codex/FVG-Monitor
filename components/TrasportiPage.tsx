@@ -12,7 +12,7 @@ export function TrasportiPage() {
       <TopHeader />
       <div className="isobar" />
 
-      <main className="max-w-[1180px] mx-auto px-5 py-6">
+      <main id="contenuto-principale" className="max-w-[1180px] mx-auto px-5 py-6">
         <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1">Trasporti</h1>
         <p className="text-ink-faint text-xs font-mono mb-6">
           Voli, treni e autobus in tempo reale — fonte: Trieste Airport, ViaggiaTreno (Trenitalia/RFI), TPL FVG

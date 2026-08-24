@@ -71,7 +71,11 @@ export function ViabilitaPanel() {
     <div>
       {dati.eventi.slice(0, 6).map((e, i) => (
         <div key={i} className={`flex items-center gap-2.5 py-2.5 text-sm ${i > 0 ? "border-t border-line" : ""}`}>
-          <span className={`w-2 h-2 rounded-full flex-shrink-0 ${coloreClass[coloreEvento(e.testo)]}`} />
+          {/* aria-hidden: puramente decorativo — la gravità che il colore
+              rappresenta è già ricavata da parole chiave presenti nel testo
+              dell'evento stesso ("chiuso", "incidente", "coda", ecc.),
+              quindi non porta un'informazione altrimenti assente. */}
+          <span aria-hidden="true" className={`w-2 h-2 rounded-full flex-shrink-0 ${coloreClass[coloreEvento(e.testo)]}`} />
           <span className="font-cond font-semibold min-w-[36px]">{e.autostrada}</span>
           <span className="text-ink-dim flex-1">{e.testo}</span>
         </div>

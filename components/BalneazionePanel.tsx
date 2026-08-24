@@ -66,6 +66,7 @@ export function BalneazionePanel() {
           <button
             key={p.slug}
             onClick={() => setTab(p.slug)}
+            aria-pressed={tab === p.slug}
             className={`px-2.5 py-1 rounded text-xs font-cond font-semibold uppercase tracking-wide transition-colors ${
               tab === p.slug ? "bg-cool text-bg" : "border border-line text-ink-dim hover:text-ink"
             }`}
@@ -108,7 +109,11 @@ export function BalneazionePanel() {
             <div className="mb-3">
               {provincia.punti_sfavorevoli.map((pt) => (
                 <div key={pt.nome} className="flex items-center gap-2 py-1.5 text-sm border-t border-line first:border-t-0">
-                  <span className="w-2 h-2 rounded-full bg-allerta-rossa flex-shrink-0" />
+                  {/* aria-hidden: puntino puramente decorativo — questo
+                      elenco contiene solo punti "sfavorevoli" (vedi il
+                      controllo punti_sfavorevoli.length sopra), non
+                      distingue stati diversi tramite colore. */}
+                  <span aria-hidden="true" className="w-2 h-2 rounded-full bg-allerta-rossa flex-shrink-0" />
                   <span className="text-ink-dim flex-1 min-w-0 truncate">{pt.nome}</span>
                   <span className="font-mono text-[10px] text-ink-faint">{formattaData(pt.data)}</span>
                 </div>

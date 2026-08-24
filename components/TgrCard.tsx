@@ -26,7 +26,9 @@ export function TgrCard() {
         <div className="font-cond font-semibold text-[15px] group-hover:text-cool transition-colors">
           Guarda l&apos;ultimo notiziario
         </div>
-        <div className="text-ink-faint text-xs font-mono mt-1">TGR Rai Friuli Venezia Giulia →</div>
+        <div className="text-ink-faint text-xs font-mono mt-1">
+          TGR Rai Friuli Venezia Giulia →<span className="sr-only"> (si apre in una nuova scheda)</span>
+        </div>
       </div>
     </a>
   );

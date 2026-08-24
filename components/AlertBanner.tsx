@@ -3,7 +3,10 @@ type Livello = "gialla" | "arancione" | "rossa";
 const LIVELLO_STYLES: Record<Livello, string> = {
   gialla: "bg-allerta-gialla text-[#241B04]",
   arancione: "bg-allerta-arancione text-[#241B04]",
-  rossa: "bg-allerta-rossa text-ink",
+  // text-white invece di text-ink: contro allerta-rossa il tono ink
+  // (#EDE8DD, leggermente crema) dava 4.44:1, appena sotto la soglia WCAG
+  // 4.5:1 per testo normale. Bianco puro arriva a 5.42:1.
+  rossa: "bg-allerta-rossa text-white",
 };
 
 /**

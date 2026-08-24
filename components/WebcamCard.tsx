@@ -31,7 +31,10 @@ export function WebcamCard({ webcam }: { webcam: Webcam }) {
         />
       )}
       <div className="p-2">
-        <div className="font-cond font-semibold text-sm leading-tight">{webcam.nome}</div>
+        <div className="font-cond font-semibold text-sm leading-tight">
+          {webcam.nome}
+          {webcam.link && <span className="sr-only"> (si apre in una nuova scheda)</span>}
+        </div>
         <div className="font-mono text-[10px] text-ink-faint mt-0.5">{webcam.zona}</div>
       </div>
     </>

@@ -53,6 +53,7 @@ export function AutobusPanel() {
           <button
             key={b.slug}
             onClick={() => setBloccoSlug(b.slug)}
+            aria-pressed={bloccoSlug === b.slug}
             className={`px-2.5 py-1 rounded text-xs font-cond font-semibold uppercase tracking-wide transition-colors ${
               bloccoSlug === b.slug ? "bg-cool text-bg" : "border border-line text-ink-dim hover:text-ink"
             }`}
@@ -67,6 +68,7 @@ export function AutobusPanel() {
           <button
             key={t}
             onClick={() => setFiltro(t)}
+            aria-pressed={filtro === t}
             className={`px-2.5 py-1 rounded text-xs font-cond font-semibold uppercase tracking-wide transition-colors ${
               filtro === t ? "bg-cool text-bg" : "border border-line text-ink-dim hover:text-ink"
             }`}

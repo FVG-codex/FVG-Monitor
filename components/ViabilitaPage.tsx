@@ -47,7 +47,7 @@ export function ViabilitaPage() {
       <TopHeader />
       <div className="isobar" />
 
-      <main className="max-w-[1180px] mx-auto px-5 py-6">
+      <main id="contenuto-principale" className="max-w-[1180px] mx-auto px-5 py-6">
         <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1">Viabilità</h1>
         <p className="text-ink-faint text-xs font-mono mb-6">
           Eventi di traffico e webcam autostradali — fonte: InfoViaggiando, OSMER ARPA FVG

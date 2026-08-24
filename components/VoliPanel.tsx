@@ -51,6 +51,7 @@ export function VoliPanel() {
           <button
             key={t}
             onClick={() => setTab(t)}
+            aria-pressed={tab === t}
             className={`px-2.5 py-1 rounded text-xs font-cond font-semibold uppercase tracking-wide transition-colors ${
               tab === t ? "bg-cool text-bg" : "border border-line text-ink-dim hover:text-ink"
             }`}
@@ -72,6 +73,12 @@ export function VoliPanel() {
                 <span className="text-ink flex-1 min-w-0 truncate">{v.luogo}</span>
                 <span className={`font-mono text-xs flex-shrink-0 ${ritardo ? "text-warm" : "text-ink-dim"}`}>
                   {v.effettivo || v.previsto}
+                  {/* "rit." testuale, non solo il colore (Fase 4 —
+                      Accessibilità, 24/08/2026, WCAG 1.4.1 Use of Color):
+                      prima il ritardo era indicato SOLO dal colore
+                      dell'orario — invisibile a chi non percepisce quel
+                      colore (es. daltonici, schermo in scala di grigi). */}
+                  {ritardo && <span className="ml-1 lowercase">rit.</span>}
                 </span>
                 {v.note && (
                   <span className="text-cool text-[10px] font-mono flex-shrink-0 hidden sm:inline">{v.note}</span>

@@ -114,7 +114,7 @@ export function MeteoOverview() {
       <p className="text-ink-faint text-xs font-mono border-t border-line pt-3 mt-3">
         Bollettino di domani ({domani?.data_validita ?? "—"}) — fonte:{" "}
         <a href="https://www.meteo.fvg.it" target="_blank" rel="noopener noreferrer" className="text-cool">
-          OSMER ARPA FVG
+          OSMER ARPA FVG<span className="sr-only"> (si apre in una nuova scheda)</span>
         </a>
       </p>
     </div>
@@ -180,7 +180,7 @@ export function MeteoDettaglio({ provincia }: { provincia: ProvinciaSlug }) {
       <p className="text-ink-faint text-xs font-mono border-t border-line pt-3 mt-4">
         Bollettino emesso il {dati.bollettino_emesso} — fonte:{" "}
         <a href="https://www.meteo.fvg.it" target="_blank" rel="noopener noreferrer" className="text-cool">
-          OSMER ARPA FVG
+          OSMER ARPA FVG<span className="sr-only"> (si apre in una nuova scheda)</span>
         </a>
       </p>
     </div>

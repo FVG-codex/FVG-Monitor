@@ -76,6 +76,12 @@ export function No2Panel() {
                     {d.media_oraria_max}
                   </div>
                   <div className="font-mono text-[9px] text-ink-faint">µg/m³</div>
+                  {/* Testo, non solo colore (WCAG 1.4.1, Fase 4 —
+                      Accessibilità 24/08/2026): il superamento soglia era
+                      indicato solo dal colore rosso/verde del numero. */}
+                  {superamento && (
+                    <div className="font-mono text-[8px] text-allerta-rossa uppercase mt-0.5">Oltre soglia</div>
+                  )}
                 </>
               ) : (
                 <div className="font-mono text-xs text-ink-faint">n.d.</div>

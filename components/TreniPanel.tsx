@@ -55,6 +55,7 @@ export function TreniPanel() {
           <button
             key={s.slug}
             onClick={() => setStazioneSlug(s.slug)}
+            aria-pressed={stazioneSlug === s.slug}
             className={`px-2.5 py-1 rounded text-xs font-cond font-semibold uppercase tracking-wide transition-colors ${
               stazioneSlug === s.slug ? "bg-cool text-bg" : "border border-line text-ink-dim hover:text-ink"
             }`}
@@ -69,6 +70,7 @@ export function TreniPanel() {
           <button
             key={t}
             onClick={() => setSottoTab(t)}
+            aria-pressed={sottoTab === t}
             className={`px-2.5 py-1 rounded text-xs font-cond font-semibold uppercase tracking-wide transition-colors ${
               sottoTab === t ? "bg-cool text-bg" : "border border-line text-ink-dim hover:text-ink"
             }`}

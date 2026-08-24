@@ -70,7 +70,7 @@ export function TerremotiPage() {
       <TopHeader />
       <div className="isobar" />
 
-      <main className="max-w-[1180px] mx-auto px-5 py-6">
+      <main id="contenuto-principale" className="max-w-[1180px] mx-auto px-5 py-6">
         <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1">Terremoti</h1>
         <p className="text-ink-faint text-xs font-mono mb-6">
           Eventi sismici in FVG e zone limitrofe, ultimi 30 giorni — fonte: INGV (Istituto Nazionale di Geofisica
@@ -83,7 +83,19 @@ export function TerremotiPage() {
         {stato === "ready" && dati && (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-line border border-line">
             <Panel title="Mappa">
-              <div style={{ height: 420 }} className="rounded overflow-hidden">
+              {/* role="region" + aria-label (Fase 4 — Accessibilità,
+                  24/08/2026): la mappa Leaflet dietro questo div non è
+                  navigabile in modo significativo con uno screen reader —
+                  gli stessi dati sono comunque disponibili per intero,
+                  in forma testuale, nel pannello "Elenco eventi" qui
+                  accanto. L'etichetta evita solo che la regione risulti
+                  anonima. */}
+              <div
+                role="region"
+                aria-label="Mappa dei terremoti in Friuli Venezia Giulia — elenco testuale equivalente nel pannello a fianco"
+                style={{ height: 420 }}
+                className="rounded overflow-hidden"
+              >
                 <TerremotiMap eventi={eventiOrdinati} centro={[46.1, 13.1]} />
               </div>
             </Panel>

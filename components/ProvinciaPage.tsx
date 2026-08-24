@@ -20,7 +20,14 @@ export function ProvinciaPage({ slug }: { slug: ProvinciaSlug }) {
       <TopHeader paginaAttiva={slug} />
       <div className="isobar" />
 
-      <main className="max-w-[1180px] mx-auto px-5 py-6">
+      <main id="contenuto-principale" className="max-w-[1180px] mx-auto px-5 py-6">
+        {/* h1 invisibile (Fase 4 — Accessibilità, 24/08/2026): la pagina
+            non aveva nessun heading — chi naviga con uno screen reader per
+            intestazioni si trovava senza alcun punto di riferimento. Resta
+            solo per schermo/lettori, il design visivo non cambia (il nome
+            provincia è già leggibile nei tab dell'header e nel titolo del
+            pannello "Condizioni live"). */}
+        <h1 className="sr-only">{provincia.nome} — FVG Monitor</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-line border border-line">
           <Panel title="Meteo" linkLabel="OSMER ARPA FVG →" linkHref="https://www.meteo.fvg.it">
             <MeteoDettaglio provincia={slug} />

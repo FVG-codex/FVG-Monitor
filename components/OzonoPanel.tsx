@@ -76,6 +76,11 @@ export function OzonoPanel() {
                     {d.media_mobile_8h_max}
                   </div>
                   <div className="font-mono text-[9px] text-ink-faint">µg/m³</div>
+                  {/* Testo, non solo colore — vedi stessa nota in
+                      No2Panel.tsx (WCAG 1.4.1). */}
+                  {superamento && (
+                    <div className="font-mono text-[8px] text-allerta-rossa uppercase mt-0.5">Oltre soglia</div>
+                  )}
                 </>
               ) : (
                 <div className="font-mono text-xs text-ink-faint">n.d.</div>

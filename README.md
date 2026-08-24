@@ -518,21 +518,103 @@ griglia a 3 colonne e dovrebbe ridurre il vuoto segnalato. `npx tsc
 verifica visiva diretta possibile da questa sessione — utile una
 conferma dell'utente dopo il redeploy.
 
+## Fase 4 — Accessibilità (24/08/2026)
+
+Seconda area di Fase 4 (rifinitura), dopo Responsive. Audit mirato via grep
+sui pattern più a rischio (colore come unico indicatore, bottoni-tab senza
+stato ARIA, mappe/iframe senza etichetta, heading mancanti, contrasto
+colore) invece di una revisione generica. Diversi problemi reali trovati e
+corretti:
+
+1. **Contrasto colore sotto la soglia WCAG AA (4.5:1 testo normale)**,
+   verificato calcolando i rapporti di contrasto reali (non a occhio) per
+   tutte le coppie testo/sfondo della palette "Adriatico notturno":
+   - `ink-faint` (usato per "Fonte:", orari, etichette secondarie in quasi
+     40 componenti) era **3.03:1** contro il sfondo più chiaro (panel-alt)
+     — sotto 4.5:1. Schiarito da `#6B8A87` a `#92AAA8` in
+     `tailwind.config.ts`: un solo valore, l'intero sito ne beneficia.
+   - `warm` (colore ritardi treni/voli, citazione fonte notizie) era
+     **3.58:1**. Schiarito da `#BD5B37` a `#CD7554` — usato solo come testo,
+     mai come sfondo, quindi nessun impatto altrove (cambia di riflesso
+     anche lo sfondo di selezione testo, in meglio).
+   - Chip zona D (`ZoneChip.tsx`) con testo scuro su sfondo arancio-bruno:
+     **3.58:1**. Testo passato a bianco + sfondo scurito leggermente
+     (`#BD5B37` → `#BB5A36`) → 4.54:1.
+   - Badge "Allerta rossa" (`AlertBanner.tsx`/`AlertBannerLive.tsx`) con
+     testo `ink`: **4.44:1**, appena sotto soglia. Passato a testo bianco →
+     5.42:1.
+2. **Colore come unico indicatore di stato (WCAG 1.4.1)**: alcuni valori
+   erano distinguibili SOLO dal colore, senza testo — invisibile a chi non
+   percepisce quel colore (es. daltonismo, schermo in scala di grigi).
+   Aggiunto un'etichetta testuale in ogni caso reale trovato: orario dei
+   voli in ritardo (`VoliPanel.tsx`, aggiunto "rit."), superamento soglia
+   qualità dell'aria (`No2Panel`, `OzonoPanel`, `AriaPanel`, `Pm25Panel`,
+   `AriaQualitaPanel`, aggiunto "Oltre soglia"/"Oltre soglia OMS"). Trovati
+   anche due puntini colorati puramente decorativi (viabilità, balneazione)
+   dove il colore non distingue stati diversi — marcati `aria-hidden` invece
+   di modificarli, dato che l'informazione è già nel testo adiacente.
+3. **Bottoni-tab senza stato comunicato agli screen reader**: tutti i
+   gruppi di bottoni "a scheda" del sito (blocco/filtro autobus, stazione
+   treno, provincia/prodotto radar, tab qualità aria/pollini/balneazione,
+   competizione sport, filtro webcam/meteo — 12 file, ~15 gruppi) erano
+   `<button>` reali ma senza alcun indicatore di selezione per chi non vede
+   il colore di sfondo cambiare. Aggiunto `aria-pressed` ovunque.
+4. **Heading mancanti**: la homepage e le pagine provincia non avevano
+   *nessun* heading (zero `<h1>`, i titoli dei pannelli erano `<span>`) —
+   chi naviga per intestazioni con uno screen reader non aveva alcun punto
+   di riferimento. Aggiunto un `<h1>` invisibile (`sr-only`, design visivo
+   invariato) a `app/page.tsx` e `ProvinciaPage.tsx`; promosso il titolo di
+   ogni `Panel` da `<span>` a `<h2>` in `components/Panel.tsx` (Tailwind
+   preflight azzera già gli stili di default degli heading, quindi
+   l'aspetto non cambia — un'unica modifica in un componente condiviso
+   copre automaticamente un'ottantina di pannelli in tutto il sito).
+5. **Menu hamburger**: si chiudeva solo cliccando fuori o su una voce, non
+   con Esc da tastiera — un utente da tastiera restava bloccato col menu
+   aperto. Aggiunto Esc-per-chiudere con ritorno del focus sul bottone,
+   `aria-controls`, `aria-label` dinamico ("Apri menu"/"Chiudi menu"), e la
+   lista voci ora è un `<nav aria-label="Sezioni extra">` invece di un
+   `<div>` anonimo. Aggiunto anche `aria-current="page"` alla voce attiva
+   nel menu provincia dell'header.
+6. **Skip link mancante**: ogni pagina ripete header + menu + banner
+   allerte — senza un modo di saltarli, un utente da tastiera deve
+   attraversarli ad ogni pagina. Aggiunto un link "Vai al contenuto
+   principale" in `app/layout.tsx`, invisibile finché non riceve il focus,
+   che punta a un `id="contenuto-principale"` ora presente su ogni `<main>`
+   del sito (11 file).
+7. **Mappe Leaflet (Terremoti, Radar meteo) senza etichetta**: aggiunto
+   `role="region"` + `aria-label` al contenitore. Per i terremoti esiste
+   già un elenco testuale equivalente accanto alla mappa (nessuna perdita
+   di informazione); per il radar meteo no — è un'immagine di precipitazione
+   continua, senza un vero equivalente testuale possibile: limite noto,
+   non risolto, documentato qui.
+
+Verificato che le immagini con `<img>` (webcam, radar) avevano già `alt`
+corretto, e che i widget ARPA (iframe) avevano già `title`. Aggiunto anche
+un piccolo avviso "(si apre in una nuova scheda)" (invisibile, solo per
+screen reader) su tutti i link `target="_blank"` del sito (`Panel.tsx` e
+altri 6 componenti), per non spiazzare chi non si aspetta il cambio di
+contesto. `npx tsc --noEmit` pulito dopo tutte le modifiche. **Nessuno
+strumento di controllo automatico reale (es. axe, Lighthouse) disponibile
+da questa sessione** — l'audit è manuale, basato su lettura del codice e
+calcolo dei contrasti colore, non su una scansione automatizzata; utile
+un controllo con axe/Lighthouse o un vero screen reader quando possibile.
+
 ## Idee future (annotate, non richieste esplicitamente per l'implementazione)
 
 - **Strutture ricettive** (B&B, agriturismi, hotel, ecc.): possibile nuovo modulo/pagina. Da definire quando richiesto: fonte dati (dataset regionale open data? scraping di un portale turistico, come già fatto per "Eventi"? un'API di settore?), se mostrare disponibilità/prezzi in tempo reale o solo un elenco/mappa statico aggiornato periodicamente, e se organizzarlo per provincia o come le stazioni/fermate (elenco piatto con tab). Nessuna ricerca di fonti fatta finora — da avviare quando l'utente vorrà procedere.
 
 ## Prossimo passo
 
-Fatto un giro di audit + fix responsive (vedi sezione "Fase 4 —
-Responsive" sopra) e poi la fusione dei pannelli homepage Bora·Vento +
-Pioggia e Livello mare + Livelli fiumi (vedi sezione sopra) per
-riempire lo spazio bianco segnalato dall'utente — **nessuna delle due
-cose ancora confermata dall'utente su un browser/telefono vero**, dato
-che questa sessione non ha accesso a un browser reale per verificarlo
-visivamente. Restano da fare le altre 3 aree di Fase 4: accessibilità,
-performance, dominio personalizzato (quest'ultimo non eseguibile da
-qui, è un passaggio nel pannello Vercel/DNS).
+Fatto un giro di audit + fix responsive, poi la fusione dei pannelli
+homepage Bora·Vento + Pioggia e Livello mare + Livelli fiumi, poi
+l'audit di accessibilità (vedi le tre sezioni "Fase 4" sopra) —
+**nessuna delle tre cose ancora confermata dall'utente su un
+browser/telefono vero o con uno screen reader**, dato che questa
+sessione non ha accesso a nulla di tutto ciò per verificarlo
+direttamente. Resta da fare l'ultima area di Fase 4: performance (il
+dominio personalizzato, `monitor.fvg.it`, è in corso a parte — record
+DNS in configurazione presso il registrar, non ancora verificato su
+Vercel).
 
 Il modulo Autobus ha 6 blocchi (Trieste, Udine, Gorizia, Pordenone,
 Trieste Airport, Monfalcone — vedi nota "Autobus" sopra); solo Trieste è

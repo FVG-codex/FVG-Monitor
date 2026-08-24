@@ -57,6 +57,7 @@ export function NotiziePanel() {
           <a href={n.link} target="_blank" rel="noopener noreferrer" className="block">
             <div className="text-ink text-[15px] leading-snug mb-1.5 hover:text-cool transition-colors">
               {n.titolo}
+              <span className="sr-only"> (si apre in una nuova scheda)</span>
             </div>
           </a>
           <div className="flex gap-2 items-center font-mono text-[10px] text-ink-faint uppercase tracking-wide">

@@ -64,7 +64,10 @@ export function EventiPanel() {
             <div>{e.mese}</div>
           </div>
           <div className="min-w-0">
-            <div className="text-ink text-sm leading-snug">{e.titolo}</div>
+            <div className="text-ink text-sm leading-snug">
+              {e.titolo}
+              <span className="sr-only"> (si apre in una nuova scheda)</span>
+            </div>
             {e.luogo && <div className="text-ink-faint text-xs font-mono mt-0.5">{e.luogo}</div>}
           </div>
         </a>

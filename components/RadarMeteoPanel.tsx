@@ -92,6 +92,7 @@ export function RadarMeteoPanel() {
           <button
             key={p.chiave}
             onClick={() => setProdotto(p.chiave)}
+            aria-pressed={prodotto === p.chiave}
             className={`px-2.5 py-1 rounded text-xs font-cond font-semibold uppercase tracking-wide transition-colors ${
               prodotto === p.chiave ? "bg-cool text-bg" : "border border-line text-ink-dim hover:text-ink"
             }`}
@@ -123,7 +124,16 @@ export function RadarMeteoPanel() {
           const centro: [number, number] = [(minLat + maxLat) / 2, (minLon + maxLon) / 2];
           return (
             <div>
-              <div className="rounded overflow-hidden" style={{ height: 320 }}>
+              {/* role="region" + aria-label: vedi stessa nota in
+                  TerremotiPage.tsx. Qui non esiste un elenco testuale
+                  equivalente (è un'immagine radar continua, non un elenco
+                  di eventi discreti) — limite noto, documentato nel README. */}
+              <div
+                role="region"
+                aria-label={`Radar meteo — ${attivo.label}`}
+                className="rounded overflow-hidden"
+                style={{ height: 320 }}
+              >
                 <RadarMeteoMap immagine={corrente.immagine} bounds={bounds} centro={centro} />
               </div>
               <p className="text-ink-faint text-[10px] font-mono mt-2">

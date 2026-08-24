@@ -36,11 +36,12 @@ export function TopHeader({ paginaAttiva }: { paginaAttiva?: "regione" | string 
           </Link>
         </div>
 
-        <nav className="flex gap-0.5 font-cond font-semibold text-sm flex-wrap">
+        <nav aria-label="Navigazione per provincia" className="flex gap-0.5 font-cond font-semibold text-sm flex-wrap">
           {voci.map((voce) => (
             <Link
               key={voce.key}
               href={voce.href}
+              aria-current={voce.key === paginaAttiva ? "page" : undefined}
               className={`px-3 py-1.5 rounded border transition-colors ${
                 voce.key === paginaAttiva
                   ? "bg-cool border-cool text-bg"

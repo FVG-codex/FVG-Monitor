@@ -28,7 +28,11 @@ export default function Home() {
         <AlertBannerLive />
       </div>
 
-      <main className="max-w-[1180px] mx-auto px-5 py-6">
+      <main id="contenuto-principale" className="max-w-[1180px] mx-auto px-5 py-6">
+        {/* h1 invisibile: vedi stessa nota in ProvinciaPage.tsx — la
+            homepage non aveva nessun heading, solo il logo testuale
+            nell'header (non marcato come h1). Design visivo invariato. */}
+        <h1 className="sr-only">FVG Monitor — dati in tempo reale per il Friuli Venezia Giulia</h1>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-line border border-line">
           <Panel title="Meteo · Le 4 province" linkLabel="OSMER ARPA FVG →" linkHref="https://www.meteo.fvg.it" span={2}>
             <MeteoOverview />

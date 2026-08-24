@@ -6,7 +6,9 @@ import { fetchTutteLeAllerte, type AllertaSingola } from "@/lib/allerte";
 const LIVELLO_STYLES: Record<string, string> = {
   gialla: "bg-allerta-gialla text-[#241B04]",
   arancione: "bg-allerta-arancione text-[#241B04]",
-  rossa: "bg-allerta-rossa text-ink",
+  // text-white invece di text-ink: vedi stessa nota in AlertBanner.tsx
+  // (componente gemello) — 4.44:1 con text-ink, 5.42:1 con bianco puro.
+  rossa: "bg-allerta-rossa text-white",
 };
 
 export function AlertBannerLive() {
@@ -50,7 +52,7 @@ export function AlertBannerLive() {
       </span>
       <span className="text-ink-dim min-w-0">{banner.messaggio}</span>
       <a href={banner.link} target="_blank" rel="noopener noreferrer" className="ml-auto text-cool text-sm flex-shrink-0 whitespace-nowrap">
-        Dettagli ufficiali →
+        Dettagli ufficiali →<span className="sr-only"> (si apre in una nuova scheda)</span>
       </a>
     </div>
   );

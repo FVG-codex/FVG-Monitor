@@ -98,7 +98,7 @@ export function BaseballPage() {
       <TopHeader />
       <div className="isobar" />
 
-      <main className="max-w-[1180px] mx-auto px-5 py-6">
+      <main id="contenuto-principale" className="max-w-[1180px] mx-auto px-5 py-6">
         <Link href="/sport" className="text-cool text-xs font-mono hover:underline">
           ← Sport
         </Link>
@@ -114,6 +114,7 @@ export function BaseballPage() {
             <button
               key={c.slug}
               onClick={() => setCompetizione(c.slug)}
+              aria-pressed={competizione === c.slug}
               className={`px-3 py-1.5 rounded text-xs font-cond font-semibold uppercase tracking-wide transition-colors ${
                 competizione === c.slug ? "bg-cool text-bg" : "border border-line text-ink-dim hover:text-ink"
               }`}

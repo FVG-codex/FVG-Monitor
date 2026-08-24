@@ -60,6 +60,7 @@ export function PolliniPanel() {
           <button
             key={p.slug}
             onClick={() => setTab(p.slug)}
+            aria-pressed={tab === p.slug}
             className={`px-2.5 py-1 rounded text-xs font-cond font-semibold uppercase tracking-wide transition-colors ${
               tab === p.slug ? "bg-cool text-bg" : "border border-line text-ink-dim hover:text-ink"
             }`}

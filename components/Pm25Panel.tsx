@@ -76,6 +76,12 @@ export function Pm25Panel() {
                     {d.media_giornaliera}
                   </div>
                   <div className="font-mono text-[9px] text-ink-faint">µg/m³</div>
+                  {/* Testo, non solo colore — vedi stessa nota in
+                      No2Panel.tsx (WCAG 1.4.1). Qui la soglia è quella OMS
+                      (superamento_oms), non quella di legge. */}
+                  {superamento && (
+                    <div className="font-mono text-[8px] text-allerta-rossa uppercase mt-0.5">Oltre soglia OMS</div>
+                  )}
                 </>
               ) : (
                 <div className="font-mono text-xs text-ink-faint">n.d.</div>
