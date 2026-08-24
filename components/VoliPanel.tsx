@@ -69,7 +69,7 @@ export function VoliPanel() {
             return (
               <div key={i} className={`flex items-center gap-3 py-2 text-sm ${i > 0 ? "border-t border-line" : ""}`}>
                 <span className="font-mono text-xs text-ink-faint w-16 flex-shrink-0">{v.volo}</span>
-                <span className="text-ink flex-1">{v.luogo}</span>
+                <span className="text-ink flex-1 min-w-0 truncate">{v.luogo}</span>
                 <span className={`font-mono text-xs flex-shrink-0 ${ritardo ? "text-warm" : "text-ink-dim"}`}>
                   {v.effettivo || v.previsto}
                 </span>

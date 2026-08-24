@@ -39,12 +39,12 @@ export function AllertaZonePanel() {
   }
 
   return (
-    <div className="flex gap-1.5">
+    <div className="flex flex-wrap gap-1.5">
       {PROVINCE_LIST.map((p) => {
         const d = dati[p.slug];
         const livelloMax = d?.allerte[0]?.livello ?? 0;
         return (
-          <div key={p.slug} className="flex-1 border border-line rounded p-2 text-center">
+          <div key={p.slug} className="flex-1 min-w-[72px] border border-line rounded p-2 text-center">
             {d?.zona ? <ZoneChip zone={d.zona} size="md" /> : <span className="text-ink-faint text-xs">—</span>}
             <div className="font-mono text-[9px] uppercase text-ink-faint mt-1.5">{p.nome}</div>
             <div className="font-mono text-[9px] uppercase text-ink-faint">

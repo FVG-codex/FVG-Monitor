@@ -45,11 +45,11 @@ export function FiumeOverview() {
   }
 
   return (
-    <div className="flex gap-1.5">
+    <div className="flex flex-wrap gap-1.5">
       {PROVINCE_LIST.map((p) => {
         const d = datiPerProvincia[p.slug];
         return (
-          <div key={p.slug} className="flex-1 border border-line rounded p-2 text-center">
+          <div key={p.slug} className="flex-1 min-w-[72px] border border-line rounded p-2 text-center">
             <div className="font-cond font-semibold text-xs mb-1">{p.nome}</div>
             {d ? (
               <>

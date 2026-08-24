@@ -95,7 +95,11 @@ export function TreniPanel() {
               <span className="font-mono text-xs text-ink-faint w-20 flex-shrink-0">
                 {t.categoria} {t.numeroTreno}
               </span>
-              <span className="text-ink flex-1 truncate">{t.luogo ?? "—"}</span>
+              {/* min-w-0 è necessario perché "truncate" funzioni davvero
+                  dentro un flex item: senza, il browser usa la larghezza
+                  del testo non troncato come larghezza minima e la riga
+                  trabocca invece di accorciarsi (bug comune di flexbox) */}
+              <span className="text-ink flex-1 min-w-0 truncate">{t.luogo ?? "—"}</span>
               <span className="font-mono text-xs text-ink-dim flex-shrink-0">{t.orarioTesto ?? "—"}</span>
               {t.binario && (
                 <span className="font-mono text-[10px] text-ink-faint flex-shrink-0 hidden sm:inline">bin. {t.binario}</span>

@@ -109,7 +109,7 @@ export function BalneazionePanel() {
               {provincia.punti_sfavorevoli.map((pt) => (
                 <div key={pt.nome} className="flex items-center gap-2 py-1.5 text-sm border-t border-line first:border-t-0">
                   <span className="w-2 h-2 rounded-full bg-allerta-rossa flex-shrink-0" />
-                  <span className="text-ink-dim flex-1">{pt.nome}</span>
+                  <span className="text-ink-dim flex-1 min-w-0 truncate">{pt.nome}</span>
                   <span className="font-mono text-[10px] text-ink-faint">{formattaData(pt.data)}</span>
                 </div>
               ))}

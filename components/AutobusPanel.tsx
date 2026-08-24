@@ -92,7 +92,10 @@ export function AutobusPanel() {
             <div key={`${p.linea}-${p.corsa}-${p.fermataCodice}-${i}`} className={`py-2 text-sm ${i > 0 ? "border-t border-line" : ""}`}>
               <div className="flex items-center gap-3">
                 <span className="font-mono text-xs text-ink-faint w-14 flex-shrink-0">{p.linea}</span>
-                <span className="text-ink flex-1 truncate">
+                {/* min-w-0 è necessario perché "truncate" funzioni
+                    davvero dentro un flex item — vedi stessa nota in
+                    TreniPanel.tsx */}
+                <span className="text-ink flex-1 min-w-0 truncate">
                   {p.tipo === "partenza" ? "per " : "da "}
                   {p.luogo ?? "—"}
                 </span>

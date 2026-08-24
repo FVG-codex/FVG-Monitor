@@ -431,20 +431,73 @@ motivata e documentata al pattern standard "sempre proxy server-side"
 (che resta valido per Ferrovie, dove funziona). Screenshot dell'utente:
 pannello Autobus popolato con corse reali (G51R/G51A per/da Aeroporto).
 
+## Fase 4 — Responsive (24/08/2026)
+
+Audit mirato su tutti i componenti (`components/*.tsx`), cercando pattern
+che possono rompersi su schermi stretti (telefono) anche se sembrano a
+posto su desktop. Due bug reali trovati e corretti, non solo rifiniture
+estetiche:
+
+1. **`truncate` dentro un flex item senza `min-w-0` non funziona
+   davvero** — bug classico di flexbox: un elemento flex ha di default
+   `min-width: auto`, che per un testo con `white-space: nowrap` (quello
+   che `truncate` imposta) equivale alla larghezza del testo NON
+   troncato. Senza `min-w-0` esplicito, quella larghezza minima vince e
+   la riga trabocca invece di accorciarsi con "…". Trovato e corretto in
+   `TreniPanel.tsx` e `AutobusPanel.tsx` (righe con nome
+   stazione/destinazione lunghi accanto a orario/badge a larghezza
+   fissa — esattamente il caso che lo fa scattare). Applicato lo stesso
+   trattamento (aggiunto `truncate min-w-0`, prima assente del tutto) a
+   `VoliPanel.tsx` e `BalneazionePanel.tsx` per coerenza.
+2. **Righe "a 4 riquadri per provincia" senza `flex-wrap`** — pattern
+   ripetuto in 8 componenti (`AriaQualitaPanel`, `No2Panel`,
+   `OzonoPanel`, `AriaPanel`, `Pm25Panel`, `AllertaZonePanel`,
+   `FiumeOverview`, `MarePanel`): 4 riquadri `flex-1` (3 per
+   `MarePanel`) in una riga senza `flex-wrap`. Su un telefono stretto lo
+   spazio disponibile dentro un pannello (~220-240px dopo i padding) è
+   inferiore alla larghezza minima che 4 riquadri con "Pordenone" dentro
+   richiedono — senza `flex-wrap` traboccano invece di andare a capo su
+   due righe. Aggiunto `flex-wrap` al contenitore e `min-w-[72px]` a
+   ogni riquadro in tutti e 8 i file.
+3. **Banner allerta (`AlertBannerLive.tsx`, quello attivo in homepage)
+   senza `flex-wrap`**: badge livello + link "Dettagli ufficiali →" sono
+   entrambi `nowrap` e da soli possono occupare quasi tutta la larghezza
+   su un telefono — senza `flex-wrap` il testo del messaggio d'allerta
+   (potenzialmente lungo) avrebbe fatto traboccare l'intero banner in
+   orizzontale. Corretto lo stesso in `AlertBanner.tsx` (variante
+   gemella, non attualmente importata da nessuna pagina, ma tenuta
+   coerente).
+
+Verificato che i grid a livello di pagina (`grid grid-cols-1 md:...`) e
+le tabelle (classifiche sportive, già dentro `overflow-x-auto`) erano
+già corretti — nessuna modifica necessaria lì. `npx tsc --noEmit`
+pulito dopo tutte le modifiche. **Nessun browser reale disponibile da
+questa sessione per una verifica visiva diretta** (stesso limite delle
+sessioni precedenti) — i fix sono basati su un'analisi del CSS/flexbox
+risultante, non su uno screenshot; utile una conferma dell'utente su un
+telefono vero se possibile, specialmente sul pannello Autobus (quello
+con più elementi in riga) e sul banner allerta la prossima volta che è
+attivo.
+
 ## Idee future (annotate, non richieste esplicitamente per l'implementazione)
 
 - **Strutture ricettive** (B&B, agriturismi, hotel, ecc.): possibile nuovo modulo/pagina. Da definire quando richiesto: fonte dati (dataset regionale open data? scraping di un portale turistico, come già fatto per "Eventi"? un'API di settore?), se mostrare disponibilità/prezzi in tempo reale o solo un elenco/mappa statico aggiornato periodicamente, e se organizzarlo per provincia o come le stazioni/fermate (elenco piatto con tab). Nessuna ricerca di fonti fatta finora — da avviare quando l'utente vorrà procedere.
 
 ## Prossimo passo
 
-Il modulo Autobus ha ora 6 blocchi (Trieste, Udine, Gorizia, Pordenone,
-Trieste Airport, Monfalcone — vedi nota "Autobus" sopra), consegnato ma
-**non ancora confermato dall'utente in produzione**. Il modulo Ferrovie
-funziona (dati raccolti correttamente, stati "cancellato"/"non partito"
-distinti, tutte le 7 stazioni confermate). Idea annotata per il futuro
-(non richiesta per l'implementazione): modulo Strutture ricettive
-(B&B ecc.). Altri blocchi/fermate autobus verranno aggiunti in futuro
-su richiesta esplicita dell'utente, stesso metodo di verifica (script
-dalla console del browser). Oppure Fase 4 del piano: rifinitura
-(responsive, accessibilità, performance), dominio personalizzato — vedi
-piano di lavoro per il dettaglio.
+Fatto un giro di audit + fix responsive (vedi sezione "Fase 4 —
+Responsive" sopra) — **non ancora confermato dall'utente su un telefono
+vero**, dato che questa sessione non ha accesso a un browser reale per
+verificarlo visivamente. Restano da fare le altre 3 aree di Fase 4:
+accessibilità, performance, dominio personalizzato (quest'ultimo non
+eseguibile da qui, è un passaggio nel pannello Vercel/DNS).
+
+Il modulo Autobus ha 6 blocchi (Trieste, Udine, Gorizia, Pordenone,
+Trieste Airport, Monfalcone — vedi nota "Autobus" sopra); solo Trieste è
+stato confermato in produzione finora. Il modulo Ferrovie funziona (dati
+raccolti correttamente, stati "cancellato"/"non partito" distinti, tutte
+le 7 stazioni confermate). Idea annotata per il futuro (non richiesta
+per l'implementazione): modulo Strutture ricettive (B&B ecc.). Altri
+blocchi/fermate autobus verranno aggiunti in futuro su richiesta
+esplicita dell'utente, stesso metodo di verifica (script dalla console
+del browser).

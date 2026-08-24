@@ -59,12 +59,12 @@ export function AriaPanel() {
 
   return (
     <div>
-      <div className="flex gap-1.5 mb-3">
+      <div className="flex flex-wrap gap-1.5 mb-3">
         {PROVINCE_LIST.map((p) => {
           const d = dati.per_provincia[p.slug];
           const superamento = d?.superamento;
           return (
-            <div key={p.slug} className="flex-1 border border-line rounded p-2 text-center">
+            <div key={p.slug} className="flex-1 min-w-[72px] border border-line rounded p-2 text-center">
               <div className="font-cond font-semibold text-xs mb-1">{p.nome}</div>
               {d && d.media_giornaliera !== null ? (
                 <>

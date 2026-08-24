@@ -99,13 +99,13 @@ export function AriaQualitaPanel() {
         <p className="text-ink-faint text-sm font-mono">Dati {attivo.label} non disponibili al momento.</p>
       ) : (
         <>
-          <div className="flex gap-1.5 mb-3">
+          <div className="flex flex-wrap gap-1.5 mb-3">
             {PROVINCE_LIST.map((p) => {
               const d = dati.per_provincia[p.slug];
               const valore = d ? (d[attivo.campoValore] as number | null) : null;
               const superamento = d ? (d[attivo.campoSuperamento] as boolean | null) : null;
               return (
-                <div key={p.slug} className="flex-1 border border-line rounded p-2 text-center">
+                <div key={p.slug} className="flex-1 min-w-[72px] border border-line rounded p-2 text-center">
                   <div className="font-cond font-semibold text-xs mb-1">{p.nome}</div>
                   {valore !== null && valore !== undefined ? (
                     <>
