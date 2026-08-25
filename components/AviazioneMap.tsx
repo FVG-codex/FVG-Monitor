@@ -13,6 +13,7 @@ const COLORE_CATEGORIA: Record<CategoriaAviostruttura, string> = {
   "aeroporto-militare": "#C1382E", // allerta.rossa
   aviosuperficie: "#6FA9E0", // zone.a
   "campo-volo": "#E8B93E", // zone.c
+  elisuperficie: "#CD7554", // warm
   "pista-dismessa": "#92AAA8", // ink-faint — dismessa, colore neutro/spento
 };
 
@@ -48,6 +49,14 @@ export function AviazioneMap({ strutture, centro }: { strutture: Aviostruttura[]
                 ICAO: {s.icao}
               </>
             )}
+            {s.pisteDettaglio &&
+              s.pisteDettaglio.map((p, pi) => (
+                <div key={pi}>
+                  Pista {p.orientamento}
+                  {p.lunghezzaM !== null ? ` · ${p.lunghezzaM} m` : ""}
+                  {p.pavimentazione ? ` · ${p.pavimentazione}` : ""}
+                </div>
+              ))}
           </Popup>
         </CircleMarker>
       ))}

@@ -19,6 +19,7 @@ const FILTRI: { chiave: CategoriaAviostruttura | "tutte"; etichetta: string }[] 
   { chiave: "aeroporto-militare", etichetta: "Aeroporti militari" },
   { chiave: "aviosuperficie", etichetta: "Aviosuperfici" },
   { chiave: "campo-volo", etichetta: "Campi volo" },
+  { chiave: "elisuperficie", etichetta: "Elisuperfici" },
   { chiave: "pista-dismessa", etichetta: "Piste dismesse" },
 ];
 
@@ -41,10 +42,11 @@ export function AviazionePage() {
       <main id="contenuto-principale" className="max-w-[1180px] mx-auto px-5 py-6">
         <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1">Aviazione</h1>
         <p className="text-ink-faint text-xs font-mono mb-4">
-          Aeroporti, aviosuperfici e campi volo del Friuli Venezia Giulia ({AVIOSTRUTTURE.length} strutture) —
-          fonte: WebAAI (webaai.it). Elenco statico, aggiornato periodicamente: molti dati della fonte (contatti,
-          orari, dettagli pista, carte di avvicinamento) richiedono un abbonamento a pagamento e non sono inclusi
-          qui — solo i campi pubblicamente disponibili.
+          Aeroporti, aviosuperfici, campi volo ed elisuperfici del Friuli Venezia Giulia ({AVIOSTRUTTURE.length}{" "}
+          strutture) — fonti: WebAAI (webaai.it) per l&apos;anagrafica, QNH Fly (qnhfly.com) per orientamento,
+          lunghezza e pavimentazione delle piste dove disponibili. Elenco statico, aggiornato periodicamente:
+          alcuni dati (contatti, orari, frequenze, carte di avvicinamento) restano dietro un abbonamento a
+          pagamento e non sono inclusi qui.
         </p>
 
         <div className="flex gap-1.5 flex-wrap mb-6">
@@ -105,16 +107,39 @@ export function AviazionePage() {
                         {s.quotaM !== null ? `Quota ${s.quotaM} m` : ""}
                       </div>
                     )}
-                    {s.urlFonte && (
-                      <a
-                        href={s.urlFonte}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="font-mono text-[10px] text-cool hover:underline mt-1 inline-block"
-                      >
-                        Scheda su webaai.it →<span className="sr-only"> (si apre in una nuova scheda)</span>
-                      </a>
+                    {s.pisteDettaglio && s.pisteDettaglio.length > 0 && (
+                      <div className="font-mono text-[10px] text-ink-dim mt-1">
+                        {s.pisteDettaglio.map((p, pi) => (
+                          <div key={pi}>
+                            Pista {p.orientamento}
+                            {p.lunghezzaM !== null ? ` · ${p.lunghezzaM} m` : ""}
+                            {p.pavimentazione ? ` · ${p.pavimentazione}` : ""}
+                          </div>
+                        ))}
+                      </div>
                     )}
+                    <div className="flex flex-wrap gap-x-3 mt-1">
+                      {s.urlFonte && (
+                        <a
+                          href={s.urlFonte}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-mono text-[10px] text-cool hover:underline inline-block"
+                        >
+                          Scheda →<span className="sr-only"> (si apre in una nuova scheda)</span>
+                        </a>
+                      )}
+                      {s.fonteDatiPista && s.fonteDatiPista !== s.urlFonte && (
+                        <a
+                          href={s.fonteDatiPista}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-mono text-[10px] text-cool hover:underline inline-block"
+                        >
+                          Dati pista (qnhfly.com) →<span className="sr-only"> (si apre in una nuova scheda)</span>
+                        </a>
+                      )}
+                    </div>
                   </div>
                 ))}
               </div>

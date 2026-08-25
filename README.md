@@ -92,7 +92,7 @@ componente React che legge da Supabase con lo stesso nome.
 | **TGR** | — | Nessun feed trovato, link statico alla sezione ufficiale |
 | **Trieste Airport** | Scraping HTML triesteairport.it | Stesso approccio degli Eventi, stessa fragilità |
 | **Registro modifiche** — pagina dedicata `/changelog`, link nel footer di ogni pagina | Dati statici, `lib/changelog.ts` | Cronologia di ciò che è cambiato sul sito, più recente in cima — vedi nota "Registro modifiche" sotto per il promemoria di aggiornamento |
-| **Aviazione** — pagina dedicata `/aviazione` (nel menù ad amburger) | Dati statici raccolti da webaai.it, `lib/aviostrutture.ts` | 27 aviostrutture FVG (aeroporti, aviosuperfici, campi volo), mappa + elenco filtrabile per categoria — vedi nota "Aviazione" sotto per i limiti (dati premium esclusi, ecc.) |
+| **Aviazione** — pagina dedicata `/aviazione` (nel menù ad amburger) | Dati statici raccolti da webaai.it + qnhfly.com, `lib/aviostrutture.ts` | 32 aviostrutture FVG (aeroporti, aviosuperfici, campi volo, elisuperfici), mappa + elenco filtrabile per categoria, con orientamento/lunghezza/pavimentazione pista dove disponibili — vedi note "Aviazione" sotto per i limiti (dati premium esclusi, ecc.) |
 
 **Abbandonato**: trasporto pubblico TPL FVG — nessun endpoint pubblico per il
 tracciamento GPS trovato (verificato via devtools/WebSocket), solo l'elenco
@@ -786,6 +786,77 @@ amburger (`MenuHamburger.tsx`).
 `npx tsc --noEmit` pulito. Non ancora testato in produzione — servirà
 una verifica visiva su `/aviazione` (posizione dei marker sulla mappa,
 filtri, elenco).
+
+## Aviazione — dati pista ed elisuperfici (25/08/2026)
+
+Richiesta di follow-up dell'utente: usare il portale ufficiale ENAC
+(`avio-superfici.enac.gov.it`) come fonte, e recuperare orientamento
+pista (QFU), lunghezza pista e coordinate per ogni struttura (esempio
+dato dall'utente: Casarsa della Delizia, "06/24", "350 metri").
+
+**Il portale ENAC è stato scartato come fonte**: è un'applicazione
+JS-dipendente (nessun modo di esprimere il filtro per regione via
+parametri URL — tentati senza successo `?regione_id=`, `?province=`,
+`/api/public/surfaces?...`), bloccata dalla allowlist di rete di questo
+sandbox come gli altri host già noti (`comitati.fisi.org`, host Tennis,
+`webaai.it`, `qnhfly.com` — tutti restituiscono `403` a un `curl`
+diretto, aggirabile solo con WebFetch). Più importante: le pagine di
+dettaglio raggiungibili via WebFetch (`/it/public/surface/show/{id}`)
+dichiarano esplicitamente che i dati tecnici (coordinate, comune,
+provincia, orientamento/lunghezza pista) "sono pubblicati e
+consultabili, previa registrazione, al seguente link www.webaai.it" —
+cioè ENAC stesso rimanda al portale già usato (webaai.it) con la stessa
+barriera di registrazione per questi campi. Non una fonte alternativa
+gratuita.
+
+**Trovata una fonte alternativa gratuita per i dati di pista**:
+`qnhfly.com`, un sito italiano di campi volo/aviosuperfici, pubblica
+senza registrazione orientamento (QFU), lunghezza e pavimentazione della
+pista, oltre a coordinate e quota — dati che su webaai.it sono dietro
+paywall "Premium". Verificato leggendo 22 schede di dettaglio via
+WebFetch (elenco FVG: `qnhfly.com/en/airfields/06/friuli-venezia giulia`)
+e incrociandole per comune/nome con le strutture già presenti nel
+dataset. Copre solo le aviosuperfici/campi volo civili minori — non gli
+aeroporti militari (Aviano, Rivolto, Casarsa della Delizia) né alcune
+strutture minori assenti dal suo elenco (AS77, Piancada, Pravisdomini,
+"Aviosuperficie Enemonzo").
+
+**"33 vs 27" — parzialmente risolto**: cercando anche la pagina separata
+"elisuperfici" di webaai.it (`webaai.it/it/elistrutture/friuli_venezia_giulia`,
+non letta nella raccolta iniziale) e incrociando l'elenco di qnhfly.com,
+sono emerse 5 strutture non presenti nell'elenco "aviostrutture"
+originale: 2 campi volo civili (Pajaro Loco a Sesto al Reghena,
+Aerocampo Prosecco a Sgonico — prima struttura di questo dataset in
+provincia di **Trieste**, aggiunta `"TS"` al tipo `provincia`) + 3
+elisuperfici (Elifriulia Ronchi, Elifriulia Tolmezzo, Mondschein a
+Sappada). Nuovo totale: **32 strutture** (da 27) — 1 in meno del "33"
+dichiarato dalla fonte, non risolto del tutto: nessuna fonte pubblica
+elenca con certezza una 33ª struttura.
+
+**Casarsa della Delizia — dato dell'utente non riprodotto**:
+l'orientamento "06/24" e la lunghezza "350 metri" indicati come esempio
+dall'utente non sono stati trovati in nessuna fonte pubblica verificata
+per questa specifica struttura (webaai.it: paywall; ENAC: rimanda a
+webaai.it; qnhfly.com: non copre installazioni militari; OurAirports:
+"No runway information available" per LIDK; airportguide.com e
+SkyVector: nessun dato di pista pubblicato). Le coordinate fornite
+dall'utente sono state verificate e confermano quelle già presenti nel
+dataset (differenza sotto i 30 metri tra le fonti incrociate). Il campo
+`pisteDettaglio` per questa struttura resta `null` finché l'utente non
+indica la fonte specifica del dato.
+
+**Modifiche al tipo `Aviostruttura`** (`lib/aviostrutture.ts`): nuovo
+tipo `PistaDettaglio` (`orientamento`, `lunghezzaM`, `pavimentazione`) e
+campo `pisteDettaglio: PistaDettaglio[] | null` (una voce per pista, per
+gestire i casi con più di una pista come Gorizia o AVRO Rivoli di
+Osoppo), più `fonteDatiPista: string | null` (URL della scheda
+qnhfly.com usata, per attribuzione). Categoria `elisuperficie` aggiunta
+a `CategoriaAviostruttura`. `AviazionePage.tsx` mostra i dati di pista
+per struttura e un filtro "Elisuperfici"; `AviazioneMap.tsx` ha un
+nuovo colore per la categoria (`warm`, già verificato per contrasto) e
+mostra i dati di pista nel popup.
+
+`npx tsc --noEmit` pulito. Non ancora testato in produzione.
 
 ## Fase 4 — Responsive (24/08/2026)
 

@@ -22,6 +22,14 @@ export type VoceChangelog = {
 export const CHANGELOG: VoceChangelog[] = [
   {
     data: "25/08/2026",
+    titolo: "Aviazione — orientamento e lunghezza pista, elisuperfici",
+    dettagli: [
+      "Aggiunti orientamento (QFU), lunghezza e pavimentazione della pista per 22 delle strutture già presenti, fonte QNH Fly.",
+      "Aggiunte 2 aviosuperfici/campi volo e 3 elisuperfici non ancora censite, per un totale di 32 strutture (da 27).",
+    ],
+  },
+  {
+    data: "25/08/2026",
     titolo: "Aviazione — nuova sezione, database aviostrutture FVG",
     dettagli: [
       "Aggiunta la sezione Aviazione (/aviazione): mappa ed elenco filtrabile di 27 aeroporti, aviosuperfici e campi volo del Friuli Venezia Giulia, fonte WebAAI.",
