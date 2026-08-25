@@ -1730,6 +1730,197 @@ async function ingestTennis() {
 
 // ---------------------------------------------------------------------
 
+// ---------------------------------------------------------------------
+// SCI — calendario gare FISI (Federazione Italiana Sport Invernali),
+// Comitato Friuli-Venezia Giulia. A differenza di Calcio/Basket/
+// Baseball/Tennis, qui NON esiste una classifica di campionato: sono
+// gare singole (fondo, salto, combinata nordica, biathlon, alpino,
+// ecc.) — stesso tipo di modello dati discusso e mai implementato per
+// il Nuoto (vedi "Idee future" nel doc di progetto), ma qui la fonte
+// è stata effettivamente sbloccata.
+//
+// Endpoint scoperto dall'utente via DevTools → Network → "Copia come
+// cURL" (stesso metodo del Tennis):
+//
+//   GET https://comitati.fisi.org/wp-admin/admin-ajax.php
+//       ?action=competizioni_get_all
+//       &offset=0&limit=10
+//       &url=https://comitati.fisi.org/friuli-venezia-giulia/calendario/?d=
+//       &idStagione=2026&dataInizio=01/06/2026&dataFine=30/05/2027
+//
+// Azione AJAX di WordPress (comitati.fisi.org gira su WordPress — solo
+// le route REST standard sono documentate su /wp-json/, questa azione
+// custom non compare lì). Risposta: array di gare, es.
+//   { disciplina, dataInizio, comune, provincia, nazione, nome,
+//     formato, livello, status, idCompetizione, logo_url }
+//
+// NOTE (dedotte da UNA sola risposta reale catturata il 25/08/2026,
+// non da uno script di test sistematico come per calcio/tennis — vedi
+// limiti sotto):
+//
+// 1) Il filtro geografico (FVG) non passa per un id numerico come nel
+//    Tennis (`id_regione`) — passa per il parametro `url`, che deve
+//    corrispondere alla pagina calendario del comitato regionale
+//    (`FISI_CALENDARIO_URL` sotto). Non verificato cosa succeda con un
+//    valore diverso — non necessario dato che l'unico valore che ci
+//    serve è noto e funzionante.
+//
+// 2) `idStagione`/`dataInizio`/`dataFine`: la richiesta reale catturata
+//    aveva idStagione=2026 abbinato a dataInizio=01/06/2026 e
+//    dataFine=30/05/2027 — dedotto che la "stagione sciistica" è
+//    etichettata con l'anno di inizio e va da giugno a maggio
+//    dell'anno successivo (convenzione tipica dello sport invernale,
+//    non documentata esplicitamente da FISI). Calcolata **dinamicamente**
+//    a ogni esecuzione (`stagioneScisticaCorrente()`) invece di essere
+//    scritta a mano come `COMPETIZIONI_CALCIO` (che richiede un
+//    promemoria annuale manuale, vedi nota su calcio in README) — qui
+//    non serve nessun intervento a ogni cambio stagione.
+//
+// 3) Solo 4 gare estive/autunnali trovate nel primo test (Sci di fondo,
+//    Combinata Nordica, Salto con gli sci, Biathlon — a fine agosto la
+//    stagione invernale vera e propria, dicembre-marzo, non è ancora
+//    popolata nel calendario). Non un bug: il calendario gare si
+//    riempie progressivamente nel corso della stagione man mano che le
+//    società organizzatrici iscrivono le gare — atteso che la lista
+//    cresca da qui a dicembre.
+//
+// 4) Solo lo status "In Calendario" è stato osservato — altri valori
+//    possibili (es. gara svolta, annullata) non noti. Mostrato così
+//    com'è nel frontend, nessuna logica di colore/interpretazione
+//    costruita su valori mai visti.
+//
+// 5) Paginazione (`offset`/`limit`) non stata testata con più di una
+//    pagina reale (il campione aveva solo 4 gare, meno del limit=10
+//    richiesto). Per lo stesso motivo del bug duplicati sul Tennis
+//    (vedi sopra), la paginazione qui NON si ferma in base alla
+//    lunghezza della pagina rispetto a `limit` — si ferma solo su
+//    pagina vuota, con deduplica per `idCompetizione` applicata in via
+//    preventiva (lezione appresa dal Tennis, non aspettata un bug
+//    analogo per confermarla).
+//
+// 6) Nessun endpoint di dettaglio/risultati per singola gara scoperto
+//    — questa azione restituisce solo il calendario (data, luogo,
+//    nome, livello, stato), non le classifiche di gara. Se in futuro
+//    servissero i risultati, va ripetuta l'indagine DevTools su una
+//    pagina di dettaglio gara.
+// ---------------------------------------------------------------------
+
+const FISI_AJAX_URL = "https://comitati.fisi.org/wp-admin/admin-ajax.php";
+const FISI_CALENDARIO_URL = "https://comitati.fisi.org/friuli-venezia-giulia/calendario/?d=";
+const FISI_PAGE_SIZE = 100;
+const FISI_MAX_PAGINE = 30; // sicurezza anti-loop-infinito, non un limite atteso in pratica
+
+// Stagione sciistica: giugno anno N → maggio anno N+1, etichettata come
+// "anno N" — dedotto dalla richiesta reale (nota 2 sopra), non
+// documentato esplicitamente da FISI. Calcolo dinamico per evitare la
+// manutenzione manuale annuale che invece serve per COMPETIZIONI_CALCIO.
+function stagioneScisticaCorrente(adesso = new Date()) {
+  const anno = adesso.getFullYear();
+  const mese = adesso.getMonth(); // 0 = gennaio … 5 = giugno
+  return mese >= 5 ? anno : anno - 1;
+}
+
+function isoDaDataItaliana(str) {
+  const m = /^(\d{2})\/(\d{2})\/(\d{4})$/.exec(str || "");
+  if (!m) return null;
+  const [, giorno, mese, anno] = m;
+  return `${anno}-${mese}-${giorno}`;
+}
+
+async function fetchPaginaSci(offset, dataInizio, dataFine, idStagione) {
+  const params = new URLSearchParams({
+    action: "competizioni_get_all",
+    offset: String(offset),
+    limit: String(FISI_PAGE_SIZE),
+    url: FISI_CALENDARIO_URL,
+    idStagione: String(idStagione),
+    dataInizio,
+    dataFine,
+  });
+  const res = await fetchConRetry(`${FISI_AJAX_URL}?${params.toString()}`, {
+    headers: {
+      Accept: "*/*",
+      "X-Requested-With": "XMLHttpRequest",
+      "User-Agent": "Mozilla/5.0 (compatible; FVGMonitorBot/1.0)",
+    },
+  });
+  if (!res.ok) throw new Error(`FISI API HTTP ${res.status} (offset=${offset})`);
+  return res.json();
+}
+
+// Pagina l'intero calendario stagionale. Si ferma solo su pagina vuota
+// (mai in base a `gare.length < FISI_PAGE_SIZE`) — vedi nota 5 sopra.
+async function fetchTutteGareSci(dataInizio, dataFine, idStagione) {
+  const tutte = [];
+  let offset = 0;
+  let pagina = 0;
+  for (;;) {
+    pagina++;
+    if (pagina > FISI_MAX_PAGINE) {
+      console.warn(`Sci: fermato dopo ${FISI_MAX_PAGINE} pagine — controllare la paginazione`);
+      break;
+    }
+    const gare = await fetchPaginaSci(offset, dataInizio, dataFine, idStagione);
+    if (!Array.isArray(gare) || gare.length === 0) break;
+    tutte.push(...gare);
+    offset += gare.length;
+  }
+  return tutte;
+}
+
+function dedupeGareSci(lista) {
+  const mappa = new Map();
+  for (const g of lista) {
+    const chiave = g.idCompetizione ?? `${g.nome}|${g.dataInizio}|${g.comune}`;
+    if (!mappa.has(chiave)) mappa.set(chiave, g);
+  }
+  return [...mappa.values()];
+}
+
+function mappaGaraSci(g) {
+  return {
+    id: g.idCompetizione ?? null,
+    nome: g.nome ?? null,
+    disciplina: g.disciplina ?? null,
+    data: isoDaDataItaliana(g.dataInizio),
+    comune: g.comune ?? null,
+    provincia: g.provincia ?? null,
+    livello: g.livello ?? null,
+    stato: g.status ?? null,
+    formato: g.formato ?? null,
+  };
+}
+
+async function ingestSci() {
+  const stagione = stagioneScisticaCorrente();
+  const dataInizio = `01/06/${stagione}`;
+  const dataFine = `30/05/${stagione + 1}`;
+
+  const grezze = await fetchTutteGareSci(dataInizio, dataFine, stagione);
+  const senzaDuplicati = dedupeGareSci(grezze);
+  const gare = senzaDuplicati
+    .map(mappaGaraSci)
+    .filter((g) => g.data) // scarta eventuali gare con data in formato inatteso
+    .sort((a, b) => (a.data < b.data ? -1 : a.data > b.data ? 1 : 0));
+
+  if (gare.length === 0) {
+    console.warn("Nessuna gara di sci trovata per la stagione corrente — controllare endpoint/parametri");
+    return;
+  }
+
+  const discipline = [...new Set(gare.map((g) => g.disciplina).filter(Boolean))].sort();
+
+  await upsertSnapshot("sci:calendario", "sci", null, {
+    stagione: `${stagione}/${stagione + 1}`,
+    discipline,
+    gare,
+    aggiornato_al: new Date().toISOString(),
+  });
+  console.log(`Sci aggiornato: ${gare.length} gare, stagione ${stagione}/${stagione + 1}, discipline: ${discipline.join(", ")}`);
+}
+
+// ---------------------------------------------------------------------
+
 // Nota: le allerte Protezione Civile NON vengono più ingerite qui.
 // L'endpoint (pianiemergenza.protezionecivile.fvg.it) risulta bloccato
 // in modo persistente per le richieste da GitHub Actions (timeout di
@@ -2019,6 +2210,7 @@ async function main() {
     ["basket", ingestBasket()],
     ["baseball", ingestBaseballFvg()],
     ["tennis", ingestTennis()],
+    ["sci", ingestSci()],
     ["webcam-osmer", ingestWebcamOsmer()],
     ["radar-meteo", ingestRadarMeteo()],
     ["terremoti", ingestTerremoti()],

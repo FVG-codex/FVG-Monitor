@@ -54,6 +54,17 @@ const SPORT = [
       </svg>
     ),
   },
+  {
+    nome: "Sci",
+    href: "/sci",
+    descrizione: "Calendario gare FISI in FVG — fondo, salto, combinata nordica, biathlon e altre discipline",
+    icona: (
+      <svg viewBox="0 0 48 48" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <circle cx="24" cy="24" r="15" />
+        <path d="M9 32l9-16 6 9 4-7 11 14" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
+  },
 ];
 
 export default function SportHubPage() {

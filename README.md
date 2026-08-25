@@ -79,7 +79,8 @@ componente React che legge da Supabase con lo stesso nome.
 | **Calcio** — pagina dedicata `/calcio` | gare.lnd.it (LND Comitato FVG) | App Inertia.js: la pagina incorpora l'intero stato (partite + classifica) in un tag `<script data-page="app">`, estratto con `cheerio` — niente scraping di HTML visibile. 9 campionati (Eccellenza, Promozione, Prima Categoria A/B/C, Seconda Categoria Gorizia/Pordenone/Udine-B/Udine-C — quest'ultima organizzata per provincia invece che su gironi regionali unificati) selezionabili da tab in pagina — vedi `COMPETIZIONI_CALCIO` in `ingest-light.mjs` per aggiungerne altri. **⚠️ Promemoria annuale**: gli URL hanno `stagione=2025` fisso — a inizio di ogni nuova stagione (di solito settembre) va aggiornato manualmente in `COMPETIZIONI_CALCIO`, altrimenti resta bloccato sull'ultima stagione conclusa |
 | **Basket** — pagina dedicata `/basket` | fip.it/risultati (FIP) | A differenza del calcio, qui i dati sono già nell'HTML servito dal server (nessun tag JSON incorporato) — scraping diretto con `cheerio`. **Nota di fragilità aggiuntiva**: l'URL non specifica un girone/comitato esplicito come per il calcio, la pagina mostra un "default" (al momento Trieste, Serie C/Divisione Regionale 1) che potrebbe cambiare lato FIP nel tempo — se i dati smettono di tornare coerenti, verificare se serve un URL più specifico. Estendibile via `COMPETIZIONI_BASKET` in `ingest-light.mjs` |
 | **Baseball & Softball** — pagina dedicata `/baseball` | live.baseballfvg.it (sito dell'utente, con 2 route API dedicate: `/api/calendario`, `/api/classifiche`) | Fetch semplice, nessuna protezione anti-bot (a differenza del tentativo iniziale con fibs.it direttamente, bloccato con HTTP 403). Le competizioni (Serie A Silver, Serie B Baseball, Serie A2 Softball) vengono scoperte dinamicamente dal calendario filtrato `fvg=true`. Squadre FVG evidenziate in ciano, classifiche raggruppate per girone |
-| **Tennis** — pagina dedicata `/tennis` | API FITP (Federazione Italiana Tennis e Padel), `dp-myfit-test-function-v2.azurewebsites.net` | Classifica "Top 15" Assoluti maschile/femminile FVG per grado di classifica — vedi nota "Tennis" sotto per i dettagli (sortcolumn server-side inaffidabile, ordinamento fatto lato ingest) |
+| **Tennis** — pagina dedicata `/tennis` | API FITP (Federazione Italiana Tennis e Padel), `dp-myfit-test-function-v2.azurewebsites.net` | 6 classifiche (Maschile/Femminile × 2ª/3ª/4ª categoria) Top 10 FVG per grado di classifica — vedi nota "Tennis" sotto per i dettagli (sortcolumn server-side inaffidabile, ordinamento e deduplica fatti lato ingest) |
+| **Sci** — pagina dedicata `/sci` | API FISI (Federazione Italiana Sport Invernali), `comitati.fisi.org` (WordPress admin-ajax) | Calendario gare (non classifica) FVG, sport invernali — fondo, salto, combinata nordica, biathlon, alpino ecc. — vedi nota "Sci" sotto |
 | **Webcam regionali** — pagina dedicata `/webcam` | osmer.fvg.it (CC BY-SA 3.0) + turismofvg.it (Panomax/Feratel, statico) | OSMER fa da specchio/proxy delle immagini di terze parti sul proprio dominio (`data-src` relativo) — le mostriamo da un unico dominio. Ogni card è cliccabile e apre la fonte originale (`data-url`) in una nuova scheda; se l'immagine non carica, mostra "Anteprima non disponibile" (`WebcamCard.tsx`, componente condiviso con `/viabilita`). **Nota sulla provincia**: le "zone geografiche" di OSMER non coincidono sempre con i confini provinciali (es. "Costa ovest e Laguna" include sia Grado/GO sia Lignano/UD) — mappa comune→provincia il più precisa possibile (`OSMER_COMUNE_PROVINCIA`), con fallback sulla zona quando il nome non è riconosciuto. Le webcam autostradali (A4/A23/A28/SR354) sono escluse qui e vivono in `/viabilita`. I panorami 360° di turismofvg.it (Panomax/Feratel) sono hardcoded in `WebcamPage.tsx` (elenco statico, non cambia spesso) — embeddati come iframe, non scrapati. **Non verificato**: se l'API monitor.protezionecivile.fvg.it abbia un endpoint webcam (non sembra dall'elenco sensori già esplorato, ma non controllato esplicitamente) |
 | **Meteo** — pagina dedicata `/meteo` | Riusa componenti già esistenti (nessuna nuova ingestione) | Consolida bollettino OSMER + temperatura live + widget ARPA + vento + pioggia + radar, organizzati per provincia (o "Tutta la regione"). Raggiungibile dal menu ad amburger, in cima |
 | **Radar meteo** | API monitoraggio PC FVG, gruppo `radar` | Solo il radar di Fossalon (id 1) è attivo — Lussari e Mosaico risultano spenti (`status: "X"`). 4 prodotti selezionabili da tab, ciascuno con una breve spiegazione in pagina: `SRTLBM_1` (pioggia, mm), `SSI` (severità temporale), `HMC` (classificazione idrometeore — pioggia/neve/grandine), `LBM_V` (velocità Doppler, m/s) — tutti recuperati in un'unica chiamata (`/radars/1/products` restituisce già tutti i prodotti disponibili insieme). Le immagini sono **trasparenti fuori dalle zone colorate** (nessuna base geografica) — sovrapposte a una vera mappa (Leaflet + tile OpenStreetMap) usando l'`extent` fornito dall'API stessa (`RadarMeteoMap.tsx`, caricato dinamicamente lato client — Leaflet richiede il DOM del browser) |
@@ -528,6 +529,78 @@ solo pannello invece di calendario+classifica (il tennis non ha un
 "calendario partite" nello stesso senso). Card aggiunta all'hub
 `/sport`.
 
+## Sci — dentro `/sci` (25/08/2026)
+
+Richiesta dell'utente: aggiungere lo sci alla sezione Sport, fonte
+`https://comitati.fisi.org/friuli-venezia-giulia/calendario/?d=`
+(calendario gare del Comitato FVG della FISI — Federazione Italiana
+Sport Invernali). Come per Nuoto e Tennis, la pagina è JS/AJAX-dipendente
+(WebFetch vede solo il template vuoto, "Nessuna gara trovata" + bottone
+"Carica di più"); niente endpoint REST dedicato trovato su `/wp-json/`
+(solo le route standard di WordPress). Sbloccato di nuovo con l'aiuto
+dell'utente via DevTools → Network → "Copia come cURL".
+
+**Endpoint**: `GET https://comitati.fisi.org/wp-admin/admin-ajax.php
+?action=competizioni_get_all&offset=&limit=&url=&idStagione=&dataInizio=
+&dataFine=` — un'azione AJAX custom di WordPress, non una vera REST
+API. Risposta: array di gare `{ disciplina, dataInizio, comune,
+provincia, nazione, nome, formato, livello, status, idCompetizione,
+logo_url }`. **A differenza di Calcio/Basket/Baseball/Tennis, questo è
+un calendario di gare singole, non una classifica di campionato** —
+stesso tipo di modello dati mai implementato per il Nuoto (nessun
+"campionato" nello sci più di quanto ce ne sia nel nuoto), ma qui la
+fonte è stata effettivamente sbloccata e non c'è motivo di ripensare il
+modello: mostriamo il calendario così com'è.
+
+**Particolarità/limiti scoperti da UNA sola risposta reale** (non da
+uno script di test sistematico come per calcio/tennis — l'host
+`comitati.fisi.org` risulta anch'esso bloccato dalla allowlist di rete
+di questo sandbox, stesso limite già incontrato con l'host Tennis, non
+verificabile da qui con un fetch diretto):
+
+1. Il filtro regionale (FVG) passa per il parametro `url` (deve
+   corrispondere alla pagina calendario del comitato), non per un id
+   numerico come nel Tennis — comodo, un solo valore fisso da usare.
+2. `idStagione`/`dataInizio`/`dataFine`: la richiesta reale catturata
+   aveva `idStagione=2026` con `dataInizio=01/06/2026` e
+   `dataFine=30/05/2027` — dedotto che la "stagione sciistica" va da
+   giugno a maggio dell'anno successivo, etichettata con l'anno di
+   inizio (convenzione tipica sport invernali, non documentata da
+   FISI). **Calcolata dinamicamente** ad ogni esecuzione
+   (`stagioneScisticaCorrente()` in `ingest-light.mjs`) invece di
+   scritta a mano come `COMPETIZIONI_CALCIO` — qui non serve nessun
+   promemoria annuale da aggiornare manualmente.
+3. Il campione catturato (fine agosto) aveva solo 4 gare, tutte estive
+   (skiroll, allenamenti estivi) — la stagione invernale vera
+   (dicembre-marzo) non è ancora popolata nel calendario a questa data.
+   Non un bug: il calendario si riempie progressivamente durante la
+   stagione. Atteso che la lista cresca molto da qui a dicembre.
+4. Solo lo status `"In Calendario"` osservato — altri valori possibili
+   (gara svolta? annullata?) non noti, mostrati così come sono senza
+   logica di interpretazione costruita su valori mai visti.
+5. Paginazione non testata con più di una pagina reale (il campione
+   aveva 4 risultati, meno del `limit=10` richiesto). Per la stessa
+   ragione del bug duplicati sul Tennis (vedi sopra), applicata da
+   subito la stessa cautela: la paginazione si ferma solo su pagina
+   vuota (mai per `lunghezza pagina < limit`), con deduplica per
+   `idCompetizione` applicata preventivamente.
+6. Nessun endpoint di dettaglio/risultati gara scoperto — solo il
+   calendario. Se in futuro servissero le classifiche di gara, va
+   ripetuta l'indagine DevTools su una pagina di dettaglio.
+
+Pagina `/sci` (`SciPage.tsx`): un tab "Tutte" più un tab per ciascuna
+disciplina effettivamente presente nei dati (scoperte dinamicamente,
+non una lista fissa — il comitato FVG copre più discipline invernali,
+non solo lo sci alpino), un solo pannello con elenco cronologico delle
+gare (data, comune/provincia, nome, disciplina, livello, stato) — niente
+tabella classifica, coerente col fatto che non esiste un campionato.
+Card aggiunta all'hub `/sport`.
+
+`npx tsc --noEmit` e `node --check` puliti. **Non ancora testato in
+produzione** — servirà un run dell'ingestione e una verifica visiva su
+`/sci`, oltre a un controllo più avanti nella stagione per vedere se il
+calendario si popola come atteso.
+
 ## Fase 4 — Responsive (24/08/2026)
 
 Audit mirato su tutti i componenti (`components/*.tsx`), cercando pattern
@@ -713,10 +786,13 @@ direttamente. Aggiunto anche il modulo Tennis (`/tennis`, vedi sezione
 dedicata sopra) — prima versione aveva un bug di giocatori duplicati
 (segnalato dall'utente, corretto il 25/08 con deduplicazione +
 classifiche divise per 2ª/3ª/4ª categoria), **non ancora riconfermato
-in produzione dopo il fix**. Resta da fare l'ultima area di
-Fase 4: performance (il dominio personalizzato, `monitor.fvg.it`, è in
-corso a parte — record DNS in configurazione presso il registrar, non
-ancora verificato su Vercel).
+in produzione dopo il fix**. Aggiunto anche il modulo Sci (`/sci`, vedi
+sezione dedicata sopra) — calendario gare FISI, **non ancora testato in
+produzione**, e per natura della fonte (calendario che si popola nel
+tempo) andrà ricontrollato più avanti nella stagione. Resta da fare
+l'ultima area di Fase 4: performance (il dominio personalizzato,
+`monitor.fvg.it`, è in corso a parte — record DNS in configurazione
+presso il registrar, non ancora verificato su Vercel).
 
 Il modulo Autobus ha 6 blocchi (Trieste, Udine, Gorizia, Pordenone,
 Trieste Airport, Monfalcone — vedi nota "Autobus" sopra); solo Trieste è
