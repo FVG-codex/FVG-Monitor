@@ -22,6 +22,20 @@ export type VoceChangelog = {
 export const CHANGELOG: VoceChangelog[] = [
   {
     data: "25/08/2026",
+    titolo: "Aviazione — nuova sezione, database aviostrutture FVG",
+    dettagli: [
+      "Aggiunta la sezione Aviazione (/aviazione): mappa ed elenco filtrabile di 27 aeroporti, aviosuperfici e campi volo del Friuli Venezia Giulia, fonte WebAAI.",
+    ],
+  },
+  {
+    data: "25/08/2026",
+    titolo: "Registro modifiche — nuova pagina, link in ogni footer",
+    dettagli: [
+      "Aggiunta questa pagina (/changelog) e un footer condiviso da tutte le pagine del sito, prima presente solo in homepage.",
+    ],
+  },
+  {
+    data: "25/08/2026",
     titolo: "Sci — risultati completi delle gare passate",
     dettagli: [
       "Le gare già svolte nel calendario Sci si possono aprire per vedere i risultati di ogni singola gara (posizione, atleta, società, tempo, punti).",

@@ -92,6 +92,7 @@ componente React che legge da Supabase con lo stesso nome.
 | **TGR** | — | Nessun feed trovato, link statico alla sezione ufficiale |
 | **Trieste Airport** | Scraping HTML triesteairport.it | Stesso approccio degli Eventi, stessa fragilità |
 | **Registro modifiche** — pagina dedicata `/changelog`, link nel footer di ogni pagina | Dati statici, `lib/changelog.ts` | Cronologia di ciò che è cambiato sul sito, più recente in cima — vedi nota "Registro modifiche" sotto per il promemoria di aggiornamento |
+| **Aviazione** — pagina dedicata `/aviazione` (nel menù ad amburger) | Dati statici raccolti da webaai.it, `lib/aviostrutture.ts` | 27 aviostrutture FVG (aeroporti, aviosuperfici, campi volo), mappa + elenco filtrabile per categoria — vedi nota "Aviazione" sotto per i limiti (dati premium esclusi, ecc.) |
 
 **Abbandonato**: trasporto pubblico TPL FVG — nessun endpoint pubblico per il
 tracciamento GPS trovato (verificato via devtools/WebSocket), solo l'elenco
@@ -710,6 +711,81 @@ nei due documenti già esistenti.
 
 `npx tsc --noEmit` pulito. Non ancora confermato dall'utente in
 produzione.
+
+## Aviazione — dentro `/aviazione` (25/08/2026)
+
+Richiesta dell'utente: una nuova sezione Aviazione con il database delle
+aviostrutture (aeroporti, aviosuperfici, campi volo) del FVG, fonte
+`https://webaai.it/it/aviostrutture/friuli_venezia_giulia` (WebAAI —
+World Airfields Directory), integrando tutti i dati disponibili.
+
+**Dati statici, non un modulo ingerito**: a differenza di Calcio/Basket/
+Baseball/Tennis/Sci questo non è un dato che cambia di frequente (sono
+strutture fisiche, non classifiche/calendari sportivi) — nessuna
+`ingestXxx()` in `ingest-light.mjs`, nessuna tabella Supabase. Popolato
+una tantum in `lib/aviostrutture.ts` (27 strutture, tipo `Aviostruttura`)
+leggendo ogni pagina via **WebFetch** — l'host `webaai.it`, come già
+successo con `comitati.fisi.org` e l'host Tennis, risulta bloccato dalla
+allowlist di rete di questo sandbox per un fetch/curl diretto, ma qui
+**WebFetch stesso ha funzionato**, restituendo i dati reali invece del
+solito "nessun markup"/template vuoto che si ha con pagine JS/AJAX-
+dipendenti (Nuoto, calendario Sci, ranking Tennis): la pagina è HTML
+statico lato server, quindi WebFetch (che converte HTML in markdown) ha
+potuto leggerla per intero senza bisogno che l'utente incollasse
+l'outerHTML a mano. 27 chiamate WebFetch (una per pagina di dettaglio,
+più l'elenco) invece di scrivere selettori cheerio alla cieca su una
+struttura HTML mai vista.
+
+**Solo dati pubblici**: gran parte delle informazioni sulla fonte
+(contatti, orari, frequenze radio, lunghezza/orientamento/superficie
+pista, foto, carte di avvicinamento) è dietro un abbonamento "Premium" a
+pagamento — non incluse. Campi pubblici raccolti per struttura: nome,
+tipo, categoria (normalizzata per i filtri), codice avioportolano ENAC,
+ICAO, comune/località/provincia, indirizzo/CAP (quando presente),
+coordinate GPS, quota, numero piste, categorie/abilitazioni di volo
+(General Aviation, Advanced UL, Basic UL, Gliders, Helicopters), ENAC
+Direzione Territoriale e numero fascicolo (quando presenti), data di
+ultimo aggiornamento dichiarata dalla fonte per quella specifica
+struttura (varia molto, dal 2019 al 2026 — non è la data della nostra
+raccolta).
+
+**Particolarità/limiti scoperti**:
+
+1. La pagina elenco dichiara un totale di "33 strutture", ma l'elenco
+   effettivo mostrato ne contiene 27 (verificato con due letture
+   indipendenti) — possibile che alcune strutture censite ENAC non siano
+   ancora schedate pubblicamente da WebAAI. Usati i 27 confermati, senza
+   inventare le altre 6.
+2. Una voce ("Aviosuperficie Enemonzo", da non confondere con "Enemonzo"
+   campo volo — due strutture distinte nello stesso comune) compare solo
+   nell'elenco, senza una pagina di dettaglio propria: nessuna
+   coordinata/quota disponibile per questa, mostrata comunque in elenco
+   con i soli campi noti.
+3. **Diffidare del prefisso del codice avioportolano come indicatore di
+   provincia** (stessa lezione già annotata per altri parametri non
+   documentati — vedi nota generale in `claude/fvgmonitor-stato.md`):
+   "Casarsa della Delizia" ha codice `UD19` (prefisso Udine) ma il comune
+   è amministrativamente in provincia di **Pordenone** — corretto nel
+   dataset (`provincia: "PN"`), ignorando il prefisso.
+4. Le coordinate sulla fonte usano due notazioni diverse a seconda della
+   pagina (gradi+minuti decimali in formato aeronautico, es.
+   "4549.650N", oppure gradi/minuti/secondi, es. "45°49'39\"N") —
+   convertite una volta per tutte in gradi decimali, verificate contro le
+   coordinate reali note di Trieste Airport (LIPQ) e Rivolto come
+   controllo di sanità prima di fidarsi della conversione per le altre 25.
+
+Pagina `/aviazione` (`AviazionePage.tsx`): filtri per categoria (Tutte,
+Aeroporti civili, Aeroporti militari, Aviosuperfici, Campi volo, Piste
+dismesse, ciascuno con conteggio), mappa Leaflet (`AviazioneMap.tsx`,
+stesso pattern di `TerremotiMap.tsx` — colori per categoria riusati dalla
+palette esistente, nessun nuovo colore da verificare per il contrasto) +
+elenco testuale equivalente affiancato, link alla scheda completa su
+webaai.it quando disponibile. Voce "Aviazione" aggiunta al menu ad
+amburger (`MenuHamburger.tsx`).
+
+`npx tsc --noEmit` pulito. Non ancora testato in produzione — servirà
+una verifica visiva su `/aviazione` (posizione dei marker sulla mappa,
+filtri, elenco).
 
 ## Fase 4 — Responsive (24/08/2026)
 

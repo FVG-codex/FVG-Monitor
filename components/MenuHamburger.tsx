@@ -13,6 +13,7 @@ const SEZIONI_EXTRA = [
   { label: "Webcam regionali", href: "/webcam" },
   { label: "Viabilità", href: "/viabilita" },
   { label: "Trasporti", href: "/trasporti" },
+  { label: "Aviazione", href: "/aviazione" },
 ];
 
 export function MenuHamburger() {
