@@ -575,18 +575,20 @@ verificabile da qui con un fetch diretto):
    (dicembre-marzo) non è ancora popolata nel calendario a questa data.
    Non un bug: il calendario si riempie progressivamente durante la
    stagione. Atteso che la lista cresca molto da qui a dicembre.
-4. Solo lo status `"In Calendario"` osservato — altri valori possibili
-   (gara svolta? annullata?) non noti, mostrati così come sono senza
-   logica di interpretazione costruita su valori mai visti.
+4. Solo lo status `"In Calendario"` osservato nella risposta API — e
+   (confermato dall'utente in produzione, 25/08/2026) **resta
+   `"In Calendario"` anche per gare con data già passata**: il campo
+   non è affidabile per sapere se una gara si è svolta. Non più usato
+   per questo — vedi "Risultati gare passate" più sotto.
 5. Paginazione non testata con più di una pagina reale (il campione
    aveva 4 risultati, meno del `limit=10` richiesto). Per la stessa
    ragione del bug duplicati sul Tennis (vedi sopra), applicata da
    subito la stessa cautela: la paginazione si ferma solo su pagina
    vuota (mai per `lunghezza pagina < limit`), con deduplica per
    `idCompetizione` applicata preventivamente.
-6. Nessun endpoint di dettaglio/risultati gara scoperto — solo il
-   calendario. Se in futuro servissero le classifiche di gara, va
-   ripetuta l'indagine DevTools su una pagina di dettaglio.
+6. Questa azione AJAX restituisce solo il calendario (data, luogo,
+   nome, livello) — non le classifiche di gara. I risultati passano
+   da pagine HTML statiche separate, vedi sotto.
 
 Pagina `/sci` (`SciPage.tsx`): un tab "Tutte" più un tab per ciascuna
 disciplina effettivamente presente nei dati (scoperte dinamicamente,
@@ -596,10 +598,82 @@ gare (data, comune/provincia, nome, disciplina, livello, stato) — niente
 tabella classifica, coerente col fatto che non esiste un campionato.
 Card aggiunta all'hub `/sport`.
 
-`npx tsc --noEmit` e `node --check` puliti. **Non ancora testato in
-produzione** — servirà un run dell'ingestione e una verifica visiva su
-`/sci`, oltre a un controllo più avanti nella stagione per vedere se il
-calendario si popola come atteso.
+`npx tsc --noEmit` e `node --check` puliti. Modulo calendario
+**confermato funzionante in produzione dall'utente** (screenshot,
+25/08/2026) — il campo `stato` è stato corretto subito dopo (vedi
+punto 4 sopra e sezione seguente).
+
+### Risultati gare passate (25/08/2026)
+
+Richiesta successiva dell'utente, dopo aver verificato il calendario in
+produzione: mostrare anche i risultati completi delle gare già svolte,
+non solo la loro presenza a calendario. Contestualmente segnalato che
+il campo `status` dell'API non si aggiorna mai (vedi punto 4 sopra) —
+quindi in `mappaGaraSci()` lo stato mostrato (`stato: "Svolta" /
+"In programma"`, campo `svolta: boolean`) è ora **sempre calcolato
+confrontando la data della gara con oggi**, mai letto da `g.status`
+(tenuto comunque come `statoApi`, solo per riferimento/debug).
+
+**Struttura a due livelli scoperta cliccando sul sito**: ogni riga del
+calendario è in realtà una "competizione" (evento, es. "Coppa Italia
+Skiroll..."), che raggruppa più "gare" singole (una per
+disciplina/specialità/categoria/genere — 23 osservate nell'evento
+campione). I risultati (posizione, atleta, società, tempo, punti) sono
+per singola gara, su una pagina a parte:
+
+- `https://comitati.fisi.org/friuli-venezia-giulia/competizione/?idComp={id}`
+  — elenco delle gare di una competizione.
+- `https://comitati.fisi.org/friuli-venezia-giulia/gara/?idGara={id}&idComp={idComp}&d=`
+  — tabella risultati di una singola gara.
+
+A differenza del calendario (JSON via AJAX), queste due pagine sono
+HTML statico — scaricate e analizzate con `cheerio`, struttura
+verificata su due pagine reali (outerHTML incollato dall'utente via
+DevTools, lo stesso host risulta bloccato dalla allowlist di rete di
+questo sandbox). **Trappola scoperta**: entrambe le pagine riusano le
+STESSE classi CSS (`.disciplina`, `.luogo`, `.nome`, `.specialità`,
+`.status`) con significati completamente diversi da una pagina
+all'altra (e diversi anche dal loro significato sul calendario), e il
+nome `specialità` contiene un accento — rischioso da usare come
+selettore letterale. Per questo l'estrazione in
+`fetchGareCompetizioneSci()`/`fetchRisultatiGaraSci()` è **sempre
+posizionale** (`.x-col` per indice fisso dentro `.x-row-inner`), mai
+per nome di classe — verificato con uno script cheerio contro l'HTML
+reale prima di scrivere il codice definitivo, risultati confermati
+identici (23 gare, 36 risultati nell'esempio). Altre osservazioni utili
+dalla pagina risultati reale: nomi atleta arrivano sia TUTTO MAIUSCOLO
+che Title Case (normalizzati in `SciPage.tsx` come per il Tennis);
+alcune righe hanno cod.FISI/atleta/anno/società vuoti ma tempo/punti
+valorizzati (normale, gestito); "Punti gara" è quasi sempre il
+segnaposto letterale `"-"`, trattato come nessun dato (`null`), non
+come stringa.
+
+**Volume di richieste**: nessun endpoint bulk noto — una competizione
+con 20+ gare richiede 1 richiesta per l'elenco gare + 1 per gara. In
+piena stagione (dicembre-marzo) possono esserci decine di competizioni
+passate insieme. Per non generare centinaia di richieste ad ogni
+esecuzione (ogni 15 minuti): i risultati sono messi in cache in un
+secondo snapshot, `sci:risultati` (competizioni già scaricate per
+intero non vengono mai ripetute — i risultati di una gara passata non
+cambiano più una volta pubblicati, per quanto osservato finora), e al
+massimo `FISI_MAX_COMPETIZIONI_NUOVE_PER_ESECUZIONE` (5) competizioni
+NUOVE vengono scaricate per esecuzione — le altre restano in coda e
+vengono recuperate nelle esecuzioni successive. Lo snapshot non viene
+riscritto (niente riga `history` aggiuntiva) se non ci sono novità in
+quella esecuzione.
+
+Pagina `/sci`: le gare "Svolta" nel calendario sono cliccabili — si
+aprono mostrando l'elenco delle gare della competizione, ciascuna a sua
+volta espandibile per vedere la tabella risultati completa. Se i
+risultati non sono ancora stati scaricati (in coda, vedi sopra), viene
+mostrato un messaggio esplicito invece di una lista vuota.
+
+`npx tsc --noEmit` e `node --check` puliti; logica di estrazione
+verificata con uno script cheerio a parte contro l'HTML reale fornito
+dall'utente (non solo per ispezione visiva). **Non ancora testato in
+produzione** — servirà un run dell'ingestione (che scaricherà i
+risultati delle competizioni passate già nel calendario attuale) e una
+verifica visiva su `/sci`.
 
 ## Fase 4 — Responsive (24/08/2026)
 

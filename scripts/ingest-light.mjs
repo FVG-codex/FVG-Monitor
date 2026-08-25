@@ -79,6 +79,17 @@ async function upsertSnapshot(id, module, zone, data) {
   if (histError) console.warn(`Storico non salvato per ${module}: ${histError.message}`);
 }
 
+// Legge uno snapshot già salvato (se esiste) — usato dai moduli che
+// mantengono una cache lato dati (es. risultati gare sci, vedi sotto)
+// per non ripetere richieste HTTP già soddisfatte in un'esecuzione
+// precedente. Mai fatale: se manca o la lettura fallisce si riparte da
+// zero, il chiamante deve gestire `null` come "nessuna cache".
+async function leggiSnapshotEsistente(id) {
+  const { data, error } = await supabase.from("snapshots").select("data").eq("id", id).maybeSingle();
+  if (error || !data) return null;
+  return data.data ?? null;
+}
+
 // ---------------------------------------------------------------------
 // METEO — bollettino previsioni OSMER ARPA FVG
 // Fonte pubblica per sviluppatori (dev.meteo.fvg.it), non soggetta al
@@ -1784,10 +1795,13 @@ async function ingestTennis() {
 //    società organizzatrici iscrivono le gare — atteso che la lista
 //    cresca da qui a dicembre.
 //
-// 4) Solo lo status "In Calendario" è stato osservato — altri valori
-//    possibili (es. gara svolta, annullata) non noti. Mostrato così
-//    com'è nel frontend, nessuna logica di colore/interpretazione
-//    costruita su valori mai visti.
+// 4) Solo lo status "In Calendario" è stato osservato nella risposta
+//    dell'API — e (osservazione utente in produzione, 25/08/2026)
+//    resta "In Calendario" ANCHE per gare con data ormai passata: il
+//    campo non è affidabile per sapere se una gara si è svolta. Non
+//    più usato per questo — vedi `svolta`/`stato` calcolati dalla
+//    data in `mappaGaraSci` più sotto; il valore grezzo dell'API resta
+//    solo in `statoApi`, come riferimento/debug.
 //
 // 5) Paginazione (`offset`/`limit`) non stata testata con più di una
 //    pagina reale (il campione aveva solo 4 gare, meno del limit=10
@@ -1798,11 +1812,11 @@ async function ingestTennis() {
 //    preventiva (lezione appresa dal Tennis, non aspettata un bug
 //    analogo per confermarla).
 //
-// 6) Nessun endpoint di dettaglio/risultati per singola gara scoperto
-//    — questa azione restituisce solo il calendario (data, luogo,
-//    nome, livello, stato), non le classifiche di gara. Se in futuro
-//    servissero i risultati, va ripetuta l'indagine DevTools su una
-//    pagina di dettaglio gara.
+// 6) Questa azione AJAX restituisce solo il calendario (data, luogo,
+//    nome, livello) — non le classifiche di gara. I risultati delle
+//    gare passate NON passano da questa API: sono pagine HTML statiche
+//    separate, scaricate con cheerio — vedi la sezione più sotto
+//    ("SCI — risultati delle gare passate").
 // ---------------------------------------------------------------------
 
 const FISI_AJAX_URL = "https://comitati.fisi.org/wp-admin/admin-ajax.php";
@@ -1877,16 +1891,28 @@ function dedupeGareSci(lista) {
   return [...mappa.values()];
 }
 
-function mappaGaraSci(g) {
+// NOTA (25/08/2026, osservazione utente in produzione): il campo
+// `status` dell'API resta "In Calendario" ANCHE per competizioni con
+// data ormai passata — non aggiornato lato FISI, non affidabile per
+// sapere se una gara si è svolta. "svolta" viene quindi calcolato qui
+// confrontando la data della gara con oggi, MAI leggendo `g.status`.
+// Il valore grezzo dell'API è comunque tenuto in `statoApi` solo come
+// riferimento/debug (non usato per alcuna logica, non mostrato di
+// default nel frontend).
+function mappaGaraSci(g, oggiIso) {
+  const data = isoDaDataItaliana(g.dataInizio);
+  const svolta = data ? data < oggiIso : false;
   return {
     id: g.idCompetizione ?? null,
     nome: g.nome ?? null,
     disciplina: g.disciplina ?? null,
-    data: isoDaDataItaliana(g.dataInizio),
+    data,
     comune: g.comune ?? null,
     provincia: g.provincia ?? null,
     livello: g.livello ?? null,
-    stato: g.status ?? null,
+    svolta,
+    stato: svolta ? "Svolta" : "In programma",
+    statoApi: g.status ?? null,
     formato: g.formato ?? null,
   };
 }
@@ -1895,11 +1921,12 @@ async function ingestSci() {
   const stagione = stagioneScisticaCorrente();
   const dataInizio = `01/06/${stagione}`;
   const dataFine = `30/05/${stagione + 1}`;
+  const oggiIso = new Date().toISOString().slice(0, 10);
 
   const grezze = await fetchTutteGareSci(dataInizio, dataFine, stagione);
   const senzaDuplicati = dedupeGareSci(grezze);
   const gare = senzaDuplicati
-    .map(mappaGaraSci)
+    .map((g) => mappaGaraSci(g, oggiIso))
     .filter((g) => g.data) // scarta eventuali gare con data in formato inatteso
     .sort((a, b) => (a.data < b.data ? -1 : a.data > b.data ? 1 : 0));
 
@@ -1917,6 +1944,229 @@ async function ingestSci() {
     aggiornato_al: new Date().toISOString(),
   });
   console.log(`Sci aggiornato: ${gare.length} gare, stagione ${stagione}/${stagione + 1}, discipline: ${discipline.join(", ")}`);
+
+  // I risultati di gara sono un job "annesso" ma indipendente: se
+  // fallisce (es. host bloccato, struttura pagina cambiata) il
+  // calendario è già stato salvato correttamente sopra — non deve far
+  // fallire l'intero job "sci" agli occhi di main().
+  try {
+    await ingestRisultatiSci(gare);
+  } catch (err) {
+    console.warn("Sci: risultati gare non aggiornati —", err.message);
+  }
+}
+
+// ---------------------------------------------------------------------
+// SCI — risultati delle gare passate (drill-down calendario →
+// competizione → gara). Richiesto esplicitamente dall'utente il
+// 25/08/2026, dopo aver verificato in produzione che il calendario
+// funziona. Struttura HTML verificata manualmente su DUE pagine reali
+// (outerHTML incollato dall'utente via DevTools, lo stesso host è
+// bloccato dalla allowlist di rete di questo sandbox — vedi nota
+// generale sopra sul Tennis/Sci):
+//
+//   - pagina "competizione" (?idComp=57797): elenco delle singole gare
+//     che compongono l'evento (una per disciplina/specialità/
+//     categoria/genere — 23 osservate per l'evento campione).
+//   - pagina "gara" (?idGara=...&idComp=...): tabella risultati di UNA
+//     gara (posizione, cod.fisi, atleta, anno, società, tempo gara,
+//     punti gara, punti graduatoria).
+//
+// Entrambe le pagine riusano le STESSE classi CSS (`.disciplina`,
+// `.luogo`, `.nome`, `.specialità`, `.status`) con significati
+// completamente diversi tra una pagina e l'altra, e in più il nome
+// classe `specialità` contiene un accento (rischioso come selettore
+// letterale). Per questo l'estrazione qui sotto è SEMPRE posizionale
+// (`.x-col` con indice fisso dentro `.x-row-inner`), mai per nome di
+// classe — verificato con un mini script cheerio contro l'HTML reale
+// prima di scrivere questo codice, non solo per ispezione visiva.
+//
+// NOTA sul volume di richieste: nessun endpoint "bulk" noto — una
+// competizione con 20+ gare richiede 1 richiesta per l'elenco gare +
+// 1 richiesta per gara per i risultati. In piena stagione invernale
+// (dicembre-marzo) possono esserci decine di competizioni passate
+// contemporaneamente nel calendario. Per non generare centinaia di
+// richieste HTTP ad ogni esecuzione (ogni 15 minuti):
+//   1) i risultati vengono messi in cache nello snapshot
+//      `sci:risultati` — una competizione già scaricata per intero
+//      (`completo: true`) non viene MAI ripetuta (i risultati di una
+//      gara passata non cambiano più una volta pubblicati, per quanto
+//      osservato finora — se in futuro risultasse falso, va rivista);
+//   2) al massimo `FISI_MAX_COMPETIZIONI_NUOVE_PER_ESECUZIONE`
+//      competizioni NUOVE vengono scaricate per esecuzione — le altre
+//      restano in coda e vengono recuperate nelle esecuzioni
+//      successive (arretrato smaltito in poche ore, accettabile per
+//      dati storici non urgenti).
+// ---------------------------------------------------------------------
+
+const FISI_COMPETIZIONE_URL_BASE = "https://comitati.fisi.org/friuli-venezia-giulia/competizione/";
+const FISI_GARA_URL_BASE = "https://comitati.fisi.org/friuli-venezia-giulia/gara/";
+const FISI_MAX_GARE_PER_COMPETIZIONE = 60; // sicurezza anti-loop — ~20-25 osservate in pratica
+const FISI_MAX_COMPETIZIONI_NUOVE_PER_ESECUZIONE = 5; // vedi nota sul volume di richieste sopra
+
+// Pagina "competizione": elenco delle gare che compongono l'evento.
+// Colonne osservate (indice `.x-col`, non nome classe — vedi nota
+// generale sopra): 0 = disciplina (testo primario) + data/ora (sub),
+// 1 = provincia (primario) + comune (sub), 2 = nome competizione
+// (primario) + codice (sub), 3 = tipo gara (primario) + categoria/
+// genere testuale (sub), 4 = stato (has-graphic, NON usato — vedi
+// nota su `statoApi`), 5 = genere (lettera singola).
+async function fetchGareCompetizioneSci(idComp) {
+  const res = await fetchConRetry(`${FISI_COMPETIZIONE_URL_BASE}?idComp=${idComp}`, {
+    headers: { "User-Agent": "Mozilla/5.0 (compatible; FVGMonitorBot/1.0)" },
+  });
+  if (!res.ok) throw new Error(`Pagina competizione ${idComp} HTTP ${res.status}`);
+
+  const $ = cheerio.load(await res.text());
+  const righe = $("#competizioni-container").first().children("a");
+
+  const gare = [];
+  righe.each((i, el) => {
+    if (i >= FISI_MAX_GARE_PER_COMPETIZIONE) return;
+    const $el = $(el);
+    const href = $el.attr("href") || "";
+    const m = /idGara=(\d+)/.exec(href);
+    if (!m) return; // riga senza idGara valido, struttura inattesa
+    const idGara = m[1];
+
+    const cols = $el.find(".x-row-inner").first().children(".x-col");
+    if (cols.length < 6) return; // struttura inattesa, riga scartata
+
+    const testoCol = (indice, selettore) => {
+      const t = $(cols[indice]).find(selettore).first().text().trim();
+      return t || null;
+    };
+    const primario = (indice) => testoCol(indice, ".x-text-content-text-primary");
+    const secondario = (indice) => testoCol(indice, ".x-text-content-text-subheadline");
+
+    gare.push({
+      idGara,
+      idCompetizione: String(idComp),
+      disciplina: primario(0),
+      dataOra: secondario(0),
+      provincia: primario(1),
+      comune: secondario(1),
+      nomeCompetizione: primario(2),
+      codice: secondario(2),
+      tipoGara: primario(3),
+      categoria: secondario(3),
+      genere: primario(5),
+    });
+  });
+
+  if (righe.length >= FISI_MAX_GARE_PER_COMPETIZIONE) {
+    console.warn(`Competizione ${idComp}: raggiunto il limite di sicurezza di ${FISI_MAX_GARE_PER_COMPETIZIONE} gare — potrebbero mancarne alcune`);
+  }
+
+  return gare;
+}
+
+// Pagina "gara": tabella risultati di UNA gara. Colonne osservate
+// (indice `.x-col`, stesse classi della pagina competizione ma con
+// significato diverso — vedi nota generale sopra): 0 = posizione,
+// 1 = cod.fisi, 2 = atleta, 3 = anno, 4 = società, 5 = tempo gara,
+// 6 = punti gara (spesso il segnaposto letterale "-", trattato come
+// nessun dato), 7 = punti graduatoria. Righe con cod.fisi/atleta/anno/
+// società vuoti ma tempo/punti valorizzati sono normali (osservate
+// nella pagina reale), non un errore di parsing.
+async function fetchRisultatiGaraSci(idGara, idComp) {
+  const res = await fetchConRetry(`${FISI_GARA_URL_BASE}?idGara=${idGara}&idComp=${idComp}&d=`, {
+    headers: { "User-Agent": "Mozilla/5.0 (compatible; FVGMonitorBot/1.0)" },
+  });
+  if (!res.ok) throw new Error(`Pagina gara ${idGara} HTTP ${res.status}`);
+
+  const $ = cheerio.load(await res.text());
+  const righe = $("#competizioni-container").first().children("div");
+
+  const risultati = [];
+  righe.each((_, el) => {
+    const $el = $(el);
+    const cols = $el.find(".x-row-inner").first().children(".x-col");
+    if (cols.length < 8) return; // struttura inattesa, riga scartata
+
+    const primario = (indice) => {
+      const t = $(cols[indice]).find(".x-text-content-text-primary").first().text().trim();
+      return t || null;
+    };
+
+    const puntiGara = primario(6);
+    risultati.push({
+      posizione: primario(0),
+      codFisi: primario(1),
+      atleta: primario(2),
+      anno: primario(3),
+      societa: primario(4),
+      tempoGara: primario(5),
+      puntiGara: puntiGara === "-" ? null : puntiGara,
+      puntiGraduatoria: primario(7),
+    });
+  });
+
+  return risultati;
+}
+
+// Orchestrazione: per ogni competizione passata nel calendario non
+// ancora in cache (fino al limite per esecuzione), scarica l'elenco
+// gare e i risultati di ciascuna, poi salva tutto in `sci:risultati`.
+async function ingestRisultatiSci(gareCalendario) {
+  const competizioniPassate = gareCalendario.filter((g) => g.svolta && g.id);
+  if (competizioniPassate.length === 0) {
+    console.log("Sci risultati: nessuna competizione passata nel calendario, niente da scaricare");
+    return;
+  }
+
+  const cacheEsistente = await leggiSnapshotEsistente("sci:risultati");
+  const competizioniCache = { ...(cacheEsistente?.competizioni || {}) };
+
+  let nuoveScaricate = 0;
+  let rimandate = 0;
+
+  for (const comp of competizioniPassate) {
+    const esistente = competizioniCache[comp.id];
+    if (esistente && esistente.completo) continue; // già in cache, zero richieste
+
+    if (nuoveScaricate >= FISI_MAX_COMPETIZIONI_NUOVE_PER_ESECUZIONE) {
+      rimandate++;
+      continue; // ripresa alla prossima esecuzione
+    }
+
+    try {
+      const gareConDettaglio = await fetchGareCompetizioneSci(comp.id);
+      const gareConRisultati = [];
+      for (const g of gareConDettaglio) {
+        const risultati = await fetchRisultatiGaraSci(g.idGara, comp.id);
+        gareConRisultati.push({ ...g, risultati });
+      }
+      competizioniCache[comp.id] = {
+        completo: true,
+        nomeCompetizione: comp.nome,
+        data: comp.data,
+        gare: gareConRisultati,
+      };
+      nuoveScaricate++;
+    } catch (err) {
+      console.warn(`Sci: risultati competizione ${comp.id} (${comp.nome}) non scaricati — ${err.message}`);
+      // non salvato in cache: ritentato automaticamente alla prossima esecuzione
+    }
+  }
+
+  if (rimandate > 0) {
+    console.log(`Sci risultati: ${rimandate} competizioni rimandate alla prossima esecuzione (limite ${FISI_MAX_COMPETIZIONI_NUOVE_PER_ESECUZIONE}/esecuzione)`);
+  }
+
+  // Scrive solo se è cambiato qualcosa — altrimenti (cache già
+  // completa, nessuna competizione nuova) ogni esecuzione da 15 minuti
+  // aggiungerebbe una riga identica in `history` per mesi, inutilmente.
+  if (nuoveScaricate === 0 && cacheEsistente) {
+    console.log("Sci risultati: nessuna novità, snapshot non riscritto");
+    return;
+  }
+
+  await upsertSnapshot("sci:risultati", "sci", null, {
+    competizioni: competizioniCache,
+    aggiornato_al: new Date().toISOString(),
+  });
+  console.log(`Sci risultati aggiornato: ${Object.keys(competizioniCache).length} competizioni in cache (${nuoveScaricate} nuove questa esecuzione)`);
 }
 
 // ---------------------------------------------------------------------
