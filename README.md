@@ -91,6 +91,7 @@ componente React che legge da Supabase con lo stesso nome.
 | **Eventi** | Scraping HTML turismofvg.it | Pagina server-rendered, no browser headless — fragile per natura (classi CSS specifiche) |
 | **TGR** | — | Nessun feed trovato, link statico alla sezione ufficiale |
 | **Trieste Airport** | Scraping HTML triesteairport.it | Stesso approccio degli Eventi, stessa fragilità |
+| **Registro modifiche** — pagina dedicata `/changelog`, link nel footer di ogni pagina | Dati statici, `lib/changelog.ts` | Cronologia di ciò che è cambiato sul sito, più recente in cima — vedi nota "Registro modifiche" sotto per il promemoria di aggiornamento |
 
 **Abbandonato**: trasporto pubblico TPL FVG — nessun endpoint pubblico per il
 tracciamento GPS trovato (verificato via devtools/WebSocket), solo l'elenco
@@ -670,10 +671,45 @@ mostrato un messaggio esplicito invece di una lista vuota.
 
 `npx tsc --noEmit` e `node --check` puliti; logica di estrazione
 verificata con uno script cheerio a parte contro l'HTML reale fornito
-dall'utente (non solo per ispezione visiva). **Non ancora testato in
-produzione** — servirà un run dell'ingestione (che scaricherà i
-risultati delle competizioni passate già nel calendario attuale) e una
-verifica visiva su `/sci`.
+dall'utente (non solo per ispezione visiva). **Confermato dall'utente in
+produzione** (screenshot, 25/08/2026): risultati mostrati correttamente
+per una gara di combinata nordica passata.
+
+## Registro modifiche — dentro `/changelog` (25/08/2026)
+
+Richiesta dell'utente: un link in fondo a ogni pagina che porti a un log
+con data di tutte le modifiche fatte al sito dall'inizio, aggiornato ad
+ogni nuova implementazione/correzione.
+
+**Dati statici**, non un modulo ingerito: `lib/changelog.ts` esporta un
+array `CHANGELOG` (`{ data, titolo, dettagli[] }`, più recente in cima)
+letto direttamente da `components/ChangelogPage.tsx` (`/changelog`) —
+nessuna tabella Supabase, non è un dato che cambia da solo, cambia solo
+quando consegniamo qualcosa. Popolato ricostruendo la cronologia da
+questo stesso README/dal doc di progetto: le voci dal 22/08/2026 in poi
+hanno una data precisa (sessioni datate esplicitamente), quelle
+precedenti no (nessun repository Git, nessuno storico consultabile) —
+raggruppate sotto l'etichetta "Fase iniziale" invece di inventare una
+data, con una nota esplicita in pagina su questo limite.
+
+**Nuovo `Footer.tsx`**, condiviso da tutte le pagine (stesso pattern di
+`TopHeader`: importato e reso da ogni pagina, non da `app/layout.tsx`),
+con il link "Registro modifiche →" e uno slot opzionale `extra` per
+contenuto specifico di pagina (usato solo in homepage, per la riga
+"Fonti: ..." che c'era già). Prima di questa modifica solo la homepage
+aveva un footer — ora tutte le pagine ne hanno uno, coerente col resto
+del sito.
+
+**⚠️ Promemoria per ogni sessione futura, non solo per questa**: da qui
+in avanti, ad ogni modifica consegnata (nuovo modulo, correzione,
+qualunque cambiamento visibile) va aggiunta una voce in cima a
+`CHANGELOG` in `lib/changelog.ts`, oltre ai soliti aggiornamenti di
+README.md e `claude/fvgmonitor-stato.md`. Poche righe pensate per chi
+usa il sito (cosa è cambiato), non il dettaglio tecnico — quello resta
+nei due documenti già esistenti.
+
+`npx tsc --noEmit` pulito. Non ancora confermato dall'utente in
+produzione.
 
 ## Fase 4 — Responsive (24/08/2026)
 

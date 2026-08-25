@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { TopHeader } from "@/components/TopHeader";
+import { Footer } from "@/components/Footer";
 import { WebcamCard, type Webcam } from "@/components/WebcamCard";
 import { PROVINCE_LIST, type ProvinciaSlug } from "@/lib/province";
 
@@ -129,6 +130,8 @@ export function WebcamPage() {
           </div>
         )}
       </main>
+
+      <Footer />
     </>
   );
 }

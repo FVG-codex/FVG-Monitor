@@ -8,6 +8,7 @@ import { Panel } from "@/components/Panel";
 import { PioggiaPanel } from "@/components/PioggiaPanel";
 import { TemperaturaBadge } from "@/components/TemperaturaBadge";
 import { TopHeader } from "@/components/TopHeader";
+import { Footer } from "@/components/Footer";
 import { VentoPanel } from "@/components/VentoPanel";
 import { ZonaAllertamentoLive } from "@/components/ZonaAllertamentoLive";
 import { PROVINCE, type ProvinciaSlug } from "@/lib/province";
@@ -82,6 +83,8 @@ export function ProvinciaPage({ slug }: { slug: ProvinciaSlug }) {
           nelle fasi successive del piano.
         </p>
       </main>
+
+      <Footer />
     </>
   );
 }

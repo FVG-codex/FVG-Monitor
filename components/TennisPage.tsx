@@ -5,6 +5,7 @@ import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import { Panel } from "@/components/Panel";
 import { TopHeader } from "@/components/TopHeader";
+import { Footer } from "@/components/Footer";
 
 type GiocatoreTennis = {
   nome: string;
@@ -157,6 +158,8 @@ export function TennisPage() {
           </div>
         )}
       </main>
+
+      <Footer />
     </>
   );
 }

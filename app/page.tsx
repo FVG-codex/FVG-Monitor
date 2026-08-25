@@ -13,6 +13,7 @@ import { PioggiaPanel } from "@/components/PioggiaPanel";
 import { PolliniPanel } from "@/components/PolliniPanel";
 import { TgrCard } from "@/components/TgrCard";
 import { TopHeader } from "@/components/TopHeader";
+import { Footer } from "@/components/Footer";
 import { VentoPanel } from "@/components/VentoPanel";
 import { ViabilitaPanel } from "@/components/ViabilitaPanel";
 import { VoliPanel } from "@/components/VoliPanel";
@@ -129,10 +130,14 @@ export default function Home() {
         </div>
       </main>
 
-      <footer className="max-w-[1180px] mx-auto px-5 py-6 border-t border-line font-mono text-[11px] text-ink-faint flex justify-between flex-wrap gap-2">
-        <span>FVG Monitor — Fase 3</span>
-        <span>Fonti: OSMER ARPA FVG · ANSA FVG · Protezione Civile FVG (CC BY 4.0) · InfoViaggiando · Turismo FVG · RAI TGR FVG · Trieste Airport</span>
-      </footer>
+      <Footer
+        extra={
+          <span>
+            Fonti: OSMER ARPA FVG · ANSA FVG · Protezione Civile FVG (CC BY 4.0) · InfoViaggiando · Turismo
+            FVG · RAI TGR FVG · Trieste Airport
+          </span>
+        }
+      />
     </>
   );
 }

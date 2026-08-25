@@ -3,6 +3,7 @@
 import { AutobusPanel } from "@/components/AutobusPanel";
 import { Panel } from "@/components/Panel";
 import { TopHeader } from "@/components/TopHeader";
+import { Footer } from "@/components/Footer";
 import { TreniPanel } from "@/components/TreniPanel";
 import { VoliPanel } from "@/components/VoliPanel";
 
@@ -37,6 +38,8 @@ export function TrasportiPage() {
           </Panel>
         </div>
       </main>
+
+      <Footer />
     </>
   );
 }

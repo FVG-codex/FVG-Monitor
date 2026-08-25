@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { TopHeader } from "@/components/TopHeader";
+import { Footer } from "@/components/Footer";
 
 const SPORT = [
   {
@@ -95,6 +96,8 @@ export default function SportHubPage() {
           ))}
         </div>
       </main>
+
+      <Footer />
     </>
   );
 }

@@ -5,6 +5,7 @@ import { supabase } from "@/lib/supabase";
 import { CarburantiPanel } from "@/components/CarburantiPanel";
 import { Panel } from "@/components/Panel";
 import { TopHeader } from "@/components/TopHeader";
+import { Footer } from "@/components/Footer";
 import { ViabilitaPanel } from "@/components/ViabilitaPanel";
 import { WebcamCard, type Webcam } from "@/components/WebcamCard";
 
@@ -88,6 +89,8 @@ export function ViabilitaPage() {
           </div>
         )}
       </main>
+
+      <Footer />
     </>
   );
 }

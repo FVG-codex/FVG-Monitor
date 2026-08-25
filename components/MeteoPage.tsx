@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Panel } from "@/components/Panel";
 import { TopHeader } from "@/components/TopHeader";
+import { Footer } from "@/components/Footer";
 import { MeteoOverview, MeteoDettaglio } from "@/components/MeteoPanel";
 import { MeteoWidgetSlot } from "@/components/MeteoWidgetSlot";
 import { TemperaturaBadge } from "@/components/TemperaturaBadge";
@@ -97,6 +98,8 @@ export function MeteoPage() {
           )
         )}
       </main>
+
+      <Footer />
     </>
   );
 }

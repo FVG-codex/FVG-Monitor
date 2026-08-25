@@ -5,6 +5,7 @@ import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import { Panel } from "@/components/Panel";
 import { TopHeader } from "@/components/TopHeader";
+import { Footer } from "@/components/Footer";
 
 type Partita = {
   casa: string;
@@ -198,6 +199,8 @@ export function BaseballPage() {
           </div>
         )}
       </main>
+
+      <Footer />
     </>
   );
 }

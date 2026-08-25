@@ -5,6 +5,7 @@ import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import { Panel } from "@/components/Panel";
 import { TopHeader } from "@/components/TopHeader";
+import { Footer } from "@/components/Footer";
 
 type GaraSci = {
   id: string | null;
@@ -321,6 +322,8 @@ export function SciPage() {
           </div>
         )}
       </main>
+
+      <Footer />
     </>
   );
 }

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { supabase } from "@/lib/supabase";
 import { TopHeader } from "@/components/TopHeader";
+import { Footer } from "@/components/Footer";
 import { Panel } from "@/components/Panel";
 
 const TerremotiMap = dynamic(() => import("@/components/TerremotiMap").then((m) => m.TerremotiMap), {
@@ -123,6 +124,8 @@ export function TerremotiPage() {
           </div>
         )}
       </main>
+
+      <Footer />
     </>
   );
 }
