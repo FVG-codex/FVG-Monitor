@@ -40,6 +40,20 @@ const SPORT = [
       </svg>
     ),
   },
+  {
+    nome: "Tennis",
+    href: "/tennis",
+    descrizione: "Classifica Assoluti maschile e femminile — migliori tesserati FVG (fonte FITP)",
+    icona: (
+      <svg viewBox="0 0 48 48" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <circle cx="24" cy="24" r="15" />
+        <path
+          d="M13 13c8 2 14 8 16 16M35 13c-8 2-14 8-16 16"
+          strokeLinecap="round"
+        />
+      </svg>
+    ),
+  },
 ];
 
 export default function SportHubPage() {

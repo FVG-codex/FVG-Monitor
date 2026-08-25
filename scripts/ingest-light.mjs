@@ -1508,6 +1508,152 @@ async function ingestBaseballFvg() {
 // ---------------------------------------------------------------------
 
 // ---------------------------------------------------------------------
+// TENNIS — ranking FITP (Federazione Italiana Tennis e Padel), categoria
+// "Assoluti" (open, senza limiti di età), maschile e femminile, FVG.
+//
+// API scoperta dall'utente via DevTools (la pagina ufficiale fitp.it è
+// una SPA Angular che non espone dati nell'HTML statico — stesso
+// ostacolo incontrato con il nuoto, ma qui risolto grazie a un
+// endpoint JSON diretto).
+//
+//   POST https://dp-myfit-test-function-v2.azurewebsites.net/api/v1/tesserati/list
+//   Content-Type: application/json
+//   body: { id_disciplina, id_provincia, id_regione, id_gruppo_rank,
+//           id_categoria_rank, id_categoria_eta, sesso, freetext,
+//           rowstoskip, fetchrows, sortcolumn, sortorder }
+//
+// id_regione=6 → Friuli-Venezia Giulia, id_disciplina=4332 → Tennis
+// (entrambi confermati sperimentalmente confrontando i conteggi).
+//
+// NOTE IMPORTANTI (verificate con richieste reali, non assunte):
+//
+// 1) sortcolumn NON è affidabile per ordinare per classifica. Testati
+//    "gr", "grado", "classifica_ranking": nessuno produce un ordine
+//    corretto (es. con "grado"/"classifica_ranking" il primo risultato
+//    aveva gr="4.NC", una delle classifiche peggiori possibili — e i
+//    due nomi colonna restituivano risultati IDENTICI, segno che
+//    entrambi vengono ignorati lato server e si ricade su un ordine
+//    di default arbitrario). Risolto ordinando lato client (nota 4).
+//
+// 2) sesso ("M"/"F") è invece un filtro affidabile e verificato:
+//    M=2691 + F=757 = 3448, combacia col totale non filtrato.
+//
+// 3) Il parametro id_categoria_eta (presumibilmente il filtro
+//    server-side per "categoria età", es. Assoluti/Over 40/Under 16)
+//    non è stato scoperto — nessun valore noto per "Assoluti". Aggirato
+//    filtrando lato client sul campo restituito "ce": si ipotizza (in
+//    base a tutti gli esempi osservati, mai smentita) che
+//    ce === "NOR" = Assoluti maschile, ce === "NOF" = Assoluti
+//    femminile — non confermato da un'etichetta esplicita dell'API,
+//    solo dedotto dai nomi e dal genere dei nominativi corrispondenti.
+//    Se in futuro risultasse sbagliato, va rivisto qui.
+//
+// 4) Ordinamento classifica: il campo "gr" (grado/classifica) segue
+//    sempre il formato "<cifra>.<cifra o NC>" (es. "2.4", "4.NC" — 1 è
+//    la categoria migliore, 4 la più debole; NC = non classificato,
+//    peggio di qualsiasi cifra). Un confronto alfabetico ascendente
+//    sulla stringa "gr" produce da solo l'ordine corretto dal migliore
+//    al peggiore, perché il carattere "N" ha valore ASCII maggiore di
+//    qualsiasi cifra — nessun bisogno di interpretare la gerarchia
+//    delle classifiche italiane. Verificato su tutti i valori "gr"
+//    osservati nei campioni (tutti nel formato atteso).
+//
+// Per poter ordinare noi stessi serve l'elenco completo per categoria:
+// si pagina l'intero elenco per sesso (filtro server affidabile) e si
+// filtra per "ce" lato client, senza altri filtri server-side.
+// ---------------------------------------------------------------------
+
+const TENNIS_API_URL = "https://dp-myfit-test-function-v2.azurewebsites.net/api/v1/tesserati/list";
+const TENNIS_ID_REGIONE_FVG = 6;
+const TENNIS_ID_DISCIPLINA = 4332;
+const TENNIS_PAGE_SIZE = 500;
+const TENNIS_TOP_N = 15;
+
+async function fetchPaginaTennis(sesso, rowstoskip) {
+  const res = await fetchConRetry(TENNIS_API_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "User-Agent": "Mozilla/5.0 (compatible; FVGMonitorBot/1.0)",
+    },
+    body: JSON.stringify({
+      id_disciplina: TENNIS_ID_DISCIPLINA,
+      id_provincia: 0,
+      id_regione: TENNIS_ID_REGIONE_FVG,
+      id_gruppo_rank: null,
+      id_categoria_rank: null,
+      id_categoria_eta: null,
+      sesso,
+      freetext: null,
+      rowstoskip,
+      fetchrows: TENNIS_PAGE_SIZE,
+      sortcolumn: "cognome",
+      sortorder: "asc",
+    }),
+  });
+  if (!res.ok) throw new Error(`Tennis API HTTP ${res.status} (sesso=${sesso}, skip=${rowstoskip})`);
+  return res.json();
+}
+
+// Pagina l'intero elenco per genere — con fetchrows=500 servono al
+// massimo ~6 richieste per i maschi (2691 tesserati) e ~2 per le
+// femmine (757), non dozzine.
+async function fetchTuttiGiocatoriTennis(sesso) {
+  const tutti = [];
+  let rowstoskip = 0;
+  for (;;) {
+    const { giocatori, record } = await fetchPaginaTennis(sesso, rowstoskip);
+    if (!Array.isArray(giocatori) || giocatori.length === 0) break;
+    tutti.push(...giocatori);
+    rowstoskip += giocatori.length;
+    if (rowstoskip >= record || giocatori.length < TENNIS_PAGE_SIZE) break;
+  }
+  return tutti;
+}
+
+function mappaGiocatoreTennis(g) {
+  return {
+    nome: g.n,
+    cognome: g.c,
+    comune: g.cit,
+    grado: g.gr,
+    categoriaRanking: g.cr,
+    partiteVinte: g.pv,
+    partitePerse: g.pp,
+  };
+}
+
+async function ingestCategoriaTennis(sesso, ceAtteso, slug, nome) {
+  const tutti = await fetchTuttiGiocatoriTennis(sesso);
+  const filtrati = tutti.filter((g) => g.ce === ceAtteso && g.gr);
+  // Ordinamento lato client — vedi nota 4 sopra: confronto stringa
+  // ascendente sul campo "gr" produce l'ordine dal migliore al peggiore.
+  filtrati.sort((a, b) => (a.gr < b.gr ? -1 : a.gr > b.gr ? 1 : 0));
+  const top = filtrati.slice(0, TENNIS_TOP_N).map(mappaGiocatoreTennis);
+  return { slug, nome, giocatori: top, totale_categoria: filtrati.length };
+}
+
+async function ingestTennis() {
+  const [assolutiM, assolutiF] = await Promise.all([
+    ingestCategoriaTennis("M", "NOR", "assoluti-maschile", "Assoluti maschile"),
+    ingestCategoriaTennis("F", "NOF", "assoluti-femminile", "Assoluti femminile"),
+  ]);
+
+  if (assolutiM.giocatori.length === 0 && assolutiF.giocatori.length === 0) {
+    console.warn("Nessun giocatore tennis trovato per le categorie Assoluti — controllare l'ipotesi ce/NOR/NOF");
+    return;
+  }
+
+  await upsertSnapshot("tennis:classifica", "tennis", null, {
+    categorie: [assolutiM, assolutiF],
+    aggiornato_al: new Date().toISOString(),
+  });
+  console.log(
+    `Tennis aggiornato: Assoluti M ${assolutiM.giocatori.length}/${assolutiM.totale_categoria}, Assoluti F ${assolutiF.giocatori.length}/${assolutiF.totale_categoria}`
+  );
+}
+
+// ---------------------------------------------------------------------
 
 // Nota: le allerte Protezione Civile NON vengono più ingerite qui.
 // L'endpoint (pianiemergenza.protezionecivile.fvg.it) risulta bloccato
@@ -1797,6 +1943,7 @@ async function main() {
     ["calcio", ingestCalcio()],
     ["basket", ingestBasket()],
     ["baseball", ingestBaseballFvg()],
+    ["tennis", ingestTennis()],
     ["webcam-osmer", ingestWebcamOsmer()],
     ["radar-meteo", ingestRadarMeteo()],
     ["terremoti", ingestTerremoti()],

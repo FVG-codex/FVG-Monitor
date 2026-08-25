@@ -79,6 +79,7 @@ componente React che legge da Supabase con lo stesso nome.
 | **Calcio** — pagina dedicata `/calcio` | gare.lnd.it (LND Comitato FVG) | App Inertia.js: la pagina incorpora l'intero stato (partite + classifica) in un tag `<script data-page="app">`, estratto con `cheerio` — niente scraping di HTML visibile. 9 campionati (Eccellenza, Promozione, Prima Categoria A/B/C, Seconda Categoria Gorizia/Pordenone/Udine-B/Udine-C — quest'ultima organizzata per provincia invece che su gironi regionali unificati) selezionabili da tab in pagina — vedi `COMPETIZIONI_CALCIO` in `ingest-light.mjs` per aggiungerne altri. **⚠️ Promemoria annuale**: gli URL hanno `stagione=2025` fisso — a inizio di ogni nuova stagione (di solito settembre) va aggiornato manualmente in `COMPETIZIONI_CALCIO`, altrimenti resta bloccato sull'ultima stagione conclusa |
 | **Basket** — pagina dedicata `/basket` | fip.it/risultati (FIP) | A differenza del calcio, qui i dati sono già nell'HTML servito dal server (nessun tag JSON incorporato) — scraping diretto con `cheerio`. **Nota di fragilità aggiuntiva**: l'URL non specifica un girone/comitato esplicito come per il calcio, la pagina mostra un "default" (al momento Trieste, Serie C/Divisione Regionale 1) che potrebbe cambiare lato FIP nel tempo — se i dati smettono di tornare coerenti, verificare se serve un URL più specifico. Estendibile via `COMPETIZIONI_BASKET` in `ingest-light.mjs` |
 | **Baseball & Softball** — pagina dedicata `/baseball` | live.baseballfvg.it (sito dell'utente, con 2 route API dedicate: `/api/calendario`, `/api/classifiche`) | Fetch semplice, nessuna protezione anti-bot (a differenza del tentativo iniziale con fibs.it direttamente, bloccato con HTTP 403). Le competizioni (Serie A Silver, Serie B Baseball, Serie A2 Softball) vengono scoperte dinamicamente dal calendario filtrato `fvg=true`. Squadre FVG evidenziate in ciano, classifiche raggruppate per girone |
+| **Tennis** — pagina dedicata `/tennis` | API FITP (Federazione Italiana Tennis e Padel), `dp-myfit-test-function-v2.azurewebsites.net` | Classifica "Top 15" Assoluti maschile/femminile FVG per grado di classifica — vedi nota "Tennis" sotto per i dettagli (sortcolumn server-side inaffidabile, ordinamento fatto lato ingest) |
 | **Webcam regionali** — pagina dedicata `/webcam` | osmer.fvg.it (CC BY-SA 3.0) + turismofvg.it (Panomax/Feratel, statico) | OSMER fa da specchio/proxy delle immagini di terze parti sul proprio dominio (`data-src` relativo) — le mostriamo da un unico dominio. Ogni card è cliccabile e apre la fonte originale (`data-url`) in una nuova scheda; se l'immagine non carica, mostra "Anteprima non disponibile" (`WebcamCard.tsx`, componente condiviso con `/viabilita`). **Nota sulla provincia**: le "zone geografiche" di OSMER non coincidono sempre con i confini provinciali (es. "Costa ovest e Laguna" include sia Grado/GO sia Lignano/UD) — mappa comune→provincia il più precisa possibile (`OSMER_COMUNE_PROVINCIA`), con fallback sulla zona quando il nome non è riconosciuto. Le webcam autostradali (A4/A23/A28/SR354) sono escluse qui e vivono in `/viabilita`. I panorami 360° di turismofvg.it (Panomax/Feratel) sono hardcoded in `WebcamPage.tsx` (elenco statico, non cambia spesso) — embeddati come iframe, non scrapati. **Non verificato**: se l'API monitor.protezionecivile.fvg.it abbia un endpoint webcam (non sembra dall'elenco sensori già esplorato, ma non controllato esplicitamente) |
 | **Meteo** — pagina dedicata `/meteo` | Riusa componenti già esistenti (nessuna nuova ingestione) | Consolida bollettino OSMER + temperatura live + widget ARPA + vento + pioggia + radar, organizzati per provincia (o "Tutta la regione"). Raggiungibile dal menu ad amburger, in cima |
 | **Radar meteo** | API monitoraggio PC FVG, gruppo `radar` | Solo il radar di Fossalon (id 1) è attivo — Lussari e Mosaico risultano spenti (`status: "X"`). 4 prodotti selezionabili da tab, ciascuno con una breve spiegazione in pagina: `SRTLBM_1` (pioggia, mm), `SSI` (severità temporale), `HMC` (classificazione idrometeore — pioggia/neve/grandine), `LBM_V` (velocità Doppler, m/s) — tutti recuperati in un'unica chiamata (`/radars/1/products` restituisce già tutti i prodotti disponibili insieme). Le immagini sono **trasparenti fuori dalle zone colorate** (nessuna base geografica) — sovrapposte a una vera mappa (Leaflet + tile OpenStreetMap) usando l'`extent` fornito dall'API stessa (`RadarMeteoMap.tsx`, caricato dinamicamente lato client — Leaflet richiede il DOM del browser) |
@@ -431,6 +432,75 @@ motivata e documentata al pattern standard "sempre proxy server-side"
 (che resta valido per Ferrovie, dove funziona). Screenshot dell'utente:
 pannello Autobus popolato con corse reali (G51R/G51A per/da Aeroporto).
 
+## Tennis — dentro `/tennis` (25/08/2026)
+
+Idea iniziale dell'utente: prendere i dati dal ranking FITP
+(fitp.it/Campionati-tornei-e-classifiche/Classifiche/Ricerca-Giocatore).
+La pagina ufficiale è una SPA Angular — l'HTML statico mostra solo
+placeholder di template (`{{ giocatore.c }}`) non renderizzati, stesso
+ostacolo incontrato con il tentativo di Nuoto (vedi "Idee future" sotto).
+A differenza del Nuoto, qui l'utente ha trovato e condiviso (via DevTools
+→ Network → Fetch/XHR → "Copia come cURL") la vera richiesta API dietro
+la pagina, sbloccando l'integrazione.
+
+**Endpoint**: `POST https://dp-myfit-test-function-v2.azurewebsites.net/api/v1/tesserati/list`
+(Azure Function), `Content-Type: application/json`. Corpo:
+`{ id_disciplina, id_provincia, id_regione, id_gruppo_rank,
+id_categoria_rank, id_categoria_eta, sesso, freetext, rowstoskip,
+fetchrows, sortcolumn, sortorder }`. `id_regione: 6` = Friuli-Venezia
+Giulia, `id_disciplina: 4332` = Tennis (entrambi confermati
+sperimentalmente confrontando i conteggi restituiti). Risposta:
+`{ giocatori: [...], record: <totale> }`.
+
+Gli header `Origin`/`Referer` presenti nella richiesta del browser
+dell'utente sono enforcement lato browser (CORS) — dato che l'ingestione
+gira lato server (Node `fetch()` in GitHub Actions, non un browser),
+non serve replicarli e non sono infatti stati inclusi.
+
+**Verifiche fatte prima di implementare** (script di test con richieste
+reali, non assunzioni):
+
+- `sesso` (`"M"`/`"F"`) è un filtro server-side affidabile: M=2691 +
+  F=757 = 3448, combacia esattamente col totale non filtrato.
+- `sortcolumn` **non è affidabile** per ordinare per classifica. Testati
+  `"gr"`, `"grado"`, `"classifica_ranking"`: nessuno produce un ordine
+  corretto — con `"grado"`/`"classifica_ranking"` il primo risultato
+  aveva `gr: "4.NC"` (una delle classifiche peggiori possibili), e i due
+  nomi colonna davano risultati identici tra loro, segno che vengono
+  ignorati lato server con fallback a un ordine arbitrario.
+- Il parametro `id_categoria_eta` (presumibile filtro server-side per
+  "categoria età": Assoluti/Over 40/Under 16/ecc.) non è stato scoperto
+  — nessun valore noto per "Assoluti". Aggirato filtrando lato client sul
+  campo restituito `ce`: si ipotizza (in base a tutti gli esempi
+  osservati, mai smentita, ma **non confermata da un'etichetta esplicita
+  dell'API**) che `ce === "NOR"` = Assoluti maschile e `ce === "NOF"` =
+  Assoluti femminile.
+
+**Soluzione adottata** (`ingestTennis()` in `scripts/ingest-light.mjs`):
+niente ordinamento server-side. Si pagina l'intero elenco per genere
+(`fetchrows: 500` → ~6 richieste per i maschi, ~2 per le femmine — non
+dozzine), si filtra lato client per `ce === "NOR"` / `"NOF"`, poi si
+ordina con un semplice confronto **alfabetico ascendente** sulla
+stringa `gr` (formato sempre `<cifra>.<cifra o NC>`, es. `"2.4"`,
+`"4.NC"` — 1 è la categoria migliore, "NC" = non classificato, peggio
+di qualsiasi cifra). Un confronto stringa produce da solo l'ordine
+corretto perché il carattere `N` ha valore ASCII maggiore di qualsiasi
+cifra — non serve interpretare la gerarchia delle classifiche italiane.
+Verificato su tutti i valori `gr` osservati nei campioni reali (tutti
+nel formato atteso). Si prendono i primi 15 di ciascuna categoria.
+
+**Se in futuro l'ipotesi NOR/NOF risultasse sbagliata** (es. classifiche
+vuote o palesemente incoerenti), va rivista in `ingestCategoriaTennis()`
+— non c'è modo di confermarla dall'API senza un'etichetta esplicita che
+al momento non è stata trovata.
+
+Pagina `/tennis` (`TennisPage.tsx`) mostra un tab Assoluti
+maschile/femminile e un'unica tabella (posizione, giocatore, comune,
+grado, V-P), sullo stesso modello visivo di Calcio/Basket/Baseball ma
+con un solo pannello invece di calendario+classifica (il tennis non ha
+un "calendario partite" nello stesso senso). Card aggiunta all'hub
+`/sport`.
+
 ## Fase 4 — Responsive (24/08/2026)
 
 Audit mirato su tutti i componenti (`components/*.tsx`), cercando pattern
@@ -602,6 +672,7 @@ un controllo con axe/Lighthouse o un vero screen reader quando possibile.
 ## Idee future (annotate, non richieste esplicitamente per l'implementazione)
 
 - **Strutture ricettive** (B&B, agriturismi, hotel, ecc.): possibile nuovo modulo/pagina. Da definire quando richiesto: fonte dati (dataset regionale open data? scraping di un portale turistico, come già fatto per "Eventi"? un'API di settore?), se mostrare disponibilità/prezzi in tempo reale o solo un elenco/mappa statico aggiornato periodicamente, e se organizzarlo per provincia o come le stazioni/fermate (elenco piatto con tab). Nessuna ricerca di fonti fatta finora — da avviare quando l'utente vorrà procedere.
+- **Nuoto** (nuova sezione Sport, accanto a Calcio/Basket/Baseball), **accantonata il 25/08/2026 su richiesta dell'utente — da riprendere con la nuova stagione**. Fonte proposta dall'utente: `fin2026.microplustiming.com` (portale risultati FIN, piattaforma Microplus Timing) — es. `NU_2026_07_17-19_Trieste_web.php`, Campionato Regionale Assoluto FVG vasca lunga, Trieste 17-19 luglio 2026. Trovato finora: (1) la pagina base del meeting si legge con WebFetch, ma i link "profondi" a una singola gara (parametri `cat`/`page`/`spec`/`bat`, con `descIT`/`descEN`/`descFR` in base64) restituiscono 403 dal proxy di questa sessione — possibile blocco anti-bot sui link con parametri, non confermato; (2) i risultati delle singole gare NON sono nell'HTML iniziale ma caricati via JavaScript (funzioni tipo `LoadHistory_Calendar()`) da un endpoint non identificato — stesso tipo di ostacolo già visto con gli autobus TPL FVG, ma qui l'endpoint reale non è ancora noto; (3) esiste anche un prodotto ufficiale Microplus "Results Data Feed" (es. `crs-ta2026-rdf.microplustimingservices.com`) ma è dietro login, verosimilmente riservato a stampa accreditata/broadcaster, non un'opzione praticabile. **Prossimo passo quando si riprende**: chiedere all'utente di aprire una pagina risultati nel proprio browser, DevTools → tab Rete → filtro Fetch/XHR, cliccare su una gara e individuare la richiesta che carica i dati (stesso metodo che ha funzionato per gli autobus) — non ancora fatto. Nota di modello: il nuoto non ha una "classifica di campionato" come calcio/basket/baseball (`COMPETIZIONI_CALCIO`/`COMPETIZIONI_BASKET` in `scripts/ingest-light.mjs`, partite + classifica) — sono meeting singoli con risultati gara per gara, quindi anche una volta trovata la fonte tecnica andrà probabilmente ripensato il modello dati (elenco risultati per meeting, non classifica a punti). Discussa anche un'alternativa più leggera mai approfondita: solo calendario meeting FVG + link ai risultati ufficiali, senza estrarre i tempi.
 
 ## Prossimo passo
 
@@ -611,10 +682,12 @@ l'audit di accessibilità (vedi le tre sezioni "Fase 4" sopra) —
 **nessuna delle tre cose ancora confermata dall'utente su un
 browser/telefono vero o con uno screen reader**, dato che questa
 sessione non ha accesso a nulla di tutto ciò per verificarlo
-direttamente. Resta da fare l'ultima area di Fase 4: performance (il
-dominio personalizzato, `monitor.fvg.it`, è in corso a parte — record
-DNS in configurazione presso il registrar, non ancora verificato su
-Vercel).
+direttamente. Aggiunto anche il modulo Tennis (`/tennis`, vedi sezione
+dedicata sopra) — non ancora confermato in produzione (serve un run
+dell'ingestione + una verifica visiva). Resta da fare l'ultima area di
+Fase 4: performance (il dominio personalizzato, `monitor.fvg.it`, è in
+corso a parte — record DNS in configurazione presso il registrar, non
+ancora verificato su Vercel).
 
 Il modulo Autobus ha 6 blocchi (Trieste, Udine, Gorizia, Pordenone,
 Trieste Airport, Monfalcone — vedi nota "Autobus" sopra); solo Trieste è
