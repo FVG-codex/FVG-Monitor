@@ -478,27 +478,54 @@ reali, non assunzioni):
 
 **Soluzione adottata** (`ingestTennis()` in `scripts/ingest-light.mjs`):
 niente ordinamento server-side. Si pagina l'intero elenco per genere
-(`fetchrows: 500` → ~6 richieste per i maschi, ~2 per le femmine — non
-dozzine), si filtra lato client per `ce === "NOR"` / `"NOF"`, poi si
-ordina con un semplice confronto **alfabetico ascendente** sulla
+(`fetchrows: 500`), si filtra lato client per `ce === "NOR"` / `"NOF"`,
+poi si ordina con un semplice confronto **alfabetico ascendente** sulla
 stringa `gr` (formato sempre `<cifra>.<cifra o NC>`, es. `"2.4"`,
 `"4.NC"` — 1 è la categoria migliore, "NC" = non classificato, peggio
 di qualsiasi cifra). Un confronto stringa produce da solo l'ordine
 corretto perché il carattere `N` ha valore ASCII maggiore di qualsiasi
 cifra — non serve interpretare la gerarchia delle classifiche italiane.
 Verificato su tutti i valori `gr` osservati nei campioni reali (tutti
-nel formato atteso). Si prendono i primi 15 di ciascuna categoria.
+nel formato atteso).
 
 **Se in futuro l'ipotesi NOR/NOF risultasse sbagliata** (es. classifiche
-vuote o palesemente incoerenti), va rivista in `ingestCategoriaTennis()`
-— non c'è modo di confermarla dall'API senza un'etichetta esplicita che
+vuote o palesemente incoerenti), va rivista in `ingestGenereTennis()` —
+non c'è modo di confermarla dall'API senza un'etichetta esplicita che
 al momento non è stata trovata.
 
-Pagina `/tennis` (`TennisPage.tsx`) mostra un tab Assoluti
-maschile/femminile e un'unica tabella (posizione, giocatore, comune,
-grado, V-P), sullo stesso modello visivo di Calcio/Basket/Baseball ma
-con un solo pannello invece di calendario+classifica (il tennis non ha
-un "calendario partite" nello stesso senso). Card aggiunta all'hub
+**Bug — giocatori duplicati (25/08/2026, corretto)**: la prima versione
+consegnata mostrava lo stesso giocatore ripetuto più volte (stessi
+nome/cognome/comune/grado/V-P), segnalato dall'utente con uno screenshot
+di produzione. Non è stato possibile riprodurre/diagnosticare la causa
+esatta da questa sessione: l'host dell'API (`dp-myfit-test-function-v2.
+azurewebsites.net`) non è nella allowlist di rete di questo sandbox —
+anche un fetch Node diretto (non tramite WebFetch) fallisce con
+`403 Host not in allowlist`, un blocco della rete di questo ambiente,
+non dell'API stessa. Cause plausibili non escluse a vicenda: (a) l'API
+non rispetta `rowstoskip` in modo affidabile e restituisce pagine
+sovrapposte; (b) con `id_gruppo_rank`/`id_categoria_rank` a `null`
+l'API restituisce più righe per la stessa persona (es. una per gruppo
+di ranking). **Fix robusto indipendentemente dalla causa esatta**:
+deduplicazione per `nome+cognome+comune` (`dedupeGiocatoriTennis`) dopo
+il filtro `ce`, prima di ordinare; rimossa anche la condizione di stop
+`giocatori.length < fetchrows` nella paginazione (poteva fermarsi troppo
+presto se l'API limita silenziosamente la dimensione di pagina), sostituita
+da un contatore di sicurezza anti-loop-infinito (`TENNIS_MAX_PAGINE`).
+**Non ancora riconfermato dall'utente in produzione dopo il fix.**
+
+**Richiesta aggiuntiva dell'utente**: dividere le classifiche per
+categoria di grado (2ª/3ª/4ª), non solo per genere, invece di un'unica
+lista "assoluta" dominata dai pochi giocatori di 1ª/2ª categoria.
+Implementato derivando la categoria dalla cifra prima del punto in `gr`
+(`categoriaDiGrado()`) — sempre presente nel formato osservato, nessun
+bisogno di un parametro API dedicato. Risultato: 6 classifiche
+(Maschile/Femminile × 2ª/3ª/4ª categoria), 10 giocatori ciascuna.
+
+Pagina `/tennis` (`TennisPage.tsx`) mostra un tab per ciascuna delle 6
+classifiche e un'unica tabella (posizione, giocatore, comune, grado,
+V-P), sullo stesso modello visivo di Calcio/Basket/Baseball ma con un
+solo pannello invece di calendario+classifica (il tennis non ha un
+"calendario partite" nello stesso senso). Card aggiunta all'hub
 `/sport`.
 
 ## Fase 4 — Responsive (24/08/2026)
@@ -683,8 +710,10 @@ l'audit di accessibilità (vedi le tre sezioni "Fase 4" sopra) —
 browser/telefono vero o con uno screen reader**, dato che questa
 sessione non ha accesso a nulla di tutto ciò per verificarlo
 direttamente. Aggiunto anche il modulo Tennis (`/tennis`, vedi sezione
-dedicata sopra) — non ancora confermato in produzione (serve un run
-dell'ingestione + una verifica visiva). Resta da fare l'ultima area di
+dedicata sopra) — prima versione aveva un bug di giocatori duplicati
+(segnalato dall'utente, corretto il 25/08 con deduplicazione +
+classifiche divise per 2ª/3ª/4ª categoria), **non ancora riconfermato
+in produzione dopo il fix**. Resta da fare l'ultima area di
 Fase 4: performance (il dominio personalizzato, `monitor.fvg.it`, è in
 corso a parte — record DNS in configurazione presso il registrar, non
 ancora verificato su Vercel).

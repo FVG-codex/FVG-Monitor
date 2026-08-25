@@ -1556,7 +1556,30 @@ async function ingestBaseballFvg() {
 //    al peggiore, perché il carattere "N" ha valore ASCII maggiore di
 //    qualsiasi cifra — nessun bisogno di interpretare la gerarchia
 //    delle classifiche italiane. Verificato su tutti i valori "gr"
-//    osservati nei campioni (tutti nel formato atteso).
+//    osservati nei campioni (tutti nel formato atteso). La cifra prima
+//    del punto è anche la "categoria" (2ª/3ª/4ª) richiesta dall'utente
+//    per suddividere le classifiche (vedi ingestGenereTennis sotto).
+//
+// 5) La prima versione di questo modulo (senza deduplicazione)
+//    produceva classifiche con lo stesso giocatore ripetuto più volte
+//    (stessi nome/cognome/comune/grado/V-P) — segnalato dall'utente con
+//    uno screenshot in produzione. Il sandbox di questa sessione non
+//    riesce a chiamare l'API per verificare direttamente la causa
+//    esatta (l'host `dp-myfit-test-function-v2.azurewebsites.net` non è
+//    nella allowlist di rete di questo ambiente — errore distinto da un
+//    blocco lato FITP, non testabile da qui nemmeno con un fetch
+//    diretto in Node). Cause plausibili non escluse a vicenda: (a)
+//    l'API non rispetta `rowstoskip` in modo affidabile e restituisce
+//    pagine sovrapposte; (b) con `id_gruppo_rank`/`id_categoria_rank`
+//    lasciati a null l'API restituisce più righe per la stessa persona
+//    (es. una per gruppo di ranking). **Soluzione adottata, robusta
+//    indipendentemente dalla causa esatta**: deduplicare per
+//    nome+cognome+comune dopo il filtro `ce`, PRIMA di ordinare — vedi
+//    `dedupeGiocatoriTennis`. Rimossa anche la condizione di stop
+//    `giocatori.length < fetchrows` nella paginazione (poteva fermarsi
+//    troppo presto se l'API limita silenziosamente la dimensione di
+//    pagina sotto quella richiesta), sostituita da un contatore di
+//    sicurezza anti-loop-infinito.
 //
 // Per poter ordinare noi stessi serve l'elenco completo per categoria:
 // si pagina l'intero elenco per sesso (filtro server affidabile) e si
@@ -1567,7 +1590,8 @@ const TENNIS_API_URL = "https://dp-myfit-test-function-v2.azurewebsites.net/api/
 const TENNIS_ID_REGIONE_FVG = 6;
 const TENNIS_ID_DISCIPLINA = 4332;
 const TENNIS_PAGE_SIZE = 500;
-const TENNIS_TOP_N = 15;
+const TENNIS_TOP_N = 10;
+const TENNIS_MAX_PAGINE = 30; // sicurezza anti-loop-infinito, non un limite atteso in pratica
 
 async function fetchPaginaTennis(sesso, rowstoskip) {
   const res = await fetchConRetry(TENNIS_API_URL, {
@@ -1595,18 +1619,26 @@ async function fetchPaginaTennis(sesso, rowstoskip) {
   return res.json();
 }
 
-// Pagina l'intero elenco per genere — con fetchrows=500 servono al
-// massimo ~6 richieste per i maschi (2691 tesserati) e ~2 per le
-// femmine (757), non dozzine.
+// Pagina l'intero elenco per genere. Si ferma solo quando rowstoskip
+// raggiunge il totale dichiarato dall'API (`record`) o quando una
+// pagina torna vuota — MAI in base alla lunghezza della pagina rispetto
+// a fetchrows (vedi nota 5 sopra: l'API potrebbe limitare la pagina
+// sotto il valore richiesto senza avvisare).
 async function fetchTuttiGiocatoriTennis(sesso) {
   const tutti = [];
   let rowstoskip = 0;
+  let pagina = 0;
   for (;;) {
+    pagina++;
+    if (pagina > TENNIS_MAX_PAGINE) {
+      console.warn(`Tennis (${sesso}): fermato dopo ${TENNIS_MAX_PAGINE} pagine — controllare se l'API rispetta rowstoskip`);
+      break;
+    }
     const { giocatori, record } = await fetchPaginaTennis(sesso, rowstoskip);
     if (!Array.isArray(giocatori) || giocatori.length === 0) break;
     tutti.push(...giocatori);
     rowstoskip += giocatori.length;
-    if (rowstoskip >= record || giocatori.length < TENNIS_PAGE_SIZE) break;
+    if (rowstoskip >= record) break;
   }
   return tutti;
 }
@@ -1623,33 +1655,76 @@ function mappaGiocatoreTennis(g) {
   };
 }
 
-async function ingestCategoriaTennis(sesso, ceAtteso, slug, nome) {
+// Chiave usata per riconoscere lo stesso giocatore su più righe
+// restituite dall'API (vedi nota 5 sopra) — non abbiamo un ID persona
+// di cui fidarci ciecamente, nome+cognome+comune è il miglior
+// compromesso disponibile con i campi che l'API espone.
+function chiaveGiocatoreTennis(g) {
+  return `${(g.c || "").trim().toLowerCase()}|${(g.n || "").trim().toLowerCase()}|${(g.cit || "").trim().toLowerCase()}`;
+}
+
+function dedupeGiocatoriTennis(lista) {
+  const mappa = new Map();
+  for (const g of lista) {
+    const chiave = chiaveGiocatoreTennis(g);
+    const esistente = mappa.get(chiave);
+    // A parità di persona, se per assurdo i duplicati avessero un grado
+    // diverso, teniamo quello migliore (stringa più bassa — vedi nota 4).
+    if (!esistente || (g.gr && esistente.gr && g.gr < esistente.gr)) {
+      mappa.set(chiave, g);
+    }
+  }
+  return [...mappa.values()];
+}
+
+// Cifra prima del punto in "gr" = categoria (1 migliore .. 4 più debole,
+// vedi nota 4 sopra) — sempre presente nel formato osservato.
+function categoriaDiGrado(gr) {
+  return gr ? gr.charAt(0) : null;
+}
+
+// Costruisce le classifiche 2ª/3ª/4ª categoria (richieste esplicitamente
+// dall'utente, invece di un'unica lista "assoluta" dominata dai pochi
+// giocatori di 1ª/2ª categoria) per un genere.
+async function ingestGenereTennis(sesso, ceAtteso, prefissoSlug, prefissoNome) {
   const tutti = await fetchTuttiGiocatoriTennis(sesso);
   const filtrati = tutti.filter((g) => g.ce === ceAtteso && g.gr);
-  // Ordinamento lato client — vedi nota 4 sopra: confronto stringa
-  // ascendente sul campo "gr" produce l'ordine dal migliore al peggiore.
-  filtrati.sort((a, b) => (a.gr < b.gr ? -1 : a.gr > b.gr ? 1 : 0));
-  const top = filtrati.slice(0, TENNIS_TOP_N).map(mappaGiocatoreTennis);
-  return { slug, nome, giocatori: top, totale_categoria: filtrati.length };
+  const senzaDuplicati = dedupeGiocatoriTennis(filtrati);
+
+  return ["2", "3", "4"].map((cifra) => {
+    const delGruppo = senzaDuplicati
+      .filter((g) => categoriaDiGrado(g.gr) === cifra)
+      // Ordinamento lato client — vedi nota 4 sopra: confronto stringa
+      // ascendente sul campo "gr" produce l'ordine dal migliore al peggiore.
+      .sort((a, b) => (a.gr < b.gr ? -1 : a.gr > b.gr ? 1 : 0));
+    return {
+      slug: `${prefissoSlug}-${cifra}a-categoria`,
+      nome: `${prefissoNome} — ${cifra}ª categoria`,
+      giocatori: delGruppo.slice(0, TENNIS_TOP_N).map(mappaGiocatoreTennis),
+      totale_categoria: delGruppo.length,
+    };
+  });
 }
 
 async function ingestTennis() {
-  const [assolutiM, assolutiF] = await Promise.all([
-    ingestCategoriaTennis("M", "NOR", "assoluti-maschile", "Assoluti maschile"),
-    ingestCategoriaTennis("F", "NOF", "assoluti-femminile", "Assoluti femminile"),
+  const [categorieM, categorieF] = await Promise.all([
+    ingestGenereTennis("M", "NOR", "maschile", "Maschile"),
+    ingestGenereTennis("F", "NOF", "femminile", "Femminile"),
   ]);
 
-  if (assolutiM.giocatori.length === 0 && assolutiF.giocatori.length === 0) {
-    console.warn("Nessun giocatore tennis trovato per le categorie Assoluti — controllare l'ipotesi ce/NOR/NOF");
+  const categorie = [...categorieM, ...categorieF];
+  const totaleGiocatori = categorie.reduce((somma, c) => somma + c.giocatori.length, 0);
+  if (totaleGiocatori === 0) {
+    console.warn("Nessun giocatore tennis trovato nelle categorie 2ª/3ª/4ª — controllare l'ipotesi ce/NOR/NOF o il formato di gr");
     return;
   }
 
   await upsertSnapshot("tennis:classifica", "tennis", null, {
-    categorie: [assolutiM, assolutiF],
+    categorie,
     aggiornato_al: new Date().toISOString(),
   });
   console.log(
-    `Tennis aggiornato: Assoluti M ${assolutiM.giocatori.length}/${assolutiM.totale_categoria}, Assoluti F ${assolutiF.giocatori.length}/${assolutiF.totale_categoria}`
+    `Tennis aggiornato: ${categorie.map((c) => `${c.nome} ${c.giocatori.length}/${c.totale_categoria}`).join(", ")}`
   );
 }
 

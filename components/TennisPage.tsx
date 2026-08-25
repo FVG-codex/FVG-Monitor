@@ -41,7 +41,7 @@ function nomeCompleto(g: GiocatoreTennis): string {
 export function TennisPage() {
   const [dati, setDati] = useState<TennisData | null>(null);
   const [stato, setStato] = useState<"loading" | "ready" | "error">("loading");
-  const [categoria, setCategoria] = useState("assoluti-maschile");
+  const [categoria, setCategoria] = useState("maschile-2a-categoria");
 
   useEffect(() => {
     let attivo = true;
@@ -82,8 +82,8 @@ export function TennisPage() {
           Tennis — Classifica Assoluti FVG
         </h1>
         <p className="text-ink-faint text-xs font-mono mb-4">
-          Migliori tesserati FVG per grado di classifica, categoria Assoluti — fonte: FITP
-          (Federazione Italiana Tennis e Padel)
+          Migliori tesserati FVG in categoria Assoluti, divisi per 2ª/3ª/4ª categoria di
+          classifica e per genere — fonte: FITP (Federazione Italiana Tennis e Padel)
         </p>
 
         {dati && (
@@ -142,8 +142,8 @@ export function TennisPage() {
                     </table>
                   </div>
                   <p className="text-ink-faint text-[10px] font-mono mt-3">
-                    {attiva.totale_categoria} tesserati in classifica Assoluti FVG — ordinati per grado
-                    (1 = categoria migliore) · dati aggiornati al{" "}
+                    {attiva.totale_categoria} tesserati FVG in questa categoria — ordinati per grado
+                    (sub-livello più basso = migliore) · dati aggiornati al{" "}
                     {new Date(dati.aggiornato_al).toLocaleString("it-IT", {
                       day: "numeric",
                       month: "short",
