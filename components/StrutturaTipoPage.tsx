@@ -69,8 +69,10 @@ export function StrutturaTipoPage({ tipo }: { tipo: TipoStrutturaSlug }) {
         </Link>
         <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1 mt-1">{info.nome}</h1>
         <p className="text-ink-faint text-xs font-mono mb-4">
-          {info.descrizione} — fonte: Regione Autonoma FVG (dati.friuliveneziagiulia.it). Elenco senza indirizzo,
-          telefono o coordinate: la fonte pubblica solo denominazione, comune, email e sito quando disponibili.
+          {info.descrizione} — fonte: Regione Autonoma FVG (dati.friuliveneziagiulia.it), che pubblica solo
+          denominazione, comune, email e sito quando disponibili. Indirizzo e telefono, quando mostrati, vengono da
+          un abbinamento nome+comune con turismofvg.it o OpenStreetMap (fonte indicata accanto al dato) — non sempre
+          disponibili, non un dato ufficiale della Regione.
         </p>
 
         {stato === "loading" && <p className="text-ink-faint text-sm font-mono">Caricamento…</p>}
@@ -128,11 +130,30 @@ export function StrutturaTipoPage({ tipo }: { tipo: TipoStrutturaSlug }) {
                           </span>
                         </div>
                         <div className="text-ink-dim text-xs mt-0.5">{v.comune}</div>
-                        {(v.sito || v.email) && (
+                        {v.contatti?.indirizzo && (
+                          <div className="text-ink-faint text-[11px] mt-0.5">
+                            {v.contatti.indirizzo}
+                            <span className="font-mono text-[9px] text-ink-faint uppercase ml-1">
+                              ({v.contatti.fonte === "turismofvg" ? "TurismoFVG" : "OSM"})
+                            </span>
+                          </div>
+                        )}
+                        {(v.sito || v.email || v.contatti?.telefono || v.contatti?.sito || v.contatti?.email) && (
                           <div className="flex flex-wrap gap-x-3 mt-1">
-                            {v.sito && (
+                            {v.contatti?.telefono && (
                               <a
-                                href={v.sito}
+                                href={`tel:${v.contatti.telefono.replace(/\s+/g, "")}`}
+                                className="font-mono text-[10px] text-ink-faint hover:text-cool"
+                              >
+                                {v.contatti.telefono}
+                                <span className="text-[9px] uppercase ml-1">
+                                  ({v.contatti.fonte === "turismofvg" ? "TurismoFVG" : "OSM"})
+                                </span>
+                              </a>
+                            )}
+                            {(v.sito || v.contatti?.sito) && (
+                              <a
+                                href={v.sito ?? v.contatti?.sito}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="font-mono text-[10px] text-cool hover:underline inline-block"
@@ -140,14 +161,21 @@ export function StrutturaTipoPage({ tipo }: { tipo: TipoStrutturaSlug }) {
                                 Sito →<span className="sr-only"> (si apre in una nuova scheda)</span>
                               </a>
                             )}
-                            {v.email && (
+                            {(v.email || v.contatti?.email) && (
                               <a
-                                href={`mailto:${v.email}`}
+                                href={`mailto:${v.email ?? v.contatti?.email}`}
                                 className="font-mono text-[10px] text-ink-faint hover:text-cool"
                               >
-                                {v.email}
+                                {v.email ?? v.contatti?.email}
                               </a>
                             )}
+                          </div>
+                        )}
+                        {(v.contatti?.titolare || v.contatti?.cin) && (
+                          <div className="text-ink-faint text-[10px] font-mono mt-1">
+                            {v.contatti.titolare && <span>Titolare: {v.contatti.titolare}</span>}
+                            {v.contatti.titolare && v.contatti.cin && <span className="mx-1.5">·</span>}
+                            {v.contatti.cin && <span>CIN: {v.contatti.cin}</span>}
                           </div>
                         )}
                       </div>

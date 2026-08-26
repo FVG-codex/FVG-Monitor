@@ -10,6 +10,11 @@
 import { createClient } from "@supabase/supabase-js";
 import { XMLParser } from "fast-xml-parser";
 import * as cheerio from "cheerio";
+import { readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+import path from "node:path";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -1127,13 +1132,421 @@ const DATASET_STRUTTURE_RICETTIVE = {
   rifugi: "qnwt-cjvq",
 };
 
+// -----------------------------------------------------------------------
+// Arricchimento contatti (indirizzo/telefono/sito/coordinate) — 26/08/2026
+//
+// I registri Socrata sopra non hanno indirizzo/telefono/coordinate (solo
+// provincia/comune/denominazione/email/sito, verificato riga per riga).
+// Su richiesta dell'utente, arricchiamo con OpenStreetMap (dati aperti,
+// licenza ODbL) tramite abbinamento nome+comune — nessun ID condiviso
+// con i dataset regionali, quindi il match è per forza euristico, non
+// certo. `data/osm-strutture-ricettive.json` è un estratto statico,
+// preparato UNA TANTUM in questa sessione da un export Overpass caricato
+// dall'utente (1418 elementi OSM in FVG con tag tourism=hotel/apartment/
+// guest_house/hostel/camp_site/alpine_hut/wilderness_hut/chalet/motel o
+// leisure=marina, filtrato ai ~843 con almeno indirizzo/telefono/sito/
+// email) — NON viene riscaricato ad ogni esecuzione (OSM non ha un'API
+// raggiungibile da qui, vedi nota architettura in claude/fvgmonitor-
+// stato.md): se l'utente vorrà dati OSM più freschi in futuro, andrà
+// ripetuta la stessa procedura (query Overpass Turbo → nuovo export →
+// sostituire questo file).
+//
+// Il campo `tipoOsm` del match NON viene usato per filtrare — un B&B e
+// un affittacamere sono indistinguibili su OSM (nessun tag dedicato per
+// molti dei nostri 8 tipi), quindi si accetta un match di qualunque tipo
+// OSM purché nome+comune combacino abbastanza.
+// -----------------------------------------------------------------------
+
+const OSM_STRUTTURE_RICETTIVE = JSON.parse(
+  readFileSync(path.join(__dirname, "data", "osm-strutture-ricettive.json"), "utf8")
+);
+
+// Parole troppo generiche per contare come "prova" di corrispondenza tra
+// due nomi (es. "Casa Rossa" vs "Casa Bianca" non devono combaciare solo
+// perché condividono "Casa") — rimosse da entrambi i lati prima del
+// confronto. Include le forme tipiche della sintassi Socrata "NOME di
+// COGNOME NOME" (il "di" del titolare, non il "di" del nome del posto).
+const PAROLE_GENERICHE_NOME = new Set([
+  "DI", "DA", "DEL", "DELLA", "DEI", "DELLE", "DEGLI", "IN", "E", "ED", "&",
+  "B", "BB", "BED", "BREAKFAST", "HOTEL", "ALBERGO", "CASA", "VILLA",
+  "AZIENDA", "AGRICOLA", "AGRITURISMO", "FATTORIA", "RIFUGIO", "CAMPING",
+  "CAMPEGGIO", "MARINA", "RESORT", "HOUSE", "HOME", "SOCIETA", "SRL", "SAS",
+  "SNC", "DIFFUSO", "ALBERGHI",
+]);
+
+function normalizzaTesto(s) {
+  return (s ?? "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "") // rimuove accenti
+    .toUpperCase()
+    .replace(/[^A-Z0-9\s]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+// `extraStopwords` porta anche le parole del COMUNE (es. "TRIESTE",
+// "LIGNANO", "SABBIADORO") — trovato con dati reali: quasi ogni nome che
+// contiene il nome del comune ("Trieste Plus", "Bora di Trieste", "BB
+// Trieste"...) veniva abbinato a "B&B Hotel Trieste" su OSM, il cui unico
+// token dopo aver tolto le parole generiche restava "TRIESTE" — lungo
+// abbastanza da superare la soglia di 6 caratteri, ma senza alcun valore
+// distintivo perché è solo il nome della città, non del locale.
+function tokenSignificativi(nome, extraStopwords) {
+  return normalizzaTesto(nome)
+    .split(" ")
+    .filter((t) => t && !PAROLE_GENERICHE_NOME.has(t) && !extraStopwords?.has(t));
+}
+
+// true se il nome (probabilmente più corto/pulito) di OSM è "contenuto"
+// nel nome Socrata (spesso più lungo, con titolare incluso) — richiede
+// che TUTTI i token significativi del lato più corto compaiano nell'altro,
+// e almeno un token significativo da confrontare (altrimenti "Villa" da
+// solo, dopo la rimozione delle parole generiche, matcherebbe con tutto).
+function nomiCorrispondono(nomeSocrata, nomeOsm, comuneStopwords) {
+  const tA = tokenSignificativi(nomeSocrata, comuneStopwords);
+  const tB = tokenSignificativi(nomeOsm, comuneStopwords);
+  if (tA.length === 0 || tB.length === 0) return false;
+  const [corti, lunghi] = tA.length <= tB.length ? [tA, tB] : [tB, tA];
+  const insiemeLunghi = new Set(lunghi);
+  if (!corti.every((t) => insiemeLunghi.has(t))) return false;
+  // Un solo token in comune è una prova debole se quel token è corto —
+  // trovato con dati reali: "PINO MARE" (Lignano) veniva abbinato a un
+  // "Hotel Mare" non correlato solo perché condividevano "MARE" (4
+  // lettere) dopo aver tolto "HOTEL" dalle parole generiche. Con un solo
+  // token di prova, richiediamo che sia abbastanza lungo da essere
+  // distintivo (soglia scelta empiricamente, non una scienza esatta).
+  if (corti.length === 1 && corti[0].length < 6) return false;
+  return true;
+}
+
+// Indice per comune normalizzato, costruito una sola volta (non ad ogni
+// riga) — l'elenco OSM è piccolo (843 voci) ma questo evita di rifare la
+// normalizzazione ad ogni confronto.
+const INDICE_OSM_PER_COMUNE = (() => {
+  const indice = new Map();
+  for (const voce of OSM_STRUTTURE_RICETTIVE) {
+    if (!voce.comune) continue;
+    const chiave = normalizzaTesto(voce.comune);
+    if (!indice.has(chiave)) indice.set(chiave, []);
+    indice.get(chiave).push(voce);
+  }
+  return indice;
+})();
+
+function trovaArricchimentoOsm(nome, comune) {
+  const candidati = INDICE_OSM_PER_COMUNE.get(normalizzaTesto(comune));
+  if (!candidati) return null;
+  const comuneStopwords = new Set(normalizzaTesto(comune).split(" ").filter(Boolean));
+  const match = candidati.find((c) => nomiCorrispondono(nome, c.nome, comuneStopwords));
+  if (!match) return null;
+  const contatti = { fonte: "osm" };
+  if (match.indirizzo) contatti.indirizzo = match.cap ? `${match.indirizzo}, ${match.cap}` : match.indirizzo;
+  if (match.telefono) contatti.telefono = match.telefono;
+  if (match.email) contatti.email = match.email;
+  if (match.sito) contatti.sito = match.sito;
+  if (match.lat != null && match.lon != null) {
+    contatti.lat = match.lat;
+    contatti.lon = match.lon;
+  }
+  return contatti;
+}
+
 // I 4 valori osservati per il campo "provincia" sono già il nome per
 // esteso in maiuscolo (non un codice ISTAT come altrove) — basta il
 // lowercase per combaciare con ProvinciaSlug, verificato con una query
 // $select=distinct provincia su uno degli 8 dataset.
 const PROVINCE_STRUTTURE_RICETTIVE = { UDINE: "udine", GORIZIA: "gorizia", TRIESTE: "trieste", PORDENONE: "pordenone" };
 
-async function ingestTipoStrutturaRicettiva(datasetId) {
+// -----------------------------------------------------------------------
+// Arricchimento contatti — turismofvg.it (26/08/2026)
+//
+// Fonte più ricca di OSM (indirizzo, telefono, email, sito, titolare, CIN
+// quando presente) e aggiornata dagli operatori stessi, non un estratto
+// di terzi — quando disponibile ha PRECEDENZA sul match OSM (vedi
+// `trovaContattiArricchiti` più sotto e il commento su `fonte` nel tipo
+// `ContattiArricchiti` in lib/struttureRicettive.ts).
+//
+// Struttura del sito, verificata su HTML reale fornito dall'utente (una
+// pagina elenco e una scheda di dettaglio, non solo via WebFetch che
+// restituisce markdown e non l'HTML grezzo servito ai selettori cheerio):
+//   - Ogni categoria ha una pagina elenco "/{Categoria}/Search" che
+//     supporta paginazione semplice (?filters.PageIndex=N, GET
+//     server-rendered, NESSUN endpoint AJAX/JSON come ipotizzato in una
+//     fase di ricerca precedente — corretto grazie ai dati reali).
+//   - La stessa pagina elenco (già alla pagina 1, qualunque PageIndex)
+//     contiene un campo nascosto <input id="mapdata" value="[...]">
+//     con l'INTERO indice della categoria in JSON (Id, Name, Url, Type,
+//     City, Latitude, Longitude) — un solo fetch invece di scorrere
+//     tutte le pagine, valido per qualunque categoria.
+//   - La scheda di dettaglio ha i dati di contatto in una sezione
+//     <section class="c-poi__auxtexts"> con coppie ripetute
+//     <strong>Etichetta</strong><br>Valore<br><br> (Valore a volte è un
+//     link, es. la Pec come mailto:) — vedi `estraiCampiAuxTexts`.
+//
+// SOLO Agriturismi è verificato sulla struttura HTML reale per ora — le
+// altre 7 categorie del sito potrebbero avere URL o etichette diverse
+// (es. "Telefono" invece di "Cellulare", un campo "Sito web"/"CIN" non
+// presenti sulla scheda campione). Il parser sotto è generico (legge
+// qualunque etichetta trovi, non un elenco fisso), quindi dovrebbe
+// reggere variazioni ragionevoli, ma l'espansione alle altre categorie
+// va comunque validata con un altro campione reale prima di aggiungerle
+// a TURISMOFVG_CATEGORIE — vedi "Idee future" in claude/fvgmonitor-stato.md.
+//
+// Volume di richieste: 1 fetch per l'indice (sempre, è economico ed è
+// l'unico modo di sapere quali schede sono nuove) + al massimo
+// TURISMOFVG_MAX_NUOVE_SCHEDE_PER_ESECUZIONE schede di dettaglio nuove
+// per esecuzione, con cache permanente (una scheda già scaricata non
+// cambia spesso, non viene mai ripetuta) — stesso pattern già collaudato
+// per i risultati gara Sci più sotto in questo file.
+// -----------------------------------------------------------------------
+
+const TURISMOFVG_MAX_NUOVE_SCHEDE_PER_ESECUZIONE = 20;
+
+const TURISMOFVG_CATEGORIE = {
+  agriturismi: "Agriturismi",
+};
+
+// Spezza il contenuto HTML di <section class="c-poi__auxtexts"> sulle
+// coppie di <br> consecutivi (il separatore osservato tra un campo e il
+// successivo) e, per ciascun blocco, legge l'etichetta dal primo
+// <strong> e il valore dal testo restante — oppure dal testo di un
+// eventuale link (es. la Pec, che sulla pagina è un <a href="mailto:...">).
+// Generico apposta: non presuppone un elenco fisso di etichette, quindi
+// regge campi come "Sito web" o "CIN" anche se non osservati sul
+// campione usato per scrivere questa funzione.
+function estraiCampiAuxTexts($aux) {
+  const html = $aux.html() || "";
+  const blocchi = html
+    .replace(/<br\s*\/?>/gi, "<br>")
+    .split(/<br><br>/i)
+    .map((b) => b.trim())
+    .filter(Boolean);
+
+  const campi = {};
+  for (const blocco of blocchi) {
+    const $b = cheerio.load(`<div id="campo">${blocco}</div>`);
+    const label = $b("strong").first().text().trim();
+    if (!label) continue;
+
+    const link = $b("a").first();
+    let valore = null;
+    if (link.length) {
+      const href = link.attr("href") || "";
+      valore = href.toLowerCase().startsWith("mailto:") ? href.slice(7).trim() : link.text().trim();
+    } else {
+      $b("strong").remove();
+      valore = $b("#campo").text().trim();
+    }
+    if (valore) campi[label] = valore;
+  }
+  return campi;
+}
+
+async function fetchIndiceTurismoFvg(segmentoCategoria) {
+  const res = await fetchConRetry(`https://www.turismofvg.it/${segmentoCategoria}/Search`, {
+    headers: { "User-Agent": "Mozilla/5.0 (compatible; FVGMonitorBot/1.0)" },
+  });
+  if (!res.ok) throw new Error(`Indice turismofvg.it/${segmentoCategoria} HTTP ${res.status}`);
+
+  const $ = cheerio.load(await res.text());
+  const raw = $("#mapdata").attr("value");
+  if (!raw) throw new Error(`turismofvg.it/${segmentoCategoria}: campo #mapdata non trovato — struttura pagina cambiata?`);
+
+  let voci;
+  try {
+    voci = JSON.parse(raw);
+  } catch {
+    throw new Error(`turismofvg.it/${segmentoCategoria}: JSON in #mapdata non valido`);
+  }
+  if (!Array.isArray(voci)) throw new Error(`turismofvg.it/${segmentoCategoria}: formato #mapdata inatteso`);
+
+  return voci
+    .map((v) => ({
+      id: v.Id != null ? String(v.Id) : null,
+      nome: testo(v.Name),
+      url: typeof v.Url === "string" ? v.Url : null,
+      comune: testo(v.City),
+      lat: typeof v.Latitude === "number" ? v.Latitude : null,
+      lon: typeof v.Longitude === "number" ? v.Longitude : null,
+    }))
+    .filter((v) => v.id && v.nome && v.url);
+}
+
+async function fetchDettaglioTurismoFvg(urlAssoluto) {
+  const res = await fetchConRetry(urlAssoluto, {
+    headers: { "User-Agent": "Mozilla/5.0 (compatible; FVGMonitorBot/1.0)" },
+  });
+  if (!res.ok) throw new Error(`Scheda ${urlAssoluto} HTTP ${res.status}`);
+
+  const $ = cheerio.load(await res.text());
+  const $aux = $(".c-poi__auxtexts").first();
+  const campi = $aux.length ? estraiCampiAuxTexts($aux) : {};
+
+  const telefono = campi["Telefono"] || campi["Cellulare"] || null;
+  const email = campi["Email"] || campi["E-mail"] || campi["Pec"] || null;
+  const sito = campi["Sito web"] || campi["Sito"] || campi["Web"] || null;
+  const indirizzo = campi["Indirizzo"] || null;
+  const cap = campi["CAP"] || null;
+  const titolare = campi["Titolare"] || null;
+  const cin = campi["CIN"] || null;
+
+  // Coordinate di riserva dal link "Indicazioni" verso Google Maps —
+  // indipendenti dall'indice mapdata, utile come controincrocio o
+  // fallback se in futuro una scheda avesse coordinate diverse.
+  let lat = null;
+  let lon = null;
+  const hrefMappa = $(".c-poi_map").first().attr("href") || "";
+  const mMappa = /loc:(-?\d+\.?\d*),(-?\d+\.?\d*)/.exec(hrefMappa);
+  if (mMappa) {
+    lat = Number(mMappa[1]);
+    lon = Number(mMappa[2]);
+  }
+
+  return {
+    telefono,
+    email,
+    sito,
+    indirizzo: indirizzo ? (cap ? `${indirizzo}, ${cap}` : indirizzo) : null,
+    titolare,
+    cin,
+    lat,
+    lon,
+  };
+}
+
+async function ingestTurismoFvgCategoria(tipoSlug, segmentoCategoria) {
+  const idSnapshot = `turismofvg:${tipoSlug}`;
+
+  let indice;
+  try {
+    indice = await fetchIndiceTurismoFvg(segmentoCategoria);
+  } catch (err) {
+    console.warn(`TurismoFVG ${tipoSlug}: indice non scaricato, riuso la cache se presente — ${err.message}`);
+    return await leggiSnapshotEsistente(idSnapshot);
+  }
+
+  const cacheEsistente = await leggiSnapshotEsistente(idSnapshot);
+  const dettagliCache = { ...(cacheEsistente?.dettagli || {}) };
+
+  let nuoveScaricate = 0;
+  let rimandate = 0;
+  for (const voce of indice) {
+    if (dettagliCache[voce.id]) continue; // già in cache, mai ri-scaricata
+
+    if (nuoveScaricate >= TURISMOFVG_MAX_NUOVE_SCHEDE_PER_ESECUZIONE) {
+      rimandate++;
+      continue; // ripresa alla prossima esecuzione
+    }
+
+    try {
+      const urlAssoluto = voce.url.startsWith("http")
+        ? voce.url
+        : `https://www.turismofvg.it${voce.url.startsWith("/") ? "" : "/"}${voce.url}`;
+      const dettaglio = await fetchDettaglioTurismoFvg(urlAssoluto);
+      dettagliCache[voce.id] = { ...dettaglio, aggiornato_al: new Date().toISOString() };
+      nuoveScaricate++;
+    } catch (err) {
+      console.warn(`TurismoFVG ${tipoSlug}: scheda ${voce.id} (${voce.nome}) non scaricata — ${err.message}`);
+      // non salvata in cache: ritentata automaticamente alla prossima esecuzione
+    }
+  }
+
+  if (rimandate > 0) {
+    console.log(`TurismoFVG ${tipoSlug}: ${rimandate} schede rimandate alla prossima esecuzione (limite ${TURISMOFVG_MAX_NUOVE_SCHEDE_PER_ESECUZIONE}/esecuzione)`);
+  }
+
+  const risultato = { indice, dettagli: dettagliCache, aggiornato_al: new Date().toISOString() };
+
+  // Come per lo sci: nessuna scrittura (né riga di storico) se non è
+  // cambiato nulla di rilevante — qui approssimato con "nessuna scheda
+  // nuova e la dimensione dell'indice non è cambiata", sufficiente a
+  // evitare righe identiche ogni 15 minuti senza la complessità di un
+  // confronto profondo.
+  if (nuoveScaricate === 0 && cacheEsistente && cacheEsistente.indice?.length === indice.length) {
+    console.log(`TurismoFVG ${tipoSlug}: nessuna novità, snapshot non riscritto`);
+    return cacheEsistente;
+  }
+
+  try {
+    await upsertSnapshot(idSnapshot, "turismofvg", null, risultato);
+  } catch (err) {
+    console.warn(`TurismoFVG ${tipoSlug}: snapshot non salvato — ${err.message}`);
+  }
+
+  console.log(
+    `TurismoFVG ${tipoSlug} aggiornato: ${indice.length} in indice, ${Object.keys(dettagliCache).length} schede con dettaglio (${nuoveScaricate} nuove questa esecuzione)`
+  );
+  return risultato;
+}
+
+async function ingestTurismoFvg() {
+  const risultati = {};
+  for (const [tipoSlug, segmento] of Object.entries(TURISMOFVG_CATEGORIE)) {
+    try {
+      risultati[tipoSlug] = await ingestTurismoFvgCategoria(tipoSlug, segmento);
+    } catch (err) {
+      console.warn(`TurismoFVG ${tipoSlug}: ingestione fallita — ${err.message}`);
+    }
+  }
+  return risultati;
+}
+
+// Indice per comune normalizzato dei dati turismofvg.it di UNA categoria
+// (costruito ad ogni esecuzione, i dati vengono dalla rete non da un
+// file statico) — solo le voci con scheda di dettaglio già in cache
+// (`dettagli[id]`) entrano nell'indice: una voce presente solo
+// nell'indice mapdata ma non ancora scaricata (limite per esecuzione)
+// non ha ancora contatti da offrire, verrà ripresa da sola quando pronta.
+function costruisceIndiceTurismoFvgPerComune(datiCategoria) {
+  const indice = new Map();
+  if (!datiCategoria) return indice;
+  for (const voce of datiCategoria.indice) {
+    const dettaglio = datiCategoria.dettagli[voce.id];
+    if (!voce.comune || !dettaglio) continue;
+    const chiave = normalizzaTesto(voce.comune);
+    if (!indice.has(chiave)) indice.set(chiave, []);
+    indice.get(chiave).push({ nome: voce.nome, dettaglio, lat: voce.lat, lon: voce.lon });
+  }
+  return indice;
+}
+
+function trovaArricchimentoTurismoFvg(nome, comune, indicePerComune) {
+  const candidati = indicePerComune.get(normalizzaTesto(comune));
+  if (!candidati) return null;
+  const comuneStopwords = new Set(normalizzaTesto(comune).split(" ").filter(Boolean));
+  const match = candidati.find((c) => nomiCorrispondono(nome, c.nome, comuneStopwords));
+  if (!match) return null;
+
+  const d = match.dettaglio;
+  const contatti = { fonte: "turismofvg" };
+  if (d.indirizzo) contatti.indirizzo = d.indirizzo;
+  if (d.telefono) contatti.telefono = d.telefono;
+  if (d.email) contatti.email = d.email;
+  if (d.sito) contatti.sito = d.sito;
+  if (d.titolare) contatti.titolare = d.titolare;
+  if (d.cin) contatti.cin = d.cin;
+  const lat = d.lat ?? match.lat;
+  const lon = d.lon ?? match.lon;
+  if (lat != null && lon != null) {
+    contatti.lat = lat;
+    contatti.lon = lon;
+  }
+  return contatti;
+}
+
+// Prova prima turismofvg.it (più ricco, quando disponibile per questa
+// categoria e questa voce), poi ripiega su OSM — mai i due combinati,
+// per non mischiare in un'unica voce dati di provenienza diversa senza
+// modo di distinguerli in UI.
+function trovaContattiArricchiti(nome, comune, indiceTurismoFvgPerComune) {
+  if (indiceTurismoFvgPerComune) {
+    const daTurismoFvg = trovaArricchimentoTurismoFvg(nome, comune, indiceTurismoFvgPerComune);
+    if (daTurismoFvg) return daTurismoFvg;
+  }
+  return trovaArricchimentoOsm(nome, comune);
+}
+
+async function ingestTipoStrutturaRicettiva(datasetId, indiceTurismoFvgPerComune) {
   const url = `https://www.dati.friuliveneziagiulia.it/resource/${datasetId}.json?$limit=5000`;
   const res = await fetchConRetry(url);
   if (!res.ok) throw new Error(`Dataset ${datasetId} non disponibile (HTTP ${res.status})`);
@@ -1146,11 +1559,18 @@ async function ingestTipoStrutturaRicettiva(datasetId) {
     const provincia = PROVINCE_STRUTTURE_RICETTIVE[(r.provincia ?? "").toUpperCase()];
     if (!provincia || !r.denominazione) continue; // comune fuori regione o riga senza nome — non dovrebbe capitare
     if (!perProvincia[provincia]) perProvincia[provincia] = [];
+    const nome = testo(r.denominazione);
+    const comune = testo(r.comune);
     perProvincia[provincia].push({
-      nome: testo(r.denominazione),
-      comune: testo(r.comune),
+      nome,
+      comune,
       email: testo(r.email),
       sito: r.sito?.url ?? null,
+      // Arricchimento best-effort — turismofvg.it quando disponibile per
+      // questo tipo, altrimenti OpenStreetMap (vedi note sopra). Sempre
+      // null se non troviamo un abbinamento nome+comune sufficientemente
+      // sicuro, mai un dato inventato o approssimato.
+      contatti: trovaContattiArricchiti(nome, comune, indiceTurismoFvgPerComune),
     });
   }
   for (const lista of Object.values(perProvincia)) {
@@ -1162,9 +1582,21 @@ async function ingestTipoStrutturaRicettiva(datasetId) {
 }
 
 async function ingestStruttureRicettive() {
+  // turismofvg.it prima di OSM: i suoi indici per comune (uno per tipo
+  // coperto, oggi solo "agriturismi" — vedi TURISMOFVG_CATEGORIE) devono
+  // essere pronti prima di ingerire i dataset Socrata, che li usano per
+  // l'arricchimento contatti.
+  const risultatiTurismoFvg = await ingestTurismoFvg();
+  const indiciTurismoFvgPerTipo = {};
+  for (const [tipoSlug, dati] of Object.entries(risultatiTurismoFvg)) {
+    indiciTurismoFvgPerTipo[tipoSlug] = costruisceIndiceTurismoFvgPerComune(dati);
+  }
+
   const chiavi = Object.keys(DATASET_STRUTTURE_RICETTIVE);
   const risultati = await Promise.allSettled(
-    chiavi.map((chiave) => ingestTipoStrutturaRicettiva(DATASET_STRUTTURE_RICETTIVE[chiave]))
+    chiavi.map((chiave) =>
+      ingestTipoStrutturaRicettiva(DATASET_STRUTTURE_RICETTIVE[chiave], indiciTurismoFvgPerTipo[chiave] ?? null)
+    )
   );
 
   const tipi = {};

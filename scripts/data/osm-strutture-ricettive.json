@@ -1,0 +1,8246 @@
+[
+{
+"nome":"Al Ponte",
+"tipoOsm":"hotel",
+"comune":"Fiumicello",
+"indirizzo":"Via Palazzatto 42",
+"telefono":"+39 0431 918698",
+"lat":45.74743,
+"lon":13.44635
+},
+{
+"nome":"DoubleTree by Hilton Trieste",
+"tipoOsm":"hotel",
+"comune":"Trieste",
+"indirizzo":"Piazza della Repubblica 1",
+"cap":"34122",
+"telefono":"+39 040 971 2950",
+"sito":"https://www.hilton.com/en/hotels/trsdtdi-doubletree-trieste/",
+"lat":45.650121,
+"lon":13.773883
+},
+{
+"nome":"Marina Portopiccolo",
+"tipoOsm":"marina",
+"telefono":"+39 040 9977711;+39 040 9977713",
+"email":"marina@ppst.it",
+"sito":"https://www.portopiccolosistiana.it/",
+"lat":45.765048,
+"lon":13.635813
+},
+{
+"nome":"Camping San Bartolomeo",
+"tipoOsm":"camp_site",
+"comune":"Muggia / Milje",
+"indirizzo":"Strada per Lazzaretto 99",
+"telefono":"+39 351 9293174",
+"email":"info@campeggiosanbartolomeo.it",
+"sito":"https://campeggiosanbartolomeo.it/",
+"lat":45.596994,
+"lon":13.7259
+},
+{
+"nome":"Camping Sabbiadoro",
+"tipoOsm":"camp_site",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Via Sabbiadoro 8",
+"cap":"33054",
+"telefono":"+39 0431 71455",
+"email":"info@campingsabbiadoro.it",
+"sito":"https://campingsabbiadoro.it",
+"lat":45.680998,
+"lon":13.124561
+},
+{
+"nome":"Al Bosco",
+"tipoOsm":"camp_site",
+"telefono":"+39 0431 80485",
+"email":"info@campingalbosco.it",
+"sito":"https://campingalbosco.it/",
+"lat":45.67874,
+"lon":13.422152
+},
+{
+"nome":"Rifugio Lambertenghi Romanin",
+"tipoOsm":"alpine_hut",
+"telefono":"+39 347 2306246",
+"email":"info@lambertenghi.it",
+"sito":"http://www.lambertenghi.it",
+"lat":46.607828,
+"lon":12.868507
+},
+{
+"nome":"Casera Pal Grande di Sopra",
+"tipoOsm":"wilderness_hut",
+"sito":"https://www.sentiericai-fvg.it/428_biv.htm",
+"lat":46.599514,
+"lon":12.993901
+},
+{
+"nome":"Ricovero Casera Lavazeit",
+"tipoOsm":"wilderness_hut",
+"sito":"https://www.sentiericai-fvg.it/213_biv.htm",
+"lat":46.464127,
+"lon":12.555704
+},
+{
+"nome":"Rifugio Som Picol",
+"tipoOsm":"alpine_hut",
+"cap":"33024",
+"telefono":"+39 351 549 373",
+"lat":46.439909,
+"lon":12.56444
+},
+{
+"nome":"Albergo Ristorante Nuoitas",
+"tipoOsm":"hotel",
+"telefono":"+39 0433 88387",
+"email":"info@albergonuoitas.it",
+"sito":"https://www.albergonuoitas.it/",
+"lat":46.439052,
+"lon":12.542122
+},
+{
+"nome":"Rifugio Giaf",
+"tipoOsm":"alpine_hut",
+"telefono":"+39 320 084 6666",
+"email":"info@rifugiogiaf.it",
+"sito":"https://www.rifugiogiaf.it",
+"lat":46.42371,
+"lon":12.519709
+},
+{
+"nome":"La Stuba",
+"tipoOsm":"hotel",
+"telefono":"+39 0433 88158",
+"sito":"https://www.lastube.it/",
+"lat":46.41718,
+"lon":12.584714
+},
+{
+"nome":"Rifugio Chiampizzulon",
+"tipoOsm":"alpine_hut",
+"email":"info@rifugiochiampizzulon.it",
+"sito":"http://www.rifugiochiampizzulon.it",
+"lat":46.551965,
+"lon":12.798174
+},
+{
+"nome":"Albergo Miravalle",
+"tipoOsm":"hotel",
+"telefono":"+39 0433 727468",
+"sito":"https://www.albergomiravalle.org/",
+"lat":46.583976,
+"lon":12.765093
+},
+{
+"nome":"Rifugio Giovanni e Olinto Marinelli (temporarily closed)",
+"tipoOsm":"alpine_hut",
+"telefono":"+39 0433 779177",
+"email":"cate_selva@libero.it",
+"sito":"https://www.rifugiomarinelli.com/",
+"lat":46.5935,
+"lon":12.896951
+},
+{
+"nome":"Rifugio Edoardo Tolazzi",
+"tipoOsm":"alpine_hut",
+"telefono":"+39 0433 72289",
+"sito":"http://www.rifugiotolazzi.it",
+"lat":46.59192,
+"lon":12.868006
+},
+{
+"nome":"Casa PerAria",
+"tipoOsm":"guest_house",
+"comune":"Paluzza",
+"indirizzo":"Località Faas 7",
+"cap":"33026",
+"telefono":"+39 329 3019463",
+"sito":"http://www.casaperaria.it",
+"lat":46.578921,
+"lon":12.98891
+},
+{
+"nome":"La Marmote",
+"tipoOsm":"guest_house",
+"comune":"Paluzza",
+"indirizzo":"Località Faas",
+"cap":"33026",
+"lat":46.578997,
+"lon":12.995923
+},
+{
+"nome":"Casetta in Canada'",
+"tipoOsm":"guest_house",
+"comune":"Timau di Paluzza",
+"indirizzo":"Via Monte Croce Carnico 1",
+"telefono":"+39 0433 779400",
+"lat":46.59232,
+"lon":12.956686
+},
+{
+"nome":"Rifugio Fratelli De Gasperi",
+"tipoOsm":"alpine_hut",
+"telefono":"+39 0433 466446",
+"email":"info@rifdegasperi.it",
+"sito":"https://www.rifdegasperi.it/",
+"lat":46.520194,
+"lon":12.675806
+},
+{
+"nome":"Ai 7 Nani",
+"tipoOsm":"hotel",
+"email":"aisettenani@gmail.com",
+"sito":"https://www.nanos.it/",
+"lat":46.519979,
+"lon":12.808987
+},
+{
+"nome":"Dal Trop",
+"tipoOsm":"guest_house",
+"comune":"Prato Carnico",
+"indirizzo":"Frazione Pesariis",
+"cap":"33020",
+"email":"info@albergodiffusoilgrop.it",
+"sito":"http://www.albergodiffusoilgrop.it/",
+"lat":46.522108,
+"lon":12.769995
+},
+{
+"nome":"Hotel Saustri",
+"tipoOsm":"hotel",
+"sito":"www.hotelsaustri.com",
+"lat":46.503255,
+"lon":12.990658
+},
+{
+"nome":"Hotel Bellavista",
+"tipoOsm":"hotel",
+"sito":"https://www.bellavistaravascletto.it",
+"lat":46.525263,
+"lon":12.924285
+},
+{
+"nome":"Albergo Morgenleit",
+"tipoOsm":"hotel",
+"telefono":"+39 0433 86166",
+"email":"morgenleit@tiscali.it",
+"sito":"http://www.morgenleit.com",
+"lat":46.464768,
+"lon":12.708622
+},
+{
+"nome":"Albergo Ristorante Riglarhaus",
+"tipoOsm":"hotel",
+"comune":"Sauris",
+"cap":"33020",
+"telefono":"+39 0433 86049",
+"email":"info@riglarhaus.it",
+"sito":"http://www.riglarhaus.it",
+"lat":46.455936,
+"lon":12.748885
+},
+{
+"nome":"Rifugio Al Cocul",
+"tipoOsm":"alpine_hut",
+"comune":"Sutrio",
+"cap":"33020",
+"telefono":"+39 0433 775233",
+"email":"info@cocul.eu",
+"lat":46.508695,
+"lon":12.94521
+},
+{
+"nome":"Rifugio Tamai",
+"tipoOsm":"alpine_hut",
+"comune":"Sutrio",
+"cap":"33020",
+"telefono":"+39 371 109 8778",
+"email":"info@rifugiotamai.it",
+"sito":"https://rifugiotamai.it/",
+"lat":46.501384,
+"lon":12.931016
+},
+{
+"nome":"Enzo Moro",
+"tipoOsm":"hotel",
+"sito":"http://www.hotelenzomoro.com/",
+"lat":46.511691,
+"lon":12.951693
+},
+{
+"nome":"Albergo Ristorante Borgo Velt",
+"tipoOsm":"hotel",
+"comune":"Sauris",
+"cap":"33020",
+"telefono":"+39 0433 86211",
+"lat":46.467658,
+"lon":12.69638
+},
+{
+"nome":"Meublé Pa' Krhaizar",
+"tipoOsm":"hotel",
+"comune":"Sauris",
+"cap":"33020",
+"telefono":"+39 0433 86165",
+"sito":"http://www.pakrhaizar-sauris.it",
+"lat":46.4563,
+"lon":12.751254
+},
+{
+"nome":"Hotel Aplis",
+"tipoOsm":"hotel",
+"telefono":"+39 0433 619008",
+"sito":"http://www.hotelaplisovaro.it",
+"lat":46.491673,
+"lon":12.862081
+},
+{
+"nome":"Malga Arvenutis",
+"tipoOsm":"wilderness_hut",
+"sito":"https://www.malgarvenutis.it/",
+"lat":46.479841,
+"lon":12.916877
+},
+{
+"nome":"Rifugio Tita Piaz",
+"tipoOsm":"alpine_hut",
+"telefono":"+39 0433 86161",
+"email":"info@rifugiotitapiaz.it",
+"sito":"http://www.rifugiotitapiaz.it",
+"lat":46.425676,
+"lon":12.741921
+},
+{
+"nome":"Albergo Al Pura",
+"tipoOsm":"hotel",
+"comune":"Ampezzo",
+"indirizzo":"Strada esterna Corso 7",
+"cap":"33021",
+"telefono":"+39 0433 811168",
+"sito":"www.albergoalpura.it",
+"lat":46.41468,
+"lon":12.766784
+},
+{
+"nome":"Casa Vacanze il Bearč",
+"tipoOsm":"guest_house",
+"comune":"Feltrone / Feltron",
+"indirizzo":"Via Col Gentile 20a",
+"cap":"33020",
+"telefono":"+39 329 945 1083",
+"email":"dario.rovedo@gmail.com",
+"sito":"https://www.ilbearc.com",
+"lat":46.418364,
+"lon":12.835623
+},
+{
+"nome":"Rifugio Fornas",
+"tipoOsm":"alpine_hut",
+"comune":"Tolmezzo",
+"indirizzo":"Localita' Fornace",
+"cap":"33028",
+"telefono":"+39 0433 565507",
+"email":"mail@rifugiofornas.com",
+"sito":"https://rifugiofornas.com/",
+"lat":46.44546,
+"lon":12.979911
+},
+{
+"nome":"Albergo ristorante Alla frasca verde",
+"tipoOsm":"hotel",
+"telefono":"+39 0433 74122",
+"email":"frascaverde@libero.it",
+"sito":"http://www.frascaverde.com",
+"lat":46.423161,
+"lon":12.932348
+},
+{
+"nome":"Rifugio Pietro Fabiani",
+"tipoOsm":"alpine_hut",
+"sito":"https://www.friulitipico.org/prt/index.php?option=com_content&task=view&id=481&Itemid=157",
+"lat":46.59337,
+"lon":13.078369
+},
+{
+"nome":"Casa Ortis",
+"tipoOsm":"guest_house",
+"comune":"Paluzza",
+"indirizzo":"Via Silvio Ortis 16",
+"cap":"33026",
+"telefono":"+39 0433 775412",
+"sito":"https://www.booking.com/Share-4gwzAp",
+"lat":46.536073,
+"lon":13.019571
+},
+{
+"nome":"Albergo Italia",
+"tipoOsm":"hotel",
+"indirizzo":"Via Giacomo Matteotti 2",
+"telefono":"+39 0433 775118",
+"lat":46.528363,
+"lon":13.0157
+},
+{
+"nome":"Albergo Miramonti",
+"tipoOsm":"hotel",
+"telefono":"+39 0433 92076",
+"sito":"https://www.albergo-miramonti.it/",
+"lat":46.47147,
+"lon":13.025442
+},
+{
+"nome":"Albergo ristorante Cella",
+"tipoOsm":"hotel",
+"indirizzo":"Via Umberto Primo",
+"telefono":"+39 0433 92297",
+"sito":"https://www.hotelcella.it/",
+"lat":46.469911,
+"lon":13.025874
+},
+{
+"nome":"Albergo Trieste",
+"tipoOsm":"hotel",
+"indirizzo":"Via Giosuè Carducci 54",
+"telefono":"+39 0433 92385",
+"lat":46.478697,
+"lon":13.021927
+},
+{
+"nome":"Hotel alla Fonte",
+"tipoOsm":"hotel",
+"telefono":"+39 0433 928807",
+"sito":"https://www.hotelallafonte.com/",
+"lat":46.477012,
+"lon":13.020538
+},
+{
+"nome":"Hotel Gardel",
+"tipoOsm":"hotel",
+"indirizzo":"Via Guglielmo Marconi 6/8",
+"telefono":"+39 0433 92153",
+"sito":"https://www.gardel.it/",
+"lat":46.482524,
+"lon":13.020208
+},
+{
+"nome":"Hotel Park Oasi",
+"tipoOsm":"hotel",
+"telefono":"+39 0433 92048",
+"sito":"http://www.albergoparkoasi.it/",
+"lat":46.481099,
+"lon":13.018293
+},
+{
+"nome":"Rifugio Grauzaria",
+"tipoOsm":"alpine_hut",
+"sito":"https://www.rifugiograuzaria.it/",
+"lat":46.476769,
+"lon":13.159957
+},
+{
+"nome":"Rifugio Monte Sernio",
+"tipoOsm":"wilderness_hut",
+"sito":"https://caitolmezzo.it/rifugi/rifugio-monte-sernio/",
+"lat":46.479085,
+"lon":13.123558
+},
+{
+"nome":"Residence Bed&Bike",
+"tipoOsm":"hotel",
+"comune":"Moggio Udinese",
+"indirizzo":"Via Valsassina 15",
+"cap":"33015",
+"telefono":"+39 347 255 6958",
+"lat":46.404829,
+"lon":13.196377
+},
+{
+"nome":"Albergo All'Orso",
+"tipoOsm":"hotel",
+"comune":"Malborghetto Valbruna",
+"indirizzo":"Borgo Alto 12",
+"cap":"33010",
+"telefono":"+39 0428 60087",
+"email":"info@hotel-orso.it",
+"sito":"http://www.hotel-orso.it",
+"lat":46.502261,
+"lon":13.376591
+},
+{
+"nome":"Rifugio Gortani",
+"tipoOsm":"alpine_hut",
+"telefono":"+39 348 6925728",
+"email":"cristinadelf@hotmail.it",
+"lat":46.533229,
+"lon":13.468649
+},
+{
+"nome":"Baita Salman",
+"tipoOsm":"wilderness_hut",
+"sito":"https://www.baitasalman.com/",
+"lat":46.546971,
+"lon":13.548303
+},
+{
+"nome":"Sport Hotel Bellavista",
+"tipoOsm":"hotel",
+"comune":"Camporosso",
+"indirizzo":"Via Sella 61",
+"cap":"33018",
+"telefono":"+39 0428 653901",
+"email":"sporthbellavista@gmail.com",
+"sito":"http://www.sporthotelbellavista.com",
+"lat":46.511821,
+"lon":13.546357
+},
+{
+"nome":"Albergo Valle Verde",
+"tipoOsm":"hotel",
+"comune":"Tarvisio",
+"indirizzo":"Via Priesnig 48",
+"cap":"33018",
+"telefono":"+39 0428 2342",
+"email":"info@hotelvalleverde.com",
+"sito":"http://www.hotelvalleverde.com",
+"lat":46.50391,
+"lon":13.569726
+},
+{
+"nome":"Hotel Edelhof",
+"tipoOsm":"hotel",
+"telefono":"+39 0428 40081",
+"email":"info@hoteledelhof.com",
+"sito":"http://www.hoteledelhof.com",
+"lat":46.504622,
+"lon":13.570927
+},
+{
+"nome":"Hotel Il Cervo",
+"tipoOsm":"hotel",
+"comune":"Tarvisio",
+"indirizzo":"Via Priesnig 72",
+"cap":"33018",
+"telefono":"+39 0428 40305",
+"email":"info@hotelilcervo.com",
+"sito":"https://www.hotelilcervo.com/",
+"lat":46.501248,
+"lon":13.572609
+},
+{
+"nome":"Hotel Spartiacque",
+"tipoOsm":"hotel",
+"comune":"Camporosso",
+"indirizzo":"Via Valcanale 12",
+"cap":"33018",
+"telefono":"+39 0428 63040",
+"email":"hotelspartiacque@gmail.com",
+"sito":"http://www.italiaabc.it/a/spartiacque",
+"lat":46.50804,
+"lon":13.523033
+},
+{
+"nome":"ZimmerKarkus",
+"tipoOsm":"guest_house",
+"comune":"Camporosso",
+"indirizzo":"Via Lussari 6",
+"cap":"33018",
+"telefono":"+39 339 7591029",
+"email":"zimmerkarkus@alice.it",
+"sito":"http://www.zimmerkarkus.it",
+"lat":46.503158,
+"lon":13.540449
+},
+{
+"nome":"Albergo Al Cacciatore",
+"tipoOsm":"hotel",
+"comune":"Tarvisio",
+"indirizzo":"Via Dante Alighieri 7",
+"cap":"33018",
+"telefono":"+39 0428 2082",
+"email":"miglie00@albergoalcacciatoretarvisio.191.it",
+"sito":"http://www.albergoalcacciatoretarvisio.191.it",
+"lat":46.504479,
+"lon":13.587169
+},
+{
+"nome":"Hotel Trieste",
+"tipoOsm":"hotel",
+"telefono":"+39 0428 2214",
+"email":"info@albergotrieste.org",
+"sito":"http://www.albergotrieste.org",
+"lat":46.504423,
+"lon":13.589085
+},
+{
+"nome":"B&B \"Ai Tre Confini\"",
+"tipoOsm":"guest_house",
+"comune":"Tarvisio",
+"indirizzo":"Via Savorniana 3",
+"cap":"33018",
+"telefono":"+39 0428 40331",
+"sito":"http://www.tarvisiobedandbreakfast.it",
+"lat":46.517436,
+"lon":13.605338
+},
+{
+"nome":"la LUNA delle MONTAGNE",
+"tipoOsm":"guest_house",
+"comune":"Tarivisio",
+"indirizzo":"Via Luigi Cadorna 6",
+"cap":"33018",
+"lat":46.50061,
+"lon":13.593531
+},
+{
+"nome":"EX POSTA di Cicuto Alcide",
+"tipoOsm":"guest_house",
+"comune":"Tarvisio",
+"indirizzo":"Via Friuli 55",
+"cap":"33018",
+"telefono":"+39 0428 644055",
+"email":"info@exposta.it",
+"sito":"http://www.exposta.it",
+"lat":46.525819,
+"lon":13.623362
+},
+{
+"nome":"Hotel Renzo",
+"tipoOsm":"hotel",
+"comune":"Valbruna",
+"indirizzo":"Via Saisera 11",
+"cap":"33010",
+"telefono":"+39 0428 60123",
+"email":"info@hotelrenzo.com",
+"sito":"http://www.hotelrenzo.com",
+"lat":46.494863,
+"lon":13.488486
+},
+{
+"nome":"Hotel Picchio Nero",
+"tipoOsm":"hotel",
+"telefono":"+39 0428 60002",
+"sito":"http://www.picchionero.it",
+"lat":46.490455,
+"lon":13.492536
+},
+{
+"nome":"Hotel Saisera",
+"tipoOsm":"hotel",
+"telefono":"+39 0428 660522",
+"email":"info@hotelsaisera.com",
+"sito":"http://www.hotelsaisera.com",
+"lat":46.489232,
+"lon":13.490586
+},
+{
+"nome":"Hotel Valbruna Inn",
+"tipoOsm":"hotel",
+"comune":"Valbruna",
+"indirizzo":"Via Alpi Giulie 2",
+"cap":"33010",
+"telefono":"+39 0428 660554",
+"email":"info@valbrunainn.com",
+"sito":"http://valbrunainn.com",
+"lat":46.491071,
+"lon":13.491665
+},
+{
+"nome":"Rifugio Locanda al Convento",
+"tipoOsm":"alpine_hut",
+"comune":"Camporosso",
+"cap":"33010",
+"telefono":"+39 0428 63184",
+"lat":46.480733,
+"lon":13.522077
+},
+{
+"nome":"Rifugio Giacomo di Brazzà",
+"tipoOsm":"alpine_hut",
+"sito":"https://www.turismofvg.it/en/mountain365/rifugio-giacomo-di-brazza",
+"lat":46.414449,
+"lon":13.446567
+},
+{
+"nome":"Rifugio Guido Corsi",
+"tipoOsm":"alpine_hut",
+"sito":"https://www.cai-fvg.it/sentieri-e-rifugi/rifugi-e-opere-alpine/rifugi-in-fvg/615-rifugio-corsi/",
+"lat":46.422015,
+"lon":13.500245
+},
+{
+"nome":"Rifugio Luigi Pellarini",
+"tipoOsm":"alpine_hut",
+"telefono":"+39 333 7999272",
+"email":"rifugiopellarini@rifugiopellarini.com",
+"sito":"http://www.rifugiopellarini.com",
+"lat":46.440442,
+"lon":13.508668
+},
+{
+"nome":"Rifugio Luigi Zacchi",
+"tipoOsm":"alpine_hut",
+"telefono":"+39 0428 786064",
+"email":"info@freetrek.it",
+"sito":"https://www.rifugiozacchi.it/",
+"lat":46.459226,
+"lon":13.684297
+},
+{
+"nome":"Edelweiss",
+"tipoOsm":"hotel",
+"comune":"Fusine in Valromana",
+"indirizzo":"Via dei Laghi 8",
+"cap":"33018",
+"telefono":"+39 0428 61050",
+"email":"capannaedelweiss@gmail.com",
+"sito":"http://www.albergo-edelweiss.com/",
+"lat":46.480462,
+"lon":13.673182
+},
+{
+"nome":"Rifugio Pordenone",
+"tipoOsm":"alpine_hut",
+"telefono":"+39 0427 87300",
+"email":"rifugio.pordenone@yahoo.it",
+"sito":"https://www.rifugiopordenone.it/",
+"lat":46.381449,
+"lon":12.489937
+},
+{
+"nome":"Rifugio Maniago",
+"tipoOsm":"alpine_hut",
+"telefono":"+39 0427 667027",
+"lat":46.321465,
+"lon":12.392675
+},
+{
+"nome":"Rifugio Cava Buscada",
+"tipoOsm":"alpine_hut",
+"sito":"https://www.cavabuscada.com/",
+"lat":46.300631,
+"lon":12.358956
+},
+{
+"nome":"Rifugio Pussa",
+"tipoOsm":"alpine_hut",
+"telefono":"+39 0427 87050",
+"lat":46.345419,
+"lon":12.595188
+},
+{
+"nome":"Rifugio Casera Mela",
+"tipoOsm":"alpine_hut",
+"sito":"https://www.caseramela.it/",
+"lat":46.293185,
+"lon":12.367847
+},
+{
+"nome":"Erto",
+"tipoOsm":"hotel",
+"telefono":"+39 0427879053",
+"lat":46.275677,
+"lon":12.372564
+},
+{
+"nome":"Ostello della Gioventù",
+"tipoOsm":"hostel",
+"telefono":"+39 0427 878042",
+"lat":46.269897,
+"lon":12.504797
+},
+{
+"nome":"Bar Ristorante Albergo Dolomiti",
+"tipoOsm":"hotel",
+"comune":"Claut",
+"indirizzo":"Via Antonio Giordani 16",
+"cap":"33080",
+"telefono":"+39 333 4257501",
+"email":"giordani.mirella@yahoo.it",
+"sito":"http://www.albergodolomiti.altervista.org/",
+"lat":46.268099,
+"lon":12.513445
+},
+{
+"nome":"Bar Albergo Ristorante Vittoria",
+"tipoOsm":"hotel",
+"indirizzo":"Piazza Quattro Novembre 5",
+"lat":46.267283,
+"lon":12.5135
+},
+{
+"nome":"Alma Living Hotel",
+"tipoOsm":"hotel",
+"telefono":"+39 0432 978017",
+"lat":46.364292,
+"lon":13.135541
+},
+{
+"nome":"Al gambero",
+"tipoOsm":"hotel",
+"indirizzo":"Via Nazionale 1",
+"telefono":"+39 0433 94280",
+"lat":46.371856,
+"lon":13.084786
+},
+{
+"nome":"Ricovero casera Cjariguart",
+"tipoOsm":"wilderness_hut",
+"sito":"https://www.parcoprealpigiulie.it/it/principale/attivita/ricoveri-montani/ricovero-casera-cjariguart",
+"lat":46.360318,
+"lon":13.178141
+},
+{
+"nome":"Da Michele",
+"tipoOsm":"hotel",
+"telefono":"+39 0432 985045",
+"sito":"https://www.albergodamichele.it/",
+"lat":46.324963,
+"lon":13.132862
+},
+{
+"nome":"Malga Confin / Malghe Cunfin",
+"tipoOsm":"alpine_hut",
+"comune":"Venzone / Vençon",
+"indirizzo":"Via Pragiel",
+"cap":"33010",
+"telefono":"+39 0432 97 28 70",
+"email":"info@altulin.com",
+"sito":"https://www.altulin.com/malga-confin.html",
+"lat":46.342308,
+"lon":13.217928
+},
+{
+"nome":"Ricovero casera Rio Nero",
+"tipoOsm":"wilderness_hut",
+"sito":"https://www.parcoprealpigiulie.it/it/principale/attivita/ricoveri-montani/ricovero-casera-rio-nero",
+"lat":46.348445,
+"lon":13.255365
+},
+{
+"nome":"B&B Al Ciclista",
+"tipoOsm":"guest_house",
+"telefono":"+39 0432 982869",
+"email":"alessandra.contessi@gmail.com",
+"sito":"http://www.alciclista.it",
+"lat":46.266738,
+"lon":13.111834
+},
+{
+"nome":"Affittacamere Cuarnan",
+"tipoOsm":"guest_house",
+"telefono":"+39 329 4784775",
+"lat":46.260124,
+"lon":13.180399
+},
+{
+"nome":"Là di Copet",
+"tipoOsm":"hotel",
+"telefono":"+39 0432 977390",
+"lat":46.242311,
+"lon":13.149472
+},
+{
+"nome":"Agriturismo San Floreano",
+"tipoOsm":"guest_house",
+"telefono":"+39 347 6263646",
+"sito":"http://www.agriturismosanfloreano.com",
+"lat":46.218544,
+"lon":13.096656
+},
+{
+"nome":"Ricovero Igor Crasso",
+"tipoOsm":"wilderness_hut",
+"sito":"https://www.caitrentaottobre.it/rifugio-igor-crasso/?preview=true",
+"lat":46.386718,
+"lon":13.3671
+},
+{
+"nome":"Rifugio Divisione Julia",
+"tipoOsm":"alpine_hut",
+"comune":"Sella Nevea",
+"indirizzo":"Via Friuli",
+"cap":"33010",
+"lat":46.389839,
+"lon":13.473387
+},
+{
+"nome":"Hotel Canin",
+"tipoOsm":"hotel",
+"telefono":"+39 0433 54019",
+"sito":"http://www.hotelcanin.it",
+"lat":46.388164,
+"lon":13.47371
+},
+{
+"nome":"Hotel Club Nevea",
+"tipoOsm":"hotel",
+"telefono":"+39 0433 54140",
+"email":"info@hotelnevea.it",
+"sito":"http://www.hotelnevea.it",
+"lat":46.389702,
+"lon":13.474937
+},
+{
+"nome":"Sport Hotel Forte",
+"tipoOsm":"hotel",
+"telefono":"+39 0433 544202",
+"email":"info@sporthotelforte.com",
+"sito":"http://www.sporthotelforte.com",
+"lat":46.388911,
+"lon":13.472243
+},
+{
+"nome":"Rifugio Celso Gilberti",
+"tipoOsm":"alpine_hut",
+"telefono":"+39 0433 54015",
+"email":"iri.piri@virgilio.it",
+"sito":"https://explorerfvg.com/luoghi/de/rifugi/rifugio-gilberti/",
+"lat":46.37167,
+"lon":13.461245
+},
+{
+"nome":"Ricovero Casera Caal",
+"tipoOsm":"wilderness_hut",
+"sito":"https://www.parcoprealpigiulie.it/it/principale/attivita/ricoveri-montani/ricovero-casera-caal",
+"lat":46.318312,
+"lon":13.406157
+},
+{
+"nome":"Ricovero Casera Nischiuarch",
+"tipoOsm":"wilderness_hut",
+"sito":"https://www.parcoprealpigiulie.it/it/principale/attivita/ricoveri-montani/ricovero-casera-nischiuarch",
+"lat":46.318861,
+"lon":13.370511
+},
+{
+"nome":"Casera Nischiuarch",
+"tipoOsm":"wilderness_hut",
+"sito":"https://www.parcoprealpigiulie.it/it/principale/attivita/ricoveri-montani/ricovero-casera-nischiuarch",
+"lat":46.318861,
+"lon":13.370677
+},
+{
+"nome":"Rifugio Alpino Guglielmo Pelizzo",
+"tipoOsm":"alpine_hut",
+"comune":"Savogna",
+"cap":"33040",
+"email":"rifugiomat@gmail.com",
+"sito":"https://www.cividale.com/it/il_rifugio_pelizzo",
+"lat":46.202961,
+"lon":13.538507
+},
+{
+"nome":"Baita Arneri",
+"tipoOsm":"alpine_hut",
+"comune":"Aviano",
+"cap":"33081",
+"telefono":"+39 0434 655355",
+"email":"roncjade@libero.it",
+"lat":46.109411,
+"lon":12.498492
+},
+{
+"nome":"La Genzianella",
+"tipoOsm":"alpine_hut",
+"telefono":"+39 0434 1851535",
+"email":"info@lagenzianella.eu",
+"sito":"http://www.lagenzianella.eu",
+"lat":46.104669,
+"lon":12.514516
+},
+{
+"nome":"Park Hotel",
+"tipoOsm":"hotel",
+"telefono":"+39 0434 655251",
+"lat":46.107011,
+"lon":12.515265
+},
+{
+"nome":"Sport Hotel",
+"tipoOsm":"hotel",
+"telefono":"+39 0434 655162",
+"email":"info@sporthotelpiancavallo.it",
+"sito":"http://www.sporthotelpiancavallo.it",
+"lat":46.105802,
+"lon":12.514146
+},
+{
+"nome":"Hotel Regina",
+"tipoOsm":"hotel",
+"telefono":"+39 0434 655166",
+"email":"info@hotelreginapiancavallo.it",
+"sito":"http://www.hotelreginapiancavallo.it",
+"lat":46.107495,
+"lon":12.516398
+},
+{
+"nome":"Hotel Antares",
+"tipoOsm":"hotel",
+"telefono":"+39 0434 655265",
+"sito":"http://www.antarespiancavallo.it",
+"lat":46.112697,
+"lon":12.519955
+},
+{
+"nome":"Casa Valcellina",
+"tipoOsm":"hotel",
+"telefono":"+39 0427 540228",
+"sito":"https://www.casavalcellina.it/it",
+"lat":46.148123,
+"lon":12.656432
+},
+{
+"nome":"Le Facchine B&B e Affittacamere - Aviano",
+"tipoOsm":"guest_house",
+"comune":"Aviano",
+"indirizzo":"Via Montello 66",
+"cap":"33081",
+"telefono":"+393246137430",
+"sito":"https://www.lefacchine-aviano.it/",
+"lat":46.055091,
+"lon":12.567843
+},
+{
+"nome":"Villa Policreti",
+"tipoOsm":"hotel",
+"comune":"Castel d'Aviano",
+"indirizzo":"Via 4 Novembre 13",
+"cap":"33081",
+"sito":"https://www.villapolicreti.it/de/lhotel/",
+"lat":46.049779,
+"lon":12.564218
+},
+{
+"nome":"Ristorante Pizzeria Ca' del Bosco",
+"tipoOsm":"hotel",
+"indirizzo":"Via Bianco 34",
+"lat":46.042996,
+"lon":12.528835
+},
+{
+"nome":"Albergo Val Colvera",
+"tipoOsm":"hotel",
+"telefono":"+39 0427 78 49 48",
+"sito":"http://www.valcolvera.it/",
+"lat":46.198843,
+"lon":12.714609
+},
+{
+"nome":"Agriturismo Casa Rossa ai Colli",
+"tipoOsm":"guest_house",
+"comune":"Ragogna",
+"indirizzo":"Via ai Colli 2",
+"cap":"33030",
+"sito":"https://www.casarossaaicolli.it",
+"lat":46.178573,
+"lon":12.981586
+},
+{
+"nome":"Agriturismo \"Da Tina\"",
+"tipoOsm":"guest_house",
+"comune":"San Giorgio della Richinvelda",
+"indirizzo":"Via Case Pascutto",
+"cap":"33095",
+"lat":46.072248,
+"lon":12.82938
+},
+{
+"nome":"B&B In Giro al Pulinar",
+"tipoOsm":"guest_house",
+"comune":"Moruzzo",
+"indirizzo":"Via Confidrì 9",
+"cap":"33030",
+"telefono":"+39 331 205 2732",
+"lat":46.114032,
+"lon":13.118256
+},
+{
+"nome":"Al Collio Ristorante Hotel Pizzeria",
+"tipoOsm":"hotel",
+"telefono":"+39 0432 857045",
+"sito":"https://www.hotelristorantealcollio.it/",
+"lat":46.148009,
+"lon":13.243395
+},
+{
+"nome":"Hotel Rosade",
+"tipoOsm":"hotel",
+"comune":"Tavagnacco",
+"indirizzo":"Via Vittorio Veneto 15",
+"cap":"33010",
+"telefono":"+39 0432 573020",
+"lat":46.109173,
+"lon":13.209566
+},
+{
+"nome":"Hotel Capri",
+"tipoOsm":"hotel",
+"sito":"https://www.hotelcapriudine.it/",
+"lat":46.048008,
+"lon":13.200482
+},
+{
+"nome":"Agriturismo Mestroni",
+"tipoOsm":"apartment",
+"comune":"Bressa",
+"indirizzo":"Via Santa Barbara 72",
+"cap":"33030",
+"sito":"www.agriturismomestroni.it",
+"lat":46.036619,
+"lon":13.14749
+},
+{
+"nome":"Art Hotel Udine",
+"tipoOsm":"hotel",
+"comune":"Udine",
+"indirizzo":"Via Paparotti 11",
+"cap":"33100",
+"telefono":"+39 0432 600061",
+"lat":46.022622,
+"lon":13.260863
+},
+{
+"nome":"B&B Elmagos",
+"tipoOsm":"guest_house",
+"comune":"Udine",
+"indirizzo":"Via Lauzacco 78",
+"cap":"33100",
+"telefono":"+39 338 1767439",
+"sito":"http://www.ElmAgos.it",
+"lat":46.043981,
+"lon":13.258865
+},
+{
+"nome":"Bed and Breakfast Al Gatto Rosso Udine",
+"tipoOsm":"guest_house",
+"comune":"Udine",
+"indirizzo":"Via Baldasseria Media 129",
+"cap":"33100",
+"telefono":"+39 328 2660808",
+"sito":"www.algattorosso.com",
+"lat":46.044153,
+"lon":13.258433
+},
+{
+"nome":"Agriturismo Petrigh",
+"tipoOsm":"guest_house",
+"sito":"https://www.agriturismopetrigh.com/",
+"lat":46.166523,
+"lon":13.360078
+},
+{
+"nome":"Alla Trota",
+"tipoOsm":"hotel",
+"telefono":"+39 0432 726006",
+"sito":"https://www.allatrota.com/",
+"lat":46.180394,
+"lon":13.475583
+},
+{
+"nome":"Rifugio Casoni Solarie",
+"tipoOsm":"alpine_hut",
+"telefono":"+39 342 0253313;+39 346 3922001",
+"email":"kellyiurman@hotmail.com",
+"lat":46.179446,
+"lon":13.660106
+},
+{
+"nome":"Casa Draha",
+"tipoOsm":"guest_house",
+"telefono":"+39 3337600975",
+"email":"info@draha.it",
+"sito":"draha.it",
+"lat":46.12595,
+"lon":13.570839
+},
+{
+"nome":"Locanda al Trivio",
+"tipoOsm":"hotel",
+"comune":"San Leonardo",
+"indirizzo":"Frazione Iainich 20",
+"cap":"33040",
+"telefono":"+39 0432 723549",
+"email":"info@locandaaltrivio.com",
+"sito":"https://www.locandaaltrivio.com/",
+"lat":46.101221,
+"lon":13.533108
+},
+{
+"nome":"Villa Cigolotti",
+"tipoOsm":"hotel",
+"sito":"https://www.villacigolotti.it/",
+"lat":46.088215,
+"lon":12.78738
+},
+{
+"nome":"Alloggio agrituristico Antica scuderia del castello",
+"tipoOsm":"guest_house",
+"sito":"https://www.susans.it/",
+"lat":46.195022,
+"lon":13.050328
+},
+{
+"nome":"Albergo Belvedere",
+"tipoOsm":"hotel",
+"comune":"Tricesimo",
+"indirizzo":"Via Belvedere 21",
+"cap":"33019",
+"email":"informazioni@belvederemorandini.it",
+"sito":"https://www.belvederemorandini.it/",
+"lat":46.155608,
+"lon":13.205987
+},
+{
+"nome":"Le Fucine",
+"tipoOsm":"hotel",
+"comune":"Buttrio",
+"indirizzo":"Via Nazionale 48",
+"cap":"33042",
+"telefono":"+39 0432 183 3238",
+"email":"hotel@lefucine.com",
+"sito":"https://lefucine.com/",
+"lat":46.003037,
+"lon":13.339997
+},
+{
+"nome":"Agriturismo Alla Pineta",
+"tipoOsm":"guest_house",
+"indirizzo":"Strada di Sant'Anna 40",
+"cap":"33043",
+"lat":46.044345,
+"lon":13.460081
+},
+{
+"nome":"Agriturismo Al Bosco Romagno",
+"tipoOsm":"hotel",
+"indirizzo":"Strada di Spessa 21",
+"telefono":"+39 350 0615378",
+"sito":"https://www.boscoromagno.it/",
+"lat":46.031939,
+"lon":13.459676
+},
+{
+"nome":"Residence Le Querce",
+"tipoOsm":"hotel",
+"sito":"https://www.allequerce.com/",
+"lat":45.853724,
+"lon":12.875394
+},
+{
+"nome":"Ca Malvani",
+"tipoOsm":"hotel",
+"telefono":"+39 0434 690517",
+"email":"info@camalvani.it",
+"sito":"http://www.camalvani.it",
+"lat":45.851053,
+"lon":12.881322
+},
+{
+"nome":"Vignâl Bed & Breakfast",
+"tipoOsm":"guest_house",
+"sito":"https://www.vignal.it/",
+"lat":45.861627,
+"lon":12.835315
+},
+{
+"nome":"B & B Loretta",
+"tipoOsm":"guest_house",
+"telefono":"+39 0432 928757",
+"lat":45.906114,
+"lon":13.297402
+},
+{
+"nome":"Al Taj",
+"tipoOsm":"guest_house",
+"comune":"Bagnaria Arsa",
+"indirizzo":"Via Julia 25",
+"cap":"33050",
+"telefono":"+39 0432 928549",
+"email":"info@albergoaltaj.com",
+"sito":"http://www.albergoaltaj.com",
+"lat":45.886824,
+"lon":13.308627
+},
+{
+"nome":"Cina",
+"tipoOsm":"hotel",
+"comune":"Cervignano del Friuli",
+"indirizzo":"Via Cisis",
+"cap":"33052",
+"telefono":"+39 0431 93354",
+"lat":45.849566,
+"lon":13.323073
+},
+{
+"nome":"Al Cervo",
+"tipoOsm":"hotel",
+"comune":"Cervignano del Friuli",
+"indirizzo":"Via Venezia 23",
+"cap":"33052",
+"telefono":"+39 0431 32305",
+"email":"info@alcervo.com",
+"sito":"http://www.alcervo.com/",
+"lat":45.828803,
+"lon":13.330538
+},
+{
+"nome":"EuroHotel",
+"tipoOsm":"hotel",
+"telefono":"+39 0434 633205 9",
+"email":"franco.basa@gmail.com",
+"sito":"https://www.eurohotelfriuli.it/",
+"lat":45.880368,
+"lon":12.714791
+},
+{
+"nome":"Ca' Muliner",
+"tipoOsm":"hotel",
+"sito":"https://www.camuliner.com/",
+"lat":45.88005,
+"lon":12.724865
+},
+{
+"nome":"Ristorante Campiello Hotel",
+"tipoOsm":"hotel",
+"comune":"San Giovanni al Natisone",
+"indirizzo":"Via Nazionale 46",
+"cap":"33048",
+"sito":"https://www.ristorantecampiello.it/",
+"lat":45.971981,
+"lon":13.398642
+},
+{
+"nome":"Alla Pergola",
+"tipoOsm":"hotel",
+"comune":"Cormons",
+"indirizzo":"Via Giacomo Matteotti 42",
+"cap":"34071",
+"telefono":"+39 0481 630383",
+"sito":"https://www.paginegialle.it/allapergola/",
+"lat":45.959085,
+"lon":13.472021
+},
+{
+"nome":"Relais Russiz Superiore",
+"tipoOsm":"hotel",
+"comune":"Capriva del Friuli",
+"indirizzo":"Via Russiz 7",
+"cap":"34070",
+"telefono":"+39 331 663 6919",
+"email":"relais@russizsuperiore.it",
+"sito":"https://relais.marcofelluga.com/",
+"lat":45.958214,
+"lon":13.517446
+},
+{
+"nome":"Livada",
+"tipoOsm":"apartment",
+"comune":"Gorizia",
+"indirizzo":"Via Enrico Rocca 7",
+"cap":"34170",
+"sito":"https://www.airbnb.it/rooms/28420974?s=51",
+"lat":45.957517,
+"lon":13.630708
+},
+{
+"nome":"B&B alla Piazzetta",
+"tipoOsm":"guest_house",
+"comune":"Mansuè",
+"indirizzo":"Via Gai 1",
+"cap":"31040",
+"lat":45.944177,
+"lon":13.341473
+},
+{
+"nome":"L'Angolo di Luna.",
+"tipoOsm":"hotel",
+"telefono":"+39 3347487194",
+"sito":"https://langolodiluna.webnode.it/",
+"lat":45.93759,
+"lon":13.623405
+},
+{
+"nome":"Villa Iacchia",
+"tipoOsm":"guest_house",
+"comune":"Ruda",
+"indirizzo":"Via Aquileia 2",
+"cap":"33050",
+"telefono":"+39 0431 99250",
+"email":"info@villaiachia.it",
+"sito":"https://www.villaiachia.it/",
+"lat":45.836157,
+"lon":13.400757
+},
+{
+"nome":"Internazionale",
+"tipoOsm":"hotel",
+"telefono":"+39 0431 30751",
+"email":"info@hotelinternazionale.it",
+"sito":"https://www.hotelinternazionale.it/",
+"lat":45.829541,
+"lon":13.334669
+},
+{
+"nome":"Villa Bernt",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Via Cristoforo Colombo 5",
+"cap":"34073",
+"telefono":"+39 0431 81469",
+"sito":"https://www.hotelvillabernt.com/",
+"lat":45.677585,
+"lon":13.392594
+},
+{
+"nome":"Villa Reale",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Via Cristoforo Colombo 11",
+"cap":"34073",
+"telefono":"+39 0431 80015;+39 0431 8557",
+"sito":"https://www.hotelvillareale.com/",
+"lat":45.677039,
+"lon":13.392715
+},
+{
+"nome":"Aparthotel Capitol",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Riva Ugo Foscolo 11",
+"cap":"34073",
+"telefono":"+39 338 183 5281",
+"email":"info@capitolgrado.it",
+"lat":45.678658,
+"lon":13.3959
+},
+{
+"nome":"Riva Palace",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Riva Ugo Foscolo 16",
+"cap":"34073",
+"telefono":"+39 0431 476580",
+"email":"info@rivapalace.it",
+"sito":"https://rivapalace.it/",
+"lat":45.679032,
+"lon":13.396682
+},
+{
+"nome":"Eden",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Via Marco Polo 2",
+"cap":"34073",
+"email":"info@hoteledengrado.it",
+"sito":"http://www.hoteledengrado.it/",
+"lat":45.679224,
+"lon":13.397045
+},
+{
+"nome":"Capri",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Via Amerigo Vespucci 1",
+"cap":"34073",
+"telefono":"+39 0431 84055",
+"sito":"https://www.hotelcaprigrado.info/",
+"lat":45.680285,
+"lon":13.399386
+},
+{
+"nome":"Merano",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Via Amerigo Vespucci 3",
+"cap":"34073",
+"sito":"https://www.hotelmeranogrado.it/it/",
+"lat":45.680216,
+"lon":13.399824
+},
+{
+"nome":"Splendor",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Viale Argine dei Moreri 75",
+"cap":"34073",
+"lat":45.680039,
+"lon":13.40004
+},
+{
+"nome":"Eldorado",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Viale Argine dei Moreri 81",
+"cap":"34073",
+"telefono":"+39 0431 83977",
+"email":"info@hoteleldorado.it",
+"sito":"https://hoteleldorado.it/",
+"lat":45.68026,
+"lon":13.400622
+},
+{
+"nome":"Europa",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Viale John Fitzgerald Kennedy 3",
+"cap":"34073",
+"telefono":"+39 0431 80600",
+"email":"info@hoteleuropagrado.it",
+"sito":"https://www.hoteleuropagrado.it/",
+"lat":45.679568,
+"lon":13.400692
+},
+{
+"nome":"Helvetia",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Viale John Fitzgerald Kennedy 15",
+"cap":"34073",
+"telefono":"+39 0431 80598",
+"sito":"http://www.hotelhelvetiagrado.it",
+"lat":45.679854,
+"lon":13.401579
+},
+{
+"nome":"Villa D'Este",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Via Giuseppe Parini 9",
+"cap":"34073",
+"telefono":"+39 0431 80839",
+"email":"info@hotel-villadeste.it",
+"sito":"https://www.hotel-villadeste.it/",
+"lat":45.680743,
+"lon":13.404113
+},
+{
+"nome":"Villa Patrizia",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Viale Italia 19",
+"cap":"34073",
+"telefono":"+39 0431 668275",
+"email":"info@hotelvillapatrizia.com",
+"sito":"https://www.hotelvillapatrizia.com/",
+"lat":45.679505,
+"lon":13.404224
+},
+{
+"nome":"Villa Ai Fiori",
+"tipoOsm":"hotel",
+"indirizzo":"Via Giovanni Papini 4",
+"telefono":"+39 0431 377651",
+"sito":"https://hotelaifiori.it/",
+"lat":45.678821,
+"lon":13.404598
+},
+{
+"nome":"Le Palme",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Viale del Sole 35",
+"cap":"34073",
+"telefono":"+39 0431 84844",
+"sito":"https://www.hotellepalmegrado.it/",
+"lat":45.678461,
+"lon":13.405346
+},
+{
+"nome":"La Sirenetta",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Via Milano 1",
+"cap":"34073",
+"telefono":"+39 0431 80404",
+"email":"info@hotelsirenetta.net",
+"lat":45.680328,
+"lon":13.380653
+},
+{
+"nome":"Marea",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Via dei Provveditori",
+"cap":"34073",
+"telefono":"+39 0431 81206",
+"email":"info@hotelmarea.it",
+"sito":"https://www.hotelmarea.it/",
+"lat":45.677275,
+"lon":13.382419
+},
+{
+"nome":"Antares",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Via delle Scuole 4",
+"cap":"34073",
+"telefono":"+39 0431 84961",
+"email":"info@hotelantaresgrado.it",
+"sito":"https://www.hotelantaresgrado.it/",
+"lat":45.676957,
+"lon":13.383102
+},
+{
+"nome":"Cristina",
+"tipoOsm":"hotel",
+"indirizzo":"Viale Martiri della Libertà 11",
+"telefono":"+39 0431 81359",
+"email":"info@gradohotelcristina.it",
+"sito":"https://www.gradohotelcristina.it/",
+"lat":45.681377,
+"lon":13.405852
+},
+{
+"nome":"Savoy",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Via Giosuè Carducci 33",
+"cap":"34073",
+"telefono":"+39 0431 897111",
+"email":"reservation@hotelsavoy-grado.it",
+"sito":"http://www.hotelsavoy-grado.it/",
+"lat":45.678042,
+"lon":13.392993
+},
+{
+"nome":"Villa Rosa",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Via Giosuè Carducci 12",
+"cap":"34073",
+"lat":45.67727,
+"lon":13.389602
+},
+{
+"nome":"Aprilia",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Via Barbana 4",
+"cap":"34073",
+"telefono":"+39 0431 80960",
+"email":"info@residenceapriliagrado.it",
+"lat":45.67791,
+"lon":13.389443
+},
+{
+"nome":"Meublé Terme",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Viale del Sole 25",
+"cap":"34073",
+"telefono":"+39 348 362 6794; +39 031 544118",
+"email":"info@meubleterme.it",
+"sito":"https://www.meubleterme.it/",
+"lat":45.678451,
+"lon":13.403591
+},
+{
+"nome":"Rialto",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Viale del Turismo 2",
+"cap":"34073",
+"telefono":"+39 0431 80658",
+"email":"info@hotel-rialto.net",
+"sito":"https://www.hotel-rialto.net/",
+"lat":45.678823,
+"lon":13.404111
+},
+{
+"nome":"Fonzari",
+"tipoOsm":"hotel",
+"telefono":"+39 0431 876360",
+"email":"info@hotelfonzari.com",
+"lat":45.675747,
+"lon":13.386671
+},
+{
+"nome":"Nauthotel",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Riva Giovanni da Verrazzano 1",
+"cap":"34073",
+"telefono":"+39 0431 83500",
+"lat":45.681717,
+"lon":13.376729
+},
+{
+"nome":"Al Bosco",
+"tipoOsm":"hotel",
+"indirizzo":"Strada La Rotta 1/2",
+"telefono":"+39 0431 878010",
+"email":"info@residencehotelalbosco.com",
+"lat":45.678365,
+"lon":13.419946
+},
+{
+"nome":"Tanit",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Viale dei Pesci 13",
+"cap":"34073",
+"telefono":"+39 0431 81845",
+"email":"info@hoteltanit.it",
+"sito":"https://www.hoteltanit.it/",
+"lat":45.680301,
+"lon":13.42735
+},
+{
+"nome":"Adriaco",
+"tipoOsm":"hotel",
+"indirizzo":"Viale delle Pleiadi 11",
+"telefono":"+39 0431 81210",
+"email":"info@hoteladriaco.com",
+"sito":"https://www.hoteladriaco.com/",
+"lat":45.6787,
+"lon":13.428996
+},
+{
+"nome":"Hotel Ai Pini",
+"tipoOsm":"hotel",
+"indirizzo":"Viale Andromeda 25",
+"telefono":"+39 0431 80888",
+"email":"info@hotelaipinigrado.it",
+"sito":"https://hotelaipinigrado.it/",
+"lat":45.678527,
+"lon":13.431019
+},
+{
+"nome":"Mar del Plata",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Viale Andromeda 5",
+"cap":"34073",
+"telefono":"+39 0431 81081",
+"email":"info@hotelmardelplata.it",
+"sito":"https://www.hotelmardelplata.it/",
+"lat":45.67849,
+"lon":13.428324
+},
+{
+"nome":"Residence Restaurant Gruden",
+"tipoOsm":"guest_house",
+"comune":"Duino Aurisina / Devin - Nabrežina",
+"cap":"34011",
+"telefono":"+39 040 200151",
+"email":"info@myresidence.it",
+"sito":"http://www.myresidence.it/",
+"lat":45.765714,
+"lon":13.687739
+},
+{
+"nome":"Trattoria e Residence Gruden",
+"tipoOsm":"hotel",
+"comune":"Duino Aurisina / Devin - Nabrežina",
+"cap":"34011",
+"telefono":"+39 040 200151",
+"sito":"http://www.myresidence.it/",
+"lat":45.762887,
+"lon":13.69446
+},
+{
+"nome":"Agriturismo / Turistična kmetija Radovič",
+"tipoOsm":"guest_house",
+"comune":"Duino Aurisina / Devin - Nabrežina",
+"cap":"34011",
+"telefono":"+39 040 200173",
+"email":"info@agriturismoradovic.it",
+"sito":"http://www.agriturismoradovic.it/",
+"lat":45.749509,
+"lon":13.670735
+},
+{
+"nome":"Hotel Mignon",
+"tipoOsm":"hotel",
+"indirizzo":"Via Carlo Junker 12",
+"cap":"34100",
+"telefono":"+39 040 224611",
+"sito":"http://hotelmignon.trieste.it",
+"lat":45.706791,
+"lon":13.714224
+},
+{
+"nome":"Convento delle Beatitudini",
+"tipoOsm":"hotel",
+"telefono":"+39 040 566244",
+"lat":45.666914,
+"lon":13.805255
+},
+{
+"nome":"Residence Villa Bottacin",
+"tipoOsm":"hotel",
+"email":"info@villabottacin.com",
+"sito":"https://villabottacin.com/",
+"lat":45.65699,
+"lon":13.798474
+},
+{
+"nome":"Villa BellaVista",
+"tipoOsm":"guest_house",
+"email":"villabellavistatrieste@gmail.com",
+"lat":45.670805,
+"lon":13.796126
+},
+{
+"nome":"Hotel Panorama",
+"tipoOsm":"motel",
+"comune":"Muggia / Milje",
+"indirizzo":"Via dei Bonomo 1",
+"cap":"34015",
+"lat":45.605051,
+"lon":13.761446
+},
+{
+"nome":"Hotel Le Corderie",
+"tipoOsm":"hotel",
+"telefono":"+39 040 3229277",
+"email":"info@lecorderiehotel.it",
+"sito":"http://www.lecorderiehotel.it",
+"lat":45.640371,
+"lon":13.768911
+},
+{
+"nome":"Rifugio Mario Premuda",
+"tipoOsm":"alpine_hut",
+"telefono":"+39 040 2037027",
+"lat":45.61936,
+"lon":13.865842
+},
+{
+"nome":"Center Hotel",
+"tipoOsm":"hotel",
+"telefono":"+39 040 922 1334",
+"email":"info@centerhotel.it",
+"sito":"https://www.centerhotel.it/",
+"lat":45.641539,
+"lon":13.86349
+},
+{
+"nome":"Dependance Center Hotel",
+"tipoOsm":"hotel",
+"comune":"Trieste",
+"indirizzo":"Via Srečko Kosovel",
+"cap":"34149",
+"telefono":"+39 040 9221334",
+"email":"info@centerhotel.it",
+"sito":"https://www.centerhotel.it/",
+"lat":45.642175,
+"lon":13.863608
+},
+{
+"nome":"Taverna Cigui",
+"tipoOsm":"guest_house",
+"comune":"Muggia / Milje",
+"indirizzo":"Via Natale Colarich 92d",
+"cap":"34015",
+"sito":"https://www.tavernacigui.it/",
+"lat":45.589564,
+"lon":13.774046
+},
+{
+"nome":"Savoia Excelsior Palace",
+"tipoOsm":"hotel",
+"comune":"Trieste",
+"indirizzo":"Riva del Mandracchio 4",
+"cap":"34124",
+"lat":45.649302,
+"lon":13.765763
+},
+{
+"nome":"Trilago",
+"tipoOsm":"hotel",
+"sito":"https://www.trilago.it",
+"lat":46.324108,
+"lon":13.065652
+},
+{
+"nome":"Biblioteca civica e Ostello Comunale",
+"tipoOsm":"hostel",
+"telefono":"+39 0427 908303",
+"email":"biblio.castelnovodelfriuli@gmail.com",
+"lat":46.199287,
+"lon":12.902301
+},
+{
+"nome":"Ricovero Elio Franz",
+"tipoOsm":"wilderness_hut",
+"sito":"https://www.parcoprealpigiulie.it/it/principale/attivita/ricoveri-montani/ricovero-franz",
+"lat":46.371348,
+"lon":13.170737
+},
+{
+"nome":"Bivacco Antonio Marchi e Renzo Granzotto",
+"tipoOsm":"wilderness_hut",
+"sito":"https://caipordenone.it/strutture/bivacco-marchi-granzotto/",
+"lat":46.412776,
+"lon":12.503781
+},
+{
+"nome":"Sanremo",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Viale Italia 5",
+"cap":"34073",
+"telefono":"+39 0431 876318",
+"email":"info@hotelsanremogrado.it",
+"sito":"https://www.hotelsanremogrado.it/#",
+"lat":45.679457,
+"lon":13.401612
+},
+{
+"nome":"Elliot Hotel",
+"tipoOsm":"hotel",
+"comune":"Manzano",
+"indirizzo":"Via Orsaria 50",
+"cap":"33044",
+"sito":"https://www.elliothotel.it/",
+"lat":46.004175,
+"lon":13.380472
+},
+{
+"nome":"Meditur Hotel Udine Nord",
+"tipoOsm":"hotel",
+"comune":"Udine",
+"indirizzo":"Via Alpe Adria 10",
+"cap":"33010",
+"telefono":"+39 0432 579600",
+"email":"info@hoteludinenord.it",
+"sito":"https://www.hoteludinenord.it/",
+"lat":46.111766,
+"lon":13.21333
+},
+{
+"nome":"Albergo Al Rododendro",
+"tipoOsm":"hotel",
+"comune":"Camporosso",
+"cap":"33010",
+"telefono":"+39 0428 653923",
+"sito":"http://www.hotelspartiacque.com",
+"lat":46.480797,
+"lon":13.521749
+},
+{
+"nome":"Alla Basilica",
+"tipoOsm":"hotel",
+"comune":"Aquileia",
+"indirizzo":"Viale Stazione 2",
+"cap":"33051",
+"sito":"https://www.hotelitaliaweb.com/alla-basilica/",
+"lat":45.77067,
+"lon":13.368705
+},
+{
+"nome":"Agriturismo Le Giarine",
+"tipoOsm":"hotel",
+"comune":"Fogliano Redipuglia",
+"indirizzo":"Via dei Campi 4",
+"cap":"34070",
+"lat":45.866914,
+"lon":13.477197
+},
+{
+"nome":"Albergo Trattoria Al Castello",
+"tipoOsm":"hotel",
+"telefono":"+39 0432 9787499",
+"sito":"http://www.albergotrattoriaalcastello.com",
+"lat":46.239706,
+"lon":13.151198
+},
+{
+"nome":"Rifugio Colò",
+"tipoOsm":"alpine_hut",
+"comune":"Amaro",
+"cap":"33020",
+"telefono":"+39 3474281877",
+"email":"info@rifugiocolo.it",
+"sito":"https://www.rifugiocolo.it/",
+"lat":46.390092,
+"lon":13.115226
+},
+{
+"nome":"Capanna Re di Sassonia - Guido Brunner",
+"tipoOsm":"wilderness_hut",
+"sito":"http://www.caitarvisio.it/capanna--brunner-.html",
+"lat":46.423626,
+"lon":13.530833
+},
+{
+"nome":"Affittacamere Pr' Krajncu",
+"tipoOsm":"apartment",
+"comune":"Malborghetto-Valbruna",
+"indirizzo":"Via Genziana 6",
+"cap":"33010",
+"telefono":"+39 3335069959",
+"lat":46.500008,
+"lon":13.488988
+},
+{
+"nome":"Eliani",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Via dell'Amicizia 5",
+"cap":"34073",
+"telefono":"+39 0431 80686",
+"email":"info@hoteleliani-grado.com",
+"lat":45.679796,
+"lon":13.390125
+},
+{
+"nome":"Mirabel",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Via Luigi Galvani 16",
+"cap":"34073",
+"telefono":"+39 0431 878133",
+"email":"info@mirabelspahotel.it",
+"sito":"https://www.mirabelspahotel.it/",
+"lat":45.677049,
+"lon":13.391694
+},
+{
+"nome":"Villa Erica",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Viale Dante Alighieri 69",
+"cap":"34073",
+"telefono":"+39 0431 84444",
+"email":"info@hotelvillaerica.com",
+"sito":"https://www.hotelvillaerica.com/hotel.html",
+"lat":45.676908,
+"lon":13.391404
+},
+{
+"nome":"Agriturismo Riva Mondina",
+"tipoOsm":"guest_house",
+"comune":"Fiumicello Villa Vicentina",
+"indirizzo":"Via Palazzatto 36",
+"cap":"33050",
+"telefono":"+39 353 455 8253",
+"sito":"https://www.rivamondina.it",
+"lat":45.743725,
+"lon":13.424699
+},
+{
+"nome":"Alla Dama Bianca",
+"tipoOsm":"hotel",
+"telefono":"+39 040 208470",
+"email":"info@alladamabianca.com",
+"sito":"https://alladamabianca.com/",
+"lat":45.773958,
+"lon":13.59888
+},
+{
+"nome":"Villa Gruber",
+"tipoOsm":"guest_house",
+"telefono":"+39 040 208115",
+"email":"villagruber@alladamabianca.com",
+"sito":"http://villagruber.com/",
+"lat":45.772925,
+"lon":13.600093
+},
+{
+"nome":"Hotel Eden",
+"tipoOsm":"hotel",
+"comune":"Duino Aurisina / Devin - Nabrežina",
+"cap":"34011",
+"telefono":"+39 040 2907042",
+"sito":"http://www.edensistiana.it/",
+"lat":45.771159,
+"lon":13.638269
+},
+{
+"nome":"Azienda agricola Le Torri di Slivia",
+"tipoOsm":"guest_house",
+"comune":"Duino Aurisina / Devin - Nabrežina",
+"cap":"34011",
+"email":"info@letorridislivia.net",
+"sito":"https://www.letorridislivia.net/",
+"lat":45.761381,
+"lon":13.66132
+},
+{
+"nome":"Hotel Posta",
+"tipoOsm":"hotel",
+"comune":"Duino Aurisina / Devin - Nabrežina",
+"cap":"34011",
+"telefono":"+39 040 299103",
+"email":"info@hotelposta.ts.it",
+"sito":"http://www.hotelposta.ts.it/",
+"lat":45.772345,
+"lon":13.636389
+},
+{
+"nome":"Gran Osteria Tre noci",
+"tipoOsm":"hotel",
+"comune":"Duino Aurisina / Devin - Nabrežina",
+"cap":"34011",
+"telefono":"+39 040 299222",
+"lat":45.770349,
+"lon":13.639454
+},
+{
+"nome":"Allegra Fattoria",
+"tipoOsm":"hotel",
+"comune":"Duino Aurisina / Devin - Nabrežina",
+"cap":"34011",
+"telefono":"+39 040 299939",
+"email":"allegra.fattoria@hotmail.it",
+"sito":"http://www.allegrafattoriaincarso.it/",
+"lat":45.786628,
+"lon":13.661407
+},
+{
+"nome":"Ostello Domus Augusta",
+"tipoOsm":"hostel",
+"comune":"Aquileia",
+"indirizzo":"Via Roma 25",
+"cap":"33051",
+"telefono":"+39 0431 91024;+39 331 104 1317",
+"sito":"http://www.ostelloaquileia.it/",
+"lat":45.766424,
+"lon":13.366047
+},
+{
+"nome":"Fra i Pini",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Via Giardini 16",
+"cap":"33054",
+"telefono":"+39 0431 423015",
+"email":"info@fraipini.it",
+"sito":"https://www.fraipini.it/",
+"lat":45.675821,
+"lon":13.113356
+},
+{
+"nome":"Olympia",
+"tipoOsm":"hotel",
+"sito":"https://www.hotelolympia.it/",
+"lat":45.675579,
+"lon":13.111437
+},
+{
+"nome":"Ambassador",
+"tipoOsm":"hotel",
+"sito":"https://ambassadorhotel.it/",
+"lat":45.674374,
+"lon":13.112549
+},
+{
+"nome":"Marina Uno",
+"tipoOsm":"hotel",
+"telefono":"+39 0431 427171",
+"email":"info@hotelmarinauno.com",
+"sito":"https://www.hotelmarinauno.com/",
+"lat":45.650766,
+"lon":13.094915
+},
+{
+"nome":"Soraya",
+"tipoOsm":"hotel",
+"telefono":"+39 0431 422424",
+"email":"info@hotelsorayalignano.it",
+"sito":"https://www.hotelsorayalignano.it/",
+"lat":45.671266,
+"lon":13.113917
+},
+{
+"nome":"Bella Venezia",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Arco del Grecale 18a",
+"cap":"33054",
+"telefono":"+39 0431 422184",
+"email":"info@bellaveneziamare.it",
+"sito":"https://www.bellaveneziamare.it/",
+"lat":45.668055,
+"lon":13.110364
+},
+{
+"nome":"Carlton",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Arco del Libeccio 39",
+"cap":"33054",
+"telefono":"+39 0431 428531",
+"email":"info@carltonhotel.it",
+"sito":"https://www.carltonhotel.it/",
+"lat":45.665304,
+"lon":13.102337
+},
+{
+"nome":"Croce di Malta",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Raggio delle Capelonghe 2",
+"cap":"33054",
+"telefono":"+39 0431 422227;+39 0431 422228",
+"email":"info@hotelcrocedimalta.net",
+"sito":"https://www.hotelcrocedimalta.net/",
+"lat":45.665148,
+"lon":13.105249
+},
+{
+"nome":"Alex",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Via Tarvisio 82",
+"cap":"33054",
+"telefono":"+39 0431 428773",
+"email":"info@hotelalex.it",
+"sito":"https://www.hotelalex.it/",
+"lat":45.670956,
+"lon":13.097928
+},
+{
+"nome":"Paris",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Via dei Pini 22",
+"cap":"33054",
+"telefono":"+39 0431 422584",
+"email":"hotelparis@lignano.it",
+"sito":"https://hotelparis.lignano.it/",
+"lat":45.667073,
+"lon":13.098807
+},
+{
+"nome":"Friuli",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Via dei Pini 11",
+"cap":"33054",
+"telefono":"+39 0431 428683",
+"email":"info@hotelfriuli.it",
+"sito":"https://www.hotelfriuli.it/",
+"lat":45.666297,
+"lon":13.099333
+},
+{
+"nome":"New York",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Via dei Pini 10",
+"cap":"33054",
+"sito":"https://www.hotel-newyork.it/",
+"lat":45.666461,
+"lon":13.100991
+},
+{
+"nome":"Old River",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Viale Adriatico 8",
+"cap":"33054",
+"telefono":"+39 0431 428534",
+"email":"info@hoteloldriver.it",
+"sito":"https://www.hoteloldriver.it/",
+"lat":45.650518,
+"lon":13.097367
+},
+{
+"nome":"Meridianus",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Viale della Musica 1",
+"cap":"33054",
+"telefono":"+39 0431 428561",
+"sito":"https://www.hotelmeridianus.it",
+"lat":45.660357,
+"lon":13.102476
+},
+{
+"nome":"Viña de Mar",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Corso delle Nazioni 48",
+"cap":"33054",
+"telefono":"+39 0431 428666",
+"sito":"https://www.vinademar.it",
+"lat":45.660407,
+"lon":13.100625
+},
+{
+"nome":"Hotel delle Nazioni",
+"tipoOsm":"hotel",
+"indirizzo":"Corso delle Nazioni 62",
+"telefono":"+39 0431 428461",
+"sito":"https://www.hoteldellenazioni.com/",
+"lat":45.654913,
+"lon":13.097
+},
+{
+"nome":"Hotel Arizona",
+"tipoOsm":"hotel",
+"indirizzo":"Calle Prassitele 2",
+"telefono":"+39 0431 428528",
+"sito":"http://arizonabeach.it",
+"lat":45.656168,
+"lon":13.098996
+},
+{
+"nome":"Greif",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Arco del Grecale 25",
+"cap":"33054",
+"telefono":"+39 0431 422261",
+"email":"info@greifhotel.it",
+"sito":"http://www.greifhotel.it/",
+"lat":45.669521,
+"lon":13.109458
+},
+{
+"nome":"San Marco",
+"tipoOsm":"hotel",
+"indirizzo":"Raggio di Levante 34",
+"telefono":"+390431422190",
+"sito":"https://sanmarco.lignano.it/",
+"lat":45.668324,
+"lon":13.111439
+},
+{
+"nome":"Daniele",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Corso degli Alisei 28;30",
+"cap":"33054",
+"telefono":"+390431427166",
+"email":"info@hoteldaniele.com",
+"sito":"https://www.hoteldaniele.com/",
+"lat":45.671833,
+"lon":13.109618
+},
+{
+"nome":"Colorado",
+"tipoOsm":"hotel",
+"indirizzo":"Via Giardini 79",
+"telefono":"+39 0431 422281",
+"email":"info@hotelcolorado.net",
+"sito":"https://www.hotelcolorado.net/",
+"lat":45.672265,
+"lon":13.116875
+},
+{
+"nome":"Medusa Splendid",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Raggio dello Scirocco 33",
+"cap":"33054",
+"telefono":"+39 0431 422211",
+"email":"info@hotelmedusa.it",
+"sito":"https://www.hotelmedusa.it/",
+"lat":45.667788,
+"lon":13.108026
+},
+{
+"nome":"Anapaya",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Arco del Libeccio 40",
+"cap":"33054",
+"telefono":"+39 0431 422116",
+"email":"info@anapaya.it",
+"sito":"https://www.anapaya.it/",
+"lat":45.66574,
+"lon":13.103268
+},
+{
+"nome":"Zenith",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Arco del Libeccio 32",
+"cap":"33054",
+"telefono":"+39 0431 422343",
+"email":"info@meublezenith.it",
+"sito":"https://www.meublezenith.it/",
+"lat":45.665632,
+"lon":13.104062
+},
+{
+"nome":"San Giorgio",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Arco del Libeccio 44/46",
+"cap":"33054",
+"telefono":"+39 0431 422119",
+"email":"info@sangiorgio-hotel.it",
+"sito":"https://sangiorgio-hotel.it/",
+"lat":45.665754,
+"lon":13.102544
+},
+{
+"nome":"La Pigna",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Via dei Pini 9",
+"cap":"33054",
+"telefono":"+39 0431 428991",
+"email":"info@lapignalignano.it",
+"sito":"https://www.hotelapigna.it/",
+"lat":45.666213,
+"lon":13.099712
+},
+{
+"nome":"Bellevue",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Arco del Libeccio 37",
+"cap":"33054",
+"telefono":"+39 0431 428521",
+"email":"info@hotel-bellevue.com",
+"sito":"http://www.hotel-bellevue.com/",
+"lat":45.665267,
+"lon":13.102801
+},
+{
+"nome":"Nazionale",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Raggio dei Peoci 1",
+"cap":"33054",
+"lat":45.665098,
+"lon":13.103404
+},
+{
+"nome":"Caracas",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Via dei Pini 38",
+"cap":"33054",
+"telefono":"+39 0431 428771",
+"email":"info@hotel-caracas-lignano.it",
+"sito":"https://www.hotel-caracas-lignano.it/",
+"lat":45.668109,
+"lon":13.096833
+},
+{
+"nome":"Villa Luisa",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Via dei Pini 14",
+"cap":"33054",
+"telefono":"+39 0431 428471",
+"email":"villaluisa@gphotels.it",
+"sito":"https://gphotels.it/villa-luisa/it/",
+"lat":45.666635,
+"lon":13.100244
+},
+{
+"nome":"San Francisco",
+"tipoOsm":"hotel",
+"indirizzo":"Viale delle Palme 40",
+"telefono":"+390431422234",
+"email":"info@hotelsanfrancisco.it",
+"sito":"https://www.hotelsanfrancisco.it/",
+"lat":45.673795,
+"lon":13.113039
+},
+{
+"nome":"Acapulco",
+"tipoOsm":"hotel",
+"sito":"https://www.acapulcolignano.it",
+"lat":45.673899,
+"lon":13.114869
+},
+{
+"nome":"Rosa Dei Venti",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Via dei Pini 15",
+"cap":"33054",
+"telefono":"+39 0431 423782",
+"email":"info@albergorosadeiventi.it",
+"sito":"https://www.albergorosadeiventi.it/",
+"lat":45.666655,
+"lon":13.098442
+},
+{
+"nome":"G/Hotel",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Via dei Pini 27",
+"cap":"33054",
+"telefono":"+39 0431 427856",
+"email":"info@ghotel-lignano.it",
+"sito":"https://www.ghotel-lignano.it/",
+"lat":45.667899,
+"lon":13.096023
+},
+{
+"nome":"Helvetia",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Corso degli Alisei 9",
+"cap":"33054",
+"telefono":"+39 0431 422193",
+"email":"info@hotelhelvetialignano.com",
+"sito":"https://www.hotelhelvetialignano.com/",
+"lat":45.670657,
+"lon":13.106752
+},
+{
+"nome":"Vilka Mušľa",
+"tipoOsm":"apartment",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Via Tirolo 9",
+"cap":"33054",
+"telefono":"+421 4905170731",
+"lat":45.680752,
+"lon":13.129076
+},
+{
+"nome":"Orchidea",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Via Latisana 122",
+"cap":"33054",
+"telefono":"+39 0431 71558",
+"email":"info@hotel-orchidea.it",
+"sito":"https://hotel-orchidea.it/",
+"lat":45.688106,
+"lon":13.13515
+},
+{
+"nome":"Consuelo",
+"tipoOsm":"hotel",
+"indirizzo":"Via Latisana 168",
+"telefono":"+39 0431 71489",
+"email":"hotel.consuelo@doimohotels.it",
+"sito":"https://mobile.doimohotels.it/consuelo/",
+"lat":45.686118,
+"lon":13.129881
+},
+{
+"nome":"Palace",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Via Carinzia 13",
+"cap":"33054",
+"telefono":"+39 0431 720900",
+"sito":"https://www.palace-hotel.it/",
+"lat":45.683962,
+"lon":13.129487
+},
+{
+"nome":"Astoria",
+"tipoOsm":"hotel",
+"indirizzo":"Lungomare Trieste 150",
+"telefono":"+39 0431 71315",
+"email":"hotel.astoria@gphotels.it",
+"sito":"https://gphotels.it/hotel-astoria/it/",
+"lat":45.681308,
+"lon":13.131778
+},
+{
+"nome":"Salus",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Via Tirolo 11",
+"cap":"33054",
+"telefono":"+39 0431 720082",
+"email":"info@hotelsalus.it",
+"sito":"www.hotelsalus.it",
+"lat":45.680445,
+"lon":13.129475
+},
+{
+"nome":"Vittoria",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Lungomare Marin 28",
+"cap":"33054",
+"telefono":"+39 0431 71221",
+"email":"info@hotel-vittoria.net",
+"sito":"http://www.mobile.hotel-vittoria.net",
+"lat":45.692716,
+"lon":13.150195
+},
+{
+"nome":"Bellavista",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Lungomare Trieste 70",
+"cap":"33054",
+"telefono":"+39 0431 71313",
+"email":"reception@bellavistalignano.it",
+"sito":"https://www.bellavistalignano.it/",
+"lat":45.688988,
+"lon":13.144583
+},
+{
+"nome":"Ambra",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Lungomare Trieste 124a",
+"cap":"33054",
+"telefono":"+39 0431 71027",
+"sito":"https://www.vallinhotels.com/",
+"lat":45.684827,
+"lon":13.137766
+},
+{
+"nome":"Grand Hotel Playa",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Lungomare Trieste 128",
+"cap":"33054",
+"telefono":"+39 0431 71071",
+"email":"mail@playa.it",
+"sito":"https://www.playa.it/",
+"lat":45.684821,
+"lon":13.137391
+},
+{
+"nome":"Bristol",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Lungomare Trieste 132",
+"cap":"33054",
+"telefono":"+39 0431 73131",
+"email":"info@hotel-bristol.it",
+"sito":"https://www.hotel-bristol.it/",
+"lat":45.683861,
+"lon":13.1361
+},
+{
+"nome":"Residenza Nouméa",
+"tipoOsm":"apartment",
+"sito":"https://www.lignanofrontemare.it/",
+"lat":45.684215,
+"lon":13.13668
+},
+{
+"nome":"Internazional Beach Hotel",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Lungomare Trieste 134b",
+"cap":"33054",
+"telefono":"+39 0431 71151",
+"email":"info@hotelinternational.it",
+"sito":"https://www.ibhlignano.net/",
+"lat":45.683078,
+"lon":13.134595
+},
+{
+"nome":"Vienna",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Via Gemona 1",
+"cap":"33054",
+"telefono":"+39 0431 71231",
+"sito":"https://www.hotelvienna.it/",
+"lat":45.68501,
+"lon":13.128621
+},
+{
+"nome":"Cristallo",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Via Tirolo 2",
+"cap":"33054",
+"telefono":"+39 0431 724111",
+"email":"info@hotelcristallolignano.it",
+"sito":"http://www.hotelcristallolignano.it/",
+"lat":45.680769,
+"lon":13.128109
+},
+{
+"nome":"Garden",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Via Sabbiadoro 19",
+"cap":"33054",
+"telefono":"+39 0431 71639",
+"email":"info@hotelgardenlignano.it",
+"sito":"https://www.hotelgardenlignano.it/",
+"lat":45.680544,
+"lon":13.128412
+},
+{
+"nome":"Trieste Mare",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Via Tirolo 13",
+"cap":"33054",
+"telefono":"+39 0431 721165",
+"email":"info@hoteltriestelignano.it",
+"sito":"https://www.hoteltriestelignano.it/",
+"lat":45.680228,
+"lon":13.129723
+},
+{
+"nome":"American Hotel",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Lungomare Trieste 152",
+"cap":"33054",
+"telefono":"+39 0431 71696",
+"email":"info@hotel-american.it",
+"sito":"https://www.hotel-american.it/",
+"lat":45.680922,
+"lon":13.131204
+},
+{
+"nome":"Niagara",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Lungomare Trieste 152",
+"cap":"33054",
+"telefono":"+39 0431 71745",
+"email":"niagara@gropo.it",
+"sito":"https://www.hotelniagara.it/",
+"lat":45.681631,
+"lon":13.130272
+},
+{
+"nome":"Aparthotel Carinzia",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Via Carinzia 40",
+"cap":"33054",
+"telefono":"+31 43 172 0777",
+"sito":"https://www.carinzialignano.it/",
+"lat":45.682214,
+"lon":13.130616
+},
+{
+"nome":"Diva",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Viale Italia 4a",
+"cap":"33054",
+"telefono":"+39 0431 193 8086",
+"email":"info@divahotellignano.it",
+"sito":"https://www.divahotellignano.it/",
+"lat":45.692309,
+"lon":13.149543
+},
+{
+"nome":"Albergo Alla Nave",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Via Carso 25",
+"cap":"33054",
+"telefono":"+39 0431 71807",
+"email":"info@allanave.it",
+"sito":"https://www.allanave.it/",
+"lat":45.695807,
+"lon":13.150532
+},
+{
+"nome":"Nuova Graziosa",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Via Latisana 70",
+"cap":"33054",
+"telefono":"+39 0431 71435",
+"sito":"https://www.hotelnuovagraziosa.it/",
+"lat":45.690986,
+"lon":13.14209
+},
+{
+"nome":"Eros",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Via Carinzia 26a",
+"cap":"33054",
+"telefono":"+39 0431 71727",
+"sito":"https://www.hotel-eros.it/",
+"lat":45.682683,
+"lon":13.129673
+},
+{
+"nome":"Luna",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Lungomare Trieste 68",
+"cap":"33054",
+"telefono":"+39 0431 7149",
+"email":"info@hoteluna.com",
+"sito":"https://www.hoteluna.com/",
+"lat":45.689253,
+"lon":13.144787
+},
+{
+"nome":"Romantik",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Via Tricesimo 5",
+"cap":"33054",
+"telefono":"+39 0431 71565",
+"email":"info@hoteltamanaco.it",
+"sito":"http://www.hoteltamanaco.it",
+"lat":45.692247,
+"lon":13.144785
+},
+{
+"nome":"Stiefel",
+"tipoOsm":"hotel",
+"telefono":"+39 0431 720433",
+"email":"info@stiefel.it",
+"sito":"https://www.stiefel.it/",
+"lat":45.690899,
+"lon":13.143524
+},
+{
+"nome":"Zen",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Parco San Giovanni Bosco 15",
+"cap":"33054",
+"telefono":"+39 0431 71237;+39 340 225 6523",
+"email":"pensionezen@gmail.com",
+"sito":"http://zenlignano.it/",
+"lat":45.68931,
+"lon":13.142399
+},
+{
+"nome":"Bahia",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Via Adriatica 64 - 66",
+"cap":"33054",
+"telefono":"+39 02 4592 40301",
+"email":"info@albergobahia.it",
+"sito":"https://www.albergobahia.it/",
+"lat":45.686369,
+"lon":13.139704
+},
+{
+"nome":"Calipso",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Lungomare Trieste 104",
+"cap":"33054",
+"telefono":"+39 0431 71600",
+"sito":"https://www.vallinhotels.com/",
+"lat":45.686173,
+"lon":13.139942
+},
+{
+"nome":"Colonia Villa Serena",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Via Latisana 76",
+"cap":"33054",
+"sito":"https://www.cifnazionale.it/regioni/friuliveneziagiulia/servizi/colonia",
+"lat":45.690776,
+"lon":13.141648
+},
+{
+"nome":"La Goletta",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Viale Italia 44",
+"cap":"33054",
+"telefono":"+39 0431 71274",
+"email":"info@hotelgoletta.it",
+"sito":"https://www.hotelgoletta.it/",
+"lat":45.695028,
+"lon":13.146745
+},
+{
+"nome":"Hotel Mare",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Viale Italia 42",
+"cap":"33054",
+"telefono":"+39 0431 721157",
+"email":"hotelmare@lignano.it",
+"sito":"http://www.hotelmare.lignano.it",
+"lat":45.694836,
+"lon":13.146889
+},
+{
+"nome":"Rossini",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Via Adriatica 32",
+"cap":"33054",
+"telefono":"+39 0431 71530",
+"email":"info@rossiniresort.com",
+"sito":"https://www.rossiniresort.com/",
+"lat":45.687739,
+"lon":13.138059
+},
+{
+"nome":"Aurora",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Via Latisana 75",
+"cap":"33054",
+"telefono":"+39 0431 71434",
+"email":"hotel.aurora@lignano.it",
+"sito":"https://www.aurora.lignano.it/",
+"lat":45.688888,
+"lon":13.137944
+},
+{
+"nome":"Ornella",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Via Adriatica 11",
+"cap":"33054",
+"telefono":"+39 0431 71262",
+"email":"hotel.ornella@virgilio.it",
+"sito":"https://www.hotelpensioneornella.it/",
+"lat":45.688517,
+"lon":13.137701
+},
+{
+"nome":"Hotel Villa Romana",
+"tipoOsm":"hotel",
+"telefono":"+39 0431 71843",
+"email":"villaromana@lignano.it",
+"sito":"http://www.lignano.it/hotel/villaromana",
+"lat":45.689701,
+"lon":13.138939
+},
+{
+"nome":"Marin",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Lungomare Trieste 2",
+"cap":"33054",
+"telefono":"+39 0431 71283",
+"email":"info@hotelmarin.com",
+"sito":"https://hotelmarin.com/",
+"lat":45.691989,
+"lon":13.148997
+},
+{
+"nome":"Pelikan",
+"tipoOsm":"hotel",
+"indirizzo":"Lungomare Trieste 10",
+"telefono":"+39 0431 71670",
+"email":"info@hotelpelikan.it",
+"sito":"https://www.hotelpelikan.it/",
+"lat":45.691642,
+"lon":13.148746
+},
+{
+"nome":"Al Ponte",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Via Latisana 109",
+"cap":"33054",
+"telefono":"+39 0431 71325",
+"email":"alponte@hotelsmarcopolo.it",
+"sito":"https://hotelsmarcopolo.it/",
+"lat":45.687673,
+"lon":13.135467
+},
+{
+"nome":"Villa Candia",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Viale Miramare 22",
+"cap":"33054",
+"telefono":"+39 0431 71640",
+"email":"info@hotelvillacandia.it",
+"sito":"https://www.hotelvillacandia.it/",
+"lat":45.686937,
+"lon":13.136544
+},
+{
+"nome":"La Parigina",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Viale Miramare 12 - 14",
+"cap":"33054",
+"telefono":"+39 0431 71357",
+"email":"info@laparigina.net",
+"sito":"http://www.laparigina.net/",
+"lat":45.687392,
+"lon":13.136145
+},
+{
+"nome":"Marco Polo",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Viale Miramare 8",
+"cap":"33054",
+"telefono":"+39 0444 649600",
+"email":"marcopolo@hotelsmarcopolo.it",
+"sito":"https://www.hotelsmarcopolo.it/",
+"lat":45.687581,
+"lon":13.136012
+},
+{
+"nome":"Elvia",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Viale Miramare 2",
+"cap":"33054",
+"telefono":"+39 0431 71005",
+"email":"info@hotelelvia.it",
+"sito":"http://www.hotelelvia.it",
+"lat":45.68795,
+"lon":13.135725
+},
+{
+"nome":"La Perla",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Via Padana 10",
+"cap":"33054",
+"telefono":"+39 0431 71445",
+"email":"info@hotelperlalignano.com",
+"sito":"https://www.hotelperlalignano.com/",
+"lat":45.687743,
+"lon":13.136915
+},
+{
+"nome":"Al Cigno",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Viale Europa 13",
+"cap":"33054",
+"telefono":"+39 0431 720333",
+"email":"info@hotelalcigno.it",
+"sito":"https://www.hotelalcigno.it/",
+"lat":45.688848,
+"lon":13.13263
+},
+{
+"nome":"Holiday Aparthotel",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Via Latisana 128",
+"cap":"33054",
+"telefono":"+39 0431 721583;+39 335 770 2156",
+"email":"info@apparthotelholiday.it",
+"sito":"http://www.apparthotelholiday.it",
+"lat":45.687829,
+"lon":13.134366
+},
+{
+"nome":"Bologna",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Via della Quercia 10",
+"cap":"33054",
+"telefono":"+39 0431 71515",
+"email":"info@hbl.it",
+"sito":"https://www.hbl.it/",
+"lat":45.688291,
+"lon":13.135469
+},
+{
+"nome":"Al Cavallino Bianco",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Viale dei Platani 88",
+"cap":"33054",
+"telefono":"+39 0431 71509",
+"email":"cavallinobianco@lignano.it",
+"sito":"https://www.cavallinobianco.lignano.it/",
+"lat":45.690566,
+"lon":13.136556
+},
+{
+"nome":"Principe",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Via Adriatica 27",
+"cap":"33054",
+"lat":45.687714,
+"lon":13.138749
+},
+{
+"nome":"Alessandria",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Via Adriatica 35",
+"cap":"33054",
+"lat":45.68695,
+"lon":13.139582
+},
+{
+"nome":"Bellini",
+"tipoOsm":"hotel",
+"telefono":"+39 0431 722076",
+"sito":"http://www.hotelbellini.eu",
+"lat":45.687146,
+"lon":13.13882
+},
+{
+"nome":"Tivoli",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Via Vicenza 30",
+"cap":"33054",
+"lat":45.686684,
+"lon":13.139256
+},
+{
+"nome":"Athena",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Via Adriatica 52",
+"cap":"33054",
+"telefono":"+39 04 3171500",
+"email":"info@hotelbellini.eu",
+"sito":"https://www.hotel-athena.it",
+"lat":45.686942,
+"lon":13.138969
+},
+{
+"nome":"Golf Inn",
+"tipoOsm":"hotel",
+"telefono":"+39 0431 427701",
+"email":"booking@golfinn.it",
+"sito":"https://golflignano.it/hotel-golf-inn/",
+"lat":45.665855,
+"lon":13.079672
+},
+{
+"nome":"Nuova Flavia",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Via Marina 6",
+"cap":"33054",
+"telefono":"+39 0431 71207",
+"email":"nuovaflavia@lignano.it",
+"sito":"http://www.lignano.it/hotel/nuovaflavia",
+"lat":45.68889,
+"lon":13.138856
+},
+{
+"nome":"B&B Villa al Bosco",
+"tipoOsm":"hotel",
+"comune":"Doberdò del Lago / Doberdob",
+"indirizzo":"Via primo maggio / Prvomajska ulica 3a",
+"cap":"34070",
+"sito":"https://www.bed-and-breakfast.it/pagina.cfm?id=7793&IDRegione=6",
+"lat":45.819832,
+"lon":13.578906
+},
+{
+"nome":"Hotel & Restaurant Pahor",
+"tipoOsm":"hotel",
+"comune":"Jamiano / Jamlje",
+"indirizzo":"Via primo Maggio / Prvomajska ulica 14",
+"cap":"34070",
+"telefono":"+39 0481 410121",
+"email":"info@hotelpahor.com",
+"sito":"https://hotelpahor.com/",
+"lat":45.818851,
+"lon":13.579751
+},
+{
+"nome":"Porto San Rocco",
+"tipoOsm":"marina",
+"comune":"Muggia",
+"indirizzo":"Strada per Lazzaretto",
+"telefono":"+39 040 273090",
+"email":"infoport1@portosanrocco.it",
+"sito":"https://www.cnmarinas.com/",
+"lat":45.608362,
+"lon":13.753096
+},
+{
+"nome":"Aquileia",
+"tipoOsm":"camp_site",
+"comune":"Aquileia",
+"indirizzo":"Via Gemina 10",
+"cap":"33051",
+"telefono":"+39 0431 91042",
+"email":"info@campingaquileia.it",
+"sito":"https://www.campingaquileia.it/",
+"lat":45.775436,
+"lon":13.371889
+},
+{
+"nome":"Peak Area Picnic Sosta camper",
+"tipoOsm":"camp_site",
+"telefono":"+39 3911719581",
+"email":"info@picnicpozzesmeraldine.com",
+"sito":"https://www.picnicpozzesmeraldine.com/",
+"lat":46.301525,
+"lon":12.78089
+},
+{
+"nome":"Campeggio San Francesco",
+"tipoOsm":"camp_site",
+"telefono":"+39 0427 76366; +39 331 945 0910",
+"email":"info@campingbarcis.it",
+"sito":"http://www.campingbarcis.it/",
+"lat":46.192205,
+"lon":12.571734
+},
+{
+"nome":"Laguna Palace Hotel",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Riva Brioni 17",
+"cap":"34073",
+"telefono":"+39 0431 85612",
+"email":"info@lagunapalacehotel.it",
+"sito":"https://www.lagunapalacehotel.it/?utm_source=gbp&utm_medium=organic",
+"lat":45.682419,
+"lon":13.379381
+},
+{
+"nome":"Dependance Lipa",
+"tipoOsm":"hotel",
+"comune":"Trieste",
+"indirizzo":"Via Srečko Kosovel 1",
+"cap":"34149",
+"telefono":"+39 040 9221334",
+"email":"info@centerhotel.it",
+"sito":"https://www.centerhotel.it/",
+"lat":45.641916,
+"lon":13.863811
+},
+{
+"nome":"Ricovero Casera Canin",
+"tipoOsm":"wilderness_hut",
+"sito":"https://www.parcoprealpigiulie.it/it/principale/attivita/ricoveri-montani/ricovero-casera-canin",
+"lat":46.348612,
+"lon":13.419242
+},
+{
+"nome":"Ricovero Resartico",
+"tipoOsm":"wilderness_hut",
+"sito":"https://www.parcoprealpigiulie.it/it/principale/attivita/ricoveri-montani/ricovero-resartico",
+"lat":46.360569,
+"lon":13.215169
+},
+{
+"nome":"Marina Julia Family Camping Village",
+"tipoOsm":"camp_site",
+"comune":"Monfalcone",
+"indirizzo":"Via delle Giarrette 65",
+"cap":"34074",
+"telefono":"+39 0481 40561",
+"sito":"https://www.clubdelsole.com/it/destinazioni/friuli-venezia-giulia-alto-adriatico/marina-julia-family-camping-village",
+"lat":45.777307,
+"lon":13.52989
+},
+{
+"nome":"Punta Spin",
+"tipoOsm":"camp_site",
+"comune":"Grado",
+"indirizzo":"Via Monfalcone 10",
+"cap":"34073",
+"telefono":"+39 0431 80732;+39 0431 81780",
+"email":"info@puntaspin.it",
+"sito":"https://www.puntaspin.it/it/",
+"lat":45.693219,
+"lon":13.453859
+},
+{
+"nome":"Residence Oliveto Mare Carso",
+"tipoOsm":"guest_house",
+"comune":"Duino Aurisina / Devin - Nabrežina",
+"cap":"34011",
+"email":"residenceolivetomarecarso@gmail.com",
+"lat":45.770142,
+"lon":13.642526
+},
+{
+"nome":"Agriturismo al Ranch",
+"tipoOsm":"camp_site",
+"indirizzo":"Via Pedemontana Occidentale",
+"telefono":"+39 0434 653047",
+"email":"info@agriturismoalranch.it",
+"sito":"https://www.agriturismoalranch.it/",
+"lat":46.053687,
+"lon":12.546478
+},
+{
+"nome":"Camping Village Pino Mare",
+"tipoOsm":"camp_site",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Lungomare Riccardo Riva 15",
+"cap":"33054",
+"telefono":"+39 0431 424424;+39 0431 424425",
+"email":"info@campingpinomare.it",
+"sito":"https://www.campingpinomare.it/",
+"lat":45.649546,
+"lon":13.099085
+},
+{
+"nome":"Al Cavaliere",
+"tipoOsm":"guest_house",
+"comune":"Pordenone",
+"indirizzo":"Viale Treviso 41",
+"cap":"33170",
+"lat":45.908089,
+"lon":12.622739
+},
+{
+"nome":"Hotel Tarvisio",
+"tipoOsm":"hotel",
+"telefono":"+39 0428 644223",
+"email":"tarvisiohotel@gmail.com",
+"sito":"https://www.hoteltarvisio.com/",
+"lat":46.505771,
+"lon":13.569924
+},
+{
+"nome":"Hotel Raibl",
+"tipoOsm":"hotel",
+"indirizzo":"Via IV Novembre 12",
+"telefono":"+39 0428 2247",
+"email":"info@hotelraibl.com",
+"sito":"https://www.hotelraibl.com/",
+"lat":46.505869,
+"lon":13.577897
+},
+{
+"nome":"Hotel Haberl",
+"tipoOsm":"hotel",
+"comune":"Tarvisio",
+"indirizzo":"Via Julius Kugy 1",
+"cap":"33018",
+"telefono":"+39 0428 2312",
+"sito":"http://www.hotelhaberl.com",
+"lat":46.505536,
+"lon":13.576233
+},
+{
+"nome":"Hotel Nevada",
+"tipoOsm":"hotel",
+"comune":"Tarvisio",
+"indirizzo":"Via Julius Kugy 8",
+"cap":"33018",
+"telefono":"+39 0428 2332",
+"email":"info@hotelnevadatarvisio.com",
+"sito":"http://www.hotelnevadatarvisio.com",
+"lat":46.505583,
+"lon":13.576741
+},
+{
+"nome":"Rifugio Piani del Cristo",
+"tipoOsm":"alpine_hut",
+"telefono":"+39 0435 469357",
+"sito":"https://www.altemontagne.it/rifugi/Rifugio_Piani_Cristo.html",
+"lat":46.585291,
+"lon":12.727555
+},
+{
+"nome":"Campeggio Bresin",
+"tipoOsm":"camp_site",
+"email":"guide_gb@libero.it",
+"lat":46.298734,
+"lon":12.44256
+},
+{
+"nome":"1301 INN",
+"tipoOsm":"hotel",
+"comune":"Aviano",
+"indirizzo":"Via Barcis 15",
+"cap":"33081",
+"telefono":"+39 0434 655579",
+"email":"info@1301inn.it",
+"sito":"http://www.1301inn.it",
+"lat":46.112488,
+"lon":12.516702
+},
+{
+"nome":"Agriturismo Naunal",
+"tipoOsm":"guest_house",
+"sito":"https://www.agriturismonaunal.it/",
+"lat":46.507154,
+"lon":12.989191
+},
+{
+"nome":"Bivacco Romano Cimenti - Cirillo Floreanini",
+"tipoOsm":"wilderness_hut",
+"sito":"https://caitolmezzo.it/bivacchi/bivacco-cimenti-floreanini/",
+"lat":46.420292,
+"lon":13.068202
+},
+{
+"nome":"Hotel Antico Borgo Torricella Wellness",
+"tipoOsm":"hotel",
+"telefono":"+39 0434 834072",
+"email":"info@hotelanticoborgotorricella.it",
+"sito":"http://www.hotelanticoborgotorricella.it/",
+"lat":45.913629,
+"lon":12.827936
+},
+{
+"nome":"Darsena Porto Vecchio",
+"tipoOsm":"marina",
+"telefono":"+39 0431 723183",
+"email":"darsena@lignanosabbiadoro.it",
+"sito":"https://lignanosabbiadoro.it/portovecchio/",
+"lat":45.695454,
+"lon":13.145107
+},
+{
+"nome":"Camping Natisone Pulfero",
+"tipoOsm":"camp_site",
+"comune":"Pulfero",
+"indirizzo":"Via Cicigolis 1",
+"telefono":"+39 3312688009",
+"email":"nico.casazza@gmail.com",
+"lat":46.174737,
+"lon":13.48037
+},
+{
+"nome":"Parco Giochi Camping Saletti",
+"tipoOsm":"camp_site",
+"comune":"Paularo",
+"indirizzo":"Via della Pineta",
+"email":"campingsaletti@gmail.com",
+"lat":46.52278,
+"lon":13.125358
+},
+{
+"nome":"La Fontana",
+"tipoOsm":"hotel",
+"comune":"San Dorligo della Valle / Dolina",
+"cap":"34018",
+"sito":"https://www.hotellafontana.it/",
+"lat":45.626535,
+"lon":13.84175
+},
+{
+"nome":"Campeggio Obelisco",
+"tipoOsm":"camp_site",
+"comune":"Trieste",
+"indirizzo":"Strada Nuova per Opicina 37",
+"cap":"34151",
+"telefono":"+39 040 212744",
+"email":"campeggioobelisco@gmail.com",
+"sito":"https://www.campeggiobelisco.it/",
+"lat":45.679411,
+"lon":13.785308
+},
+{
+"nome":"Camping Zoncolan",
+"tipoOsm":"camp_site",
+"comune":"Ravascletto",
+"indirizzo":"Via Valcalda 13",
+"telefono":"+39 0433 66018",
+"email":"albergopacealpina@gmail.com",
+"sito":"http://www.pacealpina.it/campeggio.html",
+"lat":46.521265,
+"lon":12.922752
+},
+{
+"nome":"Rifugio Pradut",
+"tipoOsm":"alpine_hut",
+"telefono":"+39 366 388 8477",
+"sito":"https://www.facebook.com/RistoroCaseraPradut",
+"lat":46.25613,
+"lon":12.56501
+},
+{
+"nome":"Camping Excelsior",
+"tipoOsm":"camp_site",
+"telefono":"+39 040 216968",
+"email":"info@campingexcelsior.com",
+"sito":"https://www.campingexcelsior.com/",
+"lat":45.701289,
+"lon":13.830439
+},
+{
+"nome":"Casa Medili",
+"tipoOsm":"guest_house",
+"comune":"Raveo",
+"indirizzo":"Via Fravins 13",
+"cap":"33029",
+"email":"info@albergodiffusoilgrop.it",
+"sito":"http://www.albergodiffusoilgrop.it/",
+"lat":46.433715,
+"lon":12.869159
+},
+{
+"nome":"Affittacamere Berzi",
+"tipoOsm":"guest_house",
+"comune":"Trieste",
+"indirizzo":"Via Roma 13",
+"cap":"34132",
+"lat":45.652898,
+"lon":13.772739
+},
+{
+"nome":"Marina Timavo - Pesca Service",
+"tipoOsm":"marina",
+"sito":"http://www.pescaservice.it/",
+"lat":45.784663,
+"lon":13.582573
+},
+{
+"nome":"Best Western Gorizia Palace",
+"tipoOsm":"hotel",
+"comune":"Gorizia",
+"indirizzo":"Corso Italia 63",
+"cap":"34170",
+"telefono":"+39 0481 82166",
+"email":"info@goriziapalace.com",
+"sito":"https://www.goriziapalace.com/",
+"lat":45.940276,
+"lon":13.616542
+},
+{
+"nome":"Villaggio Europa",
+"tipoOsm":"camp_site",
+"comune":"Grado",
+"indirizzo":"Via Monfalcone 12",
+"cap":"34073",
+"telefono":"+39 0431 80877",
+"email":"info@villaggioeuropa.com",
+"sito":"https://www.villaggioeuropa.com",
+"lat":45.695009,
+"lon":13.45759
+},
+{
+"nome":"Belvedere Pineta",
+"tipoOsm":"camp_site",
+"telefono":"+39 0431 91007",
+"email":"info@belvederepineta.it",
+"sito":"https://www.belvederepineta.com/",
+"lat":45.729485,
+"lon":13.403328
+},
+{
+"nome":"Locanda Mario",
+"tipoOsm":"guest_house",
+"telefono":"+39 040 228193",
+"sito":"https://www.locandamario.wpeople.it/",
+"lat":45.620027,
+"lon":13.889563
+},
+{
+"nome":"Porto Mandracchio",
+"tipoOsm":"marina",
+"sito":"https://grado.it/it/cosa-fare/arte-e-cultura/porto-mandracchio-copy/",
+"lat":45.678345,
+"lon":13.385595
+},
+{
+"nome":"Porto San Vito",
+"tipoOsm":"marina",
+"sito":"https://www.portosanvito.it/",
+"lat":45.682297,
+"lon":13.375912
+},
+{
+"nome":"Marina Tenuta Primero",
+"tipoOsm":"marina",
+"telefono":"+39 0431 896900",
+"email":"info@tenuta-primero.com",
+"sito":"https://www.tenuta-primero.com/sito/page/content/menu/195",
+"lat":45.706809,
+"lon":13.465883
+},
+{
+"nome":"Albergo Città di Parenzo",
+"tipoOsm":"hotel",
+"comune":"Trieste",
+"indirizzo":"Via degli Artisti 8",
+"cap":"34121",
+"lat":45.649314,
+"lon":13.773346
+},
+{
+"nome":"Hotel Colombia",
+"tipoOsm":"hotel",
+"comune":"Trieste",
+"indirizzo":"Via della Geppa 18",
+"cap":"34132",
+"lat":45.655173,
+"lon":13.774351
+},
+{
+"nome":"Hotel Italia",
+"tipoOsm":"hotel",
+"comune":"Trieste",
+"indirizzo":"Via della Geppa 15",
+"cap":"34132",
+"lat":45.655323,
+"lon":13.773163
+},
+{
+"nome":"Hotel Milano",
+"tipoOsm":"hotel",
+"comune":"Trieste",
+"indirizzo":"Via Carlo Ghega 17",
+"cap":"34132",
+"lat":45.655333,
+"lon":13.774638
+},
+{
+"nome":"Hotel Alla Posta",
+"tipoOsm":"hotel",
+"comune":"Trieste",
+"indirizzo":"Piazza Guglielmo Oberdan 1",
+"cap":"34133",
+"lat":45.654202,
+"lon":13.775323
+},
+{
+"nome":"Camping Ai Pioppi",
+"tipoOsm":"camp_site",
+"comune":"Gemona del Friuli",
+"indirizzo":"Via Bersaglio 118",
+"cap":"33013",
+"telefono":"+39 0432 980358",
+"email":"bar-camping-taxi@aipioppi.it",
+"sito":"https://www.aipioppi.it",
+"lat":46.291698,
+"lon":13.130323
+},
+{
+"nome":"Hotel al Ponte",
+"tipoOsm":"hotel",
+"telefono":"+39 0481 961116",
+"sito":"https://www.albergoalponte.it/",
+"lat":45.881156,
+"lon":13.483306
+},
+{
+"nome":"Hotel Conti Formentini",
+"tipoOsm":"hotel",
+"indirizzo":"Via Oslavia / Ulica Oslavje 2",
+"telefono":"+39 0481 884274",
+"sito":"https://www.castelloformentini.com",
+"lat":45.982383,
+"lon":13.588111
+},
+{
+"nome":"Hotel Minerva",
+"tipoOsm":"hotel",
+"comune":"Pordenone",
+"indirizzo":"Piazzale Venti Settembre 5",
+"cap":"33170",
+"lat":45.959373,
+"lon":12.659786
+},
+{
+"nome":"Ai Cocolars - Alloggi Agrituristici",
+"tipoOsm":"guest_house",
+"sito":"http://www.aicocolars.com",
+"lat":45.785136,
+"lon":13.417511
+},
+{
+"nome":"Camping Collina",
+"tipoOsm":"camp_site",
+"comune":"Forni Avoltri",
+"indirizzo":"Via della Segheria",
+"telefono":"+39 333 951 0488",
+"lat":46.590861,
+"lon":12.860516
+},
+{
+"nome":"Oche Selvatiche Boutique Hotel",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Via Luseo 1",
+"telefono":"+39 0431 878918",
+"email":"info@ocheselvatiche.it",
+"sito":"http://www.ocheselvatiche.it/",
+"lat":45.710674,
+"lon":13.457959
+},
+{
+"nome":"Europa",
+"tipoOsm":"hostel",
+"telefono":"+39 0434 876898",
+"sito":"http://www.ostelloeuropa.it",
+"lat":45.91436,
+"lon":12.853582
+},
+{
+"nome":"Camping Village Mare Pineta",
+"tipoOsm":"camp_site",
+"telefono":"+39 040 299264",
+"email":"info@marepineta.com",
+"sito":"https://www.marepineta.com/",
+"lat":45.771518,
+"lon":13.623809
+},
+{
+"nome":"Cjasal di Pition",
+"tipoOsm":"guest_house",
+"comune":"Pozzuolo del Friuli",
+"indirizzo":"Via Quarto Genova 1",
+"cap":"33050",
+"telefono":"+39 0432 669527",
+"email":"info@agripition.it",
+"sito":"https://www.agripition.it/",
+"lat":45.992571,
+"lon":13.202641
+},
+{
+"nome":"Hotel Alabarda",
+"tipoOsm":"hotel",
+"comune":"Trieste",
+"indirizzo":"Via Valdirivo 22",
+"cap":"34132",
+"telefono":"+39 040 630269",
+"email":"info@hotelalabarda.it",
+"sito":"http://www.hotelalabarda.it",
+"lat":45.653514,
+"lon":13.773451
+},
+{
+"nome":"Agriturismo / Agriturizem Bibc",
+"tipoOsm":"guest_house",
+"comune":"Trieste",
+"cap":"34151",
+"telefono":"+39 328 157 0366",
+"email":"bibc@libero.it",
+"lat":45.734299,
+"lon":13.691279
+},
+{
+"nome":"Ristorante Locanda 101",
+"tipoOsm":"guest_house",
+"comune":"Gorizia",
+"indirizzo":"Corso Italia 145/1",
+"cap":"34170",
+"telefono":"+39 0481 525003;+39 0481 521112",
+"email":"info@locanda101.it",
+"sito":"https://www.locanda101.it/",
+"lat":45.938315,
+"lon":13.612426
+},
+{
+"nome":"B&B Al Campo di Sotto",
+"tipoOsm":"guest_house",
+"comune":"Buja",
+"indirizzo":"Via Campo di Sotto 1",
+"cap":"33030",
+"telefono":"+393348118428",
+"email":"info@alcampodisotto.it",
+"sito":"https://www.alcampodisotto.it/wl/index.php",
+"lat":46.221796,
+"lon":13.102108
+},
+{
+"nome":"Ricovero Casera Goriuda di sopra",
+"tipoOsm":"wilderness_hut",
+"sito":"https://www.parcoprealpigiulie.it/it/principale/attivita/ricoveri-montani/ricovero-casera-goriuda",
+"lat":46.386333,
+"lon":13.439519
+},
+{
+"nome":"Rifugio Vallata",
+"tipoOsm":"alpine_hut",
+"telefono":"+39 0427 76325",
+"email":"rifugiovallata@alice.it",
+"sito":"https://www.rifugiovallata.it",
+"lat":46.183845,
+"lon":12.555881
+},
+{
+"nome":"NH Trieste",
+"tipoOsm":"hotel",
+"comune":"Trieste",
+"indirizzo":"Corso Camillo Benso Conte di Cavour 7",
+"cap":"34132",
+"email":"nhtrieste@nh-hotels.com",
+"sito":"https://www.nh-hotels.it/hotel/nh-trieste",
+"lat":45.654955,
+"lon":13.771172
+},
+{
+"nome":"Hotel Residence l'Angolo dei Ciliegi",
+"tipoOsm":"hotel",
+"sito":"https://www.parcodaneu.it/",
+"lat":45.689615,
+"lon":13.794971
+},
+{
+"nome":"Agriturismo / Agriturizem Gradec",
+"tipoOsm":"guest_house",
+"comune":"Duino Aurisina / Devin - Nabrežina",
+"cap":"34011",
+"telefono":"+39 040 201116",
+"email":"info@gradec.it",
+"sito":"https://www.gradec.it/",
+"lat":45.768412,
+"lon":13.671428
+},
+{
+"nome":"Locanda Orologio",
+"tipoOsm":"guest_house",
+"comune":"Cormons",
+"indirizzo":"Via Ventiquattro Maggio 34",
+"cap":"34071",
+"telefono":"+390481 60028",
+"sito":"https://www.locandaorologio.it",
+"lat":45.972541,
+"lon":13.455923
+},
+{
+"nome":"Eirl Dolomites",
+"tipoOsm":"camp_site",
+"comune":"Sappada",
+"indirizzo":"Borgata Cima Sappada",
+"telefono":"+39 3929733013",
+"sito":"https://www.eirldolomites.com/",
+"lat":46.569902,
+"lon":12.71642
+},
+{
+"nome":"Hotel Ristorante Ai Cacciatori",
+"tipoOsm":"hotel",
+"comune":"Fogliano",
+"indirizzo":"Via Terza Armata 20",
+"cap":"34070",
+"lat":45.855959,
+"lon":13.48452
+},
+{
+"nome":"Hotel Franz",
+"tipoOsm":"hotel",
+"comune":"Gradisca d'Isonzo",
+"indirizzo":"Viale Trieste 45",
+"cap":"34072",
+"telefono":"+39 0481 99211",
+"sito":"https://www.hotelfranz.it/",
+"lat":45.887195,
+"lon":13.499379
+},
+{
+"nome":"Hotel Miramare",
+"tipoOsm":"hotel",
+"sito":"https://www.hotelmiramaretrieste.it/",
+"lat":45.699678,
+"lon":13.725231
+},
+{
+"nome":"B&B Lucciole per Lanterne",
+"tipoOsm":"guest_house",
+"telefono":"+39 0481 390682",
+"email":"casa@luccioleperlanterne.com",
+"sito":"www.luccioleperlanterne.com",
+"lat":45.940027,
+"lon":13.604949
+},
+{
+"nome":"Hotel Ai Sette Nani",
+"tipoOsm":"hotel",
+"telefono":"+39 040 299170",
+"email":"hotelsettenani@hotmail.com",
+"sito":"https://www.hotelsettenani.it/",
+"lat":45.774105,
+"lon":13.632458
+},
+{
+"nome":"La Fortezza",
+"tipoOsm":"guest_house",
+"indirizzo":"Via Pasqualigo",
+"lat":45.907143,
+"lon":13.311957
+},
+{
+"nome":"Albergo Commercio",
+"tipoOsm":"hotel",
+"comune":"Palmanova",
+"indirizzo":"Borgo Cividale 15",
+"cap":"33057",
+"telefono":"+39 0432 928200",
+"lat":45.90603,
+"lon":13.31214
+},
+{
+"nome":"Hotel Roma",
+"tipoOsm":"hotel",
+"comune":"Palmanova",
+"indirizzo":"Borgo Cividale 27",
+"cap":"33057",
+"telefono":"+39 0432 418740",
+"email":"info@hotelromapalmanova.eu",
+"sito":"https://hotelromapalmanova.eu",
+"lat":45.906388,
+"lon":13.31314
+},
+{
+"nome":"Hotel Continentale",
+"tipoOsm":"hotel",
+"comune":"Trieste",
+"indirizzo":"Via San Nicolò 25",
+"cap":"34121",
+"lat":45.650331,
+"lon":13.772825
+},
+{
+"nome":"Ai Due Leoni",
+"tipoOsm":"guest_house",
+"comune":"Aquileia",
+"indirizzo":"Via Beligna 103",
+"cap":"33051",
+"telefono":"+39 0431 917423",
+"email":"info@ai-due-leoni.it",
+"sito":"https://www.ai-due-leoni.it/",
+"lat":45.743238,
+"lon":13.382108
+},
+{
+"nome":"Centro visite parco della cona",
+"tipoOsm":"hostel",
+"sito":"https://riservafoceisonzo.it/",
+"lat":45.756105,
+"lon":13.499551
+},
+{
+"nome":"Trattoria / Gostilna & Hotel Valeria 1904",
+"tipoOsm":"hotel",
+"comune":"Trieste",
+"indirizzo":"Strada per Vienna 52",
+"cap":"34151",
+"telefono":"+39 040 9220286",
+"email":"info@trattoriavaleria.it",
+"sito":"https://www.trattoriavaleria.it/",
+"lat":45.688521,
+"lon":13.791152
+},
+{
+"nome":"Camping Agrituristico Carso",
+"tipoOsm":"camp_site",
+"comune":"Duino Aurisina / Devin - Nabrežina",
+"cap":"34011",
+"telefono":"+39 040 200459",
+"email":"info.campingcarso@gmail.com",
+"sito":"https://www.campingcarso.com/",
+"lat":45.762417,
+"lon":13.653015
+},
+{
+"nome":"Urban Hotel Design",
+"tipoOsm":"hotel",
+"comune":"Trieste",
+"indirizzo":"Androna Chiusa 4",
+"cap":"34121",
+"lat":45.648507,
+"lon":13.767824
+},
+{
+"nome":"Campeggio Sauris Zahre Treinke",
+"tipoOsm":"camp_site",
+"comune":"Sauris",
+"indirizzo":"Loc. Treinke",
+"cap":"33020",
+"telefono":"+39 3501637955",
+"email":"info@albergodiffusosauris.com",
+"sito":"https://www.albergodiffusosauris.com/campeggio-treinke/",
+"lat":46.465635,
+"lon":12.692885
+},
+{
+"nome":"Cardo Boutique & Wine Resort",
+"tipoOsm":"hotel",
+"comune":"Duino Aurisina / Devin - Nabrežina",
+"cap":"34011",
+"email":"info@cardoresort.com",
+"sito":"https://www.cardoresort.com/",
+"lat":45.788514,
+"lon":13.657028
+},
+{
+"nome":"Palace Hotel Moderno",
+"tipoOsm":"hotel",
+"comune":"Pordenone",
+"indirizzo":"Viale Franco Martelli 1",
+"cap":"33170",
+"telefono":"+39 0434 28215",
+"sito":"https://www.palacehotelmoderno.it/",
+"lat":45.957881,
+"lon":12.660775
+},
+{
+"nome":"Trattoria-Gostilna Bellariva",
+"tipoOsm":"guest_house",
+"telefono":"+39 040 224194",
+"lat":45.740676,
+"lon":13.670531
+},
+{
+"nome":"Casa Klarčeva hiša",
+"tipoOsm":"guest_house",
+"telefono":"+39 333 2736552",
+"lat":45.788366,
+"lon":13.64435
+},
+{
+"nome":"Lago 3 Comuni",
+"tipoOsm":"camp_site",
+"comune":"Trasaghis",
+"indirizzo":"Via Tolmezzo 52",
+"cap":"33010",
+"telefono":"+39 0432 979464",
+"email":"camping@lago3comuni.com",
+"sito":"https://www.lago3comuni.com/en/the-camping/",
+"lat":46.325596,
+"lon":13.064012
+},
+{
+"nome":"Albergo Ristorante Carso",
+"tipoOsm":"guest_house",
+"telefono":"+39 040 327113",
+"sito":"https://www.ristorantecarso.it/",
+"lat":45.715667,
+"lon":13.809256
+},
+{
+"nome":"Ostello Scout Alpe Adria",
+"tipoOsm":"hostel",
+"comune":"Trieste",
+"cap":"34151",
+"telefono":"+39 040 225562",
+"email":"ostello@amiscout.it",
+"sito":"https://www.ostelloscoutalpeadria.com/; http://www.ostelloamiscout.wpeople.it/",
+"lat":45.715637,
+"lon":13.725024
+},
+{
+"nome":"Camping Tenuta Primero",
+"tipoOsm":"camp_site",
+"comune":"Grado",
+"indirizzo":"Via Monfalcone 14",
+"cap":"34073",
+"telefono":"+39 0431 896900",
+"email":"info@tenutaprimero.com",
+"sito":"https://www.tenutaprimero.com/it/",
+"lat":45.703595,
+"lon":13.46545
+},
+{
+"nome":"Ca' Laguna",
+"tipoOsm":"camp_site",
+"comune":"Grado",
+"indirizzo":"Via Monfalcone 6",
+"cap":"34073",
+"telefono":"+39 0431 193 8004;+39 0431 198 0190",
+"email":"info@calaguna.it",
+"sito":"https://calaguna.it/",
+"lat":45.68617,
+"lon":13.43964
+},
+{
+"nome":"Hotel Villa Strassoldo",
+"tipoOsm":"hotel",
+"telefono":"+39 393 500 6006",
+"sito":"https://www.hotelvillastrassoldo.com/",
+"lat":45.846349,
+"lon":13.324841
+},
+{
+"nome":"Zoncolan Camping Caravan",
+"tipoOsm":"camp_site",
+"comune":"Ovaro",
+"indirizzo":"Via Vidrina di Chialina 31",
+"email":"zoncolan.camping.caravan@gmail.com",
+"sito":"https://zoncolancampingcaravan.it/",
+"lat":46.487214,
+"lon":12.870805
+},
+{
+"nome":"Regina",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Via Lilienfeld 4",
+"cap":"33054",
+"telefono":"+39 0431 724005",
+"sito":"https://www.hotelreginalignano.it/",
+"lat":45.685034,
+"lon":13.134261
+},
+{
+"nome":"Porto Maran",
+"tipoOsm":"marina",
+"telefono":"+39 0431 67409",
+"email":"portomaran@portomaran.com",
+"sito":"https://www.portomaran.com/",
+"lat":45.761274,
+"lon":13.170837
+},
+{
+"nome":"Marina di Aquilea",
+"tipoOsm":"marina",
+"telefono":"+39 0431 91041",
+"sito":"https://www.marinadiaquileia.it/",
+"lat":45.757625,
+"lon":13.357942
+},
+{
+"nome":"Filoxenia",
+"tipoOsm":"hotel",
+"comune":"Trieste",
+"indirizzo":"Via Mazzini 3",
+"cap":"34121",
+"telefono":"+39 040 3481644",
+"email":"info@filoxenia.it",
+"sito":"https://www.filoxenia.it/",
+"lat":45.65168,
+"lon":13.769644
+},
+{
+"nome":"Girasole",
+"tipoOsm":"camp_site",
+"comune":"Latisana",
+"indirizzo":"Via Lignano Sud 53",
+"cap":"33053",
+"telefono":"+39 0431 5390",
+"email":"campinggirasole@lignano.it",
+"sito":"https://www.campinggirasole.com/",
+"lat":45.687915,
+"lon":13.072539
+},
+{
+"nome":"Hotel Ville Bianchi",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Viale Dante Alighieri 50",
+"cap":"34073",
+"telefono":"+39 0431 80169",
+"email":"info@villebianchi.com",
+"sito":"https://www.villebianchi.com/",
+"lat":45.676461,
+"lon":13.392065
+},
+{
+"nome":"Casa Vacanze Baita dei Colori",
+"tipoOsm":"chalet",
+"comune":"Tarvisio",
+"indirizzo":"Via Lussari",
+"cap":"33038",
+"telefono":"+39 392 4909099",
+"email":"info@larixguest.com",
+"sito":"https://www.larixguest.com/",
+"lat":46.508167,
+"lon":13.539427
+},
+{
+"nome":"Punta dell'Est",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Via Timavo 38",
+"cap":"33054",
+"telefono":"+39 0431 71990",
+"sito":"https://gphotels.it/punta-dell-est/",
+"lat":45.694518,
+"lon":13.151325
+},
+{
+"nome":"Columbus",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Lungomare Trieste 22",
+"cap":"33054",
+"telefono":"+39 0431 71516",
+"email":"hotel.columbus@doimohotels.it",
+"sito":"https://mobile.doimohotels.it/columbus/",
+"lat":45.691182,
+"lon":13.147993
+},
+{
+"nome":"Villa Doimo",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Parco San Giovanni Bosco 21",
+"cap":"33054",
+"telefono":"+39 0431 723097",
+"email":"villadoimo@doimohotels.it",
+"sito":"https://mobile.doimohotels.it/",
+"lat":45.688233,
+"lon":13.141984
+},
+{
+"nome":"Al Prater",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Via Adriatica 21",
+"cap":"33054",
+"email":"info@hotelalprater.it",
+"sito":"https://www.hotelalprater.it/",
+"lat":45.687998,
+"lon":13.138311
+},
+{
+"nome":"Da Giovanna",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Viale Centrale 11",
+"cap":"33054",
+"telefono":"+39 0431 71587",
+"sito":"https://www.hoteldagiovanna.com/",
+"lat":45.68595,
+"lon":13.136442
+},
+{
+"nome":"Suite Erica",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Arco del Grecale 21/23",
+"cap":"33054",
+"telefono":"+39 0431 422123",
+"email":"info@ericahotel.it",
+"sito":"https://www.ericahotel.it/",
+"lat":45.668581,
+"lon":13.109769
+},
+{
+"nome":"Conca Verde",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Via Carinzia 28",
+"cap":"33054",
+"telefono":"+39 0431 71765",
+"sito":"https://www.hotelconcaverde.it/",
+"lat":45.682482,
+"lon":13.129794
+},
+{
+"nome":"Abbazia",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Via Carinzia 19a",
+"cap":"33054",
+"telefono":"+39 0431 71025",
+"sito":"https://www.hotelabbazia.net/",
+"lat":45.683009,
+"lon":13.130572
+},
+{
+"nome":"Adriatica Aparthotel",
+"tipoOsm":"hotel",
+"telefono":"+39 0431 194 5306",
+"email":"info@aparthoteladriatica.it",
+"sito":"https://www.aparthoteladriatica.it/",
+"lat":45.685883,
+"lon":13.138462
+},
+{
+"nome":"Atlantic",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Lungomare Trieste 160",
+"cap":"33054",
+"telefono":"+39 0431 71101",
+"sito":"https://www.hotelatlantic.it/",
+"lat":45.679887,
+"lon":13.12952
+},
+{
+"nome":"Ciao",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Via Gemona 1c",
+"cap":"33054",
+"telefono":"+39 0431 71577",
+"email":"info@hotelciao.it",
+"sito":"https://www.hotelciao.it/",
+"lat":45.684844,
+"lon":13.128717
+},
+{
+"nome":"Al Sole",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Viale del Sole 31",
+"cap":"34073",
+"telefono":"+39 0431 80370",
+"email":"info@hotelalsole.net",
+"lat":45.678462,
+"lon":13.404761
+},
+{
+"nome":"Simi Lan",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Via Pordenone 15",
+"cap":"33054",
+"telefono":"+39 0431 720789",
+"email":"info@hotelsimilan.it",
+"sito":"https://hotelsimilan.it/",
+"lat":45.691941,
+"lon":13.147001
+},
+{
+"nome":"Argentina",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Viale Italia 21",
+"cap":"34073",
+"telefono":"+39 0431 81071",
+"email":"info@hotelargentinagrado.it",
+"sito":"https://www.hotelargentinagrado.it/",
+"lat":45.679723,
+"lon":13.404651
+},
+{
+"nome":"Touring",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Viale John Fitzgerald Kennedy 38",
+"cap":"34073",
+"telefono":"+39 0431 80839",
+"email":"info@hoteltouring-grado.it",
+"sito":"https://www.hoteltouring-grado.it/",
+"lat":45.680035,
+"lon":13.404524
+},
+{
+"nome":"Villa Augusta",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Viale Argine dei Moreri 11",
+"cap":"34073",
+"telefono":"+39 0431 80322",
+"email":"info@villaugusta.eu",
+"lat":45.678199,
+"lon":13.395591
+},
+{
+"nome":"Lampara",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Viale Gorizia 3",
+"cap":"33054",
+"telefono":"+39 0431 721106",
+"email":"info@hotellampara.com",
+"sito":"https://www.hotellampara.com/",
+"lat":45.689852,
+"lon":13.145702
+},
+{
+"nome":"Villa Marin",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Via dei Provveditori 20",
+"cap":"34073",
+"telefono":"+39 0431 80789",
+"email":"info@villamarin.it",
+"lat":45.676066,
+"lon":13.383463
+},
+{
+"nome":"Hannover",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Piazza Ventisei Maggio 10",
+"cap":"34073",
+"telefono":"+39 0431 82141",
+"email":"info@hotelhannover.com",
+"sito":"https://www.hotelhannover.com/",
+"lat":45.677584,
+"lon":13.38544
+},
+{
+"nome":"Alla Città di Trieste",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Piazza Ventisei Maggio 22",
+"cap":"34073",
+"telefono":"+39 0431 83571",
+"email":"info@hotelcittaditrieste.it",
+"sito":"http://www.hotelcittaditrieste.it/",
+"lat":45.677801,
+"lon":13.384714
+},
+{
+"nome":"Albergo alla Spiaggia",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Via Giuseppe Mazzini 2",
+"cap":"34073",
+"telefono":"+39 0431 80162",
+"email":"info@albergoallaspiaggia.it",
+"sito":"https://albergoallaspiaggia.it/",
+"lat":45.675981,
+"lon":13.388999
+},
+{
+"nome":"Metropole",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Piazzetta San Marco 15",
+"cap":"34073",
+"telefono":"+39 0431 876207",
+"email":"info@gradohotel.com",
+"sito":"https://m.gradohotel.com/",
+"lat":45.677691,
+"lon":13.386793
+},
+{
+"nome":"Lacroma Bio",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Piazza Vittore Carpaccio 29",
+"cap":"34073",
+"telefono":"+39 0431 81496",
+"email":"lacroma@libero.it",
+"sito":"http://www.lacroma.it/",
+"lat":45.679059,
+"lon":13.387401
+},
+{
+"nome":"Aparthotel Tiziano",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Riva Scipio Slataper 6",
+"cap":"34073",
+"telefono":"+39 0431 193 8010",
+"email":"info@hoteltizianogrado.it",
+"sito":"https://www.hoteltizianogrado.it/",
+"lat":45.677948,
+"lon":13.39121
+},
+{
+"nome":"Residence Ormeggio",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Riva Scipio Slataper 2",
+"cap":"34073",
+"telefono":"+39 0431 80446",
+"email":"info@residenceormeggio.it",
+"sito":"https://www.residenceormeggio.it/",
+"lat":45.677905,
+"lon":13.390836
+},
+{
+"nome":"Residence Hungaria",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Via Guglielmo Marconi 3",
+"cap":"34073",
+"telefono":"+39 338 183 5281",
+"sito":"http://www.hungariagrado.it/",
+"lat":45.677655,
+"lon":13.390192
+},
+{
+"nome":"Miramare",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Via Cristoforo Colombo 2b",
+"cap":"34073",
+"telefono":"+39 327 579 4090",
+"email":"info@aparthotelmiramaregrado.com",
+"sito":"https://www.aparthotelmiramaregrado.com/",
+"lat":45.678047,
+"lon":13.392093
+},
+{
+"nome":"Diana",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Via Giuseppe Verdi 3",
+"cap":"34073",
+"telefono":"+39 0431 80026",
+"email":"info@hoteldiana.it",
+"sito":"https://www.hoteldiana.it/",
+"lat":45.677036,
+"lon":13.389522
+},
+{
+"nome":"Villa Carla",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Via Venezia 18",
+"cap":"34073",
+"telefono":"+39 0431 82945",
+"email":"info@hotelvillacarla.com",
+"sito":"https://www.hotelvillacarla.com/",
+"lat":45.67698,
+"lon":13.389056
+},
+{
+"nome":"Lacroma",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Via Giuseppe Caprin 14",
+"cap":"34073",
+"telefono":"+39 0431 81496",
+"email":"lacroma@libero.it",
+"sito":"http://www.lacroma.it/",
+"lat":45.676351,
+"lon":13.387434
+},
+{
+"nome":"Villa Mirella",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Viale Argine dei Moreri 19",
+"cap":"34073",
+"telefono":"+39 0431 80258",
+"email":"info@villamirellagrado.it",
+"lat":45.678071,
+"lon":13.396069
+},
+{
+"nome":"Carol",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Riva Ugo Foscolo 13",
+"cap":"34073",
+"telefono":"+39 0431 80745",
+"email":"hotelcarol@hotmail.it",
+"lat":45.678826,
+"lon":13.396327
+},
+{
+"nome":"Sorriso",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Riva Ugo Foscolo 3",
+"cap":"34073",
+"telefono":"+39 0431 80838;+39 0431 80291",
+"email":"info@albergosorriso.com",
+"lat":45.678305,
+"lon":13.395117
+},
+{
+"nome":"Abbazia",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Via Cristoforo Colombo 12",
+"cap":"34073",
+"telefono":"+39 0431 80038",
+"email":"info@hotel-abbazia.com",
+"sito":"http://www.hotel-abbazia-grado.com/",
+"lat":45.677232,
+"lon":13.392169
+},
+{
+"nome":"Atlantic",
+"tipoOsm":"hotel",
+"telefono":"+39 0431 81480",
+"sito":"https://www.albergo-atlantic.com/",
+"lat":45.679842,
+"lon":13.40508
+},
+{
+"nome":"Villa Giulia",
+"tipoOsm":"apartment",
+"comune":"Grado",
+"indirizzo":"Piazzetta San Marco 4",
+"cap":"34073",
+"telefono":"+39 0431 80549",
+"email":"villagiulia.grado@gmail.com",
+"sito":"http://www.villagiuliagrado.it",
+"lat":45.678185,
+"lon":13.387408
+},
+{
+"nome":"Hc Resort",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Via Mercato 11",
+"cap":"33054",
+"telefono":"+39 0432 71726",
+"email":"Prenotazioni@hcresortlignano.it",
+"sito":"https://www.hcresortlignano.it/",
+"lat":45.684529,
+"lon":13.124523
+},
+{
+"nome":"Lidia",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Via Francesco Morosini 5",
+"cap":"34073",
+"lat":45.677772,
+"lon":13.387896
+},
+{
+"nome":"Villa Venezia",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Via Venezia 6",
+"cap":"34073",
+"telefono":"+39 0431 877118",
+"email":"info@hotelvillavenezia.com",
+"sito":"http://www.hotelvillavenezia.com/",
+"lat":45.677406,
+"lon":13.388901
+},
+{
+"nome":"Il Guscio",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Via Venezia 4",
+"cap":"34073",
+"telefono":"+39 0431 82200",
+"email":"info@hotelilguscio.it",
+"sito":"https://www.hotelilguscio.it/",
+"lat":45.677511,
+"lon":13.388676
+},
+{
+"nome":"Sunset",
+"tipoOsm":"guest_house",
+"comune":"Grado",
+"indirizzo":"Via Pola 2",
+"cap":"34073",
+"telefono":"+39 0431 876371",
+"email":"info@sunsetgrado.com",
+"sito":"https://sunsetgrado.com/",
+"lat":45.680246,
+"lon":13.381073
+},
+{
+"nome":"Tognon",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Via della Pampagnola 15",
+"cap":"34073",
+"telefono":"+39 0431 090331;+39 0431 81154",
+"email":"Hoteltognon@gmail.com",
+"sito":"http://www.hoteltognongrado.it/",
+"lat":45.681244,
+"lon":13.383152
+},
+{
+"nome":"Grand Hotel Astoria",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Largo San Grisogono 3",
+"cap":"34073",
+"telefono":"+39 0431 83550",
+"email":"info@hotelastoria.it",
+"sito":"https://www.hotelastoria.it/",
+"lat":45.675894,
+"lon":13.387383
+},
+{
+"nome":"Meublé Tripoli",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Riva Giuseppe Garibaldi 17",
+"cap":"34073",
+"telefono":"+39 0431 80066",
+"email":"info@meubletripoli.it",
+"sito":"www.meubletripoli.it",
+"lat":45.681689,
+"lon":13.391074
+},
+{
+"nome":"La Locanda di Ambriabella",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Riva Sant'Andrea 36",
+"cap":"34073",
+"telefono":"+39 0431 84753",
+"sito":"https://www.ambriabella.it/",
+"lat":45.679944,
+"lon":13.395213
+},
+{
+"nome":"Serena",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Riva Sant'Andrea 31",
+"cap":"34073",
+"telefono":"+39 0431 80697",
+"email":"info@gradohotelserena.it",
+"sito":"https://www.gradohotelserena.it/",
+"lat":45.679469,
+"lon":13.394704
+},
+{
+"nome":"Al Ponte",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Viale dello Sport 1",
+"cap":"34073",
+"telefono":"+39 0431 81043",
+"email":"info@meublealpontegrado.it",
+"sito":"https://www.meublealpontegrado.it/",
+"lat":45.679358,
+"lon":13.394213
+},
+{
+"nome":"Nodo",
+"tipoOsm":"hotel",
+"comune":"Codroipo",
+"indirizzo":"Viale Francesco Antonio Duodo 70",
+"cap":"33033",
+"telefono":"+39 0432 184 0461",
+"email":"info@nodohotel.it",
+"sito":"https://nodohotel.it/",
+"lat":45.9617,
+"lon":12.991236
+},
+{
+"nome":"Bellavista",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Viale Italia 48",
+"cap":"34073",
+"telefono":"+39 0431 81090",
+"email":"hotelbellavistagrado@tiscali.it",
+"sito":"https://www.hotelbellavistagrado.com/",
+"lat":45.679191,
+"lon":13.405531
+},
+{
+"nome":"Villa Corallo",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Viale Italia 3",
+"cap":"34073",
+"lat":45.67938,
+"lon":13.401343
+},
+{
+"nome":"Miga Hotels",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Viale Italia 1",
+"cap":"34073",
+"lat":45.679324,
+"lon":13.401066
+},
+{
+"nome":"Regina",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Via Giuseppe Caprin 19",
+"cap":"34073",
+"telefono":"+39 0431 81000",
+"email":"info@hotelreginagrado.com",
+"sito":"http://www.hotelreginagrado.com/",
+"lat":45.676571,
+"lon":13.386877
+},
+{
+"nome":"Stella Maris",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Via dei Provveditori 12",
+"cap":"34073",
+"telefono":"+39 0431 81882",
+"email":"info@stellamarisgrado.it",
+"sito":"https://www.stellamarisgrado.it/",
+"lat":45.677021,
+"lon":13.382619
+},
+{
+"nome":"Laguna Faro Suites",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Riva Brioni 43",
+"cap":"34073",
+"telefono":"+39 0431 193 8087",
+"email":"info@lagunafarosuites.it",
+"sito":"https://www.lagunafarosuites.com/",
+"lat":45.682357,
+"lon":13.378079
+},
+{
+"nome":"Hotel President Lignano",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Viale della Pittura 9",
+"cap":"33054",
+"telefono":"+39 0431 423932",
+"email":"INFO@HOTELPRESIDENTLIGNANO.COM",
+"sito":"https://www.hotelpresidentlignano.com/",
+"lat":45.660989,
+"lon":13.099658
+},
+{
+"nome":"Hotel Clocchiatti Next",
+"tipoOsm":"hotel",
+"comune":"Udine",
+"indirizzo":"Via Cividale 29/3",
+"cap":"33100",
+"lat":46.068798,
+"lon":13.246487
+},
+{
+"nome":"B&B Hotel Udine",
+"tipoOsm":"hotel",
+"comune":"Udine",
+"indirizzo":"Via Duino 8",
+"cap":"33100",
+"telefono":"+39 0432 509905",
+"email":"udine@hotelbb.com",
+"sito":"https://www.hotel-bb.com/it/hotel/udine.htm",
+"lat":46.069046,
+"lon":13.245669
+},
+{
+"nome":"Ambassador",
+"tipoOsm":"hotel",
+"comune":"Udine",
+"indirizzo":"Via Giosuè Carducci 46",
+"cap":"33100",
+"sito":"https://www.ambassadorpalacehotel.it/",
+"lat":46.059029,
+"lon":13.240631
+},
+{
+"nome":"Caneo Bar Albergo Ristorante",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Strada del Caneo 1",
+"cap":"34073",
+"telefono":"+39 0431 884426",
+"sito":"http://www.caneo.it/",
+"lat":45.728387,
+"lon":13.536199
+},
+{
+"nome":"Villa Chiopris",
+"tipoOsm":"hotel",
+"telefono":"+39 0432 991380",
+"email":"info@villachiopris.it",
+"sito":"https://villachiopris.it",
+"lat":45.924737,
+"lon":13.385893
+},
+{
+"nome":"La Fenice",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Via Tarvisio 4",
+"cap":"33054",
+"sito":"http://www.fenicequercia.com/start.html",
+"lat":45.683801,
+"lon":13.124589
+},
+{
+"nome":"Capanna d'Oro",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Lungomare Trieste 122",
+"cap":"33054",
+"telefono":"+39 0431 71240",
+"email":"info@capannadoro.com",
+"sito":"https://www.capannadoro.com/",
+"lat":45.685129,
+"lon":13.138122
+},
+{
+"nome":"Miramare",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Via Aquileia 49",
+"cap":"33054",
+"telefono":"+39 0431 71260",
+"email":"info@miramare.com",
+"sito":"https://www.miramare.com/",
+"lat":45.688546,
+"lon":13.143539
+},
+{
+"nome":"Désirée",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Via Aquileia 47",
+"cap":"33054",
+"telefono":"+39 0431 71415",
+"email":"info@hoteldesiree.it",
+"sito":"https://www.hoteldesiree.it/",
+"lat":45.688728,
+"lon":13.143695
+},
+{
+"nome":"Centro Vacanze Marina Julia Kinderfreunde",
+"tipoOsm":"camp_site",
+"comune":"Monfalcone",
+"indirizzo":"Via Punta Barene 2",
+"cap":"34074",
+"telefono":"+43 316 82551225",
+"email":"ferien@kinderfreunde-steiermark.at",
+"sito":"https://www.ferien-kinderfreunde.at;https://kinderfreunde.at/",
+"lat":45.7745,
+"lon":13.52368
+},
+{
+"nome":"Isola del Paradiso",
+"tipoOsm":"camp_site",
+"comune":"Grado",
+"cap":"34073",
+"telefono":"+39 0431 82061",
+"email":"info@isoladelparadiso.com",
+"sito":"https://isoladelparadiso.com/",
+"lat":45.722713,
+"lon":13.377602
+},
+{
+"nome":"Da Rita",
+"tipoOsm":"motel",
+"comune":"Buja",
+"indirizzo":"Via Sottocostoia 158",
+"cap":"33030",
+"telefono":"+39 0432 960291",
+"lat":46.213742,
+"lon":13.11457
+},
+{
+"nome":"B&B La Gerla Blu",
+"tipoOsm":"guest_house",
+"comune":"Verzegnis",
+"indirizzo":"Via Vittorio Cella 7",
+"cap":"33020",
+"sito":"https://www.lagerlablu.it",
+"lat":46.388514,
+"lon":12.992368
+},
+{
+"nome":"Alvearium Glamping Altùris",
+"tipoOsm":"camp_site",
+"telefono":"+39 0432 183 3237",
+"sito":"https://alturis.it/",
+"lat":46.076929,
+"lon":13.442818
+},
+{
+"nome":"Marina Resort Punta Gabbiani",
+"tipoOsm":"marina",
+"sito":"https://www.marinapuntagabbiani.it/",
+"lat":45.694535,
+"lon":13.074808
+},
+{
+"nome":"Marina Aprilia Marittima",
+"tipoOsm":"marina",
+"telefono":"+39043153300",
+"email":"info@apriliamarittima.com",
+"sito":"https://www.apriliamarittima.com/",
+"lat":45.696007,
+"lon":13.072248
+},
+{
+"nome":"Marina Capo Nord",
+"tipoOsm":"marina",
+"sito":"https://www.marinacaponord.it/",
+"lat":45.698294,
+"lon":13.071621
+},
+{
+"nome":"Dolomiti Village",
+"tipoOsm":"hotel",
+"comune":"Comeglians",
+"indirizzo":"Frazione Povolaro 48",
+"cap":"33023",
+"lat":46.519854,
+"lon":12.891038
+},
+{
+"nome":"Lega Navale Italiana - Sez. Di Monfalcone",
+"tipoOsm":"marina",
+"indirizzo":"Via dell'Agraria 54",
+"cap":"34074",
+"telefono":"+39 0481 484564",
+"sito":"https://lnimonfalcone.it",
+"lat":45.787687,
+"lon":13.535659
+},
+{
+"nome":"La Primula",
+"tipoOsm":"hotel",
+"sito":"https://www.ristorantelaprimula.it/hotel",
+"lat":46.034254,
+"lon":12.681871
+},
+{
+"nome":"La Vie en Rose Resort",
+"tipoOsm":"hotel",
+"telefono":"+39 342 961 4882",
+"sito":"https://www.instagram.com/lavie_enroseresort",
+"lat":45.907969,
+"lon":12.874237
+},
+{
+"nome":"Smeraldo",
+"tipoOsm":"hotel",
+"comune":"Lignano Pineta",
+"indirizzo":"Viale della Musica 4",
+"cap":"33054",
+"sito":"https://www.hotelsmeraldo.net/it/",
+"lat":45.659769,
+"lon":13.101472
+},
+{
+"nome":"Club Nautico Baiana Torviscosa",
+"tipoOsm":"marina",
+"sito":"https://cnbaiana.it/",
+"lat":45.775768,
+"lon":13.273834
+},
+{
+"nome":"Marina Monfalcone",
+"tipoOsm":"marina",
+"telefono":"+39 0481 411541",
+"email":"info@marinamonfalcone.com",
+"sito":"https://marinamonfalcone.com/",
+"lat":45.782878,
+"lon":13.535733
+},
+{
+"nome":"Agriturismo Skerlj / Agriturizem Skerlj",
+"tipoOsm":"guest_house",
+"comune":"Sgonico / Zgonik",
+"cap":"34010",
+"telefono":"+39 040 229253",
+"email":"info@agriturismoskerlj.com",
+"sito":"https://www.skerlj.it/",
+"lat":45.747806,
+"lon":13.729782
+},
+{
+"nome":"Hotel Italia Palace",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Via Latisana 20",
+"cap":"33054",
+"telefono":"+39 0431 71185",
+"email":"info@hotelitaliapalace.it",
+"sito":"https://www.hotelitaliapalace.it/dependance-con-suite-apartments/",
+"lat":45.692678,
+"lon":13.146658
+},
+{
+"nome":"Italia Palace",
+"tipoOsm":"hotel",
+"indirizzo":"Viale Italia 7",
+"telefono":"+39 0431 71185",
+"email":"info@hotelitaliapalace.it",
+"sito":"https://www.hotelitaliapalace.it",
+"lat":45.692624,
+"lon":13.148438
+},
+{
+"nome":"Gambrinus",
+"tipoOsm":"hotel",
+"indirizzo":"Via Latisana 184",
+"telefono":"+39 0431 71836",
+"sito":"http://www.hotelgambrinus.eu",
+"lat":45.684679,
+"lon":13.126671
+},
+{
+"nome":"Centrale",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Via Carnia 33",
+"cap":"33054",
+"telefono":"+39043171295",
+"email":"info@hotelcentrale-lignano.it",
+"sito":"https://www.hotelcentrale-lignano.it/",
+"lat":45.689593,
+"lon":13.144461
+},
+{
+"nome":"Flora",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Via Aquileia 8",
+"cap":"33054",
+"telefono":"+39 0431 71100",
+"email":"flora@doimohotels.it",
+"sito":"https://www.doimohotels.it/",
+"lat":45.68974,
+"lon":13.14471
+},
+{
+"nome":"Amalfi",
+"tipoOsm":"hotel",
+"email":"info@hotelamalfilignano.it",
+"sito":"https://hotelamalfilignano.it/",
+"lat":45.692072,
+"lon":13.148364
+},
+{
+"nome":"Myriam",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Parco San Giovanni Bosco 16",
+"cap":"33054",
+"telefono":"+39 0431 71535",
+"email":"info@hotelmyriam.com",
+"sito":"https://lignano.hotelmyriam.com/",
+"lat":45.68904,
+"lon":13.142686
+},
+{
+"nome":"Pasha",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Viale Venezia 90",
+"cap":"33054",
+"telefono":"+39 0431 720511",
+"email":"info@hotelpashalignano.it",
+"sito":"https://www.hotelpashalignano.it/",
+"lat":45.686843,
+"lon":13.13734
+},
+{
+"nome":"Marina Punta Faro",
+"tipoOsm":"marina",
+"email":"puntafaro@d-marin.com",
+"sito":"https://www.marinapuntafaro.it/de/index.aspx",
+"lat":45.699546,
+"lon":13.147996
+},
+{
+"nome":"San Carlo",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Via Codroipo 16",
+"cap":"33054",
+"telefono":"+39 0431 720855",
+"email":"hotel.sancarlo@doimohotels.it",
+"sito":"https://www.mobile.doimohotels.it/sancarlo/it/",
+"lat":45.690283,
+"lon":13.144191
+},
+{
+"nome":"Rio",
+"tipoOsm":"hotel",
+"telefono":"+39 0431 71280",
+"email":"info@hotelriolignano.com",
+"sito":"http://www.hotelriolignano.com",
+"lat":45.690862,
+"lon":13.146511
+},
+{
+"nome":"Ariston Teatro",
+"tipoOsm":"hotel",
+"sito":"https://www.aristonteatrogrado.com/",
+"lat":45.677195,
+"lon":13.389964
+},
+{
+"nome":"Due Leoni",
+"tipoOsm":"hotel",
+"comune":"Farra d'Isonzo",
+"indirizzo":"Via Giuseppe Verdi 55",
+"cap":"34072",
+"email":"info@aidueleoni.go.it",
+"lat":45.912706,
+"lon":13.518524
+},
+{
+"nome":"Hotel Roma",
+"tipoOsm":"hotel",
+"comune":"Trieste",
+"indirizzo":"Via Carlo Ghega 7",
+"cap":"34132",
+"sito":"https://www.hotelroma-trieste.it/",
+"lat":45.65568,
+"lon":13.773365
+},
+{
+"nome":"Yacht Club Adriaco",
+"tipoOsm":"marina",
+"telefono":"+39 040 304539",
+"sito":"https://ycadriaco.it/",
+"lat":45.646917,
+"lon":13.75978
+},
+{
+"nome":"Hotel Ristorante / Restavracija Križman",
+"tipoOsm":"hotel",
+"telefono":"+39 040 327115;+39 040 327468",
+"email":"info@hotelkrizman.eu",
+"sito":"https://www.hotelkrizman.eu/",
+"lat":45.723385,
+"lon":13.79132
+},
+{
+"nome":"Hotel Restaurant Pesek",
+"tipoOsm":"hotel",
+"telefono":"+39 040 226294",
+"email":"info@hotelpesek.it",
+"sito":"http://www.hotelpesek.it/",
+"lat":45.627374,
+"lon":13.897082
+},
+{
+"nome":"Hotel alla Dolina",
+"tipoOsm":"hotel",
+"telefono":"+39 040 299350",
+"lat":45.773618,
+"lon":13.630824
+},
+{
+"nome":"Friuli",
+"tipoOsm":"hotel",
+"sito":"https://www.hotelfriulicervignano.it/",
+"lat":45.821366,
+"lon":13.333773
+},
+{
+"nome":"D’Olivo al Mare",
+"tipoOsm":"guest_house",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Lungomare Trieste 140",
+"cap":"33054",
+"sito":"https://www.hotelmarelignano.it/suiteapartment-dolivo-al-mare/",
+"lat":45.681804,
+"lon":13.132816
+},
+{
+"nome":"Falcone",
+"tipoOsm":"hotel",
+"telefono":"+39 0431 73660",
+"email":"info@hotelfalcone.it",
+"sito":"https://www.hotelfalcone.it/",
+"lat":45.687623,
+"lon":13.130685
+},
+{
+"nome":"Corallo",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Viale Miramare 57",
+"telefono":"+39 0431 71354",
+"email":"info@hotelcorallo.info",
+"lat":45.686423,
+"lon":13.137661
+},
+{
+"nome":"Europa",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Lungomare Trieste 90",
+"cap":"33054",
+"telefono":"+39 0431 71204",
+"email":"info@h-europa.it",
+"sito":"https://www.h-europa.it/",
+"lat":45.687,
+"lon":13.141382
+},
+{
+"nome":"Monaco",
+"tipoOsm":"hotel",
+"indirizzo":"Viale Gorizia 24",
+"telefono":"+39 0431 71523",
+"sito":"https://www.hotelmonaco.net",
+"lat":45.690772,
+"lon":13.145328
+},
+{
+"nome":"Alture di Polazzo",
+"tipoOsm":"guest_house",
+"comune":"Fogliano Redipuglia",
+"indirizzo":"Via Fornaci 1a",
+"cap":"34070",
+"telefono":"+39 0481 199 5220",
+"email":"info@parcorurale.it",
+"sito":"https://www.parcorurale.it/",
+"lat":45.859626,
+"lon":13.507263
+},
+{
+"nome":"Agriturismo Sasso d'Oro",
+"tipoOsm":"camp_site",
+"comune":"fraz. Solimbergo, Sequals (PN)",
+"indirizzo":"Via del Capitel 4",
+"cap":"33090",
+"telefono":"+393332660977",
+"email":"info@sassodoro.pn.it",
+"sito":"https://www.sassodoro.pn.it/",
+"lat":46.177798,
+"lon":12.815388
+},
+{
+"nome":"Villaverde Hotel & Resort",
+"tipoOsm":"hotel",
+"telefono":"+39 0432 812600",
+"sito":"https://www.villaverderesort.com/",
+"lat":46.126963,
+"lon":13.068282
+},
+{
+"nome":"Villa Franca",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Lungomare Trieste 118",
+"cap":"33054",
+"telefono":"+31 43171371",
+"lat":45.685484,
+"lon":13.138774
+},
+{
+"nome":"Adria",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Viale Centrale 23",
+"cap":"33054",
+"telefono":"+39 0431 724024",
+"sito":"https://adrialignano.it/",
+"lat":45.685111,
+"lon":13.135388
+},
+{
+"nome":"Albergo Roma",
+"tipoOsm":"hotel",
+"comune":"Tolmezzo",
+"indirizzo":"Piazza Venti Settembre 14",
+"cap":"33028",
+"telefono":"+390433468031",
+"sito":"https://www.albergoromatolmezzo.it/",
+"lat":46.406146,
+"lon":13.015609
+},
+{
+"nome":"Santa Cruz",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Arco della Paranza 4",
+"cap":"33054",
+"telefono":"+39 0431 422101",
+"email":"info@hotelsantacruz.it",
+"sito":"http://www.hotelsantacruz.it/",
+"lat":45.667402,
+"lon":13.108675
+},
+{
+"nome":"Osteria alle Risorgive",
+"tipoOsm":"guest_house",
+"comune":"Codroipo",
+"indirizzo":"Via delle Acacie 2",
+"cap":"33033",
+"lat":45.956401,
+"lon":12.984919
+},
+{
+"nome":"Locanda Al Fogolar",
+"tipoOsm":"guest_house",
+"indirizzo":"Via Antonio Bidernuccio 8",
+"cap":"33010",
+"telefono":"+39 334 150 7569",
+"lat":46.336751,
+"lon":13.140199
+},
+{
+"nome":"Ristorante Al Fortino",
+"tipoOsm":"guest_house",
+"comune":"Cividale del Friuli",
+"indirizzo":"Via Carlo Alberto 40",
+"cap":"33043",
+"sito":"http://www.ristorantealfortino.it",
+"lat":46.095838,
+"lon":13.429509
+},
+{
+"nome":"Hotel Due Leoni",
+"tipoOsm":"hotel",
+"comune":"Sacile",
+"indirizzo":"Piazza del Popolo 24",
+"cap":"33077",
+"telefono":"+39 0434 788111",
+"email":"info@hoteldueleoni.com",
+"sito":"https://www.hoteldueleoni.it/",
+"lat":45.953758,
+"lon":12.50239
+},
+{
+"nome":"Astoria",
+"tipoOsm":"hotel",
+"comune":"Udine",
+"indirizzo":"Piazza Venti Settembre 24",
+"cap":"33100",
+"telefono":"+39 0432 505091",
+"email":"astoria@hotelastoria.udine.it",
+"sito":"http://www.hotelastoria.udine.it",
+"lat":46.061352,
+"lon":13.233951
+},
+{
+"nome":"Hotel Pittis",
+"tipoOsm":"hotel",
+"email":"info@hotelpittis.com",
+"sito":"https://www.hotelpittis.com/",
+"lat":46.25687,
+"lon":13.080687
+},
+{
+"nome":"Da Afro",
+"tipoOsm":"hotel",
+"sito":"http://www.osteriadaafro.net/",
+"lat":46.112403,
+"lon":12.898752
+},
+{
+"nome":"Pizzeria Pace Alpina",
+"tipoOsm":"hotel",
+"telefono":"+39 0433 616984",
+"lat":46.521442,
+"lon":12.922068
+},
+{
+"nome":"Hotel Adriatico",
+"tipoOsm":"hotel",
+"comune":"Tarvisio",
+"indirizzo":"Via Roma 59",
+"cap":"33018",
+"telefono":"+39 0428 2637",
+"email":"info@albergoadriatico-tarvisio.it",
+"sito":"http://www.albergoadriatico-tarvisio.it",
+"lat":46.504931,
+"lon":13.575996
+},
+{
+"nome":"Tarvis Meuble'",
+"tipoOsm":"hotel",
+"comune":"Tarvisio",
+"indirizzo":"Via Vittorio Veneto 148",
+"cap":"33018",
+"telefono":"+39 0428 40308",
+"email":"ilcervo.tarvisio@gmail.com",
+"lat":46.504173,
+"lon":13.580382
+},
+{
+"nome":"Antica Ferrovia",
+"tipoOsm":"apartment",
+"comune":"Tarvisio",
+"indirizzo":"Via Roma 147",
+"cap":"33018",
+"sito":"https://www.anticaferrovia.it/",
+"lat":46.505485,
+"lon":13.573292
+},
+{
+"nome":"Rifugio Al Santuario",
+"tipoOsm":"alpine_hut",
+"comune":"Camporosso",
+"cap":"33010",
+"telefono":"+39 328 5818789;+42 0602611083",
+"email":"rifugioalsantuario@gmail.com",
+"sito":"https://www.rifugioalsantuario.com/",
+"lat":46.480148,
+"lon":13.52266
+},
+{
+"nome":"Albergo ristorante Leon Bianco",
+"tipoOsm":"hotel",
+"comune":"Moggio Udinese",
+"indirizzo":"Piazza uffici 4",
+"cap":"33015",
+"lat":46.410081,
+"lon":13.195054
+},
+{
+"nome":"Hotel Roma",
+"tipoOsm":"hotel",
+"telefono":"+39 0432 731871",
+"email":"info@hotelroma-cividale.it",
+"sito":"http://www.hotelroma-cividale.it",
+"lat":46.094855,
+"lon":13.428539
+},
+{
+"nome":"Trattoria Albergo al Paesello",
+"tipoOsm":"hotel",
+"telefono":"+39 0428 90486",
+"email":"alpaesello@gmail.com",
+"lat":46.508821,
+"lon":13.347579
+},
+{
+"nome":"Agriturismo Terre di Agane",
+"tipoOsm":"guest_house",
+"sito":"https://www.terrediagane.it/",
+"lat":46.167642,
+"lon":12.919993
+},
+{
+"nome":"Albergo Ristorante Margherita",
+"tipoOsm":"hotel",
+"comune":"Cimolais",
+"indirizzo":"Via Roma 7",
+"lat":46.286469,
+"lon":12.438346
+},
+{
+"nome":"Rifugio Monte Lussari",
+"tipoOsm":"alpine_hut",
+"comune":"Camporosso",
+"cap":"33010",
+"telefono":"+39 0428 63242",
+"lat":46.480124,
+"lon":13.522781
+},
+{
+"nome":"Vecchio Tram",
+"tipoOsm":"hotel",
+"comune":"Udine",
+"indirizzo":"Via Brenari 28",
+"sito":"https://www.hotelvecchiotram.com/",
+"lat":46.059726,
+"lon":13.233091
+},
+{
+"nome":"Ristorante Pizzeria Bar San Mauro",
+"tipoOsm":"guest_house",
+"telefono":"+39 040 299486",
+"email":"ristorantesanmauro@yahoo.it",
+"lat":45.766775,
+"lon":13.639579
+},
+{
+"nome":"Hotel ristorante Del Negro",
+"tipoOsm":"hotel",
+"telefono":"+39 0433 778039",
+"email":"albergodelnegro@libero.it",
+"lat":46.510937,
+"lon":12.99049
+},
+{
+"nome":"Osteria da Alvise",
+"tipoOsm":"guest_house",
+"sito":"https://www.osteriadaalvise.it/",
+"lat":46.513454,
+"lon":12.989349
+},
+{
+"nome":"Albero Nascosto",
+"tipoOsm":"hotel",
+"comune":"Trieste",
+"indirizzo":"Via Felice Venezian 18",
+"cap":"34124",
+"telefono":"+39 040 300188",
+"sito":"https://www.alberonascosto.it/",
+"lat":45.647567,
+"lon":13.766887
+},
+{
+"nome":"James Joyce",
+"tipoOsm":"hotel",
+"telefono":"+39 040 302065",
+"email":"info@hoteljamesjoyce.com",
+"sito":"https://www.hoteljamesjoyce.com/",
+"lat":45.648457,
+"lon":13.767714
+},
+{
+"nome":"Piazza della Repubblica",
+"tipoOsm":"hotel",
+"comune":"Monfalcone",
+"indirizzo":"Piazza della Repubblica 21",
+"cap":"34074",
+"telefono":"+39 0481 286424",
+"email":"info@hrhotel.it",
+"sito":"https://www.hrhotel.it/",
+"lat":45.809929,
+"lon":13.5328
+},
+{
+"nome":"Bed and Breakfast Sottocolle Fontana",
+"tipoOsm":"guest_house",
+"sito":"http://www.sottocollefontana.it/",
+"lat":46.167902,
+"lon":13.033883
+},
+{
+"nome":"Alloggio agrituristico Villa Butussi",
+"tipoOsm":"guest_house",
+"sito":"https://www.butussi.it/",
+"lat":45.977928,
+"lon":13.443063
+},
+{
+"nome":"Casa Orter",
+"tipoOsm":"hotel",
+"sito":"https://casaorter.it/",
+"lat":45.973748,
+"lon":13.256624
+},
+{
+"nome":"Agriturismo La Torre del Falco",
+"tipoOsm":"hotel",
+"telefono":"+39 0434 80431",
+"sito":"https://www.bianchieredi.com/",
+"lat":45.92433,
+"lon":12.84455
+},
+{
+"nome":"Scìasa Meneghin",
+"tipoOsm":"guest_house",
+"telefono":"+39 0427 878445",
+"sito":"https://www.albergodiffusovalcellinavalvajont.it/",
+"lat":46.27412,
+"lon":12.371525
+},
+{
+"nome":"Là di Anselmi",
+"tipoOsm":"guest_house",
+"comune":"Muzzana del Turgnano",
+"indirizzo":"Via Palazzolo 71",
+"cap":"33055",
+"telefono":"+39 0432 779157",
+"email":"info@agriturismoladianselmi.it",
+"sito":"www.agriturismoladianselmi.it",
+"lat":45.812869,
+"lon":13.112474
+},
+{
+"nome":"Albergo ristorante Matiz \"Da Otto\"",
+"tipoOsm":"hotel",
+"comune":"Timau",
+"indirizzo":"Via Maria Plozner Mentil 15",
+"cap":"33026",
+"telefono":"+39 0433 779002",
+"email":"ristorantedaotto@gmail.com",
+"sito":"https://www.ristorantedaotto.it/",
+"lat":46.581819,
+"lon":13.005638
+},
+{
+"nome":"Lupinc",
+"tipoOsm":"guest_house",
+"comune":"Duino Aurisina / Devin - Nabrežina",
+"cap":"34011",
+"telefono":"+39 040 200848",
+"sito":"https://www.lupinc.it/",
+"lat":45.762876,
+"lon":13.693916
+},
+{
+"nome":"Agriturismo Fam. Bertossi",
+"tipoOsm":"guest_house",
+"comune":"Faedis",
+"indirizzo":"Via Antonutti 38",
+"cap":"33040",
+"telefono":"+39 0432 728890",
+"sito":"http://www.bertossi.info",
+"lat":46.148762,
+"lon":13.349773
+},
+{
+"nome":"Hotel Cajeta",
+"tipoOsm":"hotel",
+"indirizzo":"Piazza del Mercato 2",
+"telefono":"+39 0432 961693",
+"sito":"https://www.hotelcajeta.it/",
+"lat":46.206909,
+"lon":13.125497
+},
+{
+"nome":"Albergo Caffè Vecchio",
+"tipoOsm":"hotel",
+"comune":"Pontebba",
+"indirizzo":"Via Roma 13",
+"cap":"33016",
+"telefono":"+39 0429 991081",
+"sito":"http://www.caffevecchio.com",
+"lat":46.505116,
+"lon":13.305228
+},
+{
+"nome":"Casa Trauner",
+"tipoOsm":"guest_house",
+"comune":"Trieste",
+"indirizzo":"Via delle Mura 26",
+"cap":"34121",
+"telefono":"+39 348 42 29 516;+39 389 10 62 106",
+"email":"info@casatrauner.com",
+"sito":"http://www.casatrauner.com",
+"lat":45.647546,
+"lon":13.768467
+},
+{
+"nome":"Da Mirna",
+"tipoOsm":"guest_house",
+"telefono":"+39 0434 630457",
+"email":"info@cameredamirna.it",
+"sito":"https://www.cameredamirna.it/",
+"lat":45.849753,
+"lon":12.764699
+},
+{
+"nome":"Aqua Residence",
+"tipoOsm":"guest_house",
+"comune":"Trieste",
+"indirizzo":"Via della Torretta 8",
+"cap":"34121",
+"sito":"http://www.residenceaqua.com",
+"lat":45.648797,
+"lon":13.76722
+},
+{
+"nome":"EX-L",
+"tipoOsm":"hotel",
+"telefono":"+39 0434 561785",
+"email":"info@ex-l.it",
+"sito":"http://www.ex-l.it/",
+"lat":45.928039,
+"lon":12.731491
+},
+{
+"nome":"Agriturismo Cois",
+"tipoOsm":"guest_house",
+"sito":"https://www.agriturismocois.com/",
+"lat":46.140091,
+"lon":13.335975
+},
+{
+"nome":"Agriturismo al Rôl",
+"tipoOsm":"guest_house",
+"comune":"Manzano",
+"indirizzo":"Via Giulia Piccoli 29;31",
+"cap":"33044",
+"telefono":"+39 340 7956151",
+"sito":"http://www.contidimaniago.it/",
+"lat":45.97079,
+"lon":13.353489
+},
+{
+"nome":"Hotel Posta",
+"tipoOsm":"hotel",
+"sito":"https://www.hotelposta.org/",
+"lat":46.42384,
+"lon":12.578963
+},
+{
+"nome":"Agriturismo \"AL Cerv\"",
+"tipoOsm":"guest_house",
+"telefono":"+39 0432 942033",
+"email":"alloialcerv@hotmail.it",
+"lat":46.181433,
+"lon":13.028126
+},
+{
+"nome":"Blue Marine",
+"tipoOsm":"hotel",
+"indirizzo":"Via Udine 81",
+"telefono":"+39 0431 720281",
+"sito":"https://www.bluemarine.lignano.it/",
+"lat":45.691985,
+"lon":13.147701
+},
+{
+"nome":"Locanda da Menia",
+"tipoOsm":"guest_house",
+"comune":"Torreano",
+"indirizzo":"Via delle Cave 24",
+"cap":"33040",
+"telefono":"+39 0432712064;+39 3398277492",
+"email":"locanda@damenia.it",
+"sito":"https://www.damenia.it/",
+"lat":46.13259,
+"lon":13.435425
+},
+{
+"nome":"Suite Inn",
+"tipoOsm":"hotel",
+"telefono":"+39 0432 50 16 83",
+"email":"info@hotelsuiteinn.it",
+"sito":"https://www.hotelsuiteinn-udine.com/",
+"lat":46.070463,
+"lon":13.230274
+},
+{
+"nome":"Agriturismo Hermada / Kmečki turizem Hermada",
+"tipoOsm":"guest_house",
+"comune":"Duino Aurisina / Devin - Nabrežina",
+"cap":"34011",
+"telefono":"+39 040 299501",
+"email":"info@agriturismohermada.it",
+"sito":"https://www.agriturismohermada.it/",
+"lat":45.78362,
+"lon":13.641495
+},
+{
+"nome":"La casa delle fate",
+"tipoOsm":"guest_house",
+"comune":"Lusevera",
+"indirizzo":"Via Vedronza 58",
+"lat":46.260888,
+"lon":13.25716
+},
+{
+"nome":"Hotel Italia",
+"tipoOsm":"hotel",
+"comune":"Sacile",
+"indirizzo":"Vicolo Mario dal Fabbro 1",
+"cap":"33077",
+"lat":45.95389,
+"lon":12.49686
+},
+{
+"nome":"Albergo Sacile Villa Regina di Zandonaà Sandra & C. Snc",
+"tipoOsm":"hotel",
+"comune":"Sacile",
+"indirizzo":"Via Martiri Sfriso 20",
+"cap":"33077",
+"lat":45.95314,
+"lon":12.4926
+},
+{
+"nome":"Due Fiumi",
+"tipoOsm":"hotel",
+"comune":"Sacile",
+"indirizzo":"Via Giuseppe Bertolissi 37",
+"cap":"33077",
+"telefono":"+39 0434 70820;+39 349 0934922",
+"email":"info@due-fiumi.it",
+"sito":"https://www.due-fiumi.com/",
+"lat":45.94111,
+"lon":12.49812
+},
+{
+"nome":"Residence Alle Statue",
+"tipoOsm":"hotel",
+"sito":"http://www.allestatue.com/",
+"lat":45.590938,
+"lon":13.807369
+},
+{
+"nome":"Albergo Leon D'Oro",
+"tipoOsm":"hotel",
+"comune":"Maniago",
+"indirizzo":"Piazza Italia 1",
+"cap":"33085",
+"telefono":"+39 0427 71118",
+"email":"info@leondoromaniago.com",
+"sito":"http://www.leondoromaniago.com",
+"lat":46.171541,
+"lon":12.707481
+},
+{
+"nome":"Montenegro",
+"tipoOsm":"hotel",
+"comune":"Maniago",
+"indirizzo":"Piazza Italia",
+"cap":"33085",
+"lat":46.170537,
+"lon":12.706523
+},
+{
+"nome":"Agriturismo Antica Corte Contadina",
+"tipoOsm":"guest_house",
+"comune":"Premariacco",
+"indirizzo":"Via Cristallo 31",
+"cap":"33040",
+"lat":46.060118,
+"lon":13.387676
+},
+{
+"nome":"Albergo Valcanale",
+"tipoOsm":"hotel",
+"telefono":"+39 0428 60063",
+"email":"albergovalcanale@gmail.com",
+"sito":"http://www.albergovalcanale.it/",
+"lat":46.507134,
+"lon":13.439752
+},
+{
+"nome":"Casa Oberrichter",
+"tipoOsm":"hotel",
+"sito":"https://www.casa-oberrichter.com/",
+"lat":46.507233,
+"lon":13.440185
+},
+{
+"nome":"B&B gil d'o",
+"tipoOsm":"guest_house",
+"comune":"Bertiolo",
+"indirizzo":"Via Margherita 12",
+"cap":"33032",
+"lat":45.941641,
+"lon":13.052406
+},
+{
+"nome":"La Lampara",
+"tipoOsm":"guest_house",
+"comune":"Trieste",
+"cap":"34151",
+"telefono":"+39 040 220352",
+"email":"trattorialalampara@tiscali.it",
+"sito":"https://www.la-lampara.net/",
+"lat":45.733326,
+"lon":13.692905
+},
+{
+"nome":"Villa Ester",
+"tipoOsm":"guest_house",
+"comune":"Cividale del Friuli",
+"indirizzo":"Via Anton Giulio Cavarzerani 39",
+"cap":"33043",
+"telefono":"+39 0432 733324",
+"lat":46.089438,
+"lon":13.417892
+},
+{
+"nome":"Marina di Levante",
+"tipoOsm":"marina",
+"comune":"Grado",
+"indirizzo":"Riva Zaccaria Gregori 24a",
+"cap":"34073",
+"telefono":"+39 393 0121212",
+"sito":"https://www.marinadilevante.net/",
+"lat":45.682793,
+"lon":13.3877
+},
+{
+"nome":"Villa Borgo Duino",
+"tipoOsm":"hotel",
+"comune":"Duino Aurisina / Devin - Nabrežina",
+"cap":"34011",
+"telefono":"+39 040 208872",
+"email":"info@villaborgoduino.it",
+"sito":"https://www.villaborgoduino.it/",
+"lat":45.775963,
+"lon":13.599744
+},
+{
+"nome":"Kmečki turizem Antonič / AgriRistoro Antonič",
+"tipoOsm":"guest_house",
+"comune":"Duino Aurisina / Devin - Nabrežina",
+"cap":"34011",
+"email":"info@kmetijaantonic.it",
+"sito":"http://www.kmetijaantonic.it",
+"lat":45.789454,
+"lon":13.643249
+},
+{
+"nome":"Hotel Aurora Duino",
+"tipoOsm":"hotel",
+"comune":"Duino Aurisina / Devin - Nabrežina",
+"cap":"34011",
+"telefono":"+39 040 208 212",
+"email":"info@auroraduino.com",
+"sito":"https://www.auroraduino.com/",
+"lat":45.773045,
+"lon":13.606761
+},
+{
+"nome":"Apartments Trieste Centro",
+"tipoOsm":"apartment",
+"comune":"Trieste",
+"indirizzo":"Via Luigi Cadorna 14",
+"cap":"34124",
+"telefono":"+39 329 076 5516",
+"email":"apartments.triestecentro@gmail.com",
+"sito":"https://apartmentstriestecentro.it/prodotto/apartments-trieste-centro-cadorna-14/",
+"lat":45.648316,
+"lon":13.76508
+},
+{
+"nome":"Victoria Hotel Letterario",
+"tipoOsm":"hotel",
+"comune":"Trieste",
+"indirizzo":"Via Alfredo Oriani 2",
+"cap":"34131",
+"telefono":"+39 040 362415",
+"email":"info@hotelvictoriatrieste.it",
+"sito":"https://www.hotelvictoriatrieste.com/",
+"lat":45.647266,
+"lon":13.779795
+},
+{
+"nome":"Casali Hostel",
+"tipoOsm":"hostel",
+"comune":"Trieste",
+"indirizzo":"Piazza Alberto e Kathleen Casali 4",
+"cap":"34134",
+"lat":45.65689,
+"lon":13.776862
+},
+{
+"nome":"Forvm Boutique",
+"tipoOsm":"hotel",
+"comune":"Trieste",
+"indirizzo":"Via Valdirivo 30",
+"cap":"34132",
+"sito":"https://www.forvmboutiquehotel.it",
+"lat":45.653241,
+"lon":13.774375
+},
+{
+"nome":"Hotel Pepi",
+"tipoOsm":"hotel",
+"comune":"Trieste",
+"indirizzo":"Via Srečko Kosovel 33",
+"cap":"34149",
+"telefono":"+39 040 226127",
+"email":"info@hotel-pepi.it",
+"sito":"https://www.hotel-pepi.it/",
+"lat":45.643925,
+"lon":13.863096
+},
+{
+"nome":"Di Baut B&B",
+"tipoOsm":"guest_house",
+"indirizzo":"Via Corva di Muina 14",
+"lat":46.46005,
+"lon":12.864757
+},
+{
+"nome":"B&B da Leo",
+"tipoOsm":"guest_house",
+"comune":"Monfalcone",
+"indirizzo":"Via San Nicolò 11",
+"cap":"34074",
+"telefono":"+393519373736",
+"email":"info@bbdaleo.it",
+"sito":"https://www.bbdaleo.it",
+"lat":45.811814,
+"lon":13.514752
+},
+{
+"nome":"Hotel ristorante \"Ai Campi di Marcello\"",
+"tipoOsm":"hotel",
+"comune":"Monfalcone",
+"indirizzo":"Via Napoli 7",
+"cap":"34074",
+"lat":45.799168,
+"lon":13.533476
+},
+{
+"nome":"Villa Fiorita",
+"tipoOsm":"guest_house",
+"comune":"Monfalcone",
+"indirizzo":"Via Pucino 50",
+"cap":"34074",
+"sito":"https://villafiorita-monfalcone.business.site/",
+"lat":45.803656,
+"lon":13.536368
+},
+{
+"nome":"Holiday Grado",
+"tipoOsm":"apartment",
+"comune":"Grado",
+"indirizzo":"Via Silvio Pellico 6",
+"cap":"34073",
+"lat":45.679777,
+"lon":13.403365
+},
+{
+"nome":"Savoia",
+"tipoOsm":"hotel",
+"comune":"Lignano Sabbiadoro",
+"indirizzo":"Piazza del Sole 76",
+"cap":"33054",
+"lat":45.666977,
+"lon":13.108878
+},
+{
+"nome":"Villa Rodolfi",
+"tipoOsm":"guest_house",
+"comune":"Moggio Udinese",
+"indirizzo":"Via Abbazia 32",
+"cap":"33015",
+"telefono":"+39 320 801 9820",
+"email":"villa.rodolfi@gmail.com",
+"lat":46.405676,
+"lon":13.18851
+},
+{
+"nome":"Azienda agricola Colja Jožko",
+"tipoOsm":"guest_house",
+"sito":"http://www.jcolja.eu/",
+"lat":45.762724,
+"lon":13.714365
+},
+{
+"nome":"B&B Ai Pellegrini",
+"tipoOsm":"guest_house",
+"indirizzo":"Via Giuseppe Verdi 24",
+"telefono":"+39 347 525 1177",
+"lat":46.415613,
+"lon":12.92308
+},
+{
+"nome":"Palmamore",
+"tipoOsm":"apartment",
+"comune":"Palmanova",
+"indirizzo":"Contrada Jacopo Foscarini 31",
+"cap":"33057",
+"telefono":"+39 347 2616797",
+"email":"info.palmamore@gmail.com",
+"lat":45.90278,
+"lon":13.308262
+},
+{
+"nome":"B&Baichin",
+"tipoOsm":"guest_house",
+"comune":"Staranzano",
+"indirizzo":"Via Giacomo Matteotti 6",
+"cap":"34079",
+"telefono":"+39 339 437 3962",
+"sito":"https://baichin.bedsandhotels.com/",
+"lat":45.806853,
+"lon":13.503953
+},
+{
+"nome":"Albergo dal Cortesan",
+"tipoOsm":"hotel",
+"comune":"Ampezzo",
+"indirizzo":"Via Nazionale 170",
+"cap":"33021",
+"telefono":"+39 0433 811090",
+"lat":46.416369,
+"lon":12.791014
+},
+{
+"nome":"Bike & Bikers Hotel",
+"tipoOsm":"hotel",
+"comune":"Ampezzo",
+"indirizzo":"Via Nazionale 5",
+"cap":"33021",
+"lat":46.415764,
+"lon":12.79592
+},
+{
+"nome":"Locanda San Gallo",
+"tipoOsm":"hotel",
+"comune":"Moggio Udinese",
+"indirizzo":"Piazzetta Sandro Pertini 2",
+"cap":"33015",
+"lat":46.41079,
+"lon":13.195122
+},
+{
+"nome":"Hotel Abbazia",
+"tipoOsm":"hotel",
+"comune":"Trieste",
+"indirizzo":"Via della Geppa 20",
+"cap":"34132",
+"telefono":"+39 040 369464",
+"lat":45.655112,
+"lon":13.774583
+},
+{
+"nome":"Allegria",
+"tipoOsm":"hotel",
+"comune":"Udine",
+"indirizzo":"Vicolo Chiuso 1",
+"cap":"33100",
+"lat":46.058934,
+"lon":13.232394
+},
+{
+"nome":"Palazzo Richard Leone",
+"tipoOsm":"hotel",
+"indirizzo":"Via Pozzuolo 58",
+"cap":"33100",
+"telefono":"+393313207384",
+"lat":46.051586,
+"lon":13.226728
+},
+{
+"nome":"Due Palme",
+"tipoOsm":"hotel",
+"comune":"Udine",
+"indirizzo":"Viale Leonardo da Vinci 7",
+"cap":"33100",
+"lat":46.067897,
+"lon":13.224792
+},
+{
+"nome":"Hotel Santin",
+"tipoOsm":"hotel",
+"comune":"Pordenone",
+"indirizzo":"Viale delle Grazie 9",
+"cap":"33170",
+"telefono":"+39 0434 520443",
+"sito":"https://www.hotelsantinpordenone.it/",
+"lat":45.950365,
+"lon":12.66135
+},
+{
+"nome":"Albergo Trattoria da Si Si",
+"tipoOsm":"hotel",
+"comune":"Gemona del Friuli",
+"indirizzo":"Via Piovega 10",
+"cap":"33013",
+"lat":46.272414,
+"lon":13.133792
+},
+{
+"nome":"B&B Villa Orsolina",
+"tipoOsm":"guest_house",
+"telefono":"+393203536641",
+"lat":46.081524,
+"lon":12.583638
+},
+{
+"nome":"Agriturismo Tonutti",
+"tipoOsm":"guest_house",
+"comune":"Tavagnacco",
+"indirizzo":"Via Ribis 17",
+"cap":"33010",
+"sito":"https://www.agriturismotonutti.it/le-camere/",
+"lat":46.115995,
+"lon":13.237261
+},
+{
+"nome":"Stella d'Oro",
+"tipoOsm":"hotel",
+"comune":"Spilimbergo",
+"indirizzo":"Via Venti Settembre 58",
+"cap":"33097",
+"lat":46.109792,
+"lon":12.899235
+},
+{
+"nome":"B&B Cà Bianca",
+"tipoOsm":"guest_house",
+"comune":"Latisana",
+"indirizzo":"Via Guglielmo Marconi 167",
+"cap":"33053",
+"lat":45.785349,
+"lon":13.007495
+},
+{
+"nome":"B&B Al Ponte",
+"tipoOsm":"guest_house",
+"comune":"Latisana",
+"indirizzo":"Via del Capricorno 6",
+"cap":"33053",
+"telefono":"+39 0431 096082",
+"email":"Claudia_terry@hotmail.it",
+"sito":"https://www.bbselection.it/cerca-il-b-b/b-b-accessibile/60-b-b-al-ponte.html",
+"lat":45.678108,
+"lon":13.081681
+},
+{
+"nome":"Casa Spina",
+"tipoOsm":"guest_house",
+"comune":"Gorizia",
+"indirizzo":"Via Rastello 37",
+"cap":"34170",
+"telefono":"+39 0481 32729",
+"lat":45.943638,
+"lon":13.625224
+},
+{
+"nome":"All'Antico Borgo",
+"tipoOsm":"guest_house",
+"comune":"Camino al Tagliamento",
+"indirizzo":"Via Tagliamento 16",
+"cap":"33030",
+"lat":45.925899,
+"lon":12.941036
+},
+{
+"nome":"Al comune rustico",
+"tipoOsm":"hotel",
+"comune":"Arta Terme",
+"indirizzo":"Via Fontana 14",
+"cap":"33022",
+"telefono":"+39 0433 92218",
+"sito":"https://alcomunerustico.it/",
+"lat":46.473027,
+"lon":13.025583
+},
+{
+"nome":"Albergo Ristorante Salon",
+"tipoOsm":"hotel",
+"comune":"Arta Terme",
+"indirizzo":"Via Giuseppe Peresson 70",
+"cap":"33022",
+"telefono":"+39 0433 92003",
+"email":"info@albergosalon.com",
+"sito":"http://www.albergosalon.com",
+"lat":46.486932,
+"lon":13.015924
+},
+{
+"nome":"Grand Hotel Gortani",
+"tipoOsm":"hotel",
+"indirizzo":"Via Umberto Primo 43",
+"telefono":"+39 0433 928754",
+"sito":"https://www.gortani.it/",
+"lat":46.47167,
+"lon":13.025623
+},
+{
+"nome":"Pensione Cozzi",
+"tipoOsm":"hotel",
+"comune":"Arta Terme",
+"indirizzo":"Via Giuseppe Peresson 13",
+"cap":"33022",
+"telefono":"+39 0433 92039",
+"sito":"https://sites.google.com/site/ecg2004/home",
+"lat":46.482937,
+"lon":13.019249
+},
+{
+"nome":"Albergo Centrale",
+"tipoOsm":"hotel",
+"comune":"Tarcento",
+"indirizzo":"Via Giuseppe Garibaldi 1",
+"cap":"33017",
+"lat":46.215622,
+"lon":13.222587
+},
+{
+"nome":"La Casa di Riki",
+"tipoOsm":"guest_house",
+"comune":"Tarcento",
+"indirizzo":"Via Bernadia 50",
+"cap":"33017",
+"lat":46.219274,
+"lon":13.241453
+},
+{
+"nome":"Albergo Ristorante Belvedere",
+"tipoOsm":"hotel",
+"telefono":"+39 0427 93016",
+"sito":"http://www.albelvedere.it/",
+"lat":46.158655,
+"lon":12.823917
+},
+{
+"nome":"Villaggio scout \"Aldo Braida\"",
+"tipoOsm":"chalet",
+"sito":"https://www.casaperferiecesclans.it/",
+"lat":46.352887,
+"lon":13.049285
+},
+{
+"nome":"Standard Hotel",
+"tipoOsm":"hotel",
+"comune":"Pradamano",
+"indirizzo":"Via Pier Paolo Pasolini 4",
+"cap":"33040",
+"sito":"https://standardhoteludine.it/",
+"lat":46.021741,
+"lon":13.286283
+},
+{
+"nome":"Alle Robinie",
+"tipoOsm":"guest_house",
+"comune":"Pradamano",
+"indirizzo":"Via Orsaria 14",
+"cap":"33040",
+"lat":46.030059,
+"lon":13.308583
+},
+{
+"nome":"Hotel Jolanda",
+"tipoOsm":"hotel",
+"comune":"Marano Lagunare",
+"indirizzo":"Via Udine 7",
+"cap":"33050",
+"lat":45.766216,
+"lon":13.167758
+},
+{
+"nome":"Agriturismo Contessi",
+"tipoOsm":"guest_house",
+"comune":"San Daniele del Friuli",
+"indirizzo":"Via Chiamanis 61",
+"cap":"33038",
+"telefono":"+39347 1124377",
+"email":"info@agriturismocontessi.com",
+"sito":"https://www.agriturismocontessi.com/",
+"lat":46.172224,
+"lon":13.011314
+},
+{
+"nome":"Agriturismo Il Salice Ridente",
+"tipoOsm":"guest_house",
+"comune":"Pasiano di Pordenone",
+"indirizzo":"Via Santa Maria 4",
+"cap":"33087",
+"lat":45.824154,
+"lon":12.652226
+},
+{
+"nome":"A Casa Mia",
+"tipoOsm":"guest_house",
+"comune":"Romans d'Isonzo",
+"indirizzo":"Via Cividale 23",
+"cap":"34076",
+"lat":45.892533,
+"lon":13.437
+},
+{
+"nome":"Casa della Fornace",
+"tipoOsm":"guest_house",
+"comune":"San Vito al Torre",
+"indirizzo":"Via Venezia 7",
+"cap":"33050",
+"lat":45.880904,
+"lon":13.380098
+},
+{
+"nome":"Agriturismo Ronchi Rò",
+"tipoOsm":"hotel",
+"comune":"Dolegna del Collio",
+"cap":"34070",
+"sito":"https://www.ronchiro.it/",
+"lat":46.024302,
+"lon":13.488043
+},
+{
+"nome":"Agriturismo Casa delle Rose",
+"tipoOsm":"hotel",
+"comune":"Dolegna del Collio",
+"indirizzo":"Località Ruttars 17",
+"cap":"34070",
+"telefono":"+393477515804",
+"lat":45.99633,
+"lon":13.477372
+},
+{
+"nome":"B&B La Scala",
+"tipoOsm":"hotel",
+"comune":"Castelnovo del Friuli",
+"indirizzo":"Località Paludea 53",
+"cap":"33090",
+"telefono":"+39 338 145 1871",
+"sito":"https://beb.it/lascala/it/",
+"lat":46.199914,
+"lon":12.902951
+},
+{
+"nome":"Albergo Salus",
+"tipoOsm":"hotel",
+"comune":"Pontebba",
+"indirizzo":"Via Cavour 1",
+"cap":"33016",
+"telefono":"+39 042890353",
+"lat":46.502027,
+"lon":13.303967
+},
+{
+"nome":"Albergo Spina",
+"tipoOsm":"hotel",
+"comune":"Pontebba",
+"indirizzo":"Via Roma 12",
+"cap":"33016",
+"sito":"https://www.albergospina.it/",
+"lat":46.504966,
+"lon":13.305137
+},
+{
+"nome":"Agriturismo Villa Trovatore",
+"tipoOsm":"guest_house",
+"comune":"Cervignano del Friuli",
+"indirizzo":"Via Lino Stabile 42/1",
+"cap":"33052",
+"telefono":"+39 0431 35274",
+"sito":"http://www.villatrovatore.it",
+"lat":45.815896,
+"lon":13.359391
+},
+{
+"nome":"Casa Saveri - locazione turistica - CIN IT030047C2TW89X773",
+"tipoOsm":"apartment",
+"comune":"Lauco",
+"cap":"33029",
+"telefono":"+390433060025",
+"email":"casa.saveri@gmail.com",
+"sito":"https://www.casasaveri.it/",
+"lat":46.43162,
+"lon":12.945427
+},
+{
+"nome":"B&B Dromì a l'Alpìn",
+"tipoOsm":"guest_house",
+"comune":"Erto e Casso",
+"indirizzo":"Via 9 ottobre 1963 66",
+"cap":"33080",
+"lat":46.277197,
+"lon":12.372077
+},
+{
+"nome":"Albergo Neider",
+"tipoOsm":"hotel",
+"comune":"Sauris",
+"cap":"33020",
+"telefono":"+39 0433 86098",
+"email":"info@neiderhotel.com",
+"lat":46.467351,
+"lon":12.684135
+},
+{
+"nome":"Bed and Breakfast Pa' Mairlan",
+"tipoOsm":"guest_house",
+"comune":"Sauris",
+"cap":"33020",
+"telefono":"+39 0433 86009",
+"sito":"http://www.pamairlan-sauris.it",
+"lat":46.467092,
+"lon":12.68268
+},
+{
+"nome":"Garnì Plueme",
+"tipoOsm":"guest_house",
+"comune":"Sauris",
+"cap":"33020",
+"telefono":"+39 0433 866374",
+"sito":"http://www.hotelpluemesauris.it",
+"lat":46.464686,
+"lon":12.709352
+},
+{
+"nome":"Locanda al Pomo D'oro",
+"tipoOsm":"hotel",
+"comune":"Cividale del Friuli",
+"indirizzo":"Piazza San Giovanni 20",
+"cap":"33043",
+"telefono":"+39 0439 731489",
+"sito":"https://www.alpomodoro.com/",
+"lat":46.094853,
+"lon":13.431886
+},
+{
+"nome":"B&B Al Sentiero di Charly",
+"tipoOsm":"guest_house",
+"comune":"Tarvisio",
+"indirizzo":"Via Lussari 18b",
+"cap":"33018",
+"telefono":"+39 334 3857292",
+"sito":"https://charly.bedsandhotels.com/",
+"lat":46.507122,
+"lon":13.539519
+},
+{
+"nome":"B&B A cjase di Lise",
+"tipoOsm":"guest_house",
+"telefono":"+39 0432 980099",
+"email":"info@acjasedilise.it",
+"sito":"http://www.acjasedilise.it",
+"lat":46.272274,
+"lon":13.13348
+},
+{
+"nome":"La pergola",
+"tipoOsm":"hotel",
+"indirizzo":"Via Latisana 185",
+"telefono":"+39 0431 71355",
+"email":"info@lapergolalignano.it",
+"sito":"https://www.lapergolalignano.it/",
+"lat":45.684123,
+"lon":13.126898
+},
+{
+"nome":"Albergo al Sole",
+"tipoOsm":"hotel",
+"indirizzo":"Via Belluno 14",
+"cap":"33020",
+"telefono":"+39 0433 72012",
+"email":"forniavoltrialsole@libero.it",
+"sito":"www.alsoleroomanin.it",
+"lat":46.585596,
+"lon":12.772397
+},
+{
+"nome":"Principe",
+"tipoOsm":"hotel",
+"comune":"Udine",
+"indirizzo":"Viale Europa Unita 51",
+"cap":"33100",
+"telefono":"+39 0432 506 000",
+"email":"info@principe-hotel.it",
+"sito":"https://www.principe-hotel.it/",
+"lat":46.056949,
+"lon":13.242328
+},
+{
+"nome":"Locanda enoteca Al Centrâl",
+"tipoOsm":"guest_house",
+"sito":"http://www.alcentral.it/",
+"lat":46.276961,
+"lon":13.140546
+},
+{
+"nome":"Bajta",
+"tipoOsm":"guest_house",
+"email":"info@bajta.it",
+"sito":"https://www.bajta.it/",
+"lat":45.745813,
+"lon":13.721766
+},
+{
+"nome":"Hotel Centrale",
+"tipoOsm":"hotel",
+"comune":"Trieste",
+"indirizzo":"Via Amilcare Ponchielli 1",
+"cap":"34122",
+"telefono":"+39 040 639482",
+"sito":"https://www.triestehotelcentrale.com/",
+"lat":45.651191,
+"lon":13.774737
+},
+{
+"nome":"Tivoli Wellness Resort & Spa",
+"tipoOsm":"hotel",
+"comune":"Duino Aurisina / Devin - Nabrežina",
+"cap":"34011",
+"telefono":"+39 040 9974900",
+"email":"portopiccolo@tivoli-hotels.com",
+"sito":"https://www.tivolihotels.com",
+"lat":45.766613,
+"lon":13.636776
+},
+{
+"nome":"La Cjase dai Toscans",
+"tipoOsm":"guest_house",
+"comune":"Cividale del Friuli",
+"indirizzo":"Corso Giuseppe Mazzini 15",
+"cap":"33043",
+"telefono":"+39 349 0765288",
+"sito":"http://www.lacjasedaitoscans.it/",
+"lat":46.093725,
+"lon":13.430794
+},
+{
+"nome":"Bed and Breakfast Aurora",
+"tipoOsm":"guest_house",
+"comune":"Cividale del Friuli",
+"indirizzo":"Piazzetta San Nicolò 11",
+"cap":"33043",
+"lat":46.090146,
+"lon":13.432956
+},
+{
+"nome":"Alla Rosa dei Venti",
+"tipoOsm":"guest_house",
+"comune":"Stregna",
+"indirizzo":"Frazione Tribil Superiore 50",
+"cap":"33040",
+"lat":46.141434,
+"lon":13.618954
+},
+{
+"nome":"La Via delle Trincee",
+"tipoOsm":"guest_house",
+"telefono":"+39 0432 721104",
+"lat":46.172647,
+"lon":13.653158
+},
+{
+"nome":"Relais La Collina",
+"tipoOsm":"guest_house",
+"telefono":"+39 327 7004499",
+"email":"relaislacollina@gmail.com",
+"sito":"https://www.zorzettigvini.it/it/territorio/relaiscolline",
+"lat":46.0414,
+"lon":13.417075
+},
+{
+"nome":"B&B Casa Angela",
+"tipoOsm":"guest_house",
+"telefono":"+39 337 532 623",
+"email":"angelasabucco@gmail.com",
+"sito":"https://www.casaangela.it/",
+"lat":46.052737,
+"lon":13.236886
+},
+{
+"nome":"B&B Casa Stucky",
+"tipoOsm":"guest_house",
+"telefono":"+39 0432 521649",
+"email":"info@casastucky.it",
+"sito":"https://www.casastucky.com/",
+"lat":46.052703,
+"lon":13.23674
+},
+{
+"nome":"Hotel Brioni",
+"tipoOsm":"hotel",
+"indirizzo":"Via della Ginnastica 2",
+"telefono":"+39 040 772942",
+"lat":45.650346,
+"lon":13.77828
+},
+{
+"nome":"Accanto al Focolare",
+"tipoOsm":"guest_house",
+"telefono":"+39 0432 521996",
+"email":"info@accantoalfocolare.it",
+"lat":46.03992,
+"lon":13.25535
+},
+{
+"nome":"Best Western Hotel San Giusto",
+"tipoOsm":"hotel",
+"sito":"https://www.hotelsangiusto.it/",
+"lat":45.641927,
+"lon":13.780781
+},
+{
+"nome":"Silvestri Grado",
+"tipoOsm":"guest_house",
+"comune":"Grado",
+"indirizzo":"Viale delle Pleiadi 14",
+"cap":"34073",
+"lat":45.677496,
+"lon":13.428376
+},
+{
+"nome":"Residenza Ex Ospedale Militare",
+"tipoOsm":"hostel",
+"telefono":"+39 040 2471923",
+"email":"info.trieste@dovevivo.com",
+"sito":"http://www.ospedalemilitare.units.it/",
+"lat":45.657117,
+"lon":13.78396
+},
+{
+"nome":"Appartamento Ariston",
+"tipoOsm":"apartment",
+"comune":"Grado",
+"indirizzo":"Viale delle Pleiadi 16",
+"cap":"34073",
+"sito":"https://www.benitalia.com/it/appartamento-ariston-lido_5762248-1.html",
+"lat":45.677359,
+"lon":13.428344
+},
+{
+"nome":"Agriturismo Alle Ruote",
+"tipoOsm":"guest_house",
+"telefono":"+393334643146",
+"sito":"www.alleruote.it",
+"lat":46.21569,
+"lon":12.797142
+},
+{
+"nome":"San Giorgio Hotel",
+"tipoOsm":"hotel",
+"comune":"San Giorgio di Nogaro",
+"indirizzo":"Via Marittima 69a",
+"cap":"33058",
+"telefono":"+39 0431 66024",
+"email":"info@sangiorgiohotel.net",
+"sito":"http://www.sangiorgiohotel.net/",
+"lat":45.823992,
+"lon":13.214339
+},
+{
+"nome":"Appartamento14",
+"tipoOsm":"guest_house",
+"indirizzo":"Viale Martiri della Libertà 26",
+"telefono":"+393405863615",
+"email":"appartamento014@gmail.com",
+"lat":45.680399,
+"lon":13.406949
+},
+{
+"nome":"Albergo Venezia",
+"tipoOsm":"hotel",
+"comune":"Sappada",
+"cap":"33012",
+"email":"info@albergovenezia.net",
+"sito":"https://www.albergovenezia.net/",
+"lat":46.565376,
+"lon":12.680239
+},
+{
+"nome":"Solder Chalet",
+"tipoOsm":"apartment",
+"sito":"https://www.solderchaletdolomiti.it/",
+"lat":46.569696,
+"lon":12.700529
+},
+{
+"nome":"B&B Piccola corte",
+"tipoOsm":"guest_house",
+"sito":"http://www.piccolacortedicividale.it",
+"lat":46.094734,
+"lon":13.431909
+},
+{
+"nome":"La Regina del Bosco",
+"tipoOsm":"guest_house",
+"comune":"Flambruzzo",
+"indirizzo":"Via Francesco Petrarca 17",
+"cap":"33050",
+"telefono":"+39 339 6434736",
+"email":"lareginadelboscoagriturismo@gmail.com",
+"sito":"https://lareginadelbosco.com/",
+"lat":45.889402,
+"lon":13.065789
+},
+{
+"nome":"Casa Elisa",
+"tipoOsm":"guest_house",
+"telefono":"+39 0432 700991",
+"email":"casaelisa@gmail.com",
+"lat":46.094059,
+"lon":13.430989
+},
+{
+"nome":"Nuovo Albergo Operai",
+"tipoOsm":"hotel",
+"comune":"Monfalcone",
+"indirizzo":"Via del Mercato 5",
+"cap":"34074",
+"sito":"https://naohotel.it",
+"lat":45.795309,
+"lon":13.536311
+},
+{
+"nome":"B&B Hotel Trieste",
+"tipoOsm":"hotel",
+"comune":"Trieste",
+"indirizzo":"Via Sant'Anastasio 1",
+"cap":"34132",
+"telefono":"+39 040 364242",
+"email":"trieste@hotelbb.com",
+"sito":"https://www.hotel-bb.com/it/hotel/trieste.htm",
+"lat":45.65654,
+"lon":13.773598
+},
+{
+"nome":"Ai Gelsi",
+"tipoOsm":"hotel",
+"telefono":"+39 0432 907064",
+"email":"info@gelsi.com",
+"sito":"https://www.gelsi.com/",
+"lat":45.956548,
+"lon":12.973119
+},
+{
+"nome":"Albergo Da Nando",
+"tipoOsm":"hotel",
+"comune":"Mortegliano",
+"indirizzo":"Via Divisione Julia 10",
+"cap":"33050",
+"lat":45.945655,
+"lon":13.177613
+},
+{
+"nome":"Là di Modot",
+"tipoOsm":"guest_house",
+"comune":"Udine",
+"indirizzo":"Via Bariglaria 239",
+"cap":"33100",
+"telefono":"+39 0432 565900",
+"email":"ladimodot@gmail.com",
+"lat":46.090572,
+"lon":13.26901
+},
+{
+"nome":"Hotel Pittini",
+"tipoOsm":"hotel",
+"comune":"Gemona del Friuli",
+"indirizzo":"Piazzale della Stazione 10",
+"cap":"33013",
+"lat":46.274641,
+"lon":13.128829
+},
+{
+"nome":"Hotel Ramandolo",
+"tipoOsm":"hotel",
+"comune":"Udine",
+"indirizzo":"Via Forni di Sotto 28",
+"lat":46.077631,
+"lon":13.233531
+},
+{
+"nome":"Altaneto 22",
+"tipoOsm":"guest_house",
+"sito":"https://www.bbaltaneto22.com/",
+"lat":46.275729,
+"lon":13.140307
+},
+{
+"nome":"Ostello Tergeste",
+"tipoOsm":"hostel",
+"indirizzo":"Viale Miramare 331",
+"telefono":"+39 040 224102",
+"sito":"www.ostellotergeste.com",
+"lat":45.700373,
+"lon":13.7236
+},
+{
+"nome":"la LUNA delle MONTAGNE",
+"tipoOsm":"chalet",
+"comune":"Tarivisio",
+"indirizzo":"Via Luigi Cadorna 6",
+"cap":"33018",
+"telefono":"+39 3517666219",
+"email":"info@lalunadellemontagne.eu",
+"sito":"www.lalunadellemontagne.eu",
+"lat":46.500607,
+"lon":13.593527
+},
+{
+"nome":"La Siesta",
+"tipoOsm":"guest_house",
+"sito":"http://www.lasiestarooms.com/",
+"lat":46.094631,
+"lon":13.427713
+},
+{
+"nome":"Cristofoli",
+"tipoOsm":"hotel",
+"telefono":"+39 0433 777018",
+"email":"albergocristofoli@libero.it",
+"sito":"https://www.albergocristofoli.it/",
+"lat":46.53367,
+"lon":13.042962
+},
+{
+"nome":"Miramonti",
+"tipoOsm":"hotel",
+"telefono":"+39 0433 43563",
+"lat":46.430303,
+"lon":13.057861
+},
+{
+"nome":"Dal Asin",
+"tipoOsm":"hotel",
+"email":"monica.scagnetto@libero.it",
+"lat":46.18529,
+"lon":13.071285
+},
+{
+"nome":"Hotel San Daniele",
+"tipoOsm":"hotel",
+"telefono":"+39 0432 941131",
+"email":"info@sandanielehotel.com",
+"sito":"https://www.sandanielehotel.com/",
+"lat":46.160177,
+"lon":13.0099
+},
+{
+"nome":"Farfalla",
+"tipoOsm":"hotel",
+"telefono":"+39 0431 720855",
+"email":"hotel.sancarlo@doimohotels.it",
+"sito":"https://www.doimohotels.it/",
+"lat":45.694799,
+"lon":13.149465
+},
+{
+"nome":"Frecce Tricolori",
+"tipoOsm":"hotel",
+"telefono":"+39 0432 906237",
+"email":"hftmail@alice.it",
+"lat":45.978503,
+"lon":13.035729
+},
+{
+"nome":"El Gaucho Argentino",
+"tipoOsm":"hotel",
+"telefono":"+39 0432 773804",
+"email":"gaucho2014@libero.it",
+"lat":45.878798,
+"lon":13.043539
+},
+{
+"nome":"Da Bosco",
+"tipoOsm":"hotel",
+"telefono":"+39 0432 900696",
+"email":"hoteldabosco@libero.it",
+"lat":45.964891,
+"lon":12.954489
+},
+{
+"nome":"Il Bosco di Arichis",
+"tipoOsm":"hotel",
+"telefono":"+39 0434 889657",
+"email":"amministrazione@ilboscodiarichis.it",
+"sito":"http://www.ilboscodiarichies.it",
+"lat":46.035508,
+"lon":12.853971
+},
+{
+"nome":"Scarpone",
+"tipoOsm":"hotel",
+"telefono":"+39 0433 727463",
+"email":"info@hotelscarpone.com",
+"sito":"https://www.hotelscarpone.com/",
+"lat":46.584914,
+"lon":12.777811
+},
+{
+"nome":"La Baita",
+"tipoOsm":"hotel",
+"telefono":"+39 0428 41959",
+"email":"hotel-labaita@libero.it",
+"sito":"https://hotel-labaita.com/",
+"lat":46.506386,
+"lon":13.44137
+},
+{
+"nome":"Locanda Al Castello",
+"tipoOsm":"hotel",
+"telefono":"+39 0432 733242",
+"email":"info@alcastello.net",
+"sito":"https://www.alcastello.net/",
+"lat":46.102035,
+"lon":13.424007
+},
+{
+"nome":"Trattoria Locanda Al Grop",
+"tipoOsm":"hotel",
+"sito":"https://www.algrop.net/",
+"lat":46.12618,
+"lon":13.208533
+},
+{
+"nome":"Bed & Chic",
+"tipoOsm":"hotel",
+"comune":"Trieste",
+"indirizzo":"Via Fabio Severo 16",
+"cap":"34133",
+"lat":45.656244,
+"lon":13.780463
+},
+{
+"nome":"Delle Rose rooms",
+"tipoOsm":"hostel",
+"comune":"Trieste",
+"indirizzo":"Via Giulia 5",
+"cap":"34126",
+"telefono":"+39 324 780 9212",
+"lat":45.653419,
+"lon":13.783085
+},
+{
+"nome":"ControVento Hostel",
+"tipoOsm":"hostel",
+"comune":"Trieste",
+"indirizzo":"Piazza Venezia 1",
+"cap":"34123",
+"telefono":"+39040309636",
+"email":"controventohostel@gmail.com",
+"sito":"https://www.controventohostel.com/en/",
+"lat":45.646742,
+"lon":13.762005
+},
+{
+"nome":"Le Oche Selvatiche",
+"tipoOsm":"guest_house",
+"comune":"Pavia di Udine",
+"indirizzo":"Via Pio Paschini 6",
+"cap":"33050",
+"telefono":"+39 0432 675865; +39 340 6869705",
+"email":"info@agricolastefanutti.com",
+"sito":"https://www.agricolastefanutti.com/",
+"lat":45.985029,
+"lon":13.282932
+},
+{
+"nome":"Stop&Sleep",
+"tipoOsm":"guest_house",
+"sito":"http://www.stopsleepudine.com/stop-sleep-camere-a-venzone/",
+"lat":46.333862,
+"lon":13.139346
+},
+{
+"nome":"Al Fogolar Rooms & Osteria",
+"tipoOsm":"hotel",
+"sito":"https://www.alfogolar.it/",
+"lat":46.388399,
+"lon":12.991271
+},
+{
+"nome":"Vecchie Tre Colonne",
+"tipoOsm":"guest_house",
+"telefono":"+39 3382906085",
+"lat":46.094371,
+"lon":13.42963
+},
+{
+"nome":"Affittacamere da Zippo",
+"tipoOsm":"guest_house",
+"comune":"Venzone",
+"indirizzo":"Via Alberton del Colle 21",
+"cap":"33010",
+"lat":46.334621,
+"lon":13.138661
+},
+{
+"nome":"Associazione Casa Mia",
+"tipoOsm":"hostel",
+"indirizzo":"Via Bersaglio Vecchio 10",
+"lat":46.404999,
+"lon":13.004603
+},
+{
+"nome":"Al Pic de Corone",
+"tipoOsm":"guest_house",
+"indirizzo":"Via Eugenio Curiel 39",
+"telefono":"+39 349 584 0450",
+"sito":"https://www.alpicdecorone.it/",
+"lat":45.802687,
+"lon":13.343106
+},
+{
+"nome":"Rifugio Chiadinas",
+"tipoOsm":"alpine_hut",
+"indirizzo":"Panoramica delle Vette",
+"lat":46.565597,
+"lon":12.89473
+},
+{
+"nome":"Su da noi",
+"tipoOsm":"guest_house",
+"comune":"San Dorligo della Valle / Dolina",
+"cap":"34018",
+"sito":"https://www.airbnb.it/rooms/21743445",
+"lat":45.625089,
+"lon":13.866854
+},
+{
+"nome":"Ricovero Casera Bordaglia di sotto",
+"tipoOsm":"alpine_hut",
+"telefono":"+39 345 157 4953",
+"email":"malgabordaglia@gmail.com",
+"lat":46.617273,
+"lon":12.806666
+},
+{
+"nome":"Alloggio agrituristico Ai Tre Castelli",
+"tipoOsm":"guest_house",
+"comune":"Moruzzo",
+"indirizzo":"Via Carbonaria 3",
+"cap":"33030",
+"telefono":"+390432672795",
+"sito":"http://www.aitrecastelli.it",
+"lat":46.116285,
+"lon":13.113448
+},
+{
+"nome":"La Collina delle Mignole",
+"tipoOsm":"guest_house",
+"comune":"Moruzzo",
+"indirizzo":"Via Mazzanins 2",
+"cap":"33030",
+"telefono":"+393925626481",
+"sito":"https://www.lacollinadellemignole.it",
+"lat":46.117763,
+"lon":13.145595
+},
+{
+"nome":"B&B Antico Borgo",
+"tipoOsm":"guest_house",
+"comune":"San Daniele del Friuli",
+"indirizzo":"Via Aonedis 20",
+"cap":"33038",
+"telefono":"+390432956142",
+"email":"a.lenarduzzi@hotmail.it",
+"lat":46.150418,
+"lon":12.971611
+},
+{
+"nome":"Laura e Christian Rooms",
+"tipoOsm":"guest_house",
+"telefono":"+39 339 686 3355",
+"email":"info.lauraechristian@gmail.com",
+"sito":"https://www.lauraechristiangrado.it/",
+"lat":45.680144,
+"lon":13.384463
+},
+{
+"nome":"Crocevia Locanda Carsica Contemporanea",
+"tipoOsm":"apartment",
+"comune":"Trieste",
+"cap":"34151",
+"telefono":"+39 366 363 3394",
+"email":"crocevia173@gmail.com",
+"sito":"https://crocevia173.it",
+"lat":45.734101,
+"lon":13.69377
+},
+{
+"nome":"Central Greenlife",
+"tipoOsm":"guest_house",
+"comune":"Tarvisio",
+"indirizzo":"Via Vittorio Veneto 50",
+"cap":"33018",
+"lat":46.504626,
+"lon":13.57453
+},
+{
+"nome":"Ben and Breakfast Tre Cuori",
+"tipoOsm":"guest_house",
+"sito":"https://www.bbtrecuori.com/",
+"lat":46.074565,
+"lon":13.247797
+},
+{
+"nome":"Agriturismo Ai Casali",
+"tipoOsm":"guest_house",
+"comune":"Cividale del Friuli",
+"indirizzo":"Strada di Guspergo 19",
+"cap":"33043",
+"lat":46.110147,
+"lon":13.44549
+},
+{
+"nome":"Alla Pagoda",
+"tipoOsm":"hotel",
+"telefono":"+39 0433 746170",
+"lat":46.42009,
+"lon":12.872659
+},
+{
+"nome":"Residence Agrituristico Caporale",
+"tipoOsm":"guest_house",
+"comune":"Remanzacco",
+"indirizzo":"Casali Stella 1",
+"cap":"33047",
+"telefono":"+39 0432 667605",
+"sito":"https://residencecaporale.it",
+"lat":46.071054,
+"lon":13.316811
+},
+{
+"nome":"B&B da Manu e Michi",
+"tipoOsm":"guest_house",
+"comune":"Carlino",
+"indirizzo":"Via Michelangelo Grigoletti 13",
+"cap":"33050",
+"lat":45.802589,
+"lon":13.189343
+},
+{
+"nome":"Casera Tragonia",
+"tipoOsm":"wilderness_hut",
+"telefono":"+39 333 273 2924",
+"email":"malga.tragonia@gmail.com",
+"lat":46.455129,
+"lon":12.6029
+},
+{
+"nome":"Hotello Trieste",
+"tipoOsm":"hostel",
+"comune":"Trieste",
+"indirizzo":"Via Valdirivo 6",
+"telefono":"+39 040 989 2908",
+"email":"info@hotello.space",
+"sito":"https://www.hotello.space/",
+"lat":45.654132,
+"lon":13.771307
+},
+{
+"nome":"Hotel Natisone",
+"tipoOsm":"hotel",
+"sito":"http://www.hotelnatisone.com/",
+"lat":46.152289,
+"lon":13.489682
+},
+{
+"nome":"Rifugio Pian dei Ciclamini",
+"tipoOsm":"alpine_hut",
+"comune":"Lusevera",
+"indirizzo":"Pian dei Ciclamini 28",
+"cap":"33010",
+"telefono":"0432 787360 - 348 7690918",
+"email":"info@rifugiopiandeiciclamini.it",
+"sito":"https://rifugiopiandeiciclamini.it/",
+"lat":46.305108,
+"lon":13.322572
+},
+{
+"nome":"Hotel Solun",
+"tipoOsm":"hotel",
+"comune":"Trieste",
+"indirizzo":"Via Milano 16",
+"cap":"34132",
+"telefono":"+39 040 2038211",
+"email":"reservations@hotelsolun.it",
+"sito":"https://hotelsolun.it/",
+"lat":45.653605,
+"lon":13.774794
+},
+{
+"nome":"SmartRooms & Accommodation",
+"tipoOsm":"hostel",
+"comune":"Trieste",
+"indirizzo":"Via Niccolò Machiavelli 28",
+"cap":"34132",
+"email":"info@smartrooms.it",
+"sito":"https://www.smartrooms.it/",
+"lat":45.652387,
+"lon":13.774161
+},
+{
+"nome":"B&B Briscak",
+"tipoOsm":"guest_house",
+"comune":"Sgonico / Zgonik",
+"cap":"34010",
+"telefono":"+39 040 220524",
+"email":"briscak@libero.it",
+"lat":45.741239,
+"lon":13.710713
+},
+{
+"nome":"Centrale",
+"tipoOsm":"hotel",
+"telefono":"+39 0431 55000",
+"sito":"http://www.hotelsandron.it/",
+"lat":45.721981,
+"lon":13.040522
+},
+{
+"nome":"Hotel Sonia",
+"tipoOsm":"hotel",
+"comune":"San Dorligo della Valle / Dolina",
+"cap":"34018",
+"telefono":"+39 040 820229",
+"email":"info@hotelsonia.com",
+"sito":"https://www.hotelsonia.com/",
+"lat":45.612149,
+"lon":13.827133
+},
+{
+"nome":"0.3 Stanze",
+"tipoOsm":"guest_house",
+"comune":"Trieste",
+"indirizzo":"Viale Miramare 27",
+"cap":"34135",
+"lat":45.662322,
+"lon":13.770172
+},
+{
+"nome":"Ca' Neva",
+"tipoOsm":"guest_house",
+"comune":"Cividale del Friuli",
+"indirizzo":"Via San Giorgio 21/1",
+"cap":"33043",
+"email":"gianna.armellini@gmail.com",
+"lat":46.082496,
+"lon":13.427908
+},
+{
+"nome":"Piccola Corte di Cividale",
+"tipoOsm":"guest_house",
+"comune":"Cividale del Friuli",
+"indirizzo":"Piazza San Giovanni 22/3",
+"cap":"33043",
+"telefono":"+39 335 7071898",
+"email":"Piccola.Corte.Cividale@gmail.com",
+"lat":46.094785,
+"lon":13.43176
+},
+{
+"nome":"Da Gilberto",
+"tipoOsm":"guest_house",
+"comune":"Cividale del Friuli",
+"indirizzo":"Via Gagliano 40/3",
+"cap":"33043",
+"telefono":"+39 0432 730107",
+"email":"info@locandadagilberto.it",
+"sito":"https://www.locandadagilberto.it/",
+"lat":46.071168,
+"lon":13.434062
+},
+{
+"nome":"Casa Carbonara",
+"tipoOsm":"guest_house",
+"comune":"Cividale del Friuli",
+"indirizzo":"Via Borgo San Domenico 3",
+"cap":"33043",
+"lat":46.096352,
+"lon":13.428535
+},
+{
+"nome":"Milena",
+"tipoOsm":"guest_house",
+"comune":"Cividale del Friuli",
+"indirizzo":"Via Alcide De Gasperi 7",
+"cap":"33043",
+"telefono":"+39 0432 733459",
+"email":"marioavifu@libero.it",
+"lat":46.091505,
+"lon":13.427858
+},
+{
+"nome":"Apartmani Famiglia Veronesi",
+"tipoOsm":"guest_house",
+"telefono":"+39 339 741 9945",
+"sito":"https://appartamentiveronesi.com/",
+"lat":45.68,
+"lon":13.384747
+},
+{
+"nome":"Casa di Mirea",
+"tipoOsm":"guest_house",
+"telefono":"+39 339 432 6013",
+"email":"info@casadimirea.com",
+"sito":"http://www.casadimirea.com/it/grado/",
+"lat":45.679859,
+"lon":13.384558
+},
+{
+"nome":"Euro Meublé",
+"tipoOsm":"hotel",
+"comune":"Grado",
+"indirizzo":"Via Alessandro Manzoni 26",
+"cap":"34073",
+"telefono":"+39 0431 85360",
+"lat":45.678798,
+"lon":13.387844
+},
+{
+"nome":"Casa Delneri",
+"tipoOsm":"hotel",
+"telefono":"+39 88887651234",
+"email":"info@casadelneri.it",
+"sito":"https://casadelneri.it/",
+"lat":45.768415,
+"lon":13.364
+},
+{
+"nome":"Agriturismo Albafiorita",
+"tipoOsm":"guest_house",
+"comune":"Latisana",
+"indirizzo":"Via Crosere 115",
+"cap":"33053",
+"telefono":"+39 3408731918",
+"email":"info@albafiorita.com",
+"sito":"https://www.albafiorita.com/",
+"lat":45.796707,
+"lon":13.030168
+},
+{
+"nome":"Isola Augusta",
+"tipoOsm":"guest_house",
+"comune":"Palazzolo dello Stella",
+"cap":"33056",
+"telefono":"+39 0431 58046",
+"email":"info@isolaugusta.com",
+"sito":"https://www.isolaugusta.com/",
+"lat":45.799157,
+"lon":13.05471
+},
+{
+"nome":"Agli Angeli",
+"tipoOsm":"hotel",
+"comune":"Latisana",
+"indirizzo":"Via Lignano Sabbiadoro 96",
+"cap":"33053",
+"telefono":"+39 0431 55022",
+"email":"info@agliangeli.it",
+"sito":"https://www.agliangeli.it/",
+"lat":45.720334,
+"lon":13.048917
+},
+{
+"nome":"Sulle Orme Dell'Orso",
+"tipoOsm":"guest_house",
+"email":"daiana.miani@libero.it",
+"sito":"https://www.turismofvg.it/it/127426/sulle-orme-dell-orso",
+"lat":46.192911,
+"lon":13.439563
+},
+{
+"nome":"Nuovo Albergo Centro",
+"tipoOsm":"hotel",
+"indirizzo":"Via Roma 13",
+"sito":"https://www.hotelcentrotrieste.it/",
+"lat":45.652977,
+"lon":13.772777
+},
+{
+"nome":"B&B Al Buondì",
+"tipoOsm":"guest_house",
+"comune":"Tarvisio",
+"indirizzo":"Via Lussari 18d",
+"cap":"33018",
+"telefono":"+39 348 2564748",
+"email":"info@albuonditarvisio.com",
+"sito":"https://www.albuonditarvisio.com/",
+"lat":46.506931,
+"lon":13.540048
+},
+{
+"nome":"La Vrata Gialla",
+"tipoOsm":"guest_house",
+"comune":"Taipana",
+"indirizzo":"Via Montemaggiore",
+"cap":"33040",
+"telefono":"+39 334 249 1029",
+"sito":"https://www.lavratagialla.com/",
+"lat":46.266857,
+"lon":13.365686
+},
+{
+"nome":"Al Tiglio",
+"tipoOsm":"guest_house",
+"comune":"Attimis",
+"indirizzo":"Via Monte Canin 14",
+"cap":"33040",
+"telefono":"+39 348 2241929",
+"email":"info@affittacamerefragolementa.com",
+"sito":"https://www.altiglio.it/",
+"lat":46.207124,
+"lon":13.34377
+},
+{
+"nome":"Ostello Onair",
+"tipoOsm":"hostel",
+"telefono":"+39 391 338 3225",
+"lat":46.226416,
+"lon":13.406375
+},
+{
+"nome":"Hotel Istria",
+"tipoOsm":"hotel",
+"comune":"Trieste",
+"indirizzo":"Via Ruggero Timeus 5",
+"cap":"34125",
+"telefono":"+39040371343",
+"sito":"https://hotelistria.com/",
+"lat":45.651091,
+"lon":13.780249
+},
+{
+"nome":"BattistiCastel",
+"tipoOsm":"guest_house",
+"comune":"Gradisca d'Isonzo",
+"indirizzo":"Via Cesare Battisti 9",
+"cap":"34072",
+"telefono":"+39 348 410 2790",
+"sito":"https://battisticastel.business.site/",
+"lat":45.890767,
+"lon":13.503268
+},
+{
+"nome":"Agriturismo Tinello San Urbano",
+"tipoOsm":"guest_house",
+"sito":"https://tinellosanurbano.it",
+"lat":46.046301,
+"lon":13.48084
+},
+{
+"nome":"Trieste 411 - Rooms & Apartments",
+"tipoOsm":"hotel",
+"comune":"Trieste",
+"indirizzo":"Via Martiri della Libertà 7",
+"email":"info@trieste411.it",
+"sito":"https://trieste411.it",
+"lat":45.656018,
+"lon":13.775904
+},
+{
+"nome":"località Pociat",
+"tipoOsm":"hotel",
+"comune":"Moggio Udinese",
+"indirizzo":"strada provinciale 112 1/b",
+"cap":"33015",
+"lat":46.421183,
+"lon":13.199876
+},
+{
+"nome":"B&B Cuei di Baret",
+"tipoOsm":"guest_house",
+"telefono":"+39 3336421817  +39 3338387749",
+"email":"info@cueidibaret.it",
+"sito":"https://www.cueidibaret.it/",
+"lat":46.166637,
+"lon":13.221843
+},
+{
+"nome":"Hotel Sportur",
+"tipoOsm":"hotel",
+"comune":"Ravascletto",
+"indirizzo":"Via Valcalda 21",
+"cap":"33020",
+"lat":46.520605,
+"lon":12.918549
+},
+{
+"nome":"Hotel Ristorante La Perla",
+"tipoOsm":"hotel",
+"comune":"Ravascletto",
+"indirizzo":"Via San Spirito 43",
+"cap":"33020",
+"telefono":"+39 0433 66039",
+"email":"info@laperlahotel.eu",
+"sito":"https://laperlahotel.eu/",
+"lat":46.523226,
+"lon":12.920591
+},
+{
+"nome":"Al Quadrifoglio",
+"tipoOsm":"guest_house",
+"sito":"https://www.alquadrifoglio.com/albergo/",
+"lat":46.387934,
+"lon":12.992717
+},
+{
+"nome":"Mercatovecchio Luxury Suites",
+"tipoOsm":"apartment",
+"comune":"Udine",
+"indirizzo":"Via del Carbone 1",
+"cap":"33100",
+"telefono":"+393920467353",
+"lat":46.06407,
+"lon":13.234038
+},
+{
+"nome":"Marina San Giusto",
+"tipoOsm":"marina",
+"comune":"Trieste",
+"indirizzo":"Molo Venezia 1",
+"cap":"34123",
+"sito":"https://marinasangiusto.it/",
+"lat":45.648541,
+"lon":13.760174
+},
+{
+"nome":"Hotel “Dogana Vecchia”",
+"tipoOsm":"hotel",
+"sito":"https://www.doganavecchia.it/chi-siamo/",
+"lat":45.927785,
+"lon":13.367413
+},
+{
+"nome":"Cottage \"Le None\"",
+"tipoOsm":"guest_house",
+"comune":"Gonars",
+"indirizzo":"Via Gorizia 111a",
+"cap":"33050",
+"telefono":"+39 388 861 2544",
+"email":"cottage.lenone@gmail.com",
+"lat":45.901837,
+"lon":13.248319
+},
+{
+"nome":"The Townhouse",
+"tipoOsm":"apartment",
+"comune":"Udine",
+"indirizzo":"Via Trento 7",
+"cap":"33100",
+"telefono":"+39 339 8146424",
+"sito":"https://www.thetownhouse.it/",
+"lat":46.065311,
+"lon":13.243279
+},
+{
+"nome":"Ca' Marano",
+"tipoOsm":"guest_house",
+"comune":"Latisana",
+"indirizzo":"Via del Sagittario 35",
+"cap":"33053",
+"email":"info@camaranoapartments.com",
+"sito":"https://camaranoapartments.com/",
+"lat":45.681724,
+"lon":13.089251
+},
+{
+"nome":"La Casa di Gatsby",
+"tipoOsm":"apartment",
+"email":"info@apropositodigatsby.it",
+"sito":"https://www.apropositodigatsby.it/",
+"lat":45.940268,
+"lon":13.620338
+},
+{
+"nome":"The Venetien House",
+"tipoOsm":"apartment",
+"indirizzo":"Via dei Calderai 11",
+"sito":"https://www.lodgeart.it/en-gb/veneta",
+"lat":45.596972,
+"lon":13.776534
+},
+{
+"nome":"Affittacamere Famiglia Zarabara",
+"tipoOsm":"guest_house",
+"indirizzo":"Via Chiusini 2",
+"telefono":"+39 339 367 9877",
+"lat":46.483074,
+"lon":13.017615
+},
+{
+"nome":"Casa Vanda",
+"tipoOsm":"apartment",
+"comune":"Socchieve",
+"indirizzo":"Via San Giovanni 38",
+"cap":"33020",
+"sito":"https://albergodiffusosocchieve.it/",
+"lat":46.40752,
+"lon":12.846999
+},
+{
+"nome":"Tarandan",
+"tipoOsm":"hotel",
+"comune":"Forni di Sopra",
+"indirizzo":"Via Vittorio Veneto 24",
+"cap":"33024",
+"sito":"https://www.albergotarandan.it/",
+"lat":46.424825,
+"lon":12.578098
+},
+{
+"nome":"Mi casa Es Tu casa",
+"tipoOsm":"guest_house",
+"indirizzo":"Via del Fante 18",
+"telefono":"+39 329 782 6488",
+"email":"micasaestucasa.pn@gmail.com",
+"lat":45.964317,
+"lon":12.650916
+},
+{
+"nome":"Agriturismo Zaine Ristorante",
+"tipoOsm":"guest_house",
+"comune":"Sappada",
+"cap":"33012",
+"sito":"http://www.agriturismozaine.it/",
+"lat":46.570121,
+"lon":12.704382
+},
+{
+"nome":"da Gastone",
+"tipoOsm":"guest_house",
+"telefono":"+39 333 2951774",
+"email":"agriturismogastone@gmail.com",
+"sito":"https://www.agriturismodagastone.it/",
+"lat":45.879326,
+"lon":13.072198
+},
+{
+"nome":"A Due Passi",
+"tipoOsm":"guest_house",
+"comune":"Ovaro",
+"indirizzo":"Via Nungulas 2a",
+"cap":"33025",
+"email":"aduepassi.fvg@libero.it",
+"lat":46.480579,
+"lon":12.866918
+},
+{
+"nome":"Agriturismo Pantanali",
+"tipoOsm":"guest_house",
+"telefono":"+39 366 3610275",
+"email":"panta.clap@gmail.com",
+"sito":"https://www.turismofvg.it/it/agriturismi/pantanali-luca",
+"lat":46.18123,
+"lon":13.366676
+},
+{
+"nome":"Affittacamere Iris",
+"tipoOsm":"guest_house",
+"indirizzo":"Via Trento 16",
+"cap":"34125",
+"telefono":"+39 328 5909680",
+"lat":45.655352,
+"lon":13.772491
+},
+{
+"nome":"Residenza La Bussola",
+"tipoOsm":"guest_house",
+"telefono":"+31 3355431853",
+"sito":"https://www.hotelscheck-in.com/residenzalabussolaudine/it/",
+"lat":45.696495,
+"lon":13.146257
+},
+{
+"nome":"Alloggio Agrituristico Corte San Biagio",
+"tipoOsm":"guest_house",
+"telefono":"+39 333 6455665",
+"sito":"https://www.cortesanbiagio.it/",
+"lat":46.001109,
+"lon":13.448244
+},
+{
+"nome":"VILLA RONCO ALBINA",
+"tipoOsm":"guest_house",
+"comune":"Cividale del Friuli",
+"indirizzo":"Strada di Sant'Anna 52",
+"cap":"33043",
+"telefono":"+39 329 2955043",
+"sito":"https://www.villaroncoalbina.it/",
+"lat":46.039538,
+"lon":13.461677
+},
+{
+"nome":"Stroppolatini",
+"tipoOsm":"guest_house",
+"telefono":"+39 0432 732623",
+"sito":"https://www.stroppolatini.it/",
+"lat":46.063288,
+"lon":13.449927
+},
+{
+"nome":"Hotel in Sylvis",
+"tipoOsm":"hotel",
+"telefono":"+39 0434 694911",
+"sito":"https://www.hotelinsylvis.com/",
+"lat":45.84639,
+"lon":12.815378
+},
+{
+"nome":"Agriturismo La Pioppa Sacile",
+"tipoOsm":"guest_house",
+"indirizzo":"Strada Flangini 14",
+"cap":"33077",
+"telefono":"+39 0434 70993",
+"email":"info@lapioppa.com",
+"sito":"https://www.lapioppa.com/",
+"lat":45.947356,
+"lon":12.526757
+},
+{
+"nome":"Casanova Inn",
+"tipoOsm":"guest_house",
+"comune":"Martignacco",
+"indirizzo":"Via Spilimbergo 133",
+"cap":"33035",
+"telefono":"+39 348 3478593",
+"sito":"https://www.hotelspretorian.com/casanova-inn/",
+"lat":46.078438,
+"lon":13.182721
+},
+{
+"nome":"Ai Priori",
+"tipoOsm":"apartment",
+"sito":"https://aipriori.it/",
+"lat":46.29752,
+"lon":13.119868
+},
+{
+"nome":"Azienda Agricola La Fornaci del Zarnic",
+"tipoOsm":"guest_house",
+"telefono":"+39 0432 773635",
+"email":"info@lefornacidelzarnic.it",
+"sito":"https://www.lefornacidelzarnic.it/",
+"lat":45.88919,
+"lon":13.066467
+},
+{
+"nome":"Casa delle Giuggiole",
+"tipoOsm":"hostel",
+"indirizzo":"Via Roma 13",
+"cap":"33010",
+"telefono":"+39 345 221 5577",
+"sito":"https://www.hotelsitalic.com/casa-delle-giuggiole/",
+"lat":46.447979,
+"lon":13.315468
+},
+{
+"nome":"B&B Brunives",
+"tipoOsm":"guest_house",
+"sito":"https://www.bedandbreakfastbrunives.it/",
+"lat":46.106429,
+"lon":13.167659
+},
+{
+"nome":"Le Lavandere",
+"tipoOsm":"guest_house",
+"comune":"Trieste",
+"indirizzo":"Via Cesare dell'Acqua 53",
+"cap":"34149",
+"telefono":"+39 353 4452907",
+"email":"info@lelavandere.com",
+"sito":"https://www.lelavandere.com/",
+"lat":45.628636,
+"lon":13.80879
+},
+{
+"nome":"Casa Montana Col Gentile",
+"tipoOsm":"hostel",
+"comune":"Dilignidis",
+"indirizzo":"Borgo della Pace 3",
+"telefono":"+39 340 5321274",
+"email":"rifugio.colgentile@gmail.com",
+"lat":46.413263,
+"lon":12.833561
+},
+{
+"nome":"Guest House Italo & Anna",
+"tipoOsm":"guest_house",
+"sito":"https://www.italoeanna.com/informazioni/",
+"lat":46.052826,
+"lon":13.185251
+},
+{
+"nome":"Ai Tre Sentieri",
+"tipoOsm":"guest_house",
+"comune":"Duino Aurisina / Devin - Nabrežina",
+"cap":"34011",
+"email":"aitresentieri@gmail.com",
+"sito":"https://agricolacanovella.com/agriturismo-ai-tre-sentieri/",
+"lat":45.749643,
+"lon":13.662145
+},
+{
+"nome":"La Tavernetta",
+"tipoOsm":"hotel",
+"telefono":"+39 0481 808228",
+"email":"tavernetta@castellodispessa.it",
+"sito":"https://www.castellodispessa.it/ospitalita/la-tavernetta/",
+"lat":45.946368,
+"lon":13.501183
+},
+{
+"nome":"Casale in Collina",
+"tipoOsm":"hotel",
+"sito":"https://www.castellodispessa.it/ospitalita/casale-in-collina/",
+"lat":45.949171,
+"lon":13.499204
+},
+{
+"nome":"Appartamenti nelle Vigne",
+"tipoOsm":"apartment",
+"sito":"https://www.castellodispessa.it/ospitalita/appartamenti-nelle-vigne/",
+"lat":45.948242,
+"lon":13.499641
+},
+{
+"nome":"La Brombela",
+"tipoOsm":"guest_house",
+"comune":"Barcis",
+"indirizzo":"Via Pentina 10",
+"cap":"33080",
+"telefono":"+39 335 5600 181",
+"email":"labrombela@proton.me",
+"sito":"https://nl.airbnb.com/rooms/1125299440455924909?_set_bev_on_new_domain=1747474468_EANWM1OGVjMzhjMD",
+"lat":46.177813,
+"lon":12.52254
+},
+{
+"nome":"B&B Velocipede",
+"tipoOsm":"hotel",
+"comune":"Cervignano del Friuli",
+"indirizzo":"Piazza Libertà 5",
+"sito":"https://www.bed-and-breakfast.it/de/friaul-julisch-venetien/bb-velocipede-cervignano-del-friuli/55535",
+"lat":45.822252,
+"lon":13.333112
+},
+{
+"nome":"Vigna degli Angeli",
+"tipoOsm":"hotel",
+"indirizzo":"Piazetta Giacomo Zuliani 6",
+"telefono":"+39 0432 221141",
+"lat":46.188558,
+"lon":12.997221
+},
+{
+"nome":"Alla Speranza",
+"tipoOsm":"hotel",
+"telefono":"+39 0431 65100",
+"email":"allasperanza@tiscali.it",
+"sito":"https://www.allasperanza.com/",
+"lat":45.816606,
+"lon":13.216922
+},
+{
+"nome":"La Beccaccia",
+"tipoOsm":"guest_house",
+"comune":"Sagrado",
+"indirizzo":"Località Boschini 1",
+"cap":"34078",
+"telefono":"+39 339 3794485",
+"email":"info@labeccaccia.com",
+"sito":"https://www.labeccaccia.com/home.html",
+"lat":45.894685,
+"lon":13.555026
+},
+{
+"nome":"B&B Casa Pirona",
+"tipoOsm":"guest_house",
+"comune":"Dignano",
+"indirizzo":"Via Giuseppe Garibaldi 25",
+"cap":"33030",
+"sito":"https://pirona.bedsandhotels.com/",
+"lat":46.085298,
+"lon":12.939395
+},
+{
+"nome":"A Casa Mia",
+"tipoOsm":"chalet",
+"sito":"https://katestravelexperience.eu/a-casa-mia-meduno1-italy",
+"lat":46.22675,
+"lon":12.770527
+},
+{
+"nome":"Mountain House",
+"tipoOsm":"chalet",
+"comune":"Rigolato",
+"indirizzo":"Via della Repubblica 58",
+"cap":"33020",
+"telefono":"+39 349 855 1551",
+"email":"danysoldan@hotmail.it",
+"sito":"https://www.bedandbreakfast.eu/nl/a/XeQ0i7fAsSE0/mountain-house",
+"lat":46.549744,
+"lon":12.854034
+},
+{
+"nome":"Alla Valle di Banne",
+"tipoOsm":"hotel",
+"telefono":"+39 040 211089",
+"email":"info@lavalledibanne.it",
+"sito":"https://www.allavalledibanne.it/",
+"lat":45.677724,
+"lon":13.80263
+},
+{
+"nome":"B&B Casa Volton",
+"tipoOsm":"guest_house",
+"comune":"Latisana",
+"indirizzo":"Via Volton 13",
+"cap":"33053",
+"email":"casavolton@yahoo.it",
+"sito":"https://www.casavolton.com/",
+"lat":45.687444,
+"lon":13.057371
+},
+{
+"nome":"B&B Casa Allegra",
+"tipoOsm":"guest_house",
+"comune":"Latisana",
+"indirizzo":"Via Volton 15",
+"cap":"33053",
+"lat":45.687094,
+"lon":13.057674
+},
+{
+"nome":"Regus",
+"tipoOsm":"apartment",
+"comune":"Trieste",
+"indirizzo":"Via del Lazzaretto Vecchio 11",
+"cap":"34123",
+"sito":"https://www.regus.com/",
+"lat":45.645833,
+"lon":13.76088
+},
+{
+"nome":"Sophia Boutique Suites",
+"tipoOsm":"hotel",
+"comune":"Trieste",
+"indirizzo":"Via del Lazzaretto Vecchio 9",
+"cap":"34123",
+"telefono":"+39 040 9570804",
+"email":"info@sophiaboutiquesuites.it",
+"sito":"https://www.sophiaboutiquesuites.it/",
+"lat":45.646048,
+"lon":13.76116
+},
+{
+"nome":"Greif Boutique Juna",
+"tipoOsm":"guest_house",
+"comune":"Duino Aurisina / Devin - Nabrežina",
+"cap":"34011",
+"email":"info@greif-group.com",
+"sito":"https://www.greifboutiquejuna.com/",
+"lat":45.749425,
+"lon":13.673571
+},
+{
+"nome":"Hotel Residence Dolcenero",
+"tipoOsm":"hostel",
+"comune":"San Daniele del Friuli",
+"indirizzo":"Via Fagagna 1",
+"cap":"33038",
+"telefono":"+39 375 692 5113",
+"email":"info@dolceneroresidence.com",
+"sito":"https://www.dolceneroresidence.com/",
+"lat":46.15661,
+"lon":13.016205
+},
+{
+"nome":"KOCIA",
+"tipoOsm":"apartment",
+"comune":"Gorizia / Gorica / Gurize",
+"indirizzo":"Via Cocevia 24",
+"cap":"34170",
+"telefono":"+393287148206",
+"email":"info@livadahorizon.com",
+"sito":"www.livadavadahorizon.com",
+"lat":45.943245,
+"lon":13.625639
+},
+{
+"nome":"Casa Fortuna",
+"tipoOsm":"apartment",
+"indirizzo":"Via Alessandro Manzoni 13",
+"cap":"34074",
+"telefono":"+393939123758",
+"lat":45.808884,
+"lon":13.526626
+},
+{
+"nome":"Le Acacie",
+"tipoOsm":"guest_house",
+"sito":"https://leacacie.com",
+"lat":46.125721,
+"lon":13.429027
+},
+{
+"nome":"B&B L'allodola e il Gufo",
+"tipoOsm":"guest_house",
+"telefono":"+39 339 261 6578",
+"email":"flaviafcomuzzi@gmail.com",
+"lat":46.122485,
+"lon":13.175382
+},
+{
+"nome":"Casa delle Noci",
+"tipoOsm":"chalet",
+"comune":"Grimacco",
+"cap":"33040",
+"sito":"https://slow-valley.com/alloggi/casa-delle-noci/",
+"lat":46.1545,
+"lon":13.598436
+},
+{
+"nome":"Urban Homy Gorizia",
+"tipoOsm":"hotel",
+"comune":"Gorizia",
+"indirizzo":"Via Paolo Diacono 4",
+"cap":"34170",
+"telefono":"+39 0409828095",
+"email":"reservation@urbanhomy.com",
+"sito":"https://urbanhomy.com",
+"lat":45.94247,
+"lon":13.609615
+},
+{
+"nome":"Vajont",
+"tipoOsm":"hotel",
+"indirizzo":"Piazzale Monte Toc 5",
+"lat":46.146448,
+"lon":12.698984
+},
+{
+"nome":"Vajont",
+"tipoOsm":"hotel",
+"indirizzo":"Piazzale Monte Toc 5",
+"lat":46.146448,
+"lon":12.698984
+},
+{
+"nome":"8inn Citycenter Residence",
+"tipoOsm":"guest_house",
+"comune":"Trieste",
+"indirizzo":"Via Giuseppe Mazzini 18",
+"cap":"34121",
+"sito":"https://www.airbnb.it/rooms/760648715555749399",
+"lat":45.651311,
+"lon":13.77158
+},
+{
+"nome":"B&B L’ormeggio",
+"tipoOsm":"guest_house",
+"indirizzo":"Via San Gabriele 2",
+"sito":"https://bb-lormeggio.albergo.top",
+"lat":45.797305,
+"lon":13.531371
+},
+{
+"nome":"Casa Bianchera",
+"tipoOsm":"apartment",
+"indirizzo":"Via Rovigno 11",
+"cap":"34074",
+"lat":45.79821,
+"lon":13.52859
+},
+{
+"nome":"Pergola Rooms",
+"tipoOsm":"hotel",
+"indirizzo":"Via Gio Batta De Marchi 2",
+"cap":"33028",
+"telefono":"+39 0433 030910",
+"email":"info@pergolarooms.it",
+"sito":"https://www.pergolarooms.it/",
+"lat":46.403322,
+"lon":13.017135
+},
+{
+"nome":"B&B Piano",
+"tipoOsm":"guest_house",
+"comune":"Udine",
+"indirizzo":"Via Monte Hermada 1",
+"cap":"33100",
+"telefono":"+39 393 9303643",
+"email":"info.pianobb@gmail.com",
+"sito":"https://www.pianobb.it/",
+"lat":46.071489,
+"lon":13.238758
+},
+{
+"nome":"Dolce Vita Guest House",
+"tipoOsm":"guest_house",
+"comune":"Torreano / Torean / Tavorjana",
+"indirizzo":"via Ronchis 74",
+"cap":"33040",
+"telefono":"+393336072011",
+"email":"dolcevitaghcividale@gmail.com",
+"sito":"https://dolcevita-cividale.com/",
+"lat":46.120914,
+"lon":13.41883
+},
+{
+"nome":"Hotel Naonis",
+"tipoOsm":"hotel",
+"indirizzo":"Via Musil 1",
+"cap":"33084",
+"telefono":"0434541014",
+"email":"info@hotelnaonis.it",
+"sito":"https://www.hotelnaonis.it/",
+"lat":45.968972,
+"lon":12.694432
+},
+{
+"nome":"La Stazione Bed & Breakfast",
+"tipoOsm":"guest_house",
+"comune":"Sesto al Reghena",
+"indirizzo":"Via Stazione 1",
+"sito":"https://www.lastazione.info/",
+"lat":45.8503,
+"lon":12.878253
+},
+{
+"nome":"Condominio Le Dolomiti",
+"tipoOsm":"apartment",
+"indirizzo":"Borgo Tredolo 4",
+"lat":46.394128,
+"lon":12.672515
+},
+{
+"nome":"Dolomiti Albergo Diffuso",
+"tipoOsm":"hotel",
+"indirizzo":"Via Baselia 1",
+"lat":46.392788,
+"lon":12.669364
+},
+{
+"nome":"B&B Nono Tilio",
+"tipoOsm":"guest_house",
+"indirizzo":"Via Piave 52/1",
+"lat":45.930946,
+"lon":13.088965
+},
+{
+"nome":"Urban Trend",
+"tipoOsm":"guest_house",
+"telefono":"+39 393 843 3145",
+"lat":45.905907,
+"lon":13.308897
+},
+{
+"nome":"I Personaggi",
+"tipoOsm":"guest_house",
+"telefono":"+39 340 906 9842",
+"lat":46.059549,
+"lon":13.245841
+},
+{
+"nome":"Affittacamere Tarvisio",
+"tipoOsm":"guest_house",
+"telefono":"+39 340 840 1488",
+"lat":46.504474,
+"lon":13.58144
+},
+{
+"nome":"Affittacamere La Loggia",
+"tipoOsm":"guest_house",
+"telefono":"+39 347 090 2069",
+"lat":46.333497,
+"lon":13.139097
+},
+{
+"nome":"The Gallery Rooms",
+"tipoOsm":"guest_house",
+"indirizzo":"Largo Riborgo",
+"lat":45.649642,
+"lon":13.772179
+},
+{
+"nome":"Agriturismo Azienda Perusini",
+"tipoOsm":"guest_house",
+"indirizzo":"Via del Torrione 13",
+"cap":"33040",
+"telefono":"+39 0 432759151",
+"sito":"https://perusini.com/",
+"lat":46.001975,
+"lon":13.44649
+}
+]

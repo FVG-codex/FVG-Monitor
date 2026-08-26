@@ -4,10 +4,21 @@ import type { ProvinciaSlug } from "@/lib/province";
 // Socrata su dati.friuliveneziagiulia.it con lo stesso schema minimale:
 // provincia, comune, denominazione, email (opzionale), sito (opzionale).
 // NESSUN indirizzo, telefono o coordinata pubblicati dalla fonte — non
-// un'omissione nostra, un limite del dato stesso: niente mappa possibile.
+// un'omissione nostra, un limite del dato stesso.
 // Vedi ingestStruttureRicettive() in scripts/ingest-light.mjs per i
 // dettagli di ingestione (un'unica funzione, un'unica snapshot Supabase
 // "strutture-ricettive" con tutti e 8 i tipi).
+//
+// Arricchimento contatti (26/08/2026): indirizzo/
+// telefono/sito/coordinate NON vengono dal dataset Regione ma da un
+// abbinamento nome+comune best-effort (mai certo — vedi `contatti`
+// sotto e le note in ingest-light.mjs) con due fonti possibili:
+// turismofvg.it (scraping incrementale, più ricco, precedenza quando
+// disponibile — oggi solo per Agriturismi) oppure OpenStreetMap (per
+// tutto il resto). Assente su una parte delle voci (la copertura reale
+// varia per tipo/fonte, vedi claude/fvgmonitor-stato.md). Ancora nessuna
+// mappa: le coordinate, quando presenti, sono anch'esse solo un
+// arricchimento best-effort, non un dato ufficiale della Regione.
 
 export type TipoStrutturaSlug =
   | "bb"
@@ -86,11 +97,30 @@ export const PROVINCIA_ABBR: Record<ProvinciaSlug, string> = {
   pordenone: "PN",
 };
 
+// `fonte` distingue le due provenienze possibili: "turismofvg" (scraping
+// incrementale di turismofvg.it, più ricco — vedi ingestTurismoFvg in
+// scripts/ingest-light.mjs, oggi copre solo Agriturismi) ha SEMPRE la
+// precedenza quando disponibile; "osm" (OpenStreetMap) è il ripiego per
+// tutto il resto. Mai i due combinati in una stessa voce.
+export type ContattiArricchiti = {
+  fonte: "osm" | "turismofvg";
+  indirizzo?: string;
+  telefono?: string;
+  email?: string;
+  sito?: string;
+  // Solo da turismofvg.it — non presenti nel dato OSM.
+  titolare?: string;
+  cin?: string;
+  lat?: number;
+  lon?: number;
+};
+
 export type VoceStrutturaRicettiva = {
   nome: string;
   comune: string | null;
   email: string | null;
   sito: string | null;
+  contatti: ContattiArricchiti | null;
 };
 
 export type StruttureTipoSnapshot = {

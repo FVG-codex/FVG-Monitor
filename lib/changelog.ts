@@ -22,6 +22,21 @@ export type VoceChangelog = {
 export const CHANGELOG: VoceChangelog[] = [
   {
     data: "26/08/2026",
+    titolo: "Agriturismi — contatti più completi da turismofvg.it",
+    dettagli: [
+      "Per gli Agriturismi, indirizzo/telefono/email/sito (e, quando presenti, titolare e CIN) vengono ora presi da turismofvg.it quando disponibili — più ricchi e più affidabili del solo abbinamento OpenStreetMap, che resta il ripiego per gli altri 7 tipi di struttura ricettiva.",
+      "Aggiornamento incrementale: qualche decina di schede nuove ogni 15 minuti, non tutte insieme — la copertura completa arriva nell'arco di alcune ore dal primo avvio, poi resta sempre aggiornata.",
+    ],
+  },
+  {
+    data: "26/08/2026",
+    titolo: "Strutture ricettive — indirizzo e telefono da OpenStreetMap",
+    dettagli: [
+      "Dove disponibile, le schede di Strutture ricettive mostrano ora anche indirizzo e telefono (etichettati \"OSM\"), trovati incrociando l'elenco della Regione con OpenStreetMap — copertura parziale e diversa per tipo, non un dato ufficiale.",
+    ],
+  },
+  {
+    data: "26/08/2026",
     titolo: "Strutture ricettive — nuova sezione, 8 tipi",
     dettagli: [
       "Aggiunto l'hub Strutture ricettive (/strutture-ricettive): Bed & Breakfast, Affittacamere, Campeggi, Agriturismi, Alberghi Diffusi, Strutture Sociali, Marina, Rifugi Alpini — oltre 2100 strutture in tutta la regione, ciascuna con la propria pagina, fonte Regione FVG.",

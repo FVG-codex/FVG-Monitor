@@ -992,6 +992,135 @@ mostra nome, comune, e link a sito/email quando disponibili. Voce
 `npx tsc --noEmit` e `node --check` puliti. **Non ancora testato/confermato
 in produzione.**
 
+### Arricchimento contatti — OpenStreetMap (26/08/2026, stessa giornata)
+
+L'utente ha chiesto se fosse possibile recuperare indirizzo/telefono/sito
+da altre fonti, vincolando esplicitamente la ricerca a **solo dati
+aperti**. Fonti valutate e scartate: turismofvg.it (non ha una licenza
+open data dichiarata, solo un sito pubblico — ma vedi sotto, l'utente ha
+poi chiesto di usarlo comunque), Google Places API (a pagamento),
+Camera di Commercio (accesso bulk a pagamento). Resta **OpenStreetMap**
+(licenza ODbL).
+
+Overpass API e Nominatim sono entrambi bloccati dalla rete di questo
+sandbox (stesso limite di sempre) — l'utente ha eseguito lui stesso una
+query Overpass Turbo (nodi/way/relation con `tourism` ∈
+{hotel,apartment,guest_house,hostel,camp_site,alpine_hut,wilderness_hut,
+chalet,motel} o `leisure=marina` nella regione FVG, ISO3166-2 `IT-36`) e
+caricato l'export GeoJSON (1418 elementi). Filtrato ai ~843 con almeno un
+campo utile (indirizzo/telefono/sito/email) e salvato **staticamente**
+in `scripts/data/osm-strutture-ricettive.json` — non riscaricato ad ogni
+esecuzione (nessuna API OSM raggiungibile da qui): se servirà un
+aggiornamento, va ripetuta la stessa procedura manuale.
+
+**Abbinamento nome+comune, euristico** (nessun ID condiviso fra i
+dataset Regione e OSM): normalizzazione (maiuscolo, accenti rimossi),
+rimozione di parole generiche ("DI", "B&B", "HOTEL", "CASA", "VILLA",
+"AGRITURISMO"...) e — lezione trovata **con dati reali**, non a tavolino
+— anche delle parole del COMUNE stesso. Prima di questa correzione,
+quasi ogni B&B di Trieste con "Trieste" nel nome (es. "Trieste Plus",
+"Bora di Trieste") veniva abbinato per errore a un unico "B&B Hotel
+Trieste" su OSM, il cui unico token dopo la pulizia restava "TRIESTE" —
+lungo abbastanza da sembrare distintivo, ma privo di significato perché
+è solo il nome della città. Corretto togliendo anche le parole del
+comune dai due lati del confronto prima del test. Seconda correzione,
+sempre trovata sui dati reali: un solo token in comune non basta se è
+corto (es. "MARE", 4 lettere, abbinava "Pino Mare" a un "Hotel Mare" non
+correlato) — richiesto un minimo di 6 caratteri per un match a un solo
+token.
+
+**Copertura reale misurata** (non stimata) su campioni completi/parziali
+via WebFetch, molto diseguale per tipo: Campeggi 15/37 (41%, dataset
+piccolo e nomi commerciali distintivi — buona corrispondenza OSM),
+Marina 2/15 (13%), Rifugi 2/44 (5% — la maggior parte dei rifugi OSM non
+ha proprio un tag comune, isolati in montagna, o usa il nome della
+frazione invece del comune amministrativo, es. "Sella Nevea" invece di
+"Chiusaforte"), B&B (campione: 128 voci di Trieste) 1/130 (<1% — nomi
+Socrata nella forma "NOME di COGNOME proprietario", spesso poco
+sovrapponibili a OSM, e molti B&B piccoli non sono mappati affatto).
+Attesa bassa anche per Affittacamere/Agriturismi/Sociali, non
+campionati nel dettaglio ma con la stessa dinamica di B&B.
+
+**Implementazione**: nuovo campo `contatti: ContattiArricchiti | null`
+per voce (`lib/struttureRicettive.ts`), pensato per più di una fonte —
+`fonte: "osm" | "turismofvg"` — così l'arricchimento futuro da
+turismofvg.it (vedi Idee future, molto più ricco) potrà convivere o
+sostituire gradualmente i match OSM senza cambiare lo schema. Mostrato
+in `StrutturaTipoPage.tsx` con l'etichetta "(OSM)" per trasparenza — non
+è un dato ufficiale della Regione, va segnalato come tale. Ancora
+nessuna mappa: le coordinate, quando presenti nell'arricchimento, non
+sono usate per una mappa in questa consegna.
+
+`npx tsc --noEmit` e `node --check` puliti. **Non ancora
+testato/confermato in produzione** — il file OSM è statico e già
+verificato con query di test sui dati reali sopra, ma il merge dentro
+`ingestTipoStrutturaRicettiva()` non è mai girato su GitHub Actions.
+
+### Agriturismi — scraping incrementale turismofvg.it (26/08/2026, stessa giornata)
+
+Seguito diretto della nota "Idee future" sopra: turismofvg.it era stato
+scartato come fonte open data (nessuna licenza dichiarata) ma l'utente ha
+chiesto comunque di usarlo per l'arricchimento contatti — più ricco di
+OSM (indirizzo, telefono, email, sito, titolare, CIN quando presente) e
+mantenuto dagli operatori stessi, non un estratto di terzi.
+
+**Struttura del sito, verificata su HTML reale fornito dall'utente**
+(non solo via WebFetch, che restituisce markdown e non l'HTML grezzo
+necessario per scrivere selettori cheerio corretti):
+
+- Correggeva un'ipotesi sbagliata di una fase di ricerca precedente: la
+  paginazione dell'elenco (`/{Categoria}/Search?filters.PageIndex=N`)
+  **non è AJAX**, è un semplice GET server-rendered.
+- Scoperta più importante: la stessa pagina elenco contiene un campo
+  nascosto `<input id="mapdata" value="[...]">` con **l'intero indice
+  della categoria in JSON** (Id, Name, Url, City, Latitude, Longitude) —
+  un solo fetch per l'intero catalogo, niente crawling di pagine.
+- La scheda di dettaglio ha i contatti in una sezione
+  `<section class="c-poi__auxtexts">` con coppie ripetute
+  `<strong>Etichetta</strong><br>Valore<br><br>` (il valore a volte è un
+  link, es. la Pec come `mailto:`). Il parser (`estraiCampiAuxTexts` in
+  `scripts/ingest-light.mjs`) è generico — legge qualunque etichetta
+  trovi invece di presupporne un elenco fisso — verificato con uno
+  script cheerio a sé contro l'HTML reale della scheda campione
+  ("Famiglia Loner" Di Zucco Marina, Martignacco) prima di scrivere il
+  codice di produzione.
+
+**Solo Agriturismi per ora** (`TURISMOFVG_CATEGORIE` in
+`scripts/ingest-light.mjs`): è l'unica categoria verificata sulla
+struttura HTML reale. Le altre 7 categorie del sito potrebbero avere
+URL o etichette diverse — vanno validate con un altro campione reale
+prima di aggiungerle, stessa cautela già seguita qui.
+
+**Stesso pattern di cache incrementale già usato per i risultati gara
+Sci**: l'indice (mapdata) viene riscaricato ad ogni esecuzione (economico,
+1 richiesta), ma le schede di dettaglio vengono scaricate al massimo
+`TURISMOFVG_MAX_NUOVE_SCHEDE_PER_ESECUZIONE` (20) per esecuzione e messe
+in cache permanente in una nuova snapshot Supabase `turismofvg:agriturismi`
+— una scheda già scaricata non viene mai ripetuta. Con ~750 Agriturismi
+nell'indice, la copertura completa richiede diverse ore dal primo avvio
+(circa 40 esecuzioni da 15 minuti), poi resta aggiornata incrementalmente.
+Il match con i dataset Regione resta l'abbinamento euristico nome+comune
+già usato per OSM (nessun ID condiviso tra le fonti).
+
+**Precedenza**: quando turismofvg.it ha un match con scheda già scaricata,
+i suoi contatti sostituiscono quelli OSM per quella voce (`fonte:
+"turismofvg"` invece di `"osm"` in `ContattiArricchiti`, ora esteso con
+`titolare`/`cin` — solo da turismofvg.it). Per i restanti 7 tipi di
+struttura ricettiva, OSM resta l'unica fonte. UI aggiornata
+(`StrutturaTipoPage.tsx`): l'etichetta accanto a indirizzo/telefono ora
+mostra "OSM" o "TurismoFVG" a seconda della fonte reale della singola
+voce, invece del testo fisso "(OSM)" di prima; titolare e CIN, quando
+presenti, mostrati in una riga a parte.
+
+`npx tsc --noEmit` e `node --check` puliti. Parsing HTML verificato con
+uno script di test a sé contro l'HTML reale fornito dall'utente (elenco
+e scheda di dettaglio) — vedi sopra. **Non ancora testato/confermato in
+produzione**: il fetch live da GitHub Actions verso turismofvg.it non è
+mai girato (questo sandbox non può verificarlo, la rete di GitHub
+Actions è diversa da qui — stesso limite già noto per altre fonti come
+FISI/Sci), e la prima esecuzione reale determinerà se la copertura e i
+tempi stimati sopra sono corretti.
+
 ## Fase 4 — Responsive (24/08/2026)
 
 Audit mirato su tutti i componenti (`components/*.tsx`), cercando pattern
@@ -1162,7 +1291,7 @@ un controllo con axe/Lighthouse o un vero screen reader quando possibile.
 
 ## Idee future (annotate, non richieste esplicitamente per l'implementazione)
 
-- **Strutture ricettive** (B&B, agriturismi, hotel, ecc.): possibile nuovo modulo/pagina. Da definire quando richiesto: fonte dati (dataset regionale open data? scraping di un portale turistico, come già fatto per "Eventi"? un'API di settore?), se mostrare disponibilità/prezzi in tempo reale o solo un elenco/mappa statico aggiornato periodicamente, e se organizzarlo per provincia o come le stazioni/fermate (elenco piatto con tab). Nessuna ricerca di fonti fatta finora — da avviare quando l'utente vorrà procedere.
+- **Strutture ricettive — implementate il 26/08/2026** (vedi sezioni dedicate sopra): hub + 8 pagine, arricchimento contatti da OpenStreetMap lo stesso giorno, poi scraping incrementale turismofvg.it per gli Agriturismi (sempre 26/08/2026, vedi "Agriturismi — scraping incrementale turismofvg.it" sopra per i dettagli — DevTools fornito dall'utente, stesso metodo già servito per Tennis/Sci/Autobus). **Prossimo passo su questo modulo**: estendere lo scraping turismofvg.it alle altre 7 categorie (B&B, Affittacamere, Campeggi, Alberghi Diffusi, Sociali, Marina, Rifugi) — richiede prima di verificare che URL/etichette HTML siano gli stessi osservati per Agriturismi (non garantito), idealmente con un altro campione reale fornito dall'utente per categoria prima di aggiungerla a `TURISMOFVG_CATEGORIE`.
 - **Nuoto** (nuova sezione Sport, accanto a Calcio/Basket/Baseball), **accantonata il 25/08/2026 su richiesta dell'utente — da riprendere con la nuova stagione**. Fonte proposta dall'utente: `fin2026.microplustiming.com` (portale risultati FIN, piattaforma Microplus Timing) — es. `NU_2026_07_17-19_Trieste_web.php`, Campionato Regionale Assoluto FVG vasca lunga, Trieste 17-19 luglio 2026. Trovato finora: (1) la pagina base del meeting si legge con WebFetch, ma i link "profondi" a una singola gara (parametri `cat`/`page`/`spec`/`bat`, con `descIT`/`descEN`/`descFR` in base64) restituiscono 403 dal proxy di questa sessione — possibile blocco anti-bot sui link con parametri, non confermato; (2) i risultati delle singole gare NON sono nell'HTML iniziale ma caricati via JavaScript (funzioni tipo `LoadHistory_Calendar()`) da un endpoint non identificato — stesso tipo di ostacolo già visto con gli autobus TPL FVG, ma qui l'endpoint reale non è ancora noto; (3) esiste anche un prodotto ufficiale Microplus "Results Data Feed" (es. `crs-ta2026-rdf.microplustimingservices.com`) ma è dietro login, verosimilmente riservato a stampa accreditata/broadcaster, non un'opzione praticabile. **Prossimo passo quando si riprende**: chiedere all'utente di aprire una pagina risultati nel proprio browser, DevTools → tab Rete → filtro Fetch/XHR, cliccare su una gara e individuare la richiesta che carica i dati (stesso metodo che ha funzionato per gli autobus) — non ancora fatto. Nota di modello: il nuoto non ha una "classifica di campionato" come calcio/basket/baseball (`COMPETIZIONI_CALCIO`/`COMPETIZIONI_BASKET` in `scripts/ingest-light.mjs`, partite + classifica) — sono meeting singoli con risultati gara per gara, quindi anche una volta trovata la fonte tecnica andrà probabilmente ripensato il modello dati (elenco risultati per meeting, non classifica a punti). Discussa anche un'alternativa più leggera mai approfondita: solo calendario meeting FVG + link ai risultati ufficiali, senza estrarre i tempi.
 
 ## Prossimo passo
