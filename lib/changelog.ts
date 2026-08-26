@@ -22,6 +22,13 @@ export type VoceChangelog = {
 export const CHANGELOG: VoceChangelog[] = [
   {
     data: "26/08/2026",
+    titolo: "Farmacie — filtro per comune dentro ogni provincia",
+    dettagli: [
+      "Dopo aver scelto una provincia, compare ora un secondo gruppo di tastini (stessa grafica di quelli provincia) con tutti i comuni di quella provincia, per filtrare l'elenco e la mappa a un solo comune.",
+    ],
+  },
+  {
+    data: "26/08/2026",
     titolo: "Farmacie — indicatore \"Aperta ora\" / \"Chiusa ora\"",
     dettagli: [
       "Ogni farmacia mostra ora un pallino verde/rosso con l'etichetta \"Aperta ora\" o \"Chiusa ora\", calcolato in base all'orario di oggi — sia nell'elenco che nella mappa.",

@@ -31,7 +31,19 @@ export function FarmaciePage({ soloTurno }: { soloTurno: boolean }) {
   const [dati, setDati] = useState<SnapshotFarmacie | null>(null);
   const [stato, setStato] = useState<"loading" | "ready" | "error">("loading");
   const [tab, setTab] = useState<ProvinciaSlug>("trieste");
+  // Comune selezionato dentro la provincia corrente — `null` = "Tutti i
+  // comuni" (26/08/2026, richiesto dall'utente: un secondo livello di
+  // tastini, stessa grafica di quelli provincia, per filtrare per
+  // comune dopo aver scelto la provincia). Resettato ad ogni cambio
+  // provincia — vedi selezionaProvincia() sotto — perché l'elenco comuni
+  // è specifico della provincia.
+  const [comuneSel, setComuneSel] = useState<string | null>(null);
   const [ricerca, setRicerca] = useState("");
+
+  function selezionaProvincia(p: ProvinciaSlug) {
+    setTab(p);
+    setComuneSel(null);
+  }
   // "Aperta ora"/"Chiusa ora" (26/08/2026): calcolato lato client, non
   // dalla snapshot (che si aggiorna ogni 15 min ma contiene solo gli
   // orari, non uno stato aperto/chiuso). Aggiornato ogni 30 secondi,
@@ -67,12 +79,35 @@ export function FarmaciePage({ soloTurno }: { soloTurno: boolean }) {
   const provincia = dati?.per_provincia[tab];
   const tutteLaProvincia = provincia?.farmacie ?? [];
 
+  // Farmacie della provincia corrente, filtrate solo per soloTurno (non
+  // ancora per comune/ricerca) — è la base sia dell'elenco comuni sotto
+  // sia del filtro finale, e il suo conteggio è quello mostrato da
+  // "Tutti i comuni".
+  const baseProvincia = useMemo(
+    () => (soloTurno ? tutteLaProvincia.filter(diTurnoOggi) : tutteLaProvincia),
+    [tutteLaProvincia, soloTurno]
+  );
+
+  // Comuni presenti nella provincia corrente, con conteggio, in ordine
+  // alfabetico — calcolato su baseProvincia (non su farmacie già
+  // filtrate da ricerca/comune) così i tastini restano stabili mentre si
+  // digita nella ricerca, stesso principio dei conteggi provincia sopra.
+  const comuni = useMemo(() => {
+    const conteggio = new Map<string, number>();
+    for (const f of baseProvincia) {
+      const c = f.comune ?? "Comune non specificato";
+      conteggio.set(c, (conteggio.get(c) ?? 0) + 1);
+    }
+    return Array.from(conteggio.entries()).sort((a, b) => a[0].localeCompare(b[0], "it"));
+  }, [baseProvincia]);
+
   const farmacie = useMemo(() => {
-    const base = soloTurno ? tutteLaProvincia.filter(diTurnoOggi) : tutteLaProvincia;
+    let lista = baseProvincia;
+    if (comuneSel) lista = lista.filter((f) => (f.comune ?? "Comune non specificato") === comuneSel);
     const q = ricerca.trim().toLowerCase();
-    if (!q) return base;
-    return base.filter((f) => f.nome.toLowerCase().includes(q) || (f.comune ?? "").toLowerCase().includes(q));
-  }, [tutteLaProvincia, soloTurno, ricerca]);
+    if (q) lista = lista.filter((f) => f.nome.toLowerCase().includes(q) || (f.comune ?? "").toLowerCase().includes(q));
+    return lista;
+  }, [baseProvincia, comuneSel, ricerca]);
 
   // Conteggio per i tab provincia: coerente col filtro soloTurno, non il
   // totale grezzo della snapshot (altrimenti "Trieste (94)" nella pagina
@@ -121,7 +156,7 @@ export function FarmaciePage({ soloTurno }: { soloTurno: boolean }) {
               {PROVINCE_LIST.map((p) => (
                 <button
                   key={p.slug}
-                  onClick={() => setTab(p.slug)}
+                  onClick={() => selezionaProvincia(p.slug)}
                   aria-pressed={tab === p.slug}
                   className={`px-3 py-1.5 rounded text-xs font-cond font-semibold uppercase tracking-wide transition-colors ${
                     tab === p.slug ? "bg-cool text-bg" : "border border-line text-ink-dim hover:text-ink"
@@ -131,6 +166,32 @@ export function FarmaciePage({ soloTurno }: { soloTurno: boolean }) {
                 </button>
               ))}
             </div>
+
+            {comuni.length > 0 && (
+              <div className="flex gap-1.5 flex-wrap mb-3">
+                <button
+                  onClick={() => setComuneSel(null)}
+                  aria-pressed={comuneSel === null}
+                  className={`px-3 py-1.5 rounded text-xs font-cond font-semibold uppercase tracking-wide transition-colors ${
+                    comuneSel === null ? "bg-cool text-bg" : "border border-line text-ink-dim hover:text-ink"
+                  }`}
+                >
+                  Tutti i comuni ({baseProvincia.length})
+                </button>
+                {comuni.map(([c, n]) => (
+                  <button
+                    key={c}
+                    onClick={() => setComuneSel(c)}
+                    aria-pressed={comuneSel === c}
+                    className={`px-3 py-1.5 rounded text-xs font-cond font-semibold uppercase tracking-wide transition-colors ${
+                      comuneSel === c ? "bg-cool text-bg" : "border border-line text-ink-dim hover:text-ink"
+                    }`}
+                  >
+                    {c} ({n})
+                  </button>
+                ))}
+              </div>
+            )}
 
             <label className="block mb-4">
               <span className="sr-only">Cerca per nome o comune</span>
@@ -147,7 +208,7 @@ export function FarmaciePage({ soloTurno }: { soloTurno: boolean }) {
               <Panel title="Mappa">
                 <div
                   role="region"
-                  aria-label={`Mappa delle farmacie in provincia di ${nomeProvincia} — elenco testuale equivalente nel pannello a fianco`}
+                  aria-label={`Mappa delle farmacie${comuneSel ? ` a ${comuneSel}` : ` in provincia di ${nomeProvincia}`} — elenco testuale equivalente nel pannello a fianco`}
                   style={{ height: 460 }}
                   className="rounded overflow-hidden"
                 >
@@ -159,8 +220,8 @@ export function FarmaciePage({ soloTurno }: { soloTurno: boolean }) {
                 {farmacie.length === 0 ? (
                   <p className="text-ink-faint text-sm font-mono">
                     {soloTurno
-                      ? `Nessuna farmacia di turno oggi in provincia di ${nomeProvincia}.`
-                      : `Nessuna farmacia trovata in provincia di ${nomeProvincia}.`}
+                      ? `Nessuna farmacia di turno oggi${comuneSel ? ` a ${comuneSel}` : ` in provincia di ${nomeProvincia}`}.`
+                      : `Nessuna farmacia trovata${comuneSel ? ` a ${comuneSel}` : ` in provincia di ${nomeProvincia}`}.`}
                   </p>
                 ) : (
                   <div className="max-h-[460px] overflow-y-auto flex flex-col">

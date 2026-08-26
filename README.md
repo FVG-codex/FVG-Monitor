@@ -1043,6 +1043,32 @@ contrasto in altre sezioni del sito).
 
 `npx tsc --noEmit` pulito.
 
+### Filtro per comune (26/08/2026, stessa giornata)
+
+L'utente ha chiesto: dopo aver scelto una provincia in `/farmacie-tutte`,
+un secondo livello di tastini con tutti i comuni della provincia, stessa
+grafica di quelli provincia — provato prima con Gorizia.
+
+**Implementazione** (`FarmaciePage.tsx`): nuovo stato `comuneSel`
+(`string | null`, `null` = "Tutti i comuni"), resettato ad ogni cambio
+provincia (`selezionaProvincia()`, sostituisce l'`onClick` diretto sui
+tastini provincia) perché l'elenco comuni è specifico della provincia
+selezionata. I comuni mostrati (`comuni`, un `useMemo`) sono calcolati
+sulla lista già filtrata da `soloTurno` ma PRIMA del filtro
+comune/ricerca (`baseProvincia`) — così i tastini e i loro conteggi
+restano stabili mentre si digita nella ricerca testuale, stesso
+principio già usato per i conteggi dei tastini provincia. Il filtro
+finale (`farmacie`) applica in sequenza: provincia (già dato) → comune
+selezionato (se presente) → ricerca testuale.
+
+Stessa applicazione automatica a entrambe le pagine (`/farmacie-tutte` e
+`/farmacie-di-turno`), essendo lo stesso componente condiviso — non solo
+a `/farmacie-tutte` come nella richiesta originale, ma senza costo
+aggiuntivo e senza cambiare il comportamento esistente quando non si
+seleziona un comune.
+
+`npx tsc --noEmit` pulito.
+
 ## Strutture ricettive — 8 registri, hub + 8 pagine (26/08/2026)
 
 Richiesta dell'utente, seguito diretto di una ricognizione dei dataset
