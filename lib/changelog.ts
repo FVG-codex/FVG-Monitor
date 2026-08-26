@@ -22,6 +22,13 @@ export type VoceChangelog = {
 export const CHANGELOG: VoceChangelog[] = [
   {
     data: "26/08/2026",
+    titolo: "Ingestione — corretto un possibile blocco delle esecuzioni programmate",
+    dettagli: [
+      "Nessun cambiamento visibile sul sito: un'esecuzione programmata era rimasta bloccata su GitHub (in parte per un disservizio della piattaforma, verificato su githubstatus.com). Aggiunti timeout più stretti e una regola che cancella un'esecuzione ancora in corso quando ne parte una nuova, per evitare che si accumulino in futuro.",
+    ],
+  },
+  {
+    data: "26/08/2026",
     titolo: "Farmacie — filtro per comune dentro ogni provincia",
     dettagli: [
       "Dopo aver scelto una provincia, compare ora un secondo gruppo di tastini (stessa grafica di quelli provincia) con tutti i comuni di quella provincia, per filtrare l'elenco e la mappa a un solo comune.",

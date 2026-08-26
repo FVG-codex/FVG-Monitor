@@ -30,14 +30,31 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
 // dati.friuliveneziagiulia.it: ETIMEDOUT). Un solo tentativo fallito
 // non deve far cadere l'intero job — 2 retry con una breve pausa,
 // usato per tutte le chiamate di rete dello script.
+//
+// TIMEOUT_MS_DEFAULT (aggiunto il 26/08/2026): senza un timeout
+// esplicito, il fetch nativo di Node aspetta diversi minuti prima di
+// arrendersi da solo su un server che accetta la connessione ma non
+// risponde mai — con ~40 chiamate sequenziali nello script (una fonte
+// lenta/bloccata basta) un'esecuzione può superare l'intervallo del
+// cron (15 minuti) e restare "in progress" molto più a lungo del
+// normale, causando accumulo di esecuzioni in coda su GitHub Actions
+// (vedi anche concurrency/timeout-minutes in
+// .github/workflows/ingest-light.yml). 20 secondi per tentativo è
+// abbondante per API/HTML di poche decine di KB come quelle usate qui.
+const TIMEOUT_MS_DEFAULT = 20_000;
+
 async function fetchConRetry(url, options = {}, tentativi = 3) {
   let ultimoErrore;
   for (let i = 0; i < tentativi; i++) {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), TIMEOUT_MS_DEFAULT);
     try {
-      return await fetch(url, options);
+      return await fetch(url, { ...options, signal: controller.signal });
     } catch (err) {
       ultimoErrore = err;
       if (i < tentativi - 1) await new Promise((r) => setTimeout(r, 1000 * (i + 1)));
+    } finally {
+      clearTimeout(timer);
     }
   }
   throw ultimoErrore;

@@ -131,6 +131,38 @@ un blocco di rete specifico verso una fonte, come capitato con
 fallito viene comunque loggato per nome, per capire subito cosa non ha
 funzionato in una singola esecuzione.
 
+### Fix — esecuzione rimasta "queued" per oltre 10 minuti (26/08/2026)
+
+Segnalato dall'utente: un'esecuzione dell'ingestione leggera rimasta
+"queued" per oltre 10 minuti, non cancellabile dall'interfaccia GitHub.
+Verificato su githubstatus.com: nel momento esatto della segnalazione era
+in corso un incident reale lato GitHub ("Incident with Actions" — un
+failover di database — e "Disruption with some GitHub services") — la
+causa immediata di **quel** blocco è quindi un disservizio della
+piattaforma, non un bug del progetto: in questi casi l'unica cosa da fare
+è aspettare che GitHub risolva.
+
+Rimaneva però un vero punto debole indipendente dall'incident, aggravato
+dallo scraper turismofvg.it aggiunto lo stesso giorno (~40 chiamate
+`fetch` sequenziali per esecuzione, molte verso siti terzi meno affidabili
+delle API della Regione): senza un timeout esplicito, una singola fonte
+che accetta la connessione ma non risponde mai può tenere bloccato il job
+per diversi minuti a tentativo (default del fetch nativo di Node), e
+senza un gruppo di concorrenza nel workflow le esecuzioni successive del
+cron (ogni 15 minuti) partono comunque in parallelo invece di aspettare —
+in caso di blocco reale, si accumulano finché non si esaurisce il limite
+di job concorrenti dell'account, e le nuove restano "queued" indefinitamente.
+
+**Corretto (indipendentemente dall'incident, come prevenzione)**:
+- `fetchConRetry()` in `scripts/ingest-light.mjs` ora usa un
+  `AbortController` con timeout di 20 secondi per tentativo, invece di
+  aspettare il timeout di default del fetch nativo.
+- `.github/workflows/ingest-light.yml`: aggiunto `timeout-minutes: 10`
+  sul job (tetto rigido, sotto i 15 minuti del cron) e un blocco
+  `concurrency` con `cancel-in-progress: true` — se una nuova esecuzione
+  parte mentre la precedente è ancora in corso, questa viene cancellata
+  invece di restare bloccata, azzerando la possibilità di accumulo.
+
 ## Fix — Allerte mai realmente collegate, poi spostate lato client (fatto)
 
 Scoperto che il banner allerta in homepage e il pannello "Allerte · Zone"

@@ -9,9 +9,30 @@ on:
     - cron: "*/15 * * * *" # ogni 15 minuti
   workflow_dispatch: {}
 
+# Aggiunto il 26/08/2026 dopo un'esecuzione rimasta "queued" per oltre
+# 10 minuti senza che l'utente riuscisse a cancellarla dall'interfaccia
+# GitHub. Senza un gruppo di concorrenza, ogni cron da 15 minuti parte
+# comunque anche se l'esecuzione precedente non è ancora finita: se una
+# singola esecuzione si allunga (es. una fonte esterna lenta o che non
+# risponde), le esecuzioni successive si accumulano "in progress" in
+# parallelo finché non si esaurisce il limite di job concorrenti
+# dell'account, e le nuove restano "queued" in attesa di uno slot
+# libero. Con cancel-in-progress: true, quando parte una nuova
+# esecuzione quella precedente (se ancora in corso) viene cancellata
+# invece di restare bloccata — nessun accumulo possibile.
+concurrency:
+  group: ingest-light
+  cancel-in-progress: true
+
 jobs:
   ingest:
     runs-on: ubuntu-latest
+    # Tetto rigido: un'esecuzione non può comunque durare più della metà
+    # dell'intervallo del cron (15 minuti), qualunque sia la causa di un
+    # eventuale blocco — seconda rete di sicurezza oltre a
+    # cancel-in-progress e ai timeout per singola richiesta in
+    # scripts/ingest-light.mjs (fetchConRetry).
+    timeout-minutes: 10
     steps:
       - name: Checkout
         uses: actions/checkout@v4
