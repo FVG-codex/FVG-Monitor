@@ -56,3 +56,48 @@ export function formattaFascia(f: FasciaOraria): string {
   const etichetta = f.tipo === "turno" ? "Turno" : "Orario";
   return `${etichetta} ${orario(f.da)}–${f.a ? orario(f.a) : "?"}${finisceDomani ? " (giorno succ.)" : ""}`;
 }
+
+// "Aperta ora" / "Chiusa ora" (26/08/2026, richiesto dall'utente).
+//
+// "sconosciuto" quando la farmacia non ha nessuna fascia oggi (vedi
+// nota sopra sulla finestra dati) — mostrato senza pallino invece di
+// azzardare uno stato, coerente con "mai un dato inventato".
+export type StatoApertura = "aperta" | "chiusa" | "sconosciuto";
+
+export function statoApertura(f: VoceFarmacia, adesso: string): StatoApertura {
+  if (f.orariOggi.length === 0) return "sconosciuto";
+  // Confronto per stringa (non Date), sugli stessi 16 caratteri
+  // "YYYY-MM-DDTHH:MM" usati da adessoEuropeRome() sotto — coerente con
+  // gli orari_N_da/a del dataset, "ora locale già inclusa nella
+  // stringa" (vedi ingest-light.mjs). Confrontare come Date rischierebbe
+  // di applicare un fuso sbagliato una seconda volta, stesso motivo già
+  // documentato altrove in questo file.
+  const adessoMin = adesso.slice(0, 16);
+  const aperta = f.orariOggi.some((fascia) => {
+    const da = fascia.da.slice(0, 16);
+    const a = fascia.a ? fascia.a.slice(0, 16) : null;
+    return adessoMin >= da && (a === null || adessoMin < a);
+  });
+  return aperta ? "aperta" : "chiusa";
+}
+
+// "Adesso" in Europe/Rome (fuso della fonte, NON quello del browser di
+// chi visita — un visitatore da un altro fuso avrebbe altrimenti un
+// confronto sbagliato), formato "YYYY-MM-DDTHH:MM" — stesso formato
+// (troncato) dei valori orari_N_da/a del dataset, per il confronto per
+// stringa in statoApertura(). `hourCycle: "h23"` esplicito: alcuni
+// ambienti restituiscono "24:00" invece di "00:00" a mezzanotte con
+// `hour12: false` da solo.
+export function adessoEuropeRome(): string {
+  const parti = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Europe/Rome",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    hourCycle: "h23",
+  }).formatToParts(new Date());
+  const get = (tipo: string) => parti.find((p) => p.type === tipo)?.value ?? "00";
+  return `${get("year")}-${get("month")}-${get("day")}T${get("hour")}:${get("minute")}`;
+}

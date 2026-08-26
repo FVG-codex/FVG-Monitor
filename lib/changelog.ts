@@ -22,6 +22,13 @@ export type VoceChangelog = {
 export const CHANGELOG: VoceChangelog[] = [
   {
     data: "26/08/2026",
+    titolo: "Farmacie — indicatore \"Aperta ora\" / \"Chiusa ora\"",
+    dettagli: [
+      "Ogni farmacia mostra ora un pallino verde/rosso con l'etichetta \"Aperta ora\" o \"Chiusa ora\", calcolato in base all'orario di oggi — sia nell'elenco che nella mappa.",
+    ],
+  },
+  {
+    data: "26/08/2026",
     titolo: "Farmacie — corretto un bug che azzerava tutte le pagine",
     dettagli: [
       "Nessuna farmacia compariva in nessuna provincia (bug segnalato dall'utente): un errore nel calcolo della provincia scartava ogni riga del dataset. Corretto — ora tutte le farmacie compaiono correttamente.",

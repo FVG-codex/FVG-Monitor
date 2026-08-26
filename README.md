@@ -1004,6 +1004,45 @@ corretta.
 
 `npx tsc --noEmit` e `node --check` puliti.
 
+### Indicatore "Aperta ora" / "Chiusa ora" (26/08/2026, stessa giornata)
+
+L'utente ha chiesto un pallino verde per "Aperta ora" e rosso per
+"Chiusa in questo momento", in base all'orario.
+
+**Calcolato lato client**, non nella snapshot Supabase: lo stato
+"aperta/chiusa" dipende dall'ora esatta in cui la pagina viene
+visitata, non ha senso ricalcolarlo una volta ogni 15 minuti
+nell'ingestione (nel peggiore dei casi lo stato sarebbe sbagliato per
+quasi 15 minuti dopo l'apertura/chiusura di una fascia). `statoApertura()`
+(`lib/farmacie.ts`) confronta l'ora corrente con ciascuna fascia di
+`orariOggi` (la farmacia è "aperta" se l'ora corrente cade dentro
+almeno una fascia, `da <= adesso < a`) — confronto **per stringa**, non
+`Date`, stesso motivo già documentato per gli orari stessi (formato
+`"YYYY-MM-DDTHH:MM"`, "ora locale già inclusa" senza fuso esplicito nel
+dato sorgente). Un terzo stato, "sconosciuto" (nessuna fascia oggi —
+vedi limite della finestra dati sopra), non mostra nessun pallino
+invece di azzardare uno stato.
+
+**Fuso orario esplicito anche lato client**: `adessoEuropeRome()`
+calcola "adesso" con `Intl.DateTimeFormat`/`timeZone: "Europe/Rome"` nel
+browser di chi visita, non l'ora locale del suo dispositivo — un
+visitatore da un altro fuso avrebbe altrimenti un confronto sbagliato,
+dato che gli orari della fonte sono orario italiano. Aggiornato ogni 30
+secondi con un `setInterval`, indipendente dal polling dati esistente
+(ogni 15 min).
+
+**UI**: nuovo componente condiviso `StatoApertoBadge.tsx` (pallino +
+etichetta testuale, mai il colore da solo — stessa lezione permanente
+di Fase 4 Accessibilità, stesso pattern già in uso in
+`BalneazionePanel.tsx`/`ViabilitaPanel.tsx`), usato sia nell'elenco
+(`FarmaciePage.tsx`, accanto al nome) sia nei popup della mappa
+(`FarmacieMap.tsx`, che ora riceve anche `adesso` come prop dal genitore
+per restare sincronizzato con l'elenco). Colori riusati dalla palette
+esistente (`allerta.verde`/`allerta.rossa`, già verificati per
+contrasto in altre sezioni del sito).
+
+`npx tsc --noEmit` pulito.
+
 ## Strutture ricettive — 8 registri, hub + 8 pagine (26/08/2026)
 
 Richiesta dell'utente, seguito diretto di una ricognizione dei dataset

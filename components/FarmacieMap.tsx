@@ -2,9 +2,18 @@
 
 import { MapContainer, TileLayer, CircleMarker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import { type VoceFarmacia, formattaFascia } from "@/lib/farmacie";
+import { type VoceFarmacia, formattaFascia, statoApertura } from "@/lib/farmacie";
+import { StatoApertoBadge } from "@/components/StatoApertoBadge";
 
-export function FarmacieMap({ farmacie, centro }: { farmacie: VoceFarmacia[]; centro: [number, number] }) {
+export function FarmacieMap({
+  farmacie,
+  centro,
+  adesso,
+}: {
+  farmacie: VoceFarmacia[];
+  centro: [number, number];
+  adesso: string;
+}) {
   const conCoordinate = farmacie.filter(
     (f): f is VoceFarmacia & { lat: number; lon: number } => f.lat !== null && f.lon !== null
   );
@@ -23,7 +32,8 @@ export function FarmacieMap({ farmacie, centro }: { farmacie: VoceFarmacia[]; ce
           pathOptions={{ color: "#5FB3A3", fillColor: "#5FB3A3", fillOpacity: 0.65 }}
         >
           <Popup>
-            <strong>{f.nome}</strong>
+            <strong>{f.nome}</strong>{" "}
+            <StatoApertoBadge stato={statoApertura(f, adesso)} />
             <br />
             {f.indirizzo}
             {f.indirizzo && f.comune ? ", " : ""}

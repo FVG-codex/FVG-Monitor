@@ -7,7 +7,8 @@ import { Footer } from "@/components/Footer";
 import { Panel } from "@/components/Panel";
 import { supabase } from "@/lib/supabase";
 import { PROVINCE_LIST, type ProvinciaSlug } from "@/lib/province";
-import { type SnapshotFarmacie, diTurnoOggi, formattaFascia } from "@/lib/farmacie";
+import { type SnapshotFarmacie, diTurnoOggi, formattaFascia, statoApertura, adessoEuropeRome } from "@/lib/farmacie";
+import { StatoApertoBadge } from "@/components/StatoApertoBadge";
 
 const FarmacieMap = dynamic(() => import("@/components/FarmacieMap").then((m) => m.FarmacieMap), {
   ssr: false,
@@ -31,6 +32,12 @@ export function FarmaciePage({ soloTurno }: { soloTurno: boolean }) {
   const [stato, setStato] = useState<"loading" | "ready" | "error">("loading");
   const [tab, setTab] = useState<ProvinciaSlug>("trieste");
   const [ricerca, setRicerca] = useState("");
+  // "Aperta ora"/"Chiusa ora" (26/08/2026): calcolato lato client, non
+  // dalla snapshot (che si aggiorna ogni 15 min ma contiene solo gli
+  // orari, non uno stato aperto/chiuso). Aggiornato ogni 30 secondi,
+  // indipendente dal polling dati sopra — vedi statoApertura() in
+  // lib/farmacie.ts per il perché del fuso Europe/Rome esplicito.
+  const [adesso, setAdesso] = useState(() => adessoEuropeRome());
 
   useEffect(() => {
     let attivo = true;
@@ -50,6 +57,11 @@ export function FarmaciePage({ soloTurno }: { soloTurno: boolean }) {
       attivo = false;
       clearInterval(id);
     };
+  }, []);
+
+  useEffect(() => {
+    const id = setInterval(() => setAdesso(adessoEuropeRome()), 30 * 1000);
+    return () => clearInterval(id);
   }, []);
 
   const provincia = dati?.per_provincia[tab];
@@ -139,7 +151,7 @@ export function FarmaciePage({ soloTurno }: { soloTurno: boolean }) {
                   style={{ height: 460 }}
                   className="rounded overflow-hidden"
                 >
-                  <FarmacieMap farmacie={farmacie} centro={centroProvincia[tab]} />
+                  <FarmacieMap farmacie={farmacie} centro={centroProvincia[tab]} adesso={adesso} />
                 </div>
               </Panel>
 
@@ -154,7 +166,10 @@ export function FarmaciePage({ soloTurno }: { soloTurno: boolean }) {
                   <div className="max-h-[460px] overflow-y-auto flex flex-col">
                     {farmacie.map((f, i) => (
                       <div key={`${f.nome}-${i}`} className={`py-3 ${i > 0 ? "border-t border-line" : ""}`}>
-                        <div className="text-sm font-semibold">{f.nome}</div>
+                        <div className="flex items-baseline justify-between gap-2 min-w-0">
+                          <span className="text-sm font-semibold truncate">{f.nome}</span>
+                          <StatoApertoBadge stato={statoApertura(f, adesso)} />
+                        </div>
                         <div className="text-ink-dim text-xs mt-0.5">
                           {f.indirizzo}
                           {f.indirizzo && f.comune ? ", " : ""}
