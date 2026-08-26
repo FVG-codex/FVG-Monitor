@@ -971,6 +971,121 @@ async function ingestBalneazione() {
 }
 
 // ---------------------------------------------------------------------
+// FARMACIE — farmacie di turno, dataset Socrata "Farmacie di turno"
+// (id jbxd-m6xe) su dati.friuliveneziagiulia.it: elenco completo delle
+// farmacie aperte al pubblico in FVG, con le fasce di apertura
+// straordinaria (turno) oltre a quelle ordinarie. Aggiornato dalla
+// Regione ogni giorno alle 01:00, 417 farmacie totali. La finestra dati
+// copre "oggi + domani mattina" (verificato: min/max di orari_0_da sono
+// risultati rispettivamente oggi 00:00 e domani ~09:00 nello stesso
+// giorno di interrogazione).
+//
+// Ogni farmacia ha fino a 17 fasce orarie (orari_0_* … orari_16_*: campi
+// *_da, *_a, *_tipo), con tipo "normale" (orario ordinario) o "turno"
+// (apertura straordinaria: sabato pomeriggio, festivo, notturno...).
+// Una farmacia è "di turno oggi" se ha almeno una fascia tipo "turno"
+// che INIZIA oggi (data di orari_N_da == oggi) — la finestra è
+// autosufficiente per ciascun giorno: un turno notturno che finisce
+// domani mattina compare comunque nel record di "oggi" con orari_N_da
+// che parte esattamente da oggi 00:00, non serve incrociare col giorno
+// prima. I valori *_da/*_a sono trattati come stringa (confronto sui
+// primi 10 caratteri "YYYY-MM-DD"), senza passare da new Date(): non è
+// documentato se il dataset esprime l'ora in UTC o già in orario locale
+// italiano, e gli orari osservati (es. turno serale-notturno 20:00–08:30
+// del giorno dopo) sono coerenti solo con un'interpretazione "ora
+// locale già inclusa nella stringa" — usare Date rischierebbe di
+// applicare un fuso sbagliato due volte.
+//
+// "Oggi" va comunque calcolato in fuso orario Europe/Rome (questo
+// script gira su GitHub Actions in UTC) per sapere QUALE giorno stiamo
+// cercando nel dataset — stessa cautela già documentata per
+// formattaOrarioRichiesta() in app/api/treni/[tipo]/[stazione]/route.ts.
+//
+// Provincia ricavata dal campo idcomune (codice ISTAT del comune, senza
+// zero iniziale, es. "30049" Udine, "93033" Pordenone) — prefisso a 2
+// cifre della provincia ISTAT: 30 Udine, 31 Gorizia, 32 Trieste, 93
+// Pordenone. Stesso schema di provinciaDaIdBalneazione ma formato
+// diverso (qui il codice non ha il prefisso "IT006").
+// ---------------------------------------------------------------------
+
+const FARMACIE_DATASET_URL = "https://www.dati.friuliveneziagiulia.it/resource/jbxd-m6xe.json";
+
+const PROVINCIA_DA_PREFISSO_ISTAT_COMUNE = { "30": "udine", "31": "gorizia", "32": "trieste", "93": "pordenone" };
+
+function provinciaDaIdComuneFarmacia(idcomune) {
+  const s = String(idcomune ?? "").padStart(6, "0");
+  return PROVINCIA_DA_PREFISSO_ISTAT_COMUNE[s.slice(0, 2)] ?? null;
+}
+
+// en-CA produce direttamente "YYYY-MM-DD", comodo per il confronto per
+// prefisso con i valori orari_N_da del dataset.
+function oggiEuropeRome() {
+  return new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Rome" }).format(new Date());
+}
+
+async function ingestFarmacie() {
+  const url = `${FARMACIE_DATASET_URL}?$limit=1000`;
+  const res = await fetchConRetry(url);
+  if (!res.ok) {
+    console.warn(`Dataset farmacie non disponibile (HTTP ${res.status})`);
+    return;
+  }
+
+  const rows = await res.json();
+  if (!Array.isArray(rows) || rows.length === 0) {
+    console.warn("Dataset farmacie vuoto");
+    return;
+  }
+
+  const oggi = oggiEuropeRome();
+  const perProvincia = {};
+
+  for (const r of rows) {
+    const provincia = provinciaDaIdComuneFarmacia(r.idcomune);
+    if (!provincia) continue; // comune fuori regione o codice non riconosciuto — non dovrebbe capitare
+
+    // Fino a 17 fasce orarie per farmacia (orari_0_* … orari_16_*):
+    // raccoglie quelle di tipo "turno" che iniziano oggi.
+    const turniOggi = [];
+    for (let i = 0; i <= 16; i++) {
+      const tipo = r[`orari_${i}_tipo`];
+      const da = r[`orari_${i}_da`];
+      if (tipo === "turno" && typeof da === "string" && da.slice(0, 10) === oggi) {
+        turniOggi.push({ da, a: r[`orari_${i}_a`] ?? null });
+      }
+    }
+    if (turniOggi.length === 0) continue;
+
+    if (!perProvincia[provincia]) perProvincia[provincia] = { totale: 0, farmacie: [] };
+    const p = perProvincia[provincia];
+    p.totale++;
+    p.farmacie.push({
+      nome: testo(r.insegna) ?? testo(r.ragionesociale) ?? "Farmacia",
+      comune: testo(r.comune),
+      indirizzo: testo(r.indirizzo),
+      telefono: testo(r.telefono),
+      lat: r.latitudine ? Number(r.latitudine) : null,
+      lon: r.longitudine ? Number(r.longitudine) : null,
+      turni: turniOggi,
+    });
+  }
+
+  for (const p of Object.values(perProvincia)) {
+    p.farmacie.sort(
+      (a, b) => (a.comune ?? "").localeCompare(b.comune ?? "", "it") || a.nome.localeCompare(b.nome, "it")
+    );
+  }
+
+  if (Object.keys(perProvincia).length === 0) {
+    console.warn(`Nessuna farmacia di turno trovata per oggi (${oggi})`);
+  }
+
+  await upsertSnapshot("farmacie", "farmacie", null, { data: oggi, per_provincia: perProvincia });
+  const totaleFarmacie = Object.values(perProvincia).reduce((n, p) => n + p.totale, 0);
+  console.log(`Farmacie di turno aggiornate (${oggi}): ${totaleFarmacie} farmacie`);
+}
+
+// ---------------------------------------------------------------------
 
 // ---------------------------------------------------------------------
 // QUALITÀ ARIA — OZONO — dataset "Aria - Ozono" (id 7vnx-28uy) sullo
@@ -2452,6 +2567,7 @@ async function main() {
     ["fiumi", ingestFiumi()],
     ["mare", ingestMare()],
     ["balneazione", ingestBalneazione()],
+    ["farmacie", ingestFarmacie()],
     ["ozono", ingestOzono()],
     ["no2", ingestNo2()],
     ["pm25", ingestPm25()],

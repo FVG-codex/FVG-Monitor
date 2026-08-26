@@ -14,6 +14,7 @@ const SEZIONI_EXTRA = [
   { label: "Viabilità", href: "/viabilita" },
   { label: "Trasporti", href: "/trasporti" },
   { label: "Aviazione", href: "/aviazione" },
+  { label: "Farmacie di turno", href: "/farmacie" },
 ];
 
 export function MenuHamburger() {

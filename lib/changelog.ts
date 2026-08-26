@@ -21,6 +21,13 @@ export type VoceChangelog = {
 
 export const CHANGELOG: VoceChangelog[] = [
   {
+    data: "26/08/2026",
+    titolo: "Farmacie di turno — nuova sezione",
+    dettagli: [
+      "Aggiunta la sezione Farmacie di turno (/farmacie): mappa ed elenco, con un tab per provincia, delle farmacie con apertura straordinaria oggi in Friuli Venezia Giulia, fonte Regione FVG.",
+    ],
+  },
+  {
     data: "25/08/2026",
     titolo: "Aviazione — orientamento e lunghezza pista, elisuperfici",
     dettagli: [

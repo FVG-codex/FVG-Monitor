@@ -93,6 +93,7 @@ componente React che legge da Supabase con lo stesso nome.
 | **Trieste Airport** | Scraping HTML triesteairport.it | Stesso approccio degli Eventi, stessa fragilità |
 | **Registro modifiche** — pagina dedicata `/changelog`, link nel footer di ogni pagina | Dati statici, `lib/changelog.ts` | Cronologia di ciò che è cambiato sul sito, più recente in cima — vedi nota "Registro modifiche" sotto per il promemoria di aggiornamento |
 | **Aviazione** — pagina dedicata `/aviazione` (nel menù ad amburger) | Dati statici raccolti da webaai.it + qnhfly.com, `lib/aviostrutture.ts` | 32 aviostrutture FVG (aeroporti, aviosuperfici, campi volo, elisuperfici), mappa + elenco filtrabile per categoria, con orientamento/lunghezza/pavimentazione pista dove disponibili — vedi note "Aviazione" sotto per i limiti (dati premium esclusi, ecc.) |
+| **Farmacie di turno** — pagina dedicata `/farmacie` (nel menù ad amburger) | Dataset Socrata Regione FVG "Farmacie di turno" (`jbxd-m6xe`) | `FarmaciePage.tsx`, tab per provincia, mappa + elenco delle sole farmacie con apertura straordinaria **oggi** — vedi nota "Farmacie" sotto per i dettagli sul calcolo del giorno e sul fuso orario |
 
 **Abbandonato**: trasporto pubblico TPL FVG — nessun endpoint pubblico per il
 tracciamento GPS trovato (verificato via devtools/WebSocket), solo l'elenco
@@ -783,9 +784,9 @@ elenco testuale equivalente affiancato, link alla scheda completa su
 webaai.it quando disponibile. Voce "Aviazione" aggiunta al menu ad
 amburger (`MenuHamburger.tsx`).
 
-`npx tsc --noEmit` pulito. Non ancora testato in produzione — servirà
-una verifica visiva su `/aviazione` (posizione dei marker sulla mappa,
-filtri, elenco).
+`npx tsc --noEmit` pulito. **Confermato dall'utente in produzione**
+(25/08/2026, dopo il redeploy che include anche l'arricchimento dati
+pista/elisuperfici sotto).
 
 ## Aviazione — dati pista ed elisuperfici (25/08/2026)
 
@@ -856,7 +857,71 @@ per struttura e un filtro "Elisuperfici"; `AviazioneMap.tsx` ha un
 nuovo colore per la categoria (`warm`, già verificato per contrasto) e
 mostra i dati di pista nel popup.
 
-`npx tsc --noEmit` pulito. Non ancora testato in produzione.
+`npx tsc --noEmit` pulito. **Confermato dall'utente in produzione**
+(25/08/2026, dopo redeploy): orientamento/lunghezza/pavimentazione
+pista visibili correttamente (verificato dall'utente sull'esempio
+Gorizia, 04/22 e 09/27).
+
+## Farmacie di turno — dentro `/farmacie` (26/08/2026)
+
+Richiesta dell'utente: una sezione "farmacie" per trovare le farmacie di
+turno in FVG, cioè quelle aperte in giornata odierna oltre all'orario
+ordinario.
+
+**Fonte**: dataset Socrata ufficiale della Regione FVG "Farmacie di
+turno" (`jbxd-m6xe` su `dati.friuliveneziagiulia.it`), lo stesso portale
+open-data già usato per Balneazione/Pollini/Ozono/NO2/PM2.5. 417 farmacie
+totali, aggiornato dalla Regione ogni giorno alle 01:00. Verificato via
+WebFetch (l'host è bloccato per `curl`/fetch diretto dalla allowlist di
+rete di questo sandbox, stessa situazione già nota per gli altri host
+`dati.friuliveneziagiulia.it` — WebFetch funziona regolarmente anche per
+endpoint JSON grezzi, non solo per pagine HTML).
+
+**Struttura del dato**: ogni farmacia ha fino a 17 fasce orarie
+(`orari_0_da`/`orari_0_a`/`orari_0_tipo` … `orari_16_*`), di tipo
+`"normale"` (orario ordinario) o `"turno"` (apertura straordinaria:
+sabato pomeriggio, festivo, notturno...). Una farmacia è "di turno oggi"
+se ha almeno una fascia `tipo === "turno"` la cui data di inizio
+(`orari_N_da`) è oggi — la finestra dati è autosufficiente per ciascun
+giorno: un turno notturno che finisce la mattina dopo compare comunque
+nel record di "oggi" con `orari_N_da` che parte esattamente da oggi
+00:00 (verificato: interrogando il dataset lo stesso giorno, il minimo
+di `orari_0_da` risultava oggi 00:00 e il massimo domani ~09:00 — non
+serve incrociare col giorno prima per catturare un turno notturno in
+corso).
+
+**Fuso orario**: "oggi" viene calcolato con `Intl.DateTimeFormat` e
+`timeZone: "Europe/Rome"` (lo script di ingestione gira su GitHub
+Actions in UTC) — stessa cautela già documentata per
+`formattaOrarioRichiesta()` in `app/api/treni/[tipo]/[stazione]/route.ts`.
+Gli orari nei campi `orari_N_da/a` sono invece trattati come stringa
+pura (confronto sui primi 10/16 caratteri), senza passare da `new
+Date()`: non è documentato se il dataset esprima l'ora in UTC o già in
+locale italiano, e gli orari osservati (es. turno notturno 20:00–08:30)
+sono coerenti solo con "ora locale già inclusa nella stringa" — usare
+`Date` rischierebbe di applicare un fuso sbagliato una seconda volta.
+
+**Provincia**: ricavata dal campo `idcomune` (codice ISTAT del comune,
+senza zero iniziale, es. `"30049"` Lignano → Udine, `"31009"` Grado →
+Gorizia) tramite il prefisso a 2 cifre della provincia ISTAT (30 Udine,
+31 Gorizia, 32 Trieste, 93 Pordenone) — stesso principio di
+`provinciaDaIdBalneazione`, ma formato del codice diverso (qui senza il
+prefisso `"IT006"`), quindi una funzione nuova (`provinciaDaIdComuneFarmacia`)
+invece di riusare quella esistente.
+
+**UI** (`FarmaciePage.tsx`, `FarmacieMap.tsx`): stesso impianto a due
+pannelli (Mappa + Elenco) già usato in Aviazione, con tab per provincia
+sopra (stile `BalneazionePanel.tsx`) invece del filtro per categoria.
+Ogni farmacia in elenco mostra nome, comune, indirizzo, telefono e
+l'orario del turno di oggi (con indicazione "giorno succ." se il turno
+finisce dopo mezzanotte). Snapshot Supabase `farmacie`
+(`{ data: "YYYY-MM-DD", per_provincia: { ... } }`), stesso pattern di
+polling ogni 15 minuti delle altre pagine con dato quasi statico.
+Aggiunta voce "Farmacie di turno" al menù ad amburger
+(`MenuHamburger.tsx`).
+
+`npx tsc --noEmit` pulito. **Non ancora testato/confermato in
+produzione.**
 
 ## Fase 4 — Responsive (24/08/2026)
 
