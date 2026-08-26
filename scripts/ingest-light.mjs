@@ -976,14 +976,19 @@ async function ingestBalneazione() {
 }
 
 // ---------------------------------------------------------------------
-// FARMACIE — farmacie di turno, dataset Socrata "Farmacie di turno"
-// (id jbxd-m6xe) su dati.friuliveneziagiulia.it: elenco completo delle
-// farmacie aperte al pubblico in FVG, con le fasce di apertura
-// straordinaria (turno) oltre a quelle ordinarie. Aggiornato dalla
-// Regione ogni giorno alle 01:00, 417 farmacie totali. La finestra dati
-// copre "oggi + domani mattina" (verificato: min/max di orari_0_da sono
-// risultati rispettivamente oggi 00:00 e domani ~09:00 nello stesso
-// giorno di interrogazione).
+// FARMACIE — dataset Socrata "Farmacie di turno" (id jbxd-m6xe) su
+// dati.friuliveneziagiulia.it: elenco completo delle farmacie aperte al
+// pubblico in FVG, con le fasce di apertura straordinaria (turno) oltre
+// a quelle ordinarie. Aggiornato dalla Regione ogni giorno alle 01:00,
+// 417 farmacie totali. La finestra dati copre "oggi + domani mattina"
+// (verificato: min/max di orari_0_da sono risultati rispettivamente
+// oggi 00:00 e domani ~09:00 nello stesso giorno di interrogazione) —
+// **non** una tabella oraria settimanale permanente: è uno snapshot che
+// dà solo le fasce (normali e turno) di OGGI per ciascuna farmacia,
+// aggiornato ogni giorno. Per questo l'orario "ordinario" mostrato in
+// `/farmacie-tutte` (26/08/2026, vedi sotto) è "l'orario di oggi", non
+// un orario settimanale fisso — la distinzione va tenuta chiara in UI,
+// non è un dato inventato ma nemmeno un vero orario "Lun-Sab" completo.
 //
 // Ogni farmacia ha fino a 17 fasce orarie (orari_0_* … orari_16_*: campi
 // *_da, *_a, *_tipo), con tipo "normale" (orario ordinario) o "turno"
@@ -1011,6 +1016,16 @@ async function ingestBalneazione() {
 // cifre della provincia ISTAT: 30 Udine, 31 Gorizia, 32 Trieste, 93
 // Pordenone. Stesso schema di provinciaDaIdBalneazione ma formato
 // diverso (qui il codice non ha il prefisso "IT006").
+//
+// Estensione 26/08/2026: la snapshot ora contiene TUTTE le farmacie
+// (non solo quelle di turno oggi), ciascuna con TUTTE le proprie fasce
+// di oggi (`orariOggi`, normali E turno, non solo turno) — richiesto
+// dall'utente per una pagina "Tutte le farmacie" (`/farmacie-tutte`)
+// accanto a quella già esistente "Farmacie di turno" (`/farmacie-di-
+// turno`), sullo stesso modello hub+pagine di Sport e Strutture
+// ricettive. Un'unica ingestione, un'unica snapshot Supabase — le due
+// pagine filtrano client-side lo stesso dato (`diTurnoOggi()` in
+// `lib/farmacie.ts`), nessun bisogno di due fetch separati.
 // ---------------------------------------------------------------------
 
 const FARMACIE_DATASET_URL = "https://www.dati.friuliveneziagiulia.it/resource/jbxd-m6xe.json";
@@ -1047,31 +1062,33 @@ async function ingestFarmacie() {
 
   for (const r of rows) {
     const provincia = provinciaDaIdComuneFarmacia(r.idcomune);
-    if (!provincia) continue; // comune fuori regione o codice non riconosciuto — non dovrebbe capitare
+    const nome = testo(r.insegna) ?? testo(r.ragionesociale);
+    if (!provincia || !nome) continue; // comune fuori regione, o riga senza nome — non dovrebbe capitare
 
-    // Fino a 17 fasce orarie per farmacia (orari_0_* … orari_16_*):
-    // raccoglie quelle di tipo "turno" che iniziano oggi.
-    const turniOggi = [];
+    // Fino a 17 fasce orarie per farmacia (orari_0_* … orari_16_*): tutte
+    // quelle che iniziano oggi, normali E turno (non solo turno — vedi
+    // nota sopra, serve anche alla pagina "Tutte le farmacie").
+    const orariOggi = [];
     for (let i = 0; i <= 16; i++) {
       const tipo = r[`orari_${i}_tipo`];
       const da = r[`orari_${i}_da`];
-      if (tipo === "turno" && typeof da === "string" && da.slice(0, 10) === oggi) {
-        turniOggi.push({ da, a: r[`orari_${i}_a`] ?? null });
+      if ((tipo === "normale" || tipo === "turno") && typeof da === "string" && da.slice(0, 10) === oggi) {
+        orariOggi.push({ da, a: r[`orari_${i}_a`] ?? null, tipo });
       }
     }
-    if (turniOggi.length === 0) continue;
+    orariOggi.sort((a, b) => a.da.localeCompare(b.da));
 
     if (!perProvincia[provincia]) perProvincia[provincia] = { totale: 0, farmacie: [] };
     const p = perProvincia[provincia];
     p.totale++;
     p.farmacie.push({
-      nome: testo(r.insegna) ?? testo(r.ragionesociale) ?? "Farmacia",
+      nome,
       comune: testo(r.comune),
       indirizzo: testo(r.indirizzo),
       telefono: testo(r.telefono),
       lat: r.latitudine ? Number(r.latitudine) : null,
       lon: r.longitudine ? Number(r.longitudine) : null,
-      turni: turniOggi,
+      orariOggi,
     });
   }
 
@@ -1082,12 +1099,12 @@ async function ingestFarmacie() {
   }
 
   if (Object.keys(perProvincia).length === 0) {
-    console.warn(`Nessuna farmacia di turno trovata per oggi (${oggi})`);
+    console.warn(`Nessuna farmacia trovata per oggi (${oggi})`);
   }
 
   await upsertSnapshot("farmacie", "farmacie", null, { data: oggi, per_provincia: perProvincia });
   const totaleFarmacie = Object.values(perProvincia).reduce((n, p) => n + p.totale, 0);
-  console.log(`Farmacie di turno aggiornate (${oggi}): ${totaleFarmacie} farmacie`);
+  console.log(`Farmacie aggiornate (${oggi}): ${totaleFarmacie} farmacie totali`);
 }
 
 // ---------------------------------------------------------------------

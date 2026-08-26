@@ -1,21 +1,18 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import dynamic from "next/dynamic";
 import { TopHeader } from "@/components/TopHeader";
 import { Footer } from "@/components/Footer";
 import { Panel } from "@/components/Panel";
 import { supabase } from "@/lib/supabase";
 import { PROVINCE_LIST, type ProvinciaSlug } from "@/lib/province";
-import type { FarmaciaTurno } from "@/components/FarmacieMap";
+import { type SnapshotFarmacie, diTurnoOggi, formattaFascia } from "@/lib/farmacie";
 
 const FarmacieMap = dynamic(() => import("@/components/FarmacieMap").then((m) => m.FarmacieMap), {
   ssr: false,
   loading: () => <p className="text-ink-faint text-sm font-mono">Caricamento mappa…</p>,
 });
-
-type FarmacieProvincia = { totale: number; farmacie: FarmaciaTurno[] };
-type SnapshotFarmacie = { data: string; per_provincia: Partial<Record<ProvinciaSlug, FarmacieProvincia>> };
 
 function formattaData(iso: string): string {
   // iso è "YYYY-MM-DD" (data pura, senza ora) — new Date() la interpreta
@@ -24,20 +21,16 @@ function formattaData(iso: string): string {
   return d.toLocaleDateString("it-IT", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
 }
 
-function orario(iso: string): string {
-  return iso.slice(11, 16);
-}
-
-function formattaTurno(t: { da: string; a: string | null }): string {
-  const giornoDa = t.da.slice(0, 10);
-  const finisceDomani = t.a && t.a.slice(0, 10) !== giornoDa;
-  return `${orario(t.da)} – ${t.a ? orario(t.a) : "?"}${finisceDomani ? " (giorno succ.)" : ""}`;
-}
-
-export function FarmaciePage() {
+// Un solo componente per entrambe le pagine (/farmacie-tutte e
+// /farmacie-di-turno), stessa snapshot Supabase filtrata client-side —
+// vedi nota in lib/farmacie.ts. `soloTurno` cambia solo QUALI farmacie
+// compaiono, non come vengono mostrate: ogni farmacia elenca comunque
+// tutte le proprie fasce di oggi (normali + turno), etichettate.
+export function FarmaciePage({ soloTurno }: { soloTurno: boolean }) {
   const [dati, setDati] = useState<SnapshotFarmacie | null>(null);
   const [stato, setStato] = useState<"loading" | "ready" | "error">("loading");
   const [tab, setTab] = useState<ProvinciaSlug>("trieste");
+  const [ricerca, setRicerca] = useState("");
 
   useEffect(() => {
     let attivo = true;
@@ -60,7 +53,24 @@ export function FarmaciePage() {
   }, []);
 
   const provincia = dati?.per_provincia[tab];
-  const farmacie = provincia?.farmacie ?? [];
+  const tutteLaProvincia = provincia?.farmacie ?? [];
+
+  const farmacie = useMemo(() => {
+    const base = soloTurno ? tutteLaProvincia.filter(diTurnoOggi) : tutteLaProvincia;
+    const q = ricerca.trim().toLowerCase();
+    if (!q) return base;
+    return base.filter((f) => f.nome.toLowerCase().includes(q) || (f.comune ?? "").toLowerCase().includes(q));
+  }, [tutteLaProvincia, soloTurno, ricerca]);
+
+  // Conteggio per i tab provincia: coerente col filtro soloTurno, non il
+  // totale grezzo della snapshot (altrimenti "Trieste (94)" nella pagina
+  // Turno mostrerebbe il totale di TUTTE le farmacie di Trieste, non
+  // solo quelle di turno oggi).
+  function conteggioProvincia(p: ProvinciaSlug): number {
+    const lista = dati?.per_provincia[p]?.farmacie ?? [];
+    return soloTurno ? lista.filter(diTurnoOggi).length : lista.length;
+  }
+
   const nomeProvincia = PROVINCE_LIST.find((p) => p.slug === tab)?.nome ?? tab;
   const centroProvincia: Record<ProvinciaSlug, [number, number]> = {
     trieste: [45.65, 13.78],
@@ -69,28 +79,33 @@ export function FarmaciePage() {
     pordenone: [45.96, 12.66],
   };
 
+  const titolo = soloTurno ? "Farmacie di turno" : "Tutte le farmacie";
+  const descrizione = soloTurno
+    ? "Farmacie con apertura straordinaria (turno) oggi"
+    : "Elenco completo delle farmacie";
+
   return (
     <>
       <TopHeader />
       <div className="isobar" />
 
       <main id="contenuto-principale" className="max-w-[1180px] mx-auto px-5 py-6">
-        <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1">Farmacie di turno</h1>
+        <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1">{titolo}</h1>
         <p className="text-ink-faint text-xs font-mono mb-4">
-          Farmacie con apertura straordinaria (turno) oggi
+          {descrizione}
           {dati ? ` — ${formattaData(dati.data)}` : ""} in Friuli Venezia Giulia — fonte: Regione Autonoma FVG
-          (dati.friuliveneziagiulia.it), aggiornato ogni giorno alle 01:00. Non include l&apos;orario ordinario
-          delle farmacie, solo le aperture straordinarie di oggi.
+          (dati.friuliveneziagiulia.it), aggiornato ogni giorno alle 01:00.{" "}
+          {soloTurno
+            ? "Non include l'orario ordinario delle farmacie, solo le aperture straordinarie di oggi."
+            : "Gli orari mostrati sono quelli di oggi (normali ed eventuali turni straordinari) — la fonte non pubblica un orario settimanale fisso, solo un aggiornamento giornaliero."}
         </p>
 
-        {stato === "loading" && <p className="text-ink-faint text-sm font-mono">Caricamento farmacie di turno…</p>}
-        {stato === "error" && (
-          <p className="text-ink-faint text-sm font-mono">Dati farmacie di turno non disponibili al momento.</p>
-        )}
+        {stato === "loading" && <p className="text-ink-faint text-sm font-mono">Caricamento farmacie…</p>}
+        {stato === "error" && <p className="text-ink-faint text-sm font-mono">Dati farmacie non disponibili al momento.</p>}
 
         {stato === "ready" && dati && (
           <>
-            <div className="flex gap-1.5 flex-wrap mb-6">
+            <div className="flex gap-1.5 flex-wrap mb-3">
               {PROVINCE_LIST.map((p) => (
                 <button
                   key={p.slug}
@@ -100,16 +115,27 @@ export function FarmaciePage() {
                     tab === p.slug ? "bg-cool text-bg" : "border border-line text-ink-dim hover:text-ink"
                   }`}
                 >
-                  {p.nome} ({dati.per_provincia[p.slug]?.totale ?? 0})
+                  {p.nome} ({conteggioProvincia(p.slug)})
                 </button>
               ))}
             </div>
+
+            <label className="block mb-4">
+              <span className="sr-only">Cerca per nome o comune</span>
+              <input
+                type="search"
+                value={ricerca}
+                onChange={(e) => setRicerca(e.target.value)}
+                placeholder="Cerca per nome o comune…"
+                className="w-full max-w-sm px-3 py-1.5 rounded text-sm bg-panel border border-line text-ink placeholder:text-ink-faint focus:outline-none focus:border-cool"
+              />
+            </label>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-line border border-line">
               <Panel title="Mappa">
                 <div
                   role="region"
-                  aria-label={`Mappa delle farmacie di turno in provincia di ${nomeProvincia} — elenco testuale equivalente nel pannello a fianco`}
+                  aria-label={`Mappa delle farmacie in provincia di ${nomeProvincia} — elenco testuale equivalente nel pannello a fianco`}
                   style={{ height: 460 }}
                   className="rounded overflow-hidden"
                 >
@@ -120,7 +146,9 @@ export function FarmaciePage() {
               <Panel title={`Elenco (${farmacie.length})`}>
                 {farmacie.length === 0 ? (
                   <p className="text-ink-faint text-sm font-mono">
-                    Nessuna farmacia di turno oggi in provincia di {nomeProvincia}.
+                    {soloTurno
+                      ? `Nessuna farmacia di turno oggi in provincia di ${nomeProvincia}.`
+                      : `Nessuna farmacia trovata in provincia di ${nomeProvincia}.`}
                   </p>
                 ) : (
                   <div className="max-h-[460px] overflow-y-auto flex flex-col">
@@ -134,9 +162,11 @@ export function FarmaciePage() {
                         </div>
                         {f.telefono && <div className="text-ink-faint text-xs mt-0.5">Tel. {f.telefono}</div>}
                         <div className="font-mono text-[10px] text-ink-dim mt-1">
-                          {f.turni.map((t, ti) => (
-                            <div key={ti}>Turno {formattaTurno(t)}</div>
-                          ))}
+                          {f.orariOggi.length === 0 ? (
+                            <div>Orario non disponibile</div>
+                          ) : (
+                            f.orariOggi.map((o, oi) => <div key={oi}>{formattaFascia(o)}</div>)
+                          )}
                         </div>
                       </div>
                     ))}

@@ -22,6 +22,14 @@ export type VoceChangelog = {
 export const CHANGELOG: VoceChangelog[] = [
   {
     data: "26/08/2026",
+    titolo: "Farmacie — divisa in \"Tutte le farmacie\" e \"Farmacie di turno\"",
+    dettagli: [
+      "La voce \"Farmacie\" nel menù apre ora un hub con due sezioni, come per Sport e Strutture ricettive: \"Tutte le farmacie\" (elenco completo con orari di oggi e contatti) e \"Farmacie di turno\" (solo le aperture straordinarie di oggi, come prima).",
+      "Aggiunta la ricerca per nome o comune su entrambe le pagine.",
+    ],
+  },
+  {
+    data: "26/08/2026",
     titolo: "Agriturismi — contatti più completi da turismofvg.it",
     dettagli: [
       "Per gli Agriturismi, indirizzo/telefono/email/sito (e, quando presenti, titolare e CIN) vengono ora presi da turismofvg.it quando disponibili — più ricchi e più affidabili del solo abbinamento OpenStreetMap, che resta il ripiego per gli altri 7 tipi di struttura ricettiva.",

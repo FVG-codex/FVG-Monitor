@@ -93,7 +93,7 @@ componente React che legge da Supabase con lo stesso nome.
 | **Trieste Airport** | Scraping HTML triesteairport.it | Stesso approccio degli Eventi, stessa fragilità |
 | **Registro modifiche** — pagina dedicata `/changelog`, link nel footer di ogni pagina | Dati statici, `lib/changelog.ts` | Cronologia di ciò che è cambiato sul sito, più recente in cima — vedi nota "Registro modifiche" sotto per il promemoria di aggiornamento |
 | **Aviazione** — pagina dedicata `/aviazione` (nel menù ad amburger) | Dati statici raccolti da webaai.it + qnhfly.com, `lib/aviostrutture.ts` | 32 aviostrutture FVG (aeroporti, aviosuperfici, campi volo, elisuperfici), mappa + elenco filtrabile per categoria, con orientamento/lunghezza/pavimentazione pista dove disponibili — vedi note "Aviazione" sotto per i limiti (dati premium esclusi, ecc.) |
-| **Farmacie di turno** — pagina dedicata `/farmacie` (nel menù ad amburger) | Dataset Socrata Regione FVG "Farmacie di turno" (`jbxd-m6xe`) | `FarmaciePage.tsx`, tab per provincia, mappa + elenco delle sole farmacie con apertura straordinaria **oggi** — vedi nota "Farmacie" sotto per i dettagli sul calcolo del giorno e sul fuso orario |
+| **Farmacie** — hub `/farmacie` (nel menù ad amburger) + 2 pagine | Dataset Socrata Regione FVG "Farmacie di turno" (`jbxd-m6xe`) | Hub con 2 card (stesso pattern di `/sport`/`/strutture-ricettive`): `/farmacie-tutte` (elenco completo, orari di oggi + contatti) e `/farmacie-di-turno` (solo le aperture straordinarie di oggi). Un solo componente `FarmaciePage.tsx` (prop `soloTurno`), stessa snapshot Supabase filtrata client-side — vedi nota "Farmacie" sotto per i dettagli sul calcolo del giorno, sul fuso orario e sulla finestra dati |
 | **Strutture ricettive** — hub `/strutture-ricettive` (nel menù ad amburger) + 8 pagine dedicate | 8 dataset Socrata Regione FVG (uno per tipo), `lib/struttureRicettive.ts` | Bed & Breakfast, Affittacamere, Campeggi e Villaggi Turistici, Alloggi Agrituristici, Alberghi Diffusi, Strutture Ricettive a carattere Sociale, Dry Marina/Marina Resort, Rifugi Alpini Escursionistici — un hub con una card per tipo (stesso pattern di `/sport`), ciascuno con la propria pagina (tab per provincia + ricerca testuale). Nessuna mappa: la fonte non pubblica indirizzo, telefono né coordinate per queste 8 categorie — vedi nota "Strutture ricettive" sotto |
 
 **Abbandonato**: trasporto pubblico TPL FVG — nessun endpoint pubblico per il
@@ -863,7 +863,7 @@ mostra i dati di pista nel popup.
 pista visibili correttamente (verificato dall'utente sull'esempio
 Gorizia, 04/22 e 09/27).
 
-## Farmacie di turno — dentro `/farmacie` (26/08/2026)
+## Farmacie — hub `/farmacie` (26/08/2026, esteso lo stesso giorno)
 
 Richiesta dell'utente: una sezione "farmacie" per trovare le farmacie di
 turno in FVG, cioè quelle aperte in giornata odierna oltre all'orario
@@ -923,6 +923,64 @@ Aggiunta voce "Farmacie di turno" al menù ad amburger
 
 `npx tsc --noEmit` pulito. **Non ancora testato/confermato in
 produzione.**
+
+### Divisa in hub + 2 pagine — "Tutte le farmacie" (26/08/2026, stessa giornata)
+
+L'utente ha chiesto di dividere la sezione in due macro-aree, come già
+fatto per Sport e Strutture ricettive: una con **tutte** le farmacie
+(orari di apertura + contatti) e una solo con le farmacie **di turno**
+(comportamento già esistente, invariato).
+
+**Scoperta chiave prima di scrivere codice** (verificato via WebFetch su
+righe reali del dataset, non presunto): il dataset `jbxd-m6xe` **non è
+una tabella oraria settimanale permanente** — ogni farmacia ha fasce
+orarie (`orari_N_da`/`orari_N_a`/`orari_N_tipo`) datate, e la finestra
+osservata copre solo **oggi + domani mattina** (stesso limite già
+documentato sopra per il calcolo del turno). Una farmacia con orario
+"normale" tutti i giorni feriali ha comunque, in un dato momento, solo 2
+giorni di fasce nel dataset (oggi e domani) — non un calendario
+settimanale completo. Conseguenza diretta: **"tutte le farmacie" mostra
+l'orario di OGGI per ciascuna**, non un orario "Lun–Sab" fisso — scelta
+esplicita per non inventare un dato che la fonte non fornisce, con
+avviso in pagina ("gli orari mostrati sono quelli di oggi ... la fonte
+non pubblica un orario settimanale fisso"). Osservato anche che non
+tutte le farmacie hanno fasce nella finestra corrente (es. una
+succursale con solo nome/indirizzo/telefono e zero `orari_N_*`) — gestito
+mostrando "Orario non disponibile" invece di nasconderla dall'elenco.
+
+**Ingestione**: `ingestFarmacie()` (`scripts/ingest-light.mjs`) ora
+raccoglie **tutte** le farmacie della snapshot (prima scartava quelle
+senza un turno oggi) e per ciascuna tutte le fasce di oggi, **normali E
+turno** insieme (`orariOggi`, prima solo `turni` di tipo turno) — un
+solo fetch, una sola snapshot Supabase `farmacie`, letta da entrambe le
+pagine. Nessuna seconda ingestione necessaria: `/farmacie-di-turno`
+filtra client-side le sole farmacie con almeno una fascia
+`tipo === "turno"` oggi (`diTurnoOggi()` in `lib/farmacie.ts`, nuovo
+file con i tipi condivisi `VoceFarmacia`/`FasciaOraria`/
+`SnapshotFarmacie` e l'helper di formattazione `formattaFascia()`).
+
+**UI**: nuovo hub `app/farmacie/page.tsx` (stesso pattern esatto di
+`/sport`/`/strutture-ricettive`, 2 card) con voce "Farmacie" nel menù ad
+amburger (prima "Farmacie di turno", ora il nome dell'hub). Due nuove
+route, `app/farmacie-tutte/page.tsx` e `app/farmacie-di-turno/page.tsx`,
+entrambe renderizzano lo stesso `FarmaciePage.tsx` con un prop
+`soloTurno: boolean` diverso — un solo componente invece di due quasi
+identici (stesso principio già seguito per `StrutturaTipoPage.tsx`).
+Aggiunto un campo di ricerca per nome/comune su entrambe le pagine
+(prima assente — utile ora che "Tutte le farmacie" mostra ~400 voci per
+provincia in alcuni casi, stesso motivo già documentato per
+Affittacamere/Bed & Breakfast in Strutture ricettive). Ogni farmacia in
+elenco/mappa mostra ora TUTTE le proprie fasce di oggi etichettate
+("Orario" per normale, "Turno" per straordinaria) su entrambe le
+pagine — la pagina Turno quindi ora mostra anche l'orario ordinario di
+oggi accanto al turno, non solo il turno come nella versione precedente
+(più informativo, nessuna perdita rispetto a prima).
+
+`npx tsc --noEmit` e `node --check` puliti. **Non ancora
+testato/confermato in produzione** — cambia la forma della snapshot
+`farmacie` (`turni` → `orariOggi`, ora tutte le farmacie non solo quelle
+di turno), servirà un nuovo run dell'ingestione e una verifica visiva su
+entrambe le nuove pagine.
 
 ## Strutture ricettive — 8 registri, hub + 8 pagine (26/08/2026)
 
