@@ -982,6 +982,28 @@ testato/confermato in produzione** — cambia la forma della snapshot
 di turno), servirà un nuovo run dell'ingestione e una verifica visiva su
 entrambe le nuove pagine.
 
+### Bug — nessuna farmacia in nessuna pagina (26/08/2026, dopo il primo deploy)
+
+L'utente ha segnalato che entrambe le pagine mostravano zero farmacie in
+ogni provincia. **Non era un problema di attesa del refresh giornaliero
+della Regione (01:00)**: la causa era un bug in `provinciaDaIdComuneFarmacia()`,
+presente fin dall'implementazione originale del modulo (mai stato
+notato prima perché la sezione non era mai stata verificata in
+produzione). La funzione faceva `String(idcomune).padStart(6, "0")`
+prima di leggere i primi 2 caratteri come prefisso provincia — ma
+verificato con dati reali (`$select=idcomune&$group=idcomune` sul
+dataset) `idcomune` è **sempre lungo esattamente 5 caratteri** (es.
+`"32006"` Trieste, `"30129"` Udine, `"31007"` Gorizia, `"93033"`
+Pordenone), mai 6: il `padStart` inseriva uno zero spurio in testa
+(`"30129"` → `"030129"`), spostando lo slice sui caratteri sbagliati
+(`"03"` invece di `"30"`) — nessuna provincia veniva mai riconosciuta,
+ogni riga del dataset scartata silenziosamente. **Fix**: rimosso il
+`padStart` superfluo, slice diretto sui 5 caratteri originali —
+verificato con le 4 città capoluogo che ora restituiscono la provincia
+corretta.
+
+`npx tsc --noEmit` e `node --check` puliti.
+
 ## Strutture ricettive — 8 registri, hub + 8 pagine (26/08/2026)
 
 Richiesta dell'utente, seguito diretto di una ricognizione dei dataset

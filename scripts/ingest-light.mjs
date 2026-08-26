@@ -1033,7 +1033,18 @@ const FARMACIE_DATASET_URL = "https://www.dati.friuliveneziagiulia.it/resource/j
 const PROVINCIA_DA_PREFISSO_ISTAT_COMUNE = { "30": "udine", "31": "gorizia", "32": "trieste", "93": "pordenone" };
 
 function provinciaDaIdComuneFarmacia(idcomune) {
-  const s = String(idcomune ?? "").padStart(6, "0");
+  // BUG corretto il 26/08/2026: un `.padStart(6, "0")` qui prima dello
+  // slice prependeva uno zero spurio — verificato con dati reali
+  // (`$select=idcomune&$group=idcomune`) che idcomune è SEMPRE lungo
+  // esattamente 5 caratteri (es. "32006" Trieste, "30129" Udine, "31007"
+  // Gorizia, "93033" Pordenone), mai 6. Il padStart trasformava "30129"
+  // in "030129" e lo slice(0,2) prendeva "03" invece di "30" — nessuna
+  // provincia veniva MAI riconosciuta, ogni riga del dataset scartata
+  // silenziosamente (`if (!provincia...) continue`), zero farmacie in
+  // ogni pagina. Bug latente fin dall'implementazione originale (mai
+  // stato notato prima perché il modulo non era ancora stato verificato
+  // in produzione) — trovato dall'utente che segnalava pagine vuote.
+  const s = String(idcomune ?? "");
   return PROVINCIA_DA_PREFISSO_ISTAT_COMUNE[s.slice(0, 2)] ?? null;
 }
 
