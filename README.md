@@ -94,6 +94,7 @@ componente React che legge da Supabase con lo stesso nome.
 | **Registro modifiche** — pagina dedicata `/changelog`, link nel footer di ogni pagina | Dati statici, `lib/changelog.ts` | Cronologia di ciò che è cambiato sul sito, più recente in cima — vedi nota "Registro modifiche" sotto per il promemoria di aggiornamento |
 | **Aviazione** — pagina dedicata `/aviazione` (nel menù ad amburger) | Dati statici raccolti da webaai.it + qnhfly.com, `lib/aviostrutture.ts` | 32 aviostrutture FVG (aeroporti, aviosuperfici, campi volo, elisuperfici), mappa + elenco filtrabile per categoria, con orientamento/lunghezza/pavimentazione pista dove disponibili — vedi note "Aviazione" sotto per i limiti (dati premium esclusi, ecc.) |
 | **Farmacie di turno** — pagina dedicata `/farmacie` (nel menù ad amburger) | Dataset Socrata Regione FVG "Farmacie di turno" (`jbxd-m6xe`) | `FarmaciePage.tsx`, tab per provincia, mappa + elenco delle sole farmacie con apertura straordinaria **oggi** — vedi nota "Farmacie" sotto per i dettagli sul calcolo del giorno e sul fuso orario |
+| **Strutture ricettive** — hub `/strutture-ricettive` (nel menù ad amburger) + 8 pagine dedicate | 8 dataset Socrata Regione FVG (uno per tipo), `lib/struttureRicettive.ts` | Bed & Breakfast, Affittacamere, Campeggi e Villaggi Turistici, Alloggi Agrituristici, Alberghi Diffusi, Strutture Ricettive a carattere Sociale, Dry Marina/Marina Resort, Rifugi Alpini Escursionistici — un hub con una card per tipo (stesso pattern di `/sport`), ciascuno con la propria pagina (tab per provincia + ricerca testuale). Nessuna mappa: la fonte non pubblica indirizzo, telefono né coordinate per queste 8 categorie — vedi nota "Strutture ricettive" sotto |
 
 **Abbandonato**: trasporto pubblico TPL FVG — nessun endpoint pubblico per il
 tracciamento GPS trovato (verificato via devtools/WebSocket), solo l'elenco
@@ -922,6 +923,74 @@ Aggiunta voce "Farmacie di turno" al menù ad amburger
 
 `npx tsc --noEmit` pulito. **Non ancora testato/confermato in
 produzione.**
+
+## Strutture ricettive — 8 registri, hub + 8 pagine (26/08/2026)
+
+Richiesta dell'utente, seguito diretto di una ricognizione dei dataset
+disponibili su `dati.friuliveneziagiulia.it`: implementare tutte le
+categorie di strutture ricettive trovate, con un hub `/strutture-ricettive`
+sul modello di `/sport` (card per tipo) e una pagina dedicata per
+ciascun tipo, sullo stesso modello delle pagine sport (`/calcio`,
+`/basket`, ecc. sotto l'hub `/sport`).
+
+**8 dataset Socrata**, uno per tipo, tutti con lo **stesso schema
+minimale**: `provincia`, `comune`, `denominazione`, `email` (opzionale),
+`sito` (opzionale, oggetto `{ url }`). Verificato sulla metadata di 2
+degli 8 dataset: **nessun indirizzo, telefono o coordinata** — limite
+della fonte stessa, non un'omissione nostra. Conseguenza diretta: **niente
+mappa** per questo modulo, a differenza di Aviazione/Farmacie — solo
+elenco testuale.
+
+| Tipo | Dataset | Voci | Pagina |
+|---|---|---|---|
+| Bed & Breakfast | `jzsu-f86x` | 712 | `/bed-and-breakfast` |
+| Affittacamere | `6var-2hht` | 822 | `/affittacamere` |
+| Campeggi e Villaggi Turistici | `c2n8-qhph` | 37 | `/campeggi` |
+| Alloggi Agrituristici | `yg8e-47jy` | 402 | `/agriturismi` |
+| Alberghi Diffusi | `69j3-9hcp` | 18 | `/alberghi-diffusi` |
+| Strutture Ricettive a carattere Sociale | `csiv-njht` | 113 | `/strutture-sociali` |
+| Dry Marina e Marina Resort | `6xk5-2p3e` | 15 | `/marina` |
+| Rifugi Alpini Escursionistici | `qnwt-cjvq` | 44 | `/rifugi` |
+
+Conteggi verificati con `$select=count(*)` il 26/08/2026 (2168 voci
+totali). Il campo `provincia` è già il nome per esteso in maiuscolo
+("UDINE", "GORIZIA", "TRIESTE", "PORDENONE") — a differenza di
+Balneazione/Farmacie non serve nessuna decodifica di codice ISTAT, basta
+il lowercase.
+
+**Dato di fatto quasi-statico, ma ingerito come un modulo standard**:
+la metadata di 2 degli 8 dataset (Bed & Breakfast, Rifugi) riporta
+`rowsUpdatedAt` a settembre 2024 — fermi da quasi 2 anni al momento di
+questa sessione. Nella sostanza è un registro "quasi statico" come
+Aviazione, ma qui **esiste una vera API Socrata** dietro (niente
+raccolta manuale via WebFetch pagina per pagina come per webaai.it):
+usare il pattern di ingestione standard costa lo stesso zero sforzo in
+più e mantiene il modulo aggiornato da solo se la Regione pubblica
+nuove voci, invece di restare fermo alla sessione in cui è stato
+raccolto — quindi niente file statico `lib/xxx.ts`, ma
+`ingestStruttureRicettive()` in `scripts/ingest-light.mjs`.
+
+**Un'unica funzione ingerisce tutti e 8 i tipi in parallelo**
+(`Promise.allSettled`, un tipo fallito non blocca gli altri) e scrive
+un'**unica snapshot Supabase** `strutture-ricettive`
+(`{ aggiornato_al, tipi: { bb: { totale, per_provincia }, ... } }`)
+invece di 8 snapshot separate — un solo job in `main()`, una sola riga
+di storico per esecuzione.
+
+**UI**: hub `app/strutture-ricettive/page.tsx` con una card per tipo
+(icona SVG lineare + nome + descrizione), stesso pattern di
+`app/sport/page.tsx`. Ogni tipo ha una pagina dedicata
+(`components/StrutturaTipoPage.tsx`, un solo componente riusato dagli 8
+file `app/<slug>/page.tsx` con un prop `tipo` diverso — evita 8
+componenti quasi identici) con tab per provincia + conteggio (stile
+Aviazione/Farmacie) e in più un campo di ricerca testuale per nome/comune
+(aggiunto per via del volume — Affittacamere e Bed & Breakfast hanno
+centinaia di voci ciascuno, poco navigabili con i soli tab). Ogni voce
+mostra nome, comune, e link a sito/email quando disponibili. Voce
+"Strutture ricettive" aggiunta al menù ad amburger.
+
+`npx tsc --noEmit` e `node --check` puliti. **Non ancora testato/confermato
+in produzione.**
 
 ## Fase 4 — Responsive (24/08/2026)
 

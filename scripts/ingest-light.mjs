@@ -1086,6 +1086,116 @@ async function ingestFarmacie() {
 }
 
 // ---------------------------------------------------------------------
+// STRUTTURE RICETTIVE — 8 registri regionali distinti (Bed & Breakfast,
+// Affittacamere, Campeggi/Villaggi Turistici, Alloggi Agrituristici,
+// Alberghi Diffusi, Strutture Ricettive a carattere Sociale, Dry
+// Marina/Marina Resort, Rifugi Alpini Escursionistici), tutti dataset
+// Socrata separati su dati.friuliveneziagiulia.it con lo STESSO schema
+// minimale: provincia, comune, denominazione, email (opzionale), sito
+// (opzionale, oggetto `{ url }`). NESSUN indirizzo, telefono o
+// coordinata pubblicati dalla fonte — limite del dato stesso (verificato
+// sulla metadata di 2 degli 8 dataset), non un'omissione nostra: niente
+// mappa possibile con questi dati, solo elenco.
+//
+// Registri "certificati dai Comuni e dalla Direzione centrale attività
+// produttive", aggiornati raramente (metadata di 2 degli 8 dataset
+// verificata: entrambi fermi a settembre 2024 al momento di questa
+// ingestione, 26/08/2026) — nella sostanza un dato quasi-statico, ma con
+// una vera API Socrata dietro (a differenza di Aviazione, che ha
+// richiesto raccolta manuale via WebFetch pagina per pagina): usiamo
+// comunque il pattern di ingestione standard invece del file statico
+// `lib/xxx.ts` una tantum — nessuno sforzo in più, e si aggiorna da solo
+// se la Regione pubblica nuove voci, invece di restare fermo alla
+// sessione in cui è stato raccolto.
+//
+// Un'unica funzione ingerisce tutti e 8 i tipi in parallelo e scrive
+// un'UNICA snapshot Supabase ("strutture-ricettive") con tutti i tipi
+// dentro (`{ aggiornato_al, tipi: { bb: {...}, affittacamere: {...},
+// ... } }`) invece di 8 snapshot separate — un solo job, una sola riga
+// di storico per esecuzione, ogni pagina di tipo legge la propria
+// chiave dalla stessa snapshot condivisa.
+// ---------------------------------------------------------------------
+
+const DATASET_STRUTTURE_RICETTIVE = {
+  bb: "jzsu-f86x",
+  affittacamere: "6var-2hht",
+  campeggi: "c2n8-qhph",
+  agriturismi: "yg8e-47jy",
+  "alberghi-diffusi": "69j3-9hcp",
+  sociali: "csiv-njht",
+  marina: "6xk5-2p3e",
+  rifugi: "qnwt-cjvq",
+};
+
+// I 4 valori osservati per il campo "provincia" sono già il nome per
+// esteso in maiuscolo (non un codice ISTAT come altrove) — basta il
+// lowercase per combaciare con ProvinciaSlug, verificato con una query
+// $select=distinct provincia su uno degli 8 dataset.
+const PROVINCE_STRUTTURE_RICETTIVE = { UDINE: "udine", GORIZIA: "gorizia", TRIESTE: "trieste", PORDENONE: "pordenone" };
+
+async function ingestTipoStrutturaRicettiva(datasetId) {
+  const url = `https://www.dati.friuliveneziagiulia.it/resource/${datasetId}.json?$limit=5000`;
+  const res = await fetchConRetry(url);
+  if (!res.ok) throw new Error(`Dataset ${datasetId} non disponibile (HTTP ${res.status})`);
+
+  const rows = await res.json();
+  if (!Array.isArray(rows)) throw new Error(`Dataset ${datasetId}: risposta inattesa`);
+
+  const perProvincia = {};
+  for (const r of rows) {
+    const provincia = PROVINCE_STRUTTURE_RICETTIVE[(r.provincia ?? "").toUpperCase()];
+    if (!provincia || !r.denominazione) continue; // comune fuori regione o riga senza nome — non dovrebbe capitare
+    if (!perProvincia[provincia]) perProvincia[provincia] = [];
+    perProvincia[provincia].push({
+      nome: testo(r.denominazione),
+      comune: testo(r.comune),
+      email: testo(r.email),
+      sito: r.sito?.url ?? null,
+    });
+  }
+  for (const lista of Object.values(perProvincia)) {
+    lista.sort((a, b) => a.nome.localeCompare(b.nome, "it"));
+  }
+
+  const totale = Object.values(perProvincia).reduce((n, l) => n + l.length, 0);
+  return { totale, per_provincia: perProvincia };
+}
+
+async function ingestStruttureRicettive() {
+  const chiavi = Object.keys(DATASET_STRUTTURE_RICETTIVE);
+  const risultati = await Promise.allSettled(
+    chiavi.map((chiave) => ingestTipoStrutturaRicettiva(DATASET_STRUTTURE_RICETTIVE[chiave]))
+  );
+
+  const tipi = {};
+  let falliti = 0;
+  risultati.forEach((r, i) => {
+    const chiave = chiavi[i];
+    if (r.status === "fulfilled") {
+      tipi[chiave] = r.value;
+    } else {
+      falliti++;
+      console.warn(`Strutture ricettive — tipo "${chiave}" fallito:`, r.reason);
+    }
+  });
+
+  if (Object.keys(tipi).length === 0) {
+    console.warn("Strutture ricettive: nessun tipo ingerito con successo, snapshot non aggiornata");
+    return;
+  }
+
+  await upsertSnapshot("strutture-ricettive", "strutture-ricettive", null, {
+    aggiornato_al: new Date().toISOString(),
+    tipi,
+  });
+  const totale = Object.values(tipi).reduce((n, t) => n + t.totale, 0);
+  console.log(
+    `Strutture ricettive aggiornate: ${totale} strutture in ${Object.keys(tipi).length}/${chiavi.length} tipi` +
+      (falliti > 0 ? ` (${falliti} tipi falliti)` : "")
+  );
+}
+
+// ---------------------------------------------------------------------
 
 // ---------------------------------------------------------------------
 // QUALITÀ ARIA — OZONO — dataset "Aria - Ozono" (id 7vnx-28uy) sullo
@@ -2568,6 +2678,7 @@ async function main() {
     ["mare", ingestMare()],
     ["balneazione", ingestBalneazione()],
     ["farmacie", ingestFarmacie()],
+    ["strutture-ricettive", ingestStruttureRicettive()],
     ["ozono", ingestOzono()],
     ["no2", ingestNo2()],
     ["pm25", ingestPm25()],

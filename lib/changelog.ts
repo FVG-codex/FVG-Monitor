@@ -22,6 +22,13 @@ export type VoceChangelog = {
 export const CHANGELOG: VoceChangelog[] = [
   {
     data: "26/08/2026",
+    titolo: "Strutture ricettive — nuova sezione, 8 tipi",
+    dettagli: [
+      "Aggiunto l'hub Strutture ricettive (/strutture-ricettive): Bed & Breakfast, Affittacamere, Campeggi, Agriturismi, Alberghi Diffusi, Strutture Sociali, Marina, Rifugi Alpini — oltre 2100 strutture in tutta la regione, ciascuna con la propria pagina, fonte Regione FVG.",
+    ],
+  },
+  {
+    data: "26/08/2026",
     titolo: "Farmacie di turno — nuova sezione",
     dettagli: [
       "Aggiunta la sezione Farmacie di turno (/farmacie): mappa ed elenco, con un tab per provincia, delle farmacie con apertura straordinaria oggi in Friuli Venezia Giulia, fonte Regione FVG.",

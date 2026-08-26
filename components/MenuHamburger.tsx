@@ -15,6 +15,7 @@ const SEZIONI_EXTRA = [
   { label: "Trasporti", href: "/trasporti" },
   { label: "Aviazione", href: "/aviazione" },
   { label: "Farmacie di turno", href: "/farmacie" },
+  { label: "Strutture ricettive", href: "/strutture-ricettive" },
 ];
 
 export function MenuHamburger() {
