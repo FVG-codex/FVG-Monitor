@@ -66,6 +66,28 @@ export type StatoApertura = "aperta" | "chiusa" | "sconosciuto";
 
 export function statoApertura(f: VoceFarmacia, adesso: string): StatoApertura {
   if (f.orariOggi.length === 0) return "sconosciuto";
+
+  // Guardia aggiunta il 27/08/2026, dopo una segnalazione dell'utente:
+  // una farmacia con orario 08:30–12:30 risultava "Chiusa ora" alle
+  // 10:26, in pieno orario di apertura. Causa: se la snapshot non è
+  // ancora stata aggiornata per la giornata corrente (es. ingestione in
+  // ritardo — capitato il giorno prima con un'esecuzione GitHub Actions
+  // rimasta "queued"), le fasce in `orariOggi` restano datate ieri
+  // mentre `adesso` (calcolato nel browser del visitatore) è già oggi:
+  // nel confronto per stringa sotto, una data di ieri risulta SEMPRE
+  // "prima" di qualunque ora di oggi, quindi `adessoMin < a` è sempre
+  // falso e il risultato è "chiusa" per ogni farmacia, qualunque sia
+  // l'ora reale — un falso negativo silenzioso, mai un dato inventato
+  // andrebbe mostrato con sicurezza (pallino rosso) se in realtà non lo
+  // sappiamo. Si considerano quindi solo le fasce datate come "oggi"
+  // secondo lo stesso `adesso` (non come "oggi" secondo l'ingestione,
+  // possibilmente disallineata) — se nessuna corrisponde, la snapshot
+  // non ha ancora dati affidabili per la giornata corrente: meglio
+  // "sconosciuto" (nessun pallino) che un "chiusa" potenzialmente falso.
+  const adessoData = adesso.slice(0, 10);
+  const fasceOggi = f.orariOggi.filter((fascia) => fascia.da.slice(0, 10) === adessoData);
+  if (fasceOggi.length === 0) return "sconosciuto";
+
   // Confronto per stringa (non Date), sugli stessi 16 caratteri
   // "YYYY-MM-DDTHH:MM" usati da adessoEuropeRome() sotto — coerente con
   // gli orari_N_da/a del dataset, "ora locale già inclusa nella
@@ -73,7 +95,7 @@ export function statoApertura(f: VoceFarmacia, adesso: string): StatoApertura {
   // di applicare un fuso sbagliato una seconda volta, stesso motivo già
   // documentato altrove in questo file.
   const adessoMin = adesso.slice(0, 16);
-  const aperta = f.orariOggi.some((fascia) => {
+  const aperta = fasceOggi.some((fascia) => {
     const da = fascia.da.slice(0, 16);
     const a = fascia.a ? fascia.a.slice(0, 16) : null;
     return adessoMin >= da && (a === null || adessoMin < a);

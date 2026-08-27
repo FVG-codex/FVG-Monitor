@@ -21,6 +21,20 @@ export type VoceChangelog = {
 
 export const CHANGELOG: VoceChangelog[] = [
   {
+    data: "27/08/2026",
+    titolo: "Farmacie — corretto il pallino \"Chiusa ora\" mostrato per errore",
+    dettagli: [
+      "In alcuni casi (dati non ancora aggiornati per la giornata) una farmacia poteva risultare \"Chiusa ora\" anche durante il proprio orario di apertura. Ora, quando i dati non sono ancora affidabili per oggi, non viene mostrato alcun pallino invece di uno stato sbagliato.",
+    ],
+  },
+  {
+    data: "27/08/2026",
+    titolo: "Corretto un problema per cui la mappa copriva il menù",
+    dettagli: [
+      "Su alcune pagine con mappa (es. Farmacie), aprendo il menù di navigazione la mappa poteva comparirci sopra invece che sotto. Corretto su tutte le pagine con mappa; nella pagina Farmacie l'elenco ora compare anche prima della mappa.",
+    ],
+  },
+  {
     data: "26/08/2026",
     titolo: "Ingestione — corretto un possibile blocco delle esecuzioni programmate",
     dettagli: [

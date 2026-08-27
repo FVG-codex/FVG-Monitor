@@ -48,3 +48,21 @@ body {
     animation: none;
   }
 }
+
+/* Aggiunto il 27/08/2026: segnalato dall'utente che, su desktop, la
+ * mappa Leaflet (Farmacie/Aviazione/...) copriva il menù ad amburger
+ * quando aperto. Causa: Leaflet imposta `position: relative` su
+ * `.leaflet-container` ma NESSUN z-index esplicito — senza un valore
+ * definito (anche "0" basta), l'elemento non crea un proprio contesto
+ * di stacking, quindi i suoi pannelli interni (`.leaflet-pane`,
+ * `.leaflet-top`/`.leaflet-control`, fino a z-index 1000 per gli
+ * strumenti di zoom) "sfuggono" e vengono confrontati direttamente con
+ * il resto della pagina — superando lo z-30 del menù. Bastano queste
+ * righe: fissando z-index sul container si intrappolano i suoi
+ * discendenti nel proprio contesto, senza toccare l'ordine RELATIVO
+ * fra i pannelli interni di Leaflet (tile/marker/popup restano
+ * correttamente sovrapposti fra loro). Effetto globale: qualunque
+ * mappa Leaflet del sito, non solo Farmacie. */
+.leaflet-container {
+  z-index: 0;
+}

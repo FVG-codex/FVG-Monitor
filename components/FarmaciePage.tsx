@@ -204,18 +204,17 @@ export function FarmaciePage({ soloTurno }: { soloTurno: boolean }) {
               />
             </label>
 
+            {/* Elenco prima della Mappa (27/08/2026, richiesto dall'utente):
+                su schermi stretti (grid-cols-1) l'ordine nel markup è
+                anche l'ordine visivo verticale — con la mappa prima, il
+                suo riquadro si trovava subito sotto il menù ad amburger
+                e lo copriva quando aperto (vedi anche il fix di
+                contenimento z-index Leaflet in app/globals.css, causa
+                principale del problema — questo scambio è comunque
+                un miglioramento a sé, l'elenco testuale è il contenuto
+                più immediato). Su schermi larghi (lg:grid-cols-2)
+                l'unico effetto è Elenco a sinistra, Mappa a destra. */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-line border border-line">
-              <Panel title="Mappa">
-                <div
-                  role="region"
-                  aria-label={`Mappa delle farmacie${comuneSel ? ` a ${comuneSel}` : ` in provincia di ${nomeProvincia}`} — elenco testuale equivalente nel pannello a fianco`}
-                  style={{ height: 460 }}
-                  className="rounded overflow-hidden"
-                >
-                  <FarmacieMap farmacie={farmacie} centro={centroProvincia[tab]} adesso={adesso} />
-                </div>
-              </Panel>
-
               <Panel title={`Elenco (${farmacie.length})`}>
                 {farmacie.length === 0 ? (
                   <p className="text-ink-faint text-sm font-mono">
@@ -248,6 +247,17 @@ export function FarmaciePage({ soloTurno }: { soloTurno: boolean }) {
                     ))}
                   </div>
                 )}
+              </Panel>
+
+              <Panel title="Mappa">
+                <div
+                  role="region"
+                  aria-label={`Mappa delle farmacie${comuneSel ? ` a ${comuneSel}` : ` in provincia di ${nomeProvincia}`} — elenco testuale equivalente nel pannello a fianco`}
+                  style={{ height: 460 }}
+                  className="rounded overflow-hidden"
+                >
+                  <FarmacieMap farmacie={farmacie} centro={centroProvincia[tab]} adesso={adesso} />
+                </div>
               </Panel>
             </div>
           </>

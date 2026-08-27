@@ -1075,6 +1075,71 @@ contrasto in altre sezioni del sito).
 
 `npx tsc --noEmit` pulito.
 
+### Fix — "Chiusa ora" mostrato durante l'orario di apertura (27/08/2026)
+
+L'utente ha segnalato una farmacia con orario 08:30–12:30 mostrata come
+"Chiusa ora" alle 10:26, in pieno orario di apertura — screenshot alla
+mano, tutte le farmacie in elenco mostravano lo stesso stato "chiuso"
+nonostante orari diversi, un pattern più coerente con un problema
+sistemico che con quattro farmacie diverse chiuse per coincidenza nello
+stesso momento.
+
+**Causa più probabile**: se la snapshot Supabase non è ancora stata
+aggiornata per la giornata corrente (es. ingestione in ritardo — proprio
+il giorno prima un'esecuzione GitHub Actions era rimasta "queued", vedi
+sezione Resilienza di rete sopra), le fasce in `orariOggi` restano datate
+ieri mentre `adesso` (calcolato nel browser del visitatore) è già oggi.
+Nel confronto per stringa di `statoApertura()`, una data di ieri risulta
+**sempre** "prima" di qualunque ora di oggi — quindi il controllo
+`adesso < a` risultava sempre falso, e la farmacia veniva marcata
+"chiusa" qualunque fosse l'ora reale: un falso negativo silenzioso,
+indistinguibile in UI da una farmacia davvero chiusa.
+
+**Fix** (`statoApertura()` in `lib/farmacie.ts`): prima di confrontare
+gli orari, la funzione ora tiene solo le fasce datate come "oggi"
+secondo lo stesso `adesso` del visitatore (non più fidandosi che
+`orariOggi` sia già correttamente filtrato per oggi da parte
+dell'ingestione) — se nessuna fascia corrisponde, la snapshot non ha
+ancora dati affidabili per la giornata corrente e lo stato torna
+"sconosciuto" (nessun pallino) invece di un "chiusa" potenzialmente
+falso. Verificato con uno script di test a sé (dati freschi dentro/fuori
+finestra, turno notturno a cavallo di mezzanotte, confine esatto di
+chiusura, e la riproduzione esatta del bug — snapshot ferma a ieri) prima
+di consegnare: tutti i casi si comportano come atteso, incluso quello che
+prima falliva.
+
+`npx tsc --noEmit` pulito. Nessun accesso diretto alla snapshot Supabase
+in produzione da questa sessione (rete del sandbox non raggiunge
+Supabase) — **da confermare con l'utente** che il pallino torni corretto
+dopo il prossimo aggiornamento della pagina.
+
+### Fix — la mappa Leaflet copriva il menù ad amburger (27/08/2026, stessa giornata)
+
+Segnalato dall'utente su desktop: aprendo il menù ad amburger sopra la
+pagina `/farmacie-tutte`, la mappa lo copriva invece di restarci sotto.
+
+**Causa**: Leaflet imposta `position: relative` su `.leaflet-container`
+ma **nessuno z-index esplicito** — senza un valore definito (anche "0"
+basta), l'elemento non crea un proprio contesto di stacking CSS, quindi
+i suoi pannelli interni (`.leaflet-pane`, e soprattutto i controlli
+`.leaflet-top`/`.leaflet-control` come lo zoom, fino a z-index 1000)
+"sfuggono" al contenitore e vengono confrontati direttamente con il
+resto della pagina — superando lo z-30 del menù.
+
+**Fix** (`app/globals.css`): `.leaflet-container { z-index: 0; }` —
+fissare un valore qualsiasi basta a intrappolare i pannelli interni nel
+proprio contesto, senza toccare il loro ordine relativo (tile/marker/
+popup restano correttamente sovrapposti fra loro). Effetto **globale**:
+vale per qualunque mappa Leaflet del sito (Farmacie, Aviazione, e future
+sezioni con mappa), non solo la pagina segnalata.
+
+In più, su richiesta esplicita dell'utente: scambiato l'ordine visivo di
+Mappa ed Elenco in `FarmaciePage.tsx` (Elenco prima) — su schermi stretti
+l'elenco testuale ora compare per primo sotto l'header invece della
+mappa.
+
+`npx tsc --noEmit` pulito.
+
 ### Filtro per comune (26/08/2026, stessa giornata)
 
 L'utente ha chiesto: dopo aver scelto una provincia in `/farmacie-tutte`,
