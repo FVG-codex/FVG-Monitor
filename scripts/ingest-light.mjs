@@ -3184,6 +3184,135 @@ async function ingestTerremoti() {
 
 const PISTE_CICLABILI_DATASET_URL = "https://www.dati.friuliveneziagiulia.it/resource/7eat-pecq.json";
 
+// Arricchimento (27/08/2026, richiesto dall'utente): comune di
+// partenza/arrivo e provincia per ciascun PERCORSO (non per singolo
+// segmento — vedi sopra, un percorso può avere più segmenti), via
+// reverse geocoding Nominatim (OpenStreetMap) sui due punti estremi
+// (primo punto del primo segmento, ultimo punto dell'ultimo segmento,
+// nell'ordine in cui compaiono nella fonte).
+//
+// **Approssimazione dichiarata**: il dataset non garantisce che i
+// segmenti di uno stesso nome siano ordinati spazialmente in modo
+// continuo (visto già in fase di ricognizione: es.
+// "Buttrio_GiroMontecristo" spezzato in 6 righe) — "partenza"/"arrivo"
+// sono quindi il primo/ultimo punto nell'ordine della fonte, non un
+// punto di inizio/fine verificato di un itinerario continuo. Il
+// frontend (`raggruppaPerNome()` in `lib/pisteCiclabili.ts`) segnala
+// "(indicativo)" quando un percorso ha più di un segmento.
+//
+// **NON VERIFICATO da questa sessione**: Nominatim è bloccato dalla
+// rete di questo sandbox per fetch/curl diretto (stesso limite già noto
+// per Overpass, vedi nota Strutture ricettive in README.md) — e qui
+// nemmeno WebFetch funziona (robots.txt di nominatim.org lo vieta
+// esplicitamente per l'endpoint /reverse). Il formato letto qui sotto
+// (address.city/town/village/hamlet, address["ISO3166-2-lvl6"],
+// address.county) è quello documentato e stabile dell'API Nominatim,
+// ma va confermato al primo run reale da GitHub Actions (rete diversa,
+// non bloccata) — il codice è scritto per degradare senza rompersi
+// (comune/provincia restano `null`, mai un dato inventato) se il
+// formato osservato in produzione risultasse diverso, e per non far
+// fallire l'intera ingestione se il geocoding fallisce del tutto (es.
+// se Nominatim blocca le richieste dagli IP dei runner GitHub Actions —
+// già capitato con TPL FVG/autobus per un motivo simile, vedi README).
+//
+// **Politeness policy di Nominatim** (max ~1 richiesta/secondo, User-
+// Agent identificativo obbligatorio — https://operations.osmfoundation.org/policies/nominatim/):
+// geocodifica solo i percorsi non ancora in cache, al massimo
+// NOMINATIM_MAX_NUOVI_PERCORSI_PER_ESECUZIONE per esecuzione, con una
+// pausa tra una richiesta e l'altra (mai in parallelo). Cache
+// PERMANENTE per nome in una snapshot dedicata (`piste-ciclabili-
+// geocoding`) — un percorso già geocodificato non viene mai richiesto
+// di nuovo. Stesso pattern di cache incrementale già usato per
+// turismofvg.it/risultati gara Sci — con soli 36 percorsi (72 richieste
+// in tutto) il backfill completo richiede poche esecuzioni, molto più
+// rapido dei casi precedenti.
+const NOMINATIM_MAX_NUOVI_PERCORSI_PER_ESECUZIONE = 15;
+const NOMINATIM_PAUSA_MS = 1100; // > 1 richiesta/secondo
+
+// Codice ISO 3166-2 (es. "IT-UD") -> slug provincia già usato altrove
+// nel progetto (lib/province.ts) — se Nominatim lo restituisce è la
+// fonte più affidabile (codice, non nome libero soggetto a variazioni).
+const PROVINCIA_DA_ISO3166_2 = { "IT-UD": "udine", "IT-GO": "gorizia", "IT-TS": "trieste", "IT-PN": "pordenone" };
+// Fallback per nome libero (campo "county", quando presente): Nominatim
+// per l'Italia mappa tipicamente la provincia (admin_level 6) su questo
+// campo, ma non è garantito — usato solo se manca il codice ISO sopra.
+const PROVINCIA_DA_NOME_COUNTY = { udine: "udine", gorizia: "gorizia", trieste: "trieste", pordenone: "pordenone" };
+
+async function reverseGeocodeNominatim(lat, lon) {
+  const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lon}&zoom=14&accept-language=it`;
+  // Solo 2 tentativi (non i 3 di default) e nessun retry aggressivo: un
+  // servizio pubblico gratuito con politica d'uso esplicita non va
+  // martellato in caso di errore transitorio.
+  const res = await fetchConRetry(
+    url,
+    { headers: { "User-Agent": "fvgmonitor/1.0 (sito indipendente di dati aperti regionali FVG)" } },
+    2
+  );
+  if (!res.ok) return null;
+  const j = await res.json();
+  const a = j.address ?? {};
+  const comune = a.city ?? a.town ?? a.village ?? a.hamlet ?? a.municipality ?? null;
+  const isoLvl6 = a["ISO3166-2-lvl6"];
+  const provincia =
+    (isoLvl6 && PROVINCIA_DA_ISO3166_2[isoLvl6]) ||
+    (a.county && PROVINCIA_DA_NOME_COUNTY[String(a.county).toLowerCase()]) ||
+    null;
+  return { comune, provincia };
+}
+
+async function arricchisciPisteCiclabiliConGeocoding(segmenti) {
+  // Raggruppa per nome — stesso criterio di raggruppaPerNome() in
+  // lib/pisteCiclabili.ts, duplicato qui perché questo script .mjs non
+  // importa il codice TS del frontend.
+  const perNome = new Map();
+  for (const s of segmenti) {
+    const lista = perNome.get(s.nome) ?? [];
+    lista.push(s);
+    perNome.set(s.nome, lista);
+  }
+
+  const cache = (await leggiSnapshotEsistente("piste-ciclabili-geocoding")) ?? {};
+  let nuovi = 0;
+
+  for (const [nome, segs] of perNome.entries()) {
+    if (cache[nome]) continue; // già geocodificato in un'esecuzione precedente
+    if (nuovi >= NOMINATIM_MAX_NUOVI_PERCORSI_PER_ESECUZIONE) continue; // rimandato alla prossima esecuzione
+
+    const primaLinea = segs[0]?.linee?.[0];
+    const ultimaLinea = segs[segs.length - 1]?.linee?.at(-1);
+    const puntoPartenza = primaLinea?.[0];
+    const puntoArrivo = ultimaLinea?.at(-1);
+    if (!puntoPartenza || !puntoArrivo) continue;
+
+    try {
+      const partenza = await reverseGeocodeNominatim(puntoPartenza[0], puntoPartenza[1]);
+      await new Promise((r) => setTimeout(r, NOMINATIM_PAUSA_MS));
+      const arrivo = await reverseGeocodeNominatim(puntoArrivo[0], puntoArrivo[1]);
+      await new Promise((r) => setTimeout(r, NOMINATIM_PAUSA_MS));
+
+      cache[nome] = {
+        comunePartenza: partenza?.comune ?? null,
+        comuneArrivo: arrivo?.comune ?? null,
+        provincia: partenza?.provincia ?? arrivo?.provincia ?? null,
+      };
+      nuovi++;
+    } catch (err) {
+      console.warn(`Geocoding fallito per percorso "${nome}":`, err.message);
+    }
+  }
+
+  if (nuovi > 0) {
+    await upsertSnapshot("piste-ciclabili-geocoding", "piste-ciclabili-geocoding", null, cache);
+  }
+  console.log(
+    `Piste ciclabili: geocoding ${nuovi} nuovi percorsi in questa esecuzione (totale in cache: ${
+      Object.keys(cache).length
+    }/${perNome.size})`
+  );
+
+  return cache;
+}
+
 async function ingestPisteCiclabili() {
   const url = `${PISTE_CICLABILI_DATASET_URL}?$limit=1000`;
   const res = await fetchConRetry(url);
@@ -3219,8 +3348,20 @@ async function ingestPisteCiclabili() {
     });
   }
 
+  // L'arricchimento non deve mai far fallire l'intera ingestione (es. se
+  // Nominatim blocca le richieste dagli IP dei runner GitHub Actions) —
+  // in quel caso `arricchimento` resta vuoto/parziale, i segmenti (e la
+  // mappa) restano comunque disponibili, solo senza comune/provincia.
+  let arricchimento = {};
+  try {
+    arricchimento = await arricchisciPisteCiclabiliConGeocoding(segmenti);
+  } catch (err) {
+    console.warn("Arricchimento geocoding piste ciclabili fallito interamente:", err.message);
+  }
+
   await upsertSnapshot("piste-ciclabili", "piste-ciclabili", null, {
     segmenti,
+    arricchimento,
     aggiornato_al: new Date().toISOString(),
   });
   console.log(`Piste ciclabili aggiornate: ${segmenti.length} segmenti`);

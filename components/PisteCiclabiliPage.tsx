@@ -6,7 +6,13 @@ import { TopHeader } from "@/components/TopHeader";
 import { Footer } from "@/components/Footer";
 import { Panel } from "@/components/Panel";
 import { supabase } from "@/lib/supabase";
-import { type SnapshotPisteCiclabili, raggruppaPerNome, formattaLunghezza } from "@/lib/pisteCiclabili";
+import { PROVINCE } from "@/lib/province";
+import {
+  type SnapshotPisteCiclabili,
+  raggruppaPerNome,
+  formattaLunghezza,
+  etichettaPartenzaArrivo,
+} from "@/lib/pisteCiclabili";
 
 const PisteCiclabiliMap = dynamic(() => import("@/components/PisteCiclabiliMap").then((m) => m.PisteCiclabiliMap), {
   ssr: false,
@@ -23,6 +29,10 @@ export function PisteCiclabiliPage() {
   const [dati, setDati] = useState<SnapshotPisteCiclabili | null>(null);
   const [stato, setStato] = useState<"loading" | "ready" | "error">("loading");
   const [ricerca, setRicerca] = useState("");
+  // Percorso selezionato cliccando il nome nell'elenco (27/08/2026,
+  // richiesto dall'utente) — passato alla mappa per zoom+evidenziazione,
+  // vedi PisteCiclabiliMap.tsx.
+  const [percorsoSelezionato, setPercorsoSelezionato] = useState<string | null>(null);
 
   useEffect(() => {
     let attivo = true;
@@ -44,7 +54,10 @@ export function PisteCiclabiliPage() {
     };
   }, []);
 
-  const percorsi = useMemo(() => raggruppaPerNome(dati?.segmenti ?? []), [dati]);
+  const percorsi = useMemo(
+    () => raggruppaPerNome(dati?.segmenti ?? [], dati?.arricchimento ?? {}),
+    [dati]
+  );
 
   const percorsiFiltrati = useMemo(() => {
     const q = ricerca.trim().toLowerCase();
@@ -73,6 +86,9 @@ export function PisteCiclabiliPage() {
           trasmesso alla Regione in una specifica procedura urbanistica (&quot;conformazione&quot;) — non è un
           censimento completo della rete ciclabile regionale, e non copre tutte le zone (es. l&apos;area di
           Trieste). La lunghezza di un percorso può essere sottostimata quando manca per alcuni dei suoi tratti.
+          Comune di partenza/arrivo e provincia (dove indicati) sono calcolati dalle coordinate del tracciato — non
+          sempre disponibili, e per i percorsi divisi in più tratti sono un&apos;indicazione approssimativa, non un
+          itinerario verificato.
         </p>
 
         {stato === "loading" && <p className="text-ink-faint text-sm font-mono">Caricamento percorsi…</p>}
@@ -99,31 +115,61 @@ export function PisteCiclabiliPage() {
                   <p className="text-ink-faint text-sm font-mono">Nessun percorso trovato.</p>
                 ) : (
                   <div className="max-h-[460px] overflow-y-auto flex flex-col">
-                    {percorsiFiltrati.map((p, i) => (
-                      <div key={p.nome} className={`py-3 ${i > 0 ? "border-t border-line" : ""}`}>
-                        <div className="flex items-baseline justify-between gap-2 min-w-0">
-                          <span className="text-sm font-semibold truncate">{p.nome}</span>
-                        </div>
-                        <div className="font-mono text-[10px] text-ink-dim mt-1">
-                          {p.lunghezzaTotaleM !== null
-                            ? `${formattaLunghezza(p.lunghezzaTotaleM)}${p.lunghezzaParziale ? " (parziale)" : ""}`
-                            : "Lunghezza non disponibile"}
-                          {p.segmenti.length > 1 ? ` · ${p.segmenti.length} tratti` : ""}
-                        </div>
-                      </div>
-                    ))}
+                    {percorsiFiltrati.map((p, i) => {
+                      const etichetta = etichettaPartenzaArrivo(p);
+                      const selezionato = percorsoSelezionato === p.nome;
+                      return (
+                        <button
+                          key={p.nome}
+                          onClick={() => setPercorsoSelezionato(selezionato ? null : p.nome)}
+                          aria-pressed={selezionato}
+                          className={`py-3 text-left w-full ${i > 0 ? "border-t border-line" : ""} ${
+                            selezionato ? "bg-panel-alt" : "hover:bg-panel-alt/60"
+                          } transition-colors`}
+                        >
+                          <div className="flex items-baseline justify-between gap-2 min-w-0">
+                            <span className="text-sm font-semibold truncate">{p.nome}</span>
+                            {p.provincia && (
+                              <span className="font-mono text-[10px] text-ink-faint uppercase shrink-0">
+                                {PROVINCE[p.provincia].nome}
+                              </span>
+                            )}
+                          </div>
+                          {etichetta && (
+                            <div className="text-ink-dim text-xs mt-0.5">
+                              {etichetta}
+                              {p.partenzaArrivoApprossimati ? " (indicativo)" : ""}
+                            </div>
+                          )}
+                          <div className="font-mono text-[10px] text-ink-dim mt-1">
+                            {p.lunghezzaTotaleM !== null
+                              ? `${formattaLunghezza(p.lunghezzaTotaleM)}${p.lunghezzaParziale ? " (parziale)" : ""}`
+                              : "Lunghezza non disponibile"}
+                            {p.segmenti.length > 1 ? ` · ${p.segmenti.length} tratti` : ""}
+                          </div>
+                        </button>
+                      );
+                    })}
                   </div>
                 )}
               </Panel>
 
               <Panel title="Mappa">
+                {percorsoSelezionato && (
+                  <button
+                    onClick={() => setPercorsoSelezionato(null)}
+                    className="font-mono text-[10px] text-cool hover:underline mb-2 inline-block"
+                  >
+                    ← Mostra tutta la mappa
+                  </button>
+                )}
                 <div
                   role="region"
-                  aria-label="Mappa dei percorsi ciclabili in Friuli Venezia Giulia — elenco testuale equivalente nel pannello a fianco"
-                  style={{ height: 460 }}
+                  aria-label="Mappa dei percorsi ciclabili in Friuli Venezia Giulia — elenco testuale equivalente nel pannello a fianco. Cliccare un percorso nell'elenco per evidenziarlo qui."
+                  style={{ height: percorsoSelezionato ? 434 : 460 }}
                   className="rounded overflow-hidden"
                 >
-                  <PisteCiclabiliMap segmenti={segmentiFiltrati} centro={CENTRO_DATI} />
+                  <PisteCiclabiliMap segmenti={segmentiFiltrati} centro={CENTRO_DATI} evidenziato={percorsoSelezionato} />
                 </div>
               </Panel>
             </div>

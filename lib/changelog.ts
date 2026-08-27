@@ -22,6 +22,13 @@ export type VoceChangelog = {
 export const CHANGELOG: VoceChangelog[] = [
   {
     data: "27/08/2026",
+    titolo: "Piste ciclabili — comune, provincia e click per evidenziare",
+    dettagli: [
+      "Ogni percorso mostra ora (quando disponibile) il comune di partenza/arrivo e la provincia. Cliccando il nome di un percorso nell'elenco, ora viene evidenziato e mostrato ingrandito sulla mappa.",
+    ],
+  },
+  {
+    data: "27/08/2026",
     titolo: "Piste ciclabili — nuova sezione",
     dettagli: [
       "Aggiunta la sezione Piste ciclabili (/piste-ciclabili): mappa ed elenco dei percorsi ciclabili trasmessi dai Comuni alla Regione, fonte Regione FVG. Copertura parziale, non l'intera rete regionale — dichiarato in pagina.",

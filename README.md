@@ -1420,6 +1420,67 @@ consegnare. **Non ancora testato/confermato in produzione** — servirà un
 run dell'ingestione (nuova, mai girata su dati reali da GitHub Actions) e
 una verifica visiva su `/piste-ciclabili`.
 
+### Comune di partenza/arrivo, provincia e click-per-evidenziare (27/08/2026, stessa giornata)
+
+L'utente ha chiesto tre cose in più: comune di partenza e arrivo di ogni
+percorso "quando possibile", la provincia di appartenenza, e la
+possibilità di cliccare un nome nell'elenco per vederlo evidenziato sulla
+mappa.
+
+**Comune/provincia — via reverse geocoding, non nel dataset originale**:
+il dataset Piste Ciclabili non ha alcun campo comune/provincia (vedi
+sezione sopra). Aggiunto `arricchisciPisteCiclabiliConGeocoding()` in
+`scripts/ingest-light.mjs`: per ciascuno dei 36 percorsi, geocodifica
+inversa (Nominatim/OpenStreetMap) sui due punti estremi (primo punto del
+primo segmento, ultimo punto dell'ultimo segmento, nell'ordine della
+fonte) — provincia dal campo `ISO3166-2-lvl6` quando presente (es.
+"IT-UD" → udine, il più affidabile perché un codice, non un nome
+libero), comune dal primo campo disponibile tra
+`city`/`town`/`village`/`hamlet`/`municipality`. Cache **permanente** per
+nome (snapshot `piste-ciclabili-geocoding`), backfill incrementale al
+massimo 15 percorsi nuovi per esecuzione con una pausa di 1,1s tra le
+richieste (politica d'uso di Nominatim: max ~1 richiesta/secondo, User-
+Agent identificativo) — con soli 36 percorsi (72 richieste) il backfill
+completo richiede poche esecuzioni.
+
+**Limite dichiarato, non nascosto**: un percorso diviso in più segmenti
+(es. "Buttrio_GiroMontecristo", 6 segmenti) non ha un ordine spaziale
+garantito nella fonte — "partenza"/"arrivo" sono quindi il primo/ultimo
+punto nell'ordine della fonte, non un itinerario continuo verificato.
+Segnalato con "(indicativo)" in UI quando un percorso ha più di un
+segmento (`partenzaArrivoApprossimati` in `lib/pisteCiclabili.ts`).
+
+**Non verificabile da questa sessione**: Nominatim è bloccato dalla rete
+di questo sandbox anche per WebFetch (il suo `robots.txt` vieta
+esplicitamente l'endpoint `/reverse`, a differenza degli endpoint JSON di
+`dati.friuliveneziagiulia.it` che invece funzionano) — il formato di
+risposta usato nel codice è quello documentato e stabile dell'API
+pubblica, ma va confermato al primo run reale da GitHub Actions (rete
+diversa da questo sandbox, non bloccata). Il codice degrada senza
+rompersi se il formato risultasse diverso (comune/provincia restano
+`null`, mai un dato inventato) o se Nominatim blocca le richieste dagli
+IP dei runner (già capitato con TPL FVG/autobus per un motivo simile,
+vedi sezione Autobus) — in quel caso i segmenti e la mappa restano
+comunque disponibili, solo senza comune/provincia.
+
+**Click per evidenziare**: nuovo stato `percorsoSelezionato` in
+`PisteCiclabiliPage.tsx` — il nome di ogni percorso nell'elenco è ora un
+bottone; al click, `PisteCiclabiliMap.tsx` riceve il nome selezionato
+(`evidenziato`), calcola i punti estremi di tutte le sue linee e adatta
+la vista con `fitBounds` (via `ref` sul `MapContainer` di react-leaflet
+4, non più solo `whenCreated` come in versioni precedenti della
+libreria), oltre a disegnarlo in un colore diverso (rosso allerta,
+tratto più spesso) e attenuare gli altri tracciati. Link "Mostra tutta la
+mappa" per tornare alla vista d'insieme.
+
+`npx tsc --noEmit` e `node --check` puliti. Estrazione comune/provincia
+dalla risposta Nominatim (con e senza campi presenti, fallback a catena)
+e raggruppamento con arricchimento verificati con script di test a sé
+contro risposte ricostruite realistiche. **Non ancora testato/confermato
+in produzione** per la parte di geocoding (vedi sopra) — il click-per-
+evidenziare non dipende da dati esterni ed è verificabile solo
+visivamente al prossimo redeploy.
+
 ## Fase 4 — Responsive (24/08/2026)
 
 Audit mirato su tutti i componenti (`components/*.tsx`), cercando pattern

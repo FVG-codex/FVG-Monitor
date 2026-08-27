@@ -1,3 +1,5 @@
+import type { ProvinciaSlug } from "@/lib/province";
+
 // Piste Ciclabili — dataset Socrata "Piste Ciclabili" (7eat-pecq) su
 // dati.friuliveneziagiulia.it. Vedi ingestPisteCiclabili() in
 // scripts/ingest-light.mjs per la ricognizione completa fatta il
@@ -12,6 +14,15 @@
 //   nomi distinti) — l'elenco va raggruppato per nome, non per riga.
 // - `lunghezzaM` manca per alcuni segmenti — la somma per percorso può
 //   quindi essere una sottostima quando accade.
+// - Comune di partenza/arrivo e provincia (27/08/2026, richiesti
+//   dall'utente): via reverse geocoding Nominatim sui due punti estremi
+//   del percorso, calcolato in ingestione (vedi arricchisciPisteCiclabili
+//   ConGeocoding() in scripts/ingest-light.mjs) — "quando possibile":
+//   Nominatim può non restituire un nome di località per un punto isolato
+//   (resta `null`), e per un percorso a più segmenti "partenza"/"arrivo"
+//   sono un'approssimazione (primo/ultimo punto nell'ORDINE della fonte,
+//   non un itinerario continuo verificato) — segnalato con
+//   `partenzaArrivoApprossimati`.
 
 export type SegmentoCiclabile = {
   id: number | null;
@@ -26,8 +37,19 @@ export type SegmentoCiclabile = {
   linee: [number, number][][];
 };
 
+export type ArricchimentoPercorso = {
+  comunePartenza: string | null;
+  comuneArrivo: string | null;
+  provincia: ProvinciaSlug | null;
+};
+
 export type SnapshotPisteCiclabili = {
   segmenti: SegmentoCiclabile[];
+  // Chiave: nome del percorso — vedi ArricchimentoPercorso sopra. Può
+  // essere parziale (non tutti i percorsi sono ancora stati
+  // geocodificati, il backfill è incrementale) o del tutto assente se il
+  // geocoding è fallito per intero in ogni esecuzione finora.
+  arricchimento?: Record<string, ArricchimentoPercorso>;
   aggiornato_al: string; // ISO
 };
 
@@ -40,9 +62,19 @@ export type PercorsoCiclabile = {
   segmenti: SegmentoCiclabile[];
   lunghezzaTotaleM: number | null; // null se NESSUN segmento ha una lunghezza nota
   lunghezzaParziale: boolean; // true se solo alcuni segmenti hanno lunghezza nota
+  comunePartenza: string | null;
+  comuneArrivo: string | null;
+  provincia: ProvinciaSlug | null;
+  // true quando il percorso ha più di un segmento — "partenza"/"arrivo"
+  // sono allora un'approssimazione (vedi nota sopra), non un itinerario
+  // continuo verificato.
+  partenzaArrivoApprossimati: boolean;
 };
 
-export function raggruppaPerNome(segmenti: SegmentoCiclabile[]): PercorsoCiclabile[] {
+export function raggruppaPerNome(
+  segmenti: SegmentoCiclabile[],
+  arricchimento: Record<string, ArricchimentoPercorso> = {}
+): PercorsoCiclabile[] {
   const perNome = new Map<string, SegmentoCiclabile[]>();
   for (const s of segmenti) {
     const lista = perNome.get(s.nome) ?? [];
@@ -54,11 +86,16 @@ export function raggruppaPerNome(segmenti: SegmentoCiclabile[]): PercorsoCiclabi
     const conLunghezza = segs.filter((s) => s.lunghezzaM !== null);
     const lunghezzaTotaleM =
       conLunghezza.length === 0 ? null : conLunghezza.reduce((tot, s) => tot + (s.lunghezzaM ?? 0), 0);
+    const arr = arricchimento[nome];
     return {
       nome,
       segmenti: segs,
       lunghezzaTotaleM,
       lunghezzaParziale: conLunghezza.length > 0 && conLunghezza.length < segs.length,
+      comunePartenza: arr?.comunePartenza ?? null,
+      comuneArrivo: arr?.comuneArrivo ?? null,
+      provincia: arr?.provincia ?? null,
+      partenzaArrivoApprossimati: segs.length > 1,
     };
   });
 
@@ -67,4 +104,17 @@ export function raggruppaPerNome(segmenti: SegmentoCiclabile[]): PercorsoCiclabi
 
 export function formattaLunghezza(metri: number): string {
   return metri >= 1000 ? `${(metri / 1000).toLocaleString("it-IT", { maximumFractionDigits: 1 })} km` : `${Math.round(metri)} m`;
+}
+
+// Etichetta "Da X a Y" per il pannello elenco — gestisce ogni
+// combinazione possibile di comune noto/sconosciuto ("quando possibile",
+// richiesto dall'utente): entrambi noti e diversi, entrambi noti e
+// uguali (percorso ad anello), solo uno noto, o nessuno (geocoding non
+// ancora arrivato a questo percorso, o fallito per questo punto).
+export function etichettaPartenzaArrivo(p: PercorsoCiclabile): string | null {
+  const { comunePartenza: da, comuneArrivo: a } = p;
+  if (da && a) return da === a ? da : `Da ${da} a ${a}`;
+  if (da) return `Da ${da}`;
+  if (a) return `Fino a ${a}`;
+  return null;
 }
