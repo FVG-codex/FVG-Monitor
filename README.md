@@ -1363,6 +1363,63 @@ Actions è diversa da qui — stesso limite già noto per altre fonti come
 FISI/Sci), e la prima esecuzione reale determinerà se la copertura e i
 tempi stimati sopra sono corretti.
 
+## Piste Ciclabili — nuova sezione `/piste-ciclabili` (27/08/2026)
+
+Dopo Farmacie e Strutture ricettive, l'utente ha chiesto una ricognizione
+di cos'altro si può ricavare da `dati.friuliveneziagiulia.it` (Ambiente,
+Mobilità, Punti WIFI). Fatta con 3 agenti paralleli (uno per tema, via
+WebFetch su righe reali + metadata di 11 dataset) — risultati nella nota
+di progetto (`claude/fvgmonitor-stato.md`). L'utente ha scelto di
+partire da Piste Ciclabili (dataset `7eat-pecq`), il più aggiornato di
+tutti (2 giorni prima della ricognizione).
+
+**Verifica prima di scrivere codice** (via WebFetch su righe/metadata
+reali, non presunto):
+
+- **Copertura PARZIALE**: la fonte è "Ciclovie di interesse locale
+  fornite in fase di conformazione" — solo i tracciati che i singoli
+  Comuni hanno trasmesso alla Regione durante una specifica procedura
+  urbanistica, non un censimento completo. Bounding box reale
+  (`$select=extent(the_geom)`): lon 12.42–13.49, lat 45.72–46.12 — un'
+  area centrale (Udine/Gorizia), non copre Trieste né l'estremo ovest di
+  Pordenone né la fascia alpina. **Dichiarato esplicitamente in UI**,
+  stesso principio già seguito per Balneazione/Farmacie.
+- **486 righe, solo 36 nomi distinti** (`$select=count(distinct nome)`):
+  ogni percorso nominato è diviso in più segmenti — l'elenco raggruppa
+  per nome (`raggruppaPerNome()` in `lib/pisteCiclabili.ts`), non elenca
+  486 righe quasi ripetute.
+  `livello` non è utile per filtrare (485/486 = "locale", verificato con
+  `$group=livello`) — niente campo comune/provincia in questo dataset,
+  quindi niente tab per provincia qui, solo mappa + elenco con ricerca
+  per nome.
+- `lunghezza` (metri) manca per alcune righe — la somma per percorso può
+  quindi essere una sottostima quando accade, segnalato in UI con
+  l'etichetta "(parziale)".
+- **Geometria**: `the_geom`, GeoJSON `MultiLineString` — coppie
+  **[lon, lat]** (standard GeoJSON, verificato su righe reali). Invertito
+  in **[lat, lon]** una sola volta in ingestione (`ingestPisteCiclabili()`
+  in `scripts/ingest-light.mjs`), non ad ogni render lato client.
+
+**Prima mappa del sito con tracciati/polilinee** invece di semplici
+marker puntuali (Farmacie/Aviazione/Terremoti) — `PisteCiclabiliMap.tsx`
+usa `<Polyline>` di react-leaflet (già in uso, 4.2.1, nessuna nuova
+dipendenza). Un solo colore per tutti i tracciati (nessun campo utile
+per differenziarli via colore, a differenza di Aviazione).
+
+**UI**: pagina singola `/piste-ciclabili` (non un hub — Ciclovie 2020 e
+Rete viaria, gli altri due dataset Mobilità, non ancora implementati,
+vedi nota di progetto), voce "Piste ciclabili" nel menù ad amburger.
+Elenco prima della mappa (stessa preferenza già applicata a Farmacie il
+giorno prima).
+
+`npx tsc --noEmit` e `node --check` puliti. Parsing geometria (inversione
+lon/lat, `MultiLineString` con più linee, riga senza geometria valida) e
+raggruppamento per nome (somma lunghezza, flag "parziale") verificati con
+script di test a sé contro dati ricostruiti realistici, prima di
+consegnare. **Non ancora testato/confermato in produzione** — servirà un
+run dell'ingestione (nuova, mai girata su dati reali da GitHub Actions) e
+una verifica visiva su `/piste-ciclabili`.
+
 ## Fase 4 — Responsive (24/08/2026)
 
 Audit mirato su tutti i componenti (`components/*.tsx`), cercando pattern

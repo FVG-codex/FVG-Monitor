@@ -16,6 +16,7 @@ const SEZIONI_EXTRA = [
   { label: "Aviazione", href: "/aviazione" },
   { label: "Farmacie", href: "/farmacie" },
   { label: "Strutture ricettive", href: "/strutture-ricettive" },
+  { label: "Piste ciclabili", href: "/piste-ciclabili" },
 ];
 
 export function MenuHamburger() {

@@ -3138,6 +3138,95 @@ async function ingestTerremoti() {
 }
 
 // ---------------------------------------------------------------------
+// PISTE CICLABILI — dataset Socrata "Piste Ciclabili" (7eat-pecq) su
+// dati.friuliveneziagiulia.it. Ricognizione fatta il 27/08/2026 su dati
+// reali (WebFetch su righe/metadata/query di raggruppamento) prima di
+// scrivere questo modulo — punti importanti emersi, da tenere a mente:
+//
+// - **Copertura PARZIALE, non l'intera rete regionale**: la fonte è
+//   descritta come "Ciclovie di interesse locale fornite in fase di
+//   conformazione" — solo i tracciati che i singoli Comuni hanno
+//   trasmesso alla Regione durante una specifica procedura urbanistica
+//   (conformazione al PRGC), non un censimento completo. Bounding box
+//   reale verificato (`$select=extent(the_geom)`): lon 12.42–13.49, lat
+//   45.72–46.12 — copre una fascia centrale (aree di Udine/Gorizia, es.
+//   Manzano/Buttrio/Cormons/Gradisca), ma NON Trieste né l'estremo
+//   ovest di Pordenone né la fascia alpina a nord. Questo va dichiarato
+//   esplicitamente in UI (stesso principio già seguito per Balneazione/
+//   Farmacie: mai far credere a una copertura più ampia di quella reale).
+// - **Ogni tracciato con nome è diviso in più segmenti**: 486 righe ma
+//   solo 36 valori distinti di `nome` (verificato con
+//   `$select=count(distinct nome)` e `$group=nome`) — una riga non è un
+//   intero percorso, ma un pezzo di esso. Per l'elenco ha senso
+//   raggruppare per nome (fatto lato client, stesso principio del
+//   raggruppamento per comune già usato in Farmacie), non elencare 486
+//   righe quasi ripetute.
+// - **`livello` non è utile per filtrare**: 485/486 righe hanno
+//   `livello: "locale"` (verificato con `$group=livello`) — quasi nessuna
+//   varietà, a differenza di provincia/comune negli altri moduli. Nessun
+//   campo comune/provincia in questo dataset (diversamente da Farmacie/
+//   Strutture ricettive): niente tab per provincia qui, solo mappa +
+//   elenco con ricerca per nome.
+// - **`lunghezza` (metri) manca per molte righe** (solo 403/486 secondo
+//   la metadata) — sommata per nome quando presente, il totale di un
+//   tracciato può quindi essere sottostimato se alcuni suoi segmenti non
+//   hanno lunghezza: dichiarato in UI, non un dato inventato.
+// - **Geometria**: campo `the_geom`, GeoJSON `MultiLineString` — array di
+//   linee, ciascuna un array di coppie **[lon, lat]** (ordine GeoJSON
+//   standard, verificato su righe reali, WGS84). Leaflet vuole invece
+//   **[lat, lon]** per ogni punto di una `Polyline` — invertito qui in
+//   ingestione una volta sola, non ad ogni render lato client.
+// - **Prima mappa del sito con tracciati/polilinee** invece di semplici
+//   marker puntuali (Farmacie/Aviazione/Terremoti) — nessun'altra
+//   insidia nota oltre l'inversione lon/lat sopra, react-leaflet 4.2.1
+//   (già in uso) supporta `Polyline` nativamente.
+// ---------------------------------------------------------------------
+
+const PISTE_CICLABILI_DATASET_URL = "https://www.dati.friuliveneziagiulia.it/resource/7eat-pecq.json";
+
+async function ingestPisteCiclabili() {
+  const url = `${PISTE_CICLABILI_DATASET_URL}?$limit=1000`;
+  const res = await fetchConRetry(url);
+  if (!res.ok) {
+    console.warn(`Dataset piste ciclabili non disponibile (HTTP ${res.status})`);
+    return;
+  }
+
+  const rows = await res.json();
+  if (!Array.isArray(rows) || rows.length === 0) {
+    console.warn("Dataset piste ciclabili vuoto");
+    return;
+  }
+
+  const segmenti = [];
+  for (const r of rows) {
+    const geom = r.the_geom;
+    if (!geom || geom.type !== "MultiLineString" || !Array.isArray(geom.coordinates)) continue;
+    // [lon, lat] (GeoJSON) -> [lat, lon] (Leaflet), una volta sola qui.
+    const linee = geom.coordinates
+      .filter((linea) => Array.isArray(linea) && linea.length >= 2)
+      .map((linea) => linea.map(([lon, lat]) => [lat, lon]));
+    if (linee.length === 0) continue;
+
+    segmenti.push({
+      id: r.id ?? null,
+      nome: testo(r.nome) ?? "Senza nome",
+      lunghezzaM: r.lunghezza ? Number(r.lunghezza) : null,
+      livello: testo(r.livello),
+      origineDa: testo(r.origine_da),
+      sigla: testo(r.sigla),
+      linee,
+    });
+  }
+
+  await upsertSnapshot("piste-ciclabili", "piste-ciclabili", null, {
+    segmenti,
+    aggiornato_al: new Date().toISOString(),
+  });
+  console.log(`Piste ciclabili aggiornate: ${segmenti.length} segmenti`);
+}
+
+// ---------------------------------------------------------------------
 
 async function main() {
   const jobs = [
@@ -3168,6 +3257,7 @@ async function main() {
     ["webcam-osmer", ingestWebcamOsmer()],
     ["radar-meteo", ingestRadarMeteo()],
     ["terremoti", ingestTerremoti()],
+    ["piste-ciclabili", ingestPisteCiclabili()],
   ];
 
   const risultati = await Promise.allSettled(jobs.map(([, p]) => p));

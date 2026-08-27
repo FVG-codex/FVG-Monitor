@@ -22,6 +22,13 @@ export type VoceChangelog = {
 export const CHANGELOG: VoceChangelog[] = [
   {
     data: "27/08/2026",
+    titolo: "Piste ciclabili — nuova sezione",
+    dettagli: [
+      "Aggiunta la sezione Piste ciclabili (/piste-ciclabili): mappa ed elenco dei percorsi ciclabili trasmessi dai Comuni alla Regione, fonte Regione FVG. Copertura parziale, non l'intera rete regionale — dichiarato in pagina.",
+    ],
+  },
+  {
+    data: "27/08/2026",
     titolo: "Farmacie — corretto il pallino \"Chiusa ora\" mostrato per errore",
     dettagli: [
       "In alcuni casi (dati non ancora aggiornati per la giornata) una farmacia poteva risultare \"Chiusa ora\" anche durante il proprio orario di apertura. Ora, quando i dati non sono ancora affidabili per oggi, non viene mostrato alcun pallino invece di uno stato sbagliato.",
