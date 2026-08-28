@@ -1449,6 +1449,40 @@ rappresentativo. **Non ancora testato in produzione**: il fetch live da
 GitHub Actions (sessione/cookie inclusi) non è mai girato — stesso limite
 di rete di questo sandbox già noto per turismofvg.it/FISI.
 
+### Fix — "Sito" mostrava un'email (categoria Marina, 28/08/2026)
+
+L'utente ha segnalato (con screenshot di produzione, prima verifica reale
+di questa sezione) più voci della categoria Marina che mostravano "Sito →"
+seguito da un indirizzo email invece di un URL (es. "Sito →
+marina@ppst.it").
+
+**Causa**: la classe `a.link_web` dentro il blocco `<div class="indirizzo">`
+(usata per il sito nella scheda Nadia, unico campione verificato finora)
+viene riusata dal sito anche per un link "contattaci via email" quando la
+struttura non ha un sito vero — l'href in quel caso è un `mailto:`, non un
+URL. `estraiCampiIndirizzoTfvgb` salvava l'href così com'era, qualunque
+fosse, dentro `campi.sito`.
+
+**Fix**: un href `mailto:` non diventa più `sito` — diventa un'email di
+ripiego (`emailDaLinkWeb`), usata solo se il link "Richiesta informazioni"
+non ne fornisce una propria. Verificato con 3 casi in uno script di test a
+sé (solo mailto senza altri campi — caso Marina Portopiccolo; sito vero
+con indirizzo/telefono/CIN — caso Nadia, per non rompere quanto già
+funzionava; indirizzo+telefono+sito vero+CIN — caso Marina Lepanto,
+riprodotto esattamente dallo screenshot dell'utente).
+
+**Le schede già scaricate con questo difetto non si correggono da sole**
+(la cache per-id è permanente, vedi nota architettura): `ingestTfvgbCategoria`
+ora invalida una tantum ogni scheda già in cache il cui `sito` salvato
+somiglia a un'email — tornano "nuove" e vengono ri-scaricate con la
+correzione nei normali limiti per esecuzione, senza bisogno di alcun
+intervento manuale su Supabase.
+
+`npx tsc --noEmit` e `node --check` puliti. **Non ancora confermato
+dall'utente dopo il fix** — servirà qualche esecuzione perché le schede
+invalidate vengano ri-scaricate e la correzione risulti visibile su
+`/marina`.
+
 ## Piste Ciclabili — nuova sezione `/piste-ciclabili` (27/08/2026)
 
 Dopo Farmacie e Strutture ricettive, l'utente ha chiesto una ricognizione

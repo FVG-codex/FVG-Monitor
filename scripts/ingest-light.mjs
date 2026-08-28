@@ -1683,7 +1683,20 @@ function estraiCampiIndirizzoTfvgb($indirizzo) {
     const $r = cheerio.load(`<div id="r">${riga}</div>`);
     const link = $r("a.link_web").first();
     if (link.length) {
-      campi.sito = link.attr("href")?.trim() || null;
+      // Bug reale trovato dall'utente (categoria Marina, 28/08/2026): la
+      // stessa classe "link_web" viene riusata anche per un link
+      // "contattaci via email" quando la struttura non ha un sito vero
+      // (es. Marina Portopiccolo, Marina Resort "Punta Faro") — l'href in
+      // quel caso è un mailto:, non un URL. Senza questo controllo finiva
+      // salvato come "sito" un indirizzo email, mostrato con l'etichetta
+      // "Sito" in UI. Un mailto: qui diventa un'email di ripiego, mai un
+      // sito.
+      const href = (link.attr("href") || "").trim();
+      if (href.toLowerCase().startsWith("mailto:")) {
+        campi.emailDaLinkWeb = href.slice(7).trim();
+      } else if (href) {
+        campi.sito = href;
+      }
       vistoCampo = true;
       continue;
     }
@@ -1741,6 +1754,10 @@ async function fetchDettaglioTfvgb(urlAssoluto) {
       // href malformato — email/comune restano quello che erano (spesso già null)
     }
   }
+  // Ripiego: se il link "Richiesta informazioni" non dà un'email (o non
+  // esiste), ma il blocco indirizzo aveva un mailto: al posto del sito
+  // (vedi commento in estraiCampiIndirizzoTfvgb), usa quella.
+  if (!email && campi.emailDaLinkWeb) email = campi.emailDaLinkWeb;
 
   return {
     nome,
@@ -1822,6 +1839,29 @@ async function ingestTfvgbCategoria(tipoSlug, listaCat) {
   );
 
   const dettagliCache = { ...(cacheEsistente?.dettagli || {}) };
+
+  // Fix 28/08/2026, bug segnalato dall'utente con screenshot reale
+  // (categoria Marina): prima della correzione in
+  // estraiCampiIndirizzoTfvgb, un mailto: dentro il link "link_web"
+  // (usato da alcune schede al posto di un sito vero) veniva salvato
+  // come "sito" — es. "Sito → marina@ppst.it" mostrato in UI. La cache
+  // è permanente (una scheda scaricata non viene mai ripetuta), quindi
+  // le schede già affette dal bug non si sarebbero corrette da sole:
+  // qui vengono invalidate una tantum (tornano "nuove") così da essere
+  // ri-scaricate con la correzione, nei limiti per esecuzione come per
+  // qualunque scheda nuova — non serve intervenire a mano su Supabase.
+  const RE_SITO_CHE_SEMBRA_EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  let invalidate = 0;
+  for (const id of Object.keys(dettagliCache)) {
+    if (dettagliCache[id]?.sito && RE_SITO_CHE_SEMBRA_EMAIL.test(dettagliCache[id].sito)) {
+      delete dettagliCache[id];
+      invalidate++;
+    }
+  }
+  if (invalidate > 0) {
+    console.log(`TFVGB ${tipoSlug}: ${invalidate} schede con "sito" che era in realtà un'email, invalidate e da ri-scaricare`);
+  }
+
   let nuoveScaricate = 0;
   let rimandate = 0;
   for (const id of Object.keys(idUrl)) {
