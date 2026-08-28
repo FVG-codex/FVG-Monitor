@@ -1481,6 +1481,95 @@ in produzione** per la parte di geocoding (vedi sopra) — il click-per-
 evidenziare non dipende da dati esterni ed è verificabile solo
 visivamente al prossimo redeploy.
 
+### Seconda fonte: turismofvg.it/it/bike, serie R — percorsi ad anello (28/08/2026)
+
+L'utente ha chiesto se turismofvg.it/it/bike si potesse usare come fonte
+aggiuntiva per i percorsi ciclabili. Ricognizione completa del sito prima
+di scrivere codice (~130-140 percorsi unici su 4 serie con codice — R
+anelli ~70-75, P lineari ~40, C ciclovie a tappe ~18-20, M mountain bike
+~3-5 — più 9 categorie "tematiche" che sono ri-etichettature delle stesse
+serie R/P, non cataloghi nuovi, e 6 categorie non pertinenti da
+escludere), poi scelta dell'utente: iniziare dalla sola serie R (anelli),
+mostrata **nella stessa pagina** `/piste-ciclabili` come seconda fonte —
+non unita ai dati Regione (sono cataloghi diversi, senza corrispondenza
+1:1 fra le voci), ma affiancata con etichetta di fonte chiara.
+
+**Verificato con HTML reale prima di scrivere lo scraper** (prassi del
+progetto, stessa già seguita per gli Agriturismi): richiesto e ricevuto
+dall'utente l'HTML vero (non il markdown di WebFetch, insufficiente per
+scrivere selettori corretti) sia della pagina elenco
+(`/it/bike/percorsi-giornalieri-ad-anello`) sia di una scheda di
+dettaglio (`R001`).
+
+**Pagina elenco**: un campo nascosto `<input class="js-ulmap__mapdata">`
+contiene un indice JSON completo di tutti i percorsi della serie
+(id/titolo con codice/url/coordinate) — WebFetch in una sessione
+precedente non l'aveva trovato (mostra solo il markdown reso, non l'HTML
+grezzo), da cui la richiesta dell'HTML vero. Le card `<a class="o-card">`
+della stessa pagina elencano anche, per ogni percorso, i comuni
+attraversati (`.o-card__locality`) — dato ottenuto quindi **senza alcun
+geocoding**, a differenza della fonte Regione.
+
+**Scheda di dettaglio**: i dati tecnici (lunghezza, dislivelli, quota
+min/max, durata, difficoltà, punto di partenza/arrivo con nome e
+coordinate, tracciato completo) sono letti da un blocco
+`<script type="application/ld+json">` (schema.org `SportsActivityLocation`)
+— molto più affidabile della struttura HTML circostante perché pensato
+per essere letto da macchine. L'unico dato letto dall'HTML (non dal
+JSON-LD) è l'etichetta italiana di difficoltà (es. "media"), con ripiego
+sulla traduzione del valore JSON-LD (inglese, es. "moderate") se il
+selettore non trova nulla. Il tracciato completo (`geo.line`, formato
+"lat lon lat lon ...", **non frammentato** a differenza della fonte
+Regione) e l'id interno Outdooractive (da `@id`, usato per costruire i
+link di download GPX/KML/FIT) vengono anch'essi dal JSON-LD.
+
+**Provincia**: nessun campo esplicito nel dataset — derivata dai comuni
+attraversati (dalla pagina elenco) con una nuova mappa comune→provincia
+completa dei 215 comuni del FVG (`lib/comuniFvg.ts`, duplicata in JS in
+`scripts/ingest-light.mjs` per lo stesso vincolo — niente import
+TypeScript nello script di ingestione — già documentato per il
+geocoding Nominatim sopra), verificata incrociando Wikipedia, ISTAT e i
+siti ufficiali dei comuni tramite un agente di ricerca dedicato. Quando
+un percorso attraversa comuni di più province (raro), si usa la
+provincia più frequente tra quelle riconosciute.
+
+**Ingestione**: nuova funzione `ingestTurismoFvgBikeR()` in
+`scripts/ingest-light.mjs`, stesso pattern già collaudato per gli
+Agriturismi — indice scaricato ad ogni esecuzione (economico), schede di
+dettaglio scaricate al massimo 8 nuove per esecuzione con cache
+**permanente** per id (una scheda già scaricata non cambia spesso, non
+viene mai ripetuta), quindi il backfill completo delle ~70 schede della
+serie R richiede alcune esecuzioni consecutive (ogni 15 minuti) dopo il
+primo deploy. Snapshot separata (`piste-ciclabili-turismofvg`), mai
+scritta se non ci sono novità (stesso criterio già usato per Sci e
+Agriturismi). Se l'indice non è disponibile, riusa l'ultima snapshot
+salvata invece di svuotare la pagina.
+
+**UI**: `PisteCiclabiliPage.tsx` carica ora due snapshot in parallelo
+(Regione + turismofvg) — la seconda è opzionale, la pagina resta
+utilizzabile con la sola fonte Regione se non ancora disponibile.
+L'elenco mostra le due fonti in due gruppi distinti (ricerca unica su
+entrambi, anche per codice "R0XX"), ciascuna voce turismofvg mostra
+codice, difficoltà, durata, lunghezza, dislivello di salita, comuni
+attraversati (o "Da X a Y" quando non è un anello) e un link diretto per
+scaricare il GPX. `PisteCiclabiliMap.tsx` generalizzato per accettare
+tracciati da entrambe le fonti (tipo `TracciatoMappa`, con `chiave`
+univoca fra fonti per l'evidenziazione al click) — colore diverso per
+fonte (`warm` per turismofvg, `cool` per Regione, già nella palette
+esistente), stesso rosso di evidenziazione al click per entrambe.
+
+`npx tsc --noEmit` e `node --check scripts/ingest-light.mjs` puliti.
+Parsing dell'indice (mapdata + comuni per codice) e della scheda di
+dettaglio (JSON-LD) verificati con uno script di test a sé contro
+frammenti HTML reali (gli stessi ricevuti dall'utente per la
+ricognizione) — non ricostruiti a mano. Mappa comune→provincia verificata
+per conteggio (6 Trieste + 25 Gorizia + 50 Pordenone + 134 Udine = 215,
+nessun duplicato). **Non ancora testato/confermato in produzione**: né lo
+scraping di turismofvg.it dai runner GitHub Actions (dominio diverso da
+`dati.friuliveneziagiulia.it`, ma stesso host già usato con successo per
+gli Agriturismi, quindi rischio basso) né la resa in pagina al prossimo
+redeploy.
+
 ## Fase 4 — Responsive (24/08/2026)
 
 Audit mirato su tutti i componenti (`components/*.tsx`), cercando pattern

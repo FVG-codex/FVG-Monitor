@@ -21,6 +21,13 @@ export type VoceChangelog = {
 
 export const CHANGELOG: VoceChangelog[] = [
   {
+    data: "28/08/2026",
+    titolo: "Piste ciclabili — aggiunta la fonte turismofvg.it (percorsi ad anello)",
+    dettagli: [
+      "Nella stessa pagina Piste ciclabili sono ora mostrati anche i percorsi ad anello ufficiali di turismofvg.it (codici \"R0XX\"), con lunghezza, dislivelli, difficoltà, durata, comuni attraversati e link per scaricare il file GPX — accanto ai dati Regione, non uniti ad essi. Al momento solo la serie \"anelli\", le altre serie del sito potranno seguire.",
+    ],
+  },
+  {
     data: "27/08/2026",
     titolo: "Piste ciclabili — comune, provincia e click per evidenziare",
     dettagli: [

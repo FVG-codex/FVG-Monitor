@@ -118,3 +118,65 @@ export function etichettaPartenzaArrivo(p: PercorsoCiclabile): string | null {
   if (a) return `Fino a ${a}`;
   return null;
 }
+
+// -----------------------------------------------------------------------
+// Seconda fonte: turismofvg.it/it/bike, serie R (percorsi ad anello) —
+// aggiunta il 28/08/2026 su richiesta dell'utente, come SECONDA fonte
+// nella stessa pagina (non un merge con i dati Regione: sono cataloghi
+// diversi, senza corrispondenza 1:1 fra le voci — vedi ricognizione in
+// claude/fvgmonitor-stato.md). A differenza del dataset Regione, qui
+// ogni percorso ha già un tracciato completo (non frammentato) e dati
+// tecnici ricchi (km, dislivelli, difficoltà, durata) letti dal blocco
+// JSON-LD della scheda di dettaglio (vedi ingestTurismoFvgBike() in
+// scripts/ingest-light.mjs) — comuni attraversati letti dalla pagina
+// elenco (o-card__locality), provincia derivata da quei comuni con
+// lib/comuniFvg.ts (nessun geocoding necessario per questa fonte).
+export type PuntoNominato = { nome: string; lat: number; lon: number };
+
+export type PercorsoTurismoFvgBike = {
+  id: number; // id interno Outdooractive (per i link GPX/KML/FIT)
+  codice: string; // es. "R001"
+  nome: string; // senza il codice tra parentesi
+  url: string; // pagina di dettaglio su turismofvg.it
+  comuni: string[]; // comuni attraversati, dalla pagina elenco
+  provincia: ProvinciaSlug | null; // derivata da `comuni`, vedi lib/comuniFvg.ts
+  lunghezzaM: number | null;
+  dislivelloSalitaM: number | null;
+  dislivelloDiscesaM: number | null;
+  quotaMinM: number | null;
+  quotaMaxM: number | null;
+  durataMin: number | null;
+  difficolta: string | null; // etichetta italiana così come mostrata dal sito (es. "media")
+  anello: boolean;
+  partenza: PuntoNominato | null;
+  arrivo: PuntoNominato | null;
+  // Tracciato completo (non frammentato, a differenza della fonte
+  // Regione) — array di segmenti di linea, ciascuno [lat,lon][], stesso
+  // formato di SegmentoCiclabile.linee per riuso diretto nella mappa.
+  linee: [number, number][][];
+  caratteristiche: string[]; // es. "E-bike", "Panoramico" — elenco libero, non fisso
+  gpxUrl: string | null;
+  kmlUrl: string | null;
+  fitUrl: string | null;
+  aggiornatoAl: string; // ISO, quando la scheda di dettaglio è stata letta
+};
+
+export type SnapshotPisteCiclabiliTurismoFvg = {
+  // Indice di tutti i percorsi della serie visti sulla pagina elenco
+  // (id/codice/nome/url/comuni), sempre aggiornato ad ogni esecuzione.
+  indice: { id: number; codice: string; nome: string; url: string; comuni: string[] }[];
+  // Schede di dettaglio già scaricate, indicizzate per id — backfill
+  // incrementale (vedi TURISMOFVG_BIKE_MAX_NUOVE_SCHEDE_PER_ESECUZIONE in
+  // scripts/ingest-light.mjs), quindi può essere parziale finché tutta
+  // la serie non è stata scaricata almeno una volta.
+  dettagli: Record<number, PercorsoTurismoFvgBike>;
+  aggiornato_al: string; // ISO
+};
+
+export function formattaDurata(minuti: number): string {
+  const h = Math.floor(minuti / 60);
+  const m = Math.round(minuti % 60);
+  if (h === 0) return `${m} min`;
+  if (m === 0) return `${h} h`;
+  return `${h}:${String(m).padStart(2, "0")} h`;
+}

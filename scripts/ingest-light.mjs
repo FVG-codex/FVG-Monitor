@@ -3367,6 +3367,348 @@ async function ingestPisteCiclabili() {
   console.log(`Piste ciclabili aggiornate: ${segmenti.length} segmenti`);
 }
 
+// -----------------------------------------------------------------------
+// Piste ciclabili — seconda fonte: turismofvg.it/it/bike, serie R
+// (percorsi ad anello) — aggiunta il 28/08/2026 su richiesta dell'utente,
+// come SECONDA fonte mostrata nella stessa pagina (non un merge con i
+// dati Regione: sono cataloghi diversi, senza corrispondenza 1:1 fra le
+// voci — vedi ricognizione in claude/fvgmonitor-stato.md). Vedi
+// lib/pisteCiclabili.ts per i tipi e il contesto lato UI.
+//
+// Verificato con HTML reale (pagina elenco + scheda R001) prima di
+// scrivere questo scraper, come da prassi del progetto.
+//
+// La pagina elenco espone un indice completo in un campo nascosto
+// <input class="js-ulmap__mapdata"> (stesso pattern del #mapdata usato
+// per Agriturismi, ma selettore diverso e campi diversi: qui niente
+// "City", il nome è "Title" col codice incluso, es. "Nome (R001)") più,
+// per ogni percorso, i comuni attraversati in <div class="o-card__locality">
+// dentro la card <a class="o-card">, associata all'indice tramite il
+// codice (es. "R001") estratto dal titolo — non tramite Url, per
+// tolleranza a differenze di slug fra le due strutture.
+//
+// La scheda di dettaglio espone i dati tecnici in un blocco
+// <script type="application/ld+json"> (schema.org SportsActivityLocation)
+// molto più affidabile della struttura HTML circostante (fatta apposta
+// per essere letta da macchine) — usata anche per il tracciato completo
+// (geo.line) e per i link GPX/KML/FIT (dedotti dall'id Outdooractive in
+// "@id"). L'unico dato letto dall'HTML è l'etichetta italiana di
+// difficoltà, con ripiego sulla traduzione del valore JSON-LD se il
+// selettore non trova nulla. Stesso pattern di backfill incrementale con
+// cache permanente già usato per Agriturismi (una scheda già scaricata
+// non cambia spesso, non viene mai ripetuta).
+
+const TURISMOFVG_BIKE_URL_ELENCO_R = "https://www.turismofvg.it/it/bike/percorsi-giornalieri-ad-anello";
+const TURISMOFVG_BIKE_MAX_NUOVE_SCHEDE_PER_ESECUZIONE = 8;
+
+const TURISMOFVG_BIKE_DIFFICOLTA_IT = {
+  easy: "facile",
+  moderate: "media",
+  difficult: "difficile",
+  hard: "difficile",
+  expert: "molto difficile",
+};
+
+// Comune -> provincia, duplicata qui in JS da lib/comuniFvg.ts perché
+// questo script non può importare moduli TypeScript (stesso vincolo già
+// documentato per la logica di raggruppamento delle piste Regione più
+// sopra in questo file). Elenco completo dei 215 comuni FVG — vedi
+// lib/comuniFvg.ts per le fonti verificate e le note sulle grafie
+// alternative.
+const TURISMOFVG_BIKE_COMUNE_PROVINCIA = {};
+for (const nome of [
+  "duino aurisina", "monrupino", "muggia", "san dorligo della valle", "sgonico", "trieste",
+]) TURISMOFVG_BIKE_COMUNE_PROVINCIA[nome] = "trieste";
+for (const nome of [
+  "capriva del friuli", "cormons", "doberdo del lago", "dolegna del collio", "farra d isonzo",
+  "fogliano redipuglia", "gorizia", "gradisca d isonzo", "grado", "mariano del friuli", "medea",
+  "monfalcone", "moraro", "mossa", "romans d isonzo", "ronchi dei legionari", "sagrado",
+  "san canzian d isonzo", "san floriano del collio", "san lorenzo isontino", "san pier d isonzo",
+  "savogna d isonzo", "staranzano", "turriaco", "villesse",
+]) TURISMOFVG_BIKE_COMUNE_PROVINCIA[nome] = "gorizia";
+for (const nome of [
+  "andreis", "arba", "aviano", "azzano decimo", "barcis", "brugnera", "budoia", "caneva",
+  "casarsa della delizia", "castelnovo del friuli", "cavasso nuovo", "chions", "cimolais", "claut",
+  "clauzetto", "cordenons", "cordovado", "erto e casso", "fanna", "fiume veneto", "fontanafredda",
+  "frisanco", "maniago", "meduno", "montereale valcellina", "morsano al tagliamento",
+  "pasiano di pordenone", "pinzano al tagliamento", "polcenigo", "porcia", "pordenone",
+  "prata di pordenone", "pravisdomini", "roveredo in piano", "sacile", "san giorgio della richinvelda",
+  "san martino al tagliamento", "san quirino", "san vito al tagliamento", "sequals",
+  "sesto al reghena", "spilimbergo", "tramonti di sopra", "tramonti di sotto", "travesio", "vajont",
+  "valvasone arzene", "vito d asio", "vivaro", "zoppola",
+]) TURISMOFVG_BIKE_COMUNE_PROVINCIA[nome] = "pordenone";
+for (const nome of [
+  "aiello del friuli", "amaro", "ampezzo", "aquileia", "arta terme", "artegna", "attimis",
+  "bagnaria arsa", "basiliano", "bertiolo", "bicinicco", "bordano", "buja", "buttrio",
+  "camino al tagliamento", "campoformido", "campolongo tapogliano", "carlino", "cassacco",
+  "castions di strada", "cavazzo carnico", "cercivento", "cervignano del friuli", "chiopris viscone",
+  "chiusaforte", "cividale del friuli", "codroipo", "colloredo di monte albano", "comeglians",
+  "corno di rosazzo", "coseano", "dignano", "dogna", "drenchia", "enemonzo", "faedis", "fagagna",
+  "fiumicello villa vicentina", "flaibano", "forgaria nel friuli", "forni avoltri", "forni di sopra",
+  "forni di sotto", "gemona del friuli", "gonars", "grimacco", "latisana", "lauco", "lestizza",
+  "lignano sabbiadoro", "lusevera", "magnano in riviera", "majano", "malborghetto valbruna",
+  "manzano", "marano lagunare", "martignacco", "mereto di tomba", "moggio udinese", "moimacco",
+  "montenars", "mortegliano", "moruzzo", "muzzana del turgnano", "nimis", "osoppo", "ovaro",
+  "pagnacco", "palazzolo dello stella", "palmanova", "paluzza", "pasian di prato", "paularo",
+  "pavia di udine", "pocenia", "pontebba", "porpetto", "povoletto", "pozzuolo del friuli",
+  "pradamano", "prato carnico", "precenicco", "premariacco", "preone", "prepotto", "pulfero",
+  "ragogna", "ravascletto", "raveo", "reana del rojale", "remanzacco", "resia", "resiutta",
+  "rigolato", "rive d arcano", "rivignano teor", "ronchis", "ruda", "san daniele del friuli",
+  "san giorgio di nogaro", "san giovanni al natisone", "san leonardo", "san pietro al natisone",
+  "san vito al torre", "san vito di fagagna", "santa maria la longa", "sappada", "sauris",
+  "savogna", "sedegliano", "socchieve", "stregna", "sutrio", "taipana", "talmassons", "tarcento",
+  "tarvisio", "tavagnacco", "terzo di aquileia", "terzo d aquileia", "tolmezzo", "torreano", "torviscosa", "trasaghis",
+  "treppo grande", "treppo ligosullo", "tricesimo", "trivignano udinese", "udine", "varmo",
+  "venzone", "verzegnis", "villa santina", "visco", "zuglio",
+]) TURISMOFVG_BIKE_COMUNE_PROVINCIA[nome] = "udine";
+
+function normalizzaComuneJs(nome) {
+  return (nome || "")
+    .normalize("NFD")
+    .replace(/[̀-ͯ]/g, "")
+    .toLowerCase()
+    .replace(/['’`\-\/]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function provinciaPrevalenteTurismoFvgBike(comuni) {
+  const conteggio = {};
+  for (const nome of comuni) {
+    const p = TURISMOFVG_BIKE_COMUNE_PROVINCIA[normalizzaComuneJs(nome)];
+    if (!p) continue;
+    conteggio[p] = (conteggio[p] ?? 0) + 1;
+  }
+  let migliore = null;
+  let max = 0;
+  for (const [p, n] of Object.entries(conteggio)) {
+    if (n > max) {
+      max = n;
+      migliore = p;
+    }
+  }
+  return migliore;
+}
+
+function estraiCodiceRouteTurismoFvgBike(titoloConCodice) {
+  const m = /\(([A-Z]\d{3,})\)/.exec(titoloConCodice || "");
+  return m ? m[1] : null;
+}
+
+async function fetchIndiceTurismoFvgBikeR() {
+  const res = await fetchConRetry(TURISMOFVG_BIKE_URL_ELENCO_R, {
+    headers: { "User-Agent": "Mozilla/5.0 (compatible; FVGMonitorBot/1.0)" },
+  });
+  if (!res.ok) throw new Error(`Elenco turismofvg.it/it/bike (serie R) HTTP ${res.status}`);
+
+  const $ = cheerio.load(await res.text());
+  const raw = $("input.js-ulmap__mapdata").attr("value");
+  if (!raw) {
+    throw new Error("turismofvg.it/it/bike (serie R): campo .js-ulmap__mapdata non trovato — struttura pagina cambiata?");
+  }
+
+  let voci;
+  try {
+    voci = JSON.parse(raw);
+  } catch {
+    throw new Error("turismofvg.it/it/bike (serie R): JSON in .js-ulmap__mapdata non valido");
+  }
+  if (!Array.isArray(voci)) throw new Error("turismofvg.it/it/bike (serie R): formato .js-ulmap__mapdata inatteso");
+
+  // Comuni attraversati per codice, dalle card della stessa pagina —
+  // associati per codice (non per posizione/Url: più tollerante a
+  // differenze fra le due strutture della pagina).
+  const comuniPerCodice = new Map();
+  $("a.o-card").each((_, el) => {
+    const $el = $(el);
+    const titolo = $el.find(".o-card__title").first().text().trim();
+    const codice = estraiCodiceRouteTurismoFvgBike(titolo);
+    if (!codice) return;
+    const localita = $el.find(".o-card__locality").first().text().trim();
+    if (!localita) return;
+    const comuni = localita
+      .split(",")
+      .map((c) => c.trim())
+      .filter(Boolean);
+    if (comuni.length > 0) comuniPerCodice.set(codice, comuni);
+  });
+
+  const indice = [];
+  for (const v of voci) {
+    const id = typeof v.Id === "number" ? v.Id : Number(v.Id);
+    const titolo = testo(v.Title);
+    const url = typeof v.Url === "string" ? v.Url : null;
+    if (!id || !titolo || !url) continue;
+    const codice = estraiCodiceRouteTurismoFvgBike(titolo);
+    if (!codice || !codice.startsWith("R")) continue; // solo serie R per ora, vedi TURISMOFVG_BIKE_URL_ELENCO_R
+    const nome = titolo.replace(/\s*\([A-Z]\d{3,}\)\s*$/, "").trim();
+    indice.push({
+      id,
+      codice,
+      nome,
+      url: url.startsWith("http") ? url : `https://www.turismofvg.it${url.startsWith("/") ? "" : "/"}${url}`,
+      comuni: comuniPerCodice.get(codice) ?? [],
+    });
+  }
+  return indice;
+}
+
+async function fetchDettaglioTurismoFvgBikeR(voce) {
+  const res = await fetchConRetry(voce.url, {
+    headers: { "User-Agent": "Mozilla/5.0 (compatible; FVGMonitorBot/1.0)" },
+  });
+  if (!res.ok) throw new Error(`Scheda ${voce.url} HTTP ${res.status}`);
+
+  const $ = cheerio.load(await res.text());
+
+  let datiTour = null;
+  $('script[type="application/ld+json"]').each((_, el) => {
+    if (datiTour) return;
+    let parsed;
+    try {
+      parsed = JSON.parse($(el).contents().text());
+    } catch {
+      return;
+    }
+    const tipo = parsed && parsed["@type"];
+    if (Array.isArray(tipo) && tipo.includes("SportsActivityLocation")) datiTour = parsed;
+  });
+  if (!datiTour) throw new Error(`Scheda ${voce.url}: blocco JSON-LD del percorso non trovato`);
+
+  const idOa = (() => {
+    const m = /\/r\/(\d+)/.exec(datiTour["@id"] || "");
+    return m ? Number(m[1]) : null;
+  })();
+  if (!idOa) throw new Error(`Scheda ${voce.url}: id Outdooractive non trovato in @id`);
+
+  const amenity = {};
+  const caratteristiche = [];
+  for (const feat of Array.isArray(datiTour.amenityFeature) ? datiTour.amenityFeature : []) {
+    if (!feat || typeof feat.name !== "string") continue;
+    if (feat.value === true) caratteristiche.push(feat.name);
+    else if (typeof feat.value === "number" || typeof feat.value === "string") amenity[feat.name] = feat.value;
+  }
+
+  const puntoNominato = (loc) => {
+    if (!loc || !loc.geo) return null;
+    const lat = Number(loc.geo.latitude);
+    const lon = Number(loc.geo.longitude);
+    if (!Number.isFinite(lat) || !Number.isFinite(lon)) return null;
+    return { nome: testo(loc.name) ?? "", lat, lon };
+  };
+  const partenza = puntoNominato(datiTour.potentialAction?.fromLocation);
+  const arrivo = puntoNominato(datiTour.potentialAction?.toLocation);
+  const anello = Boolean(
+    amenity["Percorso ad anello"] === true ||
+      caratteristiche.includes("Percorso ad anello") ||
+      (partenza && arrivo && partenza.nome === arrivo.nome)
+  );
+
+  // geo.line: stringa "lat lon lat lon ..." (spazi, non virgole) — una
+  // sola linea continua per questa fonte (a differenza della fonte
+  // Regione, qui non è frammentata), quindi `linee` ha sempre al più un
+  // elemento.
+  const linee = [];
+  const lineaRaw = typeof datiTour.geo?.line === "string" ? datiTour.geo.line.trim() : "";
+  if (lineaRaw) {
+    const numeri = lineaRaw.split(/\s+/).map(Number);
+    const punti = [];
+    for (let i = 0; i + 1 < numeri.length; i += 2) {
+      if (Number.isFinite(numeri[i]) && Number.isFinite(numeri[i + 1])) punti.push([numeri[i], numeri[i + 1]]);
+    }
+    if (punti.length >= 2) linee.push(punti);
+  }
+
+  // Etichetta italiana di difficoltà così come mostrata sul sito —
+  // ripiego sulla traduzione del valore JSON-LD (inglese) se il
+  // selettore non trova nulla (pagina cambiata, o valore non mappato).
+  const difficoltaHtml = $(".oax_abstractDifficulty").first().text().trim();
+  const difficoltaJsonLd = typeof amenity["difficulty"] === "string" ? amenity["difficulty"] : null;
+  const difficolta =
+    difficoltaHtml || (difficoltaJsonLd && TURISMOFVG_BIKE_DIFFICOLTA_IT[difficoltaJsonLd]) || difficoltaJsonLd || null;
+
+  const lunghezzaM =
+    typeof datiTour.potentialAction?.distance?.value === "number" ? datiTour.potentialAction.distance.value : null;
+
+  return {
+    id: idOa,
+    codice: voce.codice,
+    nome: voce.nome,
+    url: voce.url,
+    comuni: voce.comuni,
+    provincia: provinciaPrevalenteTurismoFvgBike(voce.comuni),
+    lunghezzaM,
+    dislivelloSalitaM: typeof amenity["elevation_ascent"] === "number" ? amenity["elevation_ascent"] : null,
+    dislivelloDiscesaM: typeof amenity["elevation_descent"] === "number" ? amenity["elevation_descent"] : null,
+    quotaMinM: typeof amenity["altitude_from"] === "number" ? amenity["altitude_from"] : null,
+    quotaMaxM: typeof amenity["altitude_to"] === "number" ? amenity["altitude_to"] : null,
+    durataMin: typeof amenity["duration"] === "number" ? amenity["duration"] : null,
+    difficolta,
+    anello,
+    partenza,
+    arrivo,
+    linee,
+    caratteristiche,
+    gpxUrl: `https://www.outdooractive.com/it/download.tour.gpx?i=${idOa}&project=api-friuli-venezia-giulia`,
+    kmlUrl: `https://www.outdooractive.com/it/kml_generate?i=${idOa}&playlist=1&project=api-friuli-venezia-giulia`,
+    fitUrl: `https://www.outdooractive.com/it/download.tour.fit?i=${idOa}&playlist=1&project=api-friuli-venezia-giulia`,
+    aggiornatoAl: new Date().toISOString(),
+  };
+}
+
+async function ingestTurismoFvgBikeR() {
+  const idSnapshot = "piste-ciclabili-turismofvg";
+
+  let indice;
+  try {
+    indice = await fetchIndiceTurismoFvgBikeR();
+  } catch (err) {
+    console.warn(`TurismoFVG bike (serie R): indice non scaricato, riuso la cache se presente — ${err.message}`);
+    return await leggiSnapshotEsistente(idSnapshot);
+  }
+
+  const cacheEsistente = await leggiSnapshotEsistente(idSnapshot);
+  const dettagliCache = { ...(cacheEsistente?.dettagli || {}) };
+
+  let nuoveScaricate = 0;
+  let rimandate = 0;
+  for (const voce of indice) {
+    if (dettagliCache[voce.id]) continue; // già in cache, mai ri-scaricata
+
+    if (nuoveScaricate >= TURISMOFVG_BIKE_MAX_NUOVE_SCHEDE_PER_ESECUZIONE) {
+      rimandate++;
+      continue; // ripresa alla prossima esecuzione
+    }
+
+    try {
+      dettagliCache[voce.id] = await fetchDettaglioTurismoFvgBikeR(voce);
+      nuoveScaricate++;
+    } catch (err) {
+      console.warn(`TurismoFVG bike (serie R): scheda ${voce.codice} (${voce.nome}) non scaricata — ${err.message}`);
+      // non salvata in cache: ritentata automaticamente alla prossima esecuzione
+    }
+  }
+
+  if (rimandate > 0) {
+    console.log(
+      `TurismoFVG bike (serie R): ${rimandate} schede rimandate alla prossima esecuzione (limite ${TURISMOFVG_BIKE_MAX_NUOVE_SCHEDE_PER_ESECUZIONE}/esecuzione)`
+    );
+  }
+
+  const risultato = { indice, dettagli: dettagliCache, aggiornato_al: new Date().toISOString() };
+
+  if (nuoveScaricate === 0 && cacheEsistente && cacheEsistente.indice?.length === indice.length) {
+    console.log("TurismoFVG bike (serie R): nessuna novità, snapshot non riscritto");
+    return cacheEsistente;
+  }
+
+  await upsertSnapshot(idSnapshot, "turismofvg", null, risultato);
+  console.log(
+    `TurismoFVG bike (serie R) aggiornato: ${indice.length} in indice, ${Object.keys(dettagliCache).length} schede con dettaglio (${nuoveScaricate} nuove questa esecuzione)`
+  );
+  return risultato;
+}
+
 // ---------------------------------------------------------------------
 
 async function main() {
@@ -3399,6 +3741,7 @@ async function main() {
     ["radar-meteo", ingestRadarMeteo()],
     ["terremoti", ingestTerremoti()],
     ["piste-ciclabili", ingestPisteCiclabili()],
+    ["piste-ciclabili-turismofvg", ingestTurismoFvgBikeR()],
   ];
 
   const risultati = await Promise.allSettled(jobs.map(([, p]) => p));
