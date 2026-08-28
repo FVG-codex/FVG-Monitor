@@ -1524,6 +1524,357 @@ async function ingestTurismoFvgCategoria(tipoSlug, segmentoCategoria) {
   return risultato;
 }
 
+// -----------------------------------------------------------------------
+// Arricchimento contatti — turismofvg.it, motore booking TFVGB (28/08/2026)
+//
+// Le altre 7 categorie di Strutture Ricettive (B&B, Affittacamere,
+// Campeggi e Villaggi Turistici, Alberghi Diffusi, Strutture a carattere
+// Sociale, Dry Marina e Marina Resort, Rifugi) NON vivono nelle stesse
+// pagine CMS di Agriturismi (niente #mapdata, niente .c-poi__auxtexts):
+// sono gestite dal motore di prenotazione legacy TFVGB
+// (turismofvg.it/TFVGB/..., piattaforma Ikon/Insiel), una sezione del
+// sito strutturalmente diversa, verificata su HTML reale fornito
+// dall'utente — sia una pagina elenco filtrata per categoria
+// (search_fromurl?Cat=N) sia una scheda di dettaglio (Affittacamere
+// "Nadia", id 218). Due differenze sostanziali rispetto al pattern CMS:
+//
+//   1. NESSUN indice JSON in un colpo solo: l'elenco di una categoria è
+//      paginato (~8 strutture a pagina, es. Affittacamere = 549
+//      strutture / 69 pagine) tramite
+//      /TFVGB/Booking/Paginazione_New?pagina=N&ordine=0&asc=1.
+//   2. Il filtro categoria (Cat=N) e la paginazione dipendono da uno
+//      STATO DI SESSIONE (cookie), non dall'URL: verificato richiedendo
+//      Paginazione_New senza prima passare da search_fromurl (e senza
+//      cookie) — risposta vuota (0 strutture, "pagina 2/0"). Per questo
+//      ogni categoria richiede di aprire una sessione con
+//      apriSessioneTfvgb() e riusare lo stesso cookie per le pagine
+//      successive, cosa che nessun'altra fonte di questo progetto deve
+//      fare (tutte le altre chiamate a fetchConRetry sono stateless).
+//
+// Costo per esecuzione: paginare TUTTE le pagine di ogni categoria ad
+// ogni esecuzione (ogni 15 minuti, Affittacamere da sola ne avrebbe 69)
+// non è sostenibile insieme a tutto il resto che fa questo script nello
+// stesso timeout di 10 minuti. Si avanza quindi con un CURSORE per
+// categoria (persistito nello snapshot, campo `paginazione`), un tot di
+// pagine nuove per esecuzione (TFVGB_MAX_PAGINE_INDICE_PER_ESECUZIONE) —
+// una volta raggiunta l'ultima pagina l'indice è "completo" e le
+// esecuzioni successive ricontrollano solo la pagina 1 (già inclusa
+// gratis nell'apertura sessione) per accorgersi di nuove strutture in
+// testa all'elenco o di un numero di pagine cambiato (nel qual caso la
+// paginazione riparte da capo). Le schede di DETTAGLIO restano capped e
+// cachate per sempre come per Agriturismi/le serie bike
+// (TFVGB_MAX_NUOVE_SCHEDE_PER_ESECUZIONE).
+//
+// La pagina elenco non viene usata per estrarre nome/tipologia/indirizzo
+// (selettori non riverificati da campione fresco per le 6 categorie
+// diverse da Affittacamere) — solo per scoprire id+URL di ogni scheda,
+// tramite i link /TFVGB/Strutture/{id}/{slug}, presenti in qualunque
+// categoria. Nome/comune/contatti vengono SEMPRE dalla scheda di
+// dettaglio, la cui struttura (blocco <div class="indirizzo">, righe
+// separate da <br> con prefissi "Tel "/"Cell. "/"CIN ", link
+// <a class="link_web"> per il sito, link "Richiesta informazioni" con
+// mailTo/localita in query string) è verificata solo su Affittacamere
+// (Nadia) — le altre 6 categorie condividono lo stesso motore booking
+// quindi dovrebbero avere la stessa struttura, ma non ancora confermato
+// scheda per scheda: se una categoria desse sistematicamente 0 contatti
+// va rivista con un campione reale di quella categoria specifica.
+//
+// "Campeggi e Villaggi Turistici" nel registro Regione è UN tipo, ma sul
+// motore TFVGB sono due categorie distinte (Cat=6 "Campeggi" e Cat=14
+// "Villaggi Turistici") — entrambe vengono interrogate e unite sotto lo
+// stesso tipoSlug "campeggi", nessuna delle due esclusa.
+// -----------------------------------------------------------------------
+
+const TFVGB_MAX_PAGINE_INDICE_PER_ESECUZIONE = 6;
+const TFVGB_MAX_NUOVE_SCHEDE_PER_ESECUZIONE = 10;
+
+// tipoSlug (vedi TIPI_STRUTTURA in lib/struttureRicettive.ts) → uno o
+// più codici Cat= del motore TFVGB, confermati dal menu "Dove dormire"
+// incollato dall'utente (28/08/2026).
+const TFVGB_CATEGORIE = {
+  affittacamere: [1],
+  bb: [5],
+  campeggi: [6, 14],
+  "alberghi-diffusi": [3],
+  sociali: [15],
+  marina: [8],
+  rifugi: [13],
+};
+
+// Node 22 (undici): Headers.get("set-cookie") restituisce un solo valore
+// anche con più header Set-Cookie nella risposta (limite della Fetch
+// spec) — getSetCookie() li restituisce tutti, necessario qui perché
+// TFVGB ne manda più d'uno per l'apertura sessione.
+function estraiCookieSessione(res) {
+  const set = typeof res.headers.getSetCookie === "function" ? res.headers.getSetCookie() : [];
+  return set.map((c) => c.split(";")[0]).join("; ");
+}
+
+async function apriSessioneTfvgb(cat) {
+  const res = await fetchConRetry(`https://www.turismofvg.it/tfvgb/booking/search_fromurl?deciso=on&Cat=${cat}`, {
+    headers: { "User-Agent": "Mozilla/5.0 (compatible; FVGMonitorBot/1.0)" },
+  });
+  if (!res.ok) throw new Error(`Apertura sessione Cat=${cat} HTTP ${res.status}`);
+  const cookie = estraiCookieSessione(res);
+  if (!cookie) throw new Error(`Apertura sessione Cat=${cat}: nessun cookie di sessione ricevuto`);
+  return { cookie, html: await res.text() };
+}
+
+async function fetchPaginaTfvgb(cookie, pagina) {
+  const res = await fetchConRetry(
+    `https://www.turismofvg.it/TFVGB/Booking/Paginazione_New?pagina=${pagina}&ordine=0&asc=1`,
+    { headers: { "User-Agent": "Mozilla/5.0 (compatible; FVGMonitorBot/1.0)", Cookie: cookie } }
+  );
+  if (!res.ok) throw new Error(`Pagina ${pagina} HTTP ${res.status}`);
+  return await res.text();
+}
+
+// Solo scoperta id+URL (vedi nota architettura sopra) — non tenta di
+// leggere nome/tipologia/indirizzo da questa pagina.
+function estraiVociListaTfvgb(html) {
+  const $ = cheerio.load(html);
+  const trovate = new Map();
+  $('a[href*="/TFVGB/Strutture"], a[href*="/TFVGB/Struttura/"]').each((_, el) => {
+    const href = $(el).attr("href") || "";
+    const m = /\/TFVGB\/Strutture?\/\d+\/[^/?"'#]+/i.exec(href);
+    if (!m) return;
+    const idMatch = /\/(\d+)\//.exec(m[0]);
+    const id = idMatch?.[1];
+    if (!id || trovate.has(id)) return;
+    const path = m[0].startsWith("/") ? m[0] : `/${m[0]}`;
+    trovate.set(id, { id, url: `https://www.turismofvg.it${path}?sez=0` });
+  });
+  return [...trovate.values()];
+}
+
+// Il numero di pagina più alto tra tutti i link pagina=N presenti (frecce
+// iniziale/precedente/successiva/finale) — robusto ai nomi di classe,
+// serve solo un numero, non serve interpretare i controlli di paginazione.
+function estraiTotalePagineTfvgb(html) {
+  let max = 1;
+  const re = /[?&]pagina=(\d+)/gi;
+  let m;
+  while ((m = re.exec(html))) {
+    const n = Number(m[1]);
+    if (n > max) max = n;
+  }
+  return max;
+}
+
+// Legge il blocco <div class="indirizzo"> di una scheda TFVGB (vedi nota
+// architettura sopra): le righe PRIMA del primo campo riconosciuto sono
+// l'indirizzo (spesso due righe: via/civico e CAP+comune), quelle dopo
+// sono telefono/cellulare/sito/CIN in un ordine non fisso.
+function estraiCampiIndirizzoTfvgb($indirizzo) {
+  // Il div contiene anche l'intestazione <h3>Indirizzo</h3> (etichetta,
+  // non dato) subito prima della prima riga utile, senza un <br> a
+  // separarla — va tolta prima di spezzare sulle righe, altrimenti
+  // finisce incollata al primo campo (verificato sul campione Nadia).
+  $indirizzo.find("h3").remove();
+  const righe = ($indirizzo.html() || "")
+    .split(/<br\s*\/?>/i)
+    .map((r) => r.trim())
+    .filter(Boolean);
+
+  const campi = {};
+  const indirizzoRighe = [];
+  let vistoCampo = false;
+  for (const riga of righe) {
+    const $r = cheerio.load(`<div id="r">${riga}</div>`);
+    const link = $r("a.link_web").first();
+    if (link.length) {
+      campi.sito = link.attr("href")?.trim() || null;
+      vistoCampo = true;
+      continue;
+    }
+    const testoRiga = $r("#r").text().trim();
+    if (!testoRiga) continue;
+    if (/^Tel\.?\s/i.test(testoRiga)) {
+      campi.telefono = testoRiga.replace(/^Tel\.?\s*/i, "").trim();
+      vistoCampo = true;
+    } else if (/^Cell\.?\s/i.test(testoRiga)) {
+      campi.cellulare = testoRiga.replace(/^Cell\.?\s*/i, "").trim();
+      vistoCampo = true;
+    } else if (/^CIN\s/i.test(testoRiga)) {
+      campi.cin = testoRiga.replace(/^CIN\s*/i, "").trim();
+      vistoCampo = true;
+    } else if (!vistoCampo) {
+      indirizzoRighe.push(testoRiga);
+    }
+    // righe non riconosciute DOPO l'inizio dei campi (es. note extra) —
+    // ignorate, non fanno parte né dell'indirizzo né di un campo noto
+  }
+  campi.indirizzo = indirizzoRighe.join(", ") || null;
+  return campi;
+}
+
+async function fetchDettaglioTfvgb(urlAssoluto) {
+  const res = await fetchConRetry(urlAssoluto, {
+    headers: { "User-Agent": "Mozilla/5.0 (compatible; FVGMonitorBot/1.0)" },
+  });
+  if (!res.ok) throw new Error(`Scheda TFVGB ${urlAssoluto} HTTP ${res.status}`);
+
+  const $ = cheerio.load(await res.text());
+  const nome = $(".content-title-det h1").first().text().trim() || null;
+
+  const $indirizzo = $(".indirizzo").first();
+  const campi = $indirizzo.length ? estraiCampiIndirizzoTfvgb($indirizzo) : {};
+
+  // Nessun campo "comune" dedicato sulla scheda: si ricava dal CAP+nome
+  // città in fondo all'indirizzo (es. "33010 Venzone") o, in mancanza, dal
+  // parametro `localita` del link "Richiesta informazioni" (stesso dato,
+  // fonte alternativa — coincidono sul campione Nadia).
+  let comune = null;
+  if (campi.indirizzo) {
+    const m = /\d{5}\s+(.+)$/.exec(campi.indirizzo);
+    if (m) comune = m[1].trim();
+  }
+
+  let email = null;
+  const linkInfo = $('a.js-openformpopup[href*="InfoRequest/InfoAlloggi"]').first();
+  if (linkInfo.length) {
+    try {
+      const params = new URL(linkInfo.attr("href"), "https://www.turismofvg.it").searchParams;
+      email = params.get("mailTo") || null;
+      if (!comune) comune = params.get("localita") || null;
+    } catch {
+      // href malformato — email/comune restano quello che erano (spesso già null)
+    }
+  }
+
+  return {
+    nome,
+    comune,
+    telefono: campi.telefono || campi.cellulare || null,
+    email,
+    sito: campi.sito || null,
+    indirizzo: campi.indirizzo || null,
+    cin: campi.cin || null,
+    // Nessuna coordinata pubblicata sulla scheda base (la tab "Mappa" è
+    // caricata via script, non presente nell'HTML servito) — a differenza
+    // di Agriturismi/OSM, le voci arricchite da TFVGB restano senza lat/lon.
+    lat: null,
+    lon: null,
+  };
+}
+
+// Avanza il cursore di paginazione di ogni Cat= richiesto per questo
+// tipoSlug, entro il limite pagine/esecuzione — vedi nota architettura
+// sopra per la logica "completo" e la sua ri-verifica ad ogni esecuzione.
+async function aggiornaIndiceTfvgb(tipoSlug, listaCat, idUrlEsistenti, paginazioneEsistente) {
+  const idUrl = { ...idUrlEsistenti };
+  const paginazione = { ...paginazioneEsistente };
+
+  for (const cat of listaCat) {
+    const stato = paginazione[cat] ? { ...paginazione[cat] } : { paginaSuccessiva: 2, totalePagine: null, completo: false };
+
+    let sessione;
+    try {
+      sessione = await apriSessioneTfvgb(cat);
+    } catch (err) {
+      console.warn(`TFVGB ${tipoSlug} (Cat=${cat}): sessione non aperta, indice non aggiornato questa esecuzione — ${err.message}`);
+      paginazione[cat] = stato;
+      continue;
+    }
+
+    for (const v of estraiVociListaTfvgb(sessione.html)) idUrl[v.id] = v.url;
+    const totalePagine = estraiTotalePagineTfvgb(sessione.html);
+
+    if (stato.completo && stato.totalePagine === totalePagine) {
+      // Indice già completo e pagine totali invariate: la pagina 1 (sopra,
+      // gratis con l'apertura sessione) basta per intercettare novità.
+      stato.totalePagine = totalePagine;
+      paginazione[cat] = stato;
+      continue;
+    }
+
+    let pagina = stato.completo ? 2 : Math.min(stato.paginaSuccessiva, totalePagine + 1);
+    let pagineLette = 0;
+    while (pagina <= totalePagine && pagineLette < TFVGB_MAX_PAGINE_INDICE_PER_ESECUZIONE) {
+      try {
+        const html = await fetchPaginaTfvgb(sessione.cookie, pagina);
+        for (const v of estraiVociListaTfvgb(html)) idUrl[v.id] = v.url;
+        pagina++;
+        pagineLette++;
+      } catch (err) {
+        console.warn(`TFVGB ${tipoSlug} (Cat=${cat}) pagina ${pagina}: non scaricata, riprovo alla prossima esecuzione — ${err.message}`);
+        break;
+      }
+    }
+    stato.totalePagine = totalePagine;
+    stato.completo = pagina > totalePagine;
+    stato.paginaSuccessiva = stato.completo ? 2 : pagina;
+    paginazione[cat] = stato;
+  }
+
+  return { idUrl, paginazione };
+}
+
+async function ingestTfvgbCategoria(tipoSlug, listaCat) {
+  const idSnapshot = `turismofvg:${tipoSlug}`;
+  const cacheEsistente = await leggiSnapshotEsistente(idSnapshot);
+
+  const { idUrl, paginazione } = await aggiornaIndiceTfvgb(
+    tipoSlug,
+    listaCat,
+    cacheEsistente?.idUrl || {},
+    cacheEsistente?.paginazione || {}
+  );
+
+  const dettagliCache = { ...(cacheEsistente?.dettagli || {}) };
+  let nuoveScaricate = 0;
+  let rimandate = 0;
+  for (const id of Object.keys(idUrl)) {
+    if (dettagliCache[id]) continue; // già in cache, mai ri-scaricata
+
+    if (nuoveScaricate >= TFVGB_MAX_NUOVE_SCHEDE_PER_ESECUZIONE) {
+      rimandate++;
+      continue;
+    }
+
+    try {
+      const dettaglio = await fetchDettaglioTfvgb(idUrl[id]);
+      dettagliCache[id] = { ...dettaglio, aggiornato_al: new Date().toISOString() };
+      nuoveScaricate++;
+    } catch (err) {
+      console.warn(`TFVGB ${tipoSlug}: scheda ${id} non scaricata — ${err.message}`);
+    }
+  }
+  if (rimandate > 0) {
+    console.log(`TFVGB ${tipoSlug}: ${rimandate} schede rimandate alla prossima esecuzione (limite ${TFVGB_MAX_NUOVE_SCHEDE_PER_ESECUZIONE}/esecuzione)`);
+  }
+
+  // Solo le voci con scheda scaricata finiscono nell'indice pubblico
+  // (nome/comune vengono solo da lì) — stessa convenzione già in uso per
+  // Agriturismi in costruisceIndiceTurismoFvgPerComune.
+  const indice = Object.entries(dettagliCache)
+    .filter(([, d]) => d.nome && d.comune)
+    .map(([id, d]) => ({ id, nome: d.nome, url: idUrl[id] ?? null, comune: d.comune, lat: d.lat, lon: d.lon }));
+
+  const risultato = { indice, dettagli: dettagliCache, idUrl, paginazione, aggiornato_al: new Date().toISOString() };
+
+  if (
+    nuoveScaricate === 0 &&
+    cacheEsistente &&
+    Object.keys(idUrl).length === Object.keys(cacheEsistente.idUrl || {}).length
+  ) {
+    console.log(`TFVGB ${tipoSlug}: nessuna novità, snapshot non riscritto`);
+    return cacheEsistente;
+  }
+
+  try {
+    await upsertSnapshot(idSnapshot, "turismofvg", null, risultato);
+  } catch (err) {
+    console.warn(`TFVGB ${tipoSlug}: snapshot non salvato — ${err.message}`);
+  }
+
+  const indiceCompletato = listaCat.every((cat) => paginazione[cat]?.completo);
+  console.log(
+    `TFVGB ${tipoSlug} aggiornato: ${Object.keys(idUrl).length} id noti (${indiceCompletato ? "indice completo" : "indice in costruzione"}), ${Object.keys(dettagliCache).length} schede con dettaglio (${nuoveScaricate} nuove questa esecuzione)`
+  );
+  return risultato;
+}
+
 async function ingestTurismoFvg() {
   const risultati = {};
   for (const [tipoSlug, segmento] of Object.entries(TURISMOFVG_CATEGORIE)) {
@@ -1531,6 +1882,13 @@ async function ingestTurismoFvg() {
       risultati[tipoSlug] = await ingestTurismoFvgCategoria(tipoSlug, segmento);
     } catch (err) {
       console.warn(`TurismoFVG ${tipoSlug}: ingestione fallita — ${err.message}`);
+    }
+  }
+  for (const [tipoSlug, listaCat] of Object.entries(TFVGB_CATEGORIE)) {
+    try {
+      risultati[tipoSlug] = await ingestTfvgbCategoria(tipoSlug, listaCat);
+    } catch (err) {
+      console.warn(`TFVGB ${tipoSlug}: ingestione fallita — ${err.message}`);
     }
   }
   return risultati;
@@ -1628,8 +1986,9 @@ async function ingestTipoStrutturaRicettiva(datasetId, indiceTurismoFvgPerComune
 
 async function ingestStruttureRicettive() {
   // turismofvg.it prima di OSM: i suoi indici per comune (uno per tipo
-  // coperto, oggi solo "agriturismi" — vedi TURISMOFVG_CATEGORIE) devono
-  // essere pronti prima di ingerire i dataset Socrata, che li usano per
+  // coperto — agriturismi via CMS, le altre 7 categorie via TFVGB, vedi
+  // rispettivamente TURISMOFVG_CATEGORIE e TFVGB_CATEGORIE) devono essere
+  // pronti prima di ingerire i dataset Socrata, che li usano per
   // l'arricchimento contatti.
   const risultatiTurismoFvg = await ingestTurismoFvg();
   const indiciTurismoFvgPerTipo = {};

@@ -22,6 +22,14 @@ export type VoceChangelog = {
 export const CHANGELOG: VoceChangelog[] = [
   {
     data: "28/08/2026",
+    titolo: "Strutture ricettive — contatti arricchiti da turismofvg.it per altre 7 categorie",
+    dettagli: [
+      "L'arricchimento contatti già attivo per gli Agriturismi (indirizzo, telefono, sito, CIN da turismofvg.it invece che da OpenStreetMap quando disponibile) ora copre anche B&B, Affittacamere, Campeggi e Villaggi Turistici, Alberghi Diffusi, Strutture a carattere Sociale, Dry Marina e Marina Resort, Rifugi.",
+      "La copertura si costruisce gradualmente nelle prossime ore/giorni (le nuove categorie hanno un elenco molto più grande da scaricare a piccoli passi) — non aspettatevi tutte le schede arricchite da subito.",
+    ],
+  },
+  {
+    data: "28/08/2026",
     titolo: "Homepage — riga Meteo per provincia più leggibile su telefono",
     dettagli: [
       "Corretto un problema di impaginazione sul pannello \"Meteo · Le 4 province\" in homepage: su schermi stretti la riga di ogni provincia poteva andare a capo in modo disordinato con il link \"Dettagli\" schiacciato sul bordo.",

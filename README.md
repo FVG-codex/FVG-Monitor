@@ -1363,6 +1363,92 @@ Actions è diversa da qui — stesso limite già noto per altre fonti come
 FISI/Sci), e la prima esecuzione reale determinerà se la copertura e i
 tempi stimati sopra sono corretti.
 
+### Altre 7 categorie — motore booking TFVGB (28/08/2026)
+
+Estende l'arricchimento contatti turismofvg.it (sopra) da "solo
+Agriturismi" a tutte le 8 categorie di Strutture Ricettive: B&B,
+Affittacamere, Campeggi e Villaggi Turistici, Alberghi Diffusi,
+Strutture a carattere Sociale, Dry Marina e Marina Resort, Rifugi.
+
+**Un sottosistema del sito diverso, non lo stesso pattern CMS**:
+verificato con HTML reale fornito dall'utente (una pagina elenco filtrata
+per categoria e una scheda di dettaglio, "Nadia" — Affittacamere), queste
+7 categorie vivono nel motore di prenotazione legacy `turismofvg.it/TFVGB/
+...` (piattaforma Ikon/Insiel), non nelle pagine CMS di Agriturismi:
+niente campo nascosto `#mapdata` con l'indice intero, niente sezione
+`.c-poi__auxtexts`. Due differenze sostanziali:
+
+- **Elenco paginato, non un indice unico**: ~8 strutture a pagina (es.
+  Affittacamere = 549 strutture / 69 pagine) tramite
+  `/TFVGB/Booking/Paginazione_New?pagina=N&ordine=0&asc=1`.
+- **Filtro categoria e paginazione dipendenti da una sessione (cookie)**,
+  non dall'URL — verificato empiricamente: una richiesta a
+  `Paginazione_New` senza prima aprire una sessione con
+  `search_fromurl?deciso=on&Cat=N` (e senza cookie) torna vuota (0
+  strutture). Ogni categoria apre quindi una sessione
+  (`apriSessioneTfvgb`) e riusa lo stesso cookie per le pagine successive
+  — l'unica fonte di questo progetto che deve mantenere uno stato di
+  sessione tra richieste, tutte le altre sono stateless.
+
+**Costo per esecuzione tenuto sotto controllo con un cursore per
+categoria**: ripaginare TUTTE le pagine di ogni categoria ad ogni
+esecuzione (ogni 15 minuti, insieme a tutto il resto che fa lo script
+nello stesso timeout di 10 minuti) non è sostenibile. Si avanza quindi di
+`TFVGB_MAX_PAGINE_INDICE_PER_ESECUZIONE` (6) pagine nuove a esecuzione per
+ciascun Cat=, con il cursore persistito nello snapshot (`paginazione`);
+una volta raggiunta l'ultima pagina l'indice è "completo" e le esecuzioni
+successive ricontrollano solo la pagina 1 (già gratis con l'apertura
+sessione) per accorgersi di nuove strutture o di un numero di pagine
+cambiato. Le schede di dettaglio restano capped a
+`TFVGB_MAX_NUOVE_SCHEDE_PER_ESECUZIONE` (10) per esecuzione e cachate per
+sempre, stesso pattern di Agriturismi/sci/bike. Per Affittacamere (69
+pagine), la sola costruzione dell'indice richiede una dozzina di
+esecuzioni (~3 ore) prima che tutte le 549 schede risultino note e pronte
+per l'arricchimento contatti.
+
+**La pagina elenco serve solo a scoprire id+URL** (link
+`/TFVGB/Strutture/{id}/{slug}`) — non è usata per nome/tipologia/
+indirizzo: quei selettori non sono riverificati su un campione fresco
+della pagina elenco in questa sessione (solo su HTML analizzato in una
+sessione precedente). Nome/comune/contatti vengono **sempre dalla scheda
+di dettaglio**, la cui struttura è verificata su HTML reale (scheda
+"Nadia", Affittacamere, id 218) e testata con uno script cheerio a sé
+prima di essere messa in produzione:
+
+- Blocco `<div class="indirizzo">`, righe separate da `<br>`: le righe
+  prima del primo campo riconosciuto sono l'indirizzo (via/civico e
+  CAP+comune su due righe), poi telefono (prefisso "Tel "), cellulare
+  ("Cell. ", usato come ripiego se manca il telefono — stessa convenzione
+  di Agriturismi), un link `<a class="link_web">` per il sito, e CIN
+  ("CIN ") quando presente.
+- Nessun campo "comune" dedicato: ricavato dal CAP+città in fondo
+  all'indirizzo, o in mancanza dal parametro `localita` del link
+  "Richiesta informazioni" (`/InfoRequest/InfoAlloggi?...&mailTo=...&
+  localita=...`), che fornisce anche l'email in modo più affidabile di
+  qualunque scraping testuale.
+- **Nessuna coordinata**: a differenza di Agriturismi/OSM, le schede
+  TFVGB non pubblicano lat/lon nell'HTML base (la tab "Mappa" è caricata
+  via script) — le voci arricchite da questa fonte restano senza pin.
+
+**"Campeggi e Villaggi Turistici"** è un solo tipo nel registro Regione
+ma due categorie distinte sul motore TFVGB (Cat=6 "Campeggi" e Cat=14
+"Villaggi Turistici", confermati dal menu "Dove dormire" incollato
+dall'utente) — entrambe interrogate e unite sotto lo stesso tipoSlug
+`campeggi`.
+
+**Solo Affittacamere verificato su campione reale** — le altre 6
+categorie condividono lo stesso motore booking quindi dovrebbero avere
+la stessa struttura di scheda, ma non ancora confermato scheda per
+scheda: se una categoria desse sistematicamente 0 contatti nei prossimi
+giorni, è il primo posto da controllare.
+
+`npx tsc --noEmit` e `node --check` puliti. Parser (`estraiCampiIndirizzoTfvgb`,
+`estraiVociListaTfvgb`, `estraiTotalePagineTfvgb`) verificati con script
+di test a sé contro l'HTML reale della scheda Nadia e contro un elenco
+rappresentativo. **Non ancora testato in produzione**: il fetch live da
+GitHub Actions (sessione/cookie inclusi) non è mai girato — stesso limite
+di rete di questo sandbox già noto per turismofvg.it/FISI.
+
 ## Piste Ciclabili — nuova sezione `/piste-ciclabili` (27/08/2026)
 
 Dopo Farmacie e Strutture ricettive, l'utente ha chiesto una ricognizione
