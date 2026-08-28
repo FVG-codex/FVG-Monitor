@@ -11,6 +11,7 @@ import {
   type SnapshotPisteCiclabili,
   type SnapshotPisteCiclabiliTurismoFvg,
   type PercorsoTurismoFvgBike,
+  SERIE_TURISMOFVG_BIKE,
   raggruppaPerNome,
   formattaLunghezza,
   formattaDurata,
@@ -26,8 +27,8 @@ const PisteCiclabiliMap = dynamic(() => import("@/components/PisteCiclabiliMap")
 // il 27/08/2026 con $select=extent(the_geom): lon 12.42–13.49, lat
 // 45.72–46.12) — non il centro della regione, perché la copertura non è
 // regionale (vedi disclaimer in pagina e nota in lib/pisteCiclabili.ts).
-// Riusato anche come vista di default con la seconda fonte attiva: i
-// percorsi turismofvg.it serie R ricadono nella stessa area centrale.
+// Riusato anche come vista di default con le fonti turismofvg.it attive:
+// i loro percorsi ricadono nella stessa area centrale.
 const CENTRO_DATI: [number, number] = [45.92, 12.96];
 
 // Etichetta breve per il popup/elenco di un percorso turismofvg.it —
@@ -39,13 +40,97 @@ function etichettaBreveTurismoFvg(p: PercorsoTurismoFvgBike): string {
   return parti.join(" · ");
 }
 
+// Un riquadro/box per UNA delle 4 serie turismofvg.it (28/08/2026,
+// richiesto esplicitamente dall'utente: "che siano ognuna in un box
+// differente" invece dei due gruppi dentro un unico Elenco della prima
+// versione). Stessa resa per tutte e 4 le serie — solo etichetta,
+// elenco e chiave di selezione cambiano.
+function BoxSerieTurismoFvg({
+  fonte,
+  etichetta,
+  percorsi,
+  disponibile,
+  percorsoSelezionato,
+  setPercorsoSelezionato,
+}: {
+  fonte: "r" | "p" | "c" | "m";
+  etichetta: string;
+  percorsi: PercorsoTurismoFvgBike[];
+  disponibile: boolean;
+  percorsoSelezionato: string | null;
+  setPercorsoSelezionato: (chiave: string | null) => void;
+}) {
+  return (
+    <Panel title={`${etichetta} (${percorsi.length})`}>
+      {!disponibile ? (
+        <p className="text-ink-faint text-sm font-mono">Dati non ancora disponibili.</p>
+      ) : percorsi.length === 0 ? (
+        <p className="text-ink-faint text-sm font-mono">Nessun percorso trovato.</p>
+      ) : (
+        <div className="max-h-[320px] overflow-y-auto flex flex-col">
+          {percorsi.map((p, i) => {
+            const chiave = `${fonte}:${p.id}`;
+            const selezionato = percorsoSelezionato === chiave;
+            const partenzaArrivo =
+              p.anello && p.partenza
+                ? p.partenza.nome
+                : p.partenza && p.arrivo
+                  ? `Da ${p.partenza.nome} a ${p.arrivo.nome}`
+                  : null;
+            return (
+              <button
+                key={chiave}
+                onClick={() => setPercorsoSelezionato(selezionato ? null : chiave)}
+                aria-pressed={selezionato}
+                className={`py-3 text-left w-full ${i > 0 ? "border-t border-line" : ""} ${
+                  selezionato ? "bg-panel-alt" : "hover:bg-panel-alt/60"
+                } transition-colors`}
+              >
+                <div className="flex items-baseline justify-between gap-2 min-w-0">
+                  <span className="text-sm font-semibold truncate">{p.nome}</span>
+                  {p.provincia && (
+                    <span className="font-mono text-[10px] text-ink-faint uppercase shrink-0">
+                      {PROVINCE[p.provincia].nome}
+                    </span>
+                  )}
+                </div>
+                {(partenzaArrivo || p.comuni.length > 0) && (
+                  <div className="text-ink-dim text-xs mt-0.5">{partenzaArrivo ?? p.comuni.join(", ")}</div>
+                )}
+                <div className="font-mono text-[10px] text-ink-dim mt-1">
+                  {etichettaBreveTurismoFvg(p)}
+                  {p.lunghezzaM !== null ? ` · ${formattaLunghezza(p.lunghezzaM)}` : ""}
+                  {p.dislivelloSalitaM !== null ? ` · ↑${Math.round(p.dislivelloSalitaM)} m` : ""}
+                </div>
+                {p.gpxUrl && (
+                  <a
+                    href={p.gpxUrl}
+                    onClick={(e) => e.stopPropagation()}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-mono text-[10px] text-cool hover:underline mt-1 inline-block"
+                  >
+                    Scarica GPX ↗
+                  </a>
+                )}
+              </button>
+            );
+          })}
+        </div>
+      )}
+    </Panel>
+  );
+}
+
 export function PisteCiclabiliPage() {
   const [dati, setDati] = useState<SnapshotPisteCiclabili | null>(null);
-  const [datiTurismoFvg, setDatiTurismoFvg] = useState<SnapshotPisteCiclabiliTurismoFvg | null>(null);
+  const [datiSerie, setDatiSerie] = useState<
+    Partial<Record<"r" | "p" | "c" | "m", SnapshotPisteCiclabiliTurismoFvg>>
+  >({});
   const [stato, setStato] = useState<"loading" | "ready" | "error">("loading");
   const [ricerca, setRicerca] = useState("");
   // Percorso selezionato cliccando il nome nell'elenco (27/08/2026,
-  // richiesto dall'utente) — chiave univoca fra le due fonti (vedi
+  // richiesto dall'utente) — chiave univoca fra tutte le fonti (vedi
   // TracciatoMappa in PisteCiclabiliMap.tsx), passata alla mappa per
   // zoom+evidenziazione.
   const [percorsoSelezionato, setPercorsoSelezionato] = useState<string | null>(null);
@@ -53,9 +138,9 @@ export function PisteCiclabiliPage() {
   useEffect(() => {
     let attivo = true;
     async function carica() {
-      const [regione, turismoFvg] = await Promise.all([
+      const [regione, ...serie] = await Promise.all([
         supabase.from("snapshots").select("data").eq("id", "piste-ciclabili").single(),
-        supabase.from("snapshots").select("data").eq("id", "piste-ciclabili-turismofvg").single(),
+        ...SERIE_TURISMOFVG_BIKE.map((s) => supabase.from("snapshots").select("data").eq("id", s.idSnapshot).single()),
       ]);
       if (!attivo) return;
       if (regione.error || !regione.data) {
@@ -63,13 +148,19 @@ export function PisteCiclabiliPage() {
         return;
       }
       setDati(regione.data.data as SnapshotPisteCiclabili);
-      // La seconda fonte è opzionale: se non è ancora disponibile (prima
-      // esecuzione dell'ingestione dopo il rilascio di questa funzione,
-      // o errore isolato) la pagina resta comunque utilizzabile con la
-      // sola fonte Regione, senza bloccarsi in stato di errore.
-      if (!turismoFvg.error && turismoFvg.data) {
-        setDatiTurismoFvg(turismoFvg.data.data as SnapshotPisteCiclabiliTurismoFvg);
-      }
+      // Le 4 fonti turismofvg.it sono opzionali: se una non è ancora
+      // disponibile (prima esecuzione dell'ingestione dopo il rilascio,
+      // o errore isolato su una singola serie) la pagina resta comunque
+      // utilizzabile con le altre fonti, senza bloccarsi in errore — il
+      // relativo box mostra semplicemente "Dati non ancora disponibili".
+      const nuovoDatiSerie: Partial<Record<"r" | "p" | "c" | "m", SnapshotPisteCiclabiliTurismoFvg>> = {};
+      SERIE_TURISMOFVG_BIKE.forEach((s, i) => {
+        const risultato = serie[i];
+        if (!risultato.error && risultato.data) {
+          nuovoDatiSerie[s.chiave] = risultato.data.data as SnapshotPisteCiclabiliTurismoFvg;
+        }
+      });
+      setDatiSerie(nuovoDatiSerie);
       setStato("ready");
     }
     carica();
@@ -85,24 +176,27 @@ export function PisteCiclabiliPage() {
     [dati]
   );
 
-  const percorsiTurismoFvg = useMemo(() => {
-    const dettagli = datiTurismoFvg?.dettagli ?? {};
-    return Object.values(dettagli).sort((a, b) => a.nome.localeCompare(b.nome, "it"));
-  }, [datiTurismoFvg]);
-
   const percorsiRegioneFiltrati = useMemo(() => {
     const q = ricerca.trim().toLowerCase();
     if (!q) return percorsiRegione;
     return percorsiRegione.filter((p) => p.nome.toLowerCase().includes(q));
   }, [percorsiRegione, ricerca]);
 
-  const percorsiTurismoFvgFiltrati = useMemo(() => {
+  // Per ciascuna delle 4 serie: elenco ordinato e filtrato dalla ricerca
+  // (per nome o codice) — stessa logica già usata per Regione, ripetuta
+  // una volta per serie invece che scritta a mano 4 volte.
+  const percorsiSerieFiltrati = useMemo(() => {
     const q = ricerca.trim().toLowerCase();
-    if (!q) return percorsiTurismoFvg;
-    return percorsiTurismoFvg.filter(
-      (p) => p.nome.toLowerCase().includes(q) || p.codice.toLowerCase().includes(q)
-    );
-  }, [percorsiTurismoFvg, ricerca]);
+    const risultato: Record<"r" | "p" | "c" | "m", PercorsoTurismoFvgBike[]> = { r: [], p: [], c: [], m: [] };
+    for (const s of SERIE_TURISMOFVG_BIKE) {
+      const dettagli = datiSerie[s.chiave]?.dettagli ?? {};
+      const tutti = Object.values(dettagli).sort((a, b) => a.nome.localeCompare(b.nome, "it"));
+      risultato[s.chiave] = q
+        ? tutti.filter((p) => p.nome.toLowerCase().includes(q) || p.codice.toLowerCase().includes(q))
+        : tutti;
+    }
+    return risultato;
+  }, [datiSerie, ricerca]);
 
   const tracciati = useMemo(() => {
     const daRegione = percorsiRegioneFiltrati.flatMap((p) =>
@@ -114,17 +208,20 @@ export function PisteCiclabiliPage() {
         extra: s.lunghezzaM !== null ? formattaLunghezza(s.lunghezzaM) : null,
       }))
     );
-    const daTurismoFvg = percorsiTurismoFvgFiltrati.map((p) => ({
-      chiave: `turismofvg:${p.id}`,
-      fonte: "turismofvg" as const,
-      nome: p.nome,
-      linee: p.linee,
-      extra: etichettaBreveTurismoFvg(p),
-    }));
-    return [...daRegione, ...daTurismoFvg];
-  }, [percorsiRegioneFiltrati, percorsiTurismoFvgFiltrati]);
+    const daSerie = SERIE_TURISMOFVG_BIKE.flatMap((s) =>
+      percorsiSerieFiltrati[s.chiave].map((p) => ({
+        chiave: `${s.chiave}:${p.id}`,
+        fonte: s.chiave,
+        nome: p.nome,
+        linee: p.linee,
+        extra: etichettaBreveTurismoFvg(p),
+      }))
+    );
+    return [...daRegione, ...daSerie];
+  }, [percorsiRegioneFiltrati, percorsiSerieFiltrati]);
 
-  const totalePercorsi = percorsiRegioneFiltrati.length + percorsiTurismoFvgFiltrati.length;
+  const totalePercorsi =
+    percorsiRegioneFiltrati.length + SERIE_TURISMOFVG_BIKE.reduce((tot, s) => tot + percorsiSerieFiltrati[s.chiave].length, 0);
 
   return (
     <>
@@ -134,18 +231,19 @@ export function PisteCiclabiliPage() {
       <main id="contenuto-principale" className="max-w-[1180px] mx-auto px-5 py-6">
         <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1">Piste Ciclabili</h1>
         <p className="text-ink-faint text-xs font-mono mb-2">
-          {totalePercorsi > 0 ? `${totalePercorsi} percorsi` : "Percorsi"} ciclabili in Friuli Venezia Giulia — fonti:
-          Regione Autonoma FVG (dati.friuliveneziagiulia.it) e turismofvg.it (percorsi ad anello, serie R).
+          {totalePercorsi > 0 ? `${totalePercorsi} percorsi` : "Percorsi"} ciclabili in Friuli Venezia Giulia — 5
+          fonti indipendenti: le 4 serie con codice di turismofvg.it (Anelli, Percorsi lineari, Ciclovie a tappe,
+          Mountain bike) e la Regione Autonoma FVG (dati.friuliveneziagiulia.it).
         </p>
         <p className="text-ink-faint text-xs font-mono mb-4">
-          <strong className="text-ink-dim">Due fonti indipendenti</strong>, mostrate insieme ma non unite: i dati
-          Regione hanno <strong className="text-ink-dim">copertura parziale</strong> (solo tracciati trasmessi dai
-          Comuni in una specifica procedura urbanistica, non un censimento completo — es. l&apos;area di Trieste non
-          è coperta) e possono essere divisi in più tratti, con comune di partenza/arrivo e provincia calcolati dalle
-          coordinate (non sempre disponibili). I percorsi turismofvg.it (contrassegnati &quot;R0XX&quot;) sono
-          itinerari turistici ufficiali ad anello, con tracciato completo e dati tecnici (lunghezza, dislivelli,
-          difficoltà, durata) letti dalla scheda di ciascun percorso — al momento solo la serie &quot;anelli&quot;,
-          non l&apos;intero catalogo del sito.
+          <strong className="text-ink-dim">Fonti indipendenti, mai unite fra loro</strong> — ogni fonte ha il proprio
+          riquadro qui sotto e il proprio colore sulla mappa. I percorsi turismofvg.it (codice tra parentesi, es.
+          &quot;R001&quot;) sono itinerari turistici ufficiali con tracciato completo e dati tecnici (lunghezza,
+          dislivelli, difficoltà, durata) letti dalla scheda di ciascun percorso, più un link diretto per scaricare
+          il GPX. I dati Regione FVG hanno invece <strong className="text-ink-dim">copertura parziale</strong> (solo
+          tracciati trasmessi dai Comuni in una specifica procedura urbanistica, non un censimento completo —
+          es. l&apos;area di Trieste non è coperta) e possono essere divisi in più tratti, con comune di
+          partenza/arrivo e provincia calcolati dalle coordinate quando possibile.
         </p>
 
         {stato === "loading" && <p className="text-ink-faint text-sm font-mono">Caricamento percorsi…</p>}
@@ -166,17 +264,27 @@ export function PisteCiclabiliPage() {
               />
             </label>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-line border border-line">
-              <Panel title={`Elenco (${totalePercorsi})`}>
-                {totalePercorsi === 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-line border border-line">
+              {SERIE_TURISMOFVG_BIKE.map((s) => (
+                <BoxSerieTurismoFvg
+                  key={s.chiave}
+                  fonte={s.chiave}
+                  etichetta={s.etichetta}
+                  percorsi={percorsiSerieFiltrati[s.chiave]}
+                  disponibile={datiSerie[s.chiave] !== undefined}
+                  percorsoSelezionato={percorsoSelezionato}
+                  setPercorsoSelezionato={setPercorsoSelezionato}
+                />
+              ))}
+
+              {/* Regione FVG — riquadro a sé, in fondo (fonte più datata e
+                  con copertura parziale, mostrata per ultima rispetto alle
+                  4 serie turismofvg.it, come richiesto dall'utente). */}
+              <Panel title={`Regione FVG (${percorsiRegioneFiltrati.length})`} span={2}>
+                {percorsiRegioneFiltrati.length === 0 ? (
                   <p className="text-ink-faint text-sm font-mono">Nessun percorso trovato.</p>
                 ) : (
-                  <div className="max-h-[460px] overflow-y-auto flex flex-col">
-                    {percorsiRegioneFiltrati.length > 0 && (
-                      <div className="px-1 py-2 font-mono text-[10px] text-ink-faint uppercase tracking-wide bg-panel-alt/40">
-                        Regione FVG ({percorsiRegioneFiltrati.length})
-                      </div>
-                    )}
+                  <div className="max-h-[320px] overflow-y-auto flex flex-col">
                     {percorsiRegioneFiltrati.map((p, i) => {
                       const chiave = `regione:${p.nome}`;
                       const etichetta = etichettaPartenzaArrivo(p);
@@ -213,67 +321,11 @@ export function PisteCiclabiliPage() {
                         </button>
                       );
                     })}
-
-                    {percorsiTurismoFvgFiltrati.length > 0 && (
-                      <div className="px-1 py-2 font-mono text-[10px] text-ink-faint uppercase tracking-wide bg-panel-alt/40 border-t border-line">
-                        TurismoFVG — anelli ({percorsiTurismoFvgFiltrati.length})
-                      </div>
-                    )}
-                    {percorsiTurismoFvgFiltrati.map((p, i) => {
-                      const chiave = `turismofvg:${p.id}`;
-                      const selezionato = percorsoSelezionato === chiave;
-                      const partenzaArrivo =
-                        p.anello && p.partenza
-                          ? p.partenza.nome
-                          : p.partenza && p.arrivo
-                            ? `Da ${p.partenza.nome} a ${p.arrivo.nome}`
-                            : null;
-                      return (
-                        <button
-                          key={chiave}
-                          onClick={() => setPercorsoSelezionato(selezionato ? null : chiave)}
-                          aria-pressed={selezionato}
-                          className={`py-3 text-left w-full ${i > 0 ? "border-t border-line" : ""} ${
-                            selezionato ? "bg-panel-alt" : "hover:bg-panel-alt/60"
-                          } transition-colors`}
-                        >
-                          <div className="flex items-baseline justify-between gap-2 min-w-0">
-                            <span className="text-sm font-semibold truncate">{p.nome}</span>
-                            {p.provincia && (
-                              <span className="font-mono text-[10px] text-ink-faint uppercase shrink-0">
-                                {PROVINCE[p.provincia].nome}
-                              </span>
-                            )}
-                          </div>
-                          {(partenzaArrivo || p.comuni.length > 0) && (
-                            <div className="text-ink-dim text-xs mt-0.5">
-                              {partenzaArrivo ?? p.comuni.join(", ")}
-                            </div>
-                          )}
-                          <div className="font-mono text-[10px] text-ink-dim mt-1">
-                            {etichettaBreveTurismoFvg(p)}
-                            {p.lunghezzaM !== null ? ` · ${formattaLunghezza(p.lunghezzaM)}` : ""}
-                            {p.dislivelloSalitaM !== null ? ` · ↑${Math.round(p.dislivelloSalitaM)} m` : ""}
-                          </div>
-                          {p.gpxUrl && (
-                            <a
-                              href={p.gpxUrl}
-                              onClick={(e) => e.stopPropagation()}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="font-mono text-[10px] text-cool hover:underline mt-1 inline-block"
-                            >
-                              Scarica GPX ↗
-                            </a>
-                          )}
-                        </button>
-                      );
-                    })}
                   </div>
                 )}
               </Panel>
 
-              <Panel title="Mappa">
+              <Panel title="Mappa" span={2}>
                 {percorsoSelezionato && (
                   <button
                     onClick={() => setPercorsoSelezionato(null)}
@@ -284,7 +336,7 @@ export function PisteCiclabiliPage() {
                 )}
                 <div
                   role="region"
-                  aria-label="Mappa dei percorsi ciclabili in Friuli Venezia Giulia — elenco testuale equivalente nel pannello a fianco. Cliccare un percorso nell'elenco per evidenziarlo qui."
+                  aria-label="Mappa dei percorsi ciclabili in Friuli Venezia Giulia — elenco testuale equivalente nei riquadri qui sopra. Cliccare un percorso nell'elenco per evidenziarlo qui."
                   style={{ height: percorsoSelezionato ? 434 : 460 }}
                   className="rounded overflow-hidden"
                 >

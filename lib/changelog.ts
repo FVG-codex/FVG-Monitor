@@ -22,6 +22,14 @@ export type VoceChangelog = {
 export const CHANGELOG: VoceChangelog[] = [
   {
     data: "28/08/2026",
+    titolo: "Piste ciclabili — tutte le serie turismofvg.it, un riquadro per fonte",
+    dettagli: [
+      "Oltre agli anelli, ora sono mostrati anche i percorsi lineari, le ciclovie a tappe e i percorsi mountain bike di turismofvg.it, ciascuno con lunghezza, dislivelli, difficoltà, durata, comuni attraversati e link per scaricare il file GPX.",
+      "La pagina Piste ciclabili ha ora un riquadro separato per ciascuna delle 5 fonti (le 4 serie turismofvg.it più i dati della Regione FVG, mostrati per ultimi), invece di un unico elenco condiviso — più facile distinguerle a colpo d'occhio, anche sulla mappa dove ogni fonte ha ora il proprio colore.",
+    ],
+  },
+  {
+    data: "28/08/2026",
     titolo: "Piste ciclabili — aggiunta la fonte turismofvg.it (percorsi ad anello)",
     dettagli: [
       "Nella stessa pagina Piste ciclabili sono ora mostrati anche i percorsi ad anello ufficiali di turismofvg.it (codici \"R0XX\"), con lunghezza, dislivelli, difficoltà, durata, comuni attraversati e link per scaricare il file GPX — accanto ai dati Regione, non uniti ad essi. Al momento solo la serie \"anelli\", le altre serie del sito potranno seguire.",

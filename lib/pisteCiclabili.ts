@@ -173,6 +173,25 @@ export type SnapshotPisteCiclabiliTurismoFvg = {
   aggiornato_al: string; // ISO
 };
 
+// Le 4 serie con codice di turismofvg.it/it/bike (28/08/2026) — un box
+// separato in UI per ciascuna (richiesto esplicitamente dall'utente,
+// invece dei due gruppi dentro un unico Elenco della prima versione),
+// più "regione" per i dati Regione FVG (ultimo box, fonte diversa/più
+// datata — vedi PisteCiclabiliPage.tsx). Duplicato concettualmente da
+// TURISMOFVG_BIKE_SERIE in scripts/ingest-light.mjs (stesso vincolo
+// TS/JS già noto in questo progetto — vedi lib/comuniFvg.ts), qui solo
+// per etichette/id snapshot lato UI, non per la logica di scraping.
+export const SERIE_TURISMOFVG_BIKE: {
+  chiave: "r" | "p" | "c" | "m";
+  etichetta: string;
+  idSnapshot: string;
+}[] = [
+  { chiave: "r", etichetta: "Anelli", idSnapshot: "piste-ciclabili-turismofvg-r" },
+  { chiave: "p", etichetta: "Percorsi lineari", idSnapshot: "piste-ciclabili-turismofvg-p" },
+  { chiave: "c", etichetta: "Ciclovie a tappe", idSnapshot: "piste-ciclabili-turismofvg-c" },
+  { chiave: "m", etichetta: "Mountain bike", idSnapshot: "piste-ciclabili-turismofvg-m" },
+];
+
 export function formattaDurata(minuti: number): string {
   const h = Math.floor(minuti / 60);
   const m = Math.round(minuti % 60);

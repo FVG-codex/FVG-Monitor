@@ -1481,7 +1481,7 @@ in produzione** per la parte di geocoding (vedi sopra) — il click-per-
 evidenziare non dipende da dati esterni ed è verificabile solo
 visivamente al prossimo redeploy.
 
-### Seconda fonte: turismofvg.it/it/bike, serie R — percorsi ad anello (28/08/2026)
+### Fonti turismofvg.it/it/bike — 4 serie con codice (28/08/2026, estese lo stesso giorno)
 
 L'utente ha chiesto se turismofvg.it/it/bike si potesse usare come fonte
 aggiuntiva per i percorsi ciclabili. Ricognizione completa del sito prima
@@ -1490,9 +1490,12 @@ anelli ~70-75, P lineari ~40, C ciclovie a tappe ~18-20, M mountain bike
 ~3-5 — più 9 categorie "tematiche" che sono ri-etichettature delle stesse
 serie R/P, non cataloghi nuovi, e 6 categorie non pertinenti da
 escludere), poi scelta dell'utente: iniziare dalla sola serie R (anelli),
-mostrata **nella stessa pagina** `/piste-ciclabili` come seconda fonte —
-non unita ai dati Regione (sono cataloghi diversi, senza corrispondenza
-1:1 fra le voci), ma affiancata con etichetta di fonte chiara.
+mostrata **nella stessa pagina** `/piste-ciclabili` come fonte
+indipendente — non unita ai dati Regione (sono cataloghi diversi, senza
+corrispondenza 1:1 fra le voci), ma affiancata con etichetta di fonte
+chiara. **Estesa lo stesso giorno alle altre 3 serie** (P percorsi
+lineari, C ciclovie a tappe, M mountain bike) dopo l'ok esplicito
+dell'utente a procedere — vedi caveat sulla verifica più sotto.
 
 **Verificato con HTML reale prima di scrivere lo scraper** (prassi del
 progetto, stessa già seguita per gli Agriturismi): richiesto e ricevuto
@@ -1533,42 +1536,81 @@ siti ufficiali dei comuni tramite un agente di ricerca dedicato. Quando
 un percorso attraversa comuni di più province (raro), si usa la
 provincia più frequente tra quelle riconosciute.
 
-**Ingestione**: nuova funzione `ingestTurismoFvgBikeR()` in
-`scripts/ingest-light.mjs`, stesso pattern già collaudato per gli
-Agriturismi — indice scaricato ad ogni esecuzione (economico), schede di
-dettaglio scaricate al massimo 8 nuove per esecuzione con cache
+**Ingestione**: `ingestTurismoFvgBikeSerie(serie)` in
+`scripts/ingest-light.mjs`, generalizzata da una prima versione specifica
+per la sola serie R — stesso pattern già collaudato per gli Agriturismi:
+indice scaricato ad ogni esecuzione (economico), schede di dettaglio
+scaricate al massimo 8 nuove per esecuzione **per serie** con cache
 **permanente** per id (una scheda già scaricata non cambia spesso, non
-viene mai ripetuta), quindi il backfill completo delle ~70 schede della
-serie R richiede alcune esecuzioni consecutive (ogni 15 minuti) dopo il
-primo deploy. Snapshot separata (`piste-ciclabili-turismofvg`), mai
-scritta se non ci sono novità (stesso criterio già usato per Sci e
-Agriturismi). Se l'indice non è disponibile, riusa l'ultima snapshot
-salvata invece di svuotare la pagina.
+viene mai ripetuta). 4 job indipendenti in `main()` (uno per serie, via
+`TURISMOFVG_BIKE_SERIE`), ciascuno con la propria snapshot Supabase
+(`piste-ciclabili-turismofvg-r/p/c/m` — rinominate rispetto alla singola
+`piste-ciclabili-turismofvg` della prima versione, nessuna perdita di
+dati perché il backfill reale non era ancora partito). Il backfill
+completo richiede alcune esecuzioni consecutive per le serie più grandi
+(R ~70, P ~40), quasi immediato per le più piccole (C ~18-20, M ~3-5).
+Se l'indice di una serie non è disponibile, quella serie riusa l'ultima
+snapshot salvata invece di svuotare il proprio riquadro — le altre serie
+non ne risentono (job indipendenti).
 
-**UI**: `PisteCiclabiliPage.tsx` carica ora due snapshot in parallelo
-(Regione + turismofvg) — la seconda è opzionale, la pagina resta
-utilizzabile con la sola fonte Regione se non ancora disponibile.
-L'elenco mostra le due fonti in due gruppi distinti (ricerca unica su
-entrambi, anche per codice "R0XX"), ciascuna voce turismofvg mostra
-codice, difficoltà, durata, lunghezza, dislivello di salita, comuni
-attraversati (o "Da X a Y" quando non è un anello) e un link diretto per
-scaricare il GPX. `PisteCiclabiliMap.tsx` generalizzato per accettare
-tracciati da entrambe le fonti (tipo `TracciatoMappa`, con `chiave`
-univoca fra fonti per l'evidenziazione al click) — colore diverso per
-fonte (`warm` per turismofvg, `cool` per Regione, già nella palette
-esistente), stesso rosso di evidenziazione al click per entrambe.
+**Estensione a P/C/M — verifica più leggera della prassi abituale**: a
+differenza della serie R (HTML reale incollato dall'utente sia per
+l'elenco sia per una scheda), le altre 3 sono state aggiunte solo dopo
+aver controllato via WebFetch le rispettive pagine elenco (conteggio
+percorsi, codici, presenza di un link di dettaglio) — non l'HTML grezzo
+necessario per una verifica selettore-per-selettore. Rischio accettato
+esplicitamente dall'utente ("procedere con le altre serie"); il codice
+degrada senza rompersi (indice vuoto, snapshot non scritta, warning nei
+log, box con "Dati non ancora disponibili") se una pagina risultasse
+strutturata diversamente da R. Due scoperte da questa verifica leggera,
+già gestite nel codice: (1) i codici non sono tutti "lettera+3 cifre" —
+la serie C ha anche forme come "C100"/"CX05"/"C2V1"/"C2V2", quindi
+`estraiCodiceRouteTurismoFvgBike()` ora accetta lettera + 2 o più
+caratteri alfanumerici; (2) alcune pagine elenco (es. "mountain-bike")
+sono categorie **tematiche** che mostrano anche percorsi di altre serie
+insieme a quelli della serie nominale (es. la pagina mountain-bike
+elenca pure R048/P016/P001 insieme a M001/M003) — filtrati per lettera
+iniziale del codice, non per provenienza dalla pagina.
+
+**UI — un riquadro per fonte (28/08/2026, stessa giornata, su richiesta
+esplicita dell'utente dopo aver visto la prima versione con due gruppi
+dentro un unico Elenco)**: `PisteCiclabiliPage.tsx` carica ora 5
+snapshot in parallelo (Regione + le 4 serie) — ciascuna fonte turismofvg
+è opzionale singolarmente, la pagina resta utilizzabile con qualunque
+sottoinsieme disponibile. 6 riquadri distinti nella griglia: Anelli,
+Percorsi lineari, Ciclovie a tappe, Mountain bike (2×2), poi **Regione
+FVG a tutta larghezza** (fonte più datata/copertura parziale, mostrata
+per ultima come richiesto dall'utente), poi la Mappa a tutta larghezza
+in fondo (preferenza "elenco prima della mappa" già stabilita per questo
+modulo e per Farmacie). Ricerca unica per nome/codice su tutte le fonti
+contemporaneamente. Ogni voce turismofvg mostra codice, difficoltà,
+durata, lunghezza, dislivello di salita, comuni attraversati (o "Da X a
+Y" quando non è un anello) e un link diretto per scaricare il GPX.
+`PisteCiclabiliMap.tsx` generalizzato per accettare tracciati da tutte e
+5 le fonti (tipo `TracciatoMappa`, `fonte: "regione"|"r"|"p"|"c"|"m"`,
+`chiave` univoca fra fonti per l'evidenziazione al click) — un colore
+per fonte, tutti riusati dalla palette esistente già verificata per
+contrasto (Regione `cool`, Anelli `warm`, Percorsi lineari `zone.a`,
+Ciclovie a tappe `zone.c`/`allerta.gialla`, Mountain bike
+`allerta.verde`), evitati apposta i toni rosso/arancio-rosso per non
+confondersi con `allerta.rossa` usato per l'evidenziazione al click.
 
 `npx tsc --noEmit` e `node --check scripts/ingest-light.mjs` puliti.
 Parsing dell'indice (mapdata + comuni per codice) e della scheda di
-dettaglio (JSON-LD) verificati con uno script di test a sé contro
-frammenti HTML reali (gli stessi ricevuti dall'utente per la
-ricognizione) — non ricostruiti a mano. Mappa comune→provincia verificata
-per conteggio (6 Trieste + 25 Gorizia + 50 Pordenone + 134 Udine = 215,
-nessun duplicato). **Non ancora testato/confermato in produzione**: né lo
-scraping di turismofvg.it dai runner GitHub Actions (dominio diverso da
-`dati.friuliveneziagiulia.it`, ma stesso host già usato con successo per
-gli Agriturismi, quindi rischio basso) né la resa in pagina al prossimo
-redeploy.
+dettaglio (JSON-LD) per la serie R verificati con uno script di test a sé
+contro frammenti HTML reali (gli stessi ricevuti dall'utente per la
+ricognizione) — non ricostruiti a mano. Il nuovo regex del codice e il
+filtro per lettera (incluso il caso "pagina tematica mista", simulato con
+i dati reali osservati sulla pagina mountain-bike) verificati con uno
+script di test a sé sui titoli reali raccolti via WebFetch per le 4
+serie. Mappa comune→provincia verificata per conteggio (6 Trieste + 25
+Gorizia + 50 Pordenone + 134 Udine = 215, nessun duplicato). **Confermato
+dall'utente in produzione che la serie R e la struttura a due fonti
+funzionano** (28/08/2026, prima di chiedere l'estensione a P/C/M) — **le
+3 nuove serie e la nuova UI a riquadri separati non sono invece ancora
+state confermate**: serve un run reale dell'ingestione (4 nuove snapshot
+mai scritte finora) e una verifica visiva su `/piste-ciclabili` dopo il
+prossimo redeploy.
 
 ## Fase 4 — Responsive (24/08/2026)
 

@@ -3368,15 +3368,31 @@ async function ingestPisteCiclabili() {
 }
 
 // -----------------------------------------------------------------------
-// Piste ciclabili — seconda fonte: turismofvg.it/it/bike, serie R
-// (percorsi ad anello) — aggiunta il 28/08/2026 su richiesta dell'utente,
-// come SECONDA fonte mostrata nella stessa pagina (non un merge con i
-// dati Regione: sono cataloghi diversi, senza corrispondenza 1:1 fra le
-// voci — vedi ricognizione in claude/fvgmonitor-stato.md). Vedi
+// Piste ciclabili — fonti turismofvg.it/it/bike, 4 serie con codice (R
+// anelli, P percorsi lineari, C ciclovie a tappe, M mountain bike) —
+// serie R aggiunta il 28/08/2026 su richiesta dell'utente, le altre 3
+// aggiunte la stessa giornata dopo l'ok esplicito dell'utente a procedere.
+// Ognuna è una fonte INDIPENDENTE mostrata nella stessa pagina accanto ai
+// dati Regione (mai unite fra loro: cataloghi diversi, senza
+// corrispondenza 1:1 fra le voci — vedi ricognizione in
+// claude/fvgmonitor-stato.md), ciascuna nel proprio box in UI. Vedi
 // lib/pisteCiclabili.ts per i tipi e il contesto lato UI.
 //
-// Verificato con HTML reale (pagina elenco + scheda R001) prima di
-// scrivere questo scraper, come da prassi del progetto.
+// Solo la serie R è stata verificata con HTML reale (pagina elenco +
+// scheda R001) incollato dall'utente, come da prassi del progetto. Le
+// altre 3 sono state verificate solo con WebFetch (conteggio percorsi,
+// codici, presenza di un link di dettaglio) — sufficiente per confermare
+// che usano la stessa sezione "bike"/stesso sito, ma NON l'HTML grezzo
+// necessario per una verifica selettore-per-selettore: rischio accettato
+// esplicitamente dall'utente, il parsing degrada senza rompersi (indice
+// vuoto, snapshot non scritto, warning in log) se una pagina risultasse
+// strutturata diversamente da R. Scoperta utile dalla verifica P/C/M: i
+// codici non sono tutti "lettera+3 cifre" come per R — la serie C ha
+// anche forme come "C100"/"CX05"/"C2V1" — e alcune pagine elenco (es.
+// "mountain-bike") sono categorie TEMATICHE che mostrano anche percorsi
+// di altre serie insieme a quelli della serie nominale — entrambe le
+// cose gestite filtrando per lettera iniziale del codice, vedi
+// estraiCodiceRouteTurismoFvgBike()/fetchIndiceTurismoFvgBikeSerie() sotto.
 //
 // La pagina elenco espone un indice completo in un campo nascosto
 // <input class="js-ulmap__mapdata"> (stesso pattern del #mapdata usato
@@ -3396,9 +3412,53 @@ async function ingestPisteCiclabili() {
 // difficoltà, con ripiego sulla traduzione del valore JSON-LD se il
 // selettore non trova nulla. Stesso pattern di backfill incrementale con
 // cache permanente già usato per Agriturismi (una scheda già scaricata
-// non cambia spesso, non viene mai ripetuta).
+// non cambia spesso, non viene mai ripetuta) — applicato separatamente
+// per ciascuna delle 4 serie, ognuna con la propria snapshot Supabase
+// (`piste-ciclabili-turismofvg-r/p/c/m`).
 
-const TURISMOFVG_BIKE_URL_ELENCO_R = "https://www.turismofvg.it/it/bike/percorsi-giornalieri-ad-anello";
+// Le 4 serie con codice del sito (28/08/2026, ricognizione precedente —
+// vedi claude/fvgmonitor-stato.md): oltre alla serie R (anelli, già
+// verificata su HTML reale), le altre 3 sono state aggiunte lo stesso
+// giorno su richiesta esplicita dell'utente di procedere, SENZA un nuovo
+// campione HTML incollato dall'utente per verificarle (a differenza della
+// prassi seguita finora per ogni nuova fonte) — accettato come rischio
+// contenuto perché è la stessa sezione "bike" dello stesso sito, con lo
+// stesso pattern di indice/dettaglio già confermato per R via WebFetch
+// (elenco, conteggio, codici, link di dettaglio). Ogni pagina elenco
+// mostra anche codici di ALTRE serie (es. la pagina "mountain-bike"
+// mostra pure percorsi R048/P016/P001 insieme a M001/M003 — categoria
+// "tematica", non un catalogo puro) — filtrate via `lettera` qui sotto,
+// stesso meccanismo già in uso per la serie R.
+const TURISMOFVG_BIKE_SERIE = [
+  {
+    chiave: "r",
+    lettera: "R",
+    etichetta: "Anelli",
+    url: "https://www.turismofvg.it/it/bike/percorsi-giornalieri-ad-anello",
+    idSnapshot: "piste-ciclabili-turismofvg-r",
+  },
+  {
+    chiave: "p",
+    lettera: "P",
+    etichetta: "Percorsi lineari",
+    url: "https://www.turismofvg.it/it/bike/percorsi-giornalieri-lineari",
+    idSnapshot: "piste-ciclabili-turismofvg-p",
+  },
+  {
+    chiave: "c",
+    lettera: "C",
+    etichetta: "Ciclovie a tappe",
+    url: "https://www.turismofvg.it/it/bike/ciclovie-e-altri-itinerari-a-tappe",
+    idSnapshot: "piste-ciclabili-turismofvg-c",
+  },
+  {
+    chiave: "m",
+    lettera: "M",
+    etichetta: "Mountain bike",
+    url: "https://www.turismofvg.it/it/bike/mountain-bike",
+    idSnapshot: "piste-ciclabili-turismofvg-m",
+  },
+];
 const TURISMOFVG_BIKE_MAX_NUOVE_SCHEDE_PER_ESECUZIONE = 8;
 
 const TURISMOFVG_BIKE_DIFFICOLTA_IT = {
@@ -3490,30 +3550,39 @@ function provinciaPrevalenteTurismoFvgBike(comuni) {
   return migliore;
 }
 
+// Codice route tra parentesi nel titolo — es. "R048", "P023", ma anche
+// forme non puramente numeriche osservate nella serie C ("C100", "CX05",
+// "C2V1", "C2V2"): lettera singola + 2 o più caratteri alfanumerici,
+// invece del pattern più stretto "lettera+3 cifre" che bastava per la
+// sola serie R (28/08/2026, scoperto verificando le pagine elenco di
+// P/C/M via WebFetch prima di scrivere il codice).
 function estraiCodiceRouteTurismoFvgBike(titoloConCodice) {
-  const m = /\(([A-Z]\d{3,})\)/.exec(titoloConCodice || "");
+  const m = /\(([A-Z][A-Z0-9]{2,})\)/.exec(titoloConCodice || "");
   return m ? m[1] : null;
 }
 
-async function fetchIndiceTurismoFvgBikeR() {
-  const res = await fetchConRetry(TURISMOFVG_BIKE_URL_ELENCO_R, {
+async function fetchIndiceTurismoFvgBikeSerie(serie) {
+  const res = await fetchConRetry(serie.url, {
     headers: { "User-Agent": "Mozilla/5.0 (compatible; FVGMonitorBot/1.0)" },
   });
-  if (!res.ok) throw new Error(`Elenco turismofvg.it/it/bike (serie R) HTTP ${res.status}`);
+  if (!res.ok) throw new Error(`Elenco turismofvg.it/it/bike (serie ${serie.lettera}) HTTP ${res.status}`);
 
   const $ = cheerio.load(await res.text());
   const raw = $("input.js-ulmap__mapdata").attr("value");
   if (!raw) {
-    throw new Error("turismofvg.it/it/bike (serie R): campo .js-ulmap__mapdata non trovato — struttura pagina cambiata?");
+    throw new Error(
+      `turismofvg.it/it/bike (serie ${serie.lettera}): campo .js-ulmap__mapdata non trovato — struttura pagina cambiata o diversa da quella verificata per la serie R?`
+    );
   }
 
   let voci;
   try {
     voci = JSON.parse(raw);
   } catch {
-    throw new Error("turismofvg.it/it/bike (serie R): JSON in .js-ulmap__mapdata non valido");
+    throw new Error(`turismofvg.it/it/bike (serie ${serie.lettera}): JSON in .js-ulmap__mapdata non valido`);
   }
-  if (!Array.isArray(voci)) throw new Error("turismofvg.it/it/bike (serie R): formato .js-ulmap__mapdata inatteso");
+  if (!Array.isArray(voci))
+    throw new Error(`turismofvg.it/it/bike (serie ${serie.lettera}): formato .js-ulmap__mapdata inatteso`);
 
   // Comuni attraversati per codice, dalle card della stessa pagina —
   // associati per codice (non per posizione/Url: più tollerante a
@@ -3533,6 +3602,10 @@ async function fetchIndiceTurismoFvgBikeR() {
     if (comuni.length > 0) comuniPerCodice.set(codice, comuni);
   });
 
+  // Alcune pagine elenco (es. "mountain-bike") sono categorie tematiche
+  // che mostrano anche percorsi di ALTRE serie (es. R048/P016 insieme a
+  // M001/M003) — filtrati qui per lettera iniziale del codice, non per
+  // provenienza dalla pagina.
   const indice = [];
   for (const v of voci) {
     const id = typeof v.Id === "number" ? v.Id : Number(v.Id);
@@ -3540,8 +3613,8 @@ async function fetchIndiceTurismoFvgBikeR() {
     const url = typeof v.Url === "string" ? v.Url : null;
     if (!id || !titolo || !url) continue;
     const codice = estraiCodiceRouteTurismoFvgBike(titolo);
-    if (!codice || !codice.startsWith("R")) continue; // solo serie R per ora, vedi TURISMOFVG_BIKE_URL_ELENCO_R
-    const nome = titolo.replace(/\s*\([A-Z]\d{3,}\)\s*$/, "").trim();
+    if (!codice || codice.charAt(0) !== serie.lettera) continue;
+    const nome = titolo.replace(/\s*\([A-Z][A-Z0-9]{2,}\)\s*$/, "").trim();
     indice.push({
       id,
       codice,
@@ -3553,7 +3626,7 @@ async function fetchIndiceTurismoFvgBikeR() {
   return indice;
 }
 
-async function fetchDettaglioTurismoFvgBikeR(voce) {
+async function fetchDettaglioTurismoFvgBike(voce) {
   const res = await fetchConRetry(voce.url, {
     headers: { "User-Agent": "Mozilla/5.0 (compatible; FVGMonitorBot/1.0)" },
   });
@@ -3656,14 +3729,15 @@ async function fetchDettaglioTurismoFvgBikeR(voce) {
   };
 }
 
-async function ingestTurismoFvgBikeR() {
-  const idSnapshot = "piste-ciclabili-turismofvg";
+async function ingestTurismoFvgBikeSerie(serie) {
+  const idSnapshot = serie.idSnapshot;
+  const etichetta = `TurismoFVG bike (serie ${serie.lettera} — ${serie.etichetta})`;
 
   let indice;
   try {
-    indice = await fetchIndiceTurismoFvgBikeR();
+    indice = await fetchIndiceTurismoFvgBikeSerie(serie);
   } catch (err) {
-    console.warn(`TurismoFVG bike (serie R): indice non scaricato, riuso la cache se presente — ${err.message}`);
+    console.warn(`${etichetta}: indice non scaricato, riuso la cache se presente — ${err.message}`);
     return await leggiSnapshotEsistente(idSnapshot);
   }
 
@@ -3681,30 +3755,30 @@ async function ingestTurismoFvgBikeR() {
     }
 
     try {
-      dettagliCache[voce.id] = await fetchDettaglioTurismoFvgBikeR(voce);
+      dettagliCache[voce.id] = await fetchDettaglioTurismoFvgBike(voce);
       nuoveScaricate++;
     } catch (err) {
-      console.warn(`TurismoFVG bike (serie R): scheda ${voce.codice} (${voce.nome}) non scaricata — ${err.message}`);
+      console.warn(`${etichetta}: scheda ${voce.codice} (${voce.nome}) non scaricata — ${err.message}`);
       // non salvata in cache: ritentata automaticamente alla prossima esecuzione
     }
   }
 
   if (rimandate > 0) {
     console.log(
-      `TurismoFVG bike (serie R): ${rimandate} schede rimandate alla prossima esecuzione (limite ${TURISMOFVG_BIKE_MAX_NUOVE_SCHEDE_PER_ESECUZIONE}/esecuzione)`
+      `${etichetta}: ${rimandate} schede rimandate alla prossima esecuzione (limite ${TURISMOFVG_BIKE_MAX_NUOVE_SCHEDE_PER_ESECUZIONE}/esecuzione)`
     );
   }
 
   const risultato = { indice, dettagli: dettagliCache, aggiornato_al: new Date().toISOString() };
 
   if (nuoveScaricate === 0 && cacheEsistente && cacheEsistente.indice?.length === indice.length) {
-    console.log("TurismoFVG bike (serie R): nessuna novità, snapshot non riscritto");
+    console.log(`${etichetta}: nessuna novità, snapshot non riscritto`);
     return cacheEsistente;
   }
 
   await upsertSnapshot(idSnapshot, "turismofvg", null, risultato);
   console.log(
-    `TurismoFVG bike (serie R) aggiornato: ${indice.length} in indice, ${Object.keys(dettagliCache).length} schede con dettaglio (${nuoveScaricate} nuove questa esecuzione)`
+    `${etichetta} aggiornato: ${indice.length} in indice, ${Object.keys(dettagliCache).length} schede con dettaglio (${nuoveScaricate} nuove questa esecuzione)`
   );
   return risultato;
 }
@@ -3741,7 +3815,10 @@ async function main() {
     ["radar-meteo", ingestRadarMeteo()],
     ["terremoti", ingestTerremoti()],
     ["piste-ciclabili", ingestPisteCiclabili()],
-    ["piste-ciclabili-turismofvg", ingestTurismoFvgBikeR()],
+    ...TURISMOFVG_BIKE_SERIE.map((serie) => [
+      `piste-ciclabili-turismofvg-${serie.chiave}`,
+      ingestTurismoFvgBikeSerie(serie),
+    ]),
   ];
 
   const risultati = await Promise.allSettled(jobs.map(([, p]) => p));

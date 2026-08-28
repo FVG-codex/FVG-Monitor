@@ -7,25 +7,44 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
 // Colori riusati dalla palette esistente (tailwind.config.ts, già
-// verificato per contrasto) — un colore per fonte, così le due fonti si
-// distinguono a colpo d'occhio sulla mappa (28/08/2026, seconda fonte
-// turismofvg.it aggiunta accanto ai dati Regione).
+// verificato per contrasto) — un colore per fonte/serie, così le 5 fonti
+// (Regione + le 4 serie turismofvg.it) si distinguono a colpo d'occhio
+// sulla mappa (28/08/2026: da 2 a 5 fonti, ognuna col proprio box in UI
+// — vedi PisteCiclabiliPage.tsx). 5 tinte ben separate, nessun colore
+// nuovo inventato: teal/terracotta già in uso per questa mappa, blu/
+// giallo dalla palette delle zone di allertamento, verde dalla palette
+// delle allerte meteo — evitati i toni rosso/arancio-rosso (zone.d,
+// allerta.rossa) per non confondersi con COLORE_EVIDENZIATO sotto.
 const COLORE_REGIONE = "#5FB3A3"; // cool
-const COLORE_TURISMOFVG = "#CD7554"; // warm
+const COLORE_SERIE: Record<"r" | "p" | "c" | "m", string> = {
+  r: "#CD7554", // warm — anelli (prima fonte turismofvg.it aggiunta, 28/08/2026)
+  p: "#6FA9E0", // zone.a — percorsi lineari
+  c: "#E8B93E", // zone.c / allerta.gialla — ciclovie a tappe
+  m: "#4C9A5B", // allerta.verde — mountain bike
+};
 // Evidenziazione al click sul nome nell'elenco (27/08/2026, richiesto
 // dall'utente: "cliccando sopra il nome, che appaia sulla mappa") —
 // colore ben distinto (allerta.rossa) più tratto più spesso, uguale per
-// entrambe le fonti così il percorso selezionato risalta comunque.
+// tutte le fonti così il percorso selezionato risalta comunque.
 const COLORE_EVIDENZIATO = "#C1382E"; // allerta.rossa
+
+// Etichetta fonte per il popup di un tracciato.
+const ETICHETTA_FONTE: Record<TracciatoMappa["fonte"], string> = {
+  regione: "Regione FVG",
+  r: "TurismoFVG · Anelli",
+  p: "TurismoFVG · Percorsi lineari",
+  c: "TurismoFVG · Ciclovie a tappe",
+  m: "TurismoFVG · Mountain bike",
+};
 
 // Un "tracciato" sulla mappa, indipendente dalla fonte — vedi
 // PisteCiclabiliPage.tsx per come viene costruito a partire dai
-// segmenti Regione e dai percorsi turismofvg.it. `chiave` è univoca fra
-// le due fonti (prefissata con la fonte) ed è quella usata per
-// l'evidenziazione al click nell'elenco.
+// segmenti Regione e dai percorsi delle 4 serie turismofvg.it. `chiave`
+// è univoca fra tutte le fonti (prefissata con la fonte) ed è quella
+// usata per l'evidenziazione al click nell'elenco.
 export type TracciatoMappa = {
   chiave: string;
-  fonte: "regione" | "turismofvg";
+  fonte: "regione" | "r" | "p" | "c" | "m";
   nome: string;
   linee: [number, number][][];
   // Riga aggiuntiva nel popup (es. "R001 · media · 2:15 h" per
@@ -75,7 +94,7 @@ export function PisteCiclabiliMap({
       />
       {tracciati.map((t, ti) => {
         const isEvidenziato = t.chiave === evidenziato;
-        const colore = t.fonte === "turismofvg" ? COLORE_TURISMOFVG : COLORE_REGIONE;
+        const colore = t.fonte === "regione" ? COLORE_REGIONE : COLORE_SERIE[t.fonte];
         return t.linee.map((linea, li) => (
           <Polyline
             key={`${t.chiave}-${ti}-${li}`}
@@ -89,7 +108,7 @@ export function PisteCiclabiliMap({
             <Popup>
               <strong>{t.nome}</strong>
               <br />
-              Fonte: {t.fonte === "turismofvg" ? "TurismoFVG" : "Regione FVG"}
+              Fonte: {ETICHETTA_FONTE[t.fonte]}
               {t.extra && (
                 <>
                   <br />
