@@ -22,6 +22,13 @@ export type VoceChangelog = {
 export const CHANGELOG: VoceChangelog[] = [
   {
     data: "28/08/2026",
+    titolo: "Homepage — riga Meteo per provincia più leggibile su telefono",
+    dettagli: [
+      "Corretto un problema di impaginazione sul pannello \"Meteo · Le 4 province\" in homepage: su schermi stretti la riga di ogni provincia poteva andare a capo in modo disordinato con il link \"Dettagli\" schiacciato sul bordo.",
+    ],
+  },
+  {
+    data: "28/08/2026",
     titolo: "Piste ciclabili — tutte le serie turismofvg.it, un riquadro per fonte",
     dettagli: [
       "Oltre agli anelli, ora sono mostrati anche i percorsi lineari, le ciclovie a tappe e i percorsi mountain bike di turismofvg.it, ciascuno con lunghezza, dislivelli, difficoltà, durata, comuni attraversati e link per scaricare il file GPX.",

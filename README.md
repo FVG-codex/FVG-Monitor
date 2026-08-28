@@ -1660,6 +1660,44 @@ telefono vero se possibile, specialmente sul pannello Autobus (quello
 con più elementi in riga) e sul banner allerta la prossima volta che è
 attivo.
 
+### Fix — riga Meteo per provincia non responsive su iPhone (28/08/2026)
+
+L'utente ha segnalato — con due screenshot reali da un iPhone 16 Pro,
+la prima verifica visiva su un telefono vero avuta in tutto questo
+progetto per la classe di bug qui sopra — la riga di sintesi per
+provincia nel pannello homepage "Meteo · Le 4 province"
+(`MeteoOverview` in `components/MeteoPanel.tsx`) che andava a capo in
+modo illeggibile, con il link "Dettagli →" schiacciato/tagliato sul
+bordo destro dello schermo.
+
+**Causa**: esattamente il bug #1 descritto sopra (flex item con testo a
+lunghezza variabile — qui la descrizione del cielo, es. "poco
+nuvoloso" — senza `min-w-0`), ma su una riga che l'audit del 24/08/2026
+non aveva incluso (copriva `TreniPanel`/`AutobusPanel`/`VoliPanel`/
+`BalneazionePanel`, non `MeteoPanel`). Sintomo leggermente diverso
+dagli altri casi: qui il testo del cielo non aveva nemmeno `truncate`,
+quindi non troncava ma andava a capo, allargando la riga e spingendo
+badge temperatura e link "Dettagli →" fuori dallo spazio disponibile.
+
+**Fix**: aggiunto `min-w-0 truncate` alla sola descrizione del cielo
+(unico elemento a lunghezza davvero variabile), separato il range di
+temperatura min/max in uno `<span>` a sé con `flex-shrink-0
+whitespace-nowrap` (non deve mai troncarsi, è il dato più utile della
+riga), stessa protezione aggiunta al badge di `TemperaturaBadge.tsx`
+(riusato in più pannelli, non solo qui). Il nome provincia non ha più
+una larghezza minima fissa su mobile (`flex-shrink-0` invece di
+`min-w-[100px]`, quel valore resta solo da `sm:` in su per
+l'allineamento fra le 4 righe su schermi più larghi) — non deve mai
+troncarsi. La parola "Dettagli" è nascosta sotto `sm:` (resta solo
+"→"): l'intera riga è già un link, la parola era un rinforzo visivo
+che su un telefono stretto costava più spazio di quanto desse valore —
+stessa convenzione già in uso in `AutobusPanel.tsx`/`TreniPanel.tsx`/
+`VoliPanel.tsx` per dettagli secondari.
+
+`npx tsc --noEmit` pulito. **Non ancora confermato dall'utente in
+produzione** dopo il fix — i due screenshot allegati sono la diagnosi,
+non ancora una conferma del fix.
+
 ## Fusione pannelli homepage — Bora·Vento+Pioggia e Mare+Fiumi (24/08/2026)
 
 L'utente ha segnalato (con screenshot) molto spazio bianco sotto ai

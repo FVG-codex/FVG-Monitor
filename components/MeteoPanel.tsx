@@ -87,25 +87,46 @@ export function MeteoOverview() {
               <a
                 key={p.slug}
                 href={`/${p.slug}`}
-                className={`flex items-center gap-3 text-sm py-2.5 ${i > 0 ? "border-t border-line" : ""} hover:bg-panel-alt transition-colors -mx-1 px-1`}
+                className={`flex items-center gap-2 sm:gap-3 text-sm py-2.5 ${i > 0 ? "border-t border-line" : ""} hover:bg-panel-alt transition-colors -mx-1 px-1`}
               >
-                <span className="font-cond font-semibold min-w-[100px] flex items-center gap-1.5">
+                {/* flex-shrink-0 invece di un min-w fisso su mobile: il
+                    nome provincia non deve mai troncarsi (bug segnalato
+                    dall'utente su iPhone 16 Pro, 28/08/2026 — la riga non
+                    andava mai a capo/si stringeva in modo illeggibile).
+                    min-w fisso solo da sm in su, per l'allineamento
+                    verticale fra le 4 righe su schermi più larghi. */}
+                <span className="font-cond font-semibold flex items-center gap-1.5 flex-shrink-0 whitespace-nowrap sm:min-w-[100px]">
                   {p.nome} <ZoneChip zone={p.zona} />
                 </span>
                 {c ? (
-                  <span className="text-ink-dim flex-1">
-                    {c.cielo}
+                  <>
+                    {/* min-w-0 + truncate: unico elemento della riga a
+                        lunghezza davvero variabile (descrizione cielo,
+                        es. "poco nuvoloso") — senza min-w-0 un flex item
+                        non si restringe mai sotto la larghezza del suo
+                        contenuto (min-width:auto di default), ed è
+                        quello che spingeva badge/link fuori dallo
+                        schermo su iPhone. Il range di temperatura resta
+                        un elemento a sé, mai troncato. */}
+                    <span className="text-ink-dim flex-1 min-w-0 truncate">{c.cielo}</span>
                     {c.tmin && c.tmax && (
-                      <span className="font-mono text-ink-faint ml-2">
+                      <span className="font-mono text-ink-faint text-xs flex-shrink-0 whitespace-nowrap">
                         {c.tmin}–{c.tmax}°C
                       </span>
                     )}
-                  </span>
+                  </>
                 ) : (
-                  <span className="text-ink-faint flex-1 font-mono text-xs">n.d.</span>
+                  <span className="text-ink-faint flex-1 min-w-0 font-mono text-xs">n.d.</span>
                 )}
                 <TemperaturaBadge provincia={p.slug} />
-                <span className="text-cool text-xs font-mono flex-shrink-0">Dettagli →</span>
+                {/* "Dettagli" testuale nascosto sotto sm (l'intera riga è
+                    già un link, la parola è solo un rinforzo visivo che
+                    su telefono stretto costava più spazio di quanto desse
+                    valore) — stessa convenzione già in uso in
+                    AutobusPanel.tsx/TreniPanel.tsx/VoliPanel.tsx. */}
+                <span className="text-cool text-xs font-mono flex-shrink-0 whitespace-nowrap">
+                  <span className="hidden sm:inline">Dettagli </span>→
+                </span>
               </a>
             );
           })}
