@@ -21,6 +21,14 @@ export type VoceChangelog = {
 
 export const CHANGELOG: VoceChangelog[] = [
   {
+    data: "31/08/2026",
+    titolo: "Calcio — aggiornata la stagione 2026/27, con archivio della stagione precedente",
+    dettagli: [
+      "Su /calcio i 9 campionati regionali mostrano ora di default il calendario e la classifica della nuova stagione 2026/27 (appena iniziata, tutte le squadre a 0 partite giocate).",
+      "In fondo alla pagina un nuovo pulsante \"Stagione\" permette di rivedere l'archivio della stagione 2025/26 appena conclusa.",
+    ],
+  },
+  {
     data: "28/08/2026",
     titolo: "Piste Ciclabili — aggiunta una sesta fonte, il dataset storico Ciclovie 2020",
     dettagli: [

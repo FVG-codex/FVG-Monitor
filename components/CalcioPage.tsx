@@ -36,11 +36,18 @@ type RigaClassifica = {
 type CalcioData = {
   campionato: string;
   girone: string;
+  stagione?: string;
   giornata_corrente: { number: number; leg: string; startDate: string; endDate: string } | null;
   partite: Partita[];
   classifica: RigaClassifica[];
   aggiornato_al: string;
 };
+
+// Deve corrispondere a CALCIO_STAGIONI in scripts/ingest-light.mjs — [0] = corrente/default, [1] = archivio
+const STAGIONI = [
+  { valore: "2026", label: "2026/27" },
+  { valore: "2025", label: "2025/26 (archivio)" },
+] as const;
 
 function formattaData(iso: string): string {
   const d = new Date(iso);
@@ -72,6 +79,7 @@ export function CalcioPage() {
   const [dati, setDati] = useState<CalcioData | null>(null);
   const [stato, setStato] = useState<"loading" | "ready" | "error">("loading");
   const [competizione, setCompetizione] = useState(COMPETIZIONI[0].slug);
+  const [stagione, setStagione] = useState<(typeof STAGIONI)[number]["valore"]>(STAGIONI[0].valore);
 
   useEffect(() => {
     let attivo = true;
@@ -80,7 +88,7 @@ export function CalcioPage() {
       const { data, error } = await supabase
         .from("snapshots")
         .select("data")
-        .eq("id", `calcio:${competizione}`)
+        .eq("id", `calcio:${competizione}:${stagione}`)
         .single();
       if (!attivo) return;
       if (error || !data) {
@@ -96,7 +104,7 @@ export function CalcioPage() {
       attivo = false;
       clearInterval(id);
     };
-  }, [competizione]);
+  }, [competizione, stagione]);
 
   return (
     <>
@@ -112,6 +120,7 @@ export function CalcioPage() {
         </h1>
         <p className="text-ink-faint text-xs font-mono mb-4">
           Campionati dilettantistici regionali FVG — fonte: LND Comitato Regionale FVG
+          {stagione !== STAGIONI[0].valore && ` — stai vedendo l'archivio della stagione ${STAGIONI.find((s) => s.valore === stagione)?.label}`}
         </p>
 
         <div className="flex gap-1.5 flex-wrap mb-6">
@@ -199,6 +208,22 @@ export function CalcioPage() {
             </Panel>
           </div>
         )}
+
+        <div className="mt-8 pt-4 border-t border-line flex items-center gap-1.5 flex-wrap">
+          <span className="text-ink-faint text-xs font-mono uppercase tracking-wide mr-1">Stagione</span>
+          {STAGIONI.map((s) => (
+            <button
+              key={s.valore}
+              onClick={() => setStagione(s.valore)}
+              aria-pressed={stagione === s.valore}
+              className={`px-3 py-1.5 rounded text-xs font-cond font-semibold uppercase tracking-wide transition-colors ${
+                stagione === s.valore ? "bg-cool text-bg" : "border border-line text-ink-dim hover:text-ink"
+              }`}
+            >
+              {s.label}
+            </button>
+          ))}
+        </div>
       </main>
 
       <Footer />

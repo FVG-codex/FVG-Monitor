@@ -2354,26 +2354,41 @@ async function ingestPollini() {
 // Altri campionati (Promozione, Prima Categoria, ecc.) hanno la
 // stessa struttura URL — estendibile in futuro aggiungendo altre
 // voci a COMPETIZIONI_CALCIO.
+//
+// Stagioni: si tengono SEMPRE due stagioni per competizione — quella
+// corrente (default in UI) e quella immediatamente precedente
+// (archivio, selezionabile da un toggle a fondo pagina su /calcio).
+// Verificato il 31/08/2026 via screenshot fornito dall'utente: la
+// stagione 2026/27 è già pubblicata su gare.lnd.it (calendario dal
+// 5 settembre 2026, classifica con tutte le squadre a 0 partite
+// giocate) con lo stesso URL, solo `stagione=2026` invece di 2025.
+// Promemoria annuale: a inizio nuova stagione, il primo valore di
+// CALCIO_STAGIONI diventa il secondo (archivio) e si aggiunge il
+// nuovo anno come primo (default) — invariato invece il resto
+// (COMPETIZIONI_CALCIO, che non contiene più la stagione nell'URL).
 // ---------------------------------------------------------------------
 
+const CALCIO_STAGIONI = ["2026", "2025"]; // [0] = corrente/default, [1] = archivio
+
 const COMPETIZIONI_CALCIO = [
-  { slug: "eccellenza-a", nome: "Eccellenza", girone: "Girone A", url: "https://gare.lnd.it/?campionato=EC&girone=A&stagione=2025&cr=07" },
-  { slug: "promozione-a", nome: "Promozione", girone: "Girone A", url: "https://gare.lnd.it/?campionato=PR&girone=A&stagione=2025&cr=07" },
-  { slug: "prima-categoria-a", nome: "Prima Categoria", girone: "Girone A", url: "https://gare.lnd.it/?campionato=1C&girone=A&stagione=2025&cr=07" },
-  { slug: "prima-categoria-b", nome: "Prima Categoria", girone: "Girone B", url: "https://gare.lnd.it/?campionato=1C&girone=B&stagione=2025&cr=07" },
-  { slug: "prima-categoria-c", nome: "Prima Categoria", girone: "Girone C", url: "https://gare.lnd.it/?campionato=1C&girone=C&stagione=2025&cr=07" },
-  { slug: "seconda-categoria-gorizia", nome: "Seconda Categoria Gorizia", girone: "Girone D", url: "https://gare.lnd.it/?campionato=22&girone=D&stagione=2025&cr=07" },
-  { slug: "seconda-categoria-pordenone", nome: "Seconda Categoria Pordenone", girone: "Girone A", url: "https://gare.lnd.it/?campionato=23&girone=A&stagione=2025&cr=07" },
-  { slug: "seconda-categoria-udine-b", nome: "Seconda Categoria Udine", girone: "Girone B", url: "https://gare.lnd.it/?campionato=26&girone=B&stagione=2025&cr=07" },
-  { slug: "seconda-categoria-udine-c", nome: "Seconda Categoria Udine", girone: "Girone C", url: "https://gare.lnd.it/?campionato=26&girone=C&stagione=2025&cr=07" },
+  { slug: "eccellenza-a", nome: "Eccellenza", girone: "Girone A", campionato: "EC", gironeParam: "A" },
+  { slug: "promozione-a", nome: "Promozione", girone: "Girone A", campionato: "PR", gironeParam: "A" },
+  { slug: "prima-categoria-a", nome: "Prima Categoria", girone: "Girone A", campionato: "1C", gironeParam: "A" },
+  { slug: "prima-categoria-b", nome: "Prima Categoria", girone: "Girone B", campionato: "1C", gironeParam: "B" },
+  { slug: "prima-categoria-c", nome: "Prima Categoria", girone: "Girone C", campionato: "1C", gironeParam: "C" },
+  { slug: "seconda-categoria-gorizia", nome: "Seconda Categoria Gorizia", girone: "Girone D", campionato: "22", gironeParam: "D" },
+  { slug: "seconda-categoria-pordenone", nome: "Seconda Categoria Pordenone", girone: "Girone A", campionato: "23", gironeParam: "A" },
+  { slug: "seconda-categoria-udine-b", nome: "Seconda Categoria Udine", girone: "Girone B", campionato: "26", gironeParam: "B" },
+  { slug: "seconda-categoria-udine-c", nome: "Seconda Categoria Udine", girone: "Girone C", campionato: "26", gironeParam: "C" },
 ];
 
-async function ingestCalcioCompetizione(comp) {
-  const res = await fetchConRetry(comp.url, {
+async function ingestCalcioCompetizione(comp, stagione) {
+  const url = `https://gare.lnd.it/?campionato=${comp.campionato}&girone=${comp.gironeParam}&stagione=${stagione}&cr=07`;
+  const res = await fetchConRetry(url, {
     headers: { "User-Agent": "Mozilla/5.0 (compatible; FVGMonitorBot/1.0)" },
   });
   if (!res.ok) {
-    console.warn(`Pagina calcio "${comp.nome}" non disponibile (HTTP ${res.status})`);
+    console.warn(`Pagina calcio "${comp.nome}" stagione ${stagione} non disponibile (HTTP ${res.status})`);
     return;
   }
 
@@ -2420,19 +2435,22 @@ async function ingestCalcioCompetizione(comp) {
     golSubiti: s.goalsAgainst,
   }));
 
-  await upsertSnapshot(`calcio:${comp.slug}`, "calcio", null, {
+  await upsertSnapshot(`calcio:${comp.slug}:${stagione}`, "calcio", null, {
     campionato: comp.nome,
     girone: comp.girone,
+    stagione,
     giornata_corrente: props.currentMatchday || null,
     partite,
     classifica,
     aggiornato_al: new Date().toISOString(),
   });
-  console.log(`Calcio aggiornato (${comp.nome} ${comp.girone}): ${partite.length} partite, ${classifica.length} squadre`);
+  console.log(`Calcio aggiornato (${comp.nome} ${comp.girone}, stagione ${stagione}): ${partite.length} partite, ${classifica.length} squadre`);
 }
 
 async function ingestCalcio() {
-  await Promise.all(COMPETIZIONI_CALCIO.map((c) => ingestCalcioCompetizione(c)));
+  await Promise.all(
+    COMPETIZIONI_CALCIO.flatMap((c) => CALCIO_STAGIONI.map((stagione) => ingestCalcioCompetizione(c, stagione)))
+  );
 }
 
 // ---------------------------------------------------------------------
