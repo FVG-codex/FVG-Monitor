@@ -22,6 +22,14 @@ export type VoceChangelog = {
 export const CHANGELOG: VoceChangelog[] = [
   {
     data: "28/08/2026",
+    titolo: "Piste Ciclabili — aggiunta una sesta fonte, il dataset storico Ciclovie 2020",
+    dettagli: [
+      "Nuovo riquadro \"Ciclovie 2020 · storico\" su /piste-ciclabili: copertura regionale completa (Trieste inclusa) ma dato fermo al gennaio 2020, mostrato come contesto storico e non come stato attuale della rete.",
+      "Per ogni percorso viene mostrata la lunghezza per stato (realizzato, in progetto, pianificato, ecc.) quando un percorso ha tratti in stati diversi.",
+    ],
+  },
+  {
+    data: "28/08/2026",
     titolo: "Strutture ricettive — corretto un \"Sito\" che in realtà era un'email (categoria Marina)",
     dettagli: [
       "Alcune schede della categoria Dry Marina e Marina Resort mostravano \"Sito →\" seguito da un indirizzo email invece che da un sito vero — corretto alla fonte, le schede già mostrate verranno ri-scaricate automaticamente nelle prossime esecuzioni.",

@@ -11,8 +11,10 @@ import {
   type SnapshotPisteCiclabili,
   type SnapshotPisteCiclabiliTurismoFvg,
   type PercorsoTurismoFvgBike,
+  type SnapshotCiclovie2020,
   SERIE_TURISMOFVG_BIKE,
   raggruppaPerNome,
+  raggruppaCiclovie2020,
   formattaLunghezza,
   formattaDurata,
   etichettaPartenzaArrivo,
@@ -127,6 +129,7 @@ export function PisteCiclabiliPage() {
   const [datiSerie, setDatiSerie] = useState<
     Partial<Record<"r" | "p" | "c" | "m", SnapshotPisteCiclabiliTurismoFvg>>
   >({});
+  const [datiCiclovie2020, setDatiCiclovie2020] = useState<SnapshotCiclovie2020 | null>(null);
   const [stato, setStato] = useState<"loading" | "ready" | "error">("loading");
   const [ricerca, setRicerca] = useState("");
   // Percorso selezionato cliccando il nome nell'elenco (27/08/2026,
@@ -138,8 +141,9 @@ export function PisteCiclabiliPage() {
   useEffect(() => {
     let attivo = true;
     async function carica() {
-      const [regione, ...serie] = await Promise.all([
+      const [regione, ciclovie2020, ...serie] = await Promise.all([
         supabase.from("snapshots").select("data").eq("id", "piste-ciclabili").single(),
+        supabase.from("snapshots").select("data").eq("id", "piste-ciclabili-2020").single(),
         ...SERIE_TURISMOFVG_BIKE.map((s) => supabase.from("snapshots").select("data").eq("id", s.idSnapshot).single()),
       ]);
       if (!attivo) return;
@@ -148,6 +152,12 @@ export function PisteCiclabiliPage() {
         return;
       }
       setDati(regione.data.data as SnapshotPisteCiclabili);
+      // Ciclovie 2020 (28/08/2026) è opzionale come le 4 serie turismofvg.it
+      // sotto — se non ancora disponibile (prima esecuzione dopo il
+      // rilascio) la pagina resta comunque utilizzabile con le altre fonti.
+      if (!ciclovie2020.error && ciclovie2020.data) {
+        setDatiCiclovie2020(ciclovie2020.data.data as SnapshotCiclovie2020);
+      }
       // Le 4 fonti turismofvg.it sono opzionali: se una non è ancora
       // disponibile (prima esecuzione dell'ingestione dopo il rilascio,
       // o errore isolato su una singola serie) la pagina resta comunque
@@ -181,6 +191,17 @@ export function PisteCiclabiliPage() {
     if (!q) return percorsiRegione;
     return percorsiRegione.filter((p) => p.nome.toLowerCase().includes(q));
   }, [percorsiRegione, ricerca]);
+
+  const percorsiCiclovie2020 = useMemo(
+    () => raggruppaCiclovie2020(datiCiclovie2020?.segmenti ?? []),
+    [datiCiclovie2020]
+  );
+
+  const percorsiCiclovie2020Filtrati = useMemo(() => {
+    const q = ricerca.trim().toLowerCase();
+    if (!q) return percorsiCiclovie2020;
+    return percorsiCiclovie2020.filter((p) => p.nome.toLowerCase().includes(q));
+  }, [percorsiCiclovie2020, ricerca]);
 
   // Per ciascuna delle 4 serie: elenco ordinato e filtrato dalla ricerca
   // (per nome o codice) — stessa logica già usata per Regione, ripetuta
@@ -217,11 +238,22 @@ export function PisteCiclabiliPage() {
         extra: etichettaBreveTurismoFvg(p),
       }))
     );
-    return [...daRegione, ...daSerie];
-  }, [percorsiRegioneFiltrati, percorsiSerieFiltrati]);
+    const daCiclovie2020 = percorsiCiclovie2020Filtrati.flatMap((p) =>
+      p.segmenti.map((s) => ({
+        chiave: `ciclovie2020:${p.nome}`,
+        fonte: "ciclovie2020" as const,
+        nome: p.nome,
+        linee: s.linee,
+        extra: s.stato,
+      }))
+    );
+    return [...daRegione, ...daSerie, ...daCiclovie2020];
+  }, [percorsiRegioneFiltrati, percorsiSerieFiltrati, percorsiCiclovie2020Filtrati]);
 
   const totalePercorsi =
-    percorsiRegioneFiltrati.length + SERIE_TURISMOFVG_BIKE.reduce((tot, s) => tot + percorsiSerieFiltrati[s.chiave].length, 0);
+    percorsiRegioneFiltrati.length +
+    percorsiCiclovie2020Filtrati.length +
+    SERIE_TURISMOFVG_BIKE.reduce((tot, s) => tot + percorsiSerieFiltrati[s.chiave].length, 0);
 
   return (
     <>
@@ -231,9 +263,9 @@ export function PisteCiclabiliPage() {
       <main id="contenuto-principale" className="max-w-[1180px] mx-auto px-5 py-6">
         <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1">Piste Ciclabili</h1>
         <p className="text-ink-faint text-xs font-mono mb-2">
-          {totalePercorsi > 0 ? `${totalePercorsi} percorsi` : "Percorsi"} ciclabili in Friuli Venezia Giulia — 5
+          {totalePercorsi > 0 ? `${totalePercorsi} percorsi` : "Percorsi"} ciclabili in Friuli Venezia Giulia — 6
           fonti indipendenti: le 4 serie con codice di turismofvg.it (Anelli, Percorsi lineari, Ciclovie a tappe,
-          Mountain bike) e la Regione Autonoma FVG (dati.friuliveneziagiulia.it).
+          Mountain bike), la Regione Autonoma FVG (dati.friuliveneziagiulia.it) e il dataset storico Ciclovie 2020.
         </p>
         <p className="text-ink-faint text-xs font-mono mb-4">
           <strong className="text-ink-dim">Fonti indipendenti, mai unite fra loro</strong> — ogni fonte ha il proprio
@@ -243,7 +275,9 @@ export function PisteCiclabiliPage() {
           il GPX. I dati Regione FVG hanno invece <strong className="text-ink-dim">copertura parziale</strong> (solo
           tracciati trasmessi dai Comuni in una specifica procedura urbanistica, non un censimento completo —
           es. l&apos;area di Trieste non è coperta) e possono essere divisi in più tratti, con comune di
-          partenza/arrivo e provincia calcolati dalle coordinate quando possibile.
+          partenza/arrivo e provincia calcolati dalle coordinate quando possibile. Ciclovie 2020 è invece un{" "}
+          <strong className="text-ink-dim">dato storico, fermo al gennaio 2020</strong> (copertura regionale
+          completa, Trieste inclusa) — mostrato come layer di contesto, non come stato attuale della rete.
         </p>
 
         {stato === "loading" && <p className="text-ink-faint text-sm font-mono">Caricamento percorsi…</p>}
@@ -318,6 +352,58 @@ export function PisteCiclabiliPage() {
                               : "Lunghezza non disponibile"}
                             {p.segmenti.length > 1 ? ` · ${p.segmenti.length} tratti` : ""}
                           </div>
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
+              </Panel>
+
+              {/* Ciclovie 2020 — terza fonte, aggiunta il 28/08/2026, dato
+                  storico fermo al 2020 (vedi disclaimer sopra) — riquadro a
+                  sé come Regione, subito prima della Mappa. */}
+              <Panel title={`Ciclovie 2020 · storico (${percorsiCiclovie2020Filtrati.length})`} span={2}>
+                {!datiCiclovie2020 ? (
+                  <p className="text-ink-faint text-sm font-mono">Dati non ancora disponibili.</p>
+                ) : percorsiCiclovie2020Filtrati.length === 0 ? (
+                  <p className="text-ink-faint text-sm font-mono">Nessun percorso trovato.</p>
+                ) : (
+                  <div className="max-h-[320px] overflow-y-auto flex flex-col">
+                    {percorsiCiclovie2020Filtrati.map((p, i) => {
+                      const chiave = `ciclovie2020:${p.nome}`;
+                      const selezionato = percorsoSelezionato === chiave;
+                      return (
+                        <button
+                          key={chiave}
+                          onClick={() => setPercorsoSelezionato(selezionato ? null : chiave)}
+                          aria-pressed={selezionato}
+                          className={`py-3 text-left w-full ${i > 0 ? "border-t border-line" : ""} ${
+                            selezionato ? "bg-panel-alt" : "hover:bg-panel-alt/60"
+                          } transition-colors`}
+                        >
+                          <div className="flex items-baseline justify-between gap-2 min-w-0">
+                            <span className="text-sm font-semibold truncate">{p.nome}</span>
+                            {p.livelli.length > 0 && (
+                              <span className="font-mono text-[10px] text-ink-faint uppercase shrink-0">
+                                {p.livelli.join(", ")}
+                              </span>
+                            )}
+                          </div>
+                          {/* Lunghezza aggregata per stato — un percorso può
+                              avere tratti in stati diversi (es. parte
+                              "realizzato", parte "in progetto"), mai
+                              ridotto a un solo stato scelto a caso. */}
+                          <div className="text-ink-dim text-xs mt-0.5">
+                            {p.lunghezzaPerStato.length > 0
+                              ? p.lunghezzaPerStato
+                                  .map((ls) => `${formattaLunghezza(ls.metri)} ${ls.stato}`)
+                                  .join(" · ")
+                              : "Lunghezza non disponibile"}
+                            {p.lunghezzaParziale ? " (parziale)" : ""}
+                          </div>
+                          {p.segmenti.length > 1 && (
+                            <div className="font-mono text-[10px] text-ink-dim mt-1">{p.segmenti.length} tratti</div>
+                          )}
                         </button>
                       );
                     })}

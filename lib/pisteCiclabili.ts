@@ -192,6 +192,90 @@ export const SERIE_TURISMOFVG_BIKE: {
   { chiave: "m", etichetta: "Mountain bike", idSnapshot: "piste-ciclabili-turismofvg-m" },
 ];
 
+// -----------------------------------------------------------------------
+// Terza fonte: dataset Socrata "Ciclovie 2020" (38yx-qk7a) su
+// dati.friuliveneziagiulia.it — aggiunta il 28/08/2026, scelta
+// dall'utente tra i due dataset Mobilità rimasti dalla ricognizione del
+// 27/08/2026 (l'altro, Rete viaria, resta scartato per pesantezza — vedi
+// claude/fvgmonitor-stato.md). Vedi ingestCiclovie2020() in
+// scripts/ingest-light.mjs per la ricognizione completa — riassunto:
+//
+// - Dato STORICO, fermo al 23/01/2020 (rowsUpdatedAt) — mostrato
+//   esplicitamente come layer di contesto, mai spacciato per "live".
+// - Copertura REGIONALE vera (a differenza di "Piste Ciclabili" sopra,
+//   limitata a un'area centrale) — include anche Trieste.
+// - 1174 righe/segmenti, solo 113 nomi distinti — stesso pattern di
+//   raggruppamento per nome di SegmentoCiclabile sopra, ma un percorso
+//   può avere segmenti con `stato` DIVERSO (es. un tratto "realizzato",
+//   un altro "in progetto") — niente stato unico semplificato, la
+//   lunghezza viene aggregata per stato (`lunghezzaPerStato`).
+// - Nessun comune/provincia nel dataset, nessun geocoding aggiunto per
+//   questa fonte (scelta esplicita per contenere lo sforzo).
+export type SegmentoCiclovia2020 = {
+  id: number | null;
+  nome: string;
+  lunghezzaM: number | null;
+  stato: string | null; // etichetta della fonte, mai reinterpretata (10 valori osservati)
+  livello: string | null; // "ambito" | "regionale" | "regionale_variante"
+  sede: string | null;
+  linee: [number, number][][];
+};
+
+export type SnapshotCiclovie2020 = {
+  segmenti: SegmentoCiclovia2020[];
+  aggiornato_al: string; // ISO
+};
+
+export type PercorsoCiclovia2020 = {
+  nome: string;
+  segmenti: SegmentoCiclovia2020[];
+  lunghezzaTotaleM: number | null; // null se NESSUN segmento ha una lunghezza nota
+  lunghezzaParziale: boolean; // true se solo alcuni segmenti hanno lunghezza nota
+  // Lunghezza aggregata per stato, ordinata dalla più lunga — un
+  // percorso può avere segmenti in stati diversi (es. parte
+  // "realizzato", parte "in progetto"), mai ridotto a un solo stato.
+  // "non specificato" per i segmenti senza `stato`.
+  lunghezzaPerStato: { stato: string; metri: number }[];
+  livelli: string[]; // valori distinti di `livello` presenti, mai scelto uno a caso
+};
+
+export function raggruppaCiclovie2020(segmenti: SegmentoCiclovia2020[]): PercorsoCiclovia2020[] {
+  const perNome = new Map<string, SegmentoCiclovia2020[]>();
+  for (const s of segmenti) {
+    const lista = perNome.get(s.nome) ?? [];
+    lista.push(s);
+    perNome.set(s.nome, lista);
+  }
+
+  const percorsi: PercorsoCiclovia2020[] = Array.from(perNome.entries()).map(([nome, segs]) => {
+    const conLunghezza = segs.filter((s) => s.lunghezzaM !== null);
+    const lunghezzaTotaleM =
+      conLunghezza.length === 0 ? null : conLunghezza.reduce((tot, s) => tot + (s.lunghezzaM ?? 0), 0);
+
+    const perStato = new Map<string, number>();
+    for (const s of conLunghezza) {
+      const chiave = s.stato ?? "non specificato";
+      perStato.set(chiave, (perStato.get(chiave) ?? 0) + (s.lunghezzaM ?? 0));
+    }
+    const lunghezzaPerStato = Array.from(perStato.entries())
+      .map(([stato, metri]) => ({ stato, metri }))
+      .sort((a, b) => b.metri - a.metri);
+
+    const livelli = Array.from(new Set(segs.map((s) => s.livello).filter((l): l is string => l !== null)));
+
+    return {
+      nome,
+      segmenti: segs,
+      lunghezzaTotaleM,
+      lunghezzaParziale: conLunghezza.length > 0 && conLunghezza.length < segs.length,
+      lunghezzaPerStato,
+      livelli,
+    };
+  });
+
+  return percorsi.sort((a, b) => a.nome.localeCompare(b.nome, "it"));
+}
+
 export function formattaDurata(minuti: number): string {
   const h = Math.floor(minuti / 60);
   const m = Math.round(minuti % 60);

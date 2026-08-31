@@ -3767,6 +3767,120 @@ async function ingestPisteCiclabili() {
 }
 
 // -----------------------------------------------------------------------
+// CICLOVIE 2020 — terza fonte per /piste-ciclabili, dataset Socrata
+// "Ciclovie 2020" (38yx-qk7a) su dati.friuliveneziagiulia.it. Scelto il
+// 28/08/2026 dall'utente come prossimo modulo da implementare tra i due
+// dataset Mobilità rimasti dalla ricognizione del 27/08/2026 (l'altro,
+// Rete viaria, resta scartato per pesantezza/complessità — vedi
+// claude/fvgmonitor-stato.md). Verificato su dati reali (WebFetch,
+// stesso metodo già usato per Piste Ciclabili 7eat-pecq) prima di
+// scrivere questo modulo:
+//
+// - **Dato STORICO, esplicitamente dichiarato fermo**: metadata del
+//   dataset (`rowsUpdatedAt`) risulta al 23/01/2020, oltre 6 anni prima
+//   di questa sessione — a differenza di "Piste Ciclabili" (7eat-pecq,
+//   aggiornato 2 giorni prima della sua stessa ricognizione), qui NON
+//   c'è alcuna aspettativa che il dato cambi da un'esecuzione all'altra.
+//   Ingerito comunque con lo stesso pattern standard ogni 15 minuti
+//   (nessuna ragione per trattarlo diversamente lato codice — un fetch
+//   in più costa pochissimo), ma presentato in UI esplicitamente come
+//   layer storico/di contesto, non "live" — stessa cautela già applicata
+//   alle Ciclovie 2020 nella ricognizione (mai fatta passare per un dato
+//   aggiornato).
+// - **Copertura REGIONALE vera**, a differenza di "Piste Ciclabili"
+//   (che copre solo un'area centrale Udine/Gorizia): bounding box reale
+//   verificato (`$select=extent(the_geom)`) lon 12.33–13.90/lat
+//   45.58–46.62, l'intero territorio del FVG compreso Trieste — coerente
+//   con la descrizione della fonte ("compila e rende omogenei più
+//   livelli eterogenei regionali/provinciali/altro, con eliminazione
+//   duplicati e correzione traiettorie").
+// - **1174 righe, solo 113 nomi distinti** (`$select=count(distinct
+//   nome)`) — stesso pattern già visto in Piste Ciclabili: un percorso
+//   nominato è diviso in più segmenti (qui ancora più frammentato, ~10
+//   segmenti/nome in media). Raggruppato per nome lato UI
+//   (`raggruppaCiclovie2020()` in lib/pisteCiclabili.ts).
+// - **`stato` è il campo più utile e nuovo di questa fonte** (assente in
+//   7eat-pecq, dove l'unico campo simile — `livello` — non aveva
+//   varietà): 10 valori osservati (`$group=stato`), dal più frequente
+//   "realizzato" (641/1174) a "in progetto"/"pianificato"/"in
+//   costruzione" ecc. — **osservato che uno stesso percorso nominato può
+//   avere segmenti con stato diverso** (es. "FVG 6": alcuni segmenti
+//   "realizzato", altri "percorribile su viabilita esistente da
+//   migliorare") — quindi niente "stato del percorso" unico e
+//   semplificato: la UI mostra la lunghezza aggregata per stato
+//   (`lunghezzaPerStato` in `PercorsoCiclovia2020`), mai un singolo stato
+//   scelto arbitrariamente che nasconderebbe l'eterogeneità reale.
+// - **`livello`**: ambito/regionale/regionale_variante (diverso
+//   dall'omonimo campo, quasi-costante, di 7eat-pecq) — mostrato come
+//   insieme di valori distinti presenti nel percorso, mai un singolo
+//   valore scelto a caso se il percorso ne ha più di uno.
+// - **`lunghezza` presente per quasi tutte le righe** (1173/1174,
+//   `$select=count(lunghezza)`) — a differenza di 7eat-pecq (403/486),
+//   quindi la sottostima per lunghezza mancante sarà rara qui.
+// - **Campo `progetto` ("si"/"no") escluso dalla UI**: significato non
+//   chiaro dalla sola metadata/righe campione (non un vero booleano
+//   ovvio come "è un progetto approvato?" o "fa parte del progetto
+//   ciclovie regionali?") — stessa cautela già seguita altrove nel
+//   progetto per campi di un'API/dataset non documentata: mai
+//   un'etichetta inventata per un campo ambiguo.
+// - **Nessun comune/provincia** (come 7eat-pecq) — niente geocoding
+//   aggiunto per questa fonte (scelta esplicita per contenere lo sforzo,
+//   trattandosi di un layer storico/di contesto secondario, non la fonte
+//   principale della pagina): solo mappa + elenco per nome, senza tab
+//   provincia.
+// - **Nessun bisogno di cache/backfill incrementale**: dataset piccolo
+//   (1174 righe) e mai in crescita (fermo dal 2020) — riscaricato per
+//   intero ad ogni esecuzione, stesso approccio di "Piste Ciclabili"
+//   7eat-pecq (486 righe), non il pattern a cursore/cache usato per
+//   fonti molto più grandi o davvero vive (turismofvg.it/TFVGB).
+// ---------------------------------------------------------------------
+
+const CICLOVIE_2020_DATASET_URL = "https://www.dati.friuliveneziagiulia.it/resource/38yx-qk7a.json";
+
+async function ingestCiclovie2020() {
+  const url = `${CICLOVIE_2020_DATASET_URL}?$limit=2000`;
+  const res = await fetchConRetry(url);
+  if (!res.ok) {
+    console.warn(`Dataset Ciclovie 2020 non disponibile (HTTP ${res.status})`);
+    return;
+  }
+
+  const rows = await res.json();
+  if (!Array.isArray(rows) || rows.length === 0) {
+    console.warn("Dataset Ciclovie 2020 vuoto");
+    return;
+  }
+
+  const segmenti = [];
+  for (const r of rows) {
+    const geom = r.the_geom;
+    if (!geom || geom.type !== "MultiLineString" || !Array.isArray(geom.coordinates)) continue;
+    // [lon, lat] (GeoJSON) -> [lat, lon] (Leaflet), stessa conversione di
+    // ingestPisteCiclabili() sopra.
+    const linee = geom.coordinates
+      .filter((linea) => Array.isArray(linea) && linea.length >= 2)
+      .map((linea) => linea.map(([lon, lat]) => [lat, lon]));
+    if (linee.length === 0) continue;
+
+    segmenti.push({
+      id: r.id ? Number(r.id) : null,
+      nome: testo(r.nome) ?? "Senza nome",
+      lunghezzaM: r.lunghezza ? Number(r.lunghezza) : null,
+      stato: testo(r.stato),
+      livello: testo(r.livello),
+      sede: testo(r.sede),
+      linee,
+    });
+  }
+
+  await upsertSnapshot("piste-ciclabili-2020", "piste-ciclabili-2020", null, {
+    segmenti,
+    aggiornato_al: new Date().toISOString(),
+  });
+  console.log(`Ciclovie 2020 aggiornate: ${segmenti.length} segmenti`);
+}
+
+// -----------------------------------------------------------------------
 // Piste ciclabili — fonti turismofvg.it/it/bike, 4 serie con codice (R
 // anelli, P percorsi lineari, C ciclovie a tappe, M mountain bike) —
 // serie R aggiunta il 28/08/2026 su richiesta dell'utente, le altre 3
@@ -4214,6 +4328,7 @@ async function main() {
     ["radar-meteo", ingestRadarMeteo()],
     ["terremoti", ingestTerremoti()],
     ["piste-ciclabili", ingestPisteCiclabili()],
+    ["piste-ciclabili-2020", ingestCiclovie2020()],
     ...TURISMOFVG_BIKE_SERIE.map((serie) => [
       `piste-ciclabili-turismofvg-${serie.chiave}`,
       ingestTurismoFvgBikeSerie(serie),

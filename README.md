@@ -1732,6 +1732,75 @@ state confermate**: serve un run reale dell'ingestione (4 nuove snapshot
 mai scritte finora) e una verifica visiva su `/piste-ciclabili` dopo il
 prossimo redeploy.
 
+### Terza fonte — Ciclovie 2020, dato storico (28/08/2026, sessione successiva)
+
+Dopo aver confermato le 5 fonti sopra, l'utente ha scelto di proseguire
+la coda Mobilità (vedi "Idee future") con **Ciclovie 2020** (`38yx-qk7a`
+su dati.friuliveneziagiulia.it), tra i due dataset rimasti — l'altro,
+Rete viaria (76.349 segmenti, 26 campi molto tecnici/GIS), resta
+scartato per pesantezza, come già segnalato nella ricognizione del
+27/08/2026.
+
+**Verificato su dati reali via WebFetch prima di scrivere codice**
+(stesso metodo già usato per "Piste Ciclabili" 7eat-pecq):
+
+- **Dato STORICO, dichiarato esplicitamente**: metadata (`rowsUpdatedAt`)
+  ferma al 23/01/2020, oltre 6 anni prima di questa sessione — mostrato
+  in UI come layer di contesto ("Ciclovie 2020 · storico"), mai come
+  stato attuale della rete.
+- **Copertura REGIONALE vera**, a differenza di "Piste Ciclabili" (area
+  centrale Udine/Gorizia): bounding box reale verificato
+  (`$select=extent(the_geom)`) lon 12.33–13.90/lat 45.58–46.62, l'intero
+  FVG compresa Trieste.
+- 1174 righe, solo 113 nomi distinti (`$select=count(distinct nome)`) —
+  stesso pattern "un percorso è diviso in più segmenti" già visto per
+  Piste Ciclabili, qui più marcato (~10 segmenti/nome in media).
+- **Il campo nuovo e utile è `stato`** (10 valori osservati via
+  `$group=stato`, dal più frequente "realizzato" 641/1174 a "in
+  progetto"/"pianificato"/"in costruzione" ecc.) — **uno stesso percorso
+  nominato può avere segmenti con stato diverso** (verificato sul dato
+  reale: "FVG 6" ha tratti "realizzato" e tratti "percorribile su
+  viabilita esistente da migliorare"), quindi niente riduzione a un solo
+  stato per percorso: la UI mostra la lunghezza aggregata per stato,
+  ordinata dalla più lunga (es. "5,4 km realizzato · 0,6 km in
+  progetto").
+- `livello` (ambito/regionale/regionale_variante, diverso dall'omonimo
+  campo quasi-costante di Piste Ciclabili) mostrato come insieme di
+  valori distinti presenti nel percorso.
+- `lunghezza` presente per quasi tutte le righe (1173/1174) — a
+  differenza di Piste Ciclabili (403/486), la sottostima per lunghezza
+  mancante sarà rara qui.
+- Campo `progetto` ("si"/"no") **escluso dalla UI**: significato non
+  chiaro dalla sola metadata/righe campione, stessa cautela già seguita
+  altrove nel progetto per campi ambigui di una fonte non documentata —
+  mai un'etichetta inventata.
+- Nessun comune/provincia nel dataset — **nessun geocoding aggiunto per
+  questa fonte** (scelta esplicita per contenere lo sforzo, trattandosi
+  di un layer secondario/di contesto): solo mappa + elenco per nome.
+- Nessun bisogno di cache/backfill incrementale: dataset piccolo (1174
+  righe) e mai in crescita (fermo dal 2020) — riscaricato per intero ad
+  ogni esecuzione, come Piste Ciclabili 7eat-pecq.
+
+**Implementazione**: `ingestCiclovie2020()` in `scripts/ingest-light.mjs`
+(nuova snapshot Supabase `piste-ciclabili-2020`), `raggruppaCiclovie2020()`
+in `lib/pisteCiclabili.ts` (tipi `SegmentoCiclovia2020`/
+`PercorsoCiclovia2020`, con `lunghezzaPerStato: {stato, metri}[]`
+ordinato desc — mai un singolo stato scelto arbitrariamente). Sesta fonte
+su `/piste-ciclabili`: nuovo riquadro "Ciclovie 2020 · storico" tra
+Regione FVG e la Mappa (stesso pattern a riquadro dedicato), nuovo
+colore `ink-faint` sulla mappa (nessun colore nuovo inventato — coerente
+col trattamento "dato di sfondo/contesto" di questa fonte rispetto alle
+altre 5, tutte correnti).
+
+`npx tsc --noEmit` e `node --check scripts/ingest-light.mjs` puliti.
+L'aggregazione `lunghezzaPerStato`/`livelli` verificata con uno script di
+test a sé (5 casi, incluso una riproduzione esatta di "FVG 6" con stati
+misti, un percorso senza alcuna lunghezza nota, e un percorso con livelli
+multipli sotto lo stesso nome). **Non ancora testato/confermato in
+produzione**: la nuova snapshot non è mai stata scritta da un'esecuzione
+reale — da verificare che si popoli e che il riquadro compaia
+correttamente su `/piste-ciclabili` dopo il prossimo redeploy.
+
 ## Fase 4 — Responsive (24/08/2026)
 
 Audit mirato su tutti i componenti (`components/*.tsx`), cercando pattern

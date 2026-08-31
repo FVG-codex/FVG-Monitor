@@ -7,13 +7,14 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
 // Colori riusati dalla palette esistente (tailwind.config.ts, già
-// verificato per contrasto) — un colore per fonte/serie, così le 5 fonti
-// (Regione + le 4 serie turismofvg.it) si distinguono a colpo d'occhio
-// sulla mappa (28/08/2026: da 2 a 5 fonti, ognuna col proprio box in UI
-// — vedi PisteCiclabiliPage.tsx). 5 tinte ben separate, nessun colore
-// nuovo inventato: teal/terracotta già in uso per questa mappa, blu/
-// giallo dalla palette delle zone di allertamento, verde dalla palette
-// delle allerte meteo — evitati i toni rosso/arancio-rosso (zone.d,
+// verificato per contrasto) — un colore per fonte/serie, così le 6 fonti
+// (Regione + le 4 serie turismofvg.it + Ciclovie 2020) si distinguono a
+// colpo d'occhio sulla mappa (28/08/2026: da 2 a 5, poi a 6 fonti,
+// ognuna col proprio box in UI — vedi PisteCiclabiliPage.tsx). Nessun
+// colore nuovo inventato per la 6ª fonte: `ink-faint` (già verificato
+// per contrasto, usato altrove nel sito per indicare dati "di sfondo" —
+// coerente con Ciclovie 2020 come layer storico/di contesto, non "live"
+// come le altre 5) — evitati i toni rosso/arancio-rosso (zone.d,
 // allerta.rossa) per non confondersi con COLORE_EVIDENZIATO sotto.
 const COLORE_REGIONE = "#5FB3A3"; // cool
 const COLORE_SERIE: Record<"r" | "p" | "c" | "m", string> = {
@@ -22,6 +23,7 @@ const COLORE_SERIE: Record<"r" | "p" | "c" | "m", string> = {
   c: "#E8B93E", // zone.c / allerta.gialla — ciclovie a tappe
   m: "#4C9A5B", // allerta.verde — mountain bike
 };
+const COLORE_CICLOVIE_2020 = "#92AAA8"; // ink-faint — layer storico/di contesto, 28/08/2026
 // Evidenziazione al click sul nome nell'elenco (27/08/2026, richiesto
 // dall'utente: "cliccando sopra il nome, che appaia sulla mappa") —
 // colore ben distinto (allerta.rossa) più tratto più spesso, uguale per
@@ -35,6 +37,7 @@ const ETICHETTA_FONTE: Record<TracciatoMappa["fonte"], string> = {
   p: "TurismoFVG · Percorsi lineari",
   c: "TurismoFVG · Ciclovie a tappe",
   m: "TurismoFVG · Mountain bike",
+  ciclovie2020: "Ciclovie 2020 (storico)",
 };
 
 // Un "tracciato" sulla mappa, indipendente dalla fonte — vedi
@@ -44,7 +47,7 @@ const ETICHETTA_FONTE: Record<TracciatoMappa["fonte"], string> = {
 // usata per l'evidenziazione al click nell'elenco.
 export type TracciatoMappa = {
   chiave: string;
-  fonte: "regione" | "r" | "p" | "c" | "m";
+  fonte: "regione" | "r" | "p" | "c" | "m" | "ciclovie2020";
   nome: string;
   linee: [number, number][][];
   // Riga aggiuntiva nel popup (es. "R001 · media · 2:15 h" per
@@ -94,7 +97,12 @@ export function PisteCiclabiliMap({
       />
       {tracciati.map((t, ti) => {
         const isEvidenziato = t.chiave === evidenziato;
-        const colore = t.fonte === "regione" ? COLORE_REGIONE : COLORE_SERIE[t.fonte];
+        const colore =
+          t.fonte === "regione"
+            ? COLORE_REGIONE
+            : t.fonte === "ciclovie2020"
+              ? COLORE_CICLOVIE_2020
+              : COLORE_SERIE[t.fonte];
         return t.linee.map((linea, li) => (
           <Polyline
             key={`${t.chiave}-${ti}-${li}`}
