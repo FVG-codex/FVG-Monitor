@@ -64,7 +64,7 @@ export function StrutturaTipoPage({ tipo }: { tipo: TipoStrutturaSlug }) {
       <div className="isobar" />
 
       <main id="contenuto-principale" className="max-w-[1180px] mx-auto px-5 py-6">
-        <Link href="/strutture-ricettive" className="text-cool text-xs font-mono hover:underline">
+        <Link href="/strutture-ricettive" className="text-cool-ink text-xs font-mono hover:underline">
           ← Strutture ricettive
         </Link>
         <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1 mt-1">{info.nome}</h1>
@@ -85,7 +85,7 @@ export function StrutturaTipoPage({ tipo }: { tipo: TipoStrutturaSlug }) {
                 onClick={() => setProvincia("tutte")}
                 aria-pressed={provincia === "tutte"}
                 className={`px-3 py-1.5 rounded text-xs font-cond font-semibold uppercase tracking-wide transition-colors ${
-                  provincia === "tutte" ? "bg-cool text-bg" : "border border-line text-ink-dim hover:text-ink"
+                  provincia === "tutte" ? "bg-cool text-on-accent" : "border border-line text-ink-dim hover:text-ink"
                 }`}
               >
                 Tutte ({datiTipo.totale})
@@ -96,7 +96,7 @@ export function StrutturaTipoPage({ tipo }: { tipo: TipoStrutturaSlug }) {
                   onClick={() => setProvincia(p.slug)}
                   aria-pressed={provincia === p.slug}
                   className={`px-3 py-1.5 rounded text-xs font-cond font-semibold uppercase tracking-wide transition-colors ${
-                    provincia === p.slug ? "bg-cool text-bg" : "border border-line text-ink-dim hover:text-ink"
+                    provincia === p.slug ? "bg-cool text-on-accent" : "border border-line text-ink-dim hover:text-ink"
                   }`}
                 >
                   {p.nome} ({(datiTipo.per_provincia[p.slug] ?? []).length})
@@ -143,7 +143,7 @@ export function StrutturaTipoPage({ tipo }: { tipo: TipoStrutturaSlug }) {
                             {v.contatti?.telefono && (
                               <a
                                 href={`tel:${v.contatti.telefono.replace(/\s+/g, "")}`}
-                                className="font-mono text-[10px] text-ink-faint hover:text-cool"
+                                className="font-mono text-[10px] text-ink-faint hover:text-cool-ink"
                               >
                                 {v.contatti.telefono}
                                 <span className="text-[9px] uppercase ml-1">
@@ -156,7 +156,7 @@ export function StrutturaTipoPage({ tipo }: { tipo: TipoStrutturaSlug }) {
                                 href={v.sito ?? v.contatti?.sito}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="font-mono text-[10px] text-cool hover:underline inline-block"
+                                className="font-mono text-[10px] text-cool-ink hover:underline inline-block"
                               >
                                 Sito →<span className="sr-only"> (si apre in una nuova scheda)</span>
                               </a>
@@ -164,7 +164,7 @@ export function StrutturaTipoPage({ tipo }: { tipo: TipoStrutturaSlug }) {
                             {(v.email || v.contatti?.email) && (
                               <a
                                 href={`mailto:${v.email ?? v.contatti?.email}`}
-                                className="font-mono text-[10px] text-ink-faint hover:text-cool"
+                                className="font-mono text-[10px] text-ink-faint hover:text-cool-ink"
                               >
                                 {v.email ?? v.contatti?.email}
                               </a>

@@ -62,7 +62,7 @@ export function PolliniPanel() {
             onClick={() => setTab(p.slug)}
             aria-pressed={tab === p.slug}
             className={`px-2.5 py-1 rounded text-xs font-cond font-semibold uppercase tracking-wide transition-colors ${
-              tab === p.slug ? "bg-cool text-bg" : "border border-line text-ink-dim hover:text-ink"
+              tab === p.slug ? "bg-cool text-on-accent" : "border border-line text-ink-dim hover:text-ink"
             }`}
           >
             {p.nome}
@@ -86,7 +86,7 @@ export function PolliniPanel() {
                   {s.pollini.map((pol) => (
                     <div key={pol.genere} className="border border-line rounded px-2 py-1 text-center">
                       <div className="font-cond font-semibold text-xs">{pol.genere}</div>
-                      <div className="font-mono text-[11px] text-cool">{pol.media}</div>
+                      <div className="font-mono text-[11px] text-cool-ink">{pol.media}</div>
                     </div>
                   ))}
                 </div>

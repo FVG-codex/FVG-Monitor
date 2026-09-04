@@ -54,5 +54,5 @@ export function TemperaturaBadge({
   // variabile (es. MeteoPanel.tsx) — senza queste due classi il valore
   // può andare a capo o restringersi in modo illeggibile su schermi
   // stretti (stesso bug flexbox già documentato più volte nel progetto).
-  return <span className="font-mono text-cool text-xs flex-shrink-0 whitespace-nowrap">{temp}°C</span>;
+  return <span className="font-mono text-cool-ink text-xs flex-shrink-0 whitespace-nowrap">{temp}°C</span>;
 }

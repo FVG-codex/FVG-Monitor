@@ -14,7 +14,7 @@ export function Footer({ extra }: { extra?: ReactNode }) {
     <footer className="max-w-[1180px] mx-auto px-5 py-6 border-t border-line font-mono text-[11px] text-ink-faint flex justify-between flex-wrap gap-2">
       <div className="flex flex-wrap gap-x-3 gap-y-1">
         <span>FVG Monitor</span>
-        <Link href="/changelog" className="hover:text-cool transition-colors">
+        <Link href="/changelog" className="hover:text-cool-ink transition-colors">
           Registro modifiche →
         </Link>
       </div>

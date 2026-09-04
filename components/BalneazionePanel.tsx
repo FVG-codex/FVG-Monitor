@@ -68,7 +68,7 @@ export function BalneazionePanel() {
             onClick={() => setTab(p.slug)}
             aria-pressed={tab === p.slug}
             className={`px-2.5 py-1 rounded text-xs font-cond font-semibold uppercase tracking-wide transition-colors ${
-              tab === p.slug ? "bg-cool text-bg" : "border border-line text-ink-dim hover:text-ink"
+              tab === p.slug ? "bg-cool text-on-accent" : "border border-line text-ink-dim hover:text-ink"
             }`}
           >
             {p.nome}
@@ -84,7 +84,7 @@ export function BalneazionePanel() {
         <>
           <div className="flex gap-6 mb-3">
             <div>
-              <div className="font-cond font-bold text-[36px] leading-[0.9] text-allerta-verde">
+              <div className="font-cond font-bold text-[36px] leading-[0.9] text-allerta-verde-ink">
                 {provincia.favorevoli}
               </div>
               <div className="font-mono text-[10px] text-ink-faint uppercase mt-1">Favorevoli</div>
@@ -92,7 +92,7 @@ export function BalneazionePanel() {
             <div>
               <div
                 className={`font-cond font-bold text-[36px] leading-[0.9] ${
-                  provincia.sfavorevoli > 0 ? "text-allerta-rossa" : "text-ink-dim"
+                  provincia.sfavorevoli > 0 ? "text-allerta-rossa-ink" : "text-ink-dim"
                 }`}
               >
                 {provincia.sfavorevoli}

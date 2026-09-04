@@ -2007,6 +2007,81 @@ da questa sessione** — l'audit è manuale, basato su lettura del codice e
 calcolo dei contrasti colore, non su una scansione automatizzata; utile
 un controllo con axe/Lighthouse o un vero screen reader quando possibile.
 
+## Tema chiaro/scuro (04/09/2026)
+
+Richiesta dell'utente: poter passare a un tema chiaro **su richiesta**, cioè
+un pulsante che l'utente sceglie di premere — non una rilevazione automatica
+di `prefers-color-scheme`. Il sito resta scuro ("Adriatico notturno") per
+tutti finché non lo si cambia esplicitamente; la scelta viene poi ricordata
+(in `localStorage`, solo su quel browser) per le visite successive.
+
+**Come funziona**:
+
+- Tutta la palette in `tailwind.config.ts` non usa più hex letterali ma
+  legge variabili CSS (`rgb(var(--color-x) / <alpha-value>)`, l'unico
+  formato che Tailwind supporta per un colore "da variabile" che continui a
+  funzionare coi modificatori di opacità già in uso nel sito, es. `bg-bg/95`
+  in `TopHeader.tsx`, `hover:bg-panel-alt/60` in `PisteCiclabiliPage.tsx`).
+  Le variabili sono definite in `app/globals.css`: `:root` (tema scuro,
+  default) e `:root[data-theme="light"]` (sovrascrittura chiara).
+- `components/ThemeToggle.tsx` (icona sole/luna nell'header, accanto
+  all'orologio) imposta/rimuove `data-theme="light"` su `<html>` e salva la
+  scelta in `localStorage` (`fvgmonitor-tema`).
+- Un piccolo script inline, **primo elemento del `<body>`** in
+  `app/layout.tsx`, legge quel valore e applica `data-theme` PRIMA che il
+  browser dipinga la pagina — altrimenti si vedrebbe per un istante il tema
+  scuro di default anche per chi ha scelto il chiaro (flash of wrong theme).
+  Per questo `<html>` ha anche `suppressHydrationWarning`: senza,
+  React segnalerebbe un mismatch fra l'HTML renderizzato dal server (mai con
+  `data-theme`) e quello trovato nel browser dopo lo script.
+
+**Non tutti i colori cambiano col tema — un punto delicato**: diversi
+colori della palette avevano un doppio ruolo, sfondo di badge/pulsanti E
+testo libero sulla pagina, con requisiti opposti quando il tema cambia:
+
+- `cool` (teal, sfondo di ogni pulsante/tab "attivo" del sito — es. `bg-cool
+  text-on-accent`) resta **fisso** in entrambi i temi: è sempre abbinato a
+  un testo scuro anch'esso fisso, `on-accent` (nuovo token, sostituisce il
+  vecchio trucco `text-bg`, che sfruttava il fatto che il colore di sfondo
+  della pagina fosse sempre scurissimo — non più garantito con un tema
+  chiaro). Stessa cosa per `zone.a`/`zone.b`/`zone.c`/`zone.d` e per gli
+  `allerta.*` usati come sfondo badge (sempre abbinati a un proprio testo
+  bianco o scuro fisso, indipendente dal tema).
+- Per l'uso come **testo libero** sulla pagina (es. `text-cool` su un link,
+  `text-allerta-rossa` su "Oltre soglia") questi stessi colori NON vanno
+  bene fissi: un teal abbastanza chiaro da leggersi su sfondo scuro (rapporto
+  di contrasto 6.4:1) crolla a 2.2:1 su sfondo chiaro, ben sotto la soglia
+  WCAG AA 4.5:1. Introdotti quindi token "-ink" dedicati che invece CAMBIANO
+  col tema — `cool-ink`, `allerta.verde-ink`, `allerta.rossa-ink`,
+  `allerta.arancione-ink` — e tutti gli usi come testo libero (`text-cool`
+  → `text-cool-ink`, `text-allerta-verde` → `text-allerta-verde-ink`, ecc.,
+  ~90 occorrenze in una trentina di file) sono stati aggiornati di
+  conseguenza. `warm` (usato solo come testo — ritardi treni/voli — mai come
+  sfondo) non aveva questo problema, il suo valore cambia semplicemente col
+  tema.
+- Ogni valore, per entrambi i temi, è stato verificato numericamente (stesso
+  metodo — luminanza relativa WCAG, non "a occhio" — di Fase 4 —
+  Accessibilità del 24/08/2026) contro tutti e tre gli sfondi del sito
+  (bg/panel/panel-alt). **Effetto collaterale utile**: il calcolo ha
+  scoperto che `allerta-rossa` e `allerta-verde` erano già sotto soglia
+  anche nel tema scuro esistente quando usati come testo su caratteri
+  piccoli (2.94:1 e 3.89:1 contro 4.5:1 richiesti — non notato in Fase 4 —
+  Accessibilità perché quell'audit non aveva ricalcolato questi due colori
+  "a doppio ruolo" separatamente dal loro uso come sfondo badge) — corretto
+  di riflesso introducendo i nuovi token "-ink" anche per il tema scuro.
+
+Le mappe Leaflet (Terremoti, Aviazione, Piste Ciclabili, Farmacie) NON sono
+state toccate: usano tile OpenStreetMap standard (non una basemap scura) e
+riusano alcuni hex della palette solo come colori fissi di marker/legenda —
+scelta indipendente dal tema della pagina, corretto che restino invariati.
+
+`npx tsc --noEmit` pulito. **Nessuna verifica visiva diretta possibile da
+questa sessione** (nessun browser reale) — utile una conferma dell'utente
+in produzione, in particolare: il pulsante nell'header, l'assenza di flash
+al caricamento con il tema chiaro già scelto in precedenza, e uno sguardo
+complessivo alle pagine con più colori (Qualità aria, Treni, Balneazione)
+dove i nuovi token "-ink" sono più usati.
+
 ## Idee future (annotate, non richieste esplicitamente per l'implementazione)
 
 - **Strutture ricettive — implementate il 26/08/2026** (vedi sezioni dedicate sopra): hub + 8 pagine, arricchimento contatti da OpenStreetMap lo stesso giorno, poi scraping incrementale turismofvg.it per gli Agriturismi (sempre 26/08/2026, vedi "Agriturismi — scraping incrementale turismofvg.it" sopra per i dettagli — DevTools fornito dall'utente, stesso metodo già servito per Tennis/Sci/Autobus). **Prossimo passo su questo modulo**: estendere lo scraping turismofvg.it alle altre 7 categorie (B&B, Affittacamere, Campeggi, Alberghi Diffusi, Sociali, Marina, Rifugi) — richiede prima di verificare che URL/etichette HTML siano gli stessi osservati per Agriturismi (non garantito), idealmente con un altro campione reale fornito dall'utente per categoria prima di aggiungerla a `TURISMOFVG_CATEGORIE`.

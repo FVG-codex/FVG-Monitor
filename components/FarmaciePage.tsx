@@ -159,7 +159,7 @@ export function FarmaciePage({ soloTurno }: { soloTurno: boolean }) {
                   onClick={() => selezionaProvincia(p.slug)}
                   aria-pressed={tab === p.slug}
                   className={`px-3 py-1.5 rounded text-xs font-cond font-semibold uppercase tracking-wide transition-colors ${
-                    tab === p.slug ? "bg-cool text-bg" : "border border-line text-ink-dim hover:text-ink"
+                    tab === p.slug ? "bg-cool text-on-accent" : "border border-line text-ink-dim hover:text-ink"
                   }`}
                 >
                   {p.nome} ({conteggioProvincia(p.slug)})
@@ -173,7 +173,7 @@ export function FarmaciePage({ soloTurno }: { soloTurno: boolean }) {
                   onClick={() => setComuneSel(null)}
                   aria-pressed={comuneSel === null}
                   className={`px-3 py-1.5 rounded text-xs font-cond font-semibold uppercase tracking-wide transition-colors ${
-                    comuneSel === null ? "bg-cool text-bg" : "border border-line text-ink-dim hover:text-ink"
+                    comuneSel === null ? "bg-cool text-on-accent" : "border border-line text-ink-dim hover:text-ink"
                   }`}
                 >
                   Tutti i comuni ({baseProvincia.length})
@@ -184,7 +184,7 @@ export function FarmaciePage({ soloTurno }: { soloTurno: boolean }) {
                     onClick={() => setComuneSel(c)}
                     aria-pressed={comuneSel === c}
                     className={`px-3 py-1.5 rounded text-xs font-cond font-semibold uppercase tracking-wide transition-colors ${
-                      comuneSel === c ? "bg-cool text-bg" : "border border-line text-ink-dim hover:text-ink"
+                      comuneSel === c ? "bg-cool text-on-accent" : "border border-line text-ink-dim hover:text-ink"
                     }`}
                   >
                     {c} ({n})

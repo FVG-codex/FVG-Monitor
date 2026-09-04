@@ -55,7 +55,7 @@ export function NotiziePanel() {
       {dati.items.slice(0, 5).map((n, i) => (
         <div key={n.link} className={`py-3 ${i > 0 ? "border-t border-line" : ""}`}>
           <a href={n.link} target="_blank" rel="noopener noreferrer" className="block">
-            <div className="text-ink text-[15px] leading-snug mb-1.5 hover:text-cool transition-colors">
+            <div className="text-ink text-[15px] leading-snug mb-1.5 hover:text-cool-ink transition-colors">
               {n.titolo}
               <span className="sr-only"> (si apre in una nuova scheda)</span>
             </div>

@@ -94,7 +94,7 @@ export function RadarMeteoPanel() {
             onClick={() => setProdotto(p.chiave)}
             aria-pressed={prodotto === p.chiave}
             className={`px-2.5 py-1 rounded text-xs font-cond font-semibold uppercase tracking-wide transition-colors ${
-              prodotto === p.chiave ? "bg-cool text-bg" : "border border-line text-ink-dim hover:text-ink"
+              prodotto === p.chiave ? "bg-cool text-on-accent" : "border border-line text-ink-dim hover:text-ink"
             }`}
           >
             {p.label}

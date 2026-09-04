@@ -82,7 +82,7 @@ export function BasketPage() {
       <div className="isobar" />
 
       <main id="contenuto-principale" className="max-w-[1180px] mx-auto px-5 py-6">
-        <Link href="/sport" className="text-cool text-xs font-mono hover:underline">
+        <Link href="/sport" className="text-cool-ink text-xs font-mono hover:underline">
           ← Sport
         </Link>
         <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1 mt-1">
@@ -99,7 +99,7 @@ export function BasketPage() {
               onClick={() => setCompetizione(c.slug)}
               aria-pressed={competizione === c.slug}
               className={`px-3 py-1.5 rounded text-xs font-cond font-semibold uppercase tracking-wide transition-colors ${
-                competizione === c.slug ? "bg-cool text-bg" : "border border-line text-ink-dim hover:text-ink"
+                competizione === c.slug ? "bg-cool text-on-accent" : "border border-line text-ink-dim hover:text-ink"
               }`}
             >
               {c.label}

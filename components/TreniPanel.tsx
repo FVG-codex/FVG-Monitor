@@ -4,11 +4,11 @@ import { useEffect, useState } from "react";
 import { fetchArrivi, fetchPartenze, STAZIONI_TRENI, type Treno } from "@/lib/treni";
 
 const STATO_COLORE: Record<Treno["stato"], string> = {
-  cancellato: "text-allerta-rossa",
-  modificato: "text-allerta-arancione",
+  cancellato: "text-allerta-rossa-ink",
+  modificato: "text-allerta-arancione-ink",
   "non-partito": "text-ink-faint",
   ritardo: "text-warm",
-  anticipo: "text-cool",
+  anticipo: "text-cool-ink",
   orario: "text-ink-dim",
 };
 
@@ -57,7 +57,7 @@ export function TreniPanel() {
             onClick={() => setStazioneSlug(s.slug)}
             aria-pressed={stazioneSlug === s.slug}
             className={`px-2.5 py-1 rounded text-xs font-cond font-semibold uppercase tracking-wide transition-colors ${
-              stazioneSlug === s.slug ? "bg-cool text-bg" : "border border-line text-ink-dim hover:text-ink"
+              stazioneSlug === s.slug ? "bg-cool text-on-accent" : "border border-line text-ink-dim hover:text-ink"
             }`}
           >
             {s.nome}
@@ -72,7 +72,7 @@ export function TreniPanel() {
             onClick={() => setSottoTab(t)}
             aria-pressed={sottoTab === t}
             className={`px-2.5 py-1 rounded text-xs font-cond font-semibold uppercase tracking-wide transition-colors ${
-              sottoTab === t ? "bg-cool text-bg" : "border border-line text-ink-dim hover:text-ink"
+              sottoTab === t ? "bg-cool text-on-accent" : "border border-line text-ink-dim hover:text-ink"
             }`}
           >
             {t === "partenze" ? "Partenze" : "Arrivi"}

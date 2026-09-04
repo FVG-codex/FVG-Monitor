@@ -33,7 +33,7 @@ export function Panel({
             href={linkHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-mono text-[11px] text-ink-faint hover:text-cool transition-colors"
+            className="font-mono text-[11px] text-ink-faint hover:text-cool-ink transition-colors"
           >
             {linkLabel}
             {/* Fase 4 — Accessibilità (24/08/2026): avviso per chi usa uno

@@ -55,7 +55,7 @@ export function AutobusPanel() {
             onClick={() => setBloccoSlug(b.slug)}
             aria-pressed={bloccoSlug === b.slug}
             className={`px-2.5 py-1 rounded text-xs font-cond font-semibold uppercase tracking-wide transition-colors ${
-              bloccoSlug === b.slug ? "bg-cool text-bg" : "border border-line text-ink-dim hover:text-ink"
+              bloccoSlug === b.slug ? "bg-cool text-on-accent" : "border border-line text-ink-dim hover:text-ink"
             }`}
           >
             {b.nome}
@@ -70,7 +70,7 @@ export function AutobusPanel() {
             onClick={() => setFiltro(t)}
             aria-pressed={filtro === t}
             className={`px-2.5 py-1 rounded text-xs font-cond font-semibold uppercase tracking-wide transition-colors ${
-              filtro === t ? "bg-cool text-bg" : "border border-line text-ink-dim hover:text-ink"
+              filtro === t ? "bg-cool text-on-accent" : "border border-line text-ink-dim hover:text-ink"
             }`}
           >
             {t === "tutti" ? "Tutti" : t === "partenze" ? "Partenze" : "Arrivi"}
@@ -107,7 +107,7 @@ export function AutobusPanel() {
                 )}
                 <span
                   className={`font-mono text-[10px] flex-shrink-0 w-28 text-right ${
-                    p.inTempoReale ? "text-allerta-verde" : "text-ink-faint"
+                    p.inTempoReale ? "text-allerta-verde-ink" : "text-ink-faint"
                   }`}
                 >
                   {p.inTempoReale ? "in tempo reale" : "programmato"}

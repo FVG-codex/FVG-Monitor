@@ -88,7 +88,7 @@ export function AriaQualitaPanel() {
             onClick={() => setTab(i.key)}
             aria-pressed={tab === i.key}
             className={`px-2.5 py-1 rounded text-xs font-cond font-semibold uppercase tracking-wide transition-colors ${
-              tab === i.key ? "bg-cool text-bg" : "border border-line text-ink-dim hover:text-ink"
+              tab === i.key ? "bg-cool text-on-accent" : "border border-line text-ink-dim hover:text-ink"
             }`}
           >
             {i.label}
@@ -112,7 +112,7 @@ export function AriaQualitaPanel() {
                     <>
                       <div
                         className={`font-mono font-bold text-lg ${
-                          superamento ? "text-allerta-rossa" : "text-allerta-verde"
+                          superamento ? "text-allerta-rossa-ink" : "text-allerta-verde-ink"
                         }`}
                       >
                         {valore}
@@ -121,7 +121,7 @@ export function AriaQualitaPanel() {
                       {/* Testo, non solo colore — vedi stessa nota in
                           No2Panel.tsx (WCAG 1.4.1). */}
                       {superamento && (
-                        <div className="font-mono text-[8px] text-allerta-rossa uppercase mt-0.5">Oltre soglia</div>
+                        <div className="font-mono text-[8px] text-allerta-rossa-ink uppercase mt-0.5">Oltre soglia</div>
                       )}
                     </>
                   ) : (

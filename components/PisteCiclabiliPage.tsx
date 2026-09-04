@@ -110,7 +110,7 @@ function BoxSerieTurismoFvg({
                     onClick={(e) => e.stopPropagation()}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-mono text-[10px] text-cool hover:underline mt-1 inline-block"
+                    className="font-mono text-[10px] text-cool-ink hover:underline mt-1 inline-block"
                   >
                     Scarica GPX ↗
                   </a>
@@ -415,7 +415,7 @@ export function PisteCiclabiliPage() {
                 {percorsoSelezionato && (
                   <button
                     onClick={() => setPercorsoSelezionato(null)}
-                    className="font-mono text-[10px] text-cool hover:underline mb-2 inline-block"
+                    className="font-mono text-[10px] text-cool-ink hover:underline mb-2 inline-block"
                   >
                     ← Mostra tutta la mappa
                   </button>

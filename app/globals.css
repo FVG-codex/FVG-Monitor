@@ -2,15 +2,67 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Design token — tema chiaro/scuro (04/09/2026).
+ *
+ * Ogni colore della palette è qui una variabile CSS con la tripletta
+ * RGB "R G B" (senza rgb(...) attorno), cosa che permette a Tailwind di
+ * comporla come rgb(var(--x) / <alpha-value>) nel config e quindi di
+ * continuare a supportare i modificatori di opacità (es. bg-bg/95,
+ * hover:bg-panel-alt/60) anche con un colore che cambia a runtime.
+ *
+ * :root = tema scuro "Adriatico notturno", il default storico del sito
+ * (nessun cambiamento visivo per chi non tocca nulla). [data-theme="light"]
+ * sovrascrive SOLO i token che devono davvero cambiare con il tema —
+ * sfondi, testo neutro, e le varianti "-ink" introdotte apposta per i
+ * colori semantici (cool/verde/rossa/arancione) che nel sito hanno un
+ * doppio ruolo: sfondo di badge/pulsanti (deve restare fisso, abbinato
+ * a un testo di contrasto anch'esso fisso — vedi "on-accent" sotto) E
+ * colore di testo libero sulla pagina (deve invece adattarsi al tema,
+ * altrimenti su sfondo chiaro perderebbe il contrasto minimo WCAG AA
+ * 4.5:1 verificato per ciascuno con lo stesso metodo numerico già usato
+ * in Fase 4 — Accessibilità del 24/08/2026). L'attributo data-theme
+ * viene impostato sul tag <html> dal pulsante ThemeToggle.tsx (persistito
+ * in localStorage) e da uno script inline in app/layout.tsx che lo
+ * applica prima del render per evitare un flash del tema sbagliato. */
+:root {
+  --color-bg: 14 37 41;
+  --color-panel: 21 51 56;
+  --color-panel-alt: 28 63 71;
+  --color-line: 39 75 80;
+  --color-ink: 237 232 221;
+  --color-ink-dim: 157 179 174;
+  --color-ink-faint: 146 170 168;
+  --color-warm: 205 117 84;
+  --color-cool-ink: 95 179 163;
+  --color-allerta-verde-ink: 99 184 114;
+  --color-allerta-rossa-ink: 250 130 114;
+  --color-allerta-arancione-ink: 232 150 79;
+}
+
+:root[data-theme="light"] {
+  --color-bg: 238 243 242;
+  --color-panel: 255 255 255;
+  --color-panel-alt: 225 234 232;
+  --color-line: 199 214 211;
+  --color-ink: 20 38 42;
+  --color-ink-dim: 60 89 87;
+  --color-ink-faint: 78 102 99;
+  --color-warm: 166 71 42;
+  --color-cool-ink: 12 87 74;
+  --color-allerta-verde-ink: 39 102 51;
+  --color-allerta-rossa-ink: 178 48 37;
+  --color-allerta-arancione-ink: 156 79 14;
+}
+
 html,
 body {
-  background: theme("colors.bg");
-  color: theme("colors.ink");
+  background: rgb(var(--color-bg));
+  color: rgb(var(--color-ink));
 }
 
 ::selection {
-  background: theme("colors.warm");
-  color: theme("colors.bg");
+  background: rgb(var(--color-warm));
+  color: rgb(var(--color-bg));
 }
 
 /* elemento firma: texture a linee di livello (isobar/contour) */
@@ -21,8 +73,8 @@ body {
     to bottom,
     transparent 0px,
     transparent 5px,
-    theme("colors.line") 5px,
-    theme("colors.line") 6px
+    rgb(var(--color-line)) 5px,
+    rgb(var(--color-line)) 6px
   );
   -webkit-mask-image: linear-gradient(90deg, transparent, black 15%, black 85%, transparent);
   mask-image: linear-gradient(90deg, transparent, black 15%, black 85%, transparent);

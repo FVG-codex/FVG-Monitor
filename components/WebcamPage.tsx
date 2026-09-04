@@ -82,7 +82,7 @@ export function WebcamPage() {
             onClick={() => setFiltro("tutte")}
             aria-pressed={filtro === "tutte"}
             className={`px-3 py-1.5 rounded text-xs font-cond font-semibold uppercase tracking-wide transition-colors ${
-              filtro === "tutte" ? "bg-cool text-bg" : "border border-line text-ink-dim hover:text-ink"
+              filtro === "tutte" ? "bg-cool text-on-accent" : "border border-line text-ink-dim hover:text-ink"
             }`}
           >
             Tutta la regione
@@ -93,7 +93,7 @@ export function WebcamPage() {
               onClick={() => setFiltro(p.slug)}
               aria-pressed={filtro === p.slug}
               className={`px-3 py-1.5 rounded text-xs font-cond font-semibold uppercase tracking-wide transition-colors ${
-                filtro === p.slug ? "bg-cool text-bg" : "border border-line text-ink-dim hover:text-ink"
+                filtro === p.slug ? "bg-cool text-on-accent" : "border border-line text-ink-dim hover:text-ink"
               }`}
             >
               {p.nome}

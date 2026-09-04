@@ -56,7 +56,7 @@ export function FiumePanel({ provincia }: { provincia: ProvinciaSlug }) {
         {dati.livello_m}
         <span className="text-ink-dim text-sm ml-1">m</span>
       </div>
-      <div className="font-mono text-xs text-cool mt-1 mb-3">{dati.fiume.toUpperCase()}</div>
+      <div className="font-mono text-xs text-cool-ink mt-1 mb-3">{dati.fiume.toUpperCase()}</div>
       <div className="flex justify-between font-mono text-[11px] text-ink-faint border-t border-line pt-3">
         <span>Stazione {dati.stazione}</span>
         <span>{dati.aggiornato_al}</span>

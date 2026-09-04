@@ -26,7 +26,7 @@ export function ChangelogPage() {
             <div className="flex flex-col">
               {CHANGELOG.map((voce, i) => (
                 <div key={i} className={`py-3.5 ${i > 0 ? "border-t border-line" : ""}`}>
-                  <div className="font-mono text-[10px] text-cool uppercase mb-1">{voce.data}</div>
+                  <div className="font-mono text-[10px] text-cool-ink uppercase mb-1">{voce.data}</div>
                   <div className="font-cond font-semibold text-base uppercase tracking-wide mb-1.5">
                     {voce.titolo}
                   </div>

@@ -49,7 +49,7 @@ export default function Home() {
                 <a
                   key={p.slug}
                   href={`/${p.slug}`}
-                  className="text-xs font-mono text-cool hover:underline"
+                  className="text-xs font-mono text-cool-ink hover:underline"
                 >
                   {p.nome} →
                 </a>

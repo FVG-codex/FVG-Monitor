@@ -70,7 +70,7 @@ export function No2Panel() {
                 <>
                   <div
                     className={`font-mono font-bold text-lg ${
-                      superamento ? "text-allerta-rossa" : "text-allerta-verde"
+                      superamento ? "text-allerta-rossa-ink" : "text-allerta-verde-ink"
                     }`}
                   >
                     {d.media_oraria_max}
@@ -80,7 +80,7 @@ export function No2Panel() {
                       Accessibilità 24/08/2026): il superamento soglia era
                       indicato solo dal colore rosso/verde del numero. */}
                   {superamento && (
-                    <div className="font-mono text-[8px] text-allerta-rossa uppercase mt-0.5">Oltre soglia</div>
+                    <div className="font-mono text-[8px] text-allerta-rossa-ink uppercase mt-0.5">Oltre soglia</div>
                   )}
                 </>
               ) : (

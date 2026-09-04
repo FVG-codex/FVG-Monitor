@@ -23,7 +23,7 @@ export function TgrCard() {
         />
       </div>
       <div>
-        <div className="font-cond font-semibold text-[15px] group-hover:text-cool transition-colors">
+        <div className="font-cond font-semibold text-[15px] group-hover:text-cool-ink transition-colors">
           Guarda l&apos;ultimo notiziario
         </div>
         <div className="text-ink-faint text-xs font-mono mt-1">

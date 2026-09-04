@@ -100,7 +100,7 @@ export function BaseballPage() {
       <div className="isobar" />
 
       <main id="contenuto-principale" className="max-w-[1180px] mx-auto px-5 py-6">
-        <Link href="/sport" className="text-cool text-xs font-mono hover:underline">
+        <Link href="/sport" className="text-cool-ink text-xs font-mono hover:underline">
           ← Sport
         </Link>
         <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1 mt-1">
@@ -117,7 +117,7 @@ export function BaseballPage() {
               onClick={() => setCompetizione(c.slug)}
               aria-pressed={competizione === c.slug}
               className={`px-3 py-1.5 rounded text-xs font-cond font-semibold uppercase tracking-wide transition-colors ${
-                competizione === c.slug ? "bg-cool text-bg" : "border border-line text-ink-dim hover:text-ink"
+                competizione === c.slug ? "bg-cool text-on-accent" : "border border-line text-ink-dim hover:text-ink"
               }`}
             >
               {c.label}
@@ -142,11 +142,11 @@ export function BaseballPage() {
                       {formattaData(p.data)} · {p.luogo}
                     </div>
                     <div className="flex items-center justify-between text-sm">
-                      <span className={`flex-1 ${p.casaFvg ? "text-cool font-semibold" : ""}`}>{p.casa}</span>
+                      <span className={`flex-1 ${p.casaFvg ? "text-cool-ink font-semibold" : ""}`}>{p.casa}</span>
                       <span className="font-cond font-bold text-lg px-3">
                         {p.punteggioCasa ?? "–"} : {p.punteggioOspite ?? "–"}
                       </span>
-                      <span className={`flex-1 text-right ${p.ospiteFvg ? "text-cool font-semibold" : ""}`}>
+                      <span className={`flex-1 text-right ${p.ospiteFvg ? "text-cool-ink font-semibold" : ""}`}>
                         {p.ospite}
                       </span>
                     </div>
@@ -179,7 +179,7 @@ export function BaseballPage() {
                           .map((r) => (
                             <tr key={r.posizione} className="border-b border-line">
                               <td className="py-2 pr-2 font-mono text-ink-faint">{r.posizione}</td>
-                              <td className={`py-2 ${r.squadraFvg ? "text-cool font-semibold" : ""}`}>
+                              <td className={`py-2 ${r.squadraFvg ? "text-cool-ink font-semibold" : ""}`}>
                                 {r.squadra}
                               </td>
                               <td className="py-2 px-2 text-right font-mono font-bold">{r.vittorie}</td>

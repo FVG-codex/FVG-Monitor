@@ -34,7 +34,7 @@ export function AlertBanner({
       </span>
       <span className="text-ink-dim min-w-0">{messaggio}</span>
       {href && (
-        <a href={href} className="ml-auto text-cool text-sm flex-shrink-0 whitespace-nowrap">
+        <a href={href} className="ml-auto text-cool-ink text-sm flex-shrink-0 whitespace-nowrap">
           Dettagli ufficiali →
         </a>
       )}

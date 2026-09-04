@@ -77,7 +77,7 @@ export function VentoPanel({
         <span className="font-cond font-bold text-[52px] leading-[0.9]">{dati.velocita_kmh}</span>
         <span className="text-ink-dim text-sm">km/h</span>
       </div>
-      <div className="font-mono text-xs text-cool mb-4">
+      <div className="font-mono text-xs text-cool-ink mb-4">
         DA {puntoCardinale(dati.direzione_gradi)} · STAZIONE {dati.stazione.toUpperCase()}
       </div>
       <div className="flex justify-between font-mono text-[11px] text-ink-faint border-t border-line pt-3">

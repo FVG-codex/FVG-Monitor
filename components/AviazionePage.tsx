@@ -56,7 +56,7 @@ export function AviazionePage() {
               onClick={() => setFiltro(f.chiave)}
               aria-pressed={filtro === f.chiave}
               className={`px-3 py-1.5 rounded text-xs font-cond font-semibold uppercase tracking-wide transition-colors ${
-                filtro === f.chiave ? "bg-cool text-bg" : "border border-line text-ink-dim hover:text-ink"
+                filtro === f.chiave ? "bg-cool text-on-accent" : "border border-line text-ink-dim hover:text-ink"
               }`}
             >
               {f.etichetta} ({contaPerCategoria(f.chiave)})
@@ -124,7 +124,7 @@ export function AviazionePage() {
                           href={s.urlFonte}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="font-mono text-[10px] text-cool hover:underline inline-block"
+                          className="font-mono text-[10px] text-cool-ink hover:underline inline-block"
                         >
                           Scheda →<span className="sr-only"> (si apre in una nuova scheda)</span>
                         </a>
@@ -134,7 +134,7 @@ export function AviazionePage() {
                           href={s.fonteDatiPista}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="font-mono text-[10px] text-cool hover:underline inline-block"
+                          className="font-mono text-[10px] text-cool-ink hover:underline inline-block"
                         >
                           Dati pista (qnhfly.com) →<span className="sr-only"> (si apre in una nuova scheda)</span>
                         </a>

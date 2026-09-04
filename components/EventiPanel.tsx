@@ -59,7 +59,7 @@ export function EventiPanel() {
           rel="noopener noreferrer"
           className={`flex gap-3 py-2.5 items-baseline ${i > 0 ? "border-t border-line" : ""} hover:bg-panel-alt transition-colors -mx-1 px-1`}
         >
-          <div className="font-mono text-cool text-xs flex-shrink-0 w-9 text-center">
+          <div className="font-mono text-cool-ink text-xs flex-shrink-0 w-9 text-center">
             <div className="text-base leading-none">{e.giorno}</div>
             <div>{e.mese}</div>
           </div>

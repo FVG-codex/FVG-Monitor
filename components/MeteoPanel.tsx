@@ -124,7 +124,7 @@ export function MeteoOverview() {
                     su telefono stretto costava più spazio di quanto desse
                     valore) — stessa convenzione già in uso in
                     AutobusPanel.tsx/TreniPanel.tsx/VoliPanel.tsx. */}
-                <span className="text-cool text-xs font-mono flex-shrink-0 whitespace-nowrap">
+                <span className="text-cool-ink text-xs font-mono flex-shrink-0 whitespace-nowrap">
                   <span className="hidden sm:inline">Dettagli </span>→
                 </span>
               </a>
@@ -134,7 +134,7 @@ export function MeteoOverview() {
       )}
       <p className="text-ink-faint text-xs font-mono border-t border-line pt-3 mt-3">
         Bollettino di domani ({domani?.data_validita ?? "—"}) — fonte:{" "}
-        <a href="https://www.meteo.fvg.it" target="_blank" rel="noopener noreferrer" className="text-cool">
+        <a href="https://www.meteo.fvg.it" target="_blank" rel="noopener noreferrer" className="text-cool-ink">
           OSMER ARPA FVG<span className="sr-only"> (si apre in una nuova scheda)</span>
         </a>
       </p>
@@ -200,7 +200,7 @@ export function MeteoDettaglio({ provincia }: { provincia: ProvinciaSlug }) {
 
       <p className="text-ink-faint text-xs font-mono border-t border-line pt-3 mt-4">
         Bollettino emesso il {dati.bollettino_emesso} — fonte:{" "}
-        <a href="https://www.meteo.fvg.it" target="_blank" rel="noopener noreferrer" className="text-cool">
+        <a href="https://www.meteo.fvg.it" target="_blank" rel="noopener noreferrer" className="text-cool-ink">
           OSMER ARPA FVG<span className="sr-only"> (si apre in una nuova scheda)</span>
         </a>
       </p>

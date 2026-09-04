@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { MenuHamburger } from "@/components/MenuHamburger";
 import { PROVINCE_LIST } from "@/lib/province";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 export function TopHeader({ paginaAttiva }: { paginaAttiva?: "regione" | string }) {
   const [ora, setOra] = useState<string>("");
@@ -44,7 +45,7 @@ export function TopHeader({ paginaAttiva }: { paginaAttiva?: "regione" | string 
               aria-current={voce.key === paginaAttiva ? "page" : undefined}
               className={`px-3 py-1.5 rounded border transition-colors ${
                 voce.key === paginaAttiva
-                  ? "bg-cool border-cool text-bg"
+                  ? "bg-cool border-cool text-on-accent"
                   : "border-line text-ink-dim hover:text-ink hover:border-ink-faint"
               }`}
             >
@@ -53,9 +54,12 @@ export function TopHeader({ paginaAttiva }: { paginaAttiva?: "regione" | string 
           ))}
         </nav>
 
-        <div className="font-mono text-right leading-relaxed">
-          <div className="text-[13px] text-ink-dim">{ora}</div>
-          <div className="text-xs text-ink-faint">{data}</div>
+        <div className="flex items-center gap-3">
+          <div className="font-mono text-right leading-relaxed">
+            <div className="text-[13px] text-ink-dim">{ora}</div>
+            <div className="text-xs text-ink-faint">{data}</div>
+          </div>
+          <ThemeToggle />
         </div>
       </div>
     </header>

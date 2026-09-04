@@ -50,7 +50,7 @@ export default function FarmacieHubPage() {
               href={s.href}
               className="border border-line rounded p-5 bg-panel hover:border-cool transition-colors flex flex-col gap-3"
             >
-              <span className="text-cool">{s.icona}</span>
+              <span className="text-cool-ink">{s.icona}</span>
               <div>
                 <div className="font-cond font-bold text-lg uppercase tracking-wide">{s.nome}</div>
                 <div className="text-ink-faint text-xs mt-1">{s.descrizione}</div>

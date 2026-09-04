@@ -53,7 +53,7 @@ export function VoliPanel() {
             onClick={() => setTab(t)}
             aria-pressed={tab === t}
             className={`px-2.5 py-1 rounded text-xs font-cond font-semibold uppercase tracking-wide transition-colors ${
-              tab === t ? "bg-cool text-bg" : "border border-line text-ink-dim hover:text-ink"
+              tab === t ? "bg-cool text-on-accent" : "border border-line text-ink-dim hover:text-ink"
             }`}
           >
             {t === "partenze" ? "Partenze" : "Arrivi"}
@@ -81,7 +81,7 @@ export function VoliPanel() {
                   {ritardo && <span className="ml-1 lowercase">rit.</span>}
                 </span>
                 {v.note && (
-                  <span className="text-cool text-[10px] font-mono flex-shrink-0 hidden sm:inline">{v.note}</span>
+                  <span className="text-cool-ink text-[10px] font-mono flex-shrink-0 hidden sm:inline">{v.note}</span>
                 )}
               </div>
             );

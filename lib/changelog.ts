@@ -21,6 +21,14 @@ export type VoceChangelog = {
 
 export const CHANGELOG: VoceChangelog[] = [
   {
+    data: "04/09/2026",
+    titolo: "Nuovo tema chiaro, da attivare su richiesta",
+    dettagli: [
+      "In alto a destra, accanto all'orologio, un nuovo pulsante (icona sole/luna) permette di passare dal tema scuro abituale a un tema chiaro — e viceversa.",
+      "Il sito resta scuro di default per tutti: il tema chiaro va scelto a mano, e da quel momento viene ricordato sul tuo browser per le visite successive.",
+    ],
+  },
+  {
     data: "31/08/2026",
     titolo: "Calcio — aggiornata la stagione 2026/27, con archivio della stagione precedente",
     dettagli: [

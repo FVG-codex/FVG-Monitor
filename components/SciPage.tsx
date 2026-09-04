@@ -142,7 +142,7 @@ export function SciPage() {
       <div className="isobar" />
 
       <main id="contenuto-principale" className="max-w-[1180px] mx-auto px-5 py-6">
-        <Link href="/sport" className="text-cool text-xs font-mono hover:underline">
+        <Link href="/sport" className="text-cool-ink text-xs font-mono hover:underline">
           ← Sport
         </Link>
         <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1 mt-1">
@@ -161,7 +161,7 @@ export function SciPage() {
               onClick={() => setDisciplina("tutte")}
               aria-pressed={disciplina === "tutte"}
               className={`px-3 py-1.5 rounded text-xs font-cond font-semibold uppercase tracking-wide transition-colors ${
-                disciplina === "tutte" ? "bg-cool text-bg" : "border border-line text-ink-dim hover:text-ink"
+                disciplina === "tutte" ? "bg-cool text-on-accent" : "border border-line text-ink-dim hover:text-ink"
               }`}
             >
               Tutte
@@ -172,7 +172,7 @@ export function SciPage() {
                 onClick={() => setDisciplina(d)}
                 aria-pressed={disciplina === d}
                 className={`px-3 py-1.5 rounded text-xs font-cond font-semibold uppercase tracking-wide transition-colors ${
-                  disciplina === d ? "bg-cool text-bg" : "border border-line text-ink-dim hover:text-ink"
+                  disciplina === d ? "bg-cool text-on-accent" : "border border-line text-ink-dim hover:text-ink"
                 }`}
               >
                 {d}
@@ -214,7 +214,7 @@ export function SciPage() {
                             </div>
                             <div
                               className={`font-mono text-[9px] uppercase shrink-0 px-1.5 py-0.5 rounded ${
-                                g.svolta ? "text-ink-dim border border-line" : "text-cool"
+                                g.svolta ? "text-ink-dim border border-line" : "text-cool-ink"
                               }`}
                             >
                               {g.stato}
@@ -247,7 +247,7 @@ export function SciPage() {
                                         type="button"
                                         onClick={() => setGaraEspansa(garaAperta ? null : gara.idGara)}
                                         aria-expanded={garaAperta}
-                                        className="w-full text-left flex items-center justify-between gap-2 py-1 text-xs hover:text-cool"
+                                        className="w-full text-left flex items-center justify-between gap-2 py-1 text-xs hover:text-cool-ink"
                                       >
                                         <span>
                                           {gara.tipoGara} <span className="text-ink-faint">— {gara.categoria}</span>
