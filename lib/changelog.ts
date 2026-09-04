@@ -22,6 +22,15 @@ export type VoceChangelog = {
 export const CHANGELOG: VoceChangelog[] = [
   {
     data: "04/09/2026",
+    titolo: "Nuova sezione \"Ambiente\" in homepage, e orari di sole e luna",
+    dettagli: [
+      "In homepage, i dati su vento e pioggia (Bora), qualità dell'aria, pollini, livelli di mare e fiumi e qualità delle acque di balneazione sono ora raggruppati sotto una nuova sezione \"Ambiente\", più facile da individuare a colpo d'occhio.",
+      "Vento e pioggia restano anche nella sezione Meteo, come prima.",
+      "Nuovo pannello \"Sole e luna\" — in homepage e in Meteo — con albeggio, alba, tramonto, crepuscolo e fase lunare del giorno, calcolati al volo senza bisogno di una fonte esterna.",
+    ],
+  },
+  {
+    data: "04/09/2026",
     titolo: "Nuovo tema chiaro, da attivare su richiesta",
     dettagli: [
       "In alto a destra, accanto all'orologio, un nuovo pulsante (icona sole/luna) permette di passare dal tema scuro abituale a un tema chiaro — e viceversa.",

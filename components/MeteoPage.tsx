@@ -6,6 +6,7 @@ import { TopHeader } from "@/components/TopHeader";
 import { Footer } from "@/components/Footer";
 import { MeteoOverview, MeteoDettaglio } from "@/components/MeteoPanel";
 import { MeteoWidgetSlot } from "@/components/MeteoWidgetSlot";
+import { SoleLunaPanel } from "@/components/SoleLunaPanel";
 import { TemperaturaBadge } from "@/components/TemperaturaBadge";
 import { VentoPanel } from "@/components/VentoPanel";
 import { PioggiaPanel } from "@/components/PioggiaPanel";
@@ -64,6 +65,20 @@ export function MeteoPage() {
             >
               <RadarMeteoPanel />
             </Panel>
+
+            <Panel
+              title="Bora · Vento e Pioggia"
+              linkLabel="Protezione Civile FVG →"
+              linkHref="https://monitor.protezionecivile.fvg.it"
+            >
+              <VentoPanel compatto />
+              <div className="border-t border-line my-4" />
+              <PioggiaPanel compatto />
+            </Panel>
+
+            <Panel title="Sole e luna">
+              <SoleLunaPanel />
+            </Panel>
           </div>
         ) : (
           provincia && (
@@ -93,6 +108,10 @@ export function MeteoPage() {
                 linkHref="https://monitor.protezionecivile.fvg.it"
               >
                 <PioggiaPanel provincia={filtro as ProvinciaSlug} />
+              </Panel>
+
+              <Panel title="Sole e luna" span={2}>
+                <SoleLunaPanel />
               </Panel>
             </div>
           )

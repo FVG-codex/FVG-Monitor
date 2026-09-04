@@ -11,6 +11,7 @@ import { Panel } from "@/components/Panel";
 import { MarePanel } from "@/components/MarePanel";
 import { PioggiaPanel } from "@/components/PioggiaPanel";
 import { PolliniPanel } from "@/components/PolliniPanel";
+import { SoleLunaPanel } from "@/components/SoleLunaPanel";
 import { TgrCard } from "@/components/TgrCard";
 import { TopHeader } from "@/components/TopHeader";
 import { Footer } from "@/components/Footer";
@@ -34,7 +35,7 @@ export default function Home() {
             homepage non aveva nessun heading, solo il logo testuale
             nell'header (non marcato come h1). Design visivo invariato. */}
         <h1 className="sr-only">FVG Monitor — dati in tempo reale per il Friuli Venezia Giulia</h1>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-line border border-line">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-line border border-line mb-8">
           <Panel title="Meteo · Le 4 province" linkLabel="OSMER ARPA FVG →" linkHref="https://www.meteo.fvg.it" span={2}>
             <MeteoOverview />
           </Panel>
@@ -61,14 +62,11 @@ export default function Home() {
             <NotiziePanel />
           </Panel>
 
-          <Panel
-            title="Bora · Vento e Pioggia"
-            linkLabel="Protezione Civile FVG →"
-            linkHref="https://monitor.protezionecivile.fvg.it"
-          >
-            <VentoPanel compatto />
-            <div className="border-t border-line my-4" />
-            <PioggiaPanel compatto />
+          {/* Sole e luna (04/09/2026): unico pannello del sito senza fonte
+              esterna, calcolato nel browser — vedi SoleLunaPanel.tsx.
+              Ripetuto identico nella sezione Meteo (/meteo). */}
+          <Panel title="Sole e luna">
+            <SoleLunaPanel />
           </Panel>
 
           <Panel title="Viabilità" linkLabel="InfoViaggiando →" linkHref="https://infoviaggiando.it">
@@ -81,6 +79,46 @@ export default function Home() {
             linkHref="https://www.mimit.gov.it/it/prezzo-medio-carburanti/regioni"
           >
             <CarburantiPanel />
+          </Panel>
+
+          <Panel
+            title="Trieste Airport"
+            linkLabel="Tutti i voli →"
+            linkHref="https://triesteairport.it/it/airport/voli-e-destinazioni/voli-in-tempo-reale/"
+            span={2}
+          >
+            <VoliPanel />
+          </Panel>
+
+          <Panel title="TGR FVG">
+            <TgrCard />
+          </Panel>
+
+          <Panel title="Eventi in regione" linkLabel="Tutti →" linkHref="https://www.turismofvg.it/eventi" span={2}>
+            <EventiPanel />
+          </Panel>
+        </div>
+
+        {/* Sezione Ambiente (04/09/2026): raggruppa i dati ambientali che
+            prima erano sparsi nella griglia principale — stesso pattern
+            h2 + griglia separata già usato in ViabilitaPage.tsx per
+            "Webcam autostradali". Bora/vento e pioggia restano anche qui
+            (oltre che nella sezione Meteo) perché "tempo" in senso stretto,
+            ma l'utente li ha chiesti esplicitamente anche sotto Ambiente. */}
+        <h2 className="font-cond font-bold text-xl uppercase tracking-wide mb-1">Ambiente</h2>
+        <p className="text-ink-faint text-xs font-mono mb-4">
+          Vento, pioggia, aria, pollini, mare, fiumi e balneazione — fonte: Protezione Civile FVG, ARPA FVG
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-line border border-line">
+          <Panel
+            title="Bora · Vento e Pioggia"
+            linkLabel="Protezione Civile FVG →"
+            linkHref="https://monitor.protezionecivile.fvg.it"
+          >
+            <VentoPanel compatto />
+            <div className="border-t border-line my-4" />
+            <PioggiaPanel compatto />
           </Panel>
 
           <Panel title="Qualità dell'aria" linkLabel="ARPA FVG →" linkHref="https://www.arpa.fvg.it">
@@ -109,23 +147,6 @@ export default function Home() {
             span={2}
           >
             <BalneazionePanel />
-          </Panel>
-
-          <Panel
-            title="Trieste Airport"
-            linkLabel="Tutti i voli →"
-            linkHref="https://triesteairport.it/it/airport/voli-e-destinazioni/voli-in-tempo-reale/"
-            span={2}
-          >
-            <VoliPanel />
-          </Panel>
-
-          <Panel title="TGR FVG">
-            <TgrCard />
-          </Panel>
-
-          <Panel title="Eventi in regione" linkLabel="Tutti →" linkHref="https://www.turismofvg.it/eventi" span={2}>
-            <EventiPanel />
           </Panel>
         </div>
       </main>

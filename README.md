@@ -2082,6 +2082,80 @@ al caricamento con il tema chiaro già scelto in precedenza, e uno sguardo
 complessivo alle pagine con più colori (Qualità aria, Treni, Balneazione)
 dove i nuovi token "-ink" sono più usati.
 
+## Sezione Ambiente + Sole e luna (04/09/2026)
+
+Richiesta dell'utente: raggruppare in homepage, sotto una sezione "Ambiente",
+i pannelli Bora/vento e pioggia, Qualità dell'aria, Pollini, Livelli mare e
+fiumi, Qualità acque di balneazione — con vento e pioggia da mantenere anche
+nella sezione Meteo. Più un nuovo pannello "Sole e luna" (albeggio, alba,
+tramonto, crepuscolo, fase lunare) in homepage e in Meteo.
+
+**Riorganizzazione homepage (`app/page.tsx`)**: la griglia unica precedente
+è ora divisa in due, con lo stesso pattern già usato in `ViabilitaPage.tsx`
+per "Webcam autostradali" (`<h2>` + paragrafo + griglia separata,
+`mb-8` fra le due). La prima griglia resta quella "generale" (Meteo,
+Allerte, Notizie, Sole e luna, Viabilità, Carburanti, Trieste Airport, TGR,
+Eventi); la seconda, sotto l'intestazione "Ambiente", contiene i 5 pannelli
+richiesti — spostati qui senza modifiche al loro codice interno (sono
+componenti già esistenti, riusati "com'erano"). Bora·Vento e Pioggia compare
+**due volte** (Ambiente in homepage + sezione Meteo) perché l'utente li ha
+chiesti esplicitamente in entrambe le sezioni.
+
+**`components/MeteoPage.tsx`**: nella vista "Tutta la regione" (che prima
+mostrava solo Bollettino + Radar) sono stati aggiunti il pannello
+Bora·Vento e Pioggia (stessa versione `compatto` già usata in homepage) e
+Sole e luna. Nella vista per singola provincia, Sole e luna è stato
+aggiunto come quinto pannello a larghezza piena (`span={2}`) sotto
+Vento/Pioggia già esistenti — non varia per provincia (vedi sotto), quindi
+non ha senso comparire 4 volte diverse, resta identico qualunque provincia
+sia selezionata.
+
+**`components/SoleLunaPanel.tsx`** + **`lib/astro.ts`** (nuovi): a
+differenza di ogni altro pannello del sito, qui non c'è ingest/Supabase —
+alba, tramonto, crepuscoli e fase lunare sono calcolati nel browser con la
+libreria `suncalc` (nuova dipendenza, `^2.0.2`, zero dipendenze proprie,
+licenza BSD-2), senza chiamate di rete. Un solo riferimento geografico per
+tutta la regione (Udine, ~46.0693°N 13.2346°E, punto centrale del FVG): le
+differenze reali fra le 4 province sono di 1-3 minuti, irrilevanti alla
+precisione del minuto con cui il pannello mostra gli orari — a differenza
+di vento/pioggia/fiumi (misure reali di stazioni specifiche, non geometria
+calcolabile), non c'era motivo di introdurre 4 varianti provincia per
+provincia.
+
+- **Alba/tramonto/crepuscoli**: "albeggio" e "crepuscolo" sono il
+  crepuscolo civile (soglia standard, quella percepita come "inizia/finisce
+  a farsi buio"), non il crepuscolo nautico o astronomico (più tecnici, non
+  richiesti). Fuso orario **fissato esplicitamente a `Europe/Rome`** nella
+  formattazione (a differenza dell'orologio di `TopHeader.tsx`, che mostra
+  l'ora di chi guarda): l'alba a Trieste è un fatto della regione, non del
+  dispositivo di chi consulta la pagina, e deve restare corretta anche per
+  chi apre il sito da un fuso diverso.
+- **Fase lunare**: nome italiano (Luna nuova/crescente/primo quarto/gibbosa
+  crescente/piena/gibbosa calante/ultimo quarto/calante) derivato dal
+  valore `phase` di `suncalc` con una tolleranza di ±0.02 attorno alle
+  quattro fasi "puntuali" (vedi commento in `lib/astro.ts`), più
+  percentuale di illuminazione. Icona SVG della fase generata dalla stessa
+  formula (non un'icona statica scelta a mano) — verificata visivamente
+  rendendo le 8 fasi canoniche in Chromium headless prima di scriverla nel
+  componente, per essere certi che la falce/gibbosa cresca dal lato giusto
+  (convenzione emisfero nord: crescente illuminata a destra).
+- **Verifica dei calcoli**: valori confrontati il 04/09/2026 con
+  alba-tramonto.org e moongiant.com per Udine, 4 settembre 2026 — alba
+  06:31 (calcolato) vs 06:30 (riferimento), tramonto 19:40 vs 19:42,
+  crepuscoli entro 30-60 secondi, fase lunare "Ultimo quarto" 49%
+  illuminata (calcolato) vs 48% (riferimento). Scarti coerenti con
+  coordinate non identiche fra le fonti, non un errore di formula.
+- **Verifica visiva**: a differenza delle sessioni precedenti (nessun
+  browser disponibile), questa volta è stato possibile avviare `next dev`
+  in locale — Google Fonts non è raggiungibile nemmeno in dev (stesso
+  limite noto di `next build`), ma il fallback font di Next permette
+  comunque alla pagina di compilare e renderizzare — e fare screenshot
+  reali con Chromium headless della homepage, di Meteo (vista regione e
+  vista Trieste) e del tema chiaro, confermando visivamente il layout
+  corretto prima della consegna.
+
+`npx tsc --noEmit` e `node --check scripts/ingest-light.mjs` puliti.
+
 ## Idee future (annotate, non richieste esplicitamente per l'implementazione)
 
 - **Strutture ricettive — implementate il 26/08/2026** (vedi sezioni dedicate sopra): hub + 8 pagine, arricchimento contatti da OpenStreetMap lo stesso giorno, poi scraping incrementale turismofvg.it per gli Agriturismi (sempre 26/08/2026, vedi "Agriturismi — scraping incrementale turismofvg.it" sopra per i dettagli — DevTools fornito dall'utente, stesso metodo già servito per Tennis/Sci/Autobus). **Prossimo passo su questo modulo**: estendere lo scraping turismofvg.it alle altre 7 categorie (B&B, Affittacamere, Campeggi, Alberghi Diffusi, Sociali, Marina, Rifugi) — richiede prima di verificare che URL/etichette HTML siano gli stessi osservati per Agriturismi (non garantito), idealmente con un altro campione reale fornito dall'utente per categoria prima di aggiungerla a `TURISMOFVG_CATEGORIE`.
