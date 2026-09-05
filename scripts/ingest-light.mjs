@@ -254,6 +254,199 @@ async function ingestNotizie() {
 }
 
 // ---------------------------------------------------------------------
+// NOTIZIE LOCALI PER PROVINCIA (05/09/2026) — sezione nuova nel menu,
+// distinta dal pannello ANSA regionale sopra (che resta invariato,
+// homepage-only). Qui si aggregano fonti iper-locali per ciascuna delle
+// 4 province, una provincia alla volta su richiesta dell'utente — si
+// parte da Trieste, le altre 3 arriveranno in sessioni successive.
+//
+// L'utente ha indicato 4 fonti per Trieste; verificate una per una
+// prima di scrivere questo modulo (vedi claude/fvgmonitor-stato.md per
+// il dettaglio completo). Risultato al 05/09/2026: **2 delle 4 sono
+// integrate**, le altre 2 restano bloccate per motivi verificati e non
+// aggirabili da questa sessione, non per pigrizia:
+//   - Trieste All News (triesteallnews.it/feed/): feed RSS 2.0 standard
+//     confermato — INTEGRATA (05/09/2026).
+//   - RaiNews TGR FVG: l'intero dominio rainews.it (e anche tgr.rai.it)
+//     è bloccato sia dalla rete del sandbox sia dalla policy degli
+//     strumenti di questa sessione — nessuna verifica autonoma
+//     possibile. **Sbloccata lo stesso giorno (05/09/2026) grazie
+//     all'utente**, che ha fornito l'outerHTML reale della pagina di
+//     ricerca per tag "Trieste" dal proprio browser. Nessun feed RSS
+//     dedicato al tag (solo `/tgr/fvg/rss/tutti`, non filtrato per
+//     Trieste) — INTEGRATA via scraping HTML della pagina tag, vedi
+//     `ingestNotizieFonteRainews()` sotto. Il markup è servito da
+//     componenti lit-html (`<rainews-card>`) ma il contenuto interno
+//     (titolo/link/data) è testo statico nell'HTML, non richiede
+//     esecuzione JS per essere letto — **non ancora confermato però che
+//     la risposta HTTP grezza (fetch diretto, senza post-idratazione
+//     del browser) sia identica all'outerHTML fornito**: da verificare
+//     al primo run reale su GitHub Actions, con lo stesso fallback
+//     "array vuoto, non un errore" già usato per le altre fonti se la
+//     struttura risultasse diversa.
+//   - TriestePrima.it (rete Citynews): nessun feed RSS individuato con
+//     i tentativi fatti (diversi percorsi comuni, tutti 403 o
+//     irraggiungibili) — richiede probabilmente scraping HTML, mai
+//     verificato su markup reale.
+//   - TriesteCafe.it: nessun feed RSS trovato (CMS proprietario) —
+//     richiede scraping HTML, mai verificato su markup reale.
+// Per queste ultime due, WebFetch riesce a leggere la sola homepage in
+// markdown (non l'HTML grezzo necessario per scrivere selettori cheerio
+// corretti) — stessa lezione già annotata più volte nel progetto: serve
+// l'outerHTML reale fornito dall'utente prima di scrivere un parser di
+// produzione, non un selettore indovinato da un riassunto.
+//
+// Struttura pensata per l'estensione: ogni fonte è un oggetto
+// { fonte, fonte_url, url, tipo? }, ogni provincia un array di fonti —
+// `tipo: "rainews"` seleziona lo scraper HTML dedicato, altrimenti si
+// assume un feed RSS standard. Quando si sbloccano le altre 2 fonti
+// Trieste (o si passa a Udine/Gorizia/Pordenone), basta aggiungerle
+// qui, nessuna modifica altrove.
+const RAINEWS_TAG_TRIESTE_URL =
+  "https://www.rainews.it/tgr/fvg/tag?Trieste%7CTag-2f11fc6a-35b4-4f6d-94c9-175480c94179";
+
+const FONTI_NOTIZIE_TRIESTE = [
+  {
+    fonte: "Trieste All News",
+    fonte_url: "https://www.triesteallnews.it/",
+    url: "https://www.triesteallnews.it/feed/",
+  },
+  {
+    fonte: "RaiNews TGR FVG",
+    fonte_url: "https://www.rainews.it/tgr/fvg",
+    url: RAINEWS_TAG_TRIESTE_URL,
+    tipo: "rainews",
+  },
+];
+
+const PROVINCE_NOTIZIE = [{ slug: "trieste", fonti: FONTI_NOTIZIE_TRIESTE }];
+
+// Stesso parsing RSS di ingestNotizie() (ANSA) sopra — le fonti locali
+// finora verificate sono anch'esse feed RSS 2.0 standard, nessuna
+// insidia di formato diversa da quella già gestita per ANSA.
+async function ingestNotizieFonteRss(fonte) {
+  const res = await fetchConRetry(fonte.url);
+  if (!res.ok) {
+    console.warn(`RSS ${fonte.fonte} non disponibile (HTTP ${res.status})`);
+    return [];
+  }
+  const parsed = xml.parse(await res.text());
+  const itemsRaw = parsed.rss?.channel?.item || [];
+  return (Array.isArray(itemsRaw) ? itemsRaw : [itemsRaw]).map((item) => ({
+    titolo: testo(item.title),
+    link: testo(item.link),
+    data: testo(item.pubDate),
+    fonte: fonte.fonte,
+  }));
+}
+
+// Mesi italiani per interpretare le date mostrate da RaiNews (vedi sotto).
+const MESI_ITA_NOTIZIE = {
+  gennaio: 0, febbraio: 1, marzo: 2, aprile: 3, maggio: 4, giugno: 5,
+  luglio: 6, agosto: 7, settembre: 8, ottobre: 9, novembre: 10, dicembre: 11,
+};
+
+// RaiNews mostra due formati diversi a seconda dell'età della notizia,
+// nessuno dei due ISO — verificato sull'outerHTML reale fornito
+// dall'utente il 05/09/2026 (pagina tag "Trieste"): "04 settembre 20:40"
+// per le notizie più recenti (senza anno, assunto l'anno corrente) e
+// "03/09/2026" per quelle più vecchie (senza ora). Offset Italia/UTC
+// approssimato per mese (+2 aprile-settembre, +1 il resto dell'anno) —
+// sufficiente per ordinare le notizie fra loro, non per un orario
+// visualizzato al minuto in un confine DST esatto (marzo/ottobre).
+function parseDataRainews(testoData) {
+  if (!testoData) return null;
+  const t = testoData.trim().toLowerCase();
+
+  const conOra = t.match(/^(\d{1,2})\s+([a-zàèéìòù]+)\s+(\d{1,2}):(\d{2})$/);
+  if (conOra) {
+    const [, giorno, mese, ore, minuti] = conOra;
+    const meseIdx = MESI_ITA_NOTIZIE[mese];
+    if (meseIdx === undefined) return null;
+    const anno = new Date().getFullYear();
+    const offset = meseIdx >= 3 && meseIdx <= 8 ? "+02:00" : "+01:00";
+    return `${anno}-${String(meseIdx + 1).padStart(2, "0")}-${giorno.padStart(2, "0")}T${ore.padStart(2, "0")}:${minuti}:00${offset}`;
+  }
+
+  const soloData = t.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+  if (soloData) {
+    const [, giorno, mese, anno] = soloData;
+    return `${anno}-${mese.padStart(2, "0")}-${giorno.padStart(2, "0")}T00:00:00+01:00`;
+  }
+
+  return null;
+}
+
+// Scraping della pagina di ricerca per tag RaiNews TGR FVG (05/09/2026,
+// sbloccata grazie all'outerHTML reale fornito dall'utente — vedi
+// commento sopra FONTI_NOTIZIE_TRIESTE). Solo la prima pagina (~16
+// notizie, incluse eventuali voci "video" oltre agli articoli — stesso
+// tag, stessa redazione, nessun motivo di escluderle): sufficiente per
+// un aggregatore di notizie recenti, senza il costo di paginare come
+// per turismofvg.it/TFVGB. Estrazione per selettore di classe (non per
+// posizione, a differenza dello Sci) perché qui le classi sono stabili
+// e semanticamente uniche in questa pagina.
+async function ingestNotizieFonteRainews(fonte) {
+  const res = await fetchConRetry(fonte.url, {
+    headers: { "User-Agent": "Mozilla/5.0 (compatible; FVGMonitorBot/1.0)" },
+  });
+  if (!res.ok) {
+    console.warn(`RaiNews ${fonte.fonte} non disponibile (HTTP ${res.status})`);
+    return [];
+  }
+  const $ = cheerio.load(await res.text());
+  const items = [];
+  $(".launch-item").each((_, el) => {
+    const $el = $(el);
+    const $link = $el.find("h3.launch-item__header a").first();
+    const href = $link.attr("href");
+    const titolo = $link.text().replace(/\s+/g, " ").trim();
+    const dataTesto = $el.find(".launch-item__time .time").first().text().trim();
+    const data = parseDataRainews(dataTesto);
+    if (!href || !titolo || !data) return;
+    items.push({
+      titolo,
+      link: href.startsWith("http") ? href : `https://www.rainews.it${href}`,
+      data,
+      fonte: fonte.fonte,
+    });
+  });
+  return items;
+}
+
+async function ingestNotizieProvincia(provinciaSlug, fonti) {
+  const risultati = await Promise.allSettled(
+    fonti.map((f) => (f.tipo === "rainews" ? ingestNotizieFonteRainews(f) : ingestNotizieFonteRss(f)))
+  );
+
+  risultati.forEach((r, i) => {
+    if (r.status === "rejected") {
+      console.warn(`Notizie ${provinciaSlug} — fonte "${fonti[i].fonte}" fallita:`, r.reason?.message ?? r.reason);
+    }
+  });
+
+  // Unione di tutte le fonti, ordinata cronologicamente (più recente
+  // prima) — un'unica lista con la fonte indicata per ciascuna voce,
+  // non un riquadro separato per fonte: per un aggregatore di notizie
+  // locali l'ordine temporale conta più della provenienza (a differenza
+  // di Piste Ciclabili, dove i cataloghi per fonte non si confrontano
+  // fra loro). Nessuna deduplica fra fonti diverse: outlet diversi che
+  // coprono la stessa notizia sono normali in un aggregatore, non un
+  // difetto da correggere.
+  const items = risultati
+    .flatMap((r) => (r.status === "fulfilled" ? r.value : []))
+    .filter((it) => it.titolo && it.link)
+    .sort((a, b) => new Date(b.data).getTime() - new Date(a.data).getTime())
+    .slice(0, 30);
+
+  await upsertSnapshot(`notizie-provincia:${provinciaSlug}`, "notizie-provincia", provinciaSlug, {
+    items,
+    fonti: fonti.map((f) => ({ fonte: f.fonte, fonte_url: f.fonte_url })),
+  });
+  console.log(`Notizie ${provinciaSlug}: ${items.length} titoli da ${fonti.length} fonti`);
+}
+
+// ---------------------------------------------------------------------
 // VENTO / BORA — API Monitoraggio Protezione Civile FVG
 // Fonte: monitor.protezionecivile.fvg.it/api, licenza CC BY 4.0.
 //
@@ -4351,6 +4544,7 @@ async function main() {
       `piste-ciclabili-turismofvg-${serie.chiave}`,
       ingestTurismoFvgBikeSerie(serie),
     ]),
+    ...PROVINCE_NOTIZIE.map((p) => [`notizie-provincia-${p.slug}`, ingestNotizieProvincia(p.slug, p.fonti)]),
   ];
 
   const risultati = await Promise.allSettled(jobs.map(([, p]) => p));

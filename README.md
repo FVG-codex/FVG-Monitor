@@ -2156,6 +2156,114 @@ provincia.
 
 `npx tsc --noEmit` e `node --check scripts/ingest-light.mjs` puliti.
 
+## Notizie locali per provincia (05/09/2026)
+
+Nuova sezione **"Notizie"** nel menu hamburger (`components/MenuHamburger.tsx`,
+voce dopo "Meteo"), rotta `/notizie` (`app/notizie/page.tsx` →
+`components/NotizieProvinciaPage.tsx`). **La homepage non è stata toccata**:
+resta solo il pannello ANSA regionale (`components/NotiziePanel.tsx`), come
+richiesto esplicitamente dall'utente — questa è una sezione aggiuntiva, non
+una sostituzione.
+
+**Perché una sezione separata dall'ANSA di homepage**: l'ANSA copre notizie
+regionali/nazionali; qui l'obiettivo sono fonti iper-locali, una provincia
+alla volta, aggregate senza filtro editoriale oltre a titolo/link/data (mai il
+testo dell'articolo — stesso principio già seguito per `ingestNotizie()`,
+per rispetto delle licenze "solo uso personale" tipiche degli RSS).
+
+**Architettura** (`scripts/ingest-light.mjs`):
+
+- `FONTI_NOTIZIE_TRIESTE`: array di fonti per Trieste, ciascuna
+  `{ fonte, fonte_url, url }` (url = endpoint RSS).
+- `PROVINCE_NOTIZIE`: array `{ slug, fonti }`, una voce per provincia attiva —
+  per ora solo `trieste`. Aggiungere una provincia = aggiungere una voce qui,
+  nessuna modifica strutturale.
+- `ingestNotizieFonteRss(fonte)`: scarica e fa il parsing di un singolo feed
+  RSS con `fast-xml-parser`, tagga ogni voce con la fonte di provenienza.
+- `ingestNotizieFonteRainews(fonte)`: scraping cheerio dedicato per RaiNews
+  TGR FVG (nessun feed RSS filtrato per tag disponibile — vedi sotto),
+  selezionato quando la fonte ha `tipo: "rainews"`. Estrae titolo, link e
+  data da `.launch-item` (`h3.launch-item__header a`,
+  `.launch-item__time .time`); `parseDataRainews()` interpreta i due formati
+  data italiani non-ISO usati dal sito.
+- `ingestNotizieProvincia(slug, fonti)`: lancia tutte le fonti di una
+  provincia in parallelo (`Promise.allSettled`, un errore su una fonte non
+  blocca le altre; per ogni fonte sceglie `ingestNotizieFonteRainews` o
+  `ingestNotizieFonteRss` in base a `fonte.tipo`), unisce e ordina per data
+  decrescente, taglia a 30 voci, scrive lo snapshot
+  `notizie-provincia:${slug}`.
+- `lib/notizieProvincia.ts`: tipi condivisi (`NotiziaProvincia`,
+  `SnapshotNotizieProvincia`) e `PROVINCE_NOTIZIE_ATTIVE` — lista esplicita
+  (oggi `["trieste"]`), non derivata da `PROVINCE_LIST`, perché il rollout è
+  volutamente parziale.
+- `components/NotizieProvinciaPage.tsx`: pagina con tab per provincia
+  (`PROVINCE_LIST`, stesso pattern accessibilità `aria-pressed` già usato
+  altrove). Le province non ancora attive mostrano un messaggio "in arrivo"
+  invece di un tab disabilitato, così il layout non cambia quando si
+  aggiungono. Ogni notizia mostra titolo (link esterno), badge fonte e tempo
+  relativo; in fondo un elenco "Fonti:" con link alle homepage delle fonti
+  usate.
+
+**Trieste — le 4 fonti richieste dall'utente, stato al 05/09/2026**:
+
+1. **Trieste All News** (`triesteallnews.it`) — ✅ **integrata**. Feed RSS 2.0
+   valido su `https://www.triesteallnews.it/feed/`, verificato e in
+   ingestione.
+2. **RaiNews TGR FVG** (pagina tag Trieste) — ✅ **integrata lo stesso giorno**
+   (era bloccata sia dalla rete del sandbox sia dalla policy propria di
+   WebFetch). Sbloccata grazie all'utente, che ha fornito dal proprio browser
+   l'outerHTML reale della pagina di ricerca per tag "Trieste". Nessun feed
+   RSS filtrato per tag esiste (solo `/tgr/fvg/rss/tutti`, non filtrato) —
+   integrata via scraping HTML con cheerio (`ingestNotizieFonteRainews()`),
+   selettori per classe (`.launch-item`, `h3.launch-item__header a`,
+   `.launch-item__time .time`, stabili e semanticamente unici in questa
+   pagina). Le date mostrate da RaiNews non sono ISO e usano due formati
+   diversi in base all'età della notizia (`"04 settembre 20:40"` senza anno,
+   `"03/09/2026"` senza ora) — gestiti da `parseDataRainews()` con un offset
+   Italia/UTC approssimato per mese, sufficiente per l'ordinamento. Logica di
+   estrazione e di parsing data verificata con uno script cheerio a parte
+   contro un campione HTML ricostruito fedelmente sulla struttura osservata
+   nell'outerHTML reale (stessi tag, stesse classi, stessi due formati
+   data) — **non contro il file originale**, perché quel testo, incollato in
+   una sessione precedente, non è sopravvissuto alla compattazione del
+   contesto e non è stato salvato su disco in tempo. La prima ingestione
+   reale su GitHub Actions resterà quindi la verifica definitiva; se la
+   struttura HTTP grezza risultasse diversa da quella osservata nel browser,
+   il fallback esistente ("array vuoto, non un errore" per fonte) evita che
+   questo comprometta le altre fonti o la pagina.
+3. **TriestePrima.it** — ❌ **nessun feed RSS individuato**. Tentati diversi
+   percorsi standard (`/rss.xml`, `/rss/`, `/notizie/tutte/`) senza successo
+   (403/errore server). **Per sbloccarla**: l'utente può controllare da
+   "Visualizza sorgente" della homepage se nell'`<head>` esiste un tag
+   `<link rel="alternate" type="application/rss+xml">` con l'URL del feed,
+   oppure fornire l'outerHTML di una pagina elenco notizie per scrivere uno
+   scraper cheerio dedicato.
+4. **TriesteCafe.it** — ❌ **confermato nessun feed RSS** (verificata la
+   `<head>` della pagina). Non essendoci un feed, servirebbe uno scraper
+   dedicato: **per sbloccarla**, l'utente può fornire l'outerHTML della
+   homepage o di una pagina categoria/elenco articoli.
+
+Le altre 3 province (Udine, Gorizia, Pordenone) sono **volutamente rimandate**
+("proseguiremo in un secondo momento", parola dell'utente) — nessuna fonte
+ancora raccolta.
+
+`npx tsc --noEmit` e `node --check scripts/ingest-light.mjs` puliti. Verifica
+visiva con `next dev` + Chromium headless: pagina `/notizie` (tab provincia,
+stato di caricamento) e voce "Notizie" nel menu hamburger, entrambe
+renderizzate correttamente (verifica fatta prima dell'aggiunta di RaiNews,
+non ripetuta perché lo scraper aggiunge solo voci alla stessa lista, nessuna
+modifica al componente di visualizzazione).
+
+## Google Analytics (05/09/2026)
+
+L'utente ha chiesto di integrare Google Analytics (GA4), fornendo direttamente lo snippet standard di gtag.js con l'id misurazione `G-BJT393WSQT`.
+
+Invece di incollare i due `<script>` così come forniti, usato il componente `next/script` (`app/layout.tsx`) — pattern raccomandato esplicitamente da Next.js per script di terze parti: `strategy="afterInteractive"` carica gtag.js dopo che la pagina è diventata interattiva, senza bloccare il rendering iniziale come farebbe un `<script>` semplice piazzato nel `<head>`, ma abbastanza presto da tracciare la navigazione fin dalla prima pagina vista. Stesso comportamento funzionale dello snippet originale (`window.dataLayer`, `gtag('js', ...)`, `gtag('config', ...)`), solo caricato nel modo idiomatico per Next.js App Router. Un solo punto (`GA_MEASUREMENT_ID` in cima a `app/layout.tsx`) da cambiare se l'id di misurazione cambiasse in futuro.
+
+Applicato a livello di `RootLayout`, quindi attivo su ogni pagina del sito senza bisogno di ripeterlo altrove.
+
+`npx tsc --noEmit` pulito. Verificato con `next dev`: la homepage risponde 200 e il markup restituito contiene il tag `<script>` verso `googletagmanager.com/gtag/js?id=G-BJT393WSQT` e la chiamata `gtag(...)` — **non verificabile da questa sessione che i dati arrivino davvero al pannello Google Analytics** (il dominio `googletagmanager.com`/`google-analytics.com` non è raggiungibile dalla rete di questo sandbox, e comunque servirebbe accesso al pannello GA dell'utente) — da confermare tu stesso, guardando i "Realtime" report in Google Analytics dopo aver visitato il sito in produzione.
+
 ## Idee future (annotate, non richieste esplicitamente per l'implementazione)
 
 - **Strutture ricettive — implementate il 26/08/2026** (vedi sezioni dedicate sopra): hub + 8 pagine, arricchimento contatti da OpenStreetMap lo stesso giorno, poi scraping incrementale turismofvg.it per gli Agriturismi (sempre 26/08/2026, vedi "Agriturismi — scraping incrementale turismofvg.it" sopra per i dettagli — DevTools fornito dall'utente, stesso metodo già servito per Tennis/Sci/Autobus). **Prossimo passo su questo modulo**: estendere lo scraping turismofvg.it alle altre 7 categorie (B&B, Affittacamere, Campeggi, Alberghi Diffusi, Sociali, Marina, Rifugi) — richiede prima di verificare che URL/etichette HTML siano gli stessi osservati per Agriturismi (non garantito), idealmente con un altro campione reale fornito dall'utente per categoria prima di aggiungerla a `TURISMOFVG_CATEGORIE`.

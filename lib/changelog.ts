@@ -21,6 +21,22 @@ export type VoceChangelog = {
 
 export const CHANGELOG: VoceChangelog[] = [
   {
+    data: "05/09/2026",
+    titolo: "Google Analytics",
+    dettagli: [
+      "Aggiunto il tracciamento con Google Analytics, per capire meglio come viene usato il sito.",
+    ],
+  },
+  {
+    data: "05/09/2026",
+    titolo: "Nuova sezione \"Notizie\" nel menu, per ora su Trieste",
+    dettagli: [
+      "Nel menu ☰ è comparsa una nuova voce \"Notizie\", con notizie locali divise per provincia (diverse dall'ANSA regionale, che resta invariata in homepage).",
+      "Per ora è attiva solo Trieste, con le notizie di Trieste All News e di RaiNews TGR FVG. Le altre due fonti richieste (TriestePrima.it, TriesteCafe.it) non hanno ancora un feed accessibile da qui — verranno aggiunte appena disponibili dei dati di esempio.",
+      "Udine, Gorizia e Pordenone arriveranno in un secondo momento.",
+    ],
+  },
+  {
     data: "04/09/2026",
     titolo: "Nuova sezione \"Ambiente\" in homepage, e orari di sole e luna",
     dettagli: [

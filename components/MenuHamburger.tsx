@@ -8,6 +8,7 @@ import Link from "next/link";
 // voci man mano che si aggiungono sezioni indipendenti.
 const SEZIONI_EXTRA = [
   { label: "Meteo", href: "/meteo" },
+  { label: "Notizie", href: "/notizie" },
   { label: "Terremoti", href: "/terremoti" },
   { label: "Sport", href: "/sport" },
   { label: "Webcam regionali", href: "/webcam" },

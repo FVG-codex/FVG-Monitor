@@ -1,6 +1,17 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Barlow_Condensed, Newsreader, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+
+// Google Analytics (05/09/2026): id fornito dall'utente, GA4.
+// `next/script` con strategy="afterInteractive" è il pattern raccomandato
+// da Next.js per gtag.js — carica dopo che la pagina è diventata
+// interattiva (non blocca il rendering iniziale come un <script> semplice
+// nel <head>), ma comunque presto abbastanza da tracciare la navigazione
+// da subito. Meglio di incollare i due <script> forniti così come sono:
+// quelli userebbero un normale tag HTML, che Next.js sconsiglia
+// esplicitamente per script di terze parti in favore di questo componente.
+const GA_MEASUREMENT_ID = "G-BJT393WSQT";
 
 const barlowCondensed = Barlow_Condensed({
   subsets: ["latin"],
@@ -72,6 +83,19 @@ export default function RootLayout({
           Vai al contenuto principale
         </a>
         {children}
+        {/* Google Analytics (05/09/2026) — vedi nota sopra */}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}');
+          `}
+        </Script>
       </body>
     </html>
   );
