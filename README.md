@@ -2186,12 +2186,20 @@ per rispetto delle licenze "solo uso personale" tipiche degli RSS).
   data da `.launch-item` (`h3.launch-item__header a`,
   `.launch-item__time .time`); `parseDataRainews()` interpreta i due formati
   data italiani non-ISO usati dal sito.
+- `ingestNotizieFonteTriestePrima(fonte)`: scraping cheerio dedicato per
+  TriestePrima.it (nessun feed RSS individuato — vedi sotto), selezionato
+  quando la fonte ha `tipo: "triesteprima"`. Estrae ogni voce da
+  `article.c-story` (link e titolo da `a.o-link-text` — l'attributo
+  `aria-label` come titolo, più pulito del testo dell'`<h2>` perché non
+  duplica la categoria; l'ora da `.c-story__byline span`);
+  `parseDataTriestePrima()` interpreta i tre formati orario non-ISO usati dal
+  sito.
 - `ingestNotizieProvincia(slug, fonti)`: lancia tutte le fonti di una
   provincia in parallelo (`Promise.allSettled`, un errore su una fonte non
-  blocca le altre; per ogni fonte sceglie `ingestNotizieFonteRainews` o
-  `ingestNotizieFonteRss` in base a `fonte.tipo`), unisce e ordina per data
-  decrescente, taglia a 30 voci, scrive lo snapshot
-  `notizie-provincia:${slug}`.
+  blocca le altre; per ogni fonte sceglie `ingestNotizieFonteRainews`,
+  `ingestNotizieFonteTriestePrima` o `ingestNotizieFonteRss` in base a
+  `fonte.tipo`), unisce e ordina per data decrescente, taglia a 30 voci,
+  scrive lo snapshot `notizie-provincia:${slug}`.
 - `lib/notizieProvincia.ts`: tipi condivisi (`NotiziaProvincia`,
   `SnapshotNotizieProvincia`) e `PROVINCE_NOTIZIE_ATTIVE` — lista esplicita
   (oggi `["trieste"]`), non derivata da `PROVINCE_LIST`, perché il rollout è
@@ -2231,13 +2239,36 @@ per rispetto delle licenze "solo uso personale" tipiche degli RSS).
    struttura HTTP grezza risultasse diversa da quella osservata nel browser,
    il fallback esistente ("array vuoto, non un errore" per fonte) evita che
    questo comprometta le altre fonti o la pagina.
-3. **TriestePrima.it** — ❌ **nessun feed RSS individuato**. Tentati diversi
-   percorsi standard (`/rss.xml`, `/rss/`, `/notizie/tutte/`) senza successo
-   (403/errore server). **Per sbloccarla**: l'utente può controllare da
-   "Visualizza sorgente" della homepage se nell'`<head>` esiste un tag
-   `<link rel="alternate" type="application/rss+xml">` con l'URL del feed,
-   oppure fornire l'outerHTML di una pagina elenco notizie per scrivere uno
-   scraper cheerio dedicato.
+3. **TriestePrima.it** — ✅ **integrata lo stesso giorno** (nessun feed RSS
+   individuato nonostante diversi tentativi di percorsi standard). Sbloccata
+   grazie all'utente, che ha fornito dal proprio browser l'outerHTML reale
+   della pagina "Ultim'ora Trieste" (`/notizie/tutte/`) — integrata via
+   scraping HTML con cheerio (`ingestNotizieFonteTriestePrima()`), selettori
+   `article.c-story`, `a.o-link-text` (`href` + `aria-label` per il titolo),
+   `.c-story__byline span` per l'ora. Tre formati orario osservati e gestiti
+   da `parseDataTriestePrima()`: `"HH:MM"` per le notizie di oggi, `"gio,
+   HH:MM"` / `"mer, HH:MM"` ecc. per notizie di giorni precedenti nella
+   stessa settimana (giorno abbreviato italiano, calcolato contando
+   all'indietro dal giorno corrente in Europe/Rome), e `"00:00"` per le voci
+   sindacate `/partner/.../....feed` ("Notizie dalla giunta", comunicati
+   della Regione) — incluse come una notizia qualunque, dato che il sito
+   stesso le elenca nella stessa pagina "Ultim'ora": nessun filtro
+   editoriale applicato, solo aggregazione di ciò che la fonte pubblica
+   (se in futuro si preferisse escluderle, è sufficiente un controllo su
+   `href.includes("/partner/")` in `ingestNotizieFonteTriestePrima()`).
+   Logica di estrazione e di parsing data verificata con uno script cheerio
+   a parte contro l'outerHTML reale incollato dall'utente (salvato subito su
+   disco, lezione della sessione precedente con RaiNews). **Rischio non
+   risolvibile da questa sessione**: un tentativo di WebFetch diretto sulla
+   stessa pagina, fatto per capire se un fetch server-side (come quello di
+   GitHub Actions) riesce dove WebFetch aveva già fallito in passato, ha
+   restituito di nuovo "403 client error" — il sito ha protezioni anti-bot
+   evidenti (rete Citynews, ad-tech pesante). Non è quindi garantito che il
+   fetch reale su GitHub Actions abbia successo: se fallisse, il fallback
+   esistente ("array vuoto, non un errore" per fonte) evita che questo
+   comprometta le altre fonti o la pagina, ma la fonte resterebbe
+   silenziosamente vuota finché non si trova un modo di aggirare il blocco
+   (es. header diversi) — da monitorare al primo run reale.
 4. **TriesteCafe.it** — ❌ **confermato nessun feed RSS** (verificata la
    `<head>` della pagina). Non essendoci un feed, servirebbe uno scraper
    dedicato: **per sbloccarla**, l'utente può fornire l'outerHTML della

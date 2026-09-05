@@ -22,6 +22,14 @@ export type VoceChangelog = {
 export const CHANGELOG: VoceChangelog[] = [
   {
     data: "05/09/2026",
+    titolo: "Notizie: aggiunta la terza fonte per Trieste (TriestePrima.it)",
+    dettagli: [
+      "Nella sezione \"Notizie\" (provincia di Trieste) sono comparse anche le notizie di TriestePrima.it, oltre a Trieste All News e RaiNews TGR FVG.",
+      "Resta da sbloccare solo TriesteCafe.it per completare le 4 fonti richieste.",
+    ],
+  },
+  {
+    data: "05/09/2026",
     titolo: "Google Analytics",
     dettagli: [
       "Aggiunto il tracciamento con Google Analytics, per capire meglio come viene usato il sito.",

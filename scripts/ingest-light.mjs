@@ -262,8 +262,8 @@ async function ingestNotizie() {
 //
 // L'utente ha indicato 4 fonti per Trieste; verificate una per una
 // prima di scrivere questo modulo (vedi claude/fvgmonitor-stato.md per
-// il dettaglio completo). Risultato al 05/09/2026: **2 delle 4 sono
-// integrate**, le altre 2 restano bloccate per motivi verificati e non
+// il dettaglio completo). Risultato al 05/09/2026: **3 delle 4 sono
+// integrate**, l'ultima resta bloccata per motivi verificati e non
 // aggirabili da questa sessione, non per pigrizia:
 //   - Trieste All News (triesteallnews.it/feed/): feed RSS 2.0 standard
 //     confermato — INTEGRATA (05/09/2026).
@@ -286,11 +286,25 @@ async function ingestNotizie() {
 //     struttura risultasse diversa.
 //   - TriestePrima.it (rete Citynews): nessun feed RSS individuato con
 //     i tentativi fatti (diversi percorsi comuni, tutti 403 o
-//     irraggiungibili) — richiede probabilmente scraping HTML, mai
-//     verificato su markup reale.
+//     irraggiungibili). **Sbloccata il 05/09/2026 grazie all'utente**,
+//     che ha fornito l'outerHTML reale della pagina "Ultim'ora Trieste"
+//     (`/notizie/tutte/`) dal proprio browser — INTEGRATA via scraping
+//     HTML, vedi `ingestNotizieFonteTriestePrima()` sotto. **Rischio
+//     concreto e non risolvibile da questa sessione**: un tentativo di
+//     WebFetch diretto sulla stessa pagina, fatto per verificare se un
+//     fetch server-side (come quello di GitHub Actions) riesce dove
+//     WebFetch aveva già fallito in passato, ha restituito di nuovo
+//     "403 client error" — il sito ha evidenti protezioni anti-bot
+//     (rete Citynews, ad-tech pesante, fingerprinting). Non è quindi
+//     garantito che il fetch reale su GitHub Actions abbia successo:
+//     se fallisse, `fetchConRetry` restituirebbe una risposta non-ok e
+//     la fonte verrebbe scartata con un avviso in log, senza rompere le
+//     altre fonti (stesso fallback "array vuoto" già usato altrove) —
+//     ma non è da escludere che serva un giorno uno User-Agent diverso
+//     o altri header per sbloccarla davvero.
 //   - TriesteCafe.it: nessun feed RSS trovato (CMS proprietario) —
 //     richiede scraping HTML, mai verificato su markup reale.
-// Per queste ultime due, WebFetch riesce a leggere la sola homepage in
+// Per quest'ultima, WebFetch riesce a leggere la sola homepage in
 // markdown (non l'HTML grezzo necessario per scrivere selettori cheerio
 // corretti) — stessa lezione già annotata più volte nel progetto: serve
 // l'outerHTML reale fornito dall'utente prima di scrivere un parser di
@@ -298,10 +312,10 @@ async function ingestNotizie() {
 //
 // Struttura pensata per l'estensione: ogni fonte è un oggetto
 // { fonte, fonte_url, url, tipo? }, ogni provincia un array di fonti —
-// `tipo: "rainews"` seleziona lo scraper HTML dedicato, altrimenti si
-// assume un feed RSS standard. Quando si sbloccano le altre 2 fonti
-// Trieste (o si passa a Udine/Gorizia/Pordenone), basta aggiungerle
-// qui, nessuna modifica altrove.
+// `tipo: "rainews"` / `tipo: "triesteprima"` selezionano lo scraper HTML
+// dedicato, altrimenti si assume un feed RSS standard. Quando si
+// sblocca l'ultima fonte Trieste (o si passa a Udine/Gorizia/Pordenone),
+// basta aggiungerla qui, nessuna modifica altrove.
 const RAINEWS_TAG_TRIESTE_URL =
   "https://www.rainews.it/tgr/fvg/tag?Trieste%7CTag-2f11fc6a-35b4-4f6d-94c9-175480c94179";
 
@@ -316,6 +330,12 @@ const FONTI_NOTIZIE_TRIESTE = [
     fonte_url: "https://www.rainews.it/tgr/fvg",
     url: RAINEWS_TAG_TRIESTE_URL,
     tipo: "rainews",
+  },
+  {
+    fonte: "TriestePrima.it",
+    fonte_url: "https://www.triesteprima.it/",
+    url: "https://www.triesteprima.it/notizie/tutte/",
+    tipo: "triesteprima",
   },
 ];
 
@@ -414,9 +434,92 @@ async function ingestNotizieFonteRainews(fonte) {
   return items;
 }
 
+// TriestePrima.it (Citynews) mostra l'ora in tre formati diversi,
+// verificati sull'outerHTML reale fornito dall'utente il 05/09/2026
+// (pagina "Ultim'ora Trieste", /notizie/tutte/): "HH:MM" per le notizie
+// di oggi (nessuna data esplicita — risolta con la data odierna in
+// Europe/Rome, dato che questo script gira su GitHub Actions in UTC),
+// "gio, HH:MM" / "mer, HH:MM" ecc. per notizie di giorni precedenti
+// nella stessa settimana (giorno abbreviato italiano, calcolato
+// contando all'indietro dal giorno corrente), e "00:00" per le voci
+// sindacate "/partner/.../....feed" ("Notizie dalla giunta", comunicati
+// della Regione) — trattate come una notizia qualunque di oggi a
+// mezzanotte, nessun filtro: sono comunque elencate dal sito nella
+// stessa pagina "Ultim'ora", non è compito di questo aggregatore fare
+// una scelta editoriale su cosa sia "vera" cronaca. Stesso offset UTC
+// approssimato per mese usato in parseDataRainews() (+02:00
+// aprile-settembre, +01:00 il resto dell'anno) — sufficiente per
+// ordinare le notizie fra loro, non per un orario al minuto esatto nei
+// giorni di cambio ora legale.
+const GIORNI_ABBR_ITA_NOTIZIE = { dom: 0, lun: 1, mar: 2, mer: 3, gio: 4, ven: 5, sab: 6 };
+
+function offsetItaliaPerMese() {
+  const meseIdx = new Date().getMonth();
+  return meseIdx >= 3 && meseIdx <= 8 ? "+02:00" : "+01:00";
+}
+
+function parseDataTriestePrima(testoData) {
+  if (!testoData) return null;
+  const t = testoData.trim().toLowerCase().replace(/\s+/g, " ");
+
+  const conGiorno = t.match(/^([a-zàèéìòù]{3}),\s*(\d{1,2}):(\d{2})$/);
+  if (conGiorno) {
+    const [, abbr, ore, minuti] = conGiorno;
+    const targetDow = GIORNI_ABBR_ITA_NOTIZIE[abbr];
+    if (targetDow === undefined) return null;
+    const [anno, mese, giorno] = oggiEuropeRome().split("-").map(Number);
+    const oggiUtc = new Date(Date.UTC(anno, mese - 1, giorno));
+    let diff = oggiUtc.getUTCDay() - targetDow;
+    if (diff <= 0) diff += 7;
+    oggiUtc.setUTCDate(oggiUtc.getUTCDate() - diff);
+    const dataStr = oggiUtc.toISOString().slice(0, 10);
+    return `${dataStr}T${ore.padStart(2, "0")}:${minuti}:00${offsetItaliaPerMese()}`;
+  }
+
+  const soloOra = t.match(/^(\d{1,2}):(\d{2})$/);
+  if (soloOra) {
+    const [, ore, minuti] = soloOra;
+    return `${oggiEuropeRome()}T${ore.padStart(2, "0")}:${minuti}:00${offsetItaliaPerMese()}`;
+  }
+
+  return null;
+}
+
+async function ingestNotizieFonteTriestePrima(fonte) {
+  const res = await fetchConRetry(fonte.url, {
+    headers: { "User-Agent": "Mozilla/5.0 (compatible; FVGMonitorBot/1.0)" },
+  });
+  if (!res.ok) {
+    console.warn(`TriestePrima.it ${fonte.fonte} non disponibile (HTTP ${res.status})`);
+    return [];
+  }
+  const $ = cheerio.load(await res.text());
+  const items = [];
+  $("article.c-story").each((_, el) => {
+    const $el = $(el);
+    const $link = $el.find("a.o-link-text").first();
+    const href = $link.attr("href");
+    const titolo = $link.attr("aria-label")?.trim();
+    const dataTesto = $el.find(".c-story__byline span").first().text();
+    const data = parseDataTriestePrima(dataTesto);
+    if (!href || !titolo || !data) return;
+    items.push({
+      titolo,
+      link: href.startsWith("http") ? href : `https://www.triesteprima.it${href}`,
+      data,
+      fonte: fonte.fonte,
+    });
+  });
+  return items;
+}
+
 async function ingestNotizieProvincia(provinciaSlug, fonti) {
   const risultati = await Promise.allSettled(
-    fonti.map((f) => (f.tipo === "rainews" ? ingestNotizieFonteRainews(f) : ingestNotizieFonteRss(f)))
+    fonti.map((f) => {
+      if (f.tipo === "rainews") return ingestNotizieFonteRainews(f);
+      if (f.tipo === "triesteprima") return ingestNotizieFonteTriestePrima(f);
+      return ingestNotizieFonteRss(f);
+    })
   );
 
   risultati.forEach((r, i) => {
