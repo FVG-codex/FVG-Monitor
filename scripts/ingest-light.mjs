@@ -73,7 +73,17 @@ const ENTITA_HTML = {
 };
 
 function decodeEntitaHtml(str) {
-  return str.replace(/&([a-zA-Z]+);/g, (match, nome) => ENTITA_HTML[nome] ?? match);
+  return str
+    // Entità numeriche decimali (es. "&#8216;"/"&#8217;" per le virgolette
+    // tipografiche “ ’ usate da WordPress — bug reale segnalato dall'utente
+    // il 05/09/2026, visibile nei titoli di Trieste All News mostrati
+    // lettera per lettera invece che come apostrofo/virgolette) — non
+    // gestite dal solo elenco ENTITA_HTML sotto, che copre solo le entità
+    // HTML *nominate* più comuni per l'italiano.
+    .replace(/&#(\d+);/g, (_match, codice) => String.fromCodePoint(Number(codice)))
+    // Entità numeriche esadecimali (es. "&#x2019;"), stesso principio.
+    .replace(/&#x([0-9a-fA-F]+);/g, (_match, hex) => String.fromCodePoint(parseInt(hex, 16)))
+    .replace(/&([a-zA-Z]+);/g, (match, nome) => ENTITA_HTML[nome] ?? match);
 }
 
 // Quando un tag XML ha sia un attributo che del testo (es.
@@ -366,17 +376,39 @@ const MESI_ITA_NOTIZIE = {
   luglio: 6, agosto: 7, settembre: 8, ottobre: 9, novembre: 10, dicembre: 11,
 };
 
-// RaiNews mostra due formati diversi a seconda dell'età della notizia,
-// nessuno dei due ISO — verificato sull'outerHTML reale fornito
-// dall'utente il 05/09/2026 (pagina tag "Trieste"): "04 settembre 20:40"
-// per le notizie più recenti (senza anno, assunto l'anno corrente) e
-// "03/09/2026" per quelle più vecchie (senza ora). Offset Italia/UTC
-// approssimato per mese (+2 aprile-settembre, +1 il resto dell'anno) —
-// sufficiente per ordinare le notizie fra loro, non per un orario
-// visualizzato al minuto in un confine DST esatto (marzo/ottobre).
+// RaiNews mostra TRE formati diversi a seconda dell'età della notizia,
+// nessuno dei tre ISO — verificato sull'outerHTML reale fornito
+// dall'utente il 05/09/2026 (pagina tag "Trieste"): "12:38" (sola ora,
+// SENZA alcuna data) per le notizie pubblicate **oggi**, "04 settembre
+// 20:40" per quelle di un giorno o due fa (senza anno, assunto l'anno
+// corrente), e "03/09/2026" per quelle più vecchie (senza ora). Offset
+// Italia/UTC approssimato per mese (+2 aprile-settembre, +1 il resto
+// dell'anno) — sufficiente per ordinare le notizie fra loro, non per un
+// orario visualizzato al minuto in un confine DST esatto (marzo/ottobre).
+//
+// **Bug reale corretto il 05/09/2026**: il formato "sola ora" (oggi) non
+// era gestito nella prima versione di questa funzione — il campione HTML
+// usato per la verifica iniziale era stato ricostruito a memoria (l'
+// outerHTML originale è andato perso in una compattazione del contesto
+// prima di essere salvato su disco) e non includeva questo caso. Ogni
+// notizia pubblicata il giorno stesso veniva quindi scartata in silenzio
+// (data null → filtrata da `ingestNotizieFonteRainews`), lasciando solo
+// le notizie di ieri/più vecchie — sistematicamente escluse dal taglio a
+// 30 voci per via delle altre fonti (Trieste All News, TriestePrima.it)
+// più prolifiche/aggiornate. Risultato osservato dall'utente: zero
+// notizie RaiNews visibili in produzione. Stessa gestione già introdotta
+// per lo stesso identico formato in `parseDataTriestePrima()` — riusa
+// `oggiEuropeRome()`/`offsetItaliaPerMese()`, già definite più sotto nel
+// file (dichiarazioni di funzione hoisted, richiamabili anche da qui).
 function parseDataRainews(testoData) {
   if (!testoData) return null;
   const t = testoData.trim().toLowerCase();
+
+  const soloOra = t.match(/^(\d{1,2}):(\d{2})$/);
+  if (soloOra) {
+    const [, ore, minuti] = soloOra;
+    return `${oggiEuropeRome()}T${ore.padStart(2, "0")}:${minuti}:00${offsetItaliaPerMese()}`;
+  }
 
   const conOra = t.match(/^(\d{1,2})\s+([a-zàèéìòù]+)\s+(\d{1,2}):(\d{2})$/);
   if (conOra) {

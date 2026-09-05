@@ -2285,6 +2285,74 @@ renderizzate correttamente (verifica fatta prima dell'aggiunta di RaiNews,
 non ripetuta perché lo scraper aggiunge solo voci alla stessa lista, nessuna
 modifica al componente di visualizzazione).
 
+### Fix — titoli con entità HTML numeriche non decodificate (05/09/2026)
+
+L'utente ha segnalato, con uno screenshot di produzione, titoli di Trieste
+All News mostrati con codici letterali tipo `&#8216;`/`&#8217;` al posto
+delle virgolette/apostrofo tipografici (`'`/`'`) — es. `Riccardi,
+&#8216;1,5 milioni...&#8217;` invece di `Riccardi, '1,5 milioni...'`.
+
+**Causa**: `testo()`/`decodeEntitaHtml()` (usate per ripulire i valori
+letti da `fast-xml-parser`, che decodifica solo le 5 entità XML standard —
+`&amp;` `&lt;` `&gt;` `&quot;` `&apos;` — non le entità HTML) gestivano
+solo entità **nominate** (`&agrave;`, `&nbsp;`, ecc., per gli accenti
+italiani), non le entità **numeriche** (`&#8216;` decimale, `&#x2019;`
+esadecimale) che WordPress (piattaforma di Trieste All News) usa per le
+virgolette tipografiche nei titoli RSS. Bug presente fin dall'introduzione
+di `ingestNotizieFonteRss()`, mai notato prima perché ANSA (`ingestNotizie()`,
+già in produzione, stessa funzione `testo()`) evidentemente non usa quelle
+virgolette nei titoli osservati finora.
+
+**Fix**: `decodeEntitaHtml()` ora decodifica anche le entità numeriche
+(decimali ed esadecimali) via `String.fromCodePoint()`, prima di applicare
+la tabella delle entità nominate — corregge il problema per **qualunque**
+fonte che passi da `testo()`, non solo Trieste All News (RaiNews e
+TriestePrima.it non erano affette, perché estraggono il testo via cheerio,
+che decodifica le entità nativamente durante il parsing HTML).
+
+`npx tsc --noEmit` e `node --check scripts/ingest-light.mjs` puliti. Verificato con uno script Node a sé contro i tre titoli esatti dello screenshot dell'utente (virgolette curve, apostrofo, trattino medio "–") — tutti decodificati correttamente.
+
+### Fix — RaiNews TGR FVG assente dal flusso, terzo formato data mancante (05/09/2026)
+
+L'utente ha segnalato che le notizie di RaiNews TGR FVG non comparivano
+affatto nel flusso di `/notizie` in produzione (solo Trieste All News e
+TriestePrima.it visibili). Diagnosi in due passi, entrambi con l'aiuto
+dell'utente (questo sandbox non può raggiungere `rainews.it` in alcun
+modo, né fetch diretto né WebFetch):
+
+1. **Log dell'esecuzione GitHub Actions** (fornito dall'utente): nessuna
+   riga `RaiNews TGR FVG non disponibile (HTTP ...)` — il fetch va a buon
+   fine, esclusa quindi la causa "il sito blocca la richiesta" (a
+   differenza del rischio, poi confermato via WebFetch, per
+   TriestePrima.it).
+2. **Outerhtml reale della pagina tag "Trieste"** (fornito di nuovo
+   dall'utente, salvato su disco immediatamente questa volta): ha
+   rivelato un **terzo formato data**, `"12:38"` — sola ora, senza alcuna
+   data — usato per le notizie pubblicate **oggi**. La verifica iniziale
+   di questa fonte (vedi sezione "RaiNews TGR FVG sbloccata" sopra) era
+   stata fatta contro un campione ricostruito a memoria (l'outerHTML
+   originale era andato perso in una compattazione del contesto prima di
+   essere salvato), che copriva solo gli altri due formati (`"04
+   settembre 20:40"` e `"03/09/2026"`) — mai un caso "oggi, sola ora".
+
+**Causa**: `parseDataRainews()` non riconosceva il formato "sola ora" e
+restituiva `null` per qualunque notizia pubblicata il giorno stesso —
+scartata subito da `ingestNotizieFonteRainews()` (richiede `data`
+valorizzata). Risultato: **tutte** le notizie più recenti di RaiNews
+sparivano, lasciando solo quelle di ieri/più vecchie, a loro volta escluse
+dal taglio a 30 voci per via delle altre due fonti più prolifiche/aggiornate
+— da qui "zero notizie RaiNews visibili", esattamente il sintomo segnalato.
+
+**Fix**: aggiunto il caso `"HH:MM"` a `parseDataRainews()`, stessa identica
+gestione già introdotta lo stesso giorno per il formato analogo di
+TriestePrima.it (`oggiEuropeRome()` per il giorno corrente in Europe/Rome,
+offset `+02:00`/`+01:00` per mese). Verificato con uno script cheerio a
+parte contro l'outerHTML reale (questa volta il file originale, non una
+ricostruzione) — le 4 voci del campione, incluso il caso "oggi" prima
+scartato, ora producono tutte una data valida.
+
+`npx tsc --noEmit` e `node --check scripts/ingest-light.mjs` puliti.
+
 ## Google Analytics (05/09/2026)
 
 L'utente ha chiesto di integrare Google Analytics (GA4), fornendo direttamente lo snippet standard di gtag.js con l'id misurazione `G-BJT393WSQT`.

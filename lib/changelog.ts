@@ -22,6 +22,20 @@ export type VoceChangelog = {
 export const CHANGELOG: VoceChangelog[] = [
   {
     data: "05/09/2026",
+    titolo: "Notizie: corretta l'assenza di RaiNews TGR FVG dal flusso",
+    dettagli: [
+      "Le notizie di RaiNews TGR FVG (provincia di Trieste) non comparivano mai. Corretto: mancava la gestione di un formato di data usato dal sito per le notizie di oggi, che le faceva scartare tutte per errore.",
+    ],
+  },
+  {
+    data: "05/09/2026",
+    titolo: "Notizie: corretto un errore nei titoli (virgolette/apostrofi mostrati come codice)",
+    dettagli: [
+      "Alcuni titoli in \"Notizie\" (es. da Trieste All News) mostravano codici come \"&#8216;\" invece delle virgolette o dell'apostrofo. Corretto: ora vengono mostrati correttamente.",
+    ],
+  },
+  {
+    data: "05/09/2026",
     titolo: "Notizie: aggiunta la terza fonte per Trieste (TriestePrima.it)",
     dettagli: [
       "Nella sezione \"Notizie\" (provincia di Trieste) sono comparse anche le notizie di TriestePrima.it, oltre a Trieste All News e RaiNews TGR FVG.",
