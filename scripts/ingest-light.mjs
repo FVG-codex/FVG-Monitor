@@ -280,20 +280,26 @@ async function ingestNotizie() {
 //   - RaiNews TGR FVG: l'intero dominio rainews.it (e anche tgr.rai.it)
 //     è bloccato sia dalla rete del sandbox sia dalla policy degli
 //     strumenti di questa sessione — nessuna verifica autonoma
-//     possibile. **Sbloccata lo stesso giorno (05/09/2026) grazie
-//     all'utente**, che ha fornito l'outerHTML reale della pagina di
-//     ricerca per tag "Trieste" dal proprio browser. Nessun feed RSS
-//     dedicato al tag (solo `/tgr/fvg/rss/tutti`, non filtrato per
-//     Trieste) — INTEGRATA via scraping HTML della pagina tag, vedi
-//     `ingestNotizieFonteRainews()` sotto. Il markup è servito da
-//     componenti lit-html (`<rainews-card>`) ma il contenuto interno
-//     (titolo/link/data) è testo statico nell'HTML, non richiede
-//     esecuzione JS per essere letto — **non ancora confermato però che
-//     la risposta HTTP grezza (fetch diretto, senza post-idratazione
-//     del browser) sia identica all'outerHTML fornito**: da verificare
-//     al primo run reale su GitHub Actions, con lo stesso fallback
-//     "array vuoto, non un errore" già usato per le altre fonti se la
-//     struttura risultasse diversa.
+//     possibile. **Sbloccata il 05/09/2026 grazie all'utente**, che ha
+//     fornito l'outerHTML reale della pagina di ricerca per tag
+//     "Trieste" dal proprio browser — prima versione INTEGRATA via
+//     scraping HTML (classi `.launch-item`/`rainews-card`). **Rivelatasi
+//     completamente sbagliata il 06/09/2026**: l'utente ha segnalato
+//     zero notizie RaiNews in produzione nonostante un fix del formato
+//     data; un log diagnostico ha mostrato "RaiNews=0" senza alcun
+//     errore HTTP; la sorgente HTML **grezza** (non l'outerHTML del
+//     browser, questa volta "Visualizza sorgente pagina") fornita di
+//     nuovo dall'utente ha rivelato la causa reale: la pagina è solo un
+//     guscio `<rainews-search>` vuoto — tutto il contenuto (inclusi i
+//     `.launch-item` usati dal parser precedente) viene iniettato **dopo**
+//     da JavaScript lato client, MAI presente in un fetch Node senza
+//     esecuzione JS. Nessun fix di parsing avrebbe mai potuto funzionare
+//     su quella pagina. **Riscritta il 06/09/2026** per chiamare
+//     direttamente l'API JSON di ricerca interna del sito
+//     (`POST /atomatic/news-search-service/api/v3/search`, filtro per
+//     dominio+tag), scoperta dall'utente via DevTools → Network → "Copia
+//     come cURL" — stesso metodo già usato per Tennis/Sci/Autobus. Vedi
+//     `ingestNotizieFonteRainews()` sotto per il dettaglio completo.
 //   - TriestePrima.it (rete Citynews): nessun feed RSS individuato con
 //     i tentativi fatti (diversi percorsi comuni, tutti 403 o
 //     irraggiungibili). **Sbloccata il 05/09/2026 grazie all'utente**,
@@ -321,14 +327,13 @@ async function ingestNotizie() {
 // produzione, non un selettore indovinato da un riassunto.
 //
 // Struttura pensata per l'estensione: ogni fonte è un oggetto
-// { fonte, fonte_url, url, tipo? }, ogni provincia un array di fonti —
-// `tipo: "rainews"` / `tipo: "triesteprima"` selezionano lo scraper HTML
+// { fonte, fonte_url, url?, tipo? } (RaiNews usa `tagRainews` al posto
+// di `url`, vedi sotto — non fa un fetch diretto su un indirizzo ma
+// chiama un'API con un parametro), ogni provincia un array di fonti —
+// `tipo: "rainews"` / `tipo: "triesteprima"` selezionano il gestore
 // dedicato, altrimenti si assume un feed RSS standard. Quando si
 // sblocca l'ultima fonte Trieste (o si passa a Udine/Gorizia/Pordenone),
 // basta aggiungerla qui, nessuna modifica altrove.
-const RAINEWS_TAG_TRIESTE_URL =
-  "https://www.rainews.it/tgr/fvg/tag?Trieste%7CTag-2f11fc6a-35b4-4f6d-94c9-175480c94179";
-
 const FONTI_NOTIZIE_TRIESTE = [
   {
     fonte: "Trieste All News",
@@ -338,7 +343,9 @@ const FONTI_NOTIZIE_TRIESTE = [
   {
     fonte: "RaiNews TGR FVG",
     fonte_url: "https://www.rainews.it/tgr/fvg",
-    url: RAINEWS_TAG_TRIESTE_URL,
+    // Tag interno usato dall'API di ricerca (vedi ingestNotizieFonteRainews
+    // sotto) — non un URL da fetchare, a differenza delle altre fonti.
+    tagRainews: "Trieste|Tag-2f11fc6a-35b4-4f6d-94c9-175480c94179",
     tipo: "rainews",
   },
   {
@@ -370,100 +377,85 @@ async function ingestNotizieFonteRss(fonte) {
   }));
 }
 
-// Mesi italiani per interpretare le date mostrate da RaiNews (vedi sotto).
-const MESI_ITA_NOTIZIE = {
-  gennaio: 0, febbraio: 1, marzo: 2, aprile: 3, maggio: 4, giugno: 5,
-  luglio: 6, agosto: 7, settembre: 8, ottobre: 9, novembre: 10, dicembre: 11,
-};
+// RaiNews TGR FVG — API JSON del motore di ricerca interno (06/09/2026,
+// riscritta da zero dopo aver scoperto che lo scraping HTML della pagina
+// tag "Trieste" non poteva funzionare in alcun modo: vedi commento sopra
+// FONTI_NOTIZIE_TRIESTE per la storia completa (fix del formato data del
+// 05/09/2026, poi log diagnostico che ha mostrato "RaiNews=0" nonostante
+// nessun errore HTTP, poi la vera causa scoperta dalla sorgente HTML
+// grezza fornita dall'utente il 06/09/2026: la pagina è solo un guscio
+// `<rainews-search>` vuoto, il contenuto viene iniettato interamente da
+// JavaScript lato client — un fetch Node non lo vedrà MAI, qualunque
+// selettore si scriva). L'utente ha individuato via DevTools → Network
+// la richiesta reale che il browser fa per popolare quella pagina:
+// `POST /atomatic/news-search-service/api/v3/search`, corpo JSON con un
+// filtro per dominio (FVG) e tag (es. "Trieste|Tag-...") — stesso
+// endpoint usato internamente dal sito per ogni ricerca per tag/pagina
+// regionale. Risposta verificata su dati reali (JSON completo incollato
+// dall'utente, non un riassunto): `hits[]` con `title`, `weblink`
+// (relativo, va anteposto `https://www.rainews.it`), `publication_date`
+// già in ISO 8601 con offset esplicito (es. "2026-09-05T10:38:00+0000")
+// — **nessun parsing di data manuale necessario**, a differenza di
+// TriestePrima.it, perché qui la fonte è un'API pensata per essere
+// consumata da codice, non una pagina pensata per un umano. `data_type`
+// distingue "articolo"/"video"/"fotogallery"/ecc. — inclusi tutti, come
+// già deciso per lo scraping HTML precedente (stessa redazione, stesso
+// tag, nessun motivo di escludere i video). Nessun cookie di sessione
+// incluso nella chiamata: quelli osservati nel cURL dell'utente
+// (`_scor_uid`, `ak_bmsc`, `bm_sv`, questi ultimi due di Akamai) sembrano
+// legati a fingerprinting/anti-bot generico del dominio, non a
+// un'autenticazione richiesta per questo endpoint — se il fetch reale da
+// GitHub Actions dovesse fallire per un blocco anti-bot, lo si vedrà dal
+// prossimo log (`RaiNews ... non disponibile (HTTP ...)`) e andrà
+// rivisto con header aggiuntivi.
+const RAINEWS_SEARCH_URL = "https://www.rainews.it/atomatic/news-search-service/api/v3/search";
+const RAINEWS_DOMINIO_FVG = [
+  "Friuli Venezia Giulia|Category-66bfeea7-d64c-4d32-b8a7-88f0234da0ca",
+  "TGR|Category-11ceef28-c189-4210-9959-881484ae5987",
+];
 
-// RaiNews mostra TRE formati diversi a seconda dell'età della notizia,
-// nessuno dei tre ISO — verificato sull'outerHTML reale fornito
-// dall'utente il 05/09/2026 (pagina tag "Trieste"): "12:38" (sola ora,
-// SENZA alcuna data) per le notizie pubblicate **oggi**, "04 settembre
-// 20:40" per quelle di un giorno o due fa (senza anno, assunto l'anno
-// corrente), e "03/09/2026" per quelle più vecchie (senza ora). Offset
-// Italia/UTC approssimato per mese (+2 aprile-settembre, +1 il resto
-// dell'anno) — sufficiente per ordinare le notizie fra loro, non per un
-// orario visualizzato al minuto in un confine DST esatto (marzo/ottobre).
-//
-// **Bug reale corretto il 05/09/2026**: il formato "sola ora" (oggi) non
-// era gestito nella prima versione di questa funzione — il campione HTML
-// usato per la verifica iniziale era stato ricostruito a memoria (l'
-// outerHTML originale è andato perso in una compattazione del contesto
-// prima di essere salvato su disco) e non includeva questo caso. Ogni
-// notizia pubblicata il giorno stesso veniva quindi scartata in silenzio
-// (data null → filtrata da `ingestNotizieFonteRainews`), lasciando solo
-// le notizie di ieri/più vecchie — sistematicamente escluse dal taglio a
-// 30 voci per via delle altre fonti (Trieste All News, TriestePrima.it)
-// più prolifiche/aggiornate. Risultato osservato dall'utente: zero
-// notizie RaiNews visibili in produzione. Stessa gestione già introdotta
-// per lo stesso identico formato in `parseDataTriestePrima()` — riusa
-// `oggiEuropeRome()`/`offsetItaliaPerMese()`, già definite più sotto nel
-// file (dichiarazioni di funzione hoisted, richiamabili anche da qui).
-function parseDataRainews(testoData) {
-  if (!testoData) return null;
-  const t = testoData.trim().toLowerCase();
-
-  const soloOra = t.match(/^(\d{1,2}):(\d{2})$/);
-  if (soloOra) {
-    const [, ore, minuti] = soloOra;
-    return `${oggiEuropeRome()}T${ore.padStart(2, "0")}:${minuti}:00${offsetItaliaPerMese()}`;
-  }
-
-  const conOra = t.match(/^(\d{1,2})\s+([a-zàèéìòù]+)\s+(\d{1,2}):(\d{2})$/);
-  if (conOra) {
-    const [, giorno, mese, ore, minuti] = conOra;
-    const meseIdx = MESI_ITA_NOTIZIE[mese];
-    if (meseIdx === undefined) return null;
-    const anno = new Date().getFullYear();
-    const offset = meseIdx >= 3 && meseIdx <= 8 ? "+02:00" : "+01:00";
-    return `${anno}-${String(meseIdx + 1).padStart(2, "0")}-${giorno.padStart(2, "0")}T${ore.padStart(2, "0")}:${minuti}:00${offset}`;
-  }
-
-  const soloData = t.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
-  if (soloData) {
-    const [, giorno, mese, anno] = soloData;
-    return `${anno}-${mese.padStart(2, "0")}-${giorno.padStart(2, "0")}T00:00:00+01:00`;
-  }
-
-  return null;
+// "+0000" (senza i due punti) non è garantito parsabile da ogni motore
+// JS come offset ISO — normalizzato esplicitamente a "+00:00" prima di
+// usare la stringa come `data` (stesso principio già seguito altrove nel
+// file: mai affidarsi implicitamente a `new Date()` su un formato non
+// verificato).
+function normalizzaOffsetIso(dataIso) {
+  return dataIso.replace(/([+-]\d{2})(\d{2})$/, "$1:$2");
 }
 
-// Scraping della pagina di ricerca per tag RaiNews TGR FVG (05/09/2026,
-// sbloccata grazie all'outerHTML reale fornito dall'utente — vedi
-// commento sopra FONTI_NOTIZIE_TRIESTE). Solo la prima pagina (~16
-// notizie, incluse eventuali voci "video" oltre agli articoli — stesso
-// tag, stessa redazione, nessun motivo di escluderle): sufficiente per
-// un aggregatore di notizie recenti, senza il costo di paginare come
-// per turismofvg.it/TFVGB. Estrazione per selettore di classe (non per
-// posizione, a differenza dello Sci) perché qui le classi sono stabili
-// e semanticamente uniche in questa pagina.
 async function ingestNotizieFonteRainews(fonte) {
-  const res = await fetchConRetry(fonte.url, {
-    headers: { "User-Agent": "Mozilla/5.0 (compatible; FVGMonitorBot/1.0)" },
+  const res = await fetchConRetry(RAINEWS_SEARCH_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "*/*",
+      "User-Agent": "Mozilla/5.0 (compatible; FVGMonitorBot/1.0)",
+    },
+    body: JSON.stringify({
+      page: 0,
+      pageSize: 16,
+      filters: {
+        dominio: RAINEWS_DOMINIO_FVG,
+        tag: [fonte.tagRainews],
+      },
+      post_filters: null,
+      mode: "searchPlain",
+    }),
   });
   if (!res.ok) {
     console.warn(`RaiNews ${fonte.fonte} non disponibile (HTTP ${res.status})`);
     return [];
   }
-  const $ = cheerio.load(await res.text());
-  const items = [];
-  $(".launch-item").each((_, el) => {
-    const $el = $(el);
-    const $link = $el.find("h3.launch-item__header a").first();
-    const href = $link.attr("href");
-    const titolo = $link.text().replace(/\s+/g, " ").trim();
-    const dataTesto = $el.find(".launch-item__time .time").first().text().trim();
-    const data = parseDataRainews(dataTesto);
-    if (!href || !titolo || !data) return;
-    items.push({
-      titolo,
-      link: href.startsWith("http") ? href : `https://www.rainews.it${href}`,
-      data,
+  const json = await res.json();
+  const hits = Array.isArray(json.hits) ? json.hits : [];
+  return hits
+    .filter((h) => h.title && h.weblink && h.publication_date)
+    .map((h) => ({
+      titolo: h.title.trim(),
+      link: `https://www.rainews.it${h.weblink}`,
+      data: normalizzaOffsetIso(h.publication_date),
       fonte: fonte.fonte,
-    });
-  });
-  return items;
+    }));
 }
 
 // TriestePrima.it (Citynews) mostra l'ora in tre formati diversi,
@@ -478,11 +470,14 @@ async function ingestNotizieFonteRainews(fonte) {
 // della Regione) — trattate come una notizia qualunque di oggi a
 // mezzanotte, nessun filtro: sono comunque elencate dal sito nella
 // stessa pagina "Ultim'ora", non è compito di questo aggregatore fare
-// una scelta editoriale su cosa sia "vera" cronaca. Stesso offset UTC
-// approssimato per mese usato in parseDataRainews() (+02:00
+// una scelta editoriale su cosa sia "vera" cronaca. Offset Italia/UTC
+// approssimato per mese via `offsetItaliaPerMese()` sotto (+02:00
 // aprile-settembre, +01:00 il resto dell'anno) — sufficiente per
 // ordinare le notizie fra loro, non per un orario al minuto esatto nei
-// giorni di cambio ora legale.
+// giorni di cambio ora legale. (RaiNews non usa più questa
+// approssimazione dal 06/09/2026: la sua nuova fonte via API restituisce
+// già un orario ISO esatto con offset — vedi `ingestNotizieFonteRainews()`
+// sopra.)
 const GIORNI_ABBR_ITA_NOTIZIE = { dom: 0, lun: 1, mar: 2, mer: 3, gio: 4, ven: 5, sab: 6 };
 
 function offsetItaliaPerMese() {
@@ -560,12 +555,13 @@ async function ingestNotizieProvincia(provinciaSlug, fonti) {
     }
   });
 
-  // Log diagnostico temporaneo (06/09/2026) — la riga di log finale sotto
-  // riporta solo il totale aggregato dopo il taglio a 30, che non basta a
-  // capire se una singola fonte (es. RaiNews TGR FVG) contribuisce 0
-  // elementi per un errore di fetch/parsing, oppure ne produce alcuni che
-  // semplicemente non rientrano nel taglio. Da rimuovere una volta chiarita
-  // la causa del problema RaiNews segnalato dall'utente il 05-06/09/2026.
+  // Log diagnostico temporaneo (06/09/2026) — introdotto per scoprire che
+  // RaiNews TGR FVG restituiva 0 elementi (causa poi trovata: scraping
+  // impossibile su una pagina svuotata di contenuto server-side, risolto
+  // riscrivendo la fonte per usare l'API JSON del sito — vedi
+  // ingestNotizieFonteRainews sopra). Lasciato per un'altra esecuzione
+  // per confermare che il nuovo conteggio per RaiNews sia > 0; da
+  // rimuovere una volta arrivata quella conferma.
   console.log(
     `Notizie ${provinciaSlug} — dettaglio per fonte: ` +
       risultati

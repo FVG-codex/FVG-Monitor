@@ -2353,38 +2353,71 @@ scartato, ora producono tutte una data valida.
 
 `npx tsc --noEmit` e `node --check scripts/ingest-light.mjs` puliti.
 
-### RaiNews ancora assente dopo il fix — log diagnostico temporaneo (06/09/2026)
+### RaiNews — causa reale trovata e fonte riscritta da zero (06/09/2026)
 
-Dopo il redeploy del fix sopra, l'utente ha confermato — con nuovo screenshot
-e log GitHub Actions — che RaiNews TGR FVG continua a non comparire in
-`/notizie`, pur avendo aggiornato correttamente `scripts/ingest-light.mjs`
-nel proprio repository prima di rilanciare l'ingestione. Il fix sul formato
-data resta corretto ma non basta a spiegare il sintomo: la riga di log
-esistente (`Notizie ${provinciaSlug}: ${items.length} titoli da ${fonti.length} fonti`)
-riporta solo il totale aggregato dopo il taglio a 30 voci, non il contributo
-di ciascuna fonte, quindi non permette di distinguere "RaiNews restituisce 0
-elementi" da "RaiNews ne restituisce alcuni ma non superano il taglio".
+Dopo il redeploy del fix sul formato data, l'utente ha confermato — con
+nuovo screenshot e log GitHub Actions — che RaiNews TGR FVG continuava a
+non comparire in `/notizie`. Diagnosi in tre passi, tutti con l'aiuto
+dell'utente (nessuno di questi accertamenti era possibile da questa
+sessione, che non raggiunge in alcun modo `rainews.it`):
 
-Aggiunta una riga di log **temporanea** in `ingestNotizieProvincia()`,
-subito dopo la gestione dei rifiuti di `Promise.allSettled`:
+1. **Log diagnostico temporaneo** aggiunto in `ingestNotizieProvincia()`
+   (conteggio per fonte, non solo il totale aggregato dopo il taglio a
+   30): ha mostrato `RaiNews TGR FVG=0`, **senza** alcun avviso di errore
+   HTTP — quindi il fetch andava a buon fine, ma zero elementi venivano
+   estratti.
+2. **Sorgente HTML grezza** della pagina tag "Trieste" (richiesta con
+   "Visualizza sorgente pagina"/Ctrl+U, non "Ispeziona" — la differenza è
+   cruciale, vedi sotto) fornita dall'utente: ha rivelato che il
+   `<main>` della pagina contiene **solo** un tag vuoto
+   `<rainews-search domain="..." class="prefetch">`, nessun
+   `.launch-item` né `<rainews-card>` popolato. **Causa reale**: la
+   pagina che riceve un fetch senza esecuzione JavaScript è un guscio
+   completamente vuoto — tutto l'elenco notizie viene costruito **dopo**
+   dal JavaScript del sito, che verosimilmente chiama un'API interna e
+   inietta il risultato nel DOM. La verifica del 05/09/2026 (basata
+   sull'outerHTML copiato da DevTools → Ispeziona) aveva quindi
+   verificato, senza saperlo, il DOM **dopo** l'esecuzione di quel
+   JavaScript — non quello che riceve realmente un fetch Node su GitHub
+   Actions. Nessun fix di parsing/selettori avrebbe mai potuto risolvere
+   il problema: la fonte era semplicemente non scrapabile in quel modo.
+3. **La chiamata di rete reale** dietro quella pagina, individuata
+   dall'utente via DevTools → Rete → filtro Fetch/XHR → "Copia come
+   cURL": `POST https://www.rainews.it/atomatic/news-search-service/api/v3/search`,
+   un endpoint JSON di ricerca interna del sito con un corpo tipo
+   `{"page":0,"pageSize":16,"filters":{"dominio":[...],"tag":["Trieste|Tag-..."]},"mode":"searchPlain"}`.
+   Risposta verificata su JSON reale incollato dall'utente (non un
+   riassunto): `hits[]` con `title`, `weblink` (relativo), `publication_date`
+   già in ISO 8601 con offset esplicito (es. `"2026-09-05T10:38:00+0000"`).
 
-```js
-console.log(
-  `Notizie ${provinciaSlug} — dettaglio per fonte: ` +
-    risultati
-      .map((r, i) => `${fonti[i].fonte}=${r.status === "fulfilled" ? r.value.length : "ERRORE"}`)
-      .join(", ")
-);
-```
+**Riscrittura completa di `ingestNotizieFonteRainews()`**: non più
+scraping HTML, ma una chiamata `POST` diretta a quell'endpoint JSON.
+Vantaggio non banale rispetto allo scraping: essendo un'API pensata per
+essere consumata da codice, non serve più alcun parsing di data
+non-ISO — `publication_date` arriva già pronta (solo normalizzato
+l'offset `+0000` → `+00:00` per sicurezza di parsing). Rimossi
+`parseDataRainews()` e la tabella `MESI_ITA_NOTIZIE`, ormai inutili. La
+richiesta non include i cookie di sessione/anti-bot osservati nel cURL
+dell'utente (`_scor_uid`, e i due cookie Akamai `ak_bmsc`/`bm_sv`) — sono
+probabilmente legati a fingerprinting generico del dominio, non a
+un'autenticazione richiesta per questo endpoint specifico; se il fetch
+reale da GitHub Actions dovesse comunque fallire per un blocco anti-bot,
+lo si vedrà dal log (`RaiNews ... non disponibile (HTTP ...)`) e andrà
+rivisto con header aggiuntivi.
 
-Da rimuovere una volta chiarita la causa reale (commentata nel codice come
-temporanea). Se il prossimo log mostra `RaiNews TGR FVG=0`, il problema è
-nel fetch/parsing nonostante nessun errore HTTP visibile — servirà un nuovo
-outerHTML reale aggiornato. Se mostra un numero maggiore di zero, il
-problema è nel taglio/ordinamento (probabile bug residuo nel parsing delle
-date che fa sembrare le notizie RaiNews più vecchie di quanto siano).
+Verificato con uno script Node a sé stante contro il JSON reale incollato
+dall'utente: 3 notizie valide estratte correttamente (titolo, link
+assoluto, data ISO con offset normalizzato), più 3 casi limite
+(titolo/link/data mancanti) correttamente scartati.
+
+Il log diagnostico per-fonte introdotto al passo 1 è stato **lasciato**
+per un'altra esecuzione, così da confermare a colpo d'occhio che il
+nuovo conteggio RaiNews sia maggiore di zero — da rimuovere una volta
+arrivata quella conferma.
 
 `npx tsc --noEmit` e `node --check scripts/ingest-light.mjs` puliti.
+**Non ancora confermato in produzione** — la vera verifica sarà il
+prossimo log GitHub Actions.
 
 ## Google Analytics (05/09/2026)
 

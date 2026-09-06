@@ -21,6 +21,13 @@ export type VoceChangelog = {
 
 export const CHANGELOG: VoceChangelog[] = [
   {
+    data: "06/09/2026",
+    titolo: "Notizie: risolta davvero l'assenza di RaiNews TGR FVG dal flusso",
+    dettagli: [
+      "Il fix del 05/09 non bastava: la pagina usata per leggere le notizie RaiNews risultava vuota a un fetch automatico (il contenuto viene aggiunto dal sito solo dopo via JavaScript). Corretto collegandosi direttamente al servizio dati usato dal sito stesso, molto più affidabile dello scraping della pagina.",
+    ],
+  },
+  {
     data: "05/09/2026",
     titolo: "Notizie: corretta l'assenza di RaiNews TGR FVG dal flusso",
     dettagli: [
