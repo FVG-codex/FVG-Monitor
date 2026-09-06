@@ -2156,6 +2156,56 @@ provincia.
 
 `npx tsc --noEmit` e `node --check scripts/ingest-light.mjs` puliti.
 
+### Sorgere e tramontare della Luna (06/09/2026)
+
+L'utente ha chiesto di aggiungere gli orari di sorgere/tramontare della
+Luna sotto le fasi lunari, per riempire meglio il pannello "Sole e luna"
+(fino a qui limitato ad alba/tramonto/crepuscoli del Sole e fase lunare,
+senza orari propri della Luna).
+
+**Insidia di fuso orario scoperta scrivendo la funzione** (nuova voce di
+lezione permanente, vedi sezione Architettura in `claude/fvgmonitor-stato.md`):
+`suncalc.getMoonTimes()` calcola sempre su una finestra di 24 ore allineata
+alla **mezzanotte UTC**, non al giorno civile italiano — passare
+direttamente "adesso", o anche una mezzanotte italiana "finta" costruita
+con lo stesso trucco già usato altrove nel progetto per il giorno civile,
+produce eventi attribuiti al giorno di calendario **sbagliato** proprio
+nelle prime 1-2 ore della giornata italiana (l'offset Italia/UTC) — un
+sorgere reale delle 00:16 del 6 settembre 2026 risultava attribuito
+invece al 5 settembre con l'approccio ingenuo, verificato prima di
+scrivere il codice definitivo. **Fix**: `orariLunaOggi()` in `lib/astro.ts`
+interroga tre finestre UTC consecutive di `getMoonTimes()` (ieri/oggi/
+domani secondo il calendario UTC), raccoglie tutti gli eventi come istanti
+reali e tiene solo quelli che cadono davvero dentro la finestra [mezzanotte
+Roma di oggi, mezzanotte Roma di domani) — indipendente da quale "giorno
+UTC" la libreria li assegna.
+
+**A differenza del Sole (che in FVG sorge e tramonta sempre una volta al
+giorno), la Luna no**: sorge circa 50 minuti più tardi ogni giorno, quindi
+circa una volta al mese un giorno di calendario resta senza un sorgere (o
+senza un tramontare) — verificato su un anno di date per le coordinate del
+FVG (~14 giorni su 400 senza sorgere, ~13 senza tramontare, mai entrambi
+assenti lo stesso giorno). Non è un errore: mostrato esplicitamente come
+"non oggi" in UI (mai un orario inventato o del giorno più vicino), con una
+nota testuale che appare solo nei giorni in cui capita, a spiegare il
+motivo.
+
+**Verifica**: la funzione reale (non una ricostruzione a parte) testata con
+`node --experimental-strip-types` contro l'API ufficiale USNO
+(`aa.usno.navy.mil/api/rstt/oneday`) per Udine, 6 e 7 settembre 2026 —
+sorgere/tramontare entro 1 minuto dal riferimento per entrambe le date
+(00:16/17:12 e 01:33/17:51 calcolati contro 00:17/17:12 e 01:34/17:52
+USNO). Verifica visiva con `next dev` + Chromium headless: il pannello
+mostra correttamente "Sorge: 00:16" / "Tramonta: 17:12" per il 6 settembre
+2026.
+
+**UI** (`components/SoleLunaPanel.tsx`): nuova riga "Sorge"/"Tramonta"
+sotto la riga esistente fase lunare/illuminazione, stesso stile
+`font-mono text-xs` già usato per "illuminata". Nessuna modifica al resto
+del pannello (Sole, verificato in una sessione precedente, invariato).
+
+`npx tsc --noEmit` e `node --check scripts/ingest-light.mjs` puliti.
+
 ## Notizie locali per provincia (05/09/2026)
 
 Nuova sezione **"Notizie"** nel menu hamburger (`components/MenuHamburger.tsx`,

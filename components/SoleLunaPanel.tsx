@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { getTimes, getMoonIllumination } from "suncalc";
-import { FVG_LAT, FVG_LON, nomeFaseLunare } from "@/lib/astro";
+import { FVG_LAT, FVG_LON, nomeFaseLunare, orariLunaOggi } from "@/lib/astro";
 
 type DatiAstro = {
   albeggio: Date; // crepuscolo civile del mattino ("dawn")
@@ -11,6 +11,8 @@ type DatiAstro = {
   crepuscolo: Date; // crepuscolo civile della sera ("dusk")
   faseLuna: number; // 0-1, vedi lib/astro.ts
   illuminazione: number; // 0-1
+  sorgeLuna: Date | null; // null se la Luna non sorge nel giorno civile odierno, vedi lib/astro.ts
+  tramontaLuna: Date | null; // null se la Luna non tramonta nel giorno civile odierno
 };
 
 // getTimes() tipizza dawn/sunrise/sunset/dusk come Date | null perché alle
@@ -23,6 +25,7 @@ function calcolaOggi(): DatiAstro | null {
   const ora = new Date();
   const t = getTimes(ora, FVG_LAT, FVG_LON);
   const luna = getMoonIllumination(ora);
+  const orariLuna = orariLunaOggi(ora);
   if (!t.dawn || !t.sunrise || !t.sunset || !t.dusk) return null;
   return {
     albeggio: t.dawn,
@@ -31,6 +34,8 @@ function calcolaOggi(): DatiAstro | null {
     crepuscolo: t.dusk,
     faseLuna: luna.phase,
     illuminazione: luna.fraction,
+    sorgeLuna: orariLuna.sorge,
+    tramontaLuna: orariLuna.tramonta,
   };
 }
 
@@ -123,14 +128,33 @@ export function SoleLunaPanel() {
         </div>
       </div>
 
-      <div className="flex items-center justify-between border-t border-line pt-3">
-        <div className="flex items-center gap-2 text-ink-dim">
-          <IconaLuna fase={dati.faseLuna} />
-          <span className="text-sm">{nomeFaseLunare(dati.faseLuna)}</span>
+      <div className="border-t border-line pt-3">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2 text-ink-dim">
+            <IconaLuna fase={dati.faseLuna} />
+            <span className="text-sm">{nomeFaseLunare(dati.faseLuna)}</span>
+          </div>
+          <span className="font-mono text-xs text-ink-faint">
+            {Math.round(dati.illuminazione * 100)}% illuminata
+          </span>
         </div>
-        <span className="font-mono text-xs text-ink-faint">
-          {Math.round(dati.illuminazione * 100)}% illuminata
-        </span>
+
+        <div className="flex items-center justify-between mt-2 font-mono text-xs text-ink-faint">
+          <span>
+            Sorge: <span className="text-ink-dim">{dati.sorgeLuna ? formattaOra(dati.sorgeLuna) : "non oggi"}</span>
+          </span>
+          <span>
+            Tramonta:{" "}
+            <span className="text-ink-dim">{dati.tramontaLuna ? formattaOra(dati.tramontaLuna) : "non oggi"}</span>
+          </span>
+        </div>
+
+        {(!dati.sorgeLuna || !dati.tramontaLuna) && (
+          <p className="text-ink-faint text-[10px] font-mono mt-1.5">
+            La Luna sorge ~50 minuti più tardi ogni giorno: capita che un giorno di calendario non ne veda uno dei
+            due.
+          </p>
+        )}
       </div>
 
       <p className="text-ink-faint text-[10px] font-mono mt-3">

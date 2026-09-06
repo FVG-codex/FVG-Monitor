@@ -22,6 +22,14 @@ export type VoceChangelog = {
 export const CHANGELOG: VoceChangelog[] = [
   {
     data: "06/09/2026",
+    titolo: "Sole e luna: aggiunti sorgere e tramontare della Luna",
+    dettagli: [
+      "Il pannello \"Sole e luna\" mostra ora anche l'orario di sorgere e tramontare della Luna, sotto la fase lunare.",
+      "Alcuni giorni la Luna non sorge o non tramonta (capita circa una volta al mese): in quel caso viene mostrato \"non oggi\" invece di un orario inventato.",
+    ],
+  },
+  {
+    data: "06/09/2026",
     titolo: "Notizie Gorizia: aggiunta La Gazzetta di Gorizia",
     dettagli: [
       "Aggiunta anche La Gazzetta di Gorizia alle notizie di Gorizia — tutte e 4 le fonti previste sono ora attive.",
