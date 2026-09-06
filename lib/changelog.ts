@@ -22,6 +22,20 @@ export type VoceChangelog = {
 export const CHANGELOG: VoceChangelog[] = [
   {
     data: "06/09/2026",
+    titolo: "Farmacie: chiarito l'orario dei turni a cavallo di mezzanotte",
+    dettagli: [
+      "Un turno che inizia oggi e finisce domani mattina ora è scritto per esteso (\"da oggi 00:00 a domani 08:30\") invece della sigla \"(giorno succ.)\", per non sembrare in contraddizione col badge \"Aperta ora\".",
+    ],
+  },
+  {
+    data: "06/09/2026",
+    titolo: "Meteo: emoji per la copertura del cielo in homepage",
+    dettagli: [
+      "Il pannello Meteo di homepage mostra ora un'emoji (☀️ 🌤️ ⛅ 🌦️) accanto alla descrizione del cielo di ciascuna provincia.",
+    ],
+  },
+  {
+    data: "06/09/2026",
     titolo: "Sole e luna: aggiunti sorgere e tramontare della Luna",
     dettagli: [
       "Il pannello \"Sole e luna\" mostra ora anche l'orario di sorgere e tramontare della Luna, sotto la fase lunare.",

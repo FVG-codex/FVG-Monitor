@@ -50,11 +50,30 @@ function orario(iso: string): string {
   return iso.slice(11, 16);
 }
 
+// Segnalato dall'utente il 06/09/2026 (screenshot): una fascia come
+// "Turno 00:00–08:30 (giorno succ.)" si legge facilmente come "finita
+// stamattina alle 8:30" se non si nota la piccola annotazione finale —
+// in evidente contraddizione con il badge "Aperta ora" ancora attivo ben
+// oltre quell'ora (statoApertura() sotto è comunque corretta: la fascia
+// comincia davvero oggi a mezzanotte e finisce davvero domani mattina —
+// verificato sul dato Socrata grezzo per più farmacie, es. "Dr. Di
+// Marino"/Fogliano Redipuglia e "Comunale 1 - S.Andrea"/Gorizia,
+// entrambe con `orari_0_da` = oggi 00:00:00.000 e `orari_0_a` = domani
+// 08:30:00.000, tipo "turno" — un turno di reperibilità/notturno esteso,
+// non un bug di ingestione: `ingestFarmacie()` legge `orari_N_a` dallo
+// STESSO indice N di `orari_N_da`, nessuno scambio possibile). Il
+// problema era quindi solo di leggibilità del testo, non della logica
+// aperta/chiusa: quando la fascia finisce il giorno dopo, l'etichetta
+// ora esplicita "da oggi"/"a domani" su entrambi gli estremi, non
+// un'annotazione facile da non notare in fondo alla riga.
 export function formattaFascia(f: FasciaOraria): string {
   const giornoDa = f.da.slice(0, 10);
-  const finisceDomani = f.a && f.a.slice(0, 10) !== giornoDa;
+  const finisceDomani = f.a !== null && f.a.slice(0, 10) !== giornoDa;
   const etichetta = f.tipo === "turno" ? "Turno" : "Orario";
-  return `${etichetta} ${orario(f.da)}–${f.a ? orario(f.a) : "?"}${finisceDomani ? " (giorno succ.)" : ""}`;
+  if (finisceDomani) {
+    return `${etichetta} da oggi ${orario(f.da)} a domani ${orario(f.a as string)}`;
+  }
+  return `${etichetta} ${orario(f.da)}–${f.a ? orario(f.a) : "?"}`;
 }
 
 // "Aperta ora" / "Chiusa ora" (26/08/2026, richiesto dall'utente).

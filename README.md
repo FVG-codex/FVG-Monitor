@@ -1113,6 +1113,50 @@ in produzione da questa sessione (rete del sandbox non raggiunge
 Supabase) — **da confermare con l'utente** che il pallino torni corretto
 dopo il prossimo aggiornamento della pagina.
 
+### Fix — etichetta oraria ambigua per i turni che finiscono il giorno dopo (06/09/2026)
+
+L'utente ha segnalato — screenshot alla mano, pagina `/farmacie-tutte`,
+provincia di Gorizia — un'apparente incongruenza fra l'orario mostrato e
+il badge di stato: due farmacie ("Dr. Di Marino", Fogliano Redipuglia, e
+"Comunale 1 - S.Andrea", Gorizia) mostravano `Turno 00:00–08:30 (giorno
+succ.)` mentre il badge diceva "Aperta ora" ben oltre le 08:30 — a un
+lettore veloce, "00:00–08:30" sembra un turno mattutino già concluso da
+ore, e la piccola annotazione finale "(giorno succ.)" è facile da non
+notare, creando l'impressione che il sito si stia contraddicendo.
+
+**Verificato sul dato Socrata grezzo prima di ipotizzare un bug** (via
+WebFetch, stesso metodo sempre usato in questo progetto): per entrambe le
+farmacie segnalate, `orari_0_da` = 6 settembre 2026 00:00:00.000 e
+`orari_0_a` = **7 settembre** 2026 08:30:00.000, tipo "turno" — un pattern
+confermato reale e ricorrente nel dataset (trovato identico anche su una
+terza farmacia non segnalata, "Dott.ssa Mario" a Latisana), non un
+artefatto di ingestione: `ingestFarmacie()` legge `orari_N_a` dallo
+STESSO indice `N` di `orari_N_da` per costruzione, nessuno scambio
+possibile fra fasce diverse. Il 6 settembre 2026 è una domenica: il
+pattern è coerente con un turno di reperibilità/notturno esteso che
+copre l'intera notte fino al mattino successivo, quando riprendono gli
+orari ordinari — **lo stato "Aperta ora" mostrato era quindi corretto**,
+non un bug di `statoApertura()`. Il problema era solo di leggibilità del
+testo.
+
+**Fix** (`formattaFascia()` in `lib/farmacie.ts`): quando una fascia
+comincia oggi e finisce il giorno dopo, l'etichetta ora esplicita
+entrambi gli estremi — `Turno da oggi 00:00 a domani 08:30` invece di
+`Turno 00:00–08:30 (giorno succ.)` — impossibile da leggere come "finito
+stamattina". Le fasce che iniziano e finiscono lo stesso giorno (la
+maggioranza) restano invariate nel formato compatto `Turno 08:30–19:00`.
+Verificato con uno script a sé (fascia stesso giorno, fascia a cavallo di
+mezzanotte con i dati reali di "Dr. Di Marino", fascia senza orario di
+fine) e con uno screenshot Chromium headless che riproduce esattamente
+lo scenario segnalato dall'utente (le 4 farmacie del suo screenshot, ora
+"adesso" fissata alle 11:15 per riprodurre la stessa situazione) — il
+badge "Aperta ora" ora si spiega da sé accanto al nuovo testo, senza
+ambiguità.
+
+`npx tsc --noEmit` e `node --check scripts/ingest-light.mjs` puliti.
+**Da confermare con l'utente** dopo il redeploy che la nuova etichetta
+compaia come previsto sulle stesse due farmacie di Gorizia.
+
 ### Fix — la mappa Leaflet copriva il menù ad amburger (27/08/2026, stessa giornata)
 
 Segnalato dall'utente su desktop: aprendo il menù ad amburger sopra la
@@ -2205,6 +2249,62 @@ sotto la riga esistente fase lunare/illuminazione, stesso stile
 del pannello (Sole, verificato in una sessione precedente, invariato).
 
 `npx tsc --noEmit` e `node --check scripts/ingest-light.mjs` puliti.
+
+### Emoji copertura cielo nel pannello Meteo homepage (06/09/2026)
+
+L'utente ha chiesto di usare 4 emoji (☀️⛅🌤️🌦️) accanto alla descrizione
+della copertura nuvolosa nel modulo Meteo di homepage (`MeteoOverview` in
+`components/MeteoPanel.tsx`, la riga di sintesi per provincia).
+
+**Il campo di partenza è testo libero, non un codice strutturato**: `cielo`
+arriva da `CIELO_DESCRIZIONE` del bollettino XML OSMER ARPA FVG
+(`ingestMeteo()` in `scripts/ingest-light.mjs`), una stringa italiana
+libera, non un enum documentato. **Vocabolario verificato via WebFetch su
+più bollettini reali** (30/08, 04/09, 06/09/2026, sia oggi che domani/
+dopodomani per tutte e 4 le zone A5/A6/A7/A9 usate dal sito): negli unici
+bollettini raggiungibili da questa sessione sono comparsi solo "sereno",
+"poco nuvoloso" e "variabile" — un periodo di tempo stabile, non un
+campione che copre l'intero vocabolario possibile.
+
+**Funzione `iconaCielo()`** (nuova, in `components/MeteoPanel.tsx`, non
+solo i tre valori osservati ma un riconoscimento per parola chiave
+contenuta nel testo, case-insensitive — copre anche "nuvoloso"/"molto
+nuvoloso"/"coperto"/"nubi sparse", terminologia standard dei bollettini
+italiani mai vista nel campione raccolto ma prevedibile in un giorno di
+tempo peggiore, per non lasciare il modulo senza icona al primo cielo
+coperto mai osservato finora): 4 livelli sulle 4 emoji scelte dall'utente,
+dal più sereno al più coperto — ☀️ sereno, 🌤️ poco nuvoloso, ⛅ variabile/
+nuvoloso, 🌦️ molto nuvoloso/coperto. Un testo non riconosciuto non mostra
+alcuna icona (`undefined`) invece di sceglierne una a caso — verificato
+con uno script a sé (13 casi: i 3 valori reali osservati, varianti di
+maiuscole/minuscole, i valori "standard" mai visti nel campione, e un
+testo del tutto sconosciuto).
+
+**UI**: l'emoji è un `<span aria-hidden="true">` a sé — decorativa, il
+testo della descrizione resta la fonte primaria dell'informazione per chi
+usa uno screen reader (stessa convenzione già in uso nel resto del sito
+per icone accanto a un'etichetta testuale). Struttura flex a due livelli
+per non rompere il fix responsive del 28/08/2026 su questa stessa riga
+(vedi sopra, "Fix — riga Meteo per provincia non responsive su iPhone"):
+l'emoji ha `flex-shrink-0` (mai troncata), solo lo `<span>` di testo dopo
+di essa ha `min-w-0 truncate` — stessa lezione flessbox del progetto
+applicata di nuovo, qui su un elemento annidato di un livello in più
+rispetto a prima.
+
+**Verifica visiva**: Supabase non è raggiungibile da questa sessione
+(come sempre), quindi il pannello reale mostra solo "Caricamento
+previsioni…" con `next dev`. Verificata la resa dell'icona accanto al
+testo con una pagina di prova temporanea (dati finti, stessa identica
+struttura JSX della riga reale, eliminata subito dopo lo screenshot,
+mai parte della consegna) — icona e testo allineati correttamente, il
+troncamento del testo lungo continua a funzionare, nessuna icona mostrata
+per il caso "non riconosciuto".
+
+`npx tsc --noEmit` e `node --check scripts/ingest-light.mjs` puliti.
+**Non ancora vista dall'utente in produzione** — da confermare dopo il
+redeploy, in particolare il giorno in cui il bollettino OSMER userà per
+la prima volta un valore mai osservato nel campione di questa sessione
+("nuvoloso"/"molto nuvoloso"/"coperto"/"nubi sparse").
 
 ## Notizie locali per provincia (05/09/2026)
 

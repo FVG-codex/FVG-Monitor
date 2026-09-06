@@ -25,6 +25,37 @@ type MeteoData = {
   ieri: Record<string, { tmin: string | null; tmax: string | null }>;
 };
 
+/**
+ * Emoji rappresentativa della copertura del cielo, a partire dal testo
+ * libero `CIELO_DESCRIZIONE` del bollettino OSMER ARPA FVG (non un codice
+ * strutturato — vedi `ingestMeteo()` in `scripts/ingest-light.mjs`, campo
+ * `cielo`).
+ *
+ * Vocabolario verificato via WebFetch su più bollettini reali (30/08,
+ * 04/09, 06/09/2026): "sereno", "poco nuvoloso" e "variabile" sono gli
+ * unici tre valori osservati nel campione raccolto. "Nuvoloso"/"molto
+ * nuvoloso"/"coperto" (terminologia standard dei bollettini meteo
+ * italiani, mai osservata direttamente in questo campione, probabilmente
+ * per il periodo di tempo stabile in cui è stato raccolto) sono comunque
+ * gestiti — riconoscimento per parola chiave contenuta nel testo
+ * (case-insensitive), non un elenco fisso di stringhe esatte, per non
+ * rompersi al primo giorno di cielo più coperto mai visto nel campione.
+ *
+ * 4 livelli, dal più sereno al più coperto, sulle 4 emoji scelte
+ * dall'utente (06/09/2026): ☀️ sereno, 🌤️ poco nuvoloso, ⛅ variabile/
+ * nuvoloso, 🌦️ molto nuvoloso/coperto. Un testo non riconosciuto non
+ * mostra alcuna icona (`undefined`) invece di sceglierne una a caso.
+ */
+export function iconaCielo(cielo: string | null | undefined): string | undefined {
+  if (!cielo) return undefined;
+  const testo = cielo.toLowerCase();
+  if (testo.includes("sereno")) return "☀️";
+  if (testo.includes("poco nuvoloso")) return "🌤️";
+  if (testo.includes("molto nuvoloso") || testo.includes("coperto")) return "🌦️";
+  if (testo.includes("variabile") || testo.includes("nuvoloso") || testo.includes("nubi sparse")) return "⛅";
+  return undefined;
+}
+
 function useMeteoData() {
   const [dati, setDati] = useState<MeteoData | null>(null);
   const [stato, setStato] = useState<"loading" | "ready" | "error">("loading");
@@ -83,6 +114,7 @@ export function MeteoOverview() {
         <div className="space-y-0">
           {PROVINCE_LIST.map((p, i) => {
             const c = domani.per_citta[p.slug];
+            const icona = c ? iconaCielo(c.cielo) : undefined;
             return (
               <a
                 key={p.slug}
@@ -107,8 +139,19 @@ export function MeteoOverview() {
                         contenuto (min-width:auto di default), ed è
                         quello che spingeva badge/link fuori dallo
                         schermo su iPhone. Il range di temperatura resta
-                        un elemento a sé, mai troncato. */}
-                    <span className="text-ink-dim flex-1 min-w-0 truncate">{c.cielo}</span>
+                        un elemento a sé, mai troncato. L'emoji (06/09/2026)
+                        è un `<span>` a sé con `flex-shrink-0`, mai
+                        troncabile — solo il testo dopo di essa si accorcia
+                        (min-w-0 di nuovo sul suo span interno, stessa
+                        lezione flexbox applicata due volte di seguito). */}
+                    <span className="text-ink-dim flex-1 min-w-0 flex items-center gap-1.5">
+                      {icona && (
+                        <span aria-hidden="true" className="flex-shrink-0">
+                          {icona}
+                        </span>
+                      )}
+                      <span className="min-w-0 truncate">{c.cielo}</span>
+                    </span>
                     {c.tmin && c.tmax && (
                       <span className="font-mono text-ink-faint text-xs flex-shrink-0 whitespace-nowrap">
                         {c.tmin}–{c.tmax}°C
