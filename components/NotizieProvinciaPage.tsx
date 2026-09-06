@@ -20,10 +20,11 @@ function tempoRelativo(dataStr: string): string {
 /**
  * Notizie locali per provincia (05/09/2026) — distinta dal pannello ANSA
  * regionale di homepage (NotiziePanel.tsx, invariato): qui si aggregano
- * fonti iper-locali, una provincia alla volta. Solo Trieste è attiva per
- * ora (PROVINCE_NOTIZIE_ATTIVE) — le altre 3 mostrano un messaggio "in
- * arrivo" invece di un tab disabilitato, così restano comunque
- * esplorabili e il layout non cambia quando si aggiungono.
+ * fonti iper-locali, una provincia alla volta. Trieste e Udine sono
+ * attive (PROVINCE_NOTIZIE_ATTIVE, Udine aggiunta il 06/09/2026) — le
+ * altre 2 mostrano un messaggio "in arrivo" invece di un tab
+ * disabilitato, così restano comunque esplorabili e il layout non
+ * cambia quando si aggiungono.
  */
 export function NotizieProvinciaPage() {
   const [provincia, setProvincia] = useState<ProvinciaSlug>("trieste");

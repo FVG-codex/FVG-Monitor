@@ -268,7 +268,8 @@ async function ingestNotizie() {
 // distinta dal pannello ANSA regionale sopra (che resta invariato,
 // homepage-only). Qui si aggregano fonti iper-locali per ciascuna delle
 // 4 province, una provincia alla volta su richiesta dell'utente — si
-// parte da Trieste, le altre 3 arriveranno in sessioni successive.
+// parte da Trieste (vedi sotto), Udine aggiunta il 06/09/2026 (vedi più
+// sotto), Gorizia e Pordenone arriveranno in sessioni successive.
 //
 // L'utente ha indicato 4 fonti per Trieste; verificate una per una
 // prima di scrivere questo modulo (vedi claude/fvgmonitor-stato.md per
@@ -305,7 +306,9 @@ async function ingestNotizie() {
 //     irraggiungibili). **Sbloccata il 05/09/2026 grazie all'utente**,
 //     che ha fornito l'outerHTML reale della pagina "Ultim'ora Trieste"
 //     (`/notizie/tutte/`) dal proprio browser — INTEGRATA via scraping
-//     HTML, vedi `ingestNotizieFonteTriestePrima()` sotto. **Rischio
+//     HTML, vedi `ingestNotizieFonteCitynews()` sotto (generalizzata il
+//     06/09/2026 per essere riusata anche da UdineToday.it, vedi sotto).
+//     **Rischio
 //     concreto e non risolvibile da questa sessione**: un tentativo di
 //     WebFetch diretto sulla stessa pagina, fatto per verificare se un
 //     fetch server-side (come quello di GitHub Actions) riesce dove
@@ -327,13 +330,14 @@ async function ingestNotizie() {
 // produzione, non un selettore indovinato da un riassunto.
 //
 // Struttura pensata per l'estensione: ogni fonte è un oggetto
-// { fonte, fonte_url, url?, tipo? } (RaiNews usa `tagRainews` al posto
-// di `url`, vedi sotto — non fa un fetch diretto su un indirizzo ma
-// chiama un'API con un parametro), ogni provincia un array di fonti —
-// `tipo: "rainews"` / `tipo: "triesteprima"` selezionano il gestore
-// dedicato, altrimenti si assume un feed RSS standard. Quando si
-// sblocca l'ultima fonte Trieste (o si passa a Udine/Gorizia/Pordenone),
-// basta aggiungerla qui, nessuna modifica altrove.
+// { fonte, fonte_url, url?, tipo?, baseUrl? } (RaiNews usa `tagRainews`
+// al posto di `url`, vedi sotto — non fa un fetch diretto su un
+// indirizzo ma chiama un'API con un parametro; le fonti `tipo: "citynews"`
+// hanno anche `baseUrl` per ricostruire i link relativi, vedi sotto),
+// ogni provincia un array di fonti — `tipo: "rainews"` / `tipo:
+// "citynews"` selezionano il gestore dedicato, altrimenti si assume un
+// feed RSS standard. Per aggiungere una fonte o una provincia nuova
+// basta estendere qui, nessuna modifica altrove.
 const FONTI_NOTIZIE_TRIESTE = [
   {
     fonte: "Trieste All News",
@@ -352,11 +356,82 @@ const FONTI_NOTIZIE_TRIESTE = [
     fonte: "TriestePrima.it",
     fonte_url: "https://www.triesteprima.it/",
     url: "https://www.triesteprima.it/notizie/tutte/",
-    tipo: "triesteprima",
+    baseUrl: "https://www.triesteprima.it",
+    tipo: "citynews",
   },
 ];
 
-const PROVINCE_NOTIZIE = [{ slug: "trieste", fonti: FONTI_NOTIZIE_TRIESTE }];
+// Udine (06/09/2026) — 5 fonti indicate dall'utente, verificate una per
+// una prima di scrivere questo modulo (vedi claude/fvgmonitor-stato.md
+// per il dettaglio completo):
+//   - UdineToday.it: stessa rete Citynews di TriestePrima.it (stesso
+//     tema, stessa identica struttura di URL "/notizie/tutte/") —
+//     bloccata sia dal fetch/curl diretto di questo sandbox sia da
+//     WebFetch stesso (403), esattamente come TriestePrima.it prima
+//     dell'intervento dell'utente. **Riusati gli stessi selettori già
+//     verificati su TriestePrima.it** (`ingestNotizieFonteCitynews`,
+//     generalizzata dalla versione precedente specifica per
+//     TriestePrima.it) come scommessa ragionevole data l'identità di
+//     piattaforma — non ancora confermata su un outerHTML reale di
+//     QUESTO dominio specifico. Se il primo run reale desse 0 elementi,
+//     servirà l'outerHTML reale della pagina da questo dominio per
+//     confermare/correggere i selettori (nessun rischio per le altre
+//     fonti, stesso fallback "array vuoto" di sempre).
+//   - UDINE.news (udineoggi.news): feed RSS 2.0 standard verificato via
+//     WebFetch su `/feed/` — stesso gestore generico `ingestNotizieFonteRss`
+//     già usato per ANSA/Trieste All News.
+//   - Telefriuli.it: l'utente ha indicato la sola categoria "/cronaca/"
+//     — verificato che esiste un feed RSS dedicato a quella categoria
+//     (`/cronaca/feed/`, contenuto diverso dal feed generale del sito),
+//     usato quello invece del feed sitewide.
+//   - PrimaUdine.it: l'utente ha indicato la categoria "/category/in-evidenza"
+//     ma il sito non pubblica un feed RSS per singola categoria (provato
+//     sia `/category/in-evidenza/feed/` sia `?feed=rss2`, entrambi 404) —
+//     esiste solo un feed unico per l'intero sito (`/feed/`, verificato
+//     via WebFetch), usato come approssimazione più ampia della sola
+//     "in evidenza". Se l'utente preferisce restare filtrato alla sola
+//     categoria, servirà l'outerHTML reale della pagina categoria per
+//     scrivere uno scraper cheerio dedicato (WebFetch non blocca qui,
+//     ma riassume in markdown e non basta per selettori di produzione,
+//     stessa lezione di sempre).
+//   - RaiNews TGR FVG: stessa API di ricerca già integrata per Trieste
+//     (vedi `ingestNotizieFonteRainews` sotto), solo `tagRainews`
+//     diverso — l'utente ha fornito direttamente l'URL con il tag Udine.
+const FONTI_NOTIZIE_UDINE = [
+  {
+    fonte: "UdineToday.it",
+    fonte_url: "https://www.udinetoday.it/",
+    url: "https://www.udinetoday.it/notizie/tutte/",
+    baseUrl: "https://www.udinetoday.it",
+    tipo: "citynews",
+  },
+  {
+    fonte: "UDINE.news",
+    fonte_url: "https://udineoggi.news/",
+    url: "https://udineoggi.news/feed/",
+  },
+  {
+    fonte: "Telefriuli",
+    fonte_url: "https://www.telefriuli.it/cronaca/",
+    url: "https://www.telefriuli.it/cronaca/feed/",
+  },
+  {
+    fonte: "PrimaUdine.it",
+    fonte_url: "https://primaudine.it/category/in-evidenza",
+    url: "https://primaudine.it/feed/",
+  },
+  {
+    fonte: "RaiNews TGR FVG",
+    fonte_url: "https://www.rainews.it/tgr/fvg",
+    tagRainews: "Udine|Tag-104004c3-3848-4a0e-b70b-470105b903e9",
+    tipo: "rainews",
+  },
+];
+
+const PROVINCE_NOTIZIE = [
+  { slug: "trieste", fonti: FONTI_NOTIZIE_TRIESTE },
+  { slug: "udine", fonti: FONTI_NOTIZIE_UDINE },
+];
 
 // Stesso parsing RSS di ingestNotizie() (ANSA) sopra — le fonti locali
 // finora verificate sono anch'esse feed RSS 2.0 standard, nessuna
@@ -458,21 +533,23 @@ async function ingestNotizieFonteRainews(fonte) {
     }));
 }
 
-// TriestePrima.it (Citynews) mostra l'ora in tre formati diversi,
-// verificati sull'outerHTML reale fornito dall'utente il 05/09/2026
-// (pagina "Ultim'ora Trieste", /notizie/tutte/): "HH:MM" per le notizie
-// di oggi (nessuna data esplicita — risolta con la data odierna in
-// Europe/Rome, dato che questo script gira su GitHub Actions in UTC),
-// "gio, HH:MM" / "mer, HH:MM" ecc. per notizie di giorni precedenti
-// nella stessa settimana (giorno abbreviato italiano, calcolato
-// contando all'indietro dal giorno corrente), e "00:00" per le voci
-// sindacate "/partner/.../....feed" ("Notizie dalla giunta", comunicati
-// della Regione) — trattate come una notizia qualunque di oggi a
-// mezzanotte, nessun filtro: sono comunque elencate dal sito nella
-// stessa pagina "Ultim'ora", non è compito di questo aggregatore fare
-// una scelta editoriale su cosa sia "vera" cronaca. Offset Italia/UTC
-// approssimato per mese via `offsetItaliaPerMese()` sotto (+02:00
-// aprile-settembre, +01:00 il resto dell'anno) — sufficiente per
+// Rete Citynews (TriestePrima.it, verificata il 05/09/2026; UdineToday.it,
+// stessa piattaforma, aggiunta il 06/09/2026 — vedi nota su
+// FONTI_NOTIZIE_UDINE sopra) mostra l'ora in tre formati diversi,
+// verificati sull'outerHTML reale di TriestePrima.it fornito dall'utente
+// il 05/09/2026 (pagina "Ultim'ora Trieste", /notizie/tutte/): "HH:MM"
+// per le notizie di oggi (nessuna data esplicita — risolta con la data
+// odierna in Europe/Rome, dato che questo script gira su GitHub Actions
+// in UTC), "gio, HH:MM" / "mer, HH:MM" ecc. per notizie di giorni
+// precedenti nella stessa settimana (giorno abbreviato italiano,
+// calcolato contando all'indietro dal giorno corrente), e "00:00" per le
+// voci sindacate "/partner/.../....feed" ("Notizie dalla giunta",
+// comunicati della Regione) — trattate come una notizia qualunque di
+// oggi a mezzanotte, nessun filtro: sono comunque elencate dal sito
+// nella stessa pagina "Ultim'ora", non è compito di questo aggregatore
+// fare una scelta editoriale su cosa sia "vera" cronaca. Offset
+// Italia/UTC approssimato per mese via `offsetItaliaPerMese()` sotto
+// (+02:00 aprile-settembre, +01:00 il resto dell'anno) — sufficiente per
 // ordinare le notizie fra loro, non per un orario al minuto esatto nei
 // giorni di cambio ora legale. (RaiNews non usa più questa
 // approssimazione dal 06/09/2026: la sua nuova fonte via API restituisce
@@ -485,7 +562,7 @@ function offsetItaliaPerMese() {
   return meseIdx >= 3 && meseIdx <= 8 ? "+02:00" : "+01:00";
 }
 
-function parseDataTriestePrima(testoData) {
+function parseDataCitynews(testoData) {
   if (!testoData) return null;
   const t = testoData.trim().toLowerCase().replace(/\s+/g, " ");
 
@@ -512,12 +589,12 @@ function parseDataTriestePrima(testoData) {
   return null;
 }
 
-async function ingestNotizieFonteTriestePrima(fonte) {
+async function ingestNotizieFonteCitynews(fonte) {
   const res = await fetchConRetry(fonte.url, {
     headers: { "User-Agent": "Mozilla/5.0 (compatible; FVGMonitorBot/1.0)" },
   });
   if (!res.ok) {
-    console.warn(`TriestePrima.it ${fonte.fonte} non disponibile (HTTP ${res.status})`);
+    console.warn(`${fonte.fonte} non disponibile (HTTP ${res.status})`);
     return [];
   }
   const $ = cheerio.load(await res.text());
@@ -528,11 +605,11 @@ async function ingestNotizieFonteTriestePrima(fonte) {
     const href = $link.attr("href");
     const titolo = $link.attr("aria-label")?.trim();
     const dataTesto = $el.find(".c-story__byline span").first().text();
-    const data = parseDataTriestePrima(dataTesto);
+    const data = parseDataCitynews(dataTesto);
     if (!href || !titolo || !data) return;
     items.push({
       titolo,
-      link: href.startsWith("http") ? href : `https://www.triesteprima.it${href}`,
+      link: href.startsWith("http") ? href : `${fonte.baseUrl}${href}`,
       data,
       fonte: fonte.fonte,
     });
@@ -544,7 +621,7 @@ async function ingestNotizieProvincia(provinciaSlug, fonti) {
   const risultati = await Promise.allSettled(
     fonti.map((f) => {
       if (f.tipo === "rainews") return ingestNotizieFonteRainews(f);
-      if (f.tipo === "triesteprima") return ingestNotizieFonteTriestePrima(f);
+      if (f.tipo === "citynews") return ingestNotizieFonteCitynews(f);
       return ingestNotizieFonteRss(f);
     })
   );

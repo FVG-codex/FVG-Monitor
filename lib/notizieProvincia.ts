@@ -12,11 +12,11 @@ export type SnapshotNotizieProvincia = {
   fonti: { fonte: string; fonte_url: string }[];
 };
 
-// Province già coperte da questa sezione (05/09/2026, richiesta
-// dell'utente): si parte da Trieste, le altre 3 arriveranno una alla
-// volta in sessioni successive — vedi PROVINCE_NOTIZIE in
-// scripts/ingest-light.mjs per le fonti configurate per ciascuna.
+// Province già coperte da questa sezione: Trieste (05/09/2026), Udine
+// (06/09/2026) — Gorizia e Pordenone arriveranno una alla volta in
+// sessioni successive, su richiesta dell'utente — vedi PROVINCE_NOTIZIE
+// in scripts/ingest-light.mjs per le fonti configurate per ciascuna.
 // Tenuto come lista esplicita invece che derivato da PROVINCE_LIST
 // proprio perché il rollout è volutamente parziale, non un elenco
 // completo in attesa di dati.
-export const PROVINCE_NOTIZIE_ATTIVE: ProvinciaSlug[] = ["trieste"];
+export const PROVINCE_NOTIZIE_ATTIVE: ProvinciaSlug[] = ["trieste", "udine"];
