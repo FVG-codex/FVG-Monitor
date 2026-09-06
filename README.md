@@ -2435,6 +2435,23 @@ Dopo Trieste, l'utente ha chiesto la seconda provincia con 5 fonti indicate espl
 
 `npx tsc --noEmit` e `node --check scripts/ingest-light.mjs` puliti. **Non ancora testato/confermato in produzione**: nessuna delle 5 fonti Udine ha mai girato su un'esecuzione reale — da verificare in particolare che UdineToday.it non risulti sistematicamente a 0 (unico vero rischio, vedi punto 5 sopra) e che la snapshot `notizie-provincia:udine` si popoli e compaia correttamente nella tab "Udine" di `/notizie`.
 
+## Notizie locali — Gorizia (06/09/2026)
+
+L'utente ha indicato 4 fonti: GORIZIA.news (goriziaoggi.news), Il Goriziano (ilgoriziano.it, categoria "/notizie/cronaca/"), La Gazzetta di Gorizia (lagazzettadigorizia.it) e di nuovo RaiNews TGR FVG (URL con il tag Gorizia già estratto dall'utente).
+
+**Verifica prima di scrivere codice**: inizialmente solo 2 delle 4 fonti sono risultate verificabili da questa sessione; una terza è stata sbloccata più tardi lo stesso giorno grazie all'outerHTML fornito dall'utente.
+
+1. **GORIZIA.news** — ✅ feed RSS 2.0 standard verificato via WebFetch su `/feed/`, stessa rete "oggi.news" già usata per UDINE.news.
+2. **RaiNews TGR FVG** — ✅ stessa API già integrata per Trieste e Udine, solo `tagRainews` diverso.
+3. **Il Goriziano** — ❌→✅ **inizialmente dominio del tutto irraggiungibile da questa sessione**, non solo per fetch/curl diretto ma anche per WebFetch stesso (timeout già sul recupero di `robots.txt`, verificato con un secondo tentativo per escludere un problema transitorio) — un blocco più severo del semplice "403" già visto per la rete Citynews (dove almeno WebFetch riusciva a raggiungere il dominio), più simile al blocco totale già visto per `comitati.fisi.org`/`gare.lnd.it`/`realtime.tplfvg.it`. **Sbloccata lo stesso giorno**: l'utente ha incollato l'outerHTML reale della pagina `/notizie/cronaca/` (salvato subito su disco), permettendo di scrivere uno scraper cheerio dedicato (`ingestNotizieFonteIlGoriziano`) senza bisogno di raggiungere il dominio da qui. Struttura: un articolo "in evidenza" (`article#copertina`, wrappato da un `<a>`) più una griglia di `article.col-12.col-md-4` (con l'`<a>` come figlio) — un solo selettore per il titolo (`header h2, header h3`) copre entrambi i casi. **Nessuna data/ora esplicita utilizzabile** vicino ai titoli in griglia (solo l'articolo in evidenza ne mostra una, e comunque solo il giorno) — usata quindi la data incorporata alla fine dello slug dell'URL (es. `-05-settembre-2026`, anche con giorno senza zero iniziale come `-5-settembre-2026`), con ora fissata a mezzogiorno Europe/Rome per mancanza di un dato più preciso. Verificato con uno script cheerio a sé contro l'outerHTML reale: 10/10 articoli estratti correttamente (titolo, link assoluto senza il doppio slash che il sito genera per l'articolo in evidenza, data), incluso il caso giorno singolo.
+4. **La Gazzetta di Gorizia** — ❌→✅ stesso blocco totale de Il Goriziano prima dello sblocco. **Sbloccata anch'essa lo stesso giorno**, con un percorso più semplice: l'utente ha incollato direttamente l'XML grezzo restituito da `/feed/`, rivelando che è un feed RSS 2.0 WordPress standard (stesso formato di UDINE.news/GORIZIA.news, `pubDate` in RFC 2822, nessuno scraping necessario) — gestita da `ingestNotizieFonteRss()` come tutte le altre fonti RSS del progetto, nessun codice dedicato. Verificato con uno script a sé (fast-xml-parser contro l'XML reale, incluse le entità numeriche nel titolo del canale, già gestite da `decodeEntitaHtml()`).
+
+**Tutte e 4 le fonti richieste dall'utente sono ora attive.**
+
+**Implementazione**: `FONTI_NOTIZIE_GORIZIA` in `scripts/ingest-light.mjs` (4/4 fonti indicate), aggiunta a `PROVINCE_NOTIZIE`; `PROVINCE_NOTIZIE_ATTIVE` in `lib/notizieProvincia.ts` estesa a `["trieste", "udine", "gorizia"]`. Gorizia è la prima provincia di questo modulo ad arrivare a copertura completa delle fonti richieste, dopo un rollout parziale iniziale — stesso principio "attivare con le fonti pronte, aggiungere le altre quando sbloccate" già seguito per TriesteCafe.it (Trieste, ancora mancante) e PrimaUdine.it (Udine, approssimata al feed generale).
+
+`npx tsc --noEmit` e `node --check scripts/ingest-light.mjs` puliti. **Non ancora testato/confermato in produzione**: da verificare che la snapshot `notizie-provincia:gorizia` si popoli con tutte e 4 le fonti (in particolare Il Goriziano, unica verificata solo su un campione HTML fornito dall'utente e non sulla risposta HTTP grezza di GitHub Actions) e compaia correttamente nella tab "Gorizia" di `/notizie`.
+
 ## Google Analytics (05/09/2026)
 
 L'utente ha chiesto di integrare Google Analytics (GA4), fornendo direttamente lo snippet standard di gtag.js con l'id misurazione `G-BJT393WSQT`.

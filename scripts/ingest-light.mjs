@@ -268,8 +268,8 @@ async function ingestNotizie() {
 // distinta dal pannello ANSA regionale sopra (che resta invariato,
 // homepage-only). Qui si aggregano fonti iper-locali per ciascuna delle
 // 4 province, una provincia alla volta su richiesta dell'utente — si
-// parte da Trieste (vedi sotto), Udine aggiunta il 06/09/2026 (vedi più
-// sotto), Gorizia e Pordenone arriveranno in sessioni successive.
+// parte da Trieste (vedi sotto), Udine e Gorizia aggiunte il 06/09/2026
+// (vedi più sotto), Pordenone arriverà in una sessione successiva.
 //
 // L'utente ha indicato 4 fonti per Trieste; verificate una per una
 // prima di scrivere questo modulo (vedi claude/fvgmonitor-stato.md per
@@ -428,9 +428,79 @@ const FONTI_NOTIZIE_UDINE = [
   },
 ];
 
+// Gorizia (06/09/2026) — 4 fonti indicate dall'utente:
+//   - GORIZIA.news (goriziaoggi.news): feed RSS 2.0 standard verificato
+//     via WebFetch su `/feed/` — stessa rete "oggi.news" di UDINE.news.
+//   - RaiNews TGR FVG: stessa API già integrata per Trieste/Udine, solo
+//     `tagRainews` diverso — l'utente ha fornito l'URL con il tag
+//     Gorizia già estratto.
+//   - Il Goriziano (ilgoriziano.it): **dominio del tutto irraggiungibile
+//     da questa sessione** (non solo 403 come la rete Citynews, ma
+//     timeout già sul recupero di robots.txt, stesso blocco totale già
+//     visto per `comitati.fisi.org`/`gare.lnd.it`/`realtime.tplfvg.it`) —
+//     non è stato possibile verificare nemmeno l'esistenza di un feed
+//     RSS. **Sbloccata lo stesso giorno**: l'utente ha incollato
+//     l'outerHTML reale della pagina "/notizie/cronaca/" (salvato subito
+//     su disco, stessa lezione operativa annotata sopra per RaiNews), che
+//     ha permesso di scrivere uno scraper cheerio dedicato
+//     (`ingestNotizieFonteIlGoriziano`) senza bisogno di raggiungere il
+//     dominio da qui. Struttura verificata: un articolo "in evidenza"
+//     (`article#copertina`, wrappato da un `<a>` invece di contenerlo) più
+//     una griglia di `article.col-12.col-md-4` (ognuno con l'`<a>` come
+//     figlio) — un solo selettore (`header h2, header h3`) copre entrambi
+//     i casi per il titolo. **Nessuna data/ora esplicita vicino al
+//     titolo** per gli articoli in griglia (solo per quello in evidenza,
+//     e comunque solo il giorno, es. "05 Set 2026 • Salvatore Ferrara") —
+//     l'unica data disponibile in modo uniforme per ogni notizia è quella
+//     incorporata alla fine dello slug dell'URL (es. ".../scuola-venezian
+//     -05-settembre-2026", ".../attivita-economiche-5-settembre-2026" —
+//     giorno con o senza zero iniziale), usata come unica fonte con ora
+//     fissata a mezzogiorno (12:00) Europe/Rome per mancanza di un dato
+//     più preciso (`parseDataDaSlugIlGoriziano()` sotto). Verificato con
+//     uno script cheerio a sé contro l'outerHTML reale fornito
+//     dall'utente: 10/10 articoli estratti correttamente (titolo, link
+//     assoluto senza doppio slash, data), incluso il caso giorno singolo.
+//   - La Gazzetta di Gorizia (lagazzettadigorizia.it): stesso blocco
+//     totale de Il Goriziano prima dello sblocco — **sbloccata anch'essa
+//     lo stesso giorno**, ma con un percorso più semplice: l'utente ha
+//     incollato direttamente l'XML grezzo di `/feed/`, rivelando che è un
+//     feed RSS 2.0 WordPress standard (stesso identico formato di
+//     UDINE.news/GORIZIA.news, `pubDate` in formato RFC 2822, già
+//     parsabile da `new Date()`) — nessuno scraper dedicato necessario,
+//     gestita da `ingestNotizieFonteRss()` come tutte le altre fonti RSS
+//     del progetto. Verificato con un piccolo script a sé (fast-xml-parser
+//     contro l'XML reale, incluse le entità numeriche nel titolo del
+//     canale, es. "&#8211;", già gestite da `decodeEntitaHtml()`).
+//     **Tutte e 4 le fonti richieste dall'utente sono ora attive.**
+const FONTI_NOTIZIE_GORIZIA = [
+  {
+    fonte: "GORIZIA.news",
+    fonte_url: "https://goriziaoggi.news/",
+    url: "https://goriziaoggi.news/feed/",
+  },
+  {
+    fonte: "RaiNews TGR FVG",
+    fonte_url: "https://www.rainews.it/tgr/fvg",
+    tagRainews: "Gorizia|Tag-77ba87cb-7f62-4d5f-9295-19ed21525cb4",
+    tipo: "rainews",
+  },
+  {
+    fonte: "Il Goriziano",
+    fonte_url: "https://www.ilgoriziano.it/notizie/cronaca/",
+    url: "https://www.ilgoriziano.it/notizie/cronaca/",
+    tipo: "ilgoriziano",
+  },
+  {
+    fonte: "La Gazzetta di Gorizia",
+    fonte_url: "https://www.lagazzettadigorizia.it/",
+    url: "https://www.lagazzettadigorizia.it/feed/",
+  },
+];
+
 const PROVINCE_NOTIZIE = [
   { slug: "trieste", fonti: FONTI_NOTIZIE_TRIESTE },
   { slug: "udine", fonti: FONTI_NOTIZIE_UDINE },
+  { slug: "gorizia", fonti: FONTI_NOTIZIE_GORIZIA },
 ];
 
 // Stesso parsing RSS di ingestNotizie() (ANSA) sopra — le fonti locali
@@ -617,11 +687,74 @@ async function ingestNotizieFonteCitynews(fonte) {
   return items;
 }
 
+const MESI_ITA_NOTIZIE = {
+  gennaio: 0, febbraio: 1, marzo: 2, aprile: 3, maggio: 4, giugno: 5,
+  luglio: 6, agosto: 7, settembre: 8, ottobre: 9, novembre: 10, dicembre: 11,
+};
+
+// Vedi il commento sopra FONTI_NOTIZIE_GORIZIA per il contesto completo
+// di questa fonte (sbloccata il 06/09/2026 grazie all'outerHTML fornito
+// dall'utente). Nessuna data/ora esplicita disponibile per gli articoli
+// in griglia: si usa la data incorporata alla fine dello slug dell'URL
+// (es. "-05-settembre-2026" o "-5-settembre-2026", giorno con o senza
+// zero iniziale), con ora fissata a mezzogiorno Europe/Rome — sufficiente
+// per l'ordinamento fra notizie, non per un "quanto tempo fa" preciso.
+function parseDataDaSlugIlGoriziano(href) {
+  if (!href) return null;
+  const match = href.match(/-(\d{1,2})-([a-zàèéìòù]+)-(\d{4})\/?$/i);
+  if (!match) return null;
+  const [, giornoStr, meseNome, annoStr] = match;
+  const mese = MESI_ITA_NOTIZIE[meseNome.toLowerCase()];
+  if (mese === undefined) return null;
+  const giorno = Number(giornoStr);
+  const anno = Number(annoStr);
+  const dataStr = `${anno}-${String(mese + 1).padStart(2, "0")}-${String(giorno).padStart(2, "0")}`;
+  return `${dataStr}T12:00:00${offsetItaliaPerMese()}`;
+}
+
+// Il Goriziano — struttura verificata su outerHTML reale il 06/09/2026:
+// un articolo "in evidenza" (`article#copertina`, wrappato da un `<a>`
+// invece di contenerlo) più una griglia di `article.col-12.col-md-4`
+// (ognuno con l'`<a>` come figlio) — gestiti con lo stesso selettore
+// `main article` più un controllo su dove si trova il link.
+async function ingestNotizieFonteIlGoriziano(fonte) {
+  const res = await fetchConRetry(fonte.url, {
+    headers: { "User-Agent": "Mozilla/5.0 (compatible; FVGMonitorBot/1.0)" },
+  });
+  if (!res.ok) {
+    console.warn(`${fonte.fonte} non disponibile (HTTP ${res.status})`);
+    return [];
+  }
+  const $ = cheerio.load(await res.text());
+  const items = [];
+  $("main article").each((_, el) => {
+    const $article = $(el);
+    const $parentLink = $article.parent("a");
+    const href = $parentLink.length
+      ? $parentLink.attr("href")
+      : $article.find('a[href*="/articolo/"]').first().attr("href");
+    const titolo = $article.find("header h2, header h3").first().text().trim();
+    const data = parseDataDaSlugIlGoriziano(href);
+    if (!href || !titolo || !data) return;
+    items.push({
+      titolo,
+      // Il sito genera a volte un doppio slash dopo il dominio
+      // (osservato sull'articolo "in evidenza" nell'outerHTML fornito
+      // dall'utente) — normalizzato qui per pulizia del link mostrato.
+      link: href.replace(/([^:]\/)\/+/g, "$1"),
+      data,
+      fonte: fonte.fonte,
+    });
+  });
+  return items;
+}
+
 async function ingestNotizieProvincia(provinciaSlug, fonti) {
   const risultati = await Promise.allSettled(
     fonti.map((f) => {
       if (f.tipo === "rainews") return ingestNotizieFonteRainews(f);
       if (f.tipo === "citynews") return ingestNotizieFonteCitynews(f);
+      if (f.tipo === "ilgoriziano") return ingestNotizieFonteIlGoriziano(f);
       return ingestNotizieFonteRss(f);
     })
   );

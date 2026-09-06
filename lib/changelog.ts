@@ -22,6 +22,27 @@ export type VoceChangelog = {
 export const CHANGELOG: VoceChangelog[] = [
   {
     data: "06/09/2026",
+    titolo: "Notizie Gorizia: aggiunta La Gazzetta di Gorizia",
+    dettagli: [
+      "Aggiunta anche La Gazzetta di Gorizia alle notizie di Gorizia — tutte e 4 le fonti previste sono ora attive.",
+    ],
+  },
+  {
+    data: "06/09/2026",
+    titolo: "Notizie Gorizia: aggiunto Il Goriziano",
+    dettagli: [
+      "Aggiunta anche la fonte Il Goriziano alle notizie di Gorizia (3 fonti su 4 ora attive). Resta da aggiungere La Gazzetta di Gorizia.",
+    ],
+  },
+  {
+    data: "06/09/2026",
+    titolo: "Notizie: aggiunta la provincia di Gorizia",
+    dettagli: [
+      "La sezione Notizie ora copre anche Gorizia, con GORIZIA.news e RaiNews TGR FVG. Il Goriziano e La Gazzetta di Gorizia si aggiungeranno appena verificate.",
+    ],
+  },
+  {
+    data: "06/09/2026",
     titolo: "Notizie: aggiunta la provincia di Udine",
     dettagli: [
       "La sezione Notizie ora copre anche Udine, con 5 fonti: UdineToday.it, UDINE.news, Telefriuli, PrimaUdine.it e RaiNews TGR FVG. Gorizia e Pordenone seguiranno in futuro.",
