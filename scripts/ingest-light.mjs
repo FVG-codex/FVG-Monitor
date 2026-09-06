@@ -560,6 +560,19 @@ async function ingestNotizieProvincia(provinciaSlug, fonti) {
     }
   });
 
+  // Log diagnostico temporaneo (06/09/2026) — la riga di log finale sotto
+  // riporta solo il totale aggregato dopo il taglio a 30, che non basta a
+  // capire se una singola fonte (es. RaiNews TGR FVG) contribuisce 0
+  // elementi per un errore di fetch/parsing, oppure ne produce alcuni che
+  // semplicemente non rientrano nel taglio. Da rimuovere una volta chiarita
+  // la causa del problema RaiNews segnalato dall'utente il 05-06/09/2026.
+  console.log(
+    `Notizie ${provinciaSlug} — dettaglio per fonte: ` +
+      risultati
+        .map((r, i) => `${fonti[i].fonte}=${r.status === "fulfilled" ? r.value.length : "ERRORE"}`)
+        .join(", ")
+  );
+
   // Unione di tutte le fonti, ordinata cronologicamente (più recente
   // prima) — un'unica lista con la fonte indicata per ciascuna voce,
   // non un riquadro separato per fonte: per un aggregatore di notizie

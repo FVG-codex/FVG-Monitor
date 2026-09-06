@@ -2353,6 +2353,39 @@ scartato, ora producono tutte una data valida.
 
 `npx tsc --noEmit` e `node --check scripts/ingest-light.mjs` puliti.
 
+### RaiNews ancora assente dopo il fix — log diagnostico temporaneo (06/09/2026)
+
+Dopo il redeploy del fix sopra, l'utente ha confermato — con nuovo screenshot
+e log GitHub Actions — che RaiNews TGR FVG continua a non comparire in
+`/notizie`, pur avendo aggiornato correttamente `scripts/ingest-light.mjs`
+nel proprio repository prima di rilanciare l'ingestione. Il fix sul formato
+data resta corretto ma non basta a spiegare il sintomo: la riga di log
+esistente (`Notizie ${provinciaSlug}: ${items.length} titoli da ${fonti.length} fonti`)
+riporta solo il totale aggregato dopo il taglio a 30 voci, non il contributo
+di ciascuna fonte, quindi non permette di distinguere "RaiNews restituisce 0
+elementi" da "RaiNews ne restituisce alcuni ma non superano il taglio".
+
+Aggiunta una riga di log **temporanea** in `ingestNotizieProvincia()`,
+subito dopo la gestione dei rifiuti di `Promise.allSettled`:
+
+```js
+console.log(
+  `Notizie ${provinciaSlug} — dettaglio per fonte: ` +
+    risultati
+      .map((r, i) => `${fonti[i].fonte}=${r.status === "fulfilled" ? r.value.length : "ERRORE"}`)
+      .join(", ")
+);
+```
+
+Da rimuovere una volta chiarita la causa reale (commentata nel codice come
+temporanea). Se il prossimo log mostra `RaiNews TGR FVG=0`, il problema è
+nel fetch/parsing nonostante nessun errore HTTP visibile — servirà un nuovo
+outerHTML reale aggiornato. Se mostra un numero maggiore di zero, il
+problema è nel taglio/ordinamento (probabile bug residuo nel parsing delle
+date che fa sembrare le notizie RaiNews più vecchie di quanto siano).
+
+`npx tsc --noEmit` e `node --check scripts/ingest-light.mjs` puliti.
+
 ## Google Analytics (05/09/2026)
 
 L'utente ha chiesto di integrare Google Analytics (GA4), fornendo direttamente lo snippet standard di gtag.js con l'id misurazione `G-BJT393WSQT`.
