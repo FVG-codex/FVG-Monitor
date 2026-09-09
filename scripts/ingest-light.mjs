@@ -159,6 +159,83 @@ function pad2(n) {
   return String(n).padStart(2, "0");
 }
 
+// OGGI — aggiornamento infragiornaliero (09/09/2026): l'utente ha segnalato
+// che meteo.fvg.it mostra, sulla scheda "oggi dalle 08", un testo con
+// prefisso "AGGIORNAMENTO: ..." quando il bollettino della mattina viene
+// rivisto nel corso della giornata — e che il sito non lo intercettava.
+// Verificato riga per riga il bollettino XML che ingeriamo sopra
+// (dev.meteo.fvg.it/xml/previsioni/PW*.xml): contiene SOLO le scadenze
+// "DOMANI"/"DOPODOMANI" più un testo di sintesi generale e una tendenza —
+// MAI un campo "OGGI" né alcun testo "AGGIORNAMENTO". Non è quindi un
+// problema di frequenza di ingestione: quella fonte non porta proprio
+// questo dato, va preso altrove.
+//
+// La sezione "oggi" del sito pubblico https://www.meteo.fvg.it/home.php
+// è renderizzata direttamente nell'HTML della pagina (non caricata via
+// JavaScript/API — confermato sia con WebFetch sia, soprattutto, con
+// l'outerHTML reale fornito dall'utente il 09/09/2026), quindi
+// raggiungibile con un fetch+cheerio normale come le altre fonti HTML del
+// progetto. Markup verificato su quell'outerHTML: un carosello con 4
+// `.item` (oggi/domani/dopodomani/tendenza); quello di "oggi" viene
+// individuato tramite `img[alt="oggi"]` (non per posizione nel DOM, che
+// in teoria potrebbe cambiare) risalendo al contenitore `.item` più
+// vicino. Al suo interno: uno `<strong>` col giorno in italiano, un
+// `.small` con "emissione: ...", un `.text-justify.sipadd` col testo
+// libero (con o senza prefisso "AGGIORNAMENTO:"), e una tabella con righe
+// "pianura"/"costa" (colonne tmin/tmax/tmed) — stessa granularità delle
+// fasce F3 (Bassa Pianura)/F4 (Costa) già usate sopra per domani/
+// dopodomani, non un dato per singola città.
+//
+// Se questo blocco fallisce (rete, markup cambiato) si perde solo la
+// sezione "oggi": il resto del bollettino (domani/dopodomani, già
+// funzionante) non viene toccato — stesso principio di tolleranza ai
+// guasti già usato per ogni altra fonte del progetto.
+const FASCIA_HTML_PER_CITTA = { trieste: "costa", udine: "pianura", gorizia: "pianura", pordenone: "pianura" };
+
+async function fetchMeteoOggi() {
+  try {
+    const res = await fetchConRetry("https://www.meteo.fvg.it/home.php", {
+      headers: { "User-Agent": "Mozilla/5.0 (compatible; FVGMonitorBot/1.0)" },
+    });
+    if (!res.ok) {
+      console.warn(`Pagina meteo.fvg.it non disponibile per "oggi" (HTTP ${res.status})`);
+      return null;
+    }
+    const $ = cheerio.load(await res.text());
+    const $item = $('img[alt="oggi"]').first().closest(".item");
+    if ($item.length === 0) {
+      console.warn('Blocco "oggi" non trovato in meteo.fvg.it/home.php (markup cambiato?)');
+      return null;
+    }
+
+    // Scope alla colonna testuale (".selectable"), non all'intero ".item":
+    // la colonna con l'immagine/tabella evoluzione ha anch'essa una classe
+    // "small" (su ".table-responsive.small", la tabella oraria 4/12/20) che
+    // altrimenti vincerebbe su ".find(...).first()" essendo prima nel DOM.
+    const $col = $item.find(".selectable").first();
+    const giorno = $col.find("strong").first().text().trim() || null;
+    const emissione = $col.find(".small").first().text().replace(/^emissione:\s*/i, "").trim() || null;
+    const testoLibero = $col.find(".text-justify.sipadd").first().text().trim();
+    if (!testoLibero) return null;
+
+    const perFascia = {};
+    $col.find("table tbody tr").each((_, tr) => {
+      const $tr = $(tr);
+      const fascia = $tr.find("td").first().text().trim().toLowerCase();
+      if (fascia !== "pianura" && fascia !== "costa") return;
+      perFascia[fascia] = {
+        tmin: $tr.find("td.tmin").text().trim() || null,
+        tmax: $tr.find("td.tmax").text().trim() || null,
+      };
+    });
+
+    return { giorno, emissione, testo: testoLibero, perFascia };
+  } catch (err) {
+    console.warn(`Errore nel recupero del blocco "oggi" da meteo.fvg.it: ${err.message}`);
+    return null;
+  }
+}
+
 async function ingestMeteo() {
   const now = new Date();
   const oggi = `${now.getUTCFullYear()}${pad2(now.getUTCMonth() + 1)}${pad2(now.getUTCDate())}`;
@@ -221,6 +298,32 @@ async function ingestMeteo() {
     };
   });
 
+  // "Oggi" (incluso l'eventuale "AGGIORNAMENTO:" infragiornaliero) non è
+  // nell'XML sopra — va preso dall'HTML pubblico, vedi fetchMeteoOggi().
+  // Inserito come prima scadenza (giorno: "OGGI") così il frontend può
+  // trattarlo come le altre senza una struttura dati a parte.
+  const oggiHtml = await fetchMeteoOggi();
+  if (oggiHtml) {
+    const perCittaOggi = {};
+    for (const citta of Object.keys(ZONA_PER_CITTA)) {
+      const f = oggiHtml.perFascia[FASCIA_HTML_PER_CITTA[citta]];
+      perCittaOggi[citta] = {
+        cielo: null,
+        pioggia: null,
+        temporale: null,
+        tmin: f?.tmin ?? null,
+        tmax: f?.tmax ?? null,
+      };
+    }
+    scadenze.unshift({
+      giorno: "OGGI",
+      data_validita: oggiHtml.giorno,
+      regione_testo: oggiHtml.testo,
+      aggiornamento: /^aggiornamento\s*:/i.test(oggiHtml.testo),
+      per_citta: perCittaOggi,
+    });
+  }
+
   // Osservazioni del giorno precedente (già >24h, pubblicabili)
   const osservazioniData = testo(root.osservazioni?.["@_data"]);
   const stazioniRaw = root.osservazioni?.stazioni?.stazione;
@@ -248,7 +351,11 @@ async function ingestMeteo() {
   };
 
   await upsertSnapshot("meteo:previsioni", "meteo", null, payload);
-  console.log("Meteo aggiornato:", testo(previsioni.emissione));
+  console.log(
+    "Meteo aggiornato:",
+    testo(previsioni.emissione),
+    oggiHtml ? `(oggi: ok${oggiHtml && /^aggiornamento\s*:/i.test(oggiHtml.testo) ? ", AGGIORNAMENTO" : ""})` : "(oggi: non disponibile)"
+  );
 }
 
 // ---------------------------------------------------------------------

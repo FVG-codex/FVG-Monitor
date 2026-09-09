@@ -2672,6 +2672,77 @@ a parte) e verificare nella dashboard Supabase (Database → Table sizes)
 che lo spazio sia stato effettivamente recuperato — non verificabile da
 qui.
 
+## Meteo — sezione "Oggi" e rilevamento AGGIORNAMENTO (09/09/2026)
+
+L'utente ha segnalato che `meteo.fvg.it` mostra, sulla scheda "oggi dalle
+08" della homepage OSMER, un testo con prefisso "AGGIORNAMENTO: ..." quando
+il bollettino della mattina viene rivisto nel corso della giornata — e che
+il sito non lo intercettava, chiedendo se si potesse aggiornare in
+automatico.
+
+**Diagnosi, verificata riga per riga prima di scrivere codice**: non era
+un problema di frequenza di ingestione (già ogni 15 minuti) né di cache —
+il bollettino XML che ingeriamo (`dev.meteo.fvg.it/xml/previsioni/PW*.xml`,
+usato da `ingestMeteo()`) contiene **solo** le scadenze "DOMANI"/
+"DOPODOMANI" più un testo di sintesi generale e una tendenza. Non esiste
+nessun campo "OGGI" né alcun testo "AGGIORNAMENTO" in quella fonte — non
+sarebbe mai stato possibile intercettarla, qualunque fosse la frequenza di
+polling. La scheda "oggi" del sito pubblico è quindi un'altra fonte, non
+lo stesso XML.
+
+Verificato con WebFetch che `https://www.meteo.fvg.it/home.php` la
+renderizza direttamente nell'HTML della pagina (non via JavaScript/API,
+diversamente da RaiNews TGR FVG — vedi sezione Notizie sopra per quel
+precedente), e confermato con l'outerHTML reale fornito dall'utente il
+09/09/2026 (richiesto esplicitamente prima di scrivere il parser, stessa
+disciplina già seguita per tutte le fonti scrapate del progetto).
+
+**Implementazione**: nuova funzione `fetchMeteoOggi()` in
+`scripts/ingest-light.mjs`, che scrapa `meteo.fvg.it/home.php` con
+`cheerio` — stesso pattern già in uso per Citynews/Il Goriziano/eventi
+turismofvg.it. Il blocco "oggi" viene individuato tramite
+`img[alt="oggi"]` (non per posizione nel DOM del carosello, che in teoria
+potrebbe cambiare), poi si estraggono giorno, emissione, testo libero
+(con o senza prefisso "AGGIORNAMENTO:") e temperature min/max per
+pianura/costa (stessa granularità delle fasce F3/F4 già usate per domani/
+dopodomani — non un dato per singola città). Un dettaglio di markup da
+tenere a mente: la colonna con l'immagine/tabella evoluzione ha anch'essa
+una classe `small` (`.table-responsive.small`), quindi la ricerca del vero
+`.small` con l'orario di emissione va scoperta dentro `.selectable` (la
+colonna testuale), non nell'intero blocco `.item` — altrimenti si prende
+per errore il testo della tabella oraria. Verificato con un test isolato
+contro l'outerHTML reale fornito dall'utente prima di consegnare.
+
+Il risultato viene inserito come prima voce dell'array `scadenze` già
+esistente (`giorno: "OGGI"`), con un campo booleano `aggiornamento` in più
+(true solo quando il testo comincia per "AGGIORNAMENTO:") — così il
+frontend riusa la stessa struttura dati di domani/dopodomani senza una
+seconda forma a parte. Se lo scraping HTML fallisse (rete, markup
+cambiato), si perde solo la sezione "oggi": il resto del bollettino
+(domani/dopodomani, invariato) non viene toccato.
+
+**Frontend** (`components/MeteoPanel.tsx`): `MeteoDettaglio` (pagina di
+dettaglio provincia) ora mostra anche la card "Oggi" fra le scadenze, con
+un badge "🔄 Aggiornamento" quando presente; `MeteoOverview` (riepilogo
+homepage, centrato su "domani" per provincia) mostra in più un box in
+evidenza con il testo dell'aggiornamento quando ce n'è uno per la giornata
+corrente. In entrambi i punti si mostra ora anche `regione_testo` per ogni
+scadenza — campo già calcolato dall'XML da tempo ma mai renderizzato da
+nessuna parte, se non per "oggi" sarebbe stata l'unica scadenza con un
+testo visibile e le altre no.
+
+`npx tsc --noEmit` e `node --check scripts/ingest-light.mjs` puliti.
+Parsing verificato con un test isolato (script scratch, non nel
+repository) contro l'outerHTML reale fornito dall'utente, sia sul blocco
+"oggi" con AGGIORNAMENTO sia su un blocco normale senza — flag
+`aggiornamento` corretto in entrambi i casi. **Non ancora verificato in
+produzione**: nessuna esecuzione reale su GitHub Actions ha ancora girato
+con questo codice — da confermare che il fetch di `meteo.fvg.it/home.php`
+non venga bloccato da anti-bot (non ci sono segnali in tal senso, a
+differenza di TriestePrima.it/UdineToday.it/PordenoneToday.it) e che la
+card "Oggi"/il box aggiornamento compaiano correttamente sul sito dopo il
+prossimo bollettino OSMER rivisto in giornata.
+
 ## Idee future (annotate, non richieste esplicitamente per l'implementazione)
 
 - **Strutture ricettive — implementate il 26/08/2026** (vedi sezioni dedicate sopra): hub + 8 pagine, arricchimento contatti da OpenStreetMap lo stesso giorno, poi scraping incrementale turismofvg.it per gli Agriturismi (sempre 26/08/2026, vedi "Agriturismi — scraping incrementale turismofvg.it" sopra per i dettagli — DevTools fornito dall'utente, stesso metodo già servito per Tennis/Sci/Autobus). **Prossimo passo su questo modulo**: estendere lo scraping turismofvg.it alle altre 7 categorie (B&B, Affittacamere, Campeggi, Alberghi Diffusi, Sociali, Marina, Rifugi) — richiede prima di verificare che URL/etichette HTML siano gli stessi osservati per Agriturismi (non garantito), idealmente con un altro campione reale fornito dall'utente per categoria prima di aggiungerla a `TURISMOFVG_CATEGORIE`.

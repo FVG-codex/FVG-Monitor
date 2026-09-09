@@ -21,6 +21,13 @@ export type VoceChangelog = {
 
 export const CHANGELOG: VoceChangelog[] = [
   {
+    data: "09/09/2026",
+    titolo: "Meteo: aggiunta la previsione di oggi, con evidenza automatica degli aggiornamenti infragiornalieri",
+    dettagli: [
+      "Il pannello Meteo ora mostra anche la previsione di \"Oggi\" (prima mancava, comparivano solo domani e dopodomani) e, quando OSMER rivede il bollettino della mattina nel corso della giornata, il testo dell'aggiornamento compare in evidenza sia in homepage sia nella pagina di dettaglio provincia.",
+    ],
+  },
+  {
     data: "08/09/2026",
     titolo: "Notizie: aggiunta Pordenone, completando tutte e 4 le province",
     dettagli: [

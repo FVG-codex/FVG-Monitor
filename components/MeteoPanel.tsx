@@ -10,6 +10,10 @@ type Scadenza = {
   giorno: string;
   data_validita: string;
   regione_testo: string | null;
+  /** true solo per "OGGI" quando il bollettino della mattina è stato
+   *  rivisto nel corso della giornata (testo con prefisso "AGGIORNAMENTO:"
+   *  su meteo.fvg.it — vedi fetchMeteoOggi() in scripts/ingest-light.mjs). */
+  aggiornamento?: boolean;
   per_citta: Record<
     ProvinciaSlug,
     { cielo: string | null; pioggia: string | null; temporale: string | null; tmin: string | null; tmax: string | null }
@@ -106,10 +110,17 @@ export function MeteoOverview() {
   }
 
   const domani = dati.scadenze.find((s) => s.giorno === "DOMANI");
+  const oggi = dati.scadenze.find((s) => s.giorno === "OGGI");
 
   return (
     <div>
       <p className="font-serif italic text-ink-dim text-sm mb-4">{dati.situazione_generale}</p>
+      {oggi?.aggiornamento && oggi.regione_testo && (
+        <p className="text-sm text-ink-dim bg-panel-alt rounded px-2.5 py-2 mb-4">
+          <span className="font-cond font-semibold text-cool-ink">🔄 Aggiornamento di oggi — </span>
+          {oggi.regione_testo.replace(/^aggiornamento\s*:\s*/i, "")}
+        </p>
+      )}
       {domani && (
         <div className="space-y-0">
           {PROVINCE_LIST.map((p, i) => {
@@ -215,21 +226,32 @@ export function MeteoDettaglio({ provincia }: { provincia: ProvinciaSlug }) {
         {dati.scadenze.map((s) => {
           const c = s.per_citta[provincia];
           if (!c) return null;
+          const etichetta = s.giorno === "OGGI" ? "Oggi" : s.giorno === "DOMANI" ? "Domani" : "Dopodomani";
           return (
             <div key={s.giorno} className="border-t border-line pt-3">
-              <div className="font-cond font-semibold text-xs uppercase tracking-wide text-ink-faint mb-1.5">
-                {s.giorno === "DOMANI" ? "Domani" : "Dopodomani"} ({s.data_validita})
-              </div>
-              <div className="text-sm text-ink-dim">
-                {c.cielo}
-                {c.pioggia && `, ${c.pioggia}`}
-                {c.temporale && `, ${c.temporale}`}
-                {c.tmin && c.tmax && (
-                  <span className="font-mono text-ink-faint ml-2">
-                    {c.tmin}–{c.tmax}°C
+              <div className="font-cond font-semibold text-xs uppercase tracking-wide text-ink-faint mb-1.5 flex items-center gap-2">
+                <span>
+                  {etichetta} ({s.data_validita})
+                </span>
+                {s.aggiornamento && (
+                  <span className="normal-case tracking-normal text-cool-ink bg-panel-alt rounded px-1.5 py-0.5">
+                    🔄 Aggiornamento
                   </span>
                 )}
               </div>
+              {(c.cielo || c.pioggia || c.temporale || (c.tmin && c.tmax)) && (
+                <div className="text-sm text-ink-dim">
+                  {c.cielo}
+                  {c.pioggia && `, ${c.pioggia}`}
+                  {c.temporale && `, ${c.temporale}`}
+                  {c.tmin && c.tmax && (
+                    <span className="font-mono text-ink-faint ml-2">
+                      {c.tmin}–{c.tmax}°C
+                    </span>
+                  )}
+                </div>
+              )}
+              {s.regione_testo && <div className="text-sm text-ink-dim mt-1">{s.regione_testo}</div>}
             </div>
           );
         })}
