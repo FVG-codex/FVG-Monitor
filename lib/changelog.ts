@@ -22,6 +22,13 @@ export type VoceChangelog = {
 export const CHANGELOG: VoceChangelog[] = [
   {
     data: "09/09/2026",
+    titolo: "Autobus: ogni fermata linka ora la pagina in tempo reale ufficiale TPL FVG",
+    dettagli: [
+      "Nella sezione Trasporti → Autobus, il nome di ogni fermata (sotto ai passaggi e nell'elenco fermate del blocco) è ora un link diretto alla pagina in tempo reale di TPL FVG per quella fermata specifica.",
+    ],
+  },
+  {
+    data: "09/09/2026",
     titolo: "Meteo: aggiunta la previsione di oggi, con evidenza automatica degli aggiornamenti infragiornalieri",
     dettagli: [
       "Il pannello Meteo ora mostra anche la previsione di \"Oggi\" (prima mancava, comparivano solo domani e dopodomani) e, quando OSMER rivede il bollettino della mattina nel corso della giornata, il testo dell'aggiornamento compare in evidenza sia in homepage sia nella pagina di dettaglio provincia.",

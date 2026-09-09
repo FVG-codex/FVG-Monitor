@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { fetchPassaggiBlocco, BLOCCHI_AUTOBUS, type PassaggioAutobus } from "@/lib/autobus";
+import { fetchPassaggiBlocco, urlRealtimeFermata, BLOCCHI_AUTOBUS, type PassaggioAutobus } from "@/lib/autobus";
 
 const FILTRI = ["tutti", "partenze", "arrivi"] as const;
 type Filtro = (typeof FILTRI)[number];
@@ -116,10 +116,19 @@ export function AutobusPanel() {
               {/* Fermata fisica di origine: più fermate del blocco possono
                   condividere lo stesso indirizzo (es. pensiline diverse
                   della Stazione Ferroviaria), quindi mostriamo anche il
-                  codice per distinguerle davvero. */}
-              <p className="font-mono text-[10px] text-ink-faint mt-0.5 pl-[68px] truncate">
+                  codice per distinguerle davvero. Link alla pagina in
+                  tempo reale della fermata sul sito TPL FVG (09/09/2026,
+                  richiesta esplicita dell'utente) — stesso URL che genera
+                  l'elenco fermate del blocco nel footer sotto. */}
+              <a
+                href={urlRealtimeFermata(p.fermataCodice)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-mono text-[10px] text-ink-faint hover:text-cool-ink mt-0.5 pl-[68px] truncate block"
+              >
                 {p.fermataNome || "Fermata"} · {p.fermataCodice}
-              </p>
+                <span className="sr-only"> (si apre in una nuova scheda)</span>
+              </a>
             </div>
           ))}
         </div>
@@ -127,6 +136,28 @@ export function AutobusPanel() {
 
       <p className="text-ink-faint text-[10px] font-mono mt-3 border-t border-line pt-2">
         Blocco {blocco.nome} ({blocco.fermate.length} fermate) · aggiornato dal tuo browser ogni minuto · fonte: TPL FVG (API non ufficiale)
+      </p>
+
+      {/* Elenco di TUTTE le fermate del blocco con link alla pagina in
+          tempo reale ufficiale — non solo quelle con un passaggio
+          visibile sopra (09/09/2026, richiesta esplicita dell'utente:
+          "per ogni nome e sigla si generasse un link"). */}
+      <p className="text-ink-faint text-[10px] font-mono mt-1.5 flex flex-wrap gap-x-1.5 gap-y-1">
+        <span>Fermate:</span>
+        {blocco.fermate.map((f, i) => (
+          <span key={f.stopCode}>
+            <a
+              href={urlRealtimeFermata(f.stopCode)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-cool-ink hover:underline"
+            >
+              {f.nome || f.stopCode}
+              <span className="sr-only"> (si apre in una nuova scheda)</span>
+            </a>
+            {i < blocco.fermate.length - 1 && " ·"}
+          </span>
+        ))}
       </p>
     </div>
   );

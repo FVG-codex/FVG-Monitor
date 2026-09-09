@@ -404,6 +404,28 @@ tenere d'occhio se dovesse restare sempre vuoto.
 Altri blocchi/fermate verranno aggiunti in futuro su richiesta esplicita
 dell'utente, stesso metodo di verifica.
 
+**Link alla pagina in tempo reale ufficiale per fermata (09/09/2026)**:
+l'utente ha chiesto che ogni fermata (nome + codice, es. `TS608`) generi
+un link diretto a `https://realtime.tplfvg.it/?stopcode=<codice>` — la
+pagina web pubblica di TPL FVG per quella singola fermata (diversa
+dall'API `polemonitor` sopra, che è il dato grezzo che usiamo noi).
+Nuovo helper `urlRealtimeFermata()` in `lib/autobus.ts`. Due punti in
+`AutobusPanel.tsx`: (1) la riga "fermata di origine" già mostrata sotto
+ogni passaggio (nome · codice) è ora un link a quella pagina; (2) un
+nuovo elenco "Fermate:" nel footer del pannello elenca **tutte** le
+fermate del blocco selezionato con link, non solo quelle con un
+passaggio attualmente visibile — altrimenti una fermata senza corse
+imminenti (es. `32206`, sempre mostrata col solo codice non avendo un
+nome pubblicato) non avrebbe mai avuto un link cliccabile. Stessa
+convenzione di accessibilità già in uso nel sito per i link `target="_blank"`
+(testo "(si apre in una nuova scheda)" invisibile a schermo).
+
+`npx tsc --noEmit` pulito. Verificato con `next dev` + Chromium headless
+(screenshot di `/trasporti`, blocco Trieste) che l'elenco fermate compare
+correttamente e che gli `href` generati sono esattamente nella forma
+richiesta (es. `https://realtime.tplfvg.it/?stopcode=TS608`, confermato
+leggendo gli attributi `href` renderizzati, non solo a occhio).
+
 **Scelta architetturale, AGGIORNATA dopo il bug sotto**: fetch
 **direttamente dal browser** del visitatore, non un proxy server-side.
 Partito diversamente (proxy `app/api/autobus/[stopCode]/route.ts` fin

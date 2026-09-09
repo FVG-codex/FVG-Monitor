@@ -32,6 +32,15 @@
 
 const API_BASE = "https://realtime.tplfvg.it/API/v1.0/polemonitor";
 
+// Pagina pubblica in tempo reale di una singola fermata (09/09/2026,
+// richiesta esplicita dell'utente) — diversa dall'API polemonitor sopra
+// (quella dà i dati grezzi che usiamo noi, questa è la pagina web TPL FVG
+// pensata per un utente umano, utile come link di approfondimento per
+// chi vuole vedere la fermata direttamente sul sito ufficiale).
+export function urlRealtimeFermata(stopCode: string): string {
+  return `https://realtime.tplfvg.it/?stopcode=${encodeURIComponent(stopCode)}`;
+}
+
 export type FermataAutobus = { stopCode: string; nome: string };
 export type BloccoAutobus = { slug: string; nome: string; fermate: FermataAutobus[] };
 
