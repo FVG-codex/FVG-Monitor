@@ -11,6 +11,8 @@ import { TemperaturaBadge } from "@/components/TemperaturaBadge";
 import { VentoPanel } from "@/components/VentoPanel";
 import { PioggiaPanel } from "@/components/PioggiaPanel";
 import { RadarMeteoPanel } from "@/components/RadarMeteoPanel";
+import { PazziTelegramPanel } from "@/components/PazziTelegramPanel";
+import { PazziPrevisioniPanel } from "@/components/PazziPrevisioniPanel";
 import { PROVINCE, PROVINCE_LIST, type ProvinciaSlug } from "@/lib/province";
 
 export function MeteoPage() {
@@ -64,6 +66,22 @@ export function MeteoPage() {
               linkHref="https://monitor.protezionecivile.fvg.it"
             >
               <RadarMeteoPanel />
+            </Panel>
+
+            <Panel
+              title="Pazzi per il meteo · Telegram"
+              linkLabel="Canale Telegram →"
+              linkHref="https://t.me/pazziperilmeteo"
+            >
+              <PazziTelegramPanel />
+            </Panel>
+
+            <Panel
+              title="Previsioni temporalesche"
+              linkLabel="Pazzi per il meteo Goriziano →"
+              linkHref="https://pazziperilmeteo.fvg.it/category/previsioni-temporalesche/"
+            >
+              <PazziPrevisioniPanel />
             </Panel>
 
             <Panel

@@ -2765,6 +2765,90 @@ differenza di TriestePrima.it/UdineToday.it/PordenoneToday.it) e che la
 card "Oggi"/il box aggiornamento compaiano correttamente sul sito dopo il
 prossimo bollettino OSMER rivisto in giornata.
 
+## Meteo — "Pazzi per il meteo Goriziano": Telegram + previsioni temporalesche (09/09/2026)
+
+L'utente segue un canale Telegram di un meteorologo locale
+(`https://t.me/pazziperilmeteo`) e ha chiesto due nuovi riquadri nella
+vista "Tutta la regione" della pagina Meteo, subito sotto la riga
+"Meteo · Le 4 province" / "Radar meteo" (come da screenshot fornito): uno
+con gli aggiornamenti dal canale Telegram, uno con gli articoli
+"Previsioni temporalesche" dal sito WordPress collegato
+(`pazziperilmeteo.fvg.it`).
+
+**Due fonti indipendenti, due nuove funzioni in `scripts/ingest-light.mjs`**:
+
+- `ingestPazziTelegram()` — scrapa `https://t.me/s/pazziperilmeteo`,
+  l'anteprima pubblica del canale (nessun login richiesto, stesso host che
+  serve anche l'embed ufficiale dei canali Telegram). Ogni messaggio è un
+  `div.tgme_widget_message[data-post]`; il testo sta in
+  `.tgme_widget_message_text` (con i `<br>` convertiti in `\n` prima di
+  estrarre, altrimenti cheerio le incolla), l'orario nell'attributo
+  `datetime` di `<time>`. I messaggi solo-foto/video senza didascalia
+  vengono scartati (nessun testo da mostrare). Salvato come
+  `meteo:pazzi-telegram` → `{ fonte, fonte_url, messaggi: [{id, testo,
+  data, link}] }`, massimo 8 messaggi.
+
+  **Deviazione esplicita dalla disciplina abituale del progetto**: i
+  selettori sopra **non** sono stati verificati contro outerHTML reale
+  fornito dall'utente (a differenza di tutte le altre fonti scrapate del
+  sito) — sono basati sulla struttura pubblica nota e da anni stabile del
+  widget `/s/` di Telegram. Scelta deliberata perché WebFetch, interrogato
+  esplicitamente, non è stato in grado di restituire classi/markup reali
+  (solo una parafrasi del contenuto renderizzato). Se la prima esecuzione
+  reale restituisse 0 messaggi con il canale attivo, il markup andrebbe
+  verificato con l'outerHTML reale (DevTools → Ispeziona) prima di
+  correggere alla cieca.
+
+- `ingestPazziPrevisioni()` — legge il feed RSS
+  `pazziperilmeteo.fvg.it/category/previsioni-temporalesche/feed/` (URL
+  **senza anno**, verificato restituire lo stesso contenuto della variante
+  con anno nel path — stessa scelta già fatta per `CALCIO_STAGIONI`, evita
+  manutenzione annuale). Per ogni voce: titolo, link, data (`pubDate`,
+  RFC 2822, direttamente parsabile), autore (`dc:creator`), ed estratto
+  ripulito con la nuova funzione `pulisciEstrattoWordpress()` — rimuove il
+  paragrafo automatico "L'articolo ... proviene da ..." che WordPress
+  aggiunge in coda a ogni estratto RSS, poi ogni altro tag HTML residuo.
+  Salvato come `meteo:pazzi-previsioni` → `{ fonte, fonte_url, items:
+  [{titolo, link, data, autore, estratto}] }`, massime 5 voci.
+
+  **Nota copyright**: il sito ha un avviso esplicito "Copyright © Pazzi
+  per il meteo Goriziano" in fondo pagina. Per questo si usa solo
+  `<description>` (l'estratto già troncato automaticamente da WordPress,
+  terminante in "[...]"), mai `<content:encoded>` (l'articolo completo) —
+  stessa cautela già applicata al modulo Notizie (titolo+link+data, mai il
+  testo integrale).
+
+**Frontend**: due nuovi componenti, `components/PazziTelegramPanel.tsx` e
+`components/PazziPrevisioniPanel.tsx`, ricalcati esattamente sul pattern
+già in uso in `NotiziePanel.tsx` (fetch dallo snapshot Supabase via
+`useSelect().single()`, refresh ogni 5 minuti, stato
+loading/ready/error, timestamp relativo "X min/h/g fa"). Aggiunti in
+`components/MeteoPage.tsx` come due nuovi `Panel` nella vista "Tutta la
+regione", posizionati subito dopo "Meteo · Le 4 province"/"Radar meteo" e
+prima di "Bora · Vento e Pioggia"/"Sole e luna" — stessa posizione
+richiesta dall'utente nello screenshot.
+
+`npx tsc --noEmit` e `node --check scripts/ingest-light.mjs` puliti.
+Logica di parsing (pulizia estratto WordPress, parsing RSS completo con
+`fast-xml-parser`, parsing markup Telegram) verificata con un test
+isolato (script scratch, non nel repository): estratto pulito
+correttamente su un caso reale (entità HTML decodificate, paragrafo
+boilerplate rimosso, marcatore "[...]" nativo di WordPress preservato),
+RSS parsato correttamente su due voci di esempio, e markup Telegram
+ricostruito (non outerHTML reale — vedi nota sopra) che estrae
+correttamente 2 messaggi su 3 scartando quello solo-foto. **Verificato
+anche visivamente** con `next dev` + Chromium headless: screenshot della
+pagina `/meteo` conferma che i due nuovi riquadri compaiono nella
+posizione corretta (riga 2, sotto Meteo·4 province/Radar meteo) e non
+causano errori React — nessun dato reale disponibile da questa sessione
+(rete Supabase non raggiungibile da questo sandbox verso l'esterno per le
+chiamate di rendering client-side, stesso limite noto già incontrato per
+altri pannelli), quindi entrambi mostrano lo stato "Caricamento…" nello
+screenshot, atteso. **Non ancora confermato in produzione**: nessuna
+esecuzione reale su GitHub Actions ha ancora girato con questo codice —
+in particolare i selettori Telegram (vedi deviazione sopra) sono da
+tenere d'occhio al primo giro reale.
+
 ## Idee future (annotate, non richieste esplicitamente per l'implementazione)
 
 - **Strutture ricettive — implementate il 26/08/2026** (vedi sezioni dedicate sopra): hub + 8 pagine, arricchimento contatti da OpenStreetMap lo stesso giorno, poi scraping incrementale turismofvg.it per gli Agriturismi (sempre 26/08/2026, vedi "Agriturismi — scraping incrementale turismofvg.it" sopra per i dettagli — DevTools fornito dall'utente, stesso metodo già servito per Tennis/Sci/Autobus). **Prossimo passo su questo modulo**: estendere lo scraping turismofvg.it alle altre 7 categorie (B&B, Affittacamere, Campeggi, Alberghi Diffusi, Sociali, Marina, Rifugi) — richiede prima di verificare che URL/etichette HTML siano gli stessi osservati per Agriturismi (non garantito), idealmente con un altro campione reale fornito dall'utente per categoria prima di aggiungerla a `TURISMOFVG_CATEGORIE`.

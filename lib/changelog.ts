@@ -22,6 +22,13 @@ export type VoceChangelog = {
 export const CHANGELOG: VoceChangelog[] = [
   {
     data: "09/09/2026",
+    titolo: "Meteo: due nuovi riquadri con gli aggiornamenti di \"Pazzi per il meteo Goriziano\"",
+    dettagli: [
+      "Nella pagina Meteo (vista \"Tutta la regione\") sono comparsi due nuovi riquadri: gli ultimi aggiornamenti dal canale Telegram del meteorologo, e gli articoli \"Previsioni temporalesche\" dal suo sito.",
+    ],
+  },
+  {
+    data: "09/09/2026",
     titolo: "Autobus: ogni fermata linka ora la pagina in tempo reale ufficiale TPL FVG",
     dettagli: [
       "Nella sezione Trasporti → Autobus, il nome di ogni fermata (sotto ai passaggi e nell'elenco fermate del blocco) è ora un link diretto alla pagina in tempo reale di TPL FVG per quella fermata specifica.",

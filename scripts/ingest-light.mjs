@@ -359,6 +359,142 @@ async function ingestMeteo() {
 }
 
 // ---------------------------------------------------------------------
+// "PAZZI PER IL METEO GORIZIANO" (09/09/2026) — due riquadri aggiuntivi
+// nella pagina Meteo, richiesti dall'utente, sotto i pannelli Meteo/Radar
+// esistenti: (1) gli ultimi aggiornamenti dal canale Telegram pubblico
+// del meteorologo amatoriale Lorenzo Ghiraldelli, (2) le sue previsioni
+// temporalesche pubblicate sul suo sito WordPress. Due fonti indipendenti
+// dello stesso autore, non collegate all'XML OSMER usato sopra.
+//
+// Verificato prima di scrivere codice (via WebFetch, entrambe le fonti):
+// - Canale Telegram (`t.me/pazziperilmeteo`): l'anteprima web pubblica
+//   `t.me/s/<canale>` esiste per qualunque canale Telegram pubblico,
+//   nessun login necessario — mostra gli ultimi ~12-20 messaggi in HTML
+//   statico (non serve JS), ciascuno con un permalink `t.me/<canale>/<id>`.
+//   **Selettori scritti sulla struttura nota/stabile del widget pubblico
+//   Telegram** (`div.tgme_widget_message[data-post]`,
+//   `.tgme_widget_message_text`, `time[datetime]` dentro
+//   `a.tgme_widget_message_date`) — non su un outerHTML reale fornito
+//   dall'utente come da prassi abituale del progetto, perché WebFetch
+//   converte sempre in markdown e non permette di leggere le classi CSS
+//   esatte (stessa limitazione nota, vedi nota architettura). Questo
+//   markup è però pubblico e documentato da anni per l'intero widget
+//   `/s/` di Telegram (usato da innumerevoli siti terzi allo stesso
+//   scopo), quindi trattato come una base ragionevole più solida del
+//   solito "riuso selettori per analogia di piattaforma" già accettato
+//   altrove nel progetto (es. PordenoneToday.it) — ma resta un rischio
+//   dichiarato: se il primo run reale desse 0 messaggi, servirà comunque
+//   l'outerHTML reale di una fermata fornito dall'utente per correggere i
+//   selettori, come da prassi.
+// - Sito previsioni (`pazziperilmeteo.fvg.it`): WordPress standard, feed
+//   RSS di categoria verificato su `/category/previsioni-temporalesche/feed/`
+//   (senza l'anno nel percorso — stesso contenuto della versione con
+//   "/2026/" ma senza bisogno di aggiornarla ogni anno, stessa lezione
+//   già imparata con `CALCIO_STAGIONI`). Il campo `<description>` del
+//   feed è già un estratto troncato da WordPress (termina con "[...]"),
+//   distinto dal `<content:encoded>` col testo completo dell'articolo —
+//   usato solo l'estratto, mai il testo integrale, stesso principio
+//   "solo titolo+link+estratto, mai l'articolo intero" già applicato a
+//   tutte le fonti Notizie del progetto (qui ancora più rilevante: il
+//   sito porta un avviso esplicito "Copyright © Pazzi per il meteo
+//   Goriziano" in fondo pagina). L'estratto porta anche un paragrafo
+//   automatico di WordPress ("L'articolo ... proviene da ...") che va
+//   ripulito prima di mostrarlo.
+// ---------------------------------------------------------------------
+
+const PAZZI_TELEGRAM_CANALE = "pazziperilmeteo";
+const PAZZI_TELEGRAM_MAX_MESSAGGI = 8;
+const PAZZI_PREVISIONI_FEED_URL = "https://pazziperilmeteo.fvg.it/category/previsioni-temporalesche/feed/";
+const PAZZI_PREVISIONI_MAX_VOCI = 5;
+
+async function ingestPazziTelegram() {
+  const url = `https://t.me/s/${PAZZI_TELEGRAM_CANALE}`;
+  const res = await fetchConRetry(url, {
+    headers: { "User-Agent": "Mozilla/5.0 (compatible; FVGMonitorBot/1.0)" },
+  });
+  if (!res.ok) {
+    console.warn(`Canale Telegram "Pazzi per il meteo" non disponibile (HTTP ${res.status})`);
+    return;
+  }
+  const $ = cheerio.load(await res.text());
+  const messaggi = [];
+
+  $("div.tgme_widget_message[data-post]").each((_, el) => {
+    const $el = $(el);
+    const dataPost = $el.attr("data-post"); // es. "pazziperilmeteo/6321"
+    const id = dataPost?.split("/")[1];
+    if (!id) return;
+
+    const $testo = $el.find(".tgme_widget_message_text").first();
+    // <br> non produce testo con cheerio .text() — sostituito con \n
+    // prima di estrarre, altrimenti righe diverse restano incollate.
+    $testo.find("br").replaceWith("\n");
+    const testoMessaggio = $testo.text().trim();
+    if (!testoMessaggio) return; // messaggi solo-foto/video senza didascalia: saltati, niente da mostrare
+
+    const datetime = $el.find("a.tgme_widget_message_date time").first().attr("datetime") ?? null;
+
+    messaggi.push({
+      id,
+      testo: testoMessaggio,
+      data: datetime,
+      link: `https://t.me/${PAZZI_TELEGRAM_CANALE}/${id}`,
+    });
+  });
+
+  if (messaggi.length === 0) {
+    console.warn('Canale Telegram "Pazzi per il meteo": nessun messaggio estratto (markup cambiato o pagina vuota?)');
+    return;
+  }
+
+  // Più recenti per primi (l'anteprima li elenca già così, ma non è
+  // documentato che l'ordine sia garantito), poi tagliati al massimo
+  // configurato.
+  messaggi.sort((a, b) => (b.data ?? "").localeCompare(a.data ?? ""));
+
+  await upsertSnapshot("meteo:pazzi-telegram", "meteo", null, {
+    fonte: "Pazzi per il meteo Goriziano (Telegram)",
+    fonte_url: `https://t.me/s/${PAZZI_TELEGRAM_CANALE}`,
+    messaggi: messaggi.slice(0, PAZZI_TELEGRAM_MAX_MESSAGGI),
+  });
+  console.log(`Telegram "Pazzi per il meteo" aggiornato: ${messaggi.length} messaggi trovati`);
+}
+
+// Rimuove il paragrafo automatico che WordPress aggiunge in coda ad ogni
+// estratto RSS ("L'articolo <a>Titolo</a> proviene da <a>Nome sito</a>."),
+// poi ogni altro tag HTML residuo — l'estratto deve restare solo testo.
+function pulisciEstrattoWordpress(html) {
+  if (!html) return null;
+  const senzaBoilerplate = html.replace(/<p>\s*L['’]articolo[\s\S]*?proviene da[\s\S]*?<\/p>\s*/i, "");
+  const senzaTag = senzaBoilerplate.replace(/<[^>]+>/g, " ");
+  return decodeEntitaHtml(senzaTag).replace(/\s+/g, " ").trim() || null;
+}
+
+async function ingestPazziPrevisioni() {
+  const res = await fetchConRetry(PAZZI_PREVISIONI_FEED_URL);
+  if (!res.ok) {
+    console.warn(`Feed previsioni temporalesche "Pazzi per il meteo" non disponibile (HTTP ${res.status})`);
+    return;
+  }
+  const parsed = xml.parse(await res.text());
+  const itemsRaw = parsed.rss?.channel?.item || [];
+  const items = (Array.isArray(itemsRaw) ? itemsRaw : [itemsRaw]).slice(0, PAZZI_PREVISIONI_MAX_VOCI).map((item) => ({
+    titolo: testo(item.title),
+    link: testo(item.link),
+    data: testo(item.pubDate),
+    autore: testo(item["dc:creator"]),
+    estratto: pulisciEstrattoWordpress(item.description),
+  }));
+
+  await upsertSnapshot("meteo:pazzi-previsioni", "meteo", null, {
+    fonte: "Pazzi per il meteo Goriziano",
+    fonte_url: "https://pazziperilmeteo.fvg.it/category/previsioni-temporalesche/",
+    items,
+  });
+  console.log(`Previsioni temporalesche "Pazzi per il meteo" aggiornate: ${items.length} voci`);
+}
+
+// ---------------------------------------------------------------------
 // NOTIZIE — RSS ANSA Friuli Venezia Giulia
 //
 // NOTA: il feed ANSA riporta la dicitura "FOR PERSONAL USE ONLY".
@@ -5056,6 +5192,8 @@ async function ingestTurismoFvgBikeSerie(serie) {
 async function main() {
   const jobs = [
     ["meteo", ingestMeteo()],
+    ["meteo-pazzi-telegram", ingestPazziTelegram()],
+    ["meteo-pazzi-previsioni", ingestPazziPrevisioni()],
     ["notizie", ingestNotizie()],
     ["vento", ingestVento()],
     ["viabilita", ingestViabilita()],
