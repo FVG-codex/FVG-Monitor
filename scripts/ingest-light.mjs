@@ -98,11 +98,35 @@ function testo(v) {
   return s === null ? null : decodeEntitaHtml(s);
 }
 
+// Scrittura in `history` sospesa dal 06/09/2026: il database Supabase ha
+// superato 1.5GB dopo sole due settimane di esecuzioni ogni 15 minuti, e la
+// causa era quasi interamente questa tabella. `history` era pensata fin
+// dallo schema iniziale "per fasi successive, grafici/andamenti", ma
+// nessuna pagina del sito la legge ancora (verificato con una ricerca nel
+// codice) — nel frattempo upsertSnapshot() ci scriveva incondizionatamente
+// il payload INTERO ad ogni esecuzione, da ~35 punti di chiamata diversi
+// (alcuni dentro cicli per provincia/competizione, es. calcio su 9
+// competizioni × 2 stagioni), senza alcuna deduplicazione né scadenza —
+// anche per dati che cambiano raramente (farmacie, piste ciclabili,
+// classifiche calcio fuori giornata, viabilità). L'unica eccezione già
+// esistente era `sci:risultati` (vedi ingestRisultatiSci), che scrive in
+// history solo se qualcosa è davvero cambiato.
+//
+// Riattivare (mettendo STORICO_ATTIVO a true) solo quando esisterà
+// davvero una funzionalità che legge questa tabella (andamenti/grafici
+// storici). A quel punto vale la pena generalizzare subito il controllo
+// "scrivi solo se cambiato" a tutti i moduli e/o aggiungere una pulizia
+// automatica delle righe più vecchie di N giorni, per non ripetere lo
+// stesso problema da capo.
+const STORICO_ATTIVO = false;
+
 async function upsertSnapshot(id, module, zone, data) {
   const { error } = await supabase
     .from("snapshots")
     .upsert({ id, module, zone, data, updated_at: new Date().toISOString() });
   if (error) throw new Error(`Upsert fallito per ${id}: ${error.message}`);
+
+  if (!STORICO_ATTIVO) return;
 
   // storico: una riga in più ad ogni esecuzione, utile in fasi successive
   const { error: histError } = await supabase
@@ -497,10 +521,69 @@ const FONTI_NOTIZIE_GORIZIA = [
   },
 ];
 
+// Pordenone (08/09/2026) — 4 fonti indicate dall'utente, tutte verificate
+// prima di scrivere questo modulo:
+//   - PordenoneToday.it: stessa rete Citynews di TriestePrima.it/
+//     UdineToday.it (stesso tema, stesso URL "/notizie/tutte/") —
+//     irraggiungibile da questa sessione anche per WebFetch (timeout già
+//     sul recupero di robots.txt, non solo un 403 — un blocco più severo
+//     del solito per questa rete, mai visto per gli altri due domini
+//     Citynews del progetto). **Riusato lo stesso scraper generalizzato**
+//     `ingestNotizieFonteCitynews` (già usato per TriestePrima.it,
+//     verificato su outerHTML reale, e per UdineToday.it, mai confermato)
+//     come scommessa ragionevole data l'identità di piattaforma — se il
+//     primo run reale desse 0 elementi, servirà l'outerHTML reale di
+//     questo dominio, stesso percorso di sblocco già riuscito 3 volte in
+//     questo progetto.
+//   - PordenoneOggi.it: feed RSS 2.0 standard verificato via WebFetch su
+//     `/feed/` — stessa famiglia di siti "oggi" di UDINE.news/GORIZIA.news
+//     (qui però dominio proprio `.it`, non `oggi.news`), gestito allo
+//     stesso modo da `ingestNotizieFonteRss()`.
+//   - Telefriuli: qui l'utente ha indicato direttamente il tag
+//     "/tag/pordenone/" (non una categoria come per Udine) — verificato
+//     via WebFetch che esiste un feed RSS dedicato anche per il tag
+//     (`/tag/pordenone/feed/`, titolo canale "pordenone - Telefriuli"),
+//     non solo per le categorie: stessa convenzione URL WordPress
+//     (`/tag/<slug>/feed/` oltre a `/category/<slug>/feed/`), non
+//     visibile come `<link rel="alternate">` nella pagina HTML del tag
+//     ma comunque raggiungibile direttamente.
+//   - RaiNews TGR FVG: stessa API di ricerca già integrata per le altre 3
+//     province, solo `tagRainews` diverso — l'utente ha fornito l'URL con
+//     il tag Pordenone già estratto.
+// Con Pordenone tutte e 4 le province del FVG hanno ora una sezione
+// Notizie attiva (Trieste 05/09, Udine e Gorizia 06/09, Pordenone
+// 08/09/2026) — rollout completato.
+const FONTI_NOTIZIE_PORDENONE = [
+  {
+    fonte: "PordenoneToday.it",
+    fonte_url: "https://www.pordenonetoday.it/",
+    url: "https://www.pordenonetoday.it/notizie/tutte/",
+    baseUrl: "https://www.pordenonetoday.it",
+    tipo: "citynews",
+  },
+  {
+    fonte: "PordenoneOggi.it",
+    fonte_url: "https://pordenoneoggi.it/",
+    url: "https://pordenoneoggi.it/feed/",
+  },
+  {
+    fonte: "RaiNews TGR FVG",
+    fonte_url: "https://www.rainews.it/tgr/fvg",
+    tagRainews: "Pordenone|Tag-963bdf30-ed0f-43f9-978a-f5975cc07dc2",
+    tipo: "rainews",
+  },
+  {
+    fonte: "Telefriuli",
+    fonte_url: "https://www.telefriuli.it/tag/pordenone/",
+    url: "https://www.telefriuli.it/tag/pordenone/feed/",
+  },
+];
+
 const PROVINCE_NOTIZIE = [
   { slug: "trieste", fonti: FONTI_NOTIZIE_TRIESTE },
   { slug: "udine", fonti: FONTI_NOTIZIE_UDINE },
   { slug: "gorizia", fonti: FONTI_NOTIZIE_GORIZIA },
+  { slug: "pordenone", fonti: FONTI_NOTIZIE_PORDENONE },
 ];
 
 // Stesso parsing RSS di ingestNotizie() (ANSA) sopra — le fonti locali

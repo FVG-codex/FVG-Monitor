@@ -21,6 +21,13 @@ export type VoceChangelog = {
 
 export const CHANGELOG: VoceChangelog[] = [
   {
+    data: "08/09/2026",
+    titolo: "Notizie: aggiunta Pordenone, completando tutte e 4 le province",
+    dettagli: [
+      "La sezione Notizie ora copre anche Pordenone (PordenoneToday.it, PordenoneOggi.it, RaiNews TGR FVG, Telefriuli) — Trieste, Udine, Gorizia e Pordenone sono ora tutte attive.",
+    ],
+  },
+  {
     data: "06/09/2026",
     titolo: "Farmacie: chiarito l'orario dei turni a cavallo di mezzanotte",
     dettagli: [

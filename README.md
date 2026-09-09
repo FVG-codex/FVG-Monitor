@@ -2602,6 +2602,21 @@ L'utente ha indicato 4 fonti: GORIZIA.news (goriziaoggi.news), Il Goriziano (ilg
 
 `npx tsc --noEmit` e `node --check scripts/ingest-light.mjs` puliti. **Non ancora testato/confermato in produzione**: da verificare che la snapshot `notizie-provincia:gorizia` si popoli con tutte e 4 le fonti (in particolare Il Goriziano, unica verificata solo su un campione HTML fornito dall'utente e non sulla risposta HTTP grezza di GitHub Actions) e compaia correttamente nella tab "Gorizia" di `/notizie`.
 
+## Notizie locali — Pordenone (08/09/2026)
+
+L'utente ha indicato 4 fonti: PordenoneToday.it (`/notizie/tutte/`), PordenoneOggi.it, RaiNews TGR FVG (URL con il tag Pordenone già estratto dall'utente) e Telefriuli (`/tag/pordenone/`, un tag stavolta, non una categoria come per Udine).
+
+**Verifica prima di scrivere codice** — tutte e 4 risultate verificabili al primo giro, nessun blocco totale come capitato inizialmente per Il Goriziano/La Gazzetta di Gorizia:
+
+1. **PordenoneOggi.it** — ✅ feed RSS 2.0 standard verificato via WebFetch su `/feed/` (canale "PORDENONEOGGI.IT") — stessa famiglia di siti "oggi" di UDINE.news/GORIZIA.news nello spirito, ma dominio proprio `.it` invece di `oggi.news`.
+2. **RaiNews TGR FVG** — ✅ stessa API di ricerca già integrata per le altre 3 province, solo `tagRainews` diverso.
+3. **Telefriuli** — ✅ l'utente ha indicato direttamente il tag "/tag/pordenone/" (per Udine era stata usata la categoria "/cronaca/") — verificato via WebFetch che esiste un feed RSS dedicato anche per il tag (`/tag/pordenone/feed/`, canale "pordenone - Telefriuli"), stessa convenzione URL WordPress (`/tag/<slug>/feed/`) già vista per le categorie. Non è annunciato con un `<link rel="alternate">` nella pagina HTML del tag, ma è comunque raggiungibile direttamente all'URL prevedibile.
+4. **PordenoneToday.it** — ⚠️ **non verificabile direttamente**: stessa rete Citynews di TriestePrima.it/UdineToday.it (stesso tema, stesso percorso URL "/notizie/tutte/"), ma qui il blocco è più severo — timeout già sul recupero di `robots.txt` anche per WebFetch, non solo un 403 come per gli altri due domini Citynews del progetto. **Riusato lo stesso scraper generalizzato** `ingestNotizieFonteCitynews` (già verificato su outerHTML reale per TriestePrima.it, mai confermato per UdineToday.it) come scommessa ragionevole data l'identità di piattaforma — se il primo run reale desse 0 elementi, servirà l'outerHTML reale di questo dominio, stesso percorso di sblocco già riuscito 3 volte in questo progetto (TriestePrima.it, RaiNews, Il Goriziano).
+
+**Implementazione**: `FONTI_NOTIZIE_PORDENONE` in `scripts/ingest-light.mjs` (4/4 fonti indicate al primo giro), aggiunta a `PROVINCE_NOTIZIE`; `PROVINCE_NOTIZIE_ATTIVE` in `lib/notizieProvincia.ts` estesa a `["trieste", "udine", "gorizia", "pordenone"]` — nessuna modifica al dispatcher (`ingestNotizieProvincia()`) o alla UI oltre al commento in cima a `NotizieProvinciaPage.tsx`, entrambi già generici sulle province attive. **Con Pordenone il rollout del modulo Notizie per provincia è completo su tutte e 4 le province del FVG.**
+
+`npx tsc --noEmit` e `node --check scripts/ingest-light.mjs` puliti. **Non ancora testato/confermato in produzione**: nessuna delle 4 fonti Pordenone ha mai girato su un'esecuzione reale — da verificare in particolare che PordenoneToday.it non risulti sistematicamente a 0 (unico vero rischio, vedi punto 4 sopra) e che la snapshot `notizie-provincia:pordenone` si popoli e compaia correttamente nella tab "Pordenone" di `/notizie`.
+
 ## Google Analytics (05/09/2026)
 
 L'utente ha chiesto di integrare Google Analytics (GA4), fornendo direttamente lo snippet standard di gtag.js con l'id misurazione `G-BJT393WSQT`.
@@ -2611,6 +2626,51 @@ Invece di incollare i due `<script>` così come forniti, usato il componente `ne
 Applicato a livello di `RootLayout`, quindi attivo su ogni pagina del sito senza bisogno di ripeterlo altrove.
 
 `npx tsc --noEmit` pulito. Verificato con `next dev`: la homepage risponde 200 e il markup restituito contiene il tag `<script>` verso `googletagmanager.com/gtag/js?id=G-BJT393WSQT` e la chiamata `gtag(...)` — **non verificabile da questa sessione che i dati arrivino davvero al pannello Google Analytics** (il dominio `googletagmanager.com`/`google-analytics.com` non è raggiungibile dalla rete di questo sandbox, e comunque servirebbe accesso al pannello GA dell'utente) — da confermare tu stesso, guardando i "Realtime" report in Google Analytics dopo aver visitato il sito in produzione.
+
+## Manutenzione — il database Supabase aveva superato 1.5GB (06/09/2026)
+
+L'utente ha segnalato che il database Supabase aveva superato 1,5GB dopo
+sole due settimane di esecuzioni (progetto avviato il 22/08/2026,
+workflow `ingest-light.yml` ogni 15 minuti). Investigato nel codice prima
+di proporre qualunque azione — nessun accesso diretto a Supabase da questo
+sandbox (rete non raggiunge Supabase, come documentato altrove in questo
+file), quindi niente numeri esatti sulle dimensioni reali delle tabelle,
+solo l'analisi del codice di ingestione.
+
+**Causa individuata**: la tabella `history` (`supabase/schema.sql`),
+pensata fin dall'inizio "per fasi successive, grafici/andamenti" ma **mai
+letta da nessuna pagina del sito** (verificato con una ricerca nel
+codice). `upsertSnapshot()` in `scripts/ingest-light.mjs` — chiamata da
+circa 35 punti diversi, alcuni dentro cicli per provincia/competizione
+(es. calcio su 9 competizioni × 2 stagioni, notizie/vento/pioggia/
+temperatura/fiumi × 4 province) — vi scriveva incondizionatamente il
+payload JSON **intero** ad ogni singola esecuzione, senza deduplicazione
+né scadenza, anche per dati che cambiano raramente (orari farmacie, piste
+ciclabili, classifiche calcio fuori giornata, viabilità). L'unica
+eccezione già esistente era `sci:risultati` (26–27/08/2026, vedi sezione
+Sci sopra), che scrive in history solo se qualcosa è davvero cambiato,
+proprio per non "aggiungere una riga identica per mesi" — un pattern mai
+generalizzato agli altri moduli.
+
+**Deciso con l'utente**:
+- **Dati già accumulati**: da cancellare lato Supabase tenendo solo gli
+  ultimi 7 giorni (comando SQL fornito all'utente da eseguire nell'SQL
+  Editor di Supabase — non eseguibile da questa sessione, nessun accesso
+  diretto al database).
+- **Andando avanti**: scrittura in `history` sospesa del tutto
+  (`STORICO_ATTIVO = false` in `scripts/ingest-light.mjs`, vicino a
+  `upsertSnapshot()`) finché non esisterà davvero una funzionalità che la
+  legge. La tabella `snapshots` (letta dal sito) non è toccata in alcun
+  modo — nessun impatto su nessuna pagina esistente. Un commento esteso
+  nel codice spiega perché e cosa fare prima di riattivarla (generalizzare
+  il controllo "scrivi solo se cambiato" e/o aggiungere una pulizia
+  automatica delle righe vecchie, per non ripetere lo stesso problema).
+
+`node --check scripts/ingest-light.mjs` pulito. **Da fare dall'utente,
+fuori da questa sessione**: eseguire l'SQL di pulizia su Supabase (fornito
+a parte) e verificare nella dashboard Supabase (Database → Table sizes)
+che lo spazio sia stato effettivamente recuperato — non verificabile da
+qui.
 
 ## Idee future (annotate, non richieste esplicitamente per l'implementazione)
 
