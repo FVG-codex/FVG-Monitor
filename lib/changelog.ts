@@ -22,6 +22,13 @@ export type VoceChangelog = {
 export const CHANGELOG: VoceChangelog[] = [
   {
     data: "09/09/2026",
+    titolo: "Meteo: link diretto all'articolo completo su ogni previsione temporalesca",
+    dettagli: [
+      "Nel riquadro \"Previsioni temporalesche\" della pagina Meteo, ogni voce ha ora un link \"Leggi la previsione completa su PMG →\" accanto ad autore e data.",
+    ],
+  },
+  {
+    data: "09/09/2026",
     titolo: "Meteo: due nuovi riquadri con gli aggiornamenti di \"Pazzi per il meteo Goriziano\"",
     dettagli: [
       "Nella pagina Meteo (vista \"Tutta la regione\") sono comparsi due nuovi riquadri: gli ultimi aggiornamenti dal canale Telegram del meteorologo, e gli articoli \"Previsioni temporalesche\" dal suo sito.",

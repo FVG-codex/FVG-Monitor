@@ -371,21 +371,17 @@ async function ingestMeteo() {
 //   `t.me/s/<canale>` esiste per qualunque canale Telegram pubblico,
 //   nessun login necessario — mostra gli ultimi ~12-20 messaggi in HTML
 //   statico (non serve JS), ciascuno con un permalink `t.me/<canale>/<id>`.
-//   **Selettori scritti sulla struttura nota/stabile del widget pubblico
-//   Telegram** (`div.tgme_widget_message[data-post]`,
+//   Selettori (`div.tgme_widget_message[data-post]`,
 //   `.tgme_widget_message_text`, `time[datetime]` dentro
-//   `a.tgme_widget_message_date`) — non su un outerHTML reale fornito
-//   dall'utente come da prassi abituale del progetto, perché WebFetch
-//   converte sempre in markdown e non permette di leggere le classi CSS
-//   esatte (stessa limitazione nota, vedi nota architettura). Questo
-//   markup è però pubblico e documentato da anni per l'intero widget
-//   `/s/` di Telegram (usato da innumerevoli siti terzi allo stesso
-//   scopo), quindi trattato come una base ragionevole più solida del
-//   solito "riuso selettori per analogia di piattaforma" già accettato
-//   altrove nel progetto (es. PordenoneToday.it) — ma resta un rischio
-//   dichiarato: se il primo run reale desse 0 messaggi, servirà comunque
-//   l'outerHTML reale di una fermata fornito dall'utente per correggere i
-//   selettori, come da prassi.
+//   `a.tgme_widget_message_date`) scritti inizialmente sulla struttura
+//   nota/stabile del widget pubblico Telegram (senza outerHTML reale,
+//   perché WebFetch converte in markdown e non permette di leggere le
+//   classi CSS esatte), **poi confermati corretti il 09/09/2026 contro
+//   l'outerHTML reale della pagina fornito dall'utente** — inclusi i casi
+//   limite osservati nel markup reale: messaggi solo-foto senza
+//   `.tgme_widget_message_text` (scartati correttamente, nessun testo da
+//   mostrare), messaggi con foto+testo insieme, e l'ultimo messaggio della
+//   pagina privo dell'attributo `data-view` (ininfluente, non usato).
 // - Sito previsioni (`pazziperilmeteo.fvg.it`): WordPress standard, feed
 //   RSS di categoria verificato su `/category/previsioni-temporalesche/feed/`
 //   (senza l'anno nel percorso — stesso contenuto della versione con

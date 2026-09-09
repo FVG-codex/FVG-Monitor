@@ -73,9 +73,20 @@ export function PazziPrevisioniPanel() {
             </div>
           </a>
           {v.estratto && <p className="text-ink-dim text-[13px] leading-snug mb-1.5">{v.estratto}</p>}
-          <div className="flex gap-2 items-center font-mono text-[10px] text-ink-faint uppercase tracking-wide">
-            {v.autore && <span className="text-warm">{v.autore}</span>}
-            <span>· {tempoRelativo(v.data)}</span>
+          <div className="flex flex-wrap gap-x-2 gap-y-1 items-center justify-between font-mono text-[10px] text-ink-faint uppercase tracking-wide">
+            <span className="flex gap-2 items-center">
+              {v.autore && <span className="text-warm">{v.autore}</span>}
+              <span>· {tempoRelativo(v.data)}</span>
+            </span>
+            <a
+              href={v.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-ink-faint hover:text-cool-ink transition-colors normal-case tracking-normal"
+            >
+              Leggi la previsione completa su PMG →
+              <span className="sr-only"> (si apre in una nuova scheda)</span>
+            </a>
           </div>
         </div>
       ))}

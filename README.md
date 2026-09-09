@@ -2788,16 +2788,15 @@ con gli aggiornamenti dal canale Telegram, uno con gli articoli
   `meteo:pazzi-telegram` → `{ fonte, fonte_url, messaggi: [{id, testo,
   data, link}] }`, massimo 8 messaggi.
 
-  **Deviazione esplicita dalla disciplina abituale del progetto**: i
-  selettori sopra **non** sono stati verificati contro outerHTML reale
-  fornito dall'utente (a differenza di tutte le altre fonti scrapate del
-  sito) — sono basati sulla struttura pubblica nota e da anni stabile del
-  widget `/s/` di Telegram. Scelta deliberata perché WebFetch, interrogato
-  esplicitamente, non è stato in grado di restituire classi/markup reali
-  (solo una parafrasi del contenuto renderizzato). Se la prima esecuzione
-  reale restituisse 0 messaggi con il canale attivo, il markup andrebbe
-  verificato con l'outerHTML reale (DevTools → Ispeziona) prima di
-  correggere alla cieca.
+  **Deviazione iniziale, poi sanata lo stesso giorno**: i selettori sopra
+  erano stati scritti senza outerHTML reale fornito dall'utente (a
+  differenza di tutte le altre fonti scrapate del sito) — WebFetch,
+  interrogato esplicitamente, non era stato in grado di restituire
+  classi/markup reali (solo una parafrasi del contenuto renderizzato), solo
+  la struttura pubblica nota e stabile del widget `/s/` di Telegram.
+  **L'utente ha fornito l'outerHTML reale della pagina lo stesso giorno**
+  (vedi sezione dedicata sotto): i selettori sono risultati corretti così
+  come scritti, nessuna modifica necessaria.
 
 - `ingestPazziPrevisioni()` — legge il feed RSS
   `pazziperilmeteo.fvg.it/category/previsioni-temporalesche/feed/` (URL
@@ -2835,19 +2834,64 @@ isolato (script scratch, non nel repository): estratto pulito
 correttamente su un caso reale (entità HTML decodificate, paragrafo
 boilerplate rimosso, marcatore "[...]" nativo di WordPress preservato),
 RSS parsato correttamente su due voci di esempio, e markup Telegram
-ricostruito (non outerHTML reale — vedi nota sopra) che estrae
-correttamente 2 messaggi su 3 scartando quello solo-foto. **Verificato
-anche visivamente** con `next dev` + Chromium headless: screenshot della
-pagina `/meteo` conferma che i due nuovi riquadri compaiono nella
-posizione corretta (riga 2, sotto Meteo·4 province/Radar meteo) e non
-causano errori React — nessun dato reale disponibile da questa sessione
-(rete Supabase non raggiungibile da questo sandbox verso l'esterno per le
-chiamate di rendering client-side, stesso limite noto già incontrato per
-altri pannelli), quindi entrambi mostrano lo stato "Caricamento…" nello
-screenshot, atteso. **Non ancora confermato in produzione**: nessuna
-esecuzione reale su GitHub Actions ha ancora girato con questo codice —
-in particolare i selettori Telegram (vedi deviazione sopra) sono da
-tenere d'occhio al primo giro reale.
+ricostruito (non ancora outerHTML reale a questo punto della sessione —
+sanato subito dopo, vedi sotto) che estrae correttamente 2 messaggi su 3
+scartando quello solo-foto. **Verificato anche visivamente** con
+`next dev` + Chromium headless: screenshot della pagina `/meteo` conferma
+che i due nuovi riquadri compaiono nella posizione corretta (riga 2, sotto
+Meteo·4 province/Radar meteo) e non causano errori React — nessun dato
+reale disponibile da questa sessione (rete Supabase non raggiungibile da
+questo sandbox verso l'esterno per le chiamate di rendering client-side,
+stesso limite noto già incontrato per altri pannelli), quindi entrambi
+mostrano lo stato "Caricamento…" nello screenshot, atteso. **Non ancora
+confermato in produzione**: nessuna esecuzione reale su GitHub Actions ha
+ancora girato con questo codice.
+
+### Follow-up, stessa giornata: link "Leggi su PMG" + verifica Telegram su outerHTML reale
+
+Subito dopo la consegna sopra, l'utente ha chiesto due cose: (1) sotto
+ogni previsione temporalesca, accanto all'autore, un link "Leggi la
+previsione completa su PMG →" verso l'articolo originale sul sito; (2) ha
+fornito l'outerHTML reale della pagina `https://t.me/s/pazziperilmeteo`
+(l'intera anteprima del canale, oltre 15 messaggi), sbloccando la
+verifica che era rimasta come deviazione dichiarata nella consegna
+precedente.
+
+**Link "PMG"** (`components/PazziPrevisioniPanel.tsx`): la riga
+autore/data di ogni voce, prima un semplice `<div>` senza interattività
+propria (il link al sito era solo sul titolo), è ora un flex
+`justify-between` con autore+data a sinistra e il nuovo link a destra —
+stesso URL già usato per il titolo (`v.link`, l'articolo specifico, non
+solo la home del sito), con la stessa convenzione di accessibilità già in
+uso ovunque nel sito per `target="_blank"` (span `sr-only` "(si apre in
+una nuova scheda)"). "PMG" è l'abbreviazione del nome del sito/pagina
+("Pazzi per il Meteo Goriziano"), come chiesto dall'utente.
+
+**Verifica Telegram su outerHTML reale — nessun fix necessario**:
+salvato subito su disco l'HTML fornito (stessa lezione operativa
+consolidata da RaiNews/TriestePrima.it/Il Goriziano), poi rieseguita la
+stessa identica logica di `ingestPazziTelegram()` (copiata in uno script
+di test, non riscritta a mano) contro un estratto rappresentativo di
+quell'HTML — un messaggio solo-foto senza testo (`data-post`
+"pazziperilmeteo/6490"), un messaggio di solo testo con più `<br>`, un
+messaggio con foto+testo insieme, e l'ultimo messaggio della pagina
+(privo dell'attributo `data-view`, presente su tutti gli altri — un
+dettaglio del markup reale che uno script scritto "a tavolino" difficilmente
+avrebbe previsto). **I selettori scritti nella consegna precedente sono
+risultati corretti così come erano** — nessuna riga di codice modificata
+in `ingestPazziTelegram()`, solo il commento in cima alla sezione
+aggiornato per riflettere che ora sono verificati contro l'outerHTML
+reale, non più una scommessa sulla stabilità del widget pubblico
+Telegram. Confermato anche il comportamento sui casi limite osservati nel
+markup reale (messaggi solo-foto scartati correttamente, ordine
+cronologico corretto).
+
+`npx tsc --noEmit` e `node --check scripts/ingest-light.mjs` puliti.
+Layout del nuovo link verificato con `next dev` + Chromium headless
+(pagina di prova temporanea con dati finti, stessa JSX del componente
+reale, eliminata subito dopo lo screenshot insieme alla cache `.next` che
+la conteneva — mai parte della consegna). **Non ancora confermato
+dall'utente in produzione** per entrambe le modifiche.
 
 ## Idee future (annotate, non richieste esplicitamente per l'implementazione)
 
