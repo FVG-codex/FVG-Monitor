@@ -2893,6 +2893,74 @@ reale, eliminata subito dopo lo screenshot insieme alla cache `.next` che
 la conteneva — mai parte della consegna). **Non ancora confermato
 dall'utente in produzione** per entrambe le modifiche.
 
+## Economia — prima sezione, disoccupazione trimestrale FVG (10/09/2026)
+
+L'utente ha chiesto cosa si potrebbe implementare sul fronte economia,
+riprendendo un punto lasciato in sospeso da un sondaggio precedente sulla
+categoria "Economia e Finanze" del portale open data regionale
+(`dati.friuliveneziagiulia.it`), risultata poco utile: quasi interamente
+bilanci comunali/enti (`Rendiconto Entrate/Spese`) via BDAP, aggiornati
+una volta l'anno, più un paio di dataset storici mai più aggiornati dal
+2018.
+
+**Approfondimento su tre alternative indicate dall'utente**: ISTAT,
+Unioncamere/Infocamere ("Movimprese"), Camere di Commercio locali
+(Venezia Giulia e Pordenone-Udine). Solo ISTAT ha prodotto una pista
+concreta: una vera **API REST SDMX ufficiale**
+(`esploradati.istat.it/SDMXWS/rest`, ~450 dataflow interrogabili).
+Unioncamere ha un catalogo open data (DCAT/RDF) ma senza un dataset FVG
+individuato in questo giro (navigabile solo via interfaccia web, non
+leggibile bene da WebFetch — stesso problema già visto con le pagine
+`/browse` del portale regionale). Le due Camere di Commercio locali sono
+risultate solo pagine di rimando alle stesse fonti già valutate (ISTAT,
+SISTAN, Unioncamere, Banca d'Italia, Eurostat), senza dataset propri.
+
+**Verifica tecnica dell'API ISTAT** (stessa disciplina già usata per gli
+altri moduli: mai scrivere il parsing da un riassunto, serve l'XML reale):
+individuato il dataflow `IT1:151_914` "Tasso di disoccupazione" (DSD
+`DCCV_TAXDISOCCU1`), dimensioni scoperte via l'endpoint
+`/datastructure` (`FREQ.REF_AREA.DATA_TYPE.SEX.AGE.EDU_LEV_HIGHEST.CITIZENSHIP.DURATION_UNEMPLOYMENT`),
+poi fatto riprodurre verbatim dal WebFetch l'XML SDMX-ML "GenericData"
+di una query reale e salvato su disco, e solo a quel punto scritto/testato
+il parsing con `fast-xml-parser` (stessa config di produzione) contro
+quel campione — vedi commento esteso sopra `ingestEconomiaDisoccupazione()`
+in `scripts/ingest-light.mjs` per i dettagli (incluso un dettaglio non
+ovvio: in questo dataflow il Friuli Venezia Giulia è codificato `ITD4`,
+non il più comune codice NUTS2 `ITH4`).
+
+**Query di produzione**: serie "headline" (sesso totale, età 15-74,
+tutti i livelli di istruzione/cittadinanza/durata), ultimi ~3 anni di
+storico salvati nello snapshot invece del solo ultimo valore — cadenza
+reale trimestrale con circa un trimestre di ritardo (ultimo dato
+verificato il 10/09/2026: 1° trimestre 2026, 4,19%), troppo lenta perché
+un singolo numero isolato sia leggibile senza confronto con i trimestri
+precedenti.
+
+**Frontend**: nuova sezione indipendente `/economia` (aggiunta al menu
+hamburger, `MenuHamburger.tsx`) — a differenza delle altre sezioni
+indipendenti del sito (dati ricchi, aggiornati spesso), qui c'è un solo
+indicatore per ora: `EconomiaDisoccupazionePanel.tsx` mostra il valore
+più recente, la variazione rispetto al trimestre precedente (colorata,
+stessi token semantici `allerta-verde-ink`/`allerta-rossa-ink` già usati
+per gli alert) e un mini-storico a barre degli ultimi 8 trimestri.
+`EconomiaPage.tsx` segue lo stesso schema di Terremoti/Aviazione
+(`TopHeader`/`Panel`/`Footer`), pensata per crescere con altri indicatori
+(prezzi al consumo, PIL) se verranno verificati con la stessa disciplina
+— **PIL e prezzi al consumo regionali ISTAT non sono ancora stati
+verificati**: i dataflow trovati (`93_500` PIL, `167_744` NIC) sembrano
+dataset "a edizione" che ISTAT sostituisce periodicamente con un nuovo
+ID (dati fermi rispettivamente a fine 2023 e dicembre 2025 in questo
+giro) — richiederebbe altro lavoro di ricognizione per trovare
+l'edizione corrente, non fatto in questa consegna.
+
+`npx tsc --noEmit` e `node --check scripts/ingest-light.mjs` puliti.
+Layout verificato con `next dev` + Chromium headless (pagina di prova
+temporanea con dati finti basati sui valori reali verificati, eliminata
+subito dopo lo screenshot insieme alla cache `.next`), sia tema scuro
+che chiaro. **Non ancora confermato dall'utente in produzione** — il
+primo run reale da GitHub Actions (fetch dell'API ISTAT dal runner, mai
+testato da lì) resta da verificare dopo il redeploy.
+
 ## Idee future (annotate, non richieste esplicitamente per l'implementazione)
 
 - **Strutture ricettive — implementate il 26/08/2026** (vedi sezioni dedicate sopra): hub + 8 pagine, arricchimento contatti da OpenStreetMap lo stesso giorno, poi scraping incrementale turismofvg.it per gli Agriturismi (sempre 26/08/2026, vedi "Agriturismi — scraping incrementale turismofvg.it" sopra per i dettagli — DevTools fornito dall'utente, stesso metodo già servito per Tennis/Sci/Autobus). **Prossimo passo su questo modulo**: estendere lo scraping turismofvg.it alle altre 7 categorie (B&B, Affittacamere, Campeggi, Alberghi Diffusi, Sociali, Marina, Rifugi) — richiede prima di verificare che URL/etichette HTML siano gli stessi osservati per Agriturismi (non garantito), idealmente con un altro campione reale fornito dall'utente per categoria prima di aggiungerla a `TURISMOFVG_CATEGORIE`.

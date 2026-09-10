@@ -4424,6 +4424,82 @@ async function ingestTerremoti() {
 }
 
 // ---------------------------------------------------------------------
+// ECONOMIA — tasso di disoccupazione trimestrale FVG, API SDMX ufficiale
+// di ISTAT (esploradati.istat.it). Prima sezione "Economia" del sito,
+// nata da una ricognizione richiesta dall'utente il 10/09/2026 sulla
+// categoria "Economia e Finanze" del portale open data regionale
+// (risultata poco utile: quasi solo bilanci comunali) e un successivo
+// approfondimento su ISTAT/Unioncamere/Camere di Commercio — solo ISTAT
+// ha prodotto un'API strutturata utilizzabile.
+//
+// Dataflow IT1:151_914 "Tasso di disoccupazione" (DSD DCCV_TAXDISOCCU1),
+// dimensioni verificate via /datastructure e query reali contro l'API
+// (non da un riassunto WebFetch — l'XML SDMX-ML "GenericData" restituito
+// è stato fatto riprodurre verbatim e salvato, poi il parsing testato
+// contro quel campione reale prima di scrivere questa funzione):
+//   FREQ.REF_AREA.DATA_TYPE.SEX.AGE.EDU_LEV_HIGHEST.CITIZENSHIP.DURATION_UNEMPLOYMENT
+// Query mirata alla serie "headline": Q (trimestrale) . ITD4 (area FVG —
+// attenzione: nel codelist territoriale usato da questo dataflow il FVG
+// è "ITD4", non il codice NUTS2 "ITH4" più comune altrove) . UNEM_R
+// (tasso di disoccupazione) . 9 (sesso: totale) . Y15-74 (età 15-74,
+// definizione standard) . 99 (livello istruzione: totale) . TOTAL
+// (cittadinanza: totale) . TOTAL (durata disoccupazione: totale).
+//
+// Cadenza reale: trimestrale, con circa un trimestre di ritardo rispetto
+// a oggi (dato più recente verificato il 10/09/2026: 2026-Q1) — molto
+// più lenta degli altri moduli di questo sito, per questo qui salviamo
+// l'intero storico disponibile (ultimi ~3 anni) invece di un solo valore:
+// un numero isolato senza contesto sarebbe poco leggibile per un dato
+// che cambia così di rado.
+// ---------------------------------------------------------------------
+
+async function ingestEconomiaDisoccupazione() {
+  const annoInizio = new Date().getFullYear() - 3;
+  const url =
+    `https://esploradati.istat.it/SDMXWS/rest/data/IT1,151_914/` +
+    `Q.ITD4.UNEM_R.9.Y15-74.99.TOTAL.TOTAL?startPeriod=${annoInizio}`;
+
+  const res = await fetchConRetry(url);
+  if (!res.ok) {
+    console.warn(`ISTAT disoccupazione FVG non disponibile (HTTP ${res.status})`);
+    return;
+  }
+
+  const parsed = xml.parse(await res.text());
+  const dataset = parsed?.["message:GenericData"]?.["message:DataSet"];
+  let serie = dataset?.["generic:Series"];
+  if (!serie) {
+    console.warn("ISTAT disoccupazione FVG: nessuna serie nella risposta (formato cambiato?)");
+    return;
+  }
+  if (Array.isArray(serie)) serie = serie[0]; // query mirata a una sola serie: se ce ne fosse più di una, qualcosa nella key è cambiato
+
+  let obsList = serie["generic:Obs"];
+  if (!obsList) obsList = [];
+  if (!Array.isArray(obsList)) obsList = [obsList];
+
+  const trimestri = obsList
+    .map((o) => ({
+      periodo: o["generic:ObsDimension"]["@_value"],
+      valore: parseFloat(o["generic:ObsValue"]["@_value"]),
+    }))
+    .filter((t) => t.periodo && Number.isFinite(t.valore))
+    .sort((a, b) => a.periodo.localeCompare(b.periodo));
+
+  if (trimestri.length === 0) {
+    console.warn("ISTAT disoccupazione FVG: nessun trimestre valido estratto");
+    return;
+  }
+
+  await upsertSnapshot("economia:disoccupazione-fvg", "economia", null, {
+    trimestri,
+    fonte: "ISTAT — Tasso di disoccupazione, dataflow 151_914",
+    aggiornato_al: new Date().toISOString(),
+  });
+  console.log(`Disoccupazione FVG aggiornata: ${trimestri.length} trimestri, ultimo ${trimestri[trimestri.length - 1].periodo}`);
+}
+
+// ---------------------------------------------------------------------
 // PISTE CICLABILI — dataset Socrata "Piste Ciclabili" (7eat-pecq) su
 // dati.friuliveneziagiulia.it. Ricognizione fatta il 27/08/2026 su dati
 // reali (WebFetch su righe/metadata/query di raggruppamento) prima di
@@ -5216,6 +5292,7 @@ async function main() {
     ["webcam-osmer", ingestWebcamOsmer()],
     ["radar-meteo", ingestRadarMeteo()],
     ["terremoti", ingestTerremoti()],
+    ["economia-disoccupazione", ingestEconomiaDisoccupazione()],
     ["piste-ciclabili", ingestPisteCiclabili()],
     ["piste-ciclabili-2020", ingestCiclovie2020()],
     ...TURISMOFVG_BIKE_SERIE.map((serie) => [

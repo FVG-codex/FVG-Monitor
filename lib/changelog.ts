@@ -21,6 +21,13 @@ export type VoceChangelog = {
 
 export const CHANGELOG: VoceChangelog[] = [
   {
+    data: "10/09/2026",
+    titolo: "Nuova sezione \"Economia\": tasso di disoccupazione trimestrale del FVG",
+    dettagli: [
+      "Prima sezione dedicata all'economia regionale, raggiungibile dal menu: l'ultimo tasso di disoccupazione trimestrale (fonte ISTAT), con variazione sul trimestre precedente e lo storico degli ultimi 2 anni.",
+    ],
+  },
+  {
     data: "09/09/2026",
     titolo: "Meteo: link diretto all'articolo completo su ogni previsione temporalesca",
     dettagli: [

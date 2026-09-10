@@ -18,6 +18,7 @@ const SEZIONI_EXTRA = [
   { label: "Farmacie", href: "/farmacie" },
   { label: "Strutture ricettive", href: "/strutture-ricettive" },
   { label: "Piste ciclabili", href: "/piste-ciclabili" },
+  { label: "Economia", href: "/economia" },
 ];
 
 export function MenuHamburger() {
