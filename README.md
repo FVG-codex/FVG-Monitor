@@ -2961,6 +2961,68 @@ che chiaro. **Non ancora confermato dall'utente in produzione** — il
 primo run reale da GitHub Actions (fetch dell'API ISTAT dal runner, mai
 testato da lì) resta da verificare dopo il redeploy.
 
+## Commercio — nuova sezione, Supermercati (10/09/2026)
+
+L'utente ha chiesto una nuova sezione di menù "Commercio", con
+"Supermercati" come prima categoria (altre attività commerciali in
+futuro), organizzata "per provincia e poi per comuni" come le Farmacie
+— e ha fornito direttamente 4 file JSON (uno per provincia: GO/PN/UD/TS,
+306 punti vendita in totale) compilati e verificati a mano
+(Google Maps, siti ufficiali delle insegne).
+
+**Natura del dato — diversa da quasi tutto il resto del sito**: non è
+un dataset Socrata regionale né uno scraping, quindi non passa da
+`ingestFarmacie()`/Supabase come Farmacie o Strutture ricettive. È un
+dataset STATICO fornito dall'utente, importato direttamente nel bundle
+(stesso pattern di `lib/aviostrutture.ts`): i 4 JSON vivono in
+`lib/data/supermercati-<provincia>.json`, `lib/supermercati.ts` li
+importa con `resolveJsonModule` (già attivo in `tsconfig.json`) e li
+normalizza in un unico tipo `VoceSupermercato`. Aggiornamento solo
+quando l'utente fornirà un nuovo file — nessun job in
+`scripts/ingest-light.mjs`.
+
+**Limiti del dato ricevuto, documentati non nascosti**: le 107 voci
+della provincia di Udine hanno TUTTE `latitudine`/`longitudine` null
+(l'utente stesso lo descrive come "prima ricognizione strutturata" nel
+campo `scope` del JSON, diversamente dalle altre 3 province) — niente
+marker sulla mappa per Udine, solo elenco testuale, verificato che non
+causa errori (`SupermercatiMap.tsx` filtra le voci senza coordinate).
+Tutte le 107 voci di Udine hanno anche `orari_non_verificati: true`,
+più alcune voci sparse nelle altre province (Gorizia 6, Pordenone 31) —
+mostrato con una piccola nota "(orario non confermato)" accanto
+all'orario invece di ometterlo o darlo per buono senza avviso.
+
+**Orari settimanali ricorrenti, non puntuali come le Farmacie**: il
+dato è `{lunedi: [{apre,chiude}], ..., domenica: [...]}` (0, 1 o 2
+fasce per giorno — alcuni punti vendita hanno pausa pranzo), non
+date ISO di UN giorno specifico come le Farmacie. `statoAperturaSupermercato()`
+in `lib/supermercati.ts` ricalcola quindi da zero (non riusa
+`statoApertura()` delle Farmacie, la logica è diversa): giorno della
+settimana derivato da `adessoEuropeRome()` (stessa funzione delle
+Farmacie, riusata — fuso Europe/Rome esplicito), confronto stringhe
+"HH:MM". Un giorno con array vuoto è "chiuso oggi" (non "sconosciuto"
+come nelle Farmacie — lì significava "nessun dato per oggi ancora
+ingerito", qui invece è un dato statico sempre completo). Gestiti anche
+`apertura_24h` (sempre aperta) e `temporaneamente_chiuso` (mostrato
+come badge dedicato "Chiuso temporaneamente" al posto del pallino
+aperta/chiusa) — nessuno dei 306 punti vendita ha `apertura_24h: true`
+nel dato ricevuto, ma il campo è gestito per il futuro.
+
+**Frontend**: hub `/commercio` (`CommercioPage.tsx`, stesso schema a
+card di `/sport`) con una sola card "Supermercati" per ora, pronta a
+crescere. Pagina `/supermercati` (`SupermercatiPage.tsx`) ricalca
+`FarmaciePage.tsx` — tab provincia → tab comune → ricerca → elenco/mappa
+— con l'aggiunta di un filtro per categoria (Supermercato/Ipermercato/
+Discount, stesso schema dei filtri di `AviazionePage.tsx`). Mappa
+(`SupermercatiMap.tsx`) copiata da `FarmacieMap.tsx`, stesso trattamento
+dei marker mancanti. Voce "Commercio" aggiunta a `MenuHamburger.tsx`.
+
+`npx tsc --noEmit` e `node --check scripts/ingest-light.mjs` puliti
+(quest'ultimo invariato — nessun ingest aggiunto). Layout verificato
+con `next dev` + Chromium headless su Trieste (con coordinate, mappa
+con marker) e Udine (senza coordinate, mappa vuota ma nessun errore),
+tema scuro. **Non ancora confermato dall'utente in produzione.**
+
 ## Idee future (annotate, non richieste esplicitamente per l'implementazione)
 
 - **Strutture ricettive — implementate il 26/08/2026** (vedi sezioni dedicate sopra): hub + 8 pagine, arricchimento contatti da OpenStreetMap lo stesso giorno, poi scraping incrementale turismofvg.it per gli Agriturismi (sempre 26/08/2026, vedi "Agriturismi — scraping incrementale turismofvg.it" sopra per i dettagli — DevTools fornito dall'utente, stesso metodo già servito per Tennis/Sci/Autobus). **Prossimo passo su questo modulo**: estendere lo scraping turismofvg.it alle altre 7 categorie (B&B, Affittacamere, Campeggi, Alberghi Diffusi, Sociali, Marina, Rifugi) — richiede prima di verificare che URL/etichette HTML siano gli stessi osservati per Agriturismi (non garantito), idealmente con un altro campione reale fornito dall'utente per categoria prima di aggiungerla a `TURISMOFVG_CATEGORIE`.

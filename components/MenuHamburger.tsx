@@ -19,6 +19,7 @@ const SEZIONI_EXTRA = [
   { label: "Strutture ricettive", href: "/strutture-ricettive" },
   { label: "Piste ciclabili", href: "/piste-ciclabili" },
   { label: "Economia", href: "/economia" },
+  { label: "Commercio", href: "/commercio" },
 ];
 
 export function MenuHamburger() {

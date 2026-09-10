@@ -1,0 +1,4102 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-09-10",
+  "timezone": "Europe/Rome",
+  "scope": "supermercati, ipermercati e discount; esclusi minimarket e botteghe",
+  "records": [
+    {
+      "id": "TS-001",
+      "nome": "Famila Superstore Trieste",
+      "insegna": "Famila",
+      "categoria": "Ipermercato",
+      "indirizzo": "Via Valmaura, 4",
+      "cap": "34148",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "latitudine": 45.6222855,
+      "longitudine": 13.7898994,
+      "telefono": "040 832 3735",
+      "sito_pagina_ufficiale": "https://www.famila.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "19:30"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati sulla scheda della singola sede; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "TS-002",
+      "nome": "Ipercoop Torri d’Europa",
+      "insegna": "Coop",
+      "categoria": "Ipermercato",
+      "indirizzo": "Via Bartolomeo D’Alviano, 23",
+      "cap": "34144",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "latitudine": 45.6349267,
+      "longitudine": 13.7801515,
+      "telefono": "040 676 7511",
+      "sito_pagina_ufficiale": "https://www.coopalleanza3-0.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "09:00",
+            "chiude": "20:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "10:00",
+            "chiude": "20:30"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati sulla scheda della singola sede; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "TS-003",
+      "nome": "Ipercoop Via Svevo",
+      "insegna": "Coop",
+      "categoria": "Ipermercato",
+      "indirizzo": "Via Italo Svevo, 14-16",
+      "cap": "34145",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "latitudine": 45.6340805,
+      "longitudine": 13.7807003,
+      "telefono": "040 676 7511",
+      "sito_pagina_ufficiale": "https://www.coopalleanza3-0.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "09:00",
+            "chiude": "20:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "10:00",
+            "chiude": "20:30"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati sulla scheda della singola sede; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "TS-004",
+      "nome": "Coop Barriera Vecchia",
+      "insegna": "Coop",
+      "categoria": "Supermercato",
+      "indirizzo": "Largo della Barriera Vecchia, 15",
+      "cap": "34129",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "latitudine": 45.6482259,
+      "longitudine": 13.7784779,
+      "telefono": "040 348 1620",
+      "sito_pagina_ufficiale": "https://www.coopalleanza3-0.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati sulla scheda della singola sede; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "TS-005",
+      "nome": "Coop Roiano",
+      "insegna": "Coop",
+      "categoria": "Supermercato",
+      "indirizzo": "Largo a Roiano, 3",
+      "cap": "34135",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "latitudine": 45.6633425,
+      "longitudine": 13.7701657,
+      "telefono": "040 414822",
+      "sito_pagina_ufficiale": "https://www.coopalleanza3-0.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati sulla scheda della singola sede; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "TS-006",
+      "nome": "Coop Forlanini",
+      "insegna": "Coop",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Carlo Forlanini, 46",
+      "cap": "34139",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "latitudine": 45.6355958,
+      "longitudine": 13.831335,
+      "telefono": "040 919 1498",
+      "sito_pagina_ufficiale": "https://www.coopalleanza3-0.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "07:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "07:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "07:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "07:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "07:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "07:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "07:00",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati sulla scheda della singola sede; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "TS-007",
+      "nome": "Coop Via del Rivo",
+      "insegna": "Coop",
+      "categoria": "Supermercato",
+      "indirizzo": "Via del Rivo, 10",
+      "cap": "34137",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "latitudine": 45.6441735,
+      "longitudine": 13.780377,
+      "telefono": "040 372 1439",
+      "sito_pagina_ufficiale": "https://www.coopalleanza3-0.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati sulla scheda della singola sede; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "TS-008",
+      "nome": "Coop Cavana",
+      "insegna": "Coop",
+      "categoria": "Supermercato",
+      "indirizzo": "Via di Cavana, 13",
+      "cap": "34124",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "latitudine": 45.6475297,
+      "longitudine": 13.7662056,
+      "telefono": "040 322 0577",
+      "sito_pagina_ufficiale": "https://www.coopalleanza3-0.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati sulla scheda della singola sede; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "TS-009",
+      "nome": "Pam Miramare",
+      "insegna": "Pam",
+      "categoria": "Supermercato",
+      "indirizzo": "Viale Miramare, 1",
+      "cap": "34135",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "latitudine": 45.6576603,
+      "longitudine": 13.7728858,
+      "telefono": "040 426 1004",
+      "sito_pagina_ufficiale": "https://www.pampanorama.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "22:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "22:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "22:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "22:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "22:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "22:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "21:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati sulla scheda della singola sede; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "TS-010",
+      "nome": "Pam Stock",
+      "insegna": "Pam",
+      "categoria": "Ipermercato",
+      "indirizzo": "Via Lionello Stock, 4",
+      "cap": "34135",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "latitudine": 45.6650471,
+      "longitudine": 13.7701739,
+      "telefono": "040 452 8146",
+      "sito_pagina_ufficiale": "https://www.pampanorama.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati sulla scheda della singola sede; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "TS-011",
+      "nome": "Pam Campi Elisi",
+      "insegna": "Pam",
+      "categoria": "Ipermercato",
+      "indirizzo": "Viale Campi Elisi",
+      "cap": "34143",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "latitudine": 45.6398486,
+      "longitudine": 13.7747237,
+      "telefono": "040 767923",
+      "sito_pagina_ufficiale": "https://www.pampanorama.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "20:30"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati sulla scheda della singola sede; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "TS-012",
+      "nome": "Pam Il Giulia",
+      "insegna": "Pam",
+      "categoria": "Ipermercato",
+      "indirizzo": "Via Giulia, 75/3",
+      "cap": "34126",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "latitudine": 45.6547254,
+      "longitudine": 13.7947672,
+      "telefono": "040 571470",
+      "sito_pagina_ufficiale": "https://www.pampanorama.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati sulla scheda della singola sede; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "TS-013",
+      "nome": "Pam local Battisti",
+      "insegna": "Pam local",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Cesare Battisti, 22",
+      "cap": "34125",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "latitudine": 45.653277,
+      "longitudine": 13.781317,
+      "telefono": "040 985 2437",
+      "sito_pagina_ufficiale": "https://www.pampanorama.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "22:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "22:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "22:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "22:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "22:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "22:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "22:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati sulla scheda della singola sede; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "TS-014",
+      "nome": "Cadoro Trieste",
+      "insegna": "Cadoro",
+      "categoria": "Supermercato",
+      "indirizzo": "Via dell’Istria, 135",
+      "cap": "34137",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "latitudine": 45.6276029,
+      "longitudine": 13.7930865,
+      "telefono": "040 989 2358",
+      "sito_pagina_ufficiale": "https://www.cadoro.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati sulla scheda della singola sede; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "TS-015",
+      "nome": "Conad City XX Settembre",
+      "insegna": "Conad City",
+      "categoria": "Supermercato",
+      "indirizzo": "Viale XX Settembre, 20",
+      "cap": "34125",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "latitudine": 45.652061,
+      "longitudine": 13.780415,
+      "telefono": "040 370636",
+      "sito_pagina_ufficiale": "https://www.conad.it/ricerca-negozi",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "07:00",
+            "chiude": "20:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "07:00",
+            "chiude": "20:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "07:00",
+            "chiude": "20:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "07:00",
+            "chiude": "20:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "07:00",
+            "chiude": "20:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "07:00",
+            "chiude": "20:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati sulla scheda della singola sede; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "TS-016",
+      "nome": "Conad Morpurgo",
+      "insegna": "Conad",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Edgardo Morpurgo, 7",
+      "cap": "34147",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "latitudine": 45.614149,
+      "longitudine": 13.8246203,
+      "telefono": "040 281173",
+      "sito_pagina_ufficiale": "https://www.conad.it/ricerca-negozi",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "07:30",
+            "chiude": "20:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "07:30",
+            "chiude": "20:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "07:30",
+            "chiude": "20:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "07:30",
+            "chiude": "20:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "07:30",
+            "chiude": "20:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "07:30",
+            "chiude": "20:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "19:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati sulla scheda della singola sede; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "TS-017",
+      "nome": "Conad Strada per Vienna",
+      "insegna": "Conad",
+      "categoria": "Supermercato",
+      "indirizzo": "Strada per Vienna, 61",
+      "cap": "34151",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "latitudine": 45.6901353,
+      "longitudine": 13.8010026,
+      "telefono": "040 215433",
+      "sito_pagina_ufficiale": "https://www.conad.it/ricerca-negozi",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati sulla scheda della singola sede; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "TS-018",
+      "nome": "Tuday Conad Locchi",
+      "insegna": "Tuday Conad",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Vittorio Locchi, 26/3",
+      "cap": "34123",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "latitudine": 45.640934,
+      "longitudine": 13.762169,
+      "telefono": "040 303690",
+      "sito_pagina_ufficiale": "https://www.conad.it/ricerca-negozi",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "07:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "07:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "07:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "07:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "07:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "07:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati sulla scheda della singola sede; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "TS-019",
+      "nome": "Conad City Montorsino",
+      "insegna": "Conad City",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Montorsino, 4/C",
+      "cap": "34135",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "latitudine": 45.666756,
+      "longitudine": 13.771585,
+      "telefono": "040 415834",
+      "sito_pagina_ufficiale": "https://www.conad.it/ricerca-negozi",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "07:30",
+            "chiude": "20:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "07:30",
+            "chiude": "20:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "07:30",
+            "chiude": "20:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "07:30",
+            "chiude": "20:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "07:30",
+            "chiude": "20:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "07:30",
+            "chiude": "20:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "13:30"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati sulla scheda della singola sede; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "TS-020",
+      "nome": "Conad City Vergerio",
+      "insegna": "Conad City",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Pier Paolo Vergerio, 9/A",
+      "cap": "34138",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "latitudine": 45.6408185,
+      "longitudine": 13.7896884,
+      "telefono": "040 989 4884",
+      "sito_pagina_ufficiale": "https://www.conad.it/ricerca-negozi",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "07:30",
+            "chiude": "20:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "07:30",
+            "chiude": "20:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "07:30",
+            "chiude": "20:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "07:30",
+            "chiude": "20:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "07:30",
+            "chiude": "20:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "07:30",
+            "chiude": "20:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati sulla scheda della singola sede; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "TS-021",
+      "nome": "Lidl Fabio Severo",
+      "insegna": "Lidl",
+      "categoria": "Discount",
+      "indirizzo": "Via Fabio Severo, 28/30",
+      "cap": "34134",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "latitudine": 45.65674,
+      "longitudine": 13.78198,
+      "telefono": "800 480 048",
+      "sito_pagina_ufficiale": "https://www.lidl.it/s/it-IT/ricerca-negozio/trieste-ts/via-fabio-severo-28-30/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "21:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "21:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "21:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "21:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "21:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "21:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Lidl; Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati sulla scheda della singola sede; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "TS-022",
+      "nome": "Lidl Pollaiuolo",
+      "insegna": "Lidl",
+      "categoria": "Discount",
+      "indirizzo": "Via A. Pollaiuolo, 4",
+      "cap": "34148",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "latitudine": 45.63993,
+      "longitudine": 13.79229,
+      "telefono": "800 480 048",
+      "sito_pagina_ufficiale": "https://www.lidl.it/s/it-IT/ricerca-negozio/trieste-ts/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "21:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "21:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Lidl; Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati sulla scheda della singola sede; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "TS-023",
+      "nome": "Lidl Guido Reni",
+      "insegna": "Lidl",
+      "categoria": "Discount",
+      "indirizzo": "Via Guido Reni, 1",
+      "cap": "34123",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "latitudine": 45.64402,
+      "longitudine": 13.7567999,
+      "telefono": "800 480 048",
+      "sito_pagina_ufficiale": "https://www.lidl.it/s/it-IT/ricerca-negozio/trieste-ts/via-guido-reni-1/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "21:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Lidl; Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati sulla scheda della singola sede; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "TS-024",
+      "nome": "Lidl Valmaura",
+      "insegna": "Lidl",
+      "categoria": "Discount",
+      "indirizzo": "Via Valmaura, 12",
+      "cap": "34148",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "latitudine": 45.62077,
+      "longitudine": 13.7872,
+      "telefono": "800 480 048",
+      "sito_pagina_ufficiale": "https://www.lidl.it/s/it-IT/ricerca-negozio/trieste-ts/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "21:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Lidl; Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati sulla scheda della singola sede; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "TS-025",
+      "nome": "Lidl Piazzale dei Legnami",
+      "insegna": "Lidl",
+      "categoria": "Discount",
+      "indirizzo": "Piazzale dei Legnami, 1",
+      "cap": "34145",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "latitudine": 45.63403,
+      "longitudine": 13.77955,
+      "telefono": "800 480 048",
+      "sito_pagina_ufficiale": "https://www.lidl.it/s/it-IT/ricerca-negozio/trieste-ts/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Lidl; Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati sulla scheda della singola sede; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "TS-026",
+      "nome": "ALDI Coroneo",
+      "insegna": "ALDI",
+      "categoria": "Discount",
+      "indirizzo": "Via del Coroneo, 1-3/10",
+      "cap": "34133",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "latitudine": 45.6531094,
+      "longitudine": 13.777318,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.aldi.it/punti-vendita-e-orari-di-apertura",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "21:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "21:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "ALDI; Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati sulla scheda della singola sede; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "TS-027",
+      "nome": "ALDI Fabio Severo",
+      "insegna": "ALDI",
+      "categoria": "Discount",
+      "indirizzo": "Via Fabio Severo, 54",
+      "cap": "34127",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "latitudine": 45.6566148,
+      "longitudine": 13.7856407,
+      "telefono": "800 370 370",
+      "sito_pagina_ufficiale": "https://www.aldi.it/punti-vendita-e-orari-di-apertura",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "21:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "ALDI; Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati sulla scheda della singola sede; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "TS-028",
+      "nome": "ALDI Salata",
+      "insegna": "ALDI",
+      "categoria": "Discount",
+      "indirizzo": "Via Francesco Salata, 2",
+      "cap": "34148",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "latitudine": 45.632161,
+      "longitudine": 13.79129,
+      "telefono": "800 370 370",
+      "sito_pagina_ufficiale": "https://www.aldi.it/punti-vendita-e-orari-di-apertura",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "21:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "21:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "21:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "21:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "21:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "21:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "20:30"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "ALDI; Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati sulla scheda della singola sede; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "TS-029",
+      "nome": "ALDI Flavia",
+      "insegna": "ALDI",
+      "categoria": "Discount",
+      "indirizzo": "Via Flavia, 64",
+      "cap": "34148",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "latitudine": 45.6198935,
+      "longitudine": 13.8114217,
+      "telefono": "800 370 370",
+      "sito_pagina_ufficiale": "https://www.aldi.it/punti-vendita-e-orari-di-apertura",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "21:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "21:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "21:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "21:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "21:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "21:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "20:30"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "ALDI; Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati sulla scheda della singola sede; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "TS-030",
+      "nome": "Eurospin Flavia",
+      "insegna": "Eurospin",
+      "categoria": "Discount",
+      "indirizzo": "Via Flavia, 46",
+      "cap": "34148",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "latitudine": 45.6213742,
+      "longitudine": 13.8080766,
+      "telefono": "045 786 2000",
+      "sito_pagina_ufficiale": "https://www.eurospin.it/punti-vendita/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "19:30"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Eurospin; Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati sulla scheda della singola sede; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "TS-031",
+      "nome": "Eurospin Economo",
+      "insegna": "Eurospin",
+      "categoria": "Discount",
+      "indirizzo": "Via Giovanni e Demetrio Economo, 12/4",
+      "cap": "34123",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "latitudine": 45.6447215,
+      "longitudine": 13.7582811,
+      "telefono": "045 786 2000",
+      "sito_pagina_ufficiale": "https://www.eurospin.it/punti-vendita/trieste-via-economo/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Eurospin",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari verificati sul sito ufficiale Eurospin; domenica chiuso."
+    },
+    {
+      "id": "TS-032",
+      "nome": "Dpiù Destriero",
+      "insegna": "Dpiù",
+      "categoria": "Discount",
+      "indirizzo": "Via del Destriero, 19",
+      "cap": "34137",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "latitudine": 45.6387269,
+      "longitudine": 13.7888515,
+      "telefono": "040 938 0356",
+      "sito_pagina_ufficiale": "https://www.d-piu.com/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati sulla scheda della singola sede; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "TS-033",
+      "nome": "Dpiù Villan de Bachino",
+      "insegna": "Dpiù",
+      "categoria": "Discount",
+      "indirizzo": "Via Villan de Bachino, 2",
+      "cap": "34135",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "latitudine": 45.6671375,
+      "longitudine": 13.7719845,
+      "telefono": "040 411362",
+      "sito_pagina_ufficiale": "https://www.d-piu.com/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati sulla scheda della singola sede; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "TS-034",
+      "nome": "iN's Catullo",
+      "insegna": "iN's Mercato",
+      "categoria": "Discount",
+      "indirizzo": "Via Catullo, 1",
+      "cap": "34133",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "latitudine": 45.6569416,
+      "longitudine": 13.7827644,
+      "telefono": "375 560 2513",
+      "sito_pagina_ufficiale": "https://www.insmercato.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati; domenica con due fasce."
+    },
+    {
+      "id": "TS-035",
+      "nome": "iN's Diaz",
+      "insegna": "iN's Mercato",
+      "categoria": "Discount",
+      "indirizzo": "Via Armando Diaz, 21",
+      "cap": "34124",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "latitudine": 45.6474369,
+      "longitudine": 13.7639737,
+      "telefono": "375 560 2514",
+      "sito_pagina_ufficiale": "https://www.insmercato.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati; domenica con due fasce."
+    },
+    {
+      "id": "TS-036",
+      "nome": "iN's Roma",
+      "insegna": "iN's Mercato",
+      "categoria": "Discount",
+      "indirizzo": "Via Roma, 26",
+      "cap": "34132",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "latitudine": 45.6539558,
+      "longitudine": 13.7730979,
+      "telefono": "348 578 5492",
+      "sito_pagina_ufficiale": "https://www.insmercato.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati; domenica con due fasce."
+    },
+    {
+      "id": "TS-037",
+      "nome": "iN's Revoltella",
+      "insegna": "iN's Mercato",
+      "categoria": "Discount",
+      "indirizzo": "Via Pasquale Revoltella, 10",
+      "cap": "34138",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "latitudine": 45.642596,
+      "longitudine": 13.7890443,
+      "telefono": "375 560 2512",
+      "sito_pagina_ufficiale": "https://www.insmercato.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati; domenica con due fasce."
+    },
+    {
+      "id": "TS-038",
+      "nome": "iN's Zorutti",
+      "insegna": "iN's Mercato",
+      "categoria": "Discount",
+      "indirizzo": "Via Pietro Zorutti, 30",
+      "cap": "34144",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "latitudine": 45.6346878,
+      "longitudine": 13.7829576,
+      "telefono": "375 560 2500",
+      "sito_pagina_ufficiale": "https://www.insmercato.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati; domenica con due fasce."
+    },
+    {
+      "id": "TS-039",
+      "nome": "iN's Orsera",
+      "insegna": "iN's Mercato",
+      "categoria": "Discount",
+      "indirizzo": "Via Orsera, 13",
+      "cap": "34145",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "latitudine": 45.6325703,
+      "longitudine": 13.7874921,
+      "telefono": "375 560 2504",
+      "sito_pagina_ufficiale": "https://www.insmercato.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati sulla scheda della singola sede; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "TS-040",
+      "nome": "Eurospar Dell’Istria",
+      "insegna": "Eurospar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via dell’Istria, 102/1",
+      "cap": "34137",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "latitudine": 45.6365758,
+      "longitudine": 13.7859344,
+      "telefono": "040 347 8781",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/trieste/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Despar; Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati sulla scheda della singola sede; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "TS-041",
+      "nome": "Eurospar Dei Leo",
+      "insegna": "Eurospar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via dei Leo, 7",
+      "cap": "34141",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "latitudine": 45.6470545,
+      "longitudine": 13.7865695,
+      "telefono": "040 372 8025",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/trieste/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Despar; Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati sulla scheda della singola sede; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "TS-042",
+      "nome": "Eurospar Barriera Vecchia",
+      "insegna": "Eurospar",
+      "categoria": "Supermercato",
+      "indirizzo": "Largo della Barriera Vecchia, 7",
+      "cap": "34129",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "latitudine": 45.6476941,
+      "longitudine": 13.7795789,
+      "telefono": "040 349 4001",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/trieste/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Despar; Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati sulla scheda della singola sede; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "TS-043",
+      "nome": "Eurospar Koch",
+      "insegna": "Eurospar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Robert Koch",
+      "cap": "34149",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "latitudine": 45.6405096,
+      "longitudine": 13.8241819,
+      "telefono": "040 911277",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/trieste/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Despar; Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati sulla scheda della singola sede; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "TS-044",
+      "nome": "Despar San Francesco",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via San Francesco d’Assisi, 16",
+      "cap": "34133",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "latitudine": 45.652972,
+      "longitudine": 13.7787053,
+      "telefono": "040 370323",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/trieste/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Despar; Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati sulla scheda della singola sede; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "TS-045",
+      "nome": "Despar Piazza Cavana",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via del Pesce, 2/B",
+      "cap": "34121",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "latitudine": 45.6484253,
+      "longitudine": 13.7669061,
+      "telefono": "040 271225",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/trieste/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Despar; Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati sulla scheda della singola sede; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "TS-046",
+      "nome": "Despar XX Settembre 15/A",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Viale XX Settembre, 15/A",
+      "cap": "34125",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "latitudine": 45.6516314,
+      "longitudine": 13.7796819,
+      "telefono": "040 372 8890",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/trieste/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "19:30"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Despar; Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati sulla scheda della singola sede; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "TS-047",
+      "nome": "Despar Mascagni",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Pietro Mascagni, 2",
+      "cap": "34148",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "latitudine": 45.6220357,
+      "longitudine": 13.8001787,
+      "telefono": "040 832 0292",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/trieste/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "07:00",
+            "chiude": "22:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "07:00",
+            "chiude": "22:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "07:00",
+            "chiude": "22:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "07:00",
+            "chiude": "22:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "07:00",
+            "chiude": "22:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "07:00",
+            "chiude": "22:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "07:00",
+            "chiude": "22:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Despar; Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati sulla scheda della singola sede; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "TS-048",
+      "nome": "Despar XX Settembre 28",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Viale XX Settembre, 28",
+      "cap": "34125",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "latitudine": 45.6524453,
+      "longitudine": 13.7824454,
+      "telefono": "040 635806",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/trieste/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Despar; Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati sulla scheda della singola sede; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "TS-049",
+      "nome": "Despar Muggia Luna",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Strada della Luna, 1",
+      "cap": "34015",
+      "comune": "Muggia",
+      "provincia": "TS",
+      "latitudine": 45.6058582,
+      "longitudine": 13.7514992,
+      "telefono": "040 275501",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/trieste/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Despar; Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati sulla scheda della singola sede; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "TS-050",
+      "nome": "Despar Muggia San Giovanni",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via San Giovanni, 14",
+      "cap": "34015",
+      "comune": "Muggia",
+      "provincia": "TS",
+      "latitudine": 45.6017364,
+      "longitudine": 13.7694242,
+      "telefono": "040 271183",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/trieste/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Despar; Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati sulla scheda della singola sede; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "TS-051",
+      "nome": "Despar Tutto Pepe",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Cesare Battisti, 11/A",
+      "cap": "34015",
+      "comune": "Muggia",
+      "provincia": "TS",
+      "latitudine": 45.6040714,
+      "longitudine": 13.7708766,
+      "telefono": "040 271316",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/trieste/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "07:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "07:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "07:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "07:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "07:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "07:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Despar; Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati sulla scheda della singola sede; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "TS-052",
+      "nome": "Famila Superstore Rabuiese",
+      "insegna": "Famila",
+      "categoria": "Ipermercato",
+      "indirizzo": "SP Farnei, 40/B",
+      "cap": "34015",
+      "comune": "Muggia",
+      "provincia": "TS",
+      "latitudine": 45.5887364,
+      "longitudine": 13.8011319,
+      "telefono": "040 923 5063",
+      "sito_pagina_ufficiale": "https://www.famila.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "19:30"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati sulla scheda della singola sede; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "TS-053",
+      "nome": "Centro Discount Muggia",
+      "insegna": "Centro Discount",
+      "categoria": "Discount",
+      "indirizzo": "Via Flavia di Stramare, 139/C-D",
+      "cap": "34015",
+      "comune": "Muggia",
+      "provincia": "TS",
+      "latitudine": 45.5838926,
+      "longitudine": 13.7982931,
+      "telefono": "040 923 5358",
+      "sito_pagina_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati sulla scheda della singola sede; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "TS-054",
+      "nome": "Ipercoop Montedoro",
+      "insegna": "Coop",
+      "categoria": "Ipermercato",
+      "indirizzo": "Via Flavia di Stramare, 119",
+      "cap": "34015",
+      "comune": "Muggia",
+      "provincia": "TS",
+      "latitudine": 45.5925639,
+      "longitudine": 13.8080189,
+      "telefono": "040 239 7811",
+      "sito_pagina_ufficiale": "https://www.coopalleanza3-0.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "09:00",
+            "chiude": "20:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "10:00",
+            "chiude": "20:30"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati sulla scheda della singola sede; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "TS-055",
+      "nome": "Eurospin Rabuiese",
+      "insegna": "Eurospin",
+      "categoria": "Discount",
+      "indirizzo": "Via dei Farinei, 46",
+      "cap": "34015",
+      "comune": "Muggia",
+      "provincia": "TS",
+      "latitudine": 45.5893,
+      "longitudine": 13.802,
+      "telefono": "045 786 2000",
+      "sito_pagina_ufficiale": "https://www.eurospin.it/punti-vendita/muggia/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Eurospin",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari verificati sul sito ufficiale Eurospin."
+    },
+    {
+      "id": "TS-056",
+      "nome": "Conad Superstore Duino",
+      "insegna": "Conad Superstore",
+      "categoria": "Supermercato",
+      "indirizzo": "Frazione Duino, 5/F",
+      "cap": "34011",
+      "comune": "Duino-Aurisina",
+      "provincia": "TS",
+      "latitudine": 45.7748346,
+      "longitudine": 13.613181,
+      "telefono": "040 208357",
+      "sito_pagina_ufficiale": "https://www.conad.it/ricerca-negozi",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "07:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "07:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "07:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "07:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "07:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "07:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati sulla scheda della singola sede; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "TS-057",
+      "nome": "Tuday Conad Sistiana",
+      "insegna": "Tuday Conad",
+      "categoria": "Supermercato",
+      "indirizzo": "Località Sistiana, 24/H",
+      "cap": "34011",
+      "comune": "Duino-Aurisina",
+      "provincia": "TS",
+      "latitudine": 45.7683225,
+      "longitudine": 13.6456728,
+      "telefono": "040 291496",
+      "sito_pagina_ufficiale": "https://www.conad.it/ricerca-negozi",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "07:30",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "07:30",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "07:30",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "07:30",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "07:30",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "07:30",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati sulla scheda della singola sede; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "TS-058",
+      "nome": "Despar Aurisina",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Aurisina, 106/B",
+      "cap": "34011",
+      "comune": "Duino-Aurisina",
+      "provincia": "TS",
+      "latitudine": 45.7505872,
+      "longitudine": 13.6718073,
+      "telefono": "040 200172",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/punto-vendita-despar/485/duino-aurisina/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "19:00"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Despar",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari verificati sul sito ufficiale Despar; domenica chiuso."
+    },
+    {
+      "id": "TS-059",
+      "nome": "Despar Sistiana",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Sistiana, 60/D",
+      "cap": "34019",
+      "comune": "Duino-Aurisina",
+      "provincia": "TS",
+      "latitudine": 45.7717099,
+      "longitudine": 13.6244823,
+      "telefono": "040 299338",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/punto-vendita-despar/448/duino-aurisina/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Despar",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari verificati sul sito ufficiale Despar; domenica chiuso."
+    },
+    {
+      "id": "TS-060",
+      "nome": "Discount Tedesco Dolina",
+      "insegna": "Discount Tedesco",
+      "categoria": "Discount",
+      "indirizzo": "Località Dolina, 538",
+      "cap": "34018",
+      "comune": "San Dorligo della Valle–Dolina",
+      "provincia": "TS",
+      "latitudine": 45.6052798,
+      "longitudine": 13.8564087,
+      "telefono": "040 832 5039",
+      "sito_pagina_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "19:00"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati sulla scheda della singola sede; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "TS-061",
+      "nome": "Maxì Domio",
+      "insegna": "Maxì",
+      "categoria": "Supermercato",
+      "indirizzo": "Località Puglie di Domio, 157",
+      "cap": "34018",
+      "comune": "San Dorligo della Valle–Dolina",
+      "provincia": "TS",
+      "latitudine": 45.613517,
+      "longitudine": 13.8258222,
+      "telefono": "040 826541",
+      "sito_pagina_ufficiale": "https://www.maxisupermercati.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati sulla scheda della singola sede; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "TS-062",
+      "nome": "Despar Bagnoli della Rosandra",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Località Bagnoli della Rosandra, 405",
+      "cap": "34018",
+      "comune": "San Dorligo della Valle–Dolina",
+      "provincia": "TS",
+      "latitudine": 45.61376,
+      "longitudine": 13.8587801,
+      "telefono": "040 228114",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/trieste/",
+      "orari": {
+        "lunedi": [],
+        "martedi": [],
+        "mercoledi": [],
+        "giovedi": [],
+        "venerdi": [],
+        "sabato": [],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": true,
+      "fonte": "Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Temporaneamente chiuso alla data di verifica; tutte le fasce sono disattivate."
+    },
+    {
+      "id": "TS-063",
+      "nome": "Coop Sgonico",
+      "insegna": "Coop",
+      "categoria": "Supermercato",
+      "indirizzo": "Strada Statale 202, km 17",
+      "cap": "34010",
+      "comune": "Sgonico",
+      "provincia": "TS",
+      "latitudine": 45.7063913,
+      "longitudine": 13.7478399,
+      "telefono": "040 252 8000",
+      "sito_pagina_ufficiale": "https://www.coopalleanza3-0.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati sulla scheda della singola sede; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "TS-064",
+      "nome": "Despar Fernetti / Confort",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Località Fernetti, 18",
+      "cap": "34016",
+      "comune": "Monrupino",
+      "provincia": "TS",
+      "latitudine": 45.6987378,
+      "longitudine": 13.8327951,
+      "telefono": "040 215 8312",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/trieste/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Despar; Google Maps",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari settimanali verificati sulla scheda della singola sede; festività e aperture straordinarie escluse."
+    }
+  ]
+}

@@ -22,6 +22,13 @@ export type VoceChangelog = {
 export const CHANGELOG: VoceChangelog[] = [
   {
     data: "10/09/2026",
+    titolo: "Nuova sezione \"Commercio\": Supermercati delle 4 province",
+    dettagli: [
+      "Nel menù è comparsa la sezione \"Commercio\", con \"Supermercati\" come prima categoria: oltre 300 punti vendita (supermercati, ipermercati e discount) suddivisi per provincia e comune, con indirizzo, telefono, orari di oggi e mappa.",
+    ],
+  },
+  {
+    data: "10/09/2026",
     titolo: "Nuova sezione \"Economia\": tasso di disoccupazione trimestrale del FVG",
     dettagli: [
       "Prima sezione dedicata all'economia regionale, raggiungibile dal menu: l'ultimo tasso di disoccupazione trimestrale (fonte ISTAT), con variazione sul trimestre precedente e lo storico degli ultimi 2 anni.",

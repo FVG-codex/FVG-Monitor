@@ -1,0 +1,3488 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-09-10",
+  "timezone": "Europe/Rome",
+  "scope": "supermercati, ipermercati e discount; esclusi minimarket e botteghe",
+  "records": [
+    {
+      "id": "GO-001",
+      "nome": "Famila Gorizia Terza Armata",
+      "insegna": "Famila",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Terza Armata",
+      "cap": "34170",
+      "comune": "Gorizia",
+      "provincia": "GO",
+      "latitudine": 45.9246186,
+      "longitudine": 13.6154928,
+      "telefono": "0481 525083",
+      "sito_pagina_ufficiale": "https://www.famila.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Famila; Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "GO-002",
+      "nome": "Eurospar Gorizia Aquileia",
+      "insegna": "Eurospar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Aquileia, 67",
+      "cap": "34170",
+      "comune": "Gorizia",
+      "provincia": "GO",
+      "latitudine": 45.933899,
+      "longitudine": 13.6016464,
+      "telefono": "0481 20577",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/gorizia/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Despar; Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "GO-003",
+      "nome": "Conad City Locchi",
+      "insegna": "Conad City",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Vittorio Locchi, 14/16",
+      "cap": "34170",
+      "comune": "Gorizia",
+      "provincia": "GO",
+      "latitudine": 45.941246,
+      "longitudine": 13.615286,
+      "telefono": "0481 550597",
+      "sito_pagina_ufficiale": "https://www.conad.it/ricerca-negozi",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "07:00",
+            "chiude": "20:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "07:00",
+            "chiude": "20:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "07:00",
+            "chiude": "20:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "07:00",
+            "chiude": "20:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "07:00",
+            "chiude": "20:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "07:00",
+            "chiude": "20:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:00",
+            "chiude": "13:30"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Conad; Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "GO-004",
+      "nome": "Coop Boccaccio",
+      "insegna": "Coop",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Giovanni Boccaccio, 37",
+      "cap": "34170",
+      "comune": "Gorizia",
+      "provincia": "GO",
+      "latitudine": 45.946564,
+      "longitudine": 13.621288,
+      "telefono": "0481 536108",
+      "sito_pagina_ufficiale": "https://www.coopalleanza3-0.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Coop; Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "GO-005",
+      "nome": "Conad City Czoernig",
+      "insegna": "Conad City",
+      "categoria": "Supermercato",
+      "indirizzo": "Piazzale Carlo von Czoernig, snc",
+      "cap": "34170",
+      "comune": "Gorizia",
+      "provincia": "GO",
+      "latitudine": 45.929169,
+      "longitudine": 13.6172491,
+      "telefono": "0481 20220",
+      "sito_pagina_ufficiale": "https://www.conad.it/ricerca-negozi",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "07:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "07:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "07:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "07:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "07:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "07:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Conad; Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "GO-006",
+      "nome": "Famila Gorizia Torriani",
+      "insegna": "Famila",
+      "categoria": "Supermercato",
+      "indirizzo": "Via dei Torriani, 21",
+      "cap": "34170",
+      "comune": "Gorizia",
+      "provincia": "GO",
+      "latitudine": 45.9543709,
+      "longitudine": 13.6145608,
+      "telefono": "0481 553135",
+      "sito_pagina_ufficiale": "https://www.famila.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Famila; Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "GO-007",
+      "nome": "Coop Lungo Isonzo",
+      "insegna": "Coop",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Lungo Isonzo Argentina, 79",
+      "cap": "34170",
+      "comune": "Gorizia",
+      "provincia": "GO",
+      "latitudine": 45.9376895,
+      "longitudine": 13.602646,
+      "telefono": "0481 536870",
+      "sito_pagina_ufficiale": "https://www.coopalleanza3-0.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Coop; Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "GO-008",
+      "nome": "Supermercato Godina",
+      "insegna": "Godina",
+      "categoria": "Supermercato",
+      "indirizzo": "Via dei Cappuccini, 1",
+      "cap": "34170",
+      "comune": "Gorizia",
+      "provincia": "GO",
+      "latitudine": 45.940487,
+      "longitudine": 13.624247,
+      "telefono": "0481 533136",
+      "sito_pagina_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "GO-009",
+      "nome": "Lidl Gorizia",
+      "insegna": "Lidl",
+      "categoria": "Discount",
+      "indirizzo": "Via Francesco Marani, 2",
+      "cap": "34170",
+      "comune": "Gorizia",
+      "provincia": "GO",
+      "latitudine": 45.9369,
+      "longitudine": 13.6077,
+      "telefono": "800 480 048",
+      "sito_pagina_ufficiale": "https://www.lidl.it/s/it-IT/ricerca-negozio/gorizia-go/via-francesco-marani-2/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "21:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Lidl; Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "GO-010",
+      "nome": "Eurospin Gorizia",
+      "insegna": "Eurospin",
+      "categoria": "Discount",
+      "indirizzo": "Via Trieste, 108",
+      "cap": "34170",
+      "comune": "Gorizia",
+      "provincia": "GO",
+      "latitudine": 45.9234,
+      "longitudine": 13.6217,
+      "telefono": "045 786 2000",
+      "sito_pagina_ufficiale": "https://www.eurospin.it/punti-vendita/gorizia-via-trieste/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Eurospin",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "GO-011",
+      "nome": "Despar Corso Verdi",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Corso Giuseppe Verdi, 127",
+      "cap": "34170",
+      "comune": "Gorizia",
+      "provincia": "GO",
+      "latitudine": 45.946,
+      "longitudine": 13.6228,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/gorizia/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Despar; Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "GO-012",
+      "nome": "Eurospar Monfalcone Rossini",
+      "insegna": "Eurospar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Gioachino Rossini, 1/B",
+      "cap": "34074",
+      "comune": "Monfalcone",
+      "provincia": "GO",
+      "latitudine": 45.8086486,
+      "longitudine": 13.5236001,
+      "telefono": "0481 710176",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/gorizia/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "19:30"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Despar; Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "GO-013",
+      "nome": "Conad Monfalcone",
+      "insegna": "Conad",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Arrigo Boito, 1",
+      "cap": "34074",
+      "comune": "Monfalcone",
+      "provincia": "GO",
+      "latitudine": 45.8015736,
+      "longitudine": 13.5480889,
+      "telefono": "0481 414040",
+      "sito_pagina_ufficiale": "https://www.conad.it/ricerca-negozi",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "07:30",
+            "chiude": "20:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "07:30",
+            "chiude": "20:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "07:30",
+            "chiude": "20:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "07:30",
+            "chiude": "20:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "07:30",
+            "chiude": "20:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "07:30",
+            "chiude": "20:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Conad; Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "GO-014",
+      "nome": "Emisfero Monfalcone",
+      "insegna": "Emisfero",
+      "categoria": "Ipermercato",
+      "indirizzo": "Via Giovanni Pocar, 1",
+      "cap": "34074",
+      "comune": "Monfalcone",
+      "provincia": "GO",
+      "latitudine": 45.8182106,
+      "longitudine": 13.5128212,
+      "telefono": "0481 416740",
+      "sito_pagina_ufficiale": "https://www.emisfero.eu/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Directory; Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Orario disponibile da fonte cartografica/directory ma non confermato da una pagina ufficiale stabile; riverificare prima della pubblicazione e durante la stagione turistica."
+    },
+    {
+      "id": "GO-015",
+      "nome": "Coop Marcelliana",
+      "insegna": "Coop",
+      "categoria": "Supermercato",
+      "indirizzo": "Largo Marcelliana, 1",
+      "cap": "34074",
+      "comune": "Monfalcone",
+      "provincia": "GO",
+      "latitudine": 45.7990229,
+      "longitudine": 13.5283773,
+      "telefono": "0481 723405",
+      "sito_pagina_ufficiale": "https://www.coopalleanza3-0.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Coop; Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "GO-016",
+      "nome": "Eurospin Monfalcone Via Grado",
+      "insegna": "Eurospin",
+      "categoria": "Discount",
+      "indirizzo": "Via Grado, 50",
+      "cap": "34074",
+      "comune": "Monfalcone",
+      "provincia": "GO",
+      "latitudine": 45.7979639,
+      "longitudine": 13.5243549,
+      "telefono": "045 786 2000",
+      "sito_pagina_ufficiale": "https://www.eurospin.it/punti-vendita/monfalcone-via-grado/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Eurospin; Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "GO-017",
+      "nome": "IPERSPAK Monfalcone",
+      "insegna": "IPERSPAK",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Grado, 18",
+      "cap": "34074",
+      "comune": "Monfalcone",
+      "provincia": "GO",
+      "latitudine": 45.7986887,
+      "longitudine": 13.5272375,
+      "telefono": "0481 484220",
+      "sito_pagina_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "GO-018",
+      "nome": "Dpiù Monfalcone",
+      "insegna": "Dpiù",
+      "categoria": "Discount",
+      "indirizzo": "Viale San Marco, 82",
+      "cap": "34074",
+      "comune": "Monfalcone",
+      "provincia": "GO",
+      "latitudine": 45.8051434,
+      "longitudine": 13.5341309,
+      "telefono": "0481 413335",
+      "sito_pagina_ufficiale": "https://www.d-piu.com/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Dpiù; Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "GO-019",
+      "nome": "iN's Monfalcone",
+      "insegna": "iN's Mercato",
+      "categoria": "Discount",
+      "indirizzo": "Via San Polo, 155",
+      "cap": "34074",
+      "comune": "Monfalcone",
+      "provincia": "GO",
+      "latitudine": 45.8121872,
+      "longitudine": 13.5197983,
+      "telefono": "375 560 2497",
+      "sito_pagina_ufficiale": "https://www.insmercato.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "iN's; Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "GO-020",
+      "nome": "Lidl Monfalcone",
+      "insegna": "Lidl",
+      "categoria": "Discount",
+      "indirizzo": "Via Atleti Azzurri d'Italia, 5",
+      "cap": "34074",
+      "comune": "Monfalcone",
+      "provincia": "GO",
+      "latitudine": 45.8106,
+      "longitudine": 13.5327,
+      "telefono": "800 480 048",
+      "sito_pagina_ufficiale": "https://www.lidl.it/s/it-IT/ricerca-negozio/monfalcone-go/via-atleti-azzurri-d-italia-5/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "21:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Lidl; Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "GO-021",
+      "nome": "Eurospin Monfalcone XXV Aprile",
+      "insegna": "Eurospin",
+      "categoria": "Discount",
+      "indirizzo": "Via XXV Aprile, angolo Via Resistenza 30",
+      "cap": "34074",
+      "comune": "Monfalcone",
+      "provincia": "GO",
+      "latitudine": 45.8110581,
+      "longitudine": 13.531259,
+      "telefono": "045 786 2000",
+      "sito_pagina_ufficiale": "https://www.eurospin.it/punti-vendita/monfalcone-via-xxv-aprile/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "09:00",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Eurospin",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "GO-022",
+      "nome": "Eurospin Monfalcone Portorosega",
+      "insegna": "Eurospin",
+      "categoria": "Discount",
+      "indirizzo": "Via Portorosega",
+      "cap": "34074",
+      "comune": "Monfalcone",
+      "provincia": "GO",
+      "latitudine": 45.8026345,
+      "longitudine": 13.5455312,
+      "telefono": "045 786 2000",
+      "sito_pagina_ufficiale": "https://www.eurospin.it/punti-vendita/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Eurospin; directory",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Orario disponibile da fonte cartografica/directory ma non confermato da una pagina ufficiale stabile; riverificare prima della pubblicazione e durante la stagione turistica."
+    },
+    {
+      "id": "GO-023",
+      "nome": "Despar Marina Julia",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Giarrette, 65 - Marina Julia",
+      "cap": "34074",
+      "comune": "Monfalcone",
+      "provincia": "GO",
+      "latitudine": 45.7724,
+      "longitudine": 13.5518,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/gorizia/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "07:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "07:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "07:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "07:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "07:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "07:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "07:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Despar; Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "GO-024",
+      "nome": "Spazio Conad Ronchi",
+      "insegna": "Spazio Conad",
+      "categoria": "Ipermercato",
+      "indirizzo": "Via Pietro Micca, 19",
+      "cap": "34077",
+      "comune": "Ronchi dei Legionari",
+      "provincia": "GO",
+      "latitudine": 45.838284,
+      "longitudine": 13.49046,
+      "telefono": "0481 474710",
+      "sito_pagina_ufficiale": "https://www.conad.it/ricerca-negozi/spazio-conad-via-pietro-micca-19-34077-ronchi-dei-legionari--010395",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "21:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "21:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "21:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "21:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "21:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "21:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "21:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Conad",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "GO-025",
+      "nome": "Coop Ronchi",
+      "insegna": "Coop",
+      "categoria": "Supermercato",
+      "indirizzo": "Piazza Furlan, 1",
+      "cap": "34077",
+      "comune": "Ronchi dei Legionari",
+      "provincia": "GO",
+      "latitudine": 45.8244874,
+      "longitudine": 13.498085,
+      "telefono": "0481 475425",
+      "sito_pagina_ufficiale": "https://www.coopalleanza3-0.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Coop; Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "GO-026",
+      "nome": "Despar Ronchi",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Alessandro Stagni, 8",
+      "cap": "34077",
+      "comune": "Ronchi dei Legionari",
+      "provincia": "GO",
+      "latitudine": 45.8233138,
+      "longitudine": 13.5062159,
+      "telefono": "0481 778888",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/gorizia/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Despar; Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "GO-027",
+      "nome": "ALDI Ronchi",
+      "insegna": "ALDI",
+      "categoria": "Discount",
+      "indirizzo": "Via Pietro Micca, 6/C",
+      "cap": "34077",
+      "comune": "Ronchi dei Legionari",
+      "provincia": "GO",
+      "latitudine": 45.840791,
+      "longitudine": 13.489824,
+      "telefono": "800 370 370",
+      "sito_pagina_ufficiale": "https://www.nordestmall.com/negozi/aldi/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Nord Est Mall; Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "GO-028",
+      "nome": "Dpiù Ronchi",
+      "insegna": "Dpiù",
+      "categoria": "Discount",
+      "indirizzo": "Via Guglielmo Marconi, 3",
+      "cap": "34077",
+      "comune": "Ronchi dei Legionari",
+      "provincia": "GO",
+      "latitudine": 45.8311075,
+      "longitudine": 13.5064472,
+      "telefono": "0481 475642",
+      "sito_pagina_ufficiale": "https://www.d-piu.com/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Dpiù; Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "GO-029",
+      "nome": "Eurospar Gradisca",
+      "insegna": "Eurospar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Papalina, 1",
+      "cap": "34072",
+      "comune": "Gradisca d'Isonzo",
+      "provincia": "GO",
+      "latitudine": 45.8900961,
+      "longitudine": 13.4945811,
+      "telefono": "0481 99688",
+      "sito_pagina_ufficiale": "https://www.spesabrumat.it/contatti/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Brumat; Despar",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "GO-030",
+      "nome": "Dpiù Gradisca",
+      "insegna": "Dpiù",
+      "categoria": "Discount",
+      "indirizzo": "Via Udine, 24",
+      "cap": "34072",
+      "comune": "Gradisca d'Isonzo",
+      "provincia": "GO",
+      "latitudine": 45.8833692,
+      "longitudine": 13.4800681,
+      "telefono": "0481 956078",
+      "sito_pagina_ufficiale": "https://www.d-piu.com/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Dpiù; directory",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Orario disponibile da fonte cartografica/directory ma non confermato da una pagina ufficiale stabile; riverificare prima della pubblicazione e durante la stagione turistica."
+    },
+    {
+      "id": "GO-031",
+      "nome": "Maxì Gradisca",
+      "insegna": "Maxì",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Udine, 2",
+      "cap": "34072",
+      "comune": "Gradisca d'Isonzo",
+      "provincia": "GO",
+      "latitudine": 45.8827786,
+      "longitudine": 13.4816107,
+      "telefono": "0481 93160",
+      "sito_pagina_ufficiale": "https://www.maxisupermercati.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Maxì; directory",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Orario disponibile da fonte cartografica/directory ma non confermato da una pagina ufficiale stabile; riverificare prima della pubblicazione e durante la stagione turistica."
+    },
+    {
+      "id": "GO-032",
+      "nome": "Despar Grado Europa",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Viale Europa Unita, 35/C",
+      "cap": "34073",
+      "comune": "Grado",
+      "provincia": "GO",
+      "latitudine": 45.6769432,
+      "longitudine": 13.3874394,
+      "telefono": "0431 81237",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/gorizia/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Despar; Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "GO-033",
+      "nome": "A&O Grado Centro",
+      "insegna": "A&O",
+      "categoria": "Supermercato",
+      "indirizzo": "Piazza Duca d'Aosta, 4",
+      "cap": "34073",
+      "comune": "Grado",
+      "provincia": "GO",
+      "latitudine": 45.6776987,
+      "longitudine": 13.3830011,
+      "telefono": "0431 876096",
+      "sito_pagina_ufficiale": "https://www.aeo.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:15",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:15",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:15",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:15",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:15",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:15",
+            "chiude": "20:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:15",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "A&O; Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "GO-034",
+      "nome": "Eurospar Grado",
+      "insegna": "Eurospar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Venezia Giulia, 5",
+      "cap": "34073",
+      "comune": "Grado",
+      "provincia": "GO",
+      "latitudine": 45.6831859,
+      "longitudine": 13.4151707,
+      "telefono": "0431 877060",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/gorizia/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Despar; Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "GO-035",
+      "nome": "Despar Grado Kennedy",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via John Fitzgerald Kennedy, 28",
+      "cap": "34073",
+      "comune": "Grado",
+      "provincia": "GO",
+      "latitudine": 45.6798203,
+      "longitudine": 13.403522,
+      "telefono": "0431 83495",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/gorizia/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Despar; Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "GO-036",
+      "nome": "A&O Grado Pineta",
+      "insegna": "A&O",
+      "categoria": "Supermercato",
+      "indirizzo": "Viale Orsa Maggiore, 10",
+      "cap": "34073",
+      "comune": "Grado",
+      "provincia": "GO",
+      "latitudine": 45.6797511,
+      "longitudine": 13.4248024,
+      "telefono": "0431 85211",
+      "sito_pagina_ufficiale": "https://www.aeo.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "A&O; directory",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Orario disponibile da fonte cartografica/directory ma non confermato da una pagina ufficiale stabile; riverificare prima della pubblicazione e durante la stagione turistica."
+    },
+    {
+      "id": "GO-037",
+      "nome": "Despar Grado Monfalcone",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Monfalcone, 14",
+      "cap": "34073",
+      "comune": "Grado",
+      "provincia": "GO",
+      "latitudine": 45.6819,
+      "longitudine": 13.4159,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/gorizia/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Despar; directory",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Orario disponibile da fonte cartografica/directory ma non confermato da una pagina ufficiale stabile; riverificare prima della pubblicazione e durante la stagione turistica."
+    },
+    {
+      "id": "GO-038",
+      "nome": "Famila Market Staranzano",
+      "insegna": "Famila Market",
+      "categoria": "Supermercato",
+      "indirizzo": "Viale O. Zanolla, 2",
+      "cap": "34079",
+      "comune": "Staranzano",
+      "provincia": "GO",
+      "latitudine": 45.807705,
+      "longitudine": 13.4966332,
+      "telefono": "0481 482979",
+      "sito_pagina_ufficiale": "https://www.famila.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Famila; Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "GO-039",
+      "nome": "Dpiù Staranzano",
+      "insegna": "Dpiù",
+      "categoria": "Discount",
+      "indirizzo": "Via Brigata Fratelli Fontanot, 10",
+      "cap": "34079",
+      "comune": "Staranzano",
+      "provincia": "GO",
+      "latitudine": 45.8033901,
+      "longitudine": 13.4999328,
+      "telefono": "0481 480471",
+      "sito_pagina_ufficiale": "https://www.d-piu.com/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Dpiù; Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "GO-040",
+      "nome": "Despar Fogliano Redipuglia",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via San Michele, 15",
+      "cap": "34070",
+      "comune": "Fogliano Redipuglia",
+      "provincia": "GO",
+      "latitudine": 45.8675606,
+      "longitudine": 13.48089,
+      "telefono": "0481 488176",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/gorizia/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Despar; Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "GO-041",
+      "nome": "Eurospin Fogliano Redipuglia",
+      "insegna": "Eurospin",
+      "categoria": "Discount",
+      "indirizzo": "Via XXV Aprile, 1",
+      "cap": "34070",
+      "comune": "Fogliano Redipuglia",
+      "provincia": "GO",
+      "latitudine": 45.8620926,
+      "longitudine": 13.4815784,
+      "telefono": "045 786 2000",
+      "sito_pagina_ufficiale": "https://www.eurospin.it/punti-vendita/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Eurospin; Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "GO-042",
+      "nome": "Despar Pieris",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Roma, 53 - Pieris",
+      "cap": "34075",
+      "comune": "San Canzian d'Isonzo",
+      "provincia": "GO",
+      "latitudine": 45.8113517,
+      "longitudine": 13.4442577,
+      "telefono": "0481 470097",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/gorizia/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "12:45"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "12:45"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "12:45"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "12:45"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "12:45"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "12:45"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Despar; Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "GO-043",
+      "nome": "Despar San Lorenzo Isontino",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Niccolò Tommaseo, 84",
+      "cap": "34070",
+      "comune": "San Lorenzo Isontino",
+      "provincia": "GO",
+      "latitudine": 45.9292118,
+      "longitudine": 13.5228489,
+      "telefono": "0481 80218",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/gorizia/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Despar; Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "GO-044",
+      "nome": "iN's San Lorenzo",
+      "insegna": "iN's Mercato",
+      "categoria": "Discount",
+      "indirizzo": "Via Nazionale, 9",
+      "cap": "34070",
+      "comune": "San Lorenzo Isontino",
+      "provincia": "GO",
+      "latitudine": 45.9328402,
+      "longitudine": 13.5306853,
+      "telefono": "375 560 2511",
+      "sito_pagina_ufficiale": "https://www.insmercato.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "iN's; Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "GO-045",
+      "nome": "Dpiù Cormons",
+      "insegna": "Dpiù",
+      "categoria": "Discount",
+      "indirizzo": "Via Isonzo, 115",
+      "cap": "34071",
+      "comune": "Cormons",
+      "provincia": "GO",
+      "latitudine": 45.9491506,
+      "longitudine": 13.4762469,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.d-piu.com/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Dpiù; Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "GO-046",
+      "nome": "Coop Cormons",
+      "insegna": "Coop",
+      "categoria": "Supermercato",
+      "indirizzo": "Viale Venezia Giulia, 20",
+      "cap": "34071",
+      "comune": "Cormons",
+      "provincia": "GO",
+      "latitudine": 45.9567467,
+      "longitudine": 13.4644973,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.coopalleanza3-0.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Coop; Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "GO-047",
+      "nome": "Crai Cormons",
+      "insegna": "Crai",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Pescheria, 6",
+      "cap": "34071",
+      "comune": "Cormons",
+      "provincia": "GO",
+      "latitudine": 45.9596401,
+      "longitudine": 13.4734209,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.crai-supermercati.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Crai; Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "GO-048",
+      "nome": "Ipercoop Tiare",
+      "insegna": "Coop",
+      "categoria": "Ipermercato",
+      "indirizzo": "Località Maranuz, 2",
+      "cap": "34070",
+      "comune": "Villesse",
+      "provincia": "GO",
+      "latitudine": 45.8655703,
+      "longitudine": 13.428896,
+      "telefono": "0481 9647711",
+      "sito_pagina_ufficiale": "https://www.coopalleanza3-0.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "09:00",
+            "chiude": "20:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "20:30"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Coop; Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "GO-049",
+      "nome": "Eurospin Capriva",
+      "insegna": "Eurospin",
+      "categoria": "Discount",
+      "indirizzo": "Via Camillo Cavour, 89/3",
+      "cap": "34070",
+      "comune": "Capriva del Friuli",
+      "provincia": "GO",
+      "latitudine": 45.9387601,
+      "longitudine": 13.5065827,
+      "telefono": "045 786 2000",
+      "sito_pagina_ufficiale": "https://www.eurospin.it/punti-vendita/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Eurospin; Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "GO-050",
+      "nome": "Vivo Mio Romans",
+      "insegna": "Vivo Mio",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Modolet, 5",
+      "cap": "34076",
+      "comune": "Romans d'Isonzo",
+      "provincia": "GO",
+      "latitudine": 45.8903855,
+      "longitudine": 13.4433194,
+      "telefono": "0481 909571",
+      "sito_pagina_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "GO-051",
+      "nome": "Sexta Romans",
+      "insegna": "Sexta",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Aquileia, 76",
+      "cap": "34076",
+      "comune": "Romans d'Isonzo",
+      "provincia": "GO",
+      "latitudine": 45.8799435,
+      "longitudine": 13.4413709,
+      "telefono": "0481 909410",
+      "sito_pagina_ufficiale": "",
+      "orari": {
+        "lunedi": [],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "GO-052",
+      "nome": "Eurospar Lucinico",
+      "insegna": "Eurospar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Udine, 99 - Lucinico",
+      "cap": "34170",
+      "comune": "Gorizia",
+      "provincia": "GO",
+      "latitudine": 45.9343171,
+      "longitudine": 13.5698827,
+      "telefono": "0481 391866",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/gorizia/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "19:30"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Despar; Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026; festività e aperture straordinarie escluse."
+    }
+  ]
+}

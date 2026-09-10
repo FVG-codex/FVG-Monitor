@@ -1,0 +1,7024 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-09-10",
+  "timezone": "Europe/Rome",
+  "scope": "prima ricognizione strutturata di supermercati e discount; catene ufficiali Despar, Lidl, Eurospin e ALDI",
+  "records": [
+    {
+      "id": "UD-001",
+      "nome": "Eurospar Aprilia Marittima",
+      "insegna": "Eurospar",
+      "categoria": "Supermercato",
+      "indirizzo": "Viale Aprilia Marittima, 172",
+      "cap": "33053",
+      "comune": "Latisana",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "07:30",
+            "chiude": "20:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "07:30",
+            "chiude": "20:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "07:30",
+            "chiude": "20:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "07:30",
+            "chiude": "20:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "07:30",
+            "chiude": "20:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "07:30",
+            "chiude": "20:30"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-002",
+      "nome": "Despar Arta Terme",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Nazionale, 2",
+      "cap": "33022",
+      "comune": "Arta Terme",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:00"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-003",
+      "nome": "Despar Carlino",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Marano Lagunare, 122/A",
+      "cap": "33050",
+      "comune": "Carlino",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-004",
+      "nome": "Despar Cividale del Friuli Miani",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via dei Miani, 41",
+      "cap": "33043",
+      "comune": "Cividale del Friuli",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "13:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "13:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "13:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "13:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "13:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "13:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-005",
+      "nome": "Despar Corno di Rosazzo",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Aquileia, 66 int. 1",
+      "cap": "33040",
+      "comune": "Corno di Rosazzo",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-006",
+      "nome": "Despar Feletto Umberto",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Udine, 83",
+      "cap": "33010",
+      "comune": "Tavagnacco",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:20",
+            "chiude": "13:20"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:20",
+            "chiude": "13:20"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:20",
+            "chiude": "13:20"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:20",
+            "chiude": "13:20"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:20",
+            "chiude": "13:20"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:20",
+            "chiude": "13:20"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-007",
+      "nome": "Despar Forni Avoltri",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Corso Italia, 22",
+      "cap": "33020",
+      "comune": "Forni Avoltri",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-008",
+      "nome": "Despar Forni di Sopra",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Nazionale, 116",
+      "cap": "33024",
+      "comune": "Forni di Sopra",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-009",
+      "nome": "Despar Gonars",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Roma, 1",
+      "cap": "33050",
+      "comune": "Gonars",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-010",
+      "nome": "Despar Liariis",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Piazza Pantò di Liariis, 7",
+      "cap": "33025",
+      "comune": "Ovaro",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-011",
+      "nome": "Despar Lignano Lungomare",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Lungomare Riva, 13",
+      "cap": "33054",
+      "comune": "Lignano Sabbiadoro",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "19:00"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-012",
+      "nome": "Despar Mereto di Tomba",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Piazza Cadorna, 2",
+      "cap": "33036",
+      "comune": "Mereto di Tomba",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-013",
+      "nome": "Despar Morsano di Strada",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Venezia, 86",
+      "cap": "33050",
+      "comune": "Castions di Strada",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-014",
+      "nome": "Despar Muzzana del Turgnano",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via degli Orti, 9",
+      "cap": "33055",
+      "comune": "Muzzana del Turgnano",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "07:45",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "07:45",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "07:45",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "07:45",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "07:45",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "07:45",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-015",
+      "nome": "Despar Ovaro",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Caduti 2 Maggio, 82",
+      "cap": "33025",
+      "comune": "Ovaro",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-016",
+      "nome": "Despar Pasian di Prato",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Torino, 14",
+      "cap": "33037",
+      "comune": "Pasian di Prato",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-017",
+      "nome": "Despar Paularo",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Piazza IV Novembre, 5",
+      "cap": "33027",
+      "comune": "Paularo",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-018",
+      "nome": "Despar Percoto",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Piazza della Vittoria, 9",
+      "cap": "33050",
+      "comune": "Pavia di Udine",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-019",
+      "nome": "Despar Povoletto",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via degli Alpini",
+      "cap": "33040",
+      "comune": "Povoletto",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-020",
+      "nome": "Despar Ragogna",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Roma, 8",
+      "cap": "33030",
+      "comune": "Ragogna",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-021",
+      "nome": "Despar Rivignano Teor",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Umberto I, 42",
+      "cap": "33061",
+      "comune": "Rivignano Teor",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "19:00"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-022",
+      "nome": "Despar San Giorgio di Nogaro",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Roma, 31",
+      "cap": "33058",
+      "comune": "San Giorgio di Nogaro",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-023",
+      "nome": "Despar San Leonardo",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Frazione Scrutto, 15",
+      "cap": "33040",
+      "comune": "San Leonardo",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "07:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "07:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "07:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "07:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "07:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "07:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-024",
+      "nome": "Despar Sedegliano",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Cortina, 5",
+      "cap": "33039",
+      "comune": "Sedegliano",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-025",
+      "nome": "Despar Tarcento",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Udine",
+      "cap": "33017",
+      "comune": "Tarcento",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-026",
+      "nome": "Despar Tolmezzo Cooperativa",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via della Cooperativa, 11",
+      "cap": "33028",
+      "comune": "Tolmezzo",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-027",
+      "nome": "Despar Udine Battisti",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Cesare Battisti, 9",
+      "cap": "33100",
+      "comune": "Udine",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-028",
+      "nome": "Despar Udine Cosattini",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Cosattini, 25",
+      "cap": "33100",
+      "comune": "Udine",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:15",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:15",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:15",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:15",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:15",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:15",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-029",
+      "nome": "Despar Udine Muratti",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Giusto Muratti, 68",
+      "cap": "33100",
+      "comune": "Udine",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-030",
+      "nome": "Despar Udine Tiepolo",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Tiepolo angolo Via Montegrappa",
+      "cap": "33100",
+      "comune": "Udine",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-031",
+      "nome": "Despar Udine Vat",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Viale Vat, 117",
+      "cap": "33100",
+      "comune": "Udine",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-032",
+      "nome": "Despar Udine Volontari",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Viale Volontari della Libertà, 4",
+      "cap": "33100",
+      "comune": "Udine",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-033",
+      "nome": "Despar Villa Santina Marconi",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Guglielmo Marconi, 20",
+      "cap": "33029",
+      "comune": "Villa Santina",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-034",
+      "nome": "Eurospar Amaro",
+      "insegna": "Eurospar",
+      "categoria": "Supermercato",
+      "indirizzo": "Viale Valli di Carnia, 1",
+      "cap": "33020",
+      "comune": "Amaro",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-035",
+      "nome": "Eurospar Buja",
+      "insegna": "Eurospar",
+      "categoria": "Supermercato",
+      "indirizzo": "SP Osovana, 13",
+      "cap": "33030",
+      "comune": "Buja",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-036",
+      "nome": "Eurospar Cervignano",
+      "insegna": "Eurospar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Monsignor Ramazzotti",
+      "cap": "33052",
+      "comune": "Cervignano del Friuli",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-037",
+      "nome": "Eurospar Cividale Foramitti",
+      "insegna": "Eurospar",
+      "categoria": "Supermercato",
+      "indirizzo": "Viale Foramitti, 8/2",
+      "cap": "33043",
+      "comune": "Cividale del Friuli",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-038",
+      "nome": "Eurospar Codroipo",
+      "insegna": "Eurospar",
+      "categoria": "Supermercato",
+      "indirizzo": "Viale Venezia, 175",
+      "cap": "33033",
+      "comune": "Codroipo",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-039",
+      "nome": "Eurospar Fagagna",
+      "insegna": "Eurospar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Spilimbergo-Plasencis, 1/4",
+      "cap": "33034",
+      "comune": "Fagagna",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-040",
+      "nome": "Eurospar Gemona Dante",
+      "insegna": "Eurospar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Dante, 146",
+      "cap": "33013",
+      "comune": "Gemona del Friuli",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-041",
+      "nome": "Eurospar Gemona Taboga",
+      "insegna": "Eurospar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Taboga, 46",
+      "cap": "33013",
+      "comune": "Gemona del Friuli",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-042",
+      "nome": "Eurospar Latisana Marconi",
+      "insegna": "Eurospar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Marconi, 141",
+      "cap": "33053",
+      "comune": "Latisana",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-043",
+      "nome": "Eurospar Latisana Stazione",
+      "insegna": "Eurospar",
+      "categoria": "Supermercato",
+      "indirizzo": "Viale della Stazione, 2",
+      "cap": "33053",
+      "comune": "Latisana",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-044",
+      "nome": "Eurospar Lignano Tartana",
+      "insegna": "Eurospar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Arco della Tartana, 1",
+      "cap": "33054",
+      "comune": "Lignano Sabbiadoro",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "07:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "22:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "07:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "22:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "07:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "22:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "07:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "22:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "07:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "22:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "07:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "22:00"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-045",
+      "nome": "Eurospar Lignano Tirrenia",
+      "insegna": "Eurospar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Tirrenia, 10",
+      "cap": "33054",
+      "comune": "Lignano Sabbiadoro",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "07:30",
+            "chiude": "21:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "07:30",
+            "chiude": "21:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "07:30",
+            "chiude": "21:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "07:30",
+            "chiude": "21:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "07:30",
+            "chiude": "21:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "07:30",
+            "chiude": "21:30"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-046",
+      "nome": "Eurospar Majano",
+      "insegna": "Eurospar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Campos, 2",
+      "cap": "33030",
+      "comune": "Majano",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-047",
+      "nome": "Eurospar Manzano",
+      "insegna": "Eurospar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Zorutti, 31",
+      "cap": "33044",
+      "comune": "Manzano",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-048",
+      "nome": "Despar Palmanova",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Cavour, 7",
+      "cap": "33057",
+      "comune": "Palmanova",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-049",
+      "nome": "Eurospar Remanzacco",
+      "insegna": "Eurospar",
+      "categoria": "Supermercato",
+      "indirizzo": "SS54 del Friuli, 34/1",
+      "cap": "33047",
+      "comune": "Remanzacco",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-050",
+      "nome": "Eurospar San Daniele",
+      "insegna": "Eurospar",
+      "categoria": "Supermercato",
+      "indirizzo": "Viale Venezia, 1",
+      "cap": "33038",
+      "comune": "San Daniele del Friuli",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-051",
+      "nome": "Eurospar San Giovanni al Natisone",
+      "insegna": "Eurospar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Zorutti",
+      "cap": "33048",
+      "comune": "San Giovanni al Natisone",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-052",
+      "nome": "Eurospar Sottoselva",
+      "insegna": "Eurospar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Natisone",
+      "cap": "33050",
+      "comune": "Palmanova",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-053",
+      "nome": "Eurospar Tarvisio Alpi Giulie",
+      "insegna": "Eurospar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Alpi Giulie, 9",
+      "cap": "33018",
+      "comune": "Tarvisio",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-054",
+      "nome": "Eurospar Tarvisio Sottomonte",
+      "insegna": "Eurospar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Sottomonte, 100/106",
+      "cap": "33018",
+      "comune": "Tarvisio",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-055",
+      "nome": "Eurospar Tavagnacco",
+      "insegna": "Eurospar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Nazionale, 139",
+      "cap": "33010",
+      "comune": "Tavagnacco",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-056",
+      "nome": "Eurospar Tolmezzo Paluzza",
+      "insegna": "Eurospar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Paluzza, 60",
+      "cap": "33028",
+      "comune": "Tolmezzo",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-057",
+      "nome": "Interspar Udine Montalcini",
+      "insegna": "Interspar",
+      "categoria": "Supermercato",
+      "indirizzo": "Piazzale Rita Levi Montalcini, 1",
+      "cap": "33100",
+      "comune": "Udine",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-058",
+      "nome": "Eurospar Udine Cotonificio",
+      "insegna": "Eurospar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Cotonificio, 115",
+      "cap": "33100",
+      "comune": "Udine",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-059",
+      "nome": "Eurospar Udine Del Bon",
+      "insegna": "Eurospar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via del Bon, 53",
+      "cap": "33100",
+      "comune": "Udine",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-060",
+      "nome": "Eurospar Udine Leonardo",
+      "insegna": "Eurospar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Leonardo da Vinci, 54",
+      "cap": "33100",
+      "comune": "Udine",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-061",
+      "nome": "Eurospar Udine Lizzero",
+      "insegna": "Eurospar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via M. Lizzero, 151",
+      "cap": "33100",
+      "comune": "Udine",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-062",
+      "nome": "Eurospar Udine Sabbadini",
+      "insegna": "Eurospar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Sabbadini, 72",
+      "cap": "33100",
+      "comune": "Udine",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-063",
+      "nome": "Eurospar Udine Scalo Nuovo",
+      "insegna": "Eurospar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Scalo Nuovo, 7",
+      "cap": "33100",
+      "comune": "Udine",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-064",
+      "nome": "Eurospar Villa Santina Diaz",
+      "insegna": "Eurospar",
+      "categoria": "Supermercato",
+      "indirizzo": "SS52 / Via Diaz",
+      "cap": "33029",
+      "comune": "Villa Santina",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-065",
+      "nome": "Interspar Bagnaria Arsa",
+      "insegna": "Interspar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Enrico Mattei, località Merlana",
+      "cap": "33050",
+      "comune": "Bagnaria Arsa",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-066",
+      "nome": "Interspar Cassacco",
+      "insegna": "Interspar",
+      "categoria": "Supermercato",
+      "indirizzo": "Viale Pontebbana, 53",
+      "cap": "33010",
+      "comune": "Cassacco",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-067",
+      "nome": "Interspar Martignacco",
+      "insegna": "Interspar",
+      "categoria": "Supermercato",
+      "indirizzo": "SS464 di Spilimbergo",
+      "cap": "33035",
+      "comune": "Martignacco",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-068",
+      "nome": "Interspar Pradamano",
+      "insegna": "Interspar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Pier Paolo Pasolini, interno 4",
+      "cap": "33040",
+      "comune": "Pradamano",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-069",
+      "nome": "Despar Paluzza",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Pal Piccolo, 20",
+      "cap": "33026",
+      "comune": "Paluzza",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-070",
+      "nome": "Despar Prato Carnico",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Località Pesariis, 126",
+      "cap": "33020",
+      "comune": "Prato Carnico",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-071",
+      "nome": "Despar Prepotto",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via XXIV Maggio, 32",
+      "cap": "33040",
+      "comune": "Prepotto",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "07:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "07:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "07:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "07:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "07:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "07:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:00"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-072",
+      "nome": "Despar Savogna",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Kennedy, 38",
+      "cap": "33040",
+      "comune": "Savogna",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "07:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "17:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "07:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "17:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "07:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "17:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "07:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "17:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "07:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "17:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "07:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "17:30"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-073",
+      "nome": "Lidl Udine Tricesimo",
+      "insegna": "Lidl",
+      "categoria": "Discount",
+      "indirizzo": "Via Tricesimo, 184",
+      "cap": "33100",
+      "comune": "Udine",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "800 480 048",
+      "sito_pagina_ufficiale": "https://www.lidl.it/s/it-IT/ricerca-negozio/friuli-venezia-giulia/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-074",
+      "nome": "Lidl Udine Palmanova",
+      "insegna": "Lidl",
+      "categoria": "Discount",
+      "indirizzo": "Viale Palmanova, 153",
+      "cap": "33100",
+      "comune": "Udine",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "800 480 048",
+      "sito_pagina_ufficiale": "https://www.lidl.it/s/it-IT/ricerca-negozio/friuli-venezia-giulia/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-075",
+      "nome": "Lidl Udine Cividale",
+      "insegna": "Lidl",
+      "categoria": "Discount",
+      "indirizzo": "Via Cividale, 207",
+      "cap": "33100",
+      "comune": "Udine",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "800 480 048",
+      "sito_pagina_ufficiale": "https://www.lidl.it/s/it-IT/ricerca-negozio/friuli-venezia-giulia/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-076",
+      "nome": "Lidl Udine Venezia",
+      "insegna": "Lidl",
+      "categoria": "Discount",
+      "indirizzo": "Viale Venezia, 383",
+      "cap": "33100",
+      "comune": "Udine",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "800 480 048",
+      "sito_pagina_ufficiale": "https://www.lidl.it/s/it-IT/ricerca-negozio/friuli-venezia-giulia/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-077",
+      "nome": "Lidl Cervignano",
+      "insegna": "Lidl",
+      "categoria": "Discount",
+      "indirizzo": "Via Aquileia",
+      "cap": "33052",
+      "comune": "Cervignano del Friuli",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "800 480 048",
+      "sito_pagina_ufficiale": "https://www.lidl.it/s/it-IT/ricerca-negozio/friuli-venezia-giulia/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-078",
+      "nome": "Lidl Codroipo",
+      "insegna": "Lidl",
+      "categoria": "Discount",
+      "indirizzo": "Viale Venezia, 167",
+      "cap": "33033",
+      "comune": "Codroipo",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "800 480 048",
+      "sito_pagina_ufficiale": "https://www.lidl.it/s/it-IT/ricerca-negozio/friuli-venezia-giulia/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-079",
+      "nome": "Lidl Fagagna",
+      "insegna": "Lidl",
+      "categoria": "Discount",
+      "indirizzo": "Via Udine",
+      "cap": "33034",
+      "comune": "Fagagna",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "800 480 048",
+      "sito_pagina_ufficiale": "https://www.lidl.it/s/it-IT/ricerca-negozio/friuli-venezia-giulia/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-080",
+      "nome": "Lidl Majano",
+      "insegna": "Lidl",
+      "categoria": "Discount",
+      "indirizzo": "Via Udine",
+      "cap": "33030",
+      "comune": "Majano",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "800 480 048",
+      "sito_pagina_ufficiale": "https://www.lidl.it/s/it-IT/ricerca-negozio/friuli-venezia-giulia/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-081",
+      "nome": "Lidl Mortegliano",
+      "insegna": "Lidl",
+      "categoria": "Discount",
+      "indirizzo": "Via Cormor",
+      "cap": "33050",
+      "comune": "Mortegliano",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "800 480 048",
+      "sito_pagina_ufficiale": "https://www.lidl.it/s/it-IT/ricerca-negozio/friuli-venezia-giulia/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-082",
+      "nome": "Lidl Latisana",
+      "insegna": "Lidl",
+      "categoria": "Discount",
+      "indirizzo": "Via Beorchia",
+      "cap": "33053",
+      "comune": "Latisana",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "800 480 048",
+      "sito_pagina_ufficiale": "https://www.lidl.it/s/it-IT/ricerca-negozio/friuli-venezia-giulia/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-083",
+      "nome": "Lidl Lignano Sabbiadoro",
+      "insegna": "Lidl",
+      "categoria": "Discount",
+      "indirizzo": "Via Latisana",
+      "cap": "33054",
+      "comune": "Lignano Sabbiadoro",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "800 480 048",
+      "sito_pagina_ufficiale": "https://www.lidl.it/s/it-IT/ricerca-negozio/friuli-venezia-giulia/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-084",
+      "nome": "Lidl Tolmezzo",
+      "insegna": "Lidl",
+      "categoria": "Discount",
+      "indirizzo": "Via Val di Gorto, 48",
+      "cap": "33028",
+      "comune": "Tolmezzo",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "800 480 048",
+      "sito_pagina_ufficiale": "https://www.lidl.it/s/it-IT/ricerca-negozio/friuli-venezia-giulia/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-085",
+      "nome": "Lidl San Giovanni al Natisone",
+      "insegna": "Lidl",
+      "categoria": "Discount",
+      "indirizzo": "Via Palmarina",
+      "cap": "33048",
+      "comune": "San Giovanni al Natisone",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "800 480 048",
+      "sito_pagina_ufficiale": "https://www.lidl.it/s/it-IT/ricerca-negozio/friuli-venezia-giulia/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-086",
+      "nome": "Lidl Cassacco",
+      "insegna": "Lidl",
+      "categoria": "Discount",
+      "indirizzo": "Via Pontebbana",
+      "cap": "33010",
+      "comune": "Cassacco",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "800 480 048",
+      "sito_pagina_ufficiale": "https://www.lidl.it/s/it-IT/ricerca-negozio/friuli-venezia-giulia/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-087",
+      "nome": "Lidl Gemona",
+      "insegna": "Lidl",
+      "categoria": "Discount",
+      "indirizzo": "Via Taboga, 66",
+      "cap": "33013",
+      "comune": "Gemona del Friuli",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "800 480 048",
+      "sito_pagina_ufficiale": "https://www.lidl.it/s/it-IT/ricerca-negozio/friuli-venezia-giulia/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-088",
+      "nome": "Eurospin Udine Palmanova",
+      "insegna": "Eurospin",
+      "categoria": "Discount",
+      "indirizzo": "Viale Palmanova, 219",
+      "cap": "33100",
+      "comune": "Udine",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "045 786 2000",
+      "sito_pagina_ufficiale": "https://www.eurospin.it/punti-vendita/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Orario settimanale verificato; festività e aperture straordinarie escluse. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-089",
+      "nome": "Eurospin Udine Tavagnacco",
+      "insegna": "Eurospin",
+      "categoria": "Discount",
+      "indirizzo": "Via Nazionale",
+      "cap": "33010",
+      "comune": "Tavagnacco",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "045 786 2000",
+      "sito_pagina_ufficiale": "https://www.eurospin.it/punti-vendita/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-090",
+      "nome": "Eurospin Cervignano",
+      "insegna": "Eurospin",
+      "categoria": "Discount",
+      "indirizzo": "Via Aquileia",
+      "cap": "33052",
+      "comune": "Cervignano del Friuli",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "045 786 2000",
+      "sito_pagina_ufficiale": "https://www.eurospin.it/punti-vendita/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-091",
+      "nome": "Eurospin Codroipo",
+      "insegna": "Eurospin",
+      "categoria": "Discount",
+      "indirizzo": "Viale Venezia",
+      "cap": "33033",
+      "comune": "Codroipo",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "045 786 2000",
+      "sito_pagina_ufficiale": "https://www.eurospin.it/punti-vendita/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-092",
+      "nome": "Eurospin Cividale",
+      "insegna": "Eurospin",
+      "categoria": "Discount",
+      "indirizzo": "Via Udine",
+      "cap": "33043",
+      "comune": "Cividale del Friuli",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "045 786 2000",
+      "sito_pagina_ufficiale": "https://www.eurospin.it/punti-vendita/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-093",
+      "nome": "Eurospin Gemona",
+      "insegna": "Eurospin",
+      "categoria": "Discount",
+      "indirizzo": "Via Taboga",
+      "cap": "33013",
+      "comune": "Gemona del Friuli",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "045 786 2000",
+      "sito_pagina_ufficiale": "https://www.eurospin.it/punti-vendita/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-094",
+      "nome": "Eurospin Latisana",
+      "insegna": "Eurospin",
+      "categoria": "Discount",
+      "indirizzo": "Via Isonzo",
+      "cap": "33053",
+      "comune": "Latisana",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "045 786 2000",
+      "sito_pagina_ufficiale": "https://www.eurospin.it/punti-vendita/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-095",
+      "nome": "Eurospin Lignano",
+      "insegna": "Eurospin",
+      "categoria": "Discount",
+      "indirizzo": "Via Lovato",
+      "cap": "33054",
+      "comune": "Lignano Sabbiadoro",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "045 786 2000",
+      "sito_pagina_ufficiale": "https://www.eurospin.it/punti-vendita/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-096",
+      "nome": "Eurospin Palmanova",
+      "insegna": "Eurospin",
+      "categoria": "Discount",
+      "indirizzo": "Via Scamozzi",
+      "cap": "33057",
+      "comune": "Palmanova",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "045 786 2000",
+      "sito_pagina_ufficiale": "https://www.eurospin.it/punti-vendita/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-097",
+      "nome": "Eurospin San Daniele",
+      "insegna": "Eurospin",
+      "categoria": "Discount",
+      "indirizzo": "Via Venezia",
+      "cap": "33038",
+      "comune": "San Daniele del Friuli",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "045 786 2000",
+      "sito_pagina_ufficiale": "https://www.eurospin.it/punti-vendita/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-098",
+      "nome": "Eurospin Tolmezzo",
+      "insegna": "Eurospin",
+      "categoria": "Discount",
+      "indirizzo": "Via Val di Gorto",
+      "cap": "33028",
+      "comune": "Tolmezzo",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "045 786 2000",
+      "sito_pagina_ufficiale": "https://www.eurospin.it/punti-vendita/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-099",
+      "nome": "Eurospin Tricesimo",
+      "insegna": "Eurospin",
+      "categoria": "Discount",
+      "indirizzo": "Via Nazionale",
+      "cap": "33019",
+      "comune": "Tricesimo",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "045 786 2000",
+      "sito_pagina_ufficiale": "https://www.eurospin.it/punti-vendita/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-100",
+      "nome": "ALDI Udine",
+      "insegna": "ALDI",
+      "categoria": "Discount",
+      "indirizzo": "Via Tricesimo",
+      "cap": "33100",
+      "comune": "Udine",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "800 370 370",
+      "sito_pagina_ufficiale": "https://www.aldi.it/punti-vendita-e-orari-di-apertura",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-101",
+      "nome": "ALDI Tavagnacco",
+      "insegna": "ALDI",
+      "categoria": "Discount",
+      "indirizzo": "Via Nazionale",
+      "cap": "33010",
+      "comune": "Tavagnacco",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "800 370 370",
+      "sito_pagina_ufficiale": "https://www.aldi.it/punti-vendita-e-orari-di-apertura",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-102",
+      "nome": "ALDI Codroipo",
+      "insegna": "ALDI",
+      "categoria": "Discount",
+      "indirizzo": "Viale Venezia",
+      "cap": "33033",
+      "comune": "Codroipo",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "800 370 370",
+      "sito_pagina_ufficiale": "https://www.aldi.it/punti-vendita-e-orari-di-apertura",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-103",
+      "nome": "ALDI Cervignano",
+      "insegna": "ALDI",
+      "categoria": "Discount",
+      "indirizzo": "Via Aquileia",
+      "cap": "33052",
+      "comune": "Cervignano del Friuli",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "800 370 370",
+      "sito_pagina_ufficiale": "https://www.aldi.it/punti-vendita-e-orari-di-apertura",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-104",
+      "nome": "ALDI Cividale",
+      "insegna": "ALDI",
+      "categoria": "Discount",
+      "indirizzo": "Via Udine",
+      "cap": "33043",
+      "comune": "Cividale del Friuli",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "800 370 370",
+      "sito_pagina_ufficiale": "https://www.aldi.it/punti-vendita-e-orari-di-apertura",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-105",
+      "nome": "ALDI Gemona",
+      "insegna": "ALDI",
+      "categoria": "Discount",
+      "indirizzo": "Via Taboga",
+      "cap": "33013",
+      "comune": "Gemona del Friuli",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "800 370 370",
+      "sito_pagina_ufficiale": "https://www.aldi.it/punti-vendita-e-orari-di-apertura",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-106",
+      "nome": "ALDI Tolmezzo",
+      "insegna": "ALDI",
+      "categoria": "Discount",
+      "indirizzo": "Via Val di Gorto",
+      "cap": "33028",
+      "comune": "Tolmezzo",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "800 370 370",
+      "sito_pagina_ufficiale": "https://www.aldi.it/punti-vendita-e-orari-di-apertura",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-107",
+      "nome": "ALDI San Daniele",
+      "insegna": "ALDI",
+      "categoria": "Discount",
+      "indirizzo": "Viale Venezia",
+      "cap": "33038",
+      "comune": "San Daniele del Friuli",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "800 370 370",
+      "sito_pagina_ufficiale": "https://www.aldi.it/punti-vendita-e-orari-di-apertura",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    }
+  ]
+}

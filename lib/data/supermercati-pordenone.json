@@ -1,0 +1,5675 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-09-10",
+  "timezone": "Europe/Rome",
+  "scope": "supermercati, ipermercati e discount; esclusi minimarket e botteghe",
+  "records": [
+    {
+      "id": "PN-001",
+      "nome": "Supermercato Mega Pordenone",
+      "insegna": "Mega",
+      "categoria": "Ipermercato",
+      "indirizzo": "Via Volt de Querini, 11",
+      "cap": "33170",
+      "comune": "Pordenone",
+      "provincia": "PN",
+      "latitudine": 45.9477486,
+      "longitudine": 12.6748317,
+      "telefono": "0434 28085",
+      "sito_pagina_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Orario di fallback disponibile ma non confermato da una scheda settimanale stabile; riconfermare prima della pubblicazione."
+    },
+    {
+      "id": "PN-002",
+      "nome": "Pam Pordenone",
+      "insegna": "Pam",
+      "categoria": "Supermercato",
+      "indirizzo": "Viale Michelangelo Grigoletti, 74",
+      "cap": "33170",
+      "comune": "Pordenone",
+      "provincia": "PN",
+      "latitudine": 45.9653994,
+      "longitudine": 12.6441465,
+      "telefono": "0434 366892",
+      "sito_pagina_ufficiale": "https://www.pampanorama.it/negozi/pordenone-grigoletti",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026 sulla scheda della singola sede; festività escluse."
+    },
+    {
+      "id": "PN-003",
+      "nome": "IperVisotto Pordenone",
+      "insegna": "IperVisotto",
+      "categoria": "Ipermercato",
+      "indirizzo": "Via Dogana, 71",
+      "cap": "33170",
+      "comune": "Pordenone",
+      "provincia": "PN",
+      "latitudine": 45.9383064,
+      "longitudine": 12.6487723,
+      "telefono": "0434 578365",
+      "sito_pagina_ufficiale": "https://www.supermercativisotto.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Orario di fallback disponibile ma non confermato da una scheda settimanale stabile; riconfermare prima della pubblicazione."
+    },
+    {
+      "id": "PN-004",
+      "nome": "Interspar Pordenone",
+      "insegna": "Interspar",
+      "categoria": "Ipermercato",
+      "indirizzo": "Via Benedetto Marcello, 7",
+      "cap": "33170",
+      "comune": "Pordenone",
+      "provincia": "PN",
+      "latitudine": 45.9627513,
+      "longitudine": 12.6732217,
+      "telefono": "0434 544058",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/punto-vendita-interspar/198/pordenone/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026 sulla scheda della singola sede; festività escluse."
+    },
+    {
+      "id": "PN-005",
+      "nome": "Cadoro Pordenone",
+      "insegna": "Cadoro",
+      "categoria": "Supermercato",
+      "indirizzo": "Viale d'Aviano, 6",
+      "cap": "33170",
+      "comune": "Pordenone",
+      "provincia": "PN",
+      "latitudine": 45.975048,
+      "longitudine": 12.6455783,
+      "telefono": "0434 360606",
+      "sito_pagina_ufficiale": "https://www.cadoro.it/punti-vendita/pordenone",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026 sulla scheda della singola sede; festività escluse."
+    },
+    {
+      "id": "PN-006",
+      "nome": "Lidl Ungaresca",
+      "insegna": "Lidl",
+      "categoria": "Discount",
+      "indirizzo": "Via Ungaresca, 23",
+      "cap": "33170",
+      "comune": "Pordenone",
+      "provincia": "PN",
+      "latitudine": 45.9479,
+      "longitudine": 12.6526,
+      "telefono": "800 480 048",
+      "sito_pagina_ufficiale": "https://www.lidl.it/s/it-IT/ricerca-negozio/pordenone-pn/via-ungaresca-23/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "21:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026 sulla scheda della singola sede; festività escluse."
+    },
+    {
+      "id": "PN-007",
+      "nome": "Lidl Viale Treviso",
+      "insegna": "Lidl",
+      "categoria": "Discount",
+      "indirizzo": "Viale Treviso, 1/A",
+      "cap": "33170",
+      "comune": "Pordenone",
+      "provincia": "PN",
+      "latitudine": 45.9408,
+      "longitudine": 12.6759,
+      "telefono": "800 480 048",
+      "sito_pagina_ufficiale": "https://www.lidl.it/s/it-IT/ricerca-negozio/pordenone-pn/viale-treviso-1-a/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "21:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "21:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026 sulla scheda della singola sede; festività escluse."
+    },
+    {
+      "id": "PN-008",
+      "nome": "Eurospin Pordenone",
+      "insegna": "Eurospin",
+      "categoria": "Discount",
+      "indirizzo": "Viale della Libertà, 83",
+      "cap": "33170",
+      "comune": "Pordenone",
+      "provincia": "PN",
+      "latitudine": 45.9583,
+      "longitudine": 12.6832,
+      "telefono": "045 786 2000",
+      "sito_pagina_ufficiale": "https://www.eurospin.it/punti-vendita/pordenone-viale-della-liberta/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026 sulla scheda della singola sede; festività escluse."
+    },
+    {
+      "id": "PN-009",
+      "nome": "iN's Pordenone",
+      "insegna": "iN's Mercato",
+      "categoria": "Discount",
+      "indirizzo": "Viale Michelangelo Grigoletti, 35",
+      "cap": "33170",
+      "comune": "Pordenone",
+      "provincia": "PN",
+      "latitudine": 45.9638286,
+      "longitudine": 12.6479272,
+      "telefono": "375 560 2194",
+      "sito_pagina_ufficiale": "https://www.insmercato.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Orario di fallback disponibile ma non confermato da una scheda settimanale stabile; riconfermare prima della pubblicazione."
+    },
+    {
+      "id": "PN-010",
+      "nome": "ALDI Pordenone",
+      "insegna": "ALDI",
+      "categoria": "Discount",
+      "indirizzo": "Via Prasecco, 56/D",
+      "cap": "33170",
+      "comune": "Pordenone",
+      "provincia": "PN",
+      "latitudine": 45.95346,
+      "longitudine": 12.687744,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.aldi.it/punti-vendita-e-orari-di-apertura/l/Pordenone/Via-Prasecco-56-D/H031",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "20:30"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026 sulla scheda della singola sede; festività escluse."
+    },
+    {
+      "id": "PN-011",
+      "nome": "Conad Superstore Porcia",
+      "insegna": "Conad Superstore",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Roveredo, 52",
+      "cap": "33080",
+      "comune": "Porcia",
+      "provincia": "PN",
+      "latitudine": 45.9724764,
+      "longitudine": 12.6145725,
+      "telefono": "0434 593257",
+      "sito_pagina_ufficiale": "https://www.conad.it/ricerca-negozi",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Orario di fallback disponibile ma non confermato da una scheda settimanale stabile; riconfermare prima della pubblicazione."
+    },
+    {
+      "id": "PN-012",
+      "nome": "Maxì Porcia",
+      "insegna": "Maxì",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Correr, 56",
+      "cap": "33080",
+      "comune": "Porcia",
+      "provincia": "PN",
+      "latitudine": 45.9581897,
+      "longitudine": 12.6250068,
+      "telefono": "0434 591199",
+      "sito_pagina_ufficiale": "https://www.maxisupermercati.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026 sulla scheda della singola sede; festività escluse."
+    },
+    {
+      "id": "PN-013",
+      "nome": "Eurospar Porcia",
+      "insegna": "Eurospar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via dei Serviti, 4",
+      "cap": "33080",
+      "comune": "Porcia",
+      "provincia": "PN",
+      "latitudine": 45.9650798,
+      "longitudine": 12.6109658,
+      "telefono": "0434 921148",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/pordenone/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Orario di fallback disponibile ma non confermato da una scheda settimanale stabile; riconfermare prima della pubblicazione."
+    },
+    {
+      "id": "PN-014",
+      "nome": "Prix Porcia",
+      "insegna": "Prix",
+      "categoria": "Discount",
+      "indirizzo": "Corso Italia, 4/A",
+      "cap": "33080",
+      "comune": "Porcia",
+      "provincia": "PN",
+      "latitudine": 45.9691767,
+      "longitudine": 12.612061,
+      "telefono": "800 894 422",
+      "sito_pagina_ufficiale": "https://www.prixquality.com/punti-vendita/porcia-438/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026 sulla scheda della singola sede; festività escluse."
+    },
+    {
+      "id": "PN-015",
+      "nome": "Dpiù Porcia",
+      "insegna": "Dpiù",
+      "categoria": "Discount",
+      "indirizzo": "Via Vallada, 8",
+      "cap": "33080",
+      "comune": "Porcia",
+      "provincia": "PN",
+      "latitudine": 45.9653852,
+      "longitudine": 12.6150979,
+      "telefono": "0434 922954",
+      "sito_pagina_ufficiale": "https://www.d-piu.com/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026 sulla scheda della singola sede; festività escluse."
+    },
+    {
+      "id": "PN-016",
+      "nome": "Crai Piccin",
+      "insegna": "Crai",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Aristide Gabelli, 10",
+      "cap": "33080",
+      "comune": "Porcia",
+      "provincia": "PN",
+      "latitudine": 45.9608969,
+      "longitudine": 12.6277167,
+      "telefono": "0434 365591",
+      "sito_pagina_ufficiale": "https://www.crai-supermercati.it/punti-vendita/pdv.php?id=201",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "12:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "12:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026 sulla scheda della singola sede; festività escluse."
+    },
+    {
+      "id": "PN-017",
+      "nome": "Eurospar Azzano Decimo",
+      "insegna": "Eurospar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via dei Frassini, 5",
+      "cap": "33082",
+      "comune": "Azzano Decimo",
+      "provincia": "PN",
+      "latitudine": 45.8890162,
+      "longitudine": 12.707918,
+      "telefono": "0434 423895",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/pordenone/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026 sulla scheda della singola sede; festività escluse."
+    },
+    {
+      "id": "PN-018",
+      "nome": "Conad Superstore Azzano Decimo",
+      "insegna": "Conad Superstore",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Ilaria Alpi, 5",
+      "cap": "33082",
+      "comune": "Azzano Decimo",
+      "provincia": "PN",
+      "latitudine": 45.8917062,
+      "longitudine": 12.6975785,
+      "telefono": "0434 640476",
+      "sito_pagina_ufficiale": "https://www.conad.it/ricerca-negozi",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Orario di fallback disponibile ma non confermato da una scheda settimanale stabile; riconfermare prima della pubblicazione."
+    },
+    {
+      "id": "PN-019",
+      "nome": "iN's Azzano Decimo",
+      "insegna": "iN's Mercato",
+      "categoria": "Discount",
+      "indirizzo": "Viale Rimembranze, 43",
+      "cap": "33082",
+      "comune": "Azzano Decimo",
+      "provincia": "PN",
+      "latitudine": 45.8832108,
+      "longitudine": 12.7086141,
+      "telefono": "375 560 1956",
+      "sito_pagina_ufficiale": "https://www.insmercato.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Orario di fallback disponibile ma non confermato da una scheda settimanale stabile; riconfermare prima della pubblicazione."
+    },
+    {
+      "id": "PN-020",
+      "nome": "Despar Azzano Decimo",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Viale XXV Aprile, 35",
+      "cap": "33082",
+      "comune": "Azzano Decimo",
+      "provincia": "PN",
+      "latitudine": 45.880358,
+      "longitudine": 12.7109537,
+      "telefono": "0434 640862",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/pordenone/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Orario di fallback disponibile ma non confermato da una scheda settimanale stabile; riconfermare prima della pubblicazione."
+    },
+    {
+      "id": "PN-021",
+      "nome": "Eurospin Azzano Decimo",
+      "insegna": "Eurospin",
+      "categoria": "Discount",
+      "indirizzo": "Viale Primo Maggio",
+      "cap": "33082",
+      "comune": "Azzano Decimo",
+      "provincia": "PN",
+      "latitudine": 45.8882102,
+      "longitudine": 12.7095022,
+      "telefono": "045 786 2000",
+      "sito_pagina_ufficiale": "https://www.eurospin.it/punti-vendita/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Orario di fallback disponibile ma non confermato da una scheda settimanale stabile; riconfermare prima della pubblicazione."
+    },
+    {
+      "id": "PN-022",
+      "nome": "Lidl Azzano Decimo",
+      "insegna": "Lidl",
+      "categoria": "Discount",
+      "indirizzo": "Viale Primo Maggio, 17",
+      "cap": "33082",
+      "comune": "Azzano Decimo",
+      "provincia": "PN",
+      "latitudine": 45.88928,
+      "longitudine": 12.70995,
+      "telefono": "800 480 048",
+      "sito_pagina_ufficiale": "https://www.lidl.it/s/it-IT/ricerca-negozio/friuli-venezia-giulia/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Orario di fallback disponibile ma non confermato da una scheda settimanale stabile; riconfermare prima della pubblicazione."
+    },
+    {
+      "id": "PN-023",
+      "nome": "Eurospar Spilimbergo",
+      "insegna": "Eurospar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Udine, 40",
+      "cap": "33097",
+      "comune": "Spilimbergo",
+      "provincia": "PN",
+      "latitudine": 46.1017228,
+      "longitudine": 12.9051954,
+      "telefono": "0427 419284",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/pordenone/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026 sulla scheda della singola sede; festività escluse."
+    },
+    {
+      "id": "PN-024",
+      "nome": "Pam Spilimbergo",
+      "insegna": "Pam",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Cavour, 57",
+      "cap": "33097",
+      "comune": "Spilimbergo",
+      "provincia": "PN",
+      "latitudine": 46.1105005,
+      "longitudine": 12.8896433,
+      "telefono": "0427 40259",
+      "sito_pagina_ufficiale": "https://www.pampanorama.it/negozi/spilimbergo",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026 sulla scheda della singola sede; festività escluse."
+    },
+    {
+      "id": "PN-025",
+      "nome": "Eurospin Spilimbergo",
+      "insegna": "Eurospin",
+      "categoria": "Discount",
+      "indirizzo": "Via Val Montanaia, 2",
+      "cap": "33097",
+      "comune": "Spilimbergo",
+      "provincia": "PN",
+      "latitudine": 46.1244125,
+      "longitudine": 12.8869333,
+      "telefono": "045 786 2000",
+      "sito_pagina_ufficiale": "https://www.eurospin.it/punti-vendita/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026 sulla scheda della singola sede; festività escluse."
+    },
+    {
+      "id": "PN-026",
+      "nome": "Lidl Spilimbergo",
+      "insegna": "Lidl",
+      "categoria": "Discount",
+      "indirizzo": "Via dei Ponti, 7",
+      "cap": "33097",
+      "comune": "Spilimbergo",
+      "provincia": "PN",
+      "latitudine": 46.11701,
+      "longitudine": 12.89038,
+      "telefono": "800 480 048",
+      "sito_pagina_ufficiale": "https://www.lidl.it/s/it-IT/ricerca-negozio/friuli-venezia-giulia/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026 sulla scheda della singola sede; festività escluse."
+    },
+    {
+      "id": "PN-027",
+      "nome": "ALDI Spilimbergo",
+      "insegna": "ALDI",
+      "categoria": "Discount",
+      "indirizzo": "Via Ponte Roitero, 1",
+      "cap": "33097",
+      "comune": "Spilimbergo",
+      "provincia": "PN",
+      "latitudine": 46.10337,
+      "longitudine": 12.903576,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.aldi.it/punti-vendita-e-orari-di-apertura/l/Spilimbergo/Via-Ponte-Roitero-1/H021",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026 sulla scheda della singola sede; festività escluse."
+    },
+    {
+      "id": "PN-028",
+      "nome": "Centro Commerciale Discount Spilimbergo",
+      "insegna": "Centro Commerciale Discount",
+      "categoria": "Discount",
+      "indirizzo": "Via Cavour, 5",
+      "cap": "33097",
+      "comune": "Spilimbergo",
+      "provincia": "PN",
+      "latitudine": 46.111166,
+      "longitudine": 12.8981487,
+      "telefono": "0432 669192",
+      "sito_pagina_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Orario di fallback disponibile ma non confermato da una scheda settimanale stabile; riconfermare prima della pubblicazione."
+    },
+    {
+      "id": "PN-029",
+      "nome": "Supermercati Bingo Fontanafredda",
+      "insegna": "Bingo",
+      "categoria": "Supermercato",
+      "indirizzo": "Viale Venezia, 86",
+      "cap": "33074",
+      "comune": "Fontanafredda",
+      "provincia": "PN",
+      "latitudine": 45.970783,
+      "longitudine": 12.5520643,
+      "telefono": "0434 997137",
+      "sito_pagina_ufficiale": "https://www.supermercatibingo.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "22:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "22:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "22:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "22:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "22:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "22:00"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026 sulla scheda della singola sede; festività escluse."
+    },
+    {
+      "id": "PN-030",
+      "nome": "Conad City Fontanafredda",
+      "insegna": "Conad City",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Rossini, 6",
+      "cap": "33074",
+      "comune": "Fontanafredda",
+      "provincia": "PN",
+      "latitudine": 45.9882252,
+      "longitudine": 12.5486352,
+      "telefono": "0434 997344",
+      "sito_pagina_ufficiale": "https://www.conad.it/ricerca-negozi/conad-city-via-rossini-6-33074-fontanafredda--002487",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026 sulla scheda della singola sede; festività escluse."
+    },
+    {
+      "id": "PN-031",
+      "nome": "Crai Fontanafredda",
+      "insegna": "Crai",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Lattea, 1",
+      "cap": "33074",
+      "comune": "Fontanafredda",
+      "provincia": "PN",
+      "latitudine": 45.9786146,
+      "longitudine": 12.573943,
+      "telefono": "0434 998995",
+      "sito_pagina_ufficiale": "https://www.crai-supermercati.it/negozi-e-volantini/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026 sulla scheda della singola sede; festività escluse."
+    },
+    {
+      "id": "PN-032",
+      "nome": "SuperVisotto Cecchini",
+      "insegna": "SuperVisotto",
+      "categoria": "Supermercato",
+      "indirizzo": "Via del Commercio, 3",
+      "cap": "33087",
+      "comune": "Pasiano di Pordenone",
+      "provincia": "PN",
+      "latitudine": 45.868932,
+      "longitudine": 12.622428,
+      "telefono": "0434 625257",
+      "sito_pagina_ufficiale": "https://www.supermercativisotto.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026 sulla scheda della singola sede; festività escluse."
+    },
+    {
+      "id": "PN-033",
+      "nome": "A&O Prata",
+      "insegna": "A&O",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Opitergina, 59",
+      "cap": "33080",
+      "comune": "Prata di Pordenone",
+      "provincia": "PN",
+      "latitudine": 45.8949723,
+      "longitudine": 12.5948977,
+      "telefono": "0434 611219",
+      "sito_pagina_ufficiale": "https://www.aeo.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Orario di fallback disponibile ma non confermato da una scheda settimanale stabile; riconfermare prima della pubblicazione."
+    },
+    {
+      "id": "PN-034",
+      "nome": "ALDI Prata di Pordenone",
+      "insegna": "ALDI",
+      "categoria": "Discount",
+      "indirizzo": "Via Opitergina, 29",
+      "cap": "33080",
+      "comune": "Prata di Pordenone",
+      "provincia": "PN",
+      "latitudine": 45.894058,
+      "longitudine": 12.592508,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.aldi.it/punti-vendita-e-orari-di-apertura/l/Prata-Di-Pordenone/Via-Opitergina-29/H076",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026 sulla scheda della singola sede; festività escluse."
+    },
+    {
+      "id": "PN-035",
+      "nome": "Lidl Prata di Pordenone",
+      "insegna": "Lidl",
+      "categoria": "Discount",
+      "indirizzo": "Via Puia, 4",
+      "cap": "33080",
+      "comune": "Prata di Pordenone",
+      "provincia": "PN",
+      "latitudine": 45.88306,
+      "longitudine": 12.5751,
+      "telefono": "800 480 048",
+      "sito_pagina_ufficiale": "https://www.lidl.it/s/it-IT/ricerca-negozio/friuli-venezia-giulia/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026 sulla scheda della singola sede; festività escluse."
+    },
+    {
+      "id": "PN-036",
+      "nome": "Super Brugnera",
+      "insegna": "A&O",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Ungaresca di Brugnera, 51",
+      "cap": "33070",
+      "comune": "Brugnera",
+      "provincia": "PN",
+      "latitudine": 45.9072734,
+      "longitudine": 12.5399325,
+      "telefono": "0434 157 3041",
+      "sito_pagina_ufficiale": "https://www.aeo.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026 sulla scheda della singola sede; festività escluse."
+    },
+    {
+      "id": "PN-037",
+      "nome": "A&O Tamai",
+      "insegna": "A&O",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Generale Morozzo della Rocca, 5",
+      "cap": "33070",
+      "comune": "Brugnera",
+      "provincia": "PN",
+      "latitudine": 45.9213249,
+      "longitudine": 12.5752697,
+      "telefono": "0434 627840",
+      "sito_pagina_ufficiale": "https://www.aeo.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Orario di fallback disponibile ma non confermato da una scheda settimanale stabile; riconfermare prima della pubblicazione."
+    },
+    {
+      "id": "PN-038",
+      "nome": "Conad Aviano",
+      "insegna": "Conad",
+      "categoria": "Supermercato",
+      "indirizzo": "Via de Zan, 9",
+      "cap": "33081",
+      "comune": "Aviano",
+      "provincia": "PN",
+      "latitudine": 46.0724913,
+      "longitudine": 12.5906123,
+      "telefono": "0434 660187",
+      "sito_pagina_ufficiale": "https://www.conad.it/ricerca-negozi/conad-via-de-zan-9-33081-aviano--009166",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026 sulla scheda della singola sede; festività escluse."
+    },
+    {
+      "id": "PN-039",
+      "nome": "Supermercato Bottegone Aviano",
+      "insegna": "Bottegone",
+      "categoria": "Supermercato",
+      "indirizzo": "Viale San Giorgio, 36",
+      "cap": "33081",
+      "comune": "Aviano",
+      "provincia": "PN",
+      "latitudine": 46.0734767,
+      "longitudine": 12.5810135,
+      "telefono": "0434 652294",
+      "sito_pagina_ufficiale": "https://www.bottegone.eu/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026 sulla scheda della singola sede; festività escluse."
+    },
+    {
+      "id": "PN-040",
+      "nome": "Eurospin Aviano",
+      "insegna": "Eurospin",
+      "categoria": "Discount",
+      "indirizzo": "Via Gasparo Narvesa, 6",
+      "cap": "33081",
+      "comune": "Aviano",
+      "provincia": "PN",
+      "latitudine": 46.0669056,
+      "longitudine": 12.5908024,
+      "telefono": "045 786 2000",
+      "sito_pagina_ufficiale": "https://www.eurospin.it/punti-vendita/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Orario di fallback disponibile ma non confermato da una scheda settimanale stabile; riconfermare prima della pubblicazione."
+    },
+    {
+      "id": "PN-041",
+      "nome": "Crai Zoppola",
+      "insegna": "Crai",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Conte Camillo Panciera, 35",
+      "cap": "33080",
+      "comune": "Zoppola",
+      "provincia": "PN",
+      "latitudine": 45.9641707,
+      "longitudine": 12.7698952,
+      "telefono": "0434 97116",
+      "sito_pagina_ufficiale": "https://www.crai-supermercati.it/punto-vendita/277-crai-zoppola/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "07:45",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "07:45",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "07:45",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "07:45",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "07:45",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "07:45",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026 sulla scheda della singola sede; festività escluse."
+    },
+    {
+      "id": "PN-042",
+      "nome": "Crai Castions di Zoppola",
+      "insegna": "Crai",
+      "categoria": "Supermercato",
+      "indirizzo": "Piazza Gianni Micoli Toscano, 8",
+      "cap": "33080",
+      "comune": "Zoppola",
+      "provincia": "PN",
+      "latitudine": 45.9713092,
+      "longitudine": 12.8004777,
+      "telefono": "0434 966521",
+      "sito_pagina_ufficiale": "https://www.crai-supermercati.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Orario di fallback disponibile ma non confermato da una scheda settimanale stabile; riconfermare prima della pubblicazione."
+    },
+    {
+      "id": "PN-043",
+      "nome": "Conad City Zoppola",
+      "insegna": "Conad City",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Conte Camillo Panciera, 102",
+      "cap": "33080",
+      "comune": "Zoppola",
+      "provincia": "PN",
+      "latitudine": 45.9597346,
+      "longitudine": 12.7655167,
+      "telefono": "0434 314901",
+      "sito_pagina_ufficiale": "https://www.conad.it/ricerca-negozi/conad-city-via-conte-camillo-panciera-di-z-102-33080-zoppola--002359",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026 sulla scheda della singola sede; festività escluse."
+    },
+    {
+      "id": "PN-044",
+      "nome": "Conad City Pasiano",
+      "insegna": "Conad City",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Capitello, 29",
+      "cap": "33087",
+      "comune": "Pasiano di Pordenone",
+      "provincia": "PN",
+      "latitudine": 45.8460315,
+      "longitudine": 12.6148206,
+      "telefono": "0434 625116",
+      "sito_pagina_ufficiale": "https://www.conad.it/ricerca-negozi/conad-city-via-capitello-29-33087-pasiano-di-pordenone--001908",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Orario di fallback disponibile ma non confermato da una scheda settimanale stabile; riconfermare prima della pubblicazione."
+    },
+    {
+      "id": "PN-045",
+      "nome": "Maxì Pasiano",
+      "insegna": "Maxì",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Coletti, 10/12",
+      "cap": "33087",
+      "comune": "Pasiano di Pordenone",
+      "provincia": "PN",
+      "latitudine": 45.8488837,
+      "longitudine": 12.6284231,
+      "telefono": "0434 625232",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/pordenone/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Orario di fallback disponibile ma non confermato da una scheda settimanale stabile; riconfermare prima della pubblicazione."
+    },
+    {
+      "id": "PN-046",
+      "nome": "SuperVisotto Villotta",
+      "insegna": "SuperVisotto",
+      "categoria": "Supermercato",
+      "indirizzo": "Viale della Stazione, 2/A",
+      "cap": "33083",
+      "comune": "Chions",
+      "provincia": "PN",
+      "latitudine": 45.8610916,
+      "longitudine": 12.7495031,
+      "telefono": "0434 630108",
+      "sito_pagina_ufficiale": "https://www.supermercativisotto.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026 sulla scheda della singola sede; festività escluse."
+    },
+    {
+      "id": "PN-047",
+      "nome": "Crai Nives",
+      "insegna": "Crai",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Santa Caterina, 2",
+      "cap": "33083",
+      "comune": "Chions",
+      "provincia": "PN",
+      "latitudine": 45.8481021,
+      "longitudine": 12.7096126,
+      "telefono": "0434 648229",
+      "sito_pagina_ufficiale": "https://www.crai-supermercati.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026 sulla scheda della singola sede; festività escluse."
+    },
+    {
+      "id": "PN-048",
+      "nome": "Crai Cooperativa di Consumo Rauscedo",
+      "insegna": "Crai",
+      "categoria": "Supermercato",
+      "indirizzo": "Piazza delle Cooperative, 29",
+      "cap": "33095",
+      "comune": "San Giorgio della Richinvelda",
+      "provincia": "PN",
+      "latitudine": 46.0397462,
+      "longitudine": 12.8291584,
+      "telefono": "0427 94149",
+      "sito_pagina_ufficiale": "https://www.crai-supermercati.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "07:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "07:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "07:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "07:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "07:30",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "07:30",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026 sulla scheda della singola sede; festività escluse."
+    },
+    {
+      "id": "PN-049",
+      "nome": "Despar Toppo di Travesio",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Piazza 24 Maggio, 9",
+      "cap": "33090",
+      "comune": "Travesio",
+      "provincia": "PN",
+      "latitudine": 46.2014266,
+      "longitudine": 12.8283524,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/pordenone/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "07:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "07:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "07:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "07:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "07:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "07:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Orario di fallback disponibile ma non confermato da una scheda settimanale stabile; riconfermare prima della pubblicazione."
+    },
+    {
+      "id": "PN-050",
+      "nome": "Supermarket Da Katia",
+      "insegna": "Indipendente",
+      "categoria": "Supermercato",
+      "indirizzo": "Travesio",
+      "cap": "33090",
+      "comune": "Travesio",
+      "provincia": "PN",
+      "latitudine": 46.1969431,
+      "longitudine": 12.8708203,
+      "telefono": "333 182 8444",
+      "sito_pagina_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Orario di fallback disponibile ma non confermato da una scheda settimanale stabile; riconfermare prima della pubblicazione."
+    },
+    {
+      "id": "PN-051",
+      "nome": "IperVisotto Sacile",
+      "insegna": "IperVisotto",
+      "categoria": "Ipermercato",
+      "indirizzo": "Viale Europa, 1",
+      "cap": "33077",
+      "comune": "Sacile",
+      "provincia": "PN",
+      "latitudine": 45.9445829,
+      "longitudine": 12.4652473,
+      "telefono": "0434 782327",
+      "sito_pagina_ufficiale": "https://www.supermercativisotto.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026 sulla scheda della singola sede; festività escluse."
+    },
+    {
+      "id": "PN-052",
+      "nome": "Eurospar Sacile",
+      "insegna": "Eurospar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Ponte Lacchin, 14",
+      "cap": "33077",
+      "comune": "Sacile",
+      "provincia": "PN",
+      "latitudine": 45.9503015,
+      "longitudine": 12.5004481,
+      "telefono": "0434 786865",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/pordenone/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026 sulla scheda della singola sede; festività escluse."
+    },
+    {
+      "id": "PN-053",
+      "nome": "Coop Sacile",
+      "insegna": "Coop",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Peruch, 5",
+      "cap": "33077",
+      "comune": "Sacile",
+      "provincia": "PN",
+      "latitudine": 45.9561325,
+      "longitudine": 12.4901187,
+      "telefono": "0434 730311",
+      "sito_pagina_ufficiale": "https://www.coopalleanza3-0.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026 sulla scheda della singola sede; festività escluse."
+    },
+    {
+      "id": "PN-054",
+      "nome": "Dpiù Sacile",
+      "insegna": "Dpiù",
+      "categoria": "Discount",
+      "indirizzo": "Viale Repubblica, 14",
+      "cap": "33077",
+      "comune": "Sacile",
+      "provincia": "PN",
+      "latitudine": 45.9602851,
+      "longitudine": 12.5064957,
+      "telefono": "0434 782449",
+      "sito_pagina_ufficiale": "https://www.d-piu.com/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Orario di fallback disponibile ma non confermato da una scheda settimanale stabile; riconfermare prima della pubblicazione."
+    },
+    {
+      "id": "PN-055",
+      "nome": "SuperOne Sacile",
+      "insegna": "SuperOne",
+      "categoria": "Supermercato",
+      "indirizzo": "Viale Giacomo Matteotti, 9",
+      "cap": "33077",
+      "comune": "Sacile",
+      "provincia": "PN",
+      "latitudine": 45.9606486,
+      "longitudine": 12.5142462,
+      "telefono": "0434 966272",
+      "sito_pagina_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Orario di fallback disponibile ma non confermato da una scheda settimanale stabile; riconfermare prima della pubblicazione."
+    },
+    {
+      "id": "PN-056",
+      "nome": "Lidl Sacile",
+      "insegna": "Lidl",
+      "categoria": "Discount",
+      "indirizzo": "Via Lorenzo Granzotto, 2",
+      "cap": "33077",
+      "comune": "Sacile",
+      "provincia": "PN",
+      "latitudine": 45.9598266,
+      "longitudine": 12.5035091,
+      "telefono": "800 480 048",
+      "sito_pagina_ufficiale": "https://www.lidl.it/s/it-IT/ricerca-negozio/friuli-venezia-giulia/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Orario di fallback disponibile ma non confermato da una scheda settimanale stabile; riconfermare prima della pubblicazione."
+    },
+    {
+      "id": "PN-057",
+      "nome": "Despar Sacile Cavour",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Cavour, 14",
+      "cap": "33077",
+      "comune": "Sacile",
+      "provincia": "PN",
+      "latitudine": 45.9542,
+      "longitudine": 12.5008,
+      "telefono": "0434 70139",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/punto-vendita-despar/903/sacile/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Orario di fallback disponibile ma non confermato da una scheda settimanale stabile; riconfermare prima della pubblicazione."
+    },
+    {
+      "id": "PN-058",
+      "nome": "Eurospar Cordenons",
+      "insegna": "Eurospar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via della Filanda, 4/B",
+      "cap": "33084",
+      "comune": "Cordenons",
+      "provincia": "PN",
+      "latitudine": 45.9849723,
+      "longitudine": 12.7060446,
+      "telefono": "0434 585195",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/pordenone/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026 sulla scheda della singola sede; festività escluse."
+    },
+    {
+      "id": "PN-059",
+      "nome": "Coop Cordenons",
+      "insegna": "Coop",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Giotto, 26",
+      "cap": "33084",
+      "comune": "Cordenons",
+      "provincia": "PN",
+      "latitudine": 45.9845564,
+      "longitudine": 12.6854816,
+      "telefono": "0434 541694",
+      "sito_pagina_ufficiale": "https://www.coopalleanza3-0.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026 sulla scheda della singola sede; festività escluse."
+    },
+    {
+      "id": "PN-060",
+      "nome": "IperVisotto Cordenons",
+      "insegna": "IperVisotto",
+      "categoria": "Ipermercato",
+      "indirizzo": "Viale del Benessere, 2",
+      "cap": "33084",
+      "comune": "Cordenons",
+      "provincia": "PN",
+      "latitudine": 45.9739874,
+      "longitudine": 12.7034787,
+      "telefono": "0434 930664",
+      "sito_pagina_ufficiale": "https://www.supermercativisotto.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Orario di fallback disponibile ma non confermato da una scheda settimanale stabile; riconfermare prima della pubblicazione."
+    },
+    {
+      "id": "PN-061",
+      "nome": "Penny Cordenons",
+      "insegna": "Penny",
+      "categoria": "Discount",
+      "indirizzo": "Via Sclavons / Via d'Andrea, 8",
+      "cap": "33084",
+      "comune": "Cordenons",
+      "provincia": "PN",
+      "latitudine": 45.9823938,
+      "longitudine": 12.6992127,
+      "telefono": "800 901 290",
+      "sito_pagina_ufficiale": "https://www.penny.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Orario di fallback disponibile ma non confermato da una scheda settimanale stabile; riconfermare prima della pubblicazione."
+    },
+    {
+      "id": "PN-062",
+      "nome": "Centro Commerciale Discount Cordenons",
+      "insegna": "Centro Commerciale Discount",
+      "categoria": "Discount",
+      "indirizzo": "Via Maestra Vecchia, 198",
+      "cap": "33084",
+      "comune": "Cordenons",
+      "provincia": "PN",
+      "latitudine": 45.9850538,
+      "longitudine": 12.6841989,
+      "telefono": "0432 669192",
+      "sito_pagina_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Orario di fallback disponibile ma non confermato da una scheda settimanale stabile; riconfermare prima della pubblicazione."
+    },
+    {
+      "id": "PN-063",
+      "nome": "Lidl Cordenons",
+      "insegna": "Lidl",
+      "categoria": "Discount",
+      "indirizzo": "Via Sclavons, 229",
+      "cap": "33084",
+      "comune": "Cordenons",
+      "provincia": "PN",
+      "latitudine": 45.97477,
+      "longitudine": 12.68687,
+      "telefono": "800 480 048",
+      "sito_pagina_ufficiale": "https://www.lidl.it/s/it-IT/ricerca-negozio/friuli-venezia-giulia/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026 sulla scheda della singola sede; festività escluse."
+    },
+    {
+      "id": "PN-064",
+      "nome": "Conad Superstore San Vito",
+      "insegna": "Conad Superstore",
+      "categoria": "Supermercato",
+      "indirizzo": "Viale Udine, 14",
+      "cap": "33078",
+      "comune": "San Vito al Tagliamento",
+      "provincia": "PN",
+      "latitudine": 45.9273,
+      "longitudine": 12.87143,
+      "telefono": "0434 157 2665",
+      "sito_pagina_ufficiale": "https://www.conad.it/ricerca-negozi/conad-superstore-viale-udine-14-33078-san-vito-al-tagliamento--010620",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026 sulla scheda della singola sede; festività escluse."
+    },
+    {
+      "id": "PN-065",
+      "nome": "Conad San Vito Oberdan",
+      "insegna": "Conad",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Guglielmo Oberdan, 60/7",
+      "cap": "33078",
+      "comune": "San Vito al Tagliamento",
+      "provincia": "PN",
+      "latitudine": 45.905436,
+      "longitudine": 12.865965,
+      "telefono": "0434 833927",
+      "sito_pagina_ufficiale": "https://www.conad.it/ricerca-negozi/conad-via-guglielmo-oberdan-60-7-33078-san-vito-al-tagliamento--006185",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026 sulla scheda della singola sede; festività escluse."
+    },
+    {
+      "id": "PN-066",
+      "nome": "Eurospar San Vito Madonna",
+      "insegna": "Eurospar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Madonna di Rosa, 8/10",
+      "cap": "33078",
+      "comune": "San Vito al Tagliamento",
+      "provincia": "PN",
+      "latitudine": 45.9170078,
+      "longitudine": 12.8655547,
+      "telefono": "0434 834037",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/pordenone/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026 sulla scheda della singola sede; festività escluse."
+    },
+    {
+      "id": "PN-067",
+      "nome": "Coop San Vito",
+      "insegna": "Coop",
+      "categoria": "Supermercato",
+      "indirizzo": "Via San Francesco, 24",
+      "cap": "33078",
+      "comune": "San Vito al Tagliamento",
+      "provincia": "PN",
+      "latitudine": 45.9154857,
+      "longitudine": 12.8635182,
+      "telefono": "0434 833180",
+      "sito_pagina_ufficiale": "https://www.coopalleanza3-0.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026 sulla scheda della singola sede; festività escluse."
+    },
+    {
+      "id": "PN-068",
+      "nome": "Dpiù San Vito",
+      "insegna": "Dpiù",
+      "categoria": "Discount",
+      "indirizzo": "Viale Zuccherificio, 4",
+      "cap": "33078",
+      "comune": "San Vito al Tagliamento",
+      "provincia": "PN",
+      "latitudine": 45.9119944,
+      "longitudine": 12.8491591,
+      "telefono": "0434 875997",
+      "sito_pagina_ufficiale": "https://www.d-piu.com/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026 sulla scheda della singola sede; festività escluse."
+    },
+    {
+      "id": "PN-069",
+      "nome": "ALDI San Vito",
+      "insegna": "ALDI",
+      "categoria": "Discount",
+      "indirizzo": "Via Divisione Garibaldi, 7",
+      "cap": "33078",
+      "comune": "San Vito al Tagliamento",
+      "provincia": "PN",
+      "latitudine": 45.911205,
+      "longitudine": 12.864721,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.aldi.it/punti-vendita-e-orari-di-apertura/l/San-Vito-Al-Tagliamento/Via-Divisione-Garibaldi-7/H037",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026 sulla scheda della singola sede; festività escluse."
+    },
+    {
+      "id": "PN-070",
+      "nome": "Lidl San Vito",
+      "insegna": "Lidl",
+      "categoria": "Discount",
+      "indirizzo": "Viale Udine, snc",
+      "cap": "33078",
+      "comune": "San Vito al Tagliamento",
+      "provincia": "PN",
+      "latitudine": 45.9252,
+      "longitudine": 12.8711,
+      "telefono": "800 480 048",
+      "sito_pagina_ufficiale": "https://www.lidl.it/s/it-IT/ricerca-negozio/friuli-venezia-giulia/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026 sulla scheda della singola sede; festività escluse."
+    },
+    {
+      "id": "PN-071",
+      "nome": "IPERSPAK Maniago",
+      "insegna": "IPERSPAK",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Arba, 8",
+      "cap": "33085",
+      "comune": "Maniago",
+      "provincia": "PN",
+      "latitudine": 46.1651868,
+      "longitudine": 12.7124478,
+      "telefono": "0427 709946",
+      "sito_pagina_ufficiale": "http://www.spaksupermercati.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026 sulla scheda della singola sede; festività escluse."
+    },
+    {
+      "id": "PN-072",
+      "nome": "Coop Maniago",
+      "insegna": "Coop",
+      "categoria": "Supermercato",
+      "indirizzo": "Viale della Vittoria, 13",
+      "cap": "33085",
+      "comune": "Maniago",
+      "provincia": "PN",
+      "latitudine": 46.1687838,
+      "longitudine": 12.7081607,
+      "telefono": "0427 701013",
+      "sito_pagina_ufficiale": "https://www.coopalleanza3-0.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Orario di fallback disponibile ma non confermato da una scheda settimanale stabile; riconfermare prima della pubblicazione."
+    },
+    {
+      "id": "PN-073",
+      "nome": "A&O Maniago",
+      "insegna": "A&O",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Fabio di Maniago, 20/21",
+      "cap": "33085",
+      "comune": "Maniago",
+      "provincia": "PN",
+      "latitudine": 46.1695538,
+      "longitudine": 12.7122089,
+      "telefono": "0427 709062",
+      "sito_pagina_ufficiale": "https://www.aeo.it/punti-vendita/Friuli%20Venezia%20Giulia/supermercato-aeo-maniago",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026 sulla scheda della singola sede; festività escluse."
+    },
+    {
+      "id": "PN-074",
+      "nome": "Despar Maniago",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Dante Alighieri, 31",
+      "cap": "33085",
+      "comune": "Maniago",
+      "provincia": "PN",
+      "latitudine": 46.1677112,
+      "longitudine": 12.7071964,
+      "telefono": "0427 700537",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/punto-vendita-despar/59/maniago/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026 sulla scheda della singola sede; festività escluse."
+    },
+    {
+      "id": "PN-075",
+      "nome": "Lidl Maniago",
+      "insegna": "Lidl",
+      "categoria": "Discount",
+      "indirizzo": "Via Vittorio Alfieri, 19",
+      "cap": "33085",
+      "comune": "Maniago",
+      "provincia": "PN",
+      "latitudine": 46.16149,
+      "longitudine": 12.71039,
+      "telefono": "800 480 048",
+      "sito_pagina_ufficiale": "https://www.lidl.it/s/it-IT/ricerca-negozio/friuli-venezia-giulia/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026 sulla scheda della singola sede; festività escluse."
+    },
+    {
+      "id": "PN-076",
+      "nome": "Dpiù Maniago",
+      "insegna": "Dpiù",
+      "categoria": "Discount",
+      "indirizzo": "Via Fratelli Cairoli, 2",
+      "cap": "33085",
+      "comune": "Maniago",
+      "provincia": "PN",
+      "latitudine": 46.1635435,
+      "longitudine": 12.7058761,
+      "telefono": "0427 701580",
+      "sito_pagina_ufficiale": "https://www.d-piu.com/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026 sulla scheda della singola sede; festività escluse."
+    },
+    {
+      "id": "PN-077",
+      "nome": "Emisfero Fiume Veneto",
+      "insegna": "Emisfero",
+      "categoria": "Ipermercato",
+      "indirizzo": "Via Maestri del Lavoro, 42",
+      "cap": "33080",
+      "comune": "Fiume Veneto",
+      "provincia": "PN",
+      "latitudine": 45.9446259,
+      "longitudine": 12.7248354,
+      "telefono": "0434 954611",
+      "sito_pagina_ufficiale": "https://promo.emisfero.eu/punti-vendita/emisfero-di-fiume-veneto/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "09:00",
+            "chiude": "20:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:30",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026 sulla scheda della singola sede; festività escluse."
+    },
+    {
+      "id": "PN-078",
+      "nome": "Crai Extra Fiume Veneto",
+      "insegna": "Crai Extra",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Giovanni XXIII, 11",
+      "cap": "33080",
+      "comune": "Fiume Veneto",
+      "provincia": "PN",
+      "latitudine": 45.9300365,
+      "longitudine": 12.728053,
+      "telefono": "0434 959843",
+      "sito_pagina_ufficiale": "https://www.crai-supermercati.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026 sulla scheda della singola sede; festività escluse."
+    },
+    {
+      "id": "PN-079",
+      "nome": "Coop Fiume Veneto",
+      "insegna": "Coop",
+      "categoria": "Supermercato",
+      "indirizzo": "Viale Trento, 58",
+      "cap": "33080",
+      "comune": "Fiume Veneto",
+      "provincia": "PN",
+      "latitudine": 45.9270888,
+      "longitudine": 12.7359314,
+      "telefono": "0434 957693",
+      "sito_pagina_ufficiale": "https://www.coop.it/scegli-il-tuo-negozio/negozi-e-promozioni/4052",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": false,
+      "note_verifica": "Orari ordinari verificati il 10/09/2026 sulla scheda della singola sede; festività escluse."
+    },
+    {
+      "id": "PN-080",
+      "nome": "Penny Fiume Veneto",
+      "insegna": "Penny",
+      "categoria": "Discount",
+      "indirizzo": "Viale della Repubblica, 81",
+      "cap": "33080",
+      "comune": "Fiume Veneto",
+      "provincia": "PN",
+      "latitudine": 45.9325424,
+      "longitudine": 12.727308,
+      "telefono": "800 901 290",
+      "sito_pagina_ufficiale": "https://www.penny.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Orario di fallback disponibile ma non confermato da una scheda settimanale stabile; riconfermare prima della pubblicazione."
+    },
+    {
+      "id": "PN-081",
+      "nome": "Despar Azzano Decimo Fratelli Carli",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Fratelli Carli, 2",
+      "cap": "33082",
+      "comune": "Azzano Decimo",
+      "provincia": "PN",
+      "latitudine": 45.8797,
+      "longitudine": 12.7141,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/pordenone/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Orario di fallback disponibile ma non confermato da una scheda settimanale stabile; riconfermare prima della pubblicazione."
+    },
+    {
+      "id": "PN-082",
+      "nome": "Eurospar Casarsa della Delizia",
+      "insegna": "Eurospar",
+      "categoria": "Supermercato",
+      "indirizzo": "Viale Venezia, 72/A",
+      "cap": "33072",
+      "comune": "Casarsa della Delizia",
+      "provincia": "PN",
+      "latitudine": 45.9579514,
+      "longitudine": 12.8305728,
+      "telefono": "0434 934594",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/pordenone/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Orario di fallback disponibile ma non confermato da una scheda settimanale stabile; riconfermare prima della pubblicazione."
+    },
+    {
+      "id": "PN-083",
+      "nome": "Despar Bagnarola",
+      "insegna": "Despar",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Montesanto, 19 - Bagnarola",
+      "cap": "33079",
+      "comune": "Sesto al Reghena",
+      "provincia": "PN",
+      "latitudine": 45.8687,
+      "longitudine": 12.8528,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/pordenone/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "07:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "07:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "07:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "07:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "07:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "07:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "domenica": []
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Google Maps (scheda della singola sede)",
+      "data_verifica": "2026-09-10",
+      "orari_non_verificati": true,
+      "note_verifica": "Orario di fallback disponibile ma non confermato da una scheda settimanale stabile; riconfermare prima della pubblicazione."
+    }
+  ]
+}
