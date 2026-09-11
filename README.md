@@ -2967,8 +2967,9 @@ L'utente ha chiesto una nuova sezione di menù "Commercio", con
 "Supermercati" come prima categoria (altre attività commerciali in
 futuro), organizzata "per provincia e poi per comuni" come le Farmacie
 — e ha fornito direttamente 4 file JSON (uno per provincia: GO/PN/UD/TS,
-306 punti vendita in totale) compilati e verificati a mano
-(Google Maps, siti ufficiali delle insegne).
+306 punti vendita in totale alla prima consegna, poi 343 dopo
+l'aggiornamento di Udine dell'11/09/2026, vedi sotto) compilati e
+verificati a mano (Google Maps, siti ufficiali delle insegne).
 
 **Natura del dato — diversa da quasi tutto il resto del sito**: non è
 un dataset Socrata regionale né uno scraping, quindi non passa da
@@ -2981,16 +2982,17 @@ normalizza in un unico tipo `VoceSupermercato`. Aggiornamento solo
 quando l'utente fornirà un nuovo file — nessun job in
 `scripts/ingest-light.mjs`.
 
-**Limiti del dato ricevuto, documentati non nascosti**: le 107 voci
-della provincia di Udine hanno TUTTE `latitudine`/`longitudine` null
-(l'utente stesso lo descrive come "prima ricognizione strutturata" nel
-campo `scope` del JSON, diversamente dalle altre 3 province) — niente
-marker sulla mappa per Udine, solo elenco testuale, verificato che non
-causa errori (`SupermercatiMap.tsx` filtra le voci senza coordinate).
-Tutte le 107 voci di Udine hanno anche `orari_non_verificati: true`,
-più alcune voci sparse nelle altre province (Gorizia 6, Pordenone 31) —
-mostrato con una piccola nota "(orario non confermato)" accanto
-all'orario invece di ometterlo o darlo per buono senza avviso.
+**Limiti del dato ricevuto, documentati non nascosti**: la prima
+versione del file Udine (107 voci) aveva TUTTE `latitudine`/
+`longitudine` null (l'utente stesso la descriveva come "prima
+ricognizione strutturata" nel campo `scope` del JSON). L'11/09/2026
+l'utente ha fornito la lista completa di Udine ("Ecco la lista completa
+della provincia di Udine, aggiorna") — vedi sezione dedicata più sotto
+per i dettagli dell'aggiornamento. Restano invece invariate, sulle
+altre province, alcune voci sparse con `orari_non_verificati: true`
+(Gorizia 6, Pordenone 31) — mostrato con una piccola nota "(orario non
+confermato)" accanto all'orario invece di ometterlo o darlo per buono
+senza avviso.
 
 **Orari settimanali ricorrenti, non puntuali come le Farmacie**: il
 dato è `{lunedi: [{apre,chiude}], ..., domenica: [...]}` (0, 1 o 2
@@ -3005,8 +3007,8 @@ come nelle Farmacie — lì significava "nessun dato per oggi ancora
 ingerito", qui invece è un dato statico sempre completo). Gestiti anche
 `apertura_24h` (sempre aperta) e `temporaneamente_chiuso` (mostrato
 come badge dedicato "Chiuso temporaneamente" al posto del pallino
-aperta/chiusa) — nessuno dei 306 punti vendita ha `apertura_24h: true`
-nel dato ricevuto, ma il campo è gestito per il futuro.
+aperta/chiusa) — nessuno dei punti vendita ha `apertura_24h: true` nel
+dato ricevuto, ma il campo è gestito per il futuro.
 
 **Frontend**: hub `/commercio` (`CommercioPage.tsx`, stesso schema a
 card di `/sport`) con una sola card "Supermercati" per ora, pronta a
@@ -3022,6 +3024,40 @@ dei marker mancanti. Voce "Commercio" aggiunta a `MenuHamburger.tsx`.
 con `next dev` + Chromium headless su Trieste (con coordinate, mappa
 con marker) e Udine (senza coordinate, mappa vuota ma nessun errore),
 tema scuro. **Non ancora confermato dall'utente in produzione.**
+
+### Aggiornamento dato Udine (11/09/2026)
+
+Il giorno dopo la consegna, l'utente ha fornito un nuovo file Udine più
+completo ("Ecco la lista completa della provincia di Udine, aggiorna"),
+sostituendo `lib/data/supermercati-udine.json`. Verificato con uno
+script Python sul file reale prima di toccare codice o documentazione
+(stessa disciplina usata per la consegna iniziale):
+
+- Voci: 107 → **144** (Supermercato 93, Discount 44, Ipermercato 7),
+  56 comuni (era 50).
+- `scope` nel JSON non è più "prima ricognizione strutturata... catene
+  ufficiali Despar, Lidl, Eurospin e ALDI" ma allineato alle altre 3
+  province: "supermercati, ipermercati e discount della provincia di
+  Udine; esclusi minimarket e botteghe".
+- Coordinate: da TUTTE null a **129 su 144 valorizzate** — solo 15
+  voci restano null (UD-005, UD-017, UD-023, UD-030, UD-039, UD-044,
+  UD-049, UD-061, UD-064, UD-067, UD-068, UD-121, UD-127, UD-132,
+  UD-133), ciascuna con `note_verifica` che segnala esplicitamente
+  "Coordinate non risolte automaticamente." — non un'omissione, un
+  limite dichiarato. La mappa di Udine ora mostra marker (verificato:
+  129 elementi `.leaflet-interactive` renderizzati, esattamente 144-15).
+- `orari_non_verificati: true` resta su **141 voci su 144** (quasi
+  tutte, invariato rispetto al file precedente) — la nota "(orario non
+  confermato)" in UI resta quindi necessaria.
+- Nessuna voce `temporaneamente_chiuso` in questo file (il punto
+  vendita di Trieste già segnalato come tale non è cambiato).
+
+Nessuna modifica di schema, quindi nessuna modifica a
+`lib/supermercati.ts`/`SupermercatiMap.tsx`/`SupermercatiPage.tsx` oltre
+al commento di documentazione in testa a `lib/supermercati.ts`. `npx
+tsc --noEmit` pulito, verifica visiva con `next dev` + Chromium
+headless sul tab Udine di `/supermercati`. **Non ancora confermato
+dall'utente in produzione.**
 
 ## Idee future (annotate, non richieste esplicitamente per l'implementazione)
 

@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-09-10",
+  "generated_at": "2026-09-11",
   "timezone": "Europe/Rome",
-  "scope": "prima ricognizione strutturata di supermercati e discount; catene ufficiali Despar, Lidl, Eurospin e ALDI",
+  "scope": "supermercati, ipermercati e discount della provincia di Udine; esclusi minimarket e botteghe",
   "records": [
     {
       "id": "UD-001",
@@ -13,8 +13,8 @@
       "cap": "33053",
       "comune": "Latisana",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 45.6928892,
+      "longitudine": 13.069692,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -59,9 +59,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-002",
@@ -72,8 +72,8 @@
       "cap": "33022",
       "comune": "Arta Terme",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.4764323,
+      "longitudine": 13.0211866,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -142,9 +142,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-003",
@@ -155,8 +155,8 @@
       "cap": "33050",
       "comune": "Carlino",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 45.7672241,
+      "longitudine": 13.1681832,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -201,9 +201,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-004",
@@ -214,8 +214,8 @@
       "cap": "33043",
       "comune": "Cividale del Friuli",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.0851268,
+      "longitudine": 13.4297692,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -284,9 +284,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-005",
@@ -343,7 +343,7 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
       "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
     },
@@ -356,8 +356,8 @@
       "cap": "33010",
       "comune": "Tavagnacco",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.1000964,
+      "longitudine": 13.2156953,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -426,9 +426,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-007",
@@ -439,8 +439,8 @@
       "cap": "33020",
       "comune": "Forni Avoltri",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.5848178,
+      "longitudine": 12.778261,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -509,9 +509,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-008",
@@ -522,8 +522,8 @@
       "cap": "33024",
       "comune": "Forni di Sopra",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.4242834,
+      "longitudine": 12.5776306,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -592,9 +592,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-009",
@@ -605,8 +605,8 @@
       "cap": "33050",
       "comune": "Gonars",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 45.8968872,
+      "longitudine": 13.233257,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -675,9 +675,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-010",
@@ -688,8 +688,8 @@
       "cap": "33025",
       "comune": "Ovaro",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.4920022,
+      "longitudine": 12.8764035,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -758,9 +758,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-011",
@@ -771,8 +771,8 @@
       "cap": "33054",
       "comune": "Lignano Sabbiadoro",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 45.6620376,
+      "longitudine": 13.1070341,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -817,9 +817,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-012",
@@ -830,8 +830,8 @@
       "cap": "33036",
       "comune": "Mereto di Tomba",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.0499733,
+      "longitudine": 13.0409796,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -900,9 +900,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-013",
@@ -913,8 +913,8 @@
       "cap": "33050",
       "comune": "Castions di Strada",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 45.9035723,
+      "longitudine": 13.2150177,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -983,9 +983,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-014",
@@ -996,8 +996,8 @@
       "cap": "33055",
       "comune": "Muzzana del Turgnano",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 45.8181178,
+      "longitudine": 13.1317205,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -1066,9 +1066,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-015",
@@ -1079,8 +1079,8 @@
       "cap": "33025",
       "comune": "Ovaro",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.4817228,
+      "longitudine": 12.8666457,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -1149,9 +1149,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-016",
@@ -1162,8 +1162,8 @@
       "cap": "33037",
       "comune": "Pasian di Prato",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.0491726,
+      "longitudine": 13.1946536,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -1208,9 +1208,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-017",
@@ -1291,7 +1291,7 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
       "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
     },
@@ -1304,8 +1304,8 @@
       "cap": "33050",
       "comune": "Pavia di Udine",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 45.9742891,
+      "longitudine": 13.3220893,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -1374,9 +1374,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-019",
@@ -1387,8 +1387,8 @@
       "cap": "33040",
       "comune": "Povoletto",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.1168236,
+      "longitudine": 13.2929215,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -1433,9 +1433,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-020",
@@ -1446,8 +1446,8 @@
       "cap": "33030",
       "comune": "Ragogna",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.1785412,
+      "longitudine": 12.9786291,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -1516,9 +1516,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-021",
@@ -1529,8 +1529,8 @@
       "cap": "33061",
       "comune": "Rivignano Teor",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 45.8767006,
+      "longitudine": 13.0411111,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -1575,9 +1575,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-022",
@@ -1588,8 +1588,8 @@
       "cap": "33058",
       "comune": "San Giorgio di Nogaro",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 45.8322611,
+      "longitudine": 13.2093585,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -1634,9 +1634,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-023",
@@ -1717,7 +1717,7 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
       "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
     },
@@ -1730,8 +1730,8 @@
       "cap": "33039",
       "comune": "Sedegliano",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.0142187,
+      "longitudine": 12.9778207,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -1800,9 +1800,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-025",
@@ -1813,8 +1813,8 @@
       "cap": "33017",
       "comune": "Tarcento",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.2035568,
+      "longitudine": 13.2062259,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -1859,9 +1859,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-026",
@@ -1872,8 +1872,8 @@
       "cap": "33028",
       "comune": "Tolmezzo",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.4060258,
+      "longitudine": 13.0128722,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -1918,9 +1918,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-027",
@@ -1931,8 +1931,8 @@
       "cap": "33100",
       "comune": "Udine",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.4038332,
+      "longitudine": 13.0139273,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -1977,9 +1977,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-028",
@@ -1990,8 +1990,8 @@
       "cap": "33100",
       "comune": "Udine",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.0653852,
+      "longitudine": 13.2317561,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -2036,9 +2036,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-029",
@@ -2049,8 +2049,8 @@
       "cap": "33100",
       "comune": "Udine",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.0619273,
+      "longitudine": 13.2308742,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -2095,9 +2095,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-030",
@@ -2178,7 +2178,7 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
       "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
     },
@@ -2191,8 +2191,8 @@
       "cap": "33100",
       "comune": "Udine",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.0852515,
+      "longitudine": 13.2449543,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -2237,9 +2237,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-032",
@@ -2250,8 +2250,8 @@
       "cap": "33100",
       "comune": "Udine",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.071485,
+      "longitudine": 13.23452,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -2296,9 +2296,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-033",
@@ -2309,8 +2309,8 @@
       "cap": "33029",
       "comune": "Villa Santina",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.415301,
+      "longitudine": 12.9168103,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -2355,9 +2355,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-034",
@@ -2368,8 +2368,8 @@
       "cap": "33020",
       "comune": "Amaro",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.3686473,
+      "longitudine": 13.0690155,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -2414,9 +2414,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-035",
@@ -2427,8 +2427,8 @@
       "cap": "33030",
       "comune": "Buja",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.2020514,
+      "longitudine": 13.1194107,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -2473,9 +2473,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-036",
@@ -2486,8 +2486,8 @@
       "cap": "33052",
       "comune": "Cervignano del Friuli",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 45.8237153,
+      "longitudine": 13.3582303,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -2532,9 +2532,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-037",
@@ -2545,8 +2545,8 @@
       "cap": "33043",
       "comune": "Cividale del Friuli",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.0973693,
+      "longitudine": 13.4254591,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -2591,9 +2591,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-038",
@@ -2604,8 +2604,8 @@
       "cap": "33033",
       "comune": "Codroipo",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 45.9721358,
+      "longitudine": 12.9864103,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -2650,9 +2650,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-039",
@@ -2709,7 +2709,7 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
       "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
     },
@@ -2722,8 +2722,8 @@
       "cap": "33013",
       "comune": "Gemona del Friuli",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.2755184,
+      "longitudine": 13.1313982,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -2768,9 +2768,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-041",
@@ -2781,8 +2781,8 @@
       "cap": "33013",
       "comune": "Gemona del Friuli",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.2711613,
+      "longitudine": 13.1069698,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -2827,9 +2827,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-042",
@@ -2840,8 +2840,8 @@
       "cap": "33053",
       "comune": "Latisana",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 45.7819634,
+      "longitudine": 13.0019609,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -2886,9 +2886,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-043",
@@ -2899,8 +2899,8 @@
       "cap": "33053",
       "comune": "Latisana",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 45.7768263,
+      "longitudine": 12.9982732,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -2945,9 +2945,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-044",
@@ -3028,7 +3028,7 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
       "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
     },
@@ -3041,8 +3041,8 @@
       "cap": "33054",
       "comune": "Lignano Sabbiadoro",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 45.6873745,
+      "longitudine": 13.1349856,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -3087,9 +3087,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-046",
@@ -3100,8 +3100,8 @@
       "cap": "33030",
       "comune": "Majano",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.1901549,
+      "longitudine": 13.0574554,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -3146,9 +3146,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-047",
@@ -3159,8 +3159,8 @@
       "cap": "33044",
       "comune": "Manzano",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 45.9861771,
+      "longitudine": 13.3814415,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -3205,9 +3205,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-048",
@@ -3218,8 +3218,8 @@
       "cap": "33057",
       "comune": "Palmanova",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 45.9057877,
+      "longitudine": 13.3129377,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -3264,9 +3264,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-049",
@@ -3323,7 +3323,7 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
       "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
     },
@@ -3336,8 +3336,8 @@
       "cap": "33038",
       "comune": "San Daniele del Friuli",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.1559005,
+      "longitudine": 13.0109276,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -3382,9 +3382,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-051",
@@ -3395,8 +3395,8 @@
       "cap": "33048",
       "comune": "San Giovanni al Natisone",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 45.970603,
+      "longitudine": 13.3906296,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -3441,9 +3441,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-052",
@@ -3454,8 +3454,8 @@
       "cap": "33050",
       "comune": "Palmanova",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 45.9104215,
+      "longitudine": 13.3358337,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -3500,9 +3500,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-053",
@@ -3513,8 +3513,8 @@
       "cap": "33018",
       "comune": "Tarvisio",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.5078201,
+      "longitudine": 13.5476174,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -3559,9 +3559,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-054",
@@ -3572,8 +3572,8 @@
       "cap": "33018",
       "comune": "Tarvisio",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.5034141,
+      "longitudine": 13.5838602,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -3618,9 +3618,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-055",
@@ -3631,8 +3631,8 @@
       "cap": "33010",
       "comune": "Tavagnacco",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.1283138,
+      "longitudine": 13.2236235,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -3677,9 +3677,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-056",
@@ -3690,8 +3690,8 @@
       "cap": "33028",
       "comune": "Tolmezzo",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.4145694,
+      "longitudine": 13.0149742,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -3736,9 +3736,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-057",
@@ -3749,8 +3749,8 @@
       "cap": "33100",
       "comune": "Udine",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.0637539,
+      "longitudine": 13.2187046,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -3795,9 +3795,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-058",
@@ -3808,8 +3808,8 @@
       "cap": "33100",
       "comune": "Udine",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.0796575,
+      "longitudine": 13.2192538,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -3854,9 +3854,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-059",
@@ -3867,8 +3867,8 @@
       "cap": "33100",
       "comune": "Udine",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.0632906,
+      "longitudine": 13.2509037,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -3913,9 +3913,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-060",
@@ -3926,8 +3926,8 @@
       "cap": "33100",
       "comune": "Udine",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.0894781,
+      "longitudine": 13.4205597,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -3972,9 +3972,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-061",
@@ -4031,7 +4031,7 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
       "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
     },
@@ -4044,8 +4044,8 @@
       "cap": "33100",
       "comune": "Udine",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.0557955,
+      "longitudine": 13.2234078,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -4090,9 +4090,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-063",
@@ -4103,8 +4103,8 @@
       "cap": "33100",
       "comune": "Udine",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.0542286,
+      "longitudine": 13.2318433,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -4149,9 +4149,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-064",
@@ -4208,7 +4208,7 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
       "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
     },
@@ -4221,8 +4221,8 @@
       "cap": "33050",
       "comune": "Bagnaria Arsa",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 45.8867971,
+      "longitudine": 13.310799,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -4267,9 +4267,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-066",
@@ -4280,8 +4280,8 @@
       "cap": "33010",
       "comune": "Cassacco",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.1835958,
+      "longitudine": 13.2013427,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -4326,9 +4326,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-067",
@@ -4385,7 +4385,7 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
       "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
     },
@@ -4444,7 +4444,7 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
       "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
     },
@@ -4457,8 +4457,8 @@
       "cap": "33026",
       "comune": "Paluzza",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.5313336,
+      "longitudine": 13.0170645,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -4527,9 +4527,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-070",
@@ -4540,8 +4540,8 @@
       "cap": "33020",
       "comune": "Prato Carnico",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.5218965,
+      "longitudine": 12.7768099,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -4610,9 +4610,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-071",
@@ -4623,8 +4623,8 @@
       "cap": "33040",
       "comune": "Prepotto",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.0457744,
+      "longitudine": 13.4791232,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -4693,9 +4693,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-072",
@@ -4706,8 +4706,8 @@
       "cap": "33040",
       "comune": "Savogna",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.1584524,
+      "longitudine": 13.5324911,
       "telefono": "",
       "sito_pagina_ufficiale": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
       "orari": {
@@ -4776,9 +4776,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-073",
@@ -4789,8 +4789,8 @@
       "cap": "33100",
       "comune": "Udine",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.0911738,
+      "longitudine": 13.231178,
       "telefono": "800 480 048",
       "sito_pagina_ufficiale": "https://www.lidl.it/s/it-IT/ricerca-negozio/friuli-venezia-giulia/",
       "orari": {
@@ -4840,9 +4840,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-074",
@@ -4853,8 +4853,8 @@
       "cap": "33100",
       "comune": "Udine",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.0479051,
+      "longitudine": 13.2486092,
       "telefono": "800 480 048",
       "sito_pagina_ufficiale": "https://www.lidl.it/s/it-IT/ricerca-negozio/friuli-venezia-giulia/",
       "orari": {
@@ -4904,9 +4904,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-075",
@@ -4917,8 +4917,8 @@
       "cap": "33100",
       "comune": "Udine",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.0719144,
+      "longitudine": 13.2588284,
       "telefono": "800 480 048",
       "sito_pagina_ufficiale": "https://www.lidl.it/s/it-IT/ricerca-negozio/friuli-venezia-giulia/",
       "orari": {
@@ -4968,9 +4968,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-076",
@@ -4981,8 +4981,8 @@
       "cap": "33100",
       "comune": "Udine",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.055657,
+      "longitudine": 13.2179597,
       "telefono": "800 480 048",
       "sito_pagina_ufficiale": "https://www.lidl.it/s/it-IT/ricerca-negozio/friuli-venezia-giulia/",
       "orari": {
@@ -5032,9 +5032,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-077",
@@ -5045,8 +5045,8 @@
       "cap": "33052",
       "comune": "Cervignano del Friuli",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 45.8104016,
+      "longitudine": 13.3425085,
       "telefono": "800 480 048",
       "sito_pagina_ufficiale": "https://www.lidl.it/s/it-IT/ricerca-negozio/friuli-venezia-giulia/",
       "orari": {
@@ -5096,9 +5096,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-078",
@@ -5109,8 +5109,8 @@
       "cap": "33033",
       "comune": "Codroipo",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 45.9721358,
+      "longitudine": 12.9864103,
       "telefono": "800 480 048",
       "sito_pagina_ufficiale": "https://www.lidl.it/s/it-IT/ricerca-negozio/friuli-venezia-giulia/",
       "orari": {
@@ -5160,9 +5160,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-079",
@@ -5173,8 +5173,8 @@
       "cap": "33034",
       "comune": "Fagagna",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.0999525,
+      "longitudine": 13.0962038,
       "telefono": "800 480 048",
       "sito_pagina_ufficiale": "https://www.lidl.it/s/it-IT/ricerca-negozio/friuli-venezia-giulia/",
       "orari": {
@@ -5224,9 +5224,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-080",
@@ -5237,8 +5237,8 @@
       "cap": "33030",
       "comune": "Majano",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.1673924,
+      "longitudine": 13.0670345,
       "telefono": "800 480 048",
       "sito_pagina_ufficiale": "https://www.lidl.it/s/it-IT/ricerca-negozio/friuli-venezia-giulia/",
       "orari": {
@@ -5288,21 +5288,21 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-081",
       "nome": "Lidl Mortegliano",
       "insegna": "Lidl",
       "categoria": "Discount",
-      "indirizzo": "Via Cormor",
+      "indirizzo": "Via Martini, 1",
       "cap": "33050",
       "comune": "Mortegliano",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 45.9434701,
+      "longitudine": 13.1736729,
       "telefono": "800 480 048",
       "sito_pagina_ufficiale": "https://www.lidl.it/s/it-IT/ricerca-negozio/friuli-venezia-giulia/",
       "orari": {
@@ -5352,9 +5352,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-082",
@@ -5365,8 +5365,8 @@
       "cap": "33053",
       "comune": "Latisana",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 45.7772707,
+      "longitudine": 13.0028065,
       "telefono": "800 480 048",
       "sito_pagina_ufficiale": "https://www.lidl.it/s/it-IT/ricerca-negozio/friuli-venezia-giulia/",
       "orari": {
@@ -5416,9 +5416,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-083",
@@ -5429,8 +5429,8 @@
       "cap": "33054",
       "comune": "Lignano Sabbiadoro",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 45.6924737,
+      "longitudine": 13.1465891,
       "telefono": "800 480 048",
       "sito_pagina_ufficiale": "https://www.lidl.it/s/it-IT/ricerca-negozio/friuli-venezia-giulia/",
       "orari": {
@@ -5480,9 +5480,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-084",
@@ -5493,8 +5493,8 @@
       "cap": "33028",
       "comune": "Tolmezzo",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.3969065,
+      "longitudine": 13.0081472,
       "telefono": "800 480 048",
       "sito_pagina_ufficiale": "https://www.lidl.it/s/it-IT/ricerca-negozio/friuli-venezia-giulia/",
       "orari": {
@@ -5544,9 +5544,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-085",
@@ -5557,8 +5557,8 @@
       "cap": "33048",
       "comune": "San Giovanni al Natisone",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 45.9699588,
+      "longitudine": 13.398111,
       "telefono": "800 480 048",
       "sito_pagina_ufficiale": "https://www.lidl.it/s/it-IT/ricerca-negozio/friuli-venezia-giulia/",
       "orari": {
@@ -5608,9 +5608,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-086",
@@ -5621,8 +5621,8 @@
       "cap": "33010",
       "comune": "Cassacco",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.1919342,
+      "longitudine": 13.1948494,
       "telefono": "800 480 048",
       "sito_pagina_ufficiale": "https://www.lidl.it/s/it-IT/ricerca-negozio/friuli-venezia-giulia/",
       "orari": {
@@ -5672,9 +5672,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-087",
@@ -5685,8 +5685,8 @@
       "cap": "33013",
       "comune": "Gemona del Friuli",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.266145,
+      "longitudine": 13.1087821,
       "telefono": "800 480 048",
       "sito_pagina_ufficiale": "https://www.lidl.it/s/it-IT/ricerca-negozio/friuli-venezia-giulia/",
       "orari": {
@@ -5736,9 +5736,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-088",
@@ -5749,8 +5749,8 @@
       "cap": "33100",
       "comune": "Udine",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.0434655,
+      "longitudine": 13.2512286,
       "telefono": "045 786 2000",
       "sito_pagina_ufficiale": "https://www.eurospin.it/punti-vendita/",
       "orari": {
@@ -5800,9 +5800,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
-      "orari_non_verificati": true,
-      "note_verifica": "Orario settimanale verificato; festività e aperture straordinarie escluse. Coordinate non risolte automaticamente."
+      "data_verifica": "2026-09-11",
+      "orari_non_verificati": false,
+      "note_verifica": "Orario settimanale verificato; festività e aperture straordinarie escluse."
     },
     {
       "id": "UD-089",
@@ -5813,8 +5813,8 @@
       "cap": "33010",
       "comune": "Tavagnacco",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.1268761,
+      "longitudine": 13.2245752,
       "telefono": "045 786 2000",
       "sito_pagina_ufficiale": "https://www.eurospin.it/punti-vendita/",
       "orari": {
@@ -5864,9 +5864,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-090",
@@ -5877,8 +5877,8 @@
       "cap": "33052",
       "comune": "Cervignano del Friuli",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 45.8104016,
+      "longitudine": 13.3425085,
       "telefono": "045 786 2000",
       "sito_pagina_ufficiale": "https://www.eurospin.it/punti-vendita/",
       "orari": {
@@ -5928,21 +5928,21 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-091",
       "nome": "Eurospin Codroipo",
       "insegna": "Eurospin",
       "categoria": "Discount",
-      "indirizzo": "Viale Venezia",
+      "indirizzo": "Via Fiume, 29",
       "cap": "33033",
       "comune": "Codroipo",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 45.9721703,
+      "longitudine": 12.9872121,
       "telefono": "045 786 2000",
       "sito_pagina_ufficiale": "https://www.eurospin.it/punti-vendita/",
       "orari": {
@@ -5992,9 +5992,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-092",
@@ -6005,8 +6005,8 @@
       "cap": "33043",
       "comune": "Cividale del Friuli",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.091498,
+      "longitudine": 13.4184773,
       "telefono": "045 786 2000",
       "sito_pagina_ufficiale": "https://www.eurospin.it/punti-vendita/",
       "orari": {
@@ -6056,9 +6056,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-093",
@@ -6069,8 +6069,8 @@
       "cap": "33013",
       "comune": "Gemona del Friuli",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.2772377,
+      "longitudine": 13.1088281,
       "telefono": "045 786 2000",
       "sito_pagina_ufficiale": "https://www.eurospin.it/punti-vendita/",
       "orari": {
@@ -6120,9 +6120,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-094",
@@ -6133,8 +6133,8 @@
       "cap": "33053",
       "comune": "Latisana",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 45.7740433,
+      "longitudine": 13.0021292,
       "telefono": "045 786 2000",
       "sito_pagina_ufficiale": "https://www.eurospin.it/punti-vendita/",
       "orari": {
@@ -6184,9 +6184,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-095",
@@ -6197,8 +6197,8 @@
       "cap": "33054",
       "comune": "Lignano Sabbiadoro",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 45.6790086,
+      "longitudine": 13.1123207,
       "telefono": "045 786 2000",
       "sito_pagina_ufficiale": "https://www.eurospin.it/punti-vendita/",
       "orari": {
@@ -6248,9 +6248,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-096",
@@ -6261,8 +6261,8 @@
       "cap": "33057",
       "comune": "Palmanova",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 45.9066005,
+      "longitudine": 13.3090744,
       "telefono": "045 786 2000",
       "sito_pagina_ufficiale": "https://www.eurospin.it/punti-vendita/",
       "orari": {
@@ -6312,9 +6312,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-097",
@@ -6325,8 +6325,8 @@
       "cap": "33038",
       "comune": "San Daniele del Friuli",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.1604153,
+      "longitudine": 13.0029766,
       "telefono": "045 786 2000",
       "sito_pagina_ufficiale": "https://www.eurospin.it/punti-vendita/",
       "orari": {
@@ -6376,9 +6376,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-098",
@@ -6389,8 +6389,8 @@
       "cap": "33028",
       "comune": "Tolmezzo",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.4009957,
+      "longitudine": 13.0057231,
       "telefono": "045 786 2000",
       "sito_pagina_ufficiale": "https://www.eurospin.it/punti-vendita/",
       "orari": {
@@ -6440,9 +6440,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-099",
@@ -6453,8 +6453,8 @@
       "cap": "33019",
       "comune": "Tricesimo",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.159216,
+      "longitudine": 13.2130921,
       "telefono": "045 786 2000",
       "sito_pagina_ufficiale": "https://www.eurospin.it/punti-vendita/",
       "orari": {
@@ -6504,9 +6504,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-100",
@@ -6517,8 +6517,8 @@
       "cap": "33100",
       "comune": "Udine",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.0879486,
+      "longitudine": 13.2327326,
       "telefono": "800 370 370",
       "sito_pagina_ufficiale": "https://www.aldi.it/punti-vendita-e-orari-di-apertura",
       "orari": {
@@ -6568,9 +6568,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-101",
@@ -6581,8 +6581,8 @@
       "cap": "33010",
       "comune": "Tavagnacco",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.1268761,
+      "longitudine": 13.2245752,
       "telefono": "800 370 370",
       "sito_pagina_ufficiale": "https://www.aldi.it/punti-vendita-e-orari-di-apertura",
       "orari": {
@@ -6632,9 +6632,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-102",
@@ -6645,8 +6645,8 @@
       "cap": "33033",
       "comune": "Codroipo",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 45.9677539,
+      "longitudine": 12.9631323,
       "telefono": "800 370 370",
       "sito_pagina_ufficiale": "https://www.aldi.it/punti-vendita-e-orari-di-apertura",
       "orari": {
@@ -6696,9 +6696,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-103",
@@ -6709,8 +6709,8 @@
       "cap": "33052",
       "comune": "Cervignano del Friuli",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 45.8104016,
+      "longitudine": 13.3425085,
       "telefono": "800 370 370",
       "sito_pagina_ufficiale": "https://www.aldi.it/punti-vendita-e-orari-di-apertura",
       "orari": {
@@ -6760,9 +6760,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-104",
@@ -6773,8 +6773,8 @@
       "cap": "33043",
       "comune": "Cividale del Friuli",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.091498,
+      "longitudine": 13.4184773,
       "telefono": "800 370 370",
       "sito_pagina_ufficiale": "https://www.aldi.it/punti-vendita-e-orari-di-apertura",
       "orari": {
@@ -6824,9 +6824,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-105",
@@ -6837,8 +6837,8 @@
       "cap": "33013",
       "comune": "Gemona del Friuli",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.2772377,
+      "longitudine": 13.1088281,
       "telefono": "800 370 370",
       "sito_pagina_ufficiale": "https://www.aldi.it/punti-vendita-e-orari-di-apertura",
       "orari": {
@@ -6888,9 +6888,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-106",
@@ -6901,8 +6901,8 @@
       "cap": "33028",
       "comune": "Tolmezzo",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.4009957,
+      "longitudine": 13.0057231,
       "telefono": "800 370 370",
       "sito_pagina_ufficiale": "https://www.aldi.it/punti-vendita-e-orari-di-apertura",
       "orari": {
@@ -6952,9 +6952,9 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     },
     {
       "id": "UD-107",
@@ -6965,8 +6965,8 @@
       "cap": "33038",
       "comune": "San Daniele del Friuli",
       "provincia": "UD",
-      "latitudine": null,
-      "longitudine": null,
+      "latitudine": 46.151615,
+      "longitudine": 13.0081406,
       "telefono": "800 370 370",
       "sito_pagina_ufficiale": "https://www.aldi.it/punti-vendita-e-orari-di-apertura",
       "orari": {
@@ -7016,9 +7016,2377 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-10",
+      "data_verifica": "2026-09-11",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+    },
+    {
+      "id": "UD-108",
+      "nome": "Tuday Conad Udine Vittorio Veneto",
+      "insegna": "Tuday Conad",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Vittorio Veneto, 37",
+      "cap": "33100",
+      "comune": "Udine",
+      "provincia": "UD",
+      "latitudine": 46.062212,
+      "longitudine": 13.238483,
+      "telefono": "0432 504606",
+      "sito_pagina_ufficiale": "https://www.conad.it/ricerca-negozi/tuday-conad-via-vittorio-veneto-37-33100-udine--009097",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "07:00",
+            "chiude": "21:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "07:00",
+            "chiude": "21:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "07:00",
+            "chiude": "21:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "07:00",
+            "chiude": "21:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "07:00",
+            "chiude": "21:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "07:00",
+            "chiude": "21:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-11",
+      "orari_non_verificati": false,
+      "note_verifica": "Orario settimanale verificato; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "UD-109",
+      "nome": "Spazio Conad Martignacco",
+      "insegna": "Spazio Conad",
+      "categoria": "Ipermercato",
+      "indirizzo": "Via Antonio Bardelli, 4",
+      "cap": "33035",
+      "comune": "Martignacco",
+      "provincia": "UD",
+      "latitudine": 46.084921,
+      "longitudine": 13.1826093,
+      "telefono": "0432 544111",
+      "sito_pagina_ufficiale": "https://www.conad.it/ricerca-negozi/spazio-conad-via-antonio-bardelli-4-33035-martignacco--009714",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-11",
+      "orari_non_verificati": false,
+      "note_verifica": "Orario settimanale verificato; festività e aperture straordinarie escluse."
+    },
+    {
+      "id": "UD-110",
+      "nome": "Conad Spesa Facile Cervignano",
+      "insegna": "Conad Spesa Facile",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Roma, 38",
+      "cap": "33052",
+      "comune": "Cervignano del Friuli",
+      "provincia": "UD",
+      "latitudine": 45.8218083,
+      "longitudine": 13.3360138,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.conad.it/ricerca-negozi",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-11",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+    },
+    {
+      "id": "UD-111",
+      "nome": "Conad Spesa Facile Tavagnacco",
+      "insegna": "Conad Spesa Facile",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Nazionale, 127",
+      "cap": "33010",
+      "comune": "Tavagnacco",
+      "provincia": "UD",
+      "latitudine": 46.1196284,
+      "longitudine": 13.2241322,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.conad.it/ricerca-negozi",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-11",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+    },
+    {
+      "id": "UD-112",
+      "nome": "Conad Spesa Facile Mortegliano",
+      "insegna": "Conad Spesa Facile",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Cividale, 16",
+      "cap": "33050",
+      "comune": "Mortegliano",
+      "provincia": "UD",
+      "latitudine": 45.9497785,
+      "longitudine": 13.1800788,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.conad.it/ricerca-negozi",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-11",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+    },
+    {
+      "id": "UD-113",
+      "nome": "Famila Market Udine",
+      "insegna": "Famila Market",
+      "categoria": "Supermercato",
+      "indirizzo": "Piazzale Valle del But, 5",
+      "cap": "33100",
+      "comune": "Udine",
+      "provincia": "UD",
+      "latitudine": 46.0779868,
+      "longitudine": 13.2057054,
+      "telefono": "0432 400399",
+      "sito_pagina_ufficiale": "https://www.famila.it/famila-nordest/punti-vendita/friuli-venezia-giulia/famila-market-di-udine",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-11",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+    },
+    {
+      "id": "UD-114",
+      "nome": "Famila Manzano",
+      "insegna": "Famila",
+      "categoria": "Supermercato",
+      "indirizzo": "Via San Giovanni, 80",
+      "cap": "33044",
+      "comune": "Manzano",
+      "provincia": "UD",
+      "latitudine": 45.9902148,
+      "longitudine": 13.3959636,
+      "telefono": "0432 750464",
+      "sito_pagina_ufficiale": "https://www.famila.it/tutti-i-punti-vendita/italia/friuli-venezia-giulia",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-11",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+    },
+    {
+      "id": "UD-115",
+      "nome": "Famila Tricesimo",
+      "insegna": "Famila",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Roma, 72",
+      "cap": "33019",
+      "comune": "Tricesimo",
+      "provincia": "UD",
+      "latitudine": 46.1580053,
+      "longitudine": 13.2166247,
+      "telefono": "0432 850359",
+      "sito_pagina_ufficiale": "https://www.famila.it/tutti-i-punti-vendita/italia/friuli-venezia-giulia",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-11",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+    },
+    {
+      "id": "UD-116",
+      "nome": "Panorama Udine Venezia",
+      "insegna": "Panorama",
+      "categoria": "Ipermercato",
+      "indirizzo": "Viale Venezia, 327/329",
+      "cap": "33100",
+      "comune": "Udine",
+      "provincia": "UD",
+      "latitudine": 46.055657,
+      "longitudine": 13.2179597,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.pampanorama.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-11",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+    },
+    {
+      "id": "UD-117",
+      "nome": "Panorama Udine Palmanova",
+      "insegna": "Panorama",
+      "categoria": "Ipermercato",
+      "indirizzo": "Viale Palmanova, 109",
+      "cap": "33100",
+      "comune": "Udine",
+      "provincia": "UD",
+      "latitudine": 46.0522974,
+      "longitudine": 13.2472956,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.pampanorama.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-11",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+    },
+    {
+      "id": "UD-118",
+      "nome": "SuperVisotto Cervignano",
+      "insegna": "SuperVisotto",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Costantino Dardi, 3",
+      "cap": "33052",
+      "comune": "Cervignano del Friuli",
+      "provincia": "UD",
+      "latitudine": 45.8160911,
+      "longitudine": 13.3550837,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://supermercativisotto.it/punti-vendita",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-11",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+    },
+    {
+      "id": "UD-119",
+      "nome": "IperVisotto Feletto Umberto",
+      "insegna": "IperVisotto",
+      "categoria": "Ipermercato",
+      "indirizzo": "Via Enrico Fermi, 65",
+      "cap": "33010",
+      "comune": "Tavagnacco",
+      "provincia": "UD",
+      "latitudine": 46.1074924,
+      "longitudine": 13.2263933,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://supermercativisotto.it/punti-vendita",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-11",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+    },
+    {
+      "id": "UD-120",
+      "nome": "SuperVisotto Codroipo",
+      "insegna": "SuperVisotto",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Ermes di Colloredo, 1",
+      "cap": "33033",
+      "comune": "Codroipo",
+      "provincia": "UD",
+      "latitudine": 45.9496775,
+      "longitudine": 12.9728435,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://supermercativisotto.it/punti-vendita",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-11",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+    },
+    {
+      "id": "UD-121",
+      "nome": "IperVisotto Talmassons",
+      "insegna": "IperVisotto",
+      "categoria": "Ipermercato",
+      "indirizzo": "Case Sparse, Via Mortegliano, 2",
+      "cap": "33030",
+      "comune": "Talmassons",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://supermercativisotto.it/punti-vendita",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
       "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-122",
+      "nome": "IperVisotto Buja",
+      "insegna": "IperVisotto",
+      "categoria": "Ipermercato",
+      "indirizzo": "Via Arrio, 8",
+      "cap": "33030",
+      "comune": "Buja",
+      "provincia": "UD",
+      "latitudine": 46.2111762,
+      "longitudine": 13.1270202,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://supermercativisotto.it/punti-vendita",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-11",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+    },
+    {
+      "id": "UD-123",
+      "nome": "Cadoro Basiliano",
+      "insegna": "Cadoro",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Corecian, 66",
+      "cap": "33031",
+      "comune": "Basiliano",
+      "provincia": "UD",
+      "latitudine": 46.010019,
+      "longitudine": 13.1242241,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.cadoro.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-11",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+    },
+    {
+      "id": "UD-124",
+      "nome": "Cadoro Codroipo",
+      "insegna": "Cadoro",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Latisana, 10/12",
+      "cap": "33033",
+      "comune": "Codroipo",
+      "provincia": "UD",
+      "latitudine": 45.9535973,
+      "longitudine": 12.9731228,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.cadoro.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-11",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+    },
+    {
+      "id": "UD-125",
+      "nome": "SuperOne Codroipo",
+      "insegna": "SuperOne",
+      "categoria": "Supermercato",
+      "indirizzo": "Viale Duodo, 4",
+      "cap": "33033",
+      "comune": "Codroipo",
+      "provincia": "UD",
+      "latitudine": 45.9610556,
+      "longitudine": 12.9961553,
+      "telefono": "",
+      "sito_pagina_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-11",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+    },
+    {
+      "id": "UD-126",
+      "nome": "Prix Codroipo",
+      "insegna": "Prix",
+      "categoria": "Discount",
+      "indirizzo": "Via Circonvallazione Ovest, 2",
+      "cap": "33033",
+      "comune": "Codroipo",
+      "provincia": "UD",
+      "latitudine": 45.961568,
+      "longitudine": 12.9721206,
+      "telefono": "800 894 422",
+      "sito_pagina_ufficiale": "https://www.prixquality.com/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-11",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+    },
+    {
+      "id": "UD-127",
+      "nome": "Dpiù Codroipo",
+      "insegna": "Dpiù",
+      "categoria": "Discount",
+      "indirizzo": "Via XXIX Ottobre, 9",
+      "cap": "33033",
+      "comune": "Codroipo",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.d-piu.com/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-11",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-128",
+      "nome": "Dpiù Fagagna",
+      "insegna": "Dpiù",
+      "categoria": "Discount",
+      "indirizzo": "Via Spilimbergo, 210",
+      "cap": "33034",
+      "comune": "Fagagna",
+      "provincia": "UD",
+      "latitudine": 46.0971237,
+      "longitudine": 13.0884534,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.d-piu.com/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-11",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+    },
+    {
+      "id": "UD-129",
+      "nome": "Mega Castions di Strada",
+      "insegna": "Mega",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Napoleonica, 5",
+      "cap": "33050",
+      "comune": "Castions di Strada",
+      "provincia": "UD",
+      "latitudine": 45.9237174,
+      "longitudine": 13.1803459,
+      "telefono": "",
+      "sito_pagina_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-11",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+    },
+    {
+      "id": "UD-130",
+      "nome": "Eurospin Santa Maria la Longa",
+      "insegna": "Eurospin",
+      "categoria": "Discount",
+      "indirizzo": "Via Gabriele D'Annunzio, 1",
+      "cap": "33050",
+      "comune": "Santa Maria la Longa",
+      "provincia": "UD",
+      "latitudine": 45.978594,
+      "longitudine": 13.2761794,
+      "telefono": "045 786 2000",
+      "sito_pagina_ufficiale": "https://www.eurospin.it/punti-vendita/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-11",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+    },
+    {
+      "id": "UD-131",
+      "nome": "Coop Porpetto",
+      "insegna": "Coop",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Pre' Zaneto, 30",
+      "cap": "33050",
+      "comune": "Porpetto",
+      "provincia": "UD",
+      "latitudine": 45.8610263,
+      "longitudine": 13.2161285,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.coop.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-11",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+    },
+    {
+      "id": "UD-132",
+      "nome": "Coop Udine Montegrappa",
+      "insegna": "Coop",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Montegrappa, 45",
+      "cap": "33100",
+      "comune": "Udine",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.coopalleanza3-0.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-11",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-133",
+      "nome": "Coop Udine Bassi",
+      "insegna": "Coop",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Gio Batta Bassi, 12",
+      "cap": "33100",
+      "comune": "Udine",
+      "provincia": "UD",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.coopalleanza3-0.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-11",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+    },
+    {
+      "id": "UD-134",
+      "nome": "Spak Udine Dormisch",
+      "insegna": "Spak",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Francesco Dormisch, 66",
+      "cap": "33100",
+      "comune": "Udine",
+      "provincia": "UD",
+      "latitudine": 46.0723169,
+      "longitudine": 13.2174734,
+      "telefono": "",
+      "sito_pagina_ufficiale": "http://www.spaksupermercati.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-11",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+    },
+    {
+      "id": "UD-135",
+      "nome": "Spak Udine Del Bon",
+      "insegna": "Spak",
+      "categoria": "Supermercato",
+      "indirizzo": "Via del Bon, 148",
+      "cap": "33100",
+      "comune": "Udine",
+      "provincia": "UD",
+      "latitudine": 46.0648972,
+      "longitudine": 13.2581204,
+      "telefono": "",
+      "sito_pagina_ufficiale": "http://www.spaksupermercati.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-11",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+    },
+    {
+      "id": "UD-136",
+      "nome": "Dpiù Udine Mantova",
+      "insegna": "Dpiù",
+      "categoria": "Discount",
+      "indirizzo": "Via Mantova, 91",
+      "cap": "33100",
+      "comune": "Udine",
+      "provincia": "UD",
+      "latitudine": 46.0790948,
+      "longitudine": 13.2096268,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.d-piu.com/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-11",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+    },
+    {
+      "id": "UD-137",
+      "nome": "Eurospin Udine Cividale",
+      "insegna": "Eurospin",
+      "categoria": "Discount",
+      "indirizzo": "Via Cividale, 620",
+      "cap": "33100",
+      "comune": "Udine",
+      "provincia": "UD",
+      "latitudine": 46.0756819,
+      "longitudine": 13.2746666,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.eurospin.it/punti-vendita/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-11",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+    },
+    {
+      "id": "UD-138",
+      "nome": "Mega Udine Palmanova",
+      "insegna": "Mega",
+      "categoria": "Supermercato",
+      "indirizzo": "Viale Palmanova",
+      "cap": "33100",
+      "comune": "Udine",
+      "provincia": "UD",
+      "latitudine": 46.0519336,
+      "longitudine": 13.2475159,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.gruppounicomm.it/insegne/mega/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "19:30"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-11",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+    },
+    {
+      "id": "UD-139",
+      "nome": "Al Platano Flumignano",
+      "insegna": "Al Platano",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Mangilli, 7",
+      "cap": "33030",
+      "comune": "Talmassons",
+      "provincia": "UD",
+      "latitudine": 45.920362,
+      "longitudine": 13.1400616,
+      "telefono": "",
+      "sito_pagina_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-11",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+    },
+    {
+      "id": "UD-140",
+      "nome": "Iper Tosano Pradamano",
+      "insegna": "Iper Tosano",
+      "categoria": "Ipermercato",
+      "indirizzo": "Via Nazionale, 108",
+      "cap": "33040",
+      "comune": "Pradamano",
+      "provincia": "UD",
+      "latitudine": 46.0222728,
+      "longitudine": 13.2746599,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.ipertosano.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "21:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-11",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+    },
+    {
+      "id": "UD-141",
+      "nome": "Dpiù Pasian di Prato",
+      "insegna": "Dpiù",
+      "categoria": "Discount",
+      "indirizzo": "Via Campoformido, 63",
+      "cap": "33037",
+      "comune": "Pasian di Prato",
+      "provincia": "UD",
+      "latitudine": 46.0379676,
+      "longitudine": 13.185659,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.d-piu.com/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-11",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+    },
+    {
+      "id": "UD-142",
+      "nome": "Eurospin Passons",
+      "insegna": "Eurospin",
+      "categoria": "Discount",
+      "indirizzo": "Via Spilimbergo, 46 - Passons",
+      "cap": "33037",
+      "comune": "Pasian di Prato",
+      "provincia": "UD",
+      "latitudine": 46.0750659,
+      "longitudine": 13.1914847,
+      "telefono": "045 786 2000",
+      "sito_pagina_ufficiale": "https://www.eurospin.it/punti-vendita/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-11",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+    },
+    {
+      "id": "UD-143",
+      "nome": "Conad City Basaldella",
+      "insegna": "Conad City",
+      "categoria": "Supermercato",
+      "indirizzo": "Via Giuseppe Verdi, 72 - Basaldella",
+      "cap": "33030",
+      "comune": "Campoformido",
+      "provincia": "UD",
+      "latitudine": 46.0283387,
+      "longitudine": 13.2136482,
+      "telefono": "",
+      "sito_pagina_ufficiale": "https://www.conad.it/ricerca-negozi",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-11",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+    },
+    {
+      "id": "UD-144",
+      "nome": "CC Discount Pozzuolo",
+      "insegna": "Centro Commerciale Discount",
+      "categoria": "Discount",
+      "indirizzo": "Via IV Genova, 48",
+      "cap": "33050",
+      "comune": "Pozzuolo del Friuli",
+      "provincia": "UD",
+      "latitudine": 45.9723706,
+      "longitudine": 13.1955855,
+      "telefono": "",
+      "sito_pagina_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "data_verifica": "2026-09-11",
+      "orari_non_verificati": true,
+      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
     }
   ]
 }

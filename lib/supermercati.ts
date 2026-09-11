@@ -23,16 +23,23 @@ export { adessoEuropeRome };
 // pattern di lib/aviostrutture.ts) e aggiornato solo quando l'utente
 // fornirà un nuovo file.
 //
-// Limiti noti nel dato ricevuto il 10/09/2026 (documentati qui, non
-// nascosti in UI): tutte le 107 voci della provincia di Udine hanno
-// `latitudine`/`longitudine` null (non compaiono quindi sulla mappa,
-// solo nell'elenco testuale) e hanno `orari_non_verificati: true` —
-// l'utente stesso descrive il file Udine come "prima ricognizione
-// strutturata" (vedi `scope` nel JSON), a differenza degli altri 3 file
-// già verificati sede per sede. Le altre province hanno singole voci
-// con `orari_non_verificati: true` (Gorizia 6, Pordenone 31) — mostrato
-// con una piccola nota "orario non confermato" invece di ometterlo o
-// darlo per buono.
+// Limiti noti nel dato (documentati qui, non nascosti in UI). Il file
+// Udine è stato sostituito l'11/09/2026 con una versione completa
+// fornita dall'utente ("Ecco la lista completa della provincia di
+// Udine, aggiorna"): 107 → 144 voci, `scope` non più "prima
+// ricognizione strutturata" ma allineato alle altre 3 province
+// ("supermercati, ipermercati e discount... esclusi minimarket e
+// botteghe"), e la maggior parte delle voci ora ha coordinate reali.
+// Restano null solo 15 voci su 144 (UD-005, UD-017, UD-023, UD-030,
+// UD-039, UD-044, UD-049, UD-061, UD-064, UD-067, UD-068, UD-121,
+// UD-127, UD-132, UD-133), ciascuna con `note_verifica` che segnala
+// esplicitamente "Coordinate non risolte automaticamente."
+// — non compaiono quindi sulla mappa, solo nell'elenco testuale. Il
+// flag `orari_non_verificati: true` resta invece su 141 voci su 144
+// (quasi tutte, invariato rispetto al file precedente) — mostrato con
+// una piccola nota "orario non confermato" invece di ometterlo o darlo
+// per buono. Le altre province hanno singole voci con
+// `orari_non_verificati: true` (Gorizia 6, Pordenone 31).
 
 export type FasciaOrariaSettimanale = { apre: string; chiude: string }; // "HH:MM"
 

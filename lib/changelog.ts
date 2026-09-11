@@ -21,6 +21,13 @@ export type VoceChangelog = {
 
 export const CHANGELOG: VoceChangelog[] = [
   {
+    data: "11/09/2026",
+    titolo: "Supermercati: aggiornata la lista di Udine",
+    dettagli: [
+      "La provincia di Udine è passata da 107 a 144 punti vendita, con mappa ora visibile per la quasi totalità degli indirizzi (prima erano tutti senza coordinate).",
+    ],
+  },
+  {
     data: "10/09/2026",
     titolo: "Nuova sezione \"Commercio\": Supermercati delle 4 province",
     dettagli: [
