@@ -38,7 +38,10 @@ export default function FarmacieHubPage() {
       <div className="isobar" />
 
       <main id="contenuto-principale" className="max-w-[1180px] mx-auto px-5 py-6">
-        <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1">Farmacie</h1>
+        <a href="/sanita" className="text-cool-ink text-xs font-mono hover:underline">
+          ← Sanità
+        </a>
+        <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1 mt-1">Farmacie</h1>
         <p className="text-ink-faint text-xs font-mono mb-6">
           Farmacie del Friuli Venezia Giulia — fonte: Regione Autonoma FVG (dati.friuliveneziagiulia.it)
         </p>

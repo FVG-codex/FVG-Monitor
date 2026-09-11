@@ -22,6 +22,13 @@ export type VoceChangelog = {
 export const CHANGELOG: VoceChangelog[] = [
   {
     data: "11/09/2026",
+    titolo: "Nuova sezione \"Sanità\": Veterinari & Emergenze",
+    dettagli: [
+      "Nel menù, \"Farmacie\" è confluita in una nuova voce \"Sanità\", insieme a due sezioni in arrivo (Cliniche & centri medici, Dentisti & Odontoiatri) e alla nuova sezione \"Veterinari & Emergenze\" (provincia di Trieste): un riquadro dedicato mostra subito le strutture con un servizio di emergenza dichiarato, con numero di telefono in evidenza.",
+    ],
+  },
+  {
+    data: "11/09/2026",
     titolo: "Supermercati: aggiornata la lista di Udine",
     dettagli: [
       "La provincia di Udine è passata da 107 a 144 punti vendita, con mappa ora visibile per la quasi totalità degli indirizzi (prima erano tutti senza coordinate).",

@@ -1,0 +1,1678 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-09-11",
+  "timezone": "Europe/Rome",
+  "scope": "strutture veterinarie aperte al pubblico nella provincia di Trieste; censimento iniziale con verifica distinta di orari ed emergenze",
+  "emergency_values": [
+    "non_dichiarata",
+    "nessuna_dichiarata",
+    "urgenze_in_orario",
+    "reperibilita_telefonica",
+    "guardia_medica_veterinaria",
+    "pronto_soccorso_diurno",
+    "pronto_soccorso_24h",
+    "pronto_intervento_da_confermare",
+    "sanita_pubblica_veterinaria"
+  ],
+  "records": [
+    {
+      "id": "TS-VET-001",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Clinica Veterinaria Campo Marzio - Ca' Zampa",
+      "tipo_struttura": "Clinica veterinaria",
+      "indirizzo": "Via di Campo Marzio, 6/A",
+      "cap": "34123",
+      "comune": "Trieste",
+      "latitudine": 45.6444967,
+      "longitudine": 13.7573067,
+      "telefono": "040 302022",
+      "telefono_emergenze": "040 302022",
+      "email": "trieste@cazampa.it",
+      "sito_ufficiale": "https://www.cazampa.it/clinica/trieste/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "16:00"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": false,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina generale; chirurgia; diagnostica; specialistiche",
+      "gestione_emergenze": "pronto_soccorso_diurno",
+      "orari_emergenze": "Durante gli orari di apertura",
+      "emergenze_su_appuntamento": false,
+      "emergenze_solo_clienti": false,
+      "ricovero_notturno": null,
+      "presenza_veterinario_notturno": null,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": "https://www.cazampa.it/clinica/trieste/",
+      "fonte_emergenze": "https://www.cazampa.it/clinica/trieste/emergenze/",
+      "orari_verificati": true,
+      "emergenze_verificate": true,
+      "note": "Pronto soccorso diurno con triage, accessibile senza prenotazione.",
+      "data_verifica": "2026-09-11"
+    },
+    {
+      "id": "TS-VET-002",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Clinica Veterinaria Tergeste",
+      "tipo_struttura": "Clinica veterinaria",
+      "indirizzo": "Via Bartolomeo D’Alviano, 86/2",
+      "cap": "34144",
+      "comune": "Trieste",
+      "latitudine": 45.6346226,
+      "longitudine": 13.7814693,
+      "telefono": "040 3480845",
+      "telefono_emergenze": "338 4265881",
+      "email": "clinicaveterinariatergeste@gmail.com",
+      "sito_ufficiale": "https://www.clinicaveterinariatergeste.com/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "09:30",
+            "chiude": "15:30"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina interna; chirurgia; diagnostica; specialistiche",
+      "gestione_emergenze": "pronto_soccorso_24h",
+      "orari_emergenze": "24 ore su 24, 7 giorni su 7; fuori orario previa chiamata",
+      "emergenze_su_appuntamento": false,
+      "emergenze_solo_clienti": false,
+      "ricovero_notturno": null,
+      "presenza_veterinario_notturno": null,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": "https://www.clinicaveterinariatergeste.com/",
+      "fonte_emergenze": "https://www.clinicaveterinariatergeste.com/",
+      "orari_verificati": true,
+      "emergenze_verificate": true,
+      "note": "Il sito ufficiale richiede il contatto telefonico per l’emergenza fuori orario.",
+      "data_verifica": "2026-09-11"
+    },
+    {
+      "id": "TS-VET-003",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Ambulatorio Veterinario Tergeste - Muggia",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Viale Luigi Frausin, 5/A",
+      "cap": "34015",
+      "comune": "Muggia",
+      "latitudine": 45.603577,
+      "longitudine": 13.770969,
+      "telefono": "040 271043",
+      "telefono_emergenze": "338 4265881",
+      "email": "clinicaveterinariatergeste@gmail.com",
+      "sito_ufficiale": "https://www.clinicaveterinariatergeste.com/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:30",
+            "chiude": "12:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:30",
+            "chiude": "12:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina generale; diagnostica",
+      "gestione_emergenze": "reperibilita_telefonica",
+      "orari_emergenze": "24 ore su 24 tramite numero della Clinica Tergeste",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": "https://www.clinicaveterinariatergeste.com/",
+      "fonte_emergenze": "https://www.clinicaveterinariatergeste.com/",
+      "orari_verificati": true,
+      "emergenze_verificate": true,
+      "note": "La reperibilità H24 appartiene alla rete Tergeste; verificare telefonicamente quale sede accetta il caso.",
+      "data_verifica": "2026-09-11"
+    },
+    {
+      "id": "TS-VET-004",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Clinica Veterinaria Doctor Vet Trieste",
+      "tipo_struttura": "Clinica veterinaria",
+      "indirizzo": "Via Costalunga, 1/3 C",
+      "cap": "34149",
+      "comune": "Trieste",
+      "latitudine": 45.6370121,
+      "longitudine": 13.7865427,
+      "telefono": "040 9820480",
+      "telefono_emergenze": "040 9820480",
+      "email": "trieste@doctor-vet.it",
+      "sito_ufficiale": "https://www.doctor-vet.it/cliniche/clinica-veterinaria-trieste/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "09:00",
+            "chiude": "17:00"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "specie": "Animali da compagnia; animali non convenzionali ed esotici",
+      "servizi": "Medicina interna; chirurgia; diagnostica; ricovero e day hospital",
+      "gestione_emergenze": "urgenze_in_orario",
+      "orari_emergenze": "Durante gli orari di apertura",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": null,
+      "presenza_veterinario_notturno": null,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": "https://www.doctor-vet.it/cliniche/clinica-veterinaria-trieste/",
+      "fonte_emergenze": "https://www.doctor-vet.it/cliniche/clinica-veterinaria-trieste/",
+      "orari_verificati": true,
+      "emergenze_verificate": true,
+      "note": "Il sito dichiara medicina d’urgenza, ma non un pronto soccorso H24.",
+      "data_verifica": "2026-09-11"
+    },
+    {
+      "id": "TS-VET-005",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Clinica Veterinaria San Giacomo",
+      "tipo_struttura": "Clinica veterinaria",
+      "indirizzo": "Via dell’Istria, 41/B",
+      "cap": "34137",
+      "comune": "Trieste",
+      "latitudine": 45.639591,
+      "longitudine": 13.7835331,
+      "telefono": "040 830456",
+      "telefono_emergenze": "",
+      "email": "info@clinicaveterinariasangiacomo.it",
+      "sito_ufficiale": "https://www.clinicaveterinariasangiacomo.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "10:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "10:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "10:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "10:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "10:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "10:00",
+            "chiude": "14:00"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina interna; chirurgia; diagnostica per immagini; laboratorio",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": null,
+      "presenza_veterinario_notturno": null,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": "https://www.clinicaveterinariasangiacomo.it/contatti",
+      "fonte_emergenze": "",
+      "orari_verificati": true,
+      "emergenze_verificate": false,
+      "note": "",
+      "data_verifica": "2026-09-11"
+    },
+    {
+      "id": "TS-VET-006",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Ambulatorio Veterinario Saint Martin",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Località Contovello, 186",
+      "cap": "34151",
+      "comune": "Trieste",
+      "latitudine": 45.7060784,
+      "longitudine": 13.7320765,
+      "telefono": "040 251006; 340 1566130",
+      "telefono_emergenze": "340 1566130",
+      "email": "pipan.tomaz@gmail.com",
+      "sito_ufficiale": "https://www.veterinariosaintmartin.com/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "10:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "18:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "10:30",
+            "chiude": "12:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "16:30",
+            "chiude": "18:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "10:30",
+            "chiude": "12:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "10:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "18:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "10:30",
+            "chiude": "12:30"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "specie": "Piccoli animali",
+      "servizi": "Visite; chirurgia; radiologia; esami del sangue; degenza diurna",
+      "gestione_emergenze": "guardia_medica_veterinaria",
+      "orari_emergenze": "Fuori orario e festivi secondo turnazione provinciale",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": "https://www.veterinariosaintmartin.com/",
+      "fonte_emergenze": "https://www.veterinariosaintmartin.com/",
+      "orari_verificati": true,
+      "emergenze_verificate": true,
+      "note": "Il titolare dichiara la partecipazione alla Guardia Medica Veterinaria provinciale; chiamare prima dell’accesso.",
+      "data_verifica": "2026-09-11"
+    },
+    {
+      "id": "TS-VET-007",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Clinica Veterinaria Saturno",
+      "tipo_struttura": "Clinica veterinaria",
+      "indirizzo": "Via Conti, 9/4A",
+      "cap": "34141",
+      "comune": "Trieste",
+      "latitudine": 45.6447338,
+      "longitudine": 13.7858339,
+      "telefono": "040 7600977; 333 7655693",
+      "telefono_emergenze": "",
+      "email": "clinicaveterinariasaturno@gmail.com",
+      "sito_ufficiale": "https://www.clinicaveterinariasaturno.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "18:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "18:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "18:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "18:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "18:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina generale; laboratorio; radiologia digitale",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": null,
+      "presenza_veterinario_notturno": null,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": "https://www.clinicaveterinariasaturno.it/",
+      "fonte_emergenze": "",
+      "orari_verificati": true,
+      "emergenze_verificate": false,
+      "note": "",
+      "data_verifica": "2026-09-11"
+    },
+    {
+      "id": "TS-VET-008",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Clinica Veterinaria Nur",
+      "tipo_struttura": "Clinica veterinaria",
+      "indirizzo": "Piazzale Antonio Rosmini, 8/B",
+      "cap": "34143",
+      "comune": "Trieste",
+      "latitudine": 45.64074,
+      "longitudine": 13.765805,
+      "telefono": "040 308318; 393 4176625",
+      "telefono_emergenze": "",
+      "email": "mosheagayan@libero.it",
+      "sito_ufficiale": "https://www.clinicaveterinarianur.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:39"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:39"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:39"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:39"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:39"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "10:30",
+            "chiude": "12:30"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "specie": "Animali da compagnia; animali esotici",
+      "servizi": "Medicina preventiva; chirurgia; diagnostica; hospital day; specialistiche",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": "https://www.clinicaveterinarianur.it/",
+      "fonte_emergenze": "",
+      "orari_verificati": true,
+      "emergenze_verificate": false,
+      "note": "Il sito ufficiale indica chiusura alle 19:39; possibile refuso da confermare telefonicamente.",
+      "data_verifica": "2026-09-11"
+    },
+    {
+      "id": "TS-VET-009",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Ambulatorio Veterinario Gretta - Dott.ssa Elena Sorini",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via dei Carmelitani, 10/C",
+      "cap": "34136",
+      "comune": "Trieste",
+      "latitudine": 45.6699804,
+      "longitudine": 13.7647859,
+      "telefono": "335 8162100",
+      "telefono_emergenze": "",
+      "email": "info@ascuolacondaffi.it",
+      "sito_ufficiale": "https://www.ascuolacondaffi.it/contatti",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "10:30",
+            "chiude": "13:30"
+          },
+          {
+            "apre": "17:00",
+            "chiude": "20:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "10:30",
+            "chiude": "13:30"
+          },
+          {
+            "apre": "17:00",
+            "chiude": "20:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "10:30",
+            "chiude": "13:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "10:30",
+            "chiude": "13:30"
+          },
+          {
+            "apre": "17:00",
+            "chiude": "20:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "10:30",
+            "chiude": "13:30"
+          },
+          {
+            "apre": "17:00",
+            "chiude": "20:30"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina generale; medicina comportamentale",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "fonte_principale": "Sito ufficiale professionista",
+      "fonte_orari": "https://www.ascuolacondaffi.it/contatti",
+      "fonte_emergenze": "",
+      "orari_verificati": true,
+      "emergenze_verificate": false,
+      "note": "",
+      "data_verifica": "2026-09-11"
+    },
+    {
+      "id": "TS-VET-010",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Ambulatorio Veterinario Pontoriero-Stefanelli",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via Fabio Severo, 31",
+      "cap": "34133",
+      "comune": "Trieste",
+      "latitudine": 45.6564521,
+      "longitudine": 13.7818615,
+      "telefono": "040 630871",
+      "telefono_emergenze": "",
+      "email": "",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:30",
+            "chiude": "11:30"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:30",
+            "chiude": "11:30"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:30",
+            "chiude": "11:30"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:30",
+            "chiude": "11:30"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:30",
+            "chiude": "11:30"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "09:30",
+            "chiude": "11:30"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina generale; chirurgia generale",
+      "gestione_emergenze": "nessuna_dichiarata",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "fonte_principale": "Directory di settore",
+      "fonte_orari": "https://www.caniincasa.it/veterinari/ambulatorio-veterinario-dott-antonio-pontoriero-dott-ssa-chiara-stefanelli/",
+      "fonte_emergenze": "https://www.caniincasa.it/veterinari/ambulatorio-veterinario-dott-antonio-pontoriero-dott-ssa-chiara-stefanelli/",
+      "orari_verificati": false,
+      "emergenze_verificate": false,
+      "note": "La directory indica espressamente pronto soccorso H24: no; verificare direttamente la sede.",
+      "data_verifica": "2026-09-11"
+    },
+    {
+      "id": "TS-VET-011",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Ambulatorio Veterinario Chinelli",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via dei Piccardi, 50/A",
+      "cap": "34141",
+      "comune": "Trieste",
+      "latitudine": 45.6437356,
+      "longitudine": 13.7898419,
+      "telefono": "040 396053",
+      "telefono_emergenze": "",
+      "email": "",
+      "sito_ufficiale": "https://ambulatorio-veterinario-chinelli.business.site/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:30",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "10:00",
+            "chiude": "13:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:30",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "10:00",
+            "chiude": "13:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:30",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria generale",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "fonte_principale": "Profilo attività e directory",
+      "fonte_orari": "https://trova-aperto.it/trieste/ambulatorio-veterinario-chinelli-2246928",
+      "fonte_emergenze": "",
+      "orari_verificati": false,
+      "emergenze_verificate": false,
+      "note": "Orari da fonte secondaria, aggiornamento dichiarato 15 aprile 2026.",
+      "data_verifica": "2026-09-11"
+    },
+    {
+      "id": "TS-VET-012",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Ambulatorio Veterinario Dott.ssa Cristina M. Murray",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via Giovanni Paisiello, 3/A",
+      "cap": "34148",
+      "comune": "Trieste",
+      "latitudine": 45.6245268,
+      "longitudine": 13.8070953,
+      "telefono": "366 1250812",
+      "telefono_emergenze": "",
+      "email": "",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "14:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "07:45",
+            "chiude": "12:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "14:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "07:45",
+            "chiude": "14:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria generale",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "fonte_principale": "Google Maps e directory",
+      "fonte_orari": "https://it.infovet.vet/it-it/i/52870-ambulatorio-veterinario-dottoressa-cristina-m--murray-trieste/",
+      "fonte_emergenze": "",
+      "orari_verificati": false,
+      "emergenze_verificate": false,
+      "note": "Orari da directory; contatto telefonico consigliato.",
+      "data_verifica": "2026-09-11"
+    },
+    {
+      "id": "TS-VET-013",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Clinica Veterinaria Trieste Vet",
+      "tipo_struttura": "Clinica veterinaria",
+      "indirizzo": "Via Eugenio Scomparini, 2",
+      "cap": "34139",
+      "comune": "Trieste",
+      "latitudine": 45.6396797,
+      "longitudine": 13.7968865,
+      "telefono": "040 2031868",
+      "telefono_emergenze": "",
+      "email": "",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina generale; chirurgia; diagnostica",
+      "gestione_emergenze": "urgenze_in_orario",
+      "orari_emergenze": "Durante gli orari di apertura, da confermare telefonicamente",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": null,
+      "presenza_veterinario_notturno": null,
+      "fonte_principale": "Google Maps e directory",
+      "fonte_orari": "https://mondo-zampa.com/cliniche-veterinarie-h24/trieste/clinica-veterinaria-trieste-vet-si-riceve-su-appuntamento/",
+      "fonte_emergenze": "",
+      "orari_verificati": false,
+      "emergenze_verificate": false,
+      "note": "Directory non ufficiale; nessuna conferma affidabile di servizio H24.",
+      "data_verifica": "2026-09-11"
+    },
+    {
+      "id": "TS-VET-014",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Clinica Veterinaria Miramare",
+      "tipo_struttura": "Clinica veterinaria",
+      "indirizzo": "Via San Nazario, 50",
+      "cap": "34151",
+      "comune": "Trieste",
+      "latitudine": 45.7034512,
+      "longitudine": 13.7372449,
+      "telefono": "040 8323711",
+      "telefono_emergenze": "",
+      "email": "",
+      "sito_ufficiale": "https://www.clinicamiramare.it/",
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "specie": "Da verificare",
+      "servizi": "Da verificare",
+      "gestione_emergenze": "pronto_intervento_da_confermare",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": null,
+      "presenza_veterinario_notturno": null,
+      "fonte_principale": "Google Maps e directory",
+      "fonte_orari": "",
+      "fonte_emergenze": "",
+      "orari_verificati": false,
+      "emergenze_verificate": false,
+      "note": "Google Maps classifica la sede come assistenza veterinaria di pronto intervento; orari e modalità non pubblicati sul sito.",
+      "data_verifica": "2026-09-11"
+    },
+    {
+      "id": "TS-VET-015",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Clinica Veterinaria San Francesco",
+      "tipo_struttura": "Clinica veterinaria",
+      "indirizzo": "Via Commerciale, 26",
+      "cap": "34135",
+      "comune": "Trieste",
+      "latitudine": 45.6577027,
+      "longitudine": 13.776279,
+      "telefono": "040 422317",
+      "telefono_emergenze": "",
+      "email": "",
+      "sito_ufficiale": "https://zooiatra.it/annuncio/clinica-veterinaria-san-francesco-trieste/",
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "specie": "Da verificare",
+      "servizi": "Da verificare",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": null,
+      "presenza_veterinario_notturno": null,
+      "fonte_principale": "Google Maps e directory",
+      "fonte_orari": "",
+      "fonte_emergenze": "",
+      "orari_verificati": false,
+      "emergenze_verificate": false,
+      "note": "Sede attiva riscontrata cartograficamente; sito ufficiale non individuato.",
+      "data_verifica": "2026-09-11"
+    },
+    {
+      "id": "TS-VET-016",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Veterinario Cecilia Luciani",
+      "tipo_struttura": "Studio veterinario",
+      "indirizzo": "Via della Madonna del Mare, 8",
+      "cap": "34124",
+      "comune": "Trieste",
+      "latitudine": 45.6472523,
+      "longitudine": 13.7671988,
+      "telefono": "040 314601",
+      "telefono_emergenze": "",
+      "email": "",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "specie": "Da verificare",
+      "servizi": "Da verificare",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": null,
+      "presenza_veterinario_notturno": null,
+      "fonte_principale": "Google Maps e directory",
+      "fonte_orari": "",
+      "fonte_emergenze": "",
+      "orari_verificati": false,
+      "emergenze_verificate": false,
+      "note": "Sede riscontrata cartograficamente.",
+      "data_verifica": "2026-09-11"
+    },
+    {
+      "id": "TS-VET-017",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Ambulatorio Veterinario Filo D’Arianna",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via delle Campanelle, 142",
+      "cap": "34149",
+      "comune": "Trieste",
+      "latitudine": 45.6358721,
+      "longitudine": 13.7983918,
+      "telefono": "040 2605594",
+      "telefono_emergenze": "",
+      "email": "",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "specie": "Da verificare",
+      "servizi": "Da verificare",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": null,
+      "presenza_veterinario_notturno": null,
+      "fonte_principale": "Google Maps e directory",
+      "fonte_orari": "",
+      "fonte_emergenze": "",
+      "orari_verificati": false,
+      "emergenze_verificate": false,
+      "note": "Sede riscontrata cartograficamente; il collegamento indicato dalla mappa non appare pertinente.",
+      "data_verifica": "2026-09-11"
+    },
+    {
+      "id": "TS-VET-018",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Clinica Veterinaria Animal Farm",
+      "tipo_struttura": "Clinica veterinaria",
+      "indirizzo": "Via Ercole Miani, 3/A",
+      "cap": "34148",
+      "comune": "Trieste",
+      "latitudine": 45.622468,
+      "longitudine": 13.7959126,
+      "telefono": "347 3663303",
+      "telefono_emergenze": "",
+      "email": "",
+      "sito_ufficiale": "https://www.facebook.com/Animalfarmclinicaveterinaria",
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "specie": "Da verificare",
+      "servizi": "Da verificare",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": null,
+      "presenza_veterinario_notturno": null,
+      "fonte_principale": "Google Maps e directory",
+      "fonte_orari": "",
+      "fonte_emergenze": "",
+      "orari_verificati": false,
+      "emergenze_verificate": false,
+      "note": "Indirizzi diversi compaiono nelle directory; usato il profilo cartografico più recente.",
+      "data_verifica": "2026-09-11"
+    },
+    {
+      "id": "TS-VET-019",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "KrasVet - Malalan e Calligaris",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Strada per Vienna, 10",
+      "cap": "34151",
+      "comune": "Trieste",
+      "latitudine": 45.6882618,
+      "longitudine": 13.7890991,
+      "telefono": "040 211464; 040 215455",
+      "telefono_emergenze": "",
+      "email": "",
+      "sito_ufficiale": "http://www.krasvet.eu/",
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "specie": "Da verificare",
+      "servizi": "Da verificare",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": null,
+      "presenza_veterinario_notturno": null,
+      "fonte_principale": "Google Maps e directory",
+      "fonte_orari": "",
+      "fonte_emergenze": "",
+      "orari_verificati": false,
+      "emergenze_verificate": false,
+      "note": "Due professionisti risultano alla stessa sede; consolidati in un unico record.",
+      "data_verifica": "2026-09-11"
+    },
+    {
+      "id": "TS-VET-020",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Gherlanz Dott. Furio",
+      "tipo_struttura": "Studio veterinario",
+      "indirizzo": "Campo Pietro Metastasio, 3/A",
+      "cap": "34148",
+      "comune": "Trieste",
+      "latitudine": 45.6244932,
+      "longitudine": 13.8070077,
+      "telefono": "040 810834",
+      "telefono_emergenze": "",
+      "email": "",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "specie": "Da verificare",
+      "servizi": "Da verificare",
+      "gestione_emergenze": "pronto_intervento_da_confermare",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": null,
+      "presenza_veterinario_notturno": null,
+      "fonte_principale": "Google Maps e directory",
+      "fonte_orari": "",
+      "fonte_emergenze": "",
+      "orari_verificati": false,
+      "emergenze_verificate": false,
+      "note": "Google Maps classifica la sede come assistenza veterinaria di pronto intervento; modalità non verificate.",
+      "data_verifica": "2026-09-11"
+    },
+    {
+      "id": "TS-VET-021",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Clinica Veterinaria Catalan",
+      "tipo_struttura": "Clinica veterinaria",
+      "indirizzo": "Via Domenico Rossetti, 21",
+      "cap": "34125",
+      "comune": "Trieste",
+      "latitudine": 45.6511111,
+      "longitudine": 13.7838889,
+      "telefono": "040 633212",
+      "telefono_emergenze": "",
+      "email": "",
+      "sito_ufficiale": "https://www.facebook.com/ClinicaVeterinariaCatalan",
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "specie": "Da verificare",
+      "servizi": "Da verificare",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": null,
+      "presenza_veterinario_notturno": null,
+      "fonte_principale": "Google Maps e directory",
+      "fonte_orari": "",
+      "fonte_emergenze": "",
+      "orari_verificati": false,
+      "emergenze_verificate": false,
+      "note": "Sede riscontrata cartograficamente.",
+      "data_verifica": "2026-09-11"
+    },
+    {
+      "id": "TS-VET-022",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Ambulatorio Se mi graffi non vale - Dott.ssa Sara De Cesare",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Piazzale Vincenzo Gioberti, 8/A",
+      "cap": "34128",
+      "comune": "Trieste",
+      "latitudine": 45.6562137,
+      "longitudine": 13.8060149,
+      "telefono": "040 9662685",
+      "telefono_emergenze": "",
+      "email": "",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "specie": "Da verificare",
+      "servizi": "Da verificare",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": null,
+      "presenza_veterinario_notturno": null,
+      "fonte_principale": "Google Maps e directory",
+      "fonte_orari": "",
+      "fonte_emergenze": "",
+      "orari_verificati": false,
+      "emergenze_verificate": false,
+      "note": "Sede riscontrata cartograficamente.",
+      "data_verifica": "2026-09-11"
+    },
+    {
+      "id": "TS-VET-023",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Ambulatorio Veterinario Roiano - Dott. Ignazio Bonasoro",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via Sant’Ermacora, 3/A",
+      "cap": "34135",
+      "comune": "Trieste",
+      "latitudine": 45.6653299,
+      "longitudine": 13.7717494,
+      "telefono": "",
+      "telefono_emergenze": "",
+      "email": "",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "specie": "Da verificare",
+      "servizi": "Da verificare",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": null,
+      "presenza_veterinario_notturno": null,
+      "fonte_principale": "Google Maps e directory",
+      "fonte_orari": "",
+      "fonte_emergenze": "",
+      "orari_verificati": false,
+      "emergenze_verificate": false,
+      "note": "Presenza da directory; attività e recapiti da riconfermare.",
+      "data_verifica": "2026-09-11"
+    },
+    {
+      "id": "TS-VET-024",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Esotic Garden - Dott. Edgardo Pagani",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Largo Roiano, 3/1A",
+      "cap": "34135",
+      "comune": "Trieste",
+      "latitudine": 45.6634213,
+      "longitudine": 13.7700015,
+      "telefono": "",
+      "telefono_emergenze": "",
+      "email": "",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "specie": "Da verificare",
+      "servizi": "Da verificare",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": null,
+      "presenza_veterinario_notturno": null,
+      "fonte_principale": "Google Maps e directory",
+      "fonte_orari": "",
+      "fonte_emergenze": "",
+      "orari_verificati": false,
+      "emergenze_verificate": false,
+      "note": "Presenza da directory; attività e recapiti da riconfermare.",
+      "data_verifica": "2026-09-11"
+    },
+    {
+      "id": "TS-VET-025",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Veterinario Dott. Francesco Cervino",
+      "tipo_struttura": "Studio veterinario",
+      "indirizzo": "Rotonda del Boschetto, 2",
+      "cap": "34126",
+      "comune": "Trieste",
+      "latitudine": 45.6552786,
+      "longitudine": 13.7981315,
+      "telefono": "",
+      "telefono_emergenze": "",
+      "email": "",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "specie": "Da verificare",
+      "servizi": "Da verificare",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": null,
+      "presenza_veterinario_notturno": null,
+      "fonte_principale": "Google Maps e directory",
+      "fonte_orari": "",
+      "fonte_emergenze": "",
+      "orari_verificati": false,
+      "emergenze_verificate": false,
+      "note": "Presenza da directory; attività e recapiti da riconfermare.",
+      "data_verifica": "2026-09-11"
+    },
+    {
+      "id": "TS-VET-026",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Veterinario Dott.ssa Pierpaola Ghilarducci",
+      "tipo_struttura": "Studio veterinario",
+      "indirizzo": "Via del Carpineto, 8/1",
+      "cap": "34146",
+      "comune": "Trieste",
+      "latitudine": 45.6244381,
+      "longitudine": 13.791221,
+      "telefono": "040 827902",
+      "telefono_emergenze": "",
+      "email": "",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "specie": "Da verificare",
+      "servizi": "Da verificare",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": null,
+      "presenza_veterinario_notturno": null,
+      "fonte_principale": "Google Maps e directory",
+      "fonte_orari": "",
+      "fonte_emergenze": "",
+      "orari_verificati": false,
+      "emergenze_verificate": false,
+      "note": "Presenza da directory; attività e recapiti da riconfermare.",
+      "data_verifica": "2026-09-11"
+    },
+    {
+      "id": "TS-VET-027",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Veterinario Dott.ssa Linda Adriana Paronuzzi",
+      "tipo_struttura": "Studio veterinario",
+      "indirizzo": "Località Sistiana, 57/S",
+      "cap": "34011",
+      "comune": "Duino-Aurisina",
+      "latitudine": 45.77858,
+      "longitudine": 13.65844,
+      "telefono": "040 291131; 338 9338558",
+      "telefono_emergenze": "",
+      "email": "adriana.linda@tiscali.it",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "15:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "18:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "18:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "18:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "18:00"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina generale",
+      "gestione_emergenze": "nessuna_dichiarata",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": null,
+      "presenza_veterinario_notturno": null,
+      "fonte_principale": "Google Maps e directory",
+      "fonte_orari": "https://www.caniincasa.it/veterinari/studio-veterinario-29/",
+      "fonte_emergenze": "https://www.caniincasa.it/veterinari/studio-veterinario-29/",
+      "orari_verificati": false,
+      "emergenze_verificate": false,
+      "note": "Orari da anagrafe/directory di settore: lunedì 15:00-19:00; martedì-venerdì 09:00-18:00; sabato e domenica chiuso. Pronto soccorso H24 indicato come non disponibile.",
+      "data_verifica": "2026-09-11"
+    },
+    {
+      "id": "TS-VET-028",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Ambulatori veterinari ASUGI",
+      "tipo_struttura": "Ambulatorio veterinario pubblico",
+      "indirizzo": "Via Paolo de Ralli, 3",
+      "cap": "34128",
+      "comune": "Trieste",
+      "latitudine": 45.6581378,
+      "longitudine": 13.8001173,
+      "telefono": "040 3997505; 040 3997506",
+      "telefono_emergenze": "",
+      "email": "",
+      "sito_ufficiale": "https://asugi.sanita.fvg.it/it/strutture/direz_sanitaria/dip_prevenzione/sc_san_anim/sede_amb_vet_weiss.html",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "11:45"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "12:00",
+            "chiude": "13:45"
+          }
+        ],
+        "mercoledi": [],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "11:45"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "11:45"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "specie": "Animali d’affezione; attività di sanità pubblica",
+      "servizi": "Sanità pubblica veterinaria; prestazioni istituzionali",
+      "gestione_emergenze": "sanita_pubblica_veterinaria",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": null,
+      "presenza_veterinario_notturno": null,
+      "fonte_principale": "Sito istituzionale ASUGI",
+      "fonte_orari": "https://asugi.sanita.fvg.it/it/strutture/direz_sanitaria/dip_prevenzione/sc_san_anim/sede_amb_vet_weiss.html",
+      "fonte_emergenze": "",
+      "orari_verificati": true,
+      "emergenze_verificate": true,
+      "note": "Prestazioni pubbliche esclusivamente su appuntamento; non equivale a pronto soccorso privato.",
+      "data_verifica": "2026-09-11"
+    }
+  ]
+}

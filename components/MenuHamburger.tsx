@@ -15,7 +15,7 @@ const SEZIONI_EXTRA = [
   { label: "Viabilità", href: "/viabilita" },
   { label: "Trasporti", href: "/trasporti" },
   { label: "Aviazione", href: "/aviazione" },
-  { label: "Farmacie", href: "/farmacie" },
+  { label: "Sanità", href: "/sanita" },
   { label: "Strutture ricettive", href: "/strutture-ricettive" },
   { label: "Piste ciclabili", href: "/piste-ciclabili" },
   { label: "Economia", href: "/economia" },

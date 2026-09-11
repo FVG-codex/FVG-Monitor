@@ -3059,6 +3059,90 @@ tsc --noEmit` pulito, verifica visiva con `next dev` + Chromium
 headless sul tab Udine di `/supermercati`. **Non ancora confermato
 dall'utente in produzione.**
 
+## Sanità — nuova voce di menù, Veterinari & Emergenze (11/09/2026)
+
+L'utente ha chiesto una ristrutturazione del menù ad amburger: la voce
+"Farmacie" (esistente dal 26/08/2026) diventa una card dentro una nuova
+voce "Sanità", insieme a tre sezioni nuove — "Cliniche & centri medici",
+"Veterinari & Emergenze", "Dentisti & Odontoiatri". Solo Veterinari ha
+ricevuto dati reali in questa consegna (un file JSON per la provincia di
+Trieste, 28 voci), Cliniche e Dentisti restano strutturalmente pronte ma
+vuote ("in arrivo") in attesa di un dataset futuro.
+
+**Menù**: `MenuHamburger.tsx`, voce "Farmacie" → "Sanità" (`/sanita`,
+stessa posizione nell'elenco). L'hub `/farmacie` esistente resta
+identico (nessuna modifica alle pagine `/farmacie-tutte`/
+`/farmacie-di-turno`), solo raggiunto ora da `/sanita` invece che
+direttamente dal menù — aggiunto un breadcrumb "← Sanità" in cima alla
+pagina, stesso pattern già in uso per "← Commercio" su `/supermercati`.
+
+**Hub `/sanita`** (`SanitaPage.tsx`): 4 card, stesso schema di
+`CommercioPage.tsx`/`SportHubPage` — Farmacie (esistente), Cliniche &
+centri medici (placeholder), Veterinari & Emergenze (nuovo, dati reali),
+Dentisti & Odontoiatri (placeholder). I due placeholder condividono un
+componente `SanitaInArrivoPage.tsx` (titolo passato come prop) invece di
+due pagine quasi identiche — stesso principio già usato altrove nel
+progetto per evitare duplicazione (es. `StrutturaTipoPage.tsx` per le 8
+categorie di Strutture ricettive).
+
+**Veterinari — stesso pattern di dato STATICO fornito dall'utente già
+usato per Commercio/Supermercati** (`lib/veterinari.ts`): nessun
+`ingestX()`/Supabase, un JSON per provincia (`lib/data/veterinari-
+<provincia>.json`) importato via `resolveJsonModule`. Solo Trieste per
+ora — `PROVINCE_VETERINARI_ATTIVE` elenca esplicitamente le province con
+dati reali (stesso principio già usato per `PROVINCE_NOTIZIE_ATTIVE`),
+le altre 3 mostrano un tab con etichetta "in arrivo" invece di un dato
+inventato o un tab nascosto.
+
+**Differenza importante rispetto a Supermercati — orari non sempre
+completi**: 13 delle 28 voci hanno OGNI giorno dell'orario a `null` (non
+un array vuoto) — significa "orario mai raccolto", non "chiuso quel
+giorno". Trattato come terzo stato "sconosciuto" (nessun pallino
+aperta/chiusa), stesso concetto già in uso per le Farmacie quando manca
+il dato di oggi — qui la causa è diversa (dato statico mai raccolto, non
+un'ingestione in ritardo) ma il trattamento UI è lo stesso: mai un
+"chiusa" inventato quando in realtà non si sa.
+
+**Il cuore della richiesta ("mettere in risalto le emergenze")**: ogni
+voce ha un campo `gestione_emergenze`, un enum a 9 valori dichiarato dal
+JSON stesso (`emergency_values`), dalla situazione peggiore ("non
+dichiarata", 17 voci su 28 — la maggioranza) alla migliore ("pronto
+soccorso 24h", 1 voce). `LIVELLO_EMERGENZA` in `lib/veterinari.ts`
+assegna un rango (1 = più pronta) e uno stile a ciascun valore;
+`vociEmergenza()` filtra le 6 voci con una vera capacità dichiarata
+(pronto soccorso 24h/diurno, guardia medica veterinaria, reperibilità
+telefonica, urgenze in orario, pronto intervento da confermare — 8 voci
+nel campione Trieste) escludendo esplicitamente "non dichiarata"/
+"nessuna dichiarata" (nessuna capacità) e "sanità pubblica veterinaria"
+(servizio istituzionale su appuntamento, non un pronto soccorso).
+
+**UI**: `VeterinariPage.tsx` mostra un riquadro "Emergenze" con bordo
+rosso SEMPRE in cima alla pagina (sotto i tab provincia, sopra tab
+comune/ricerca) — filtrato solo per provincia, non per comune/ricerca:
+chi ha un'urgenza reale non deve prima azzerare un filtro per trovarlo.
+Ogni voce nel riquadro mostra badge del livello (colori riusati dalla
+palette allerte esistente — rosso per il 24h, arancione per diurno/
+guardia medica, bordo per i livelli meno certi), il telefono emergenze
+(o quello ordinario come ripiego) come link `tel:` grande e in evidenza,
+l'eventuale nota "dichiarazione non verificata" quando
+`emergenze_verificate` è `false` (22 voci su 28). Sotto, lo stesso
+schema elenco/mappa di Supermercati (tab comune, ricerca, `Panel`
+Elenco+Mappa) con un badge più piccolo dello stesso livello su ogni voce.
+`VeterinariMap.tsx` (`lib/veterinari.ts` riusa `giornoSettimana()`/
+`adessoEuropeRome()` già esportate da `lib/supermercati.ts`, nessuna
+duplicazione) colora i marker in rosso per le strutture con capacità di
+emergenza dichiarata, in teal per le altre — stesso principio "in
+risalto" anche sulla mappa, non solo nell'elenco testuale.
+
+`npx tsc --noEmit` e `node --check scripts/ingest-light.mjs` puliti
+(quest'ultimo invariato, nessun ingest aggiunto). Verifica visiva con
+`next dev` + Chromium headless: hub `/sanita` (4 card), `/veterinari`
+(riquadro Emergenze con le 8 voci nell'ordine atteso dal rango, tab
+comune con i 3 comuni presenti — Trieste 26, Muggia 1, Duino-Aurisina
+1 — mappa con 28 marker, tutte le voci hanno coordinate), `/cliniche`
+(placeholder "in arrivo"), menù ad amburger con "Sanità" al posto di
+"Farmacie". **Non ancora confermato dall'utente in produzione.**
+
 ## Idee future (annotate, non richieste esplicitamente per l'implementazione)
 
 - **Strutture ricettive — implementate il 26/08/2026** (vedi sezioni dedicate sopra): hub + 8 pagine, arricchimento contatti da OpenStreetMap lo stesso giorno, poi scraping incrementale turismofvg.it per gli Agriturismi (sempre 26/08/2026, vedi "Agriturismi — scraping incrementale turismofvg.it" sopra per i dettagli — DevTools fornito dall'utente, stesso metodo già servito per Tennis/Sci/Autobus). **Prossimo passo su questo modulo**: estendere lo scraping turismofvg.it alle altre 7 categorie (B&B, Affittacamere, Campeggi, Alberghi Diffusi, Sociali, Marina, Rifugi) — richiede prima di verificare che URL/etichette HTML siano gli stessi osservati per Agriturismi (non garantito), idealmente con un altro campione reale fornito dall'utente per categoria prima di aggiungerla a `TURISMOFVG_CATEGORIE`.
