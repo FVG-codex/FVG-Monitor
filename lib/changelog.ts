@@ -22,6 +22,14 @@ export type VoceChangelog = {
 export const CHANGELOG: VoceChangelog[] = [
   {
     data: "11/09/2026",
+    titolo: "Supermercati: corretta la lista ALDI di Udine",
+    dettagli: [
+      "Cinque punti vendita ALDI senza riscontro ufficiale sono stati rimossi dalla provincia di Udine, quattro nuovi verificati sono stati aggiunti (Bagnaria Arsa, Martignacco, Reana del Rojale, Udine Tricesimo) e tre indirizzi esistenti sono stati corretti.",
+      "Risolto anche un errore che poteva bloccare la pagina Supermercati sulla provincia di Udine: i punti vendita senza orario pubblicato ora mostrano \"Orario non disponibile\" invece di causare un errore.",
+    ],
+  },
+  {
+    data: "11/09/2026",
     titolo: "Corretto l'ordine delle partite in Baseball & Softball",
     dettagli: [
       "Nella pagina Baseball & Softball (dentro Sport) le partite erano ordinate dalla data più lontana a quella più vicina: ora vengono mostrate a partire da quelle più vicine a oggi, come nel calendario ufficiale.",

@@ -3059,6 +3059,77 @@ tsc --noEmit` pulito, verifica visiva con `next dev` + Chromium
 headless sul tab Udine di `/supermercati`. **Non ancora confermato
 dall'utente in produzione.**
 
+### Correzione dato Udine — voci ALDI (11/09/2026)
+
+Stesso giorno, l'utente ha fornito un secondo file Udine ("il database
+aggiornato e corretto"), con `schema_version` alzato a "1.1" e un nuovo
+blocco `audit.record_esclusi` che documenta esplicitamente le rimozioni
+(novità di formato rispetto al file precedente). Verificato anch'esso
+con uno script Python di confronto record-per-record contro il file
+sostituito, prima di toccare codice:
+
+- Voci: 144 → **143** (Supermercato 93, Discount 43, Ipermercato 7).
+- **5 voci ALDI rimosse** (UD-101 Tavagnacco, UD-102 Codroipo, UD-103
+  Cervignano, UD-104 Cividale, UD-107 San Daniele): nessuna scheda
+  puntuale o evidenza corrente trovata nelle fonti ufficiali ALDI,
+  provenivano da un elenco manuale con indirizzo generico. Motivo
+  riportato testualmente in `audit.record_esclusi` per ciascuna.
+- **4 voci ALDI aggiunte**, verificate su fonte ufficiale diversa
+  (pagine di lavoro `carriera.aldi.it`, che riportano indirizzo puntuale
+  del punto vendita): UD-145 Bagnaria Arsa, UD-146 Martignacco, UD-147
+  Reana del Rojale, UD-148 Udine Tricesimo. Nessuna delle 4 ha
+  coordinate (non geocodificate) né orari settimanali pubblicati nella
+  fonte usata — stesso trattamento delle altre voci senza coordinate:
+  compaiono nell'elenco testuale, non sulla mappa.
+- **3 voci ALDI esistenti corrette** (UD-100, UD-105, UD-106): indirizzo
+  aggiornato sulla stessa fonte `carriera.aldi.it` più puntuale della
+  pagina generica "punti vendita e orari" usata in precedenza. Le
+  coordinate di queste 3, valorizzate nel file precedente, sono state
+  azzerate a `null` nel nuovo file — la fonte più precisa sull'indirizzo
+  non è (ancora) stata ri-geocodificata. Effetto pratico: questi 3
+  punti vendita erano su mappa prima, ora non lo sono più (restano
+  nell'elenco testuale). Non un errore di importazione da parte
+  nostra: il file fornito ha propriamente `latitudine`/`longitudine`
+  nulle per questi 3 id.
+- Voci senza coordinate: 15 → **22** su 143 (le 15 precedenti, invariate,
+  più le 3 corrette e le 4 nuove appena descritte).
+- `orari_non_verificati: true`: **141 su 143** (sostanzialmente
+  invariato).
+
+I 3 campi nuovi del JSON (`esistenza_verificata`, `fonte_anagrafica_specifica`,
+`stato_verifica`) non sono letti da `normalizza()` in `lib/supermercati.ts`
+e ignorarli non causa errori (il file viene importato con un cast di
+tipo, non validato campo per campo).
+
+**Bug trovato in verifica visiva (non solo di dato)**: le 7 voci ALDI
+toccate da questa correzione (le 3 corrette UD-100/105/106 e le 4 nuove
+UD-145/146/147/148) hanno `orari` con **tutti e 7 i giorni a `null`**,
+non `[]` — la fonte non pubblica affatto l'orario, non "chiuso ogni
+giorno". Il codice esistente non prevedeva questo caso: `/supermercati`
+(tab Udine) andava in crash con `TypeError: Cannot read properties of
+null (reading 'length')` dentro `formattaFasceGiorno()`, che assumeva
+sempre un array. Fix in `lib/supermercati.ts`:
+  - `OrariSettimana`: ogni giorno è ora `FasciaOrariaSettimanale[] | null`
+    (`null` = orario sconosciuto dalla fonte, `[]` = chiuso quel giorno,
+    distinzione che prima non esisteva nel tipo).
+  - `formattaFasceGiorno()` gestisce `null` restituendo "Orario non
+    disponibile" invece di leggere `.length` su `null`.
+  - `statoAperturaSupermercato()` restituisce `"sconosciuto"` (terzo
+    stato già esistente in `StatoApertura`, condiviso con le farmacie)
+    quando il giorno corrente è `null`, invece di trattarlo come
+    "chiusa" — `StatoApertoBadge` già nasconde il pallino per questo
+    stato, nessuna modifica UI necessaria.
+  - `SupermercatiPage.tsx`/`SupermercatiMap.tsx` non toccati: chiamano
+    già `formattaFasceGiorno(v.orari[giorno])` e `statoAperturaSupermercato(v, adesso)`,
+    la correzione basta nella libreria condivisa.
+
+`npx tsc --noEmit` pulito dopo il fix. Verificato con `next dev` +
+Chromium headless: tab Udine di `/supermercati` non va più in errore
+(prima crashava, screenshot dell'errore catturato durante la verifica),
+elenco mostra "UDINE (143)", ALDI Bagnaria Arsa mostra "Orario non
+disponibile" senza badge di stato, mappa con marker per le voci con
+coordinate. **Non ancora confermato dall'utente in produzione.**
+
 ## Sanità — nuova voce di menù, Veterinari & Emergenze (11/09/2026)
 
 L'utente ha chiesto una ristrutturazione del menù ad amburger: la voce

@@ -1,8 +1,38 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "generated_at": "2026-09-11",
   "timezone": "Europe/Rome",
   "scope": "supermercati, ipermercati e discount della provincia di Udine; esclusi minimarket e botteghe",
+  "audit": {
+    "criterio": "Una geocodifica non prova l’esistenza dell’attività. I record senza pagina puntuale o elenco ufficiale esplicito sono marcati da verificare.",
+    "record_esclusi": [
+      {
+        "id": "UD-101",
+        "nome": "ALDI Tavagnacco",
+        "motivo": "Nessuna scheda puntuale o evidenza corrente trovata nelle fonti ufficiali ALDI; il record originario proveniva da un elenco manuale con indirizzo generico."
+      },
+      {
+        "id": "UD-102",
+        "nome": "ALDI Codroipo",
+        "motivo": "Nessuna scheda puntuale o evidenza corrente trovata nelle fonti ufficiali ALDI; il record originario proveniva da un elenco manuale con indirizzo generico."
+      },
+      {
+        "id": "UD-103",
+        "nome": "ALDI Cervignano",
+        "motivo": "Nessuna scheda puntuale o evidenza corrente trovata nelle fonti ufficiali ALDI; il record originario proveniva da un elenco manuale con indirizzo generico."
+      },
+      {
+        "id": "UD-104",
+        "nome": "ALDI Cividale",
+        "motivo": "Nessuna scheda puntuale o evidenza corrente trovata nelle fonti ufficiali ALDI; il record originario proveniva da un elenco manuale con indirizzo generico."
+      },
+      {
+        "id": "UD-107",
+        "nome": "ALDI San Daniele",
+        "motivo": "Nessuna scheda puntuale o evidenza corrente trovata nelle fonti ufficiali ALDI; il record originario proveniva da un elenco manuale con indirizzo generico."
+      }
+    ]
+  },
   "records": [
     {
       "id": "UD-001",
@@ -61,7 +91,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-002",
@@ -144,7 +177,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-003",
@@ -203,7 +239,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-004",
@@ -286,7 +325,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-005",
@@ -345,7 +387,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-006",
@@ -428,7 +473,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-007",
@@ -511,7 +559,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-008",
@@ -594,7 +645,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-009",
@@ -677,7 +731,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-010",
@@ -760,7 +817,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-011",
@@ -819,7 +879,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-012",
@@ -902,7 +965,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-013",
@@ -985,7 +1051,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-014",
@@ -1068,7 +1137,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-015",
@@ -1151,7 +1223,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-016",
@@ -1210,7 +1285,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-017",
@@ -1293,7 +1371,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-018",
@@ -1376,7 +1457,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-019",
@@ -1435,7 +1519,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-020",
@@ -1518,7 +1605,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-021",
@@ -1577,7 +1667,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-022",
@@ -1636,7 +1729,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-023",
@@ -1719,7 +1815,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-024",
@@ -1802,7 +1901,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-025",
@@ -1861,7 +1963,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-026",
@@ -1920,7 +2025,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-027",
@@ -1979,7 +2087,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-028",
@@ -2038,7 +2149,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-029",
@@ -2097,7 +2211,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-030",
@@ -2180,7 +2297,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-031",
@@ -2239,7 +2359,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-032",
@@ -2298,7 +2421,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-033",
@@ -2357,7 +2483,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-034",
@@ -2416,7 +2545,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-035",
@@ -2475,7 +2607,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-036",
@@ -2534,7 +2669,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-037",
@@ -2593,7 +2731,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-038",
@@ -2652,7 +2793,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-039",
@@ -2711,7 +2855,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-040",
@@ -2770,7 +2917,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-041",
@@ -2829,7 +2979,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-042",
@@ -2888,7 +3041,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-043",
@@ -2947,7 +3103,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-044",
@@ -3030,7 +3189,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-045",
@@ -3089,7 +3251,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-046",
@@ -3148,7 +3313,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-047",
@@ -3207,7 +3375,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-048",
@@ -3266,7 +3437,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-049",
@@ -3325,7 +3499,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-050",
@@ -3384,7 +3561,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-051",
@@ -3443,7 +3623,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-052",
@@ -3502,7 +3685,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-053",
@@ -3561,7 +3747,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-054",
@@ -3620,7 +3809,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-055",
@@ -3679,7 +3871,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-056",
@@ -3738,7 +3933,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-057",
@@ -3797,7 +3995,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-058",
@@ -3856,7 +4057,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-059",
@@ -3915,7 +4119,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-060",
@@ -3974,7 +4181,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-061",
@@ -4033,7 +4243,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-062",
@@ -4092,7 +4305,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-063",
@@ -4151,7 +4367,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-064",
@@ -4210,7 +4429,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-065",
@@ -4269,7 +4491,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-066",
@@ -4328,7 +4553,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-067",
@@ -4387,7 +4615,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-068",
@@ -4446,7 +4677,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-069",
@@ -4529,7 +4763,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-070",
@@ -4612,7 +4849,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-071",
@@ -4695,7 +4935,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-072",
@@ -4778,7 +5021,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.despar.it/it/i-nostri-punti-vendita/udine/",
+      "stato_verifica": "verificato_elenco_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-073",
@@ -4842,7 +5088,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "https://www.lidl.it/s/it-IT/ricerca-negozio/friuli-venezia-giulia/",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-074",
@@ -4906,7 +5155,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "https://www.lidl.it/s/it-IT/ricerca-negozio/friuli-venezia-giulia/",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-075",
@@ -4970,7 +5222,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "https://www.lidl.it/s/it-IT/ricerca-negozio/friuli-venezia-giulia/",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-076",
@@ -5034,7 +5289,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "https://www.lidl.it/s/it-IT/ricerca-negozio/friuli-venezia-giulia/",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-077",
@@ -5098,7 +5356,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "https://www.lidl.it/s/it-IT/ricerca-negozio/friuli-venezia-giulia/",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-078",
@@ -5162,7 +5423,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "https://www.lidl.it/s/it-IT/ricerca-negozio/friuli-venezia-giulia/",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-079",
@@ -5226,7 +5490,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "https://www.lidl.it/s/it-IT/ricerca-negozio/friuli-venezia-giulia/",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-080",
@@ -5290,7 +5557,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "https://www.lidl.it/s/it-IT/ricerca-negozio/friuli-venezia-giulia/",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-081",
@@ -5354,7 +5624,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "https://www.lidl.it/s/it-IT/ricerca-negozio/friuli-venezia-giulia/",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-082",
@@ -5418,7 +5691,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "https://www.lidl.it/s/it-IT/ricerca-negozio/friuli-venezia-giulia/",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-083",
@@ -5482,7 +5758,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "https://www.lidl.it/s/it-IT/ricerca-negozio/friuli-venezia-giulia/",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-084",
@@ -5546,7 +5825,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "https://www.lidl.it/s/it-IT/ricerca-negozio/friuli-venezia-giulia/",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-085",
@@ -5610,7 +5892,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "https://www.lidl.it/s/it-IT/ricerca-negozio/friuli-venezia-giulia/",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-086",
@@ -5674,7 +5959,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "https://www.lidl.it/s/it-IT/ricerca-negozio/friuli-venezia-giulia/",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-087",
@@ -5738,7 +6026,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "https://www.lidl.it/s/it-IT/ricerca-negozio/friuli-venezia-giulia/",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-088",
@@ -5801,8 +6092,11 @@
       "temporaneamente_chiuso": false,
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
-      "orari_non_verificati": false,
-      "note_verifica": "Orario settimanale verificato; festività e aperture straordinarie escluse."
+      "orari_non_verificati": true,
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "https://www.eurospin.it/punti-vendita/",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-089",
@@ -5866,7 +6160,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "https://www.eurospin.it/punti-vendita/",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-090",
@@ -5930,7 +6227,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "https://www.eurospin.it/punti-vendita/",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-091",
@@ -5994,7 +6294,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "https://www.eurospin.it/punti-vendita/",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-092",
@@ -6058,7 +6361,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "https://www.eurospin.it/punti-vendita/",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-093",
@@ -6122,7 +6428,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "https://www.eurospin.it/punti-vendita/",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-094",
@@ -6186,7 +6495,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "https://www.eurospin.it/punti-vendita/",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-095",
@@ -6250,7 +6562,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "https://www.eurospin.it/punti-vendita/",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-096",
@@ -6314,7 +6629,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "https://www.eurospin.it/punti-vendita/",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-097",
@@ -6378,7 +6696,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "https://www.eurospin.it/punti-vendita/",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-098",
@@ -6442,7 +6763,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "https://www.eurospin.it/punti-vendita/",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-099",
@@ -6506,519 +6830,109 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "https://www.eurospin.it/punti-vendita/",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-100",
       "nome": "ALDI Udine",
       "insegna": "ALDI",
       "categoria": "Discount",
-      "indirizzo": "Via Tricesimo",
+      "indirizzo": "Viale XXIII Marzo 1848, 18/20",
       "cap": "33100",
       "comune": "Udine",
       "provincia": "UD",
-      "latitudine": 46.0879486,
-      "longitudine": 13.2327326,
+      "latitudine": null,
+      "longitudine": null,
       "telefono": "800 370 370",
-      "sito_pagina_ufficiale": "https://www.aldi.it/punti-vendita-e-orari-di-apertura",
+      "sito_pagina_ufficiale": "https://carriera.aldi.it/job/1401311033",
       "orari": {
-        "lunedi": [
-          {
-            "apre": "08:30",
-            "chiude": "20:30"
-          }
-        ],
-        "martedi": [
-          {
-            "apre": "08:30",
-            "chiude": "20:30"
-          }
-        ],
-        "mercoledi": [
-          {
-            "apre": "08:30",
-            "chiude": "20:30"
-          }
-        ],
-        "giovedi": [
-          {
-            "apre": "08:30",
-            "chiude": "20:30"
-          }
-        ],
-        "venerdi": [
-          {
-            "apre": "08:30",
-            "chiude": "20:30"
-          }
-        ],
-        "sabato": [
-          {
-            "apre": "08:30",
-            "chiude": "20:30"
-          }
-        ],
-        "domenica": [
-          {
-            "apre": "09:00",
-            "chiude": "20:00"
-          }
-        ]
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
       },
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
-      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "fonte": "ALDI Italia – pagina ufficiale relativa alla sede",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
-    },
-    {
-      "id": "UD-101",
-      "nome": "ALDI Tavagnacco",
-      "insegna": "ALDI",
-      "categoria": "Discount",
-      "indirizzo": "Via Nazionale",
-      "cap": "33010",
-      "comune": "Tavagnacco",
-      "provincia": "UD",
-      "latitudine": 46.1268761,
-      "longitudine": 13.2245752,
-      "telefono": "800 370 370",
-      "sito_pagina_ufficiale": "https://www.aldi.it/punti-vendita-e-orari-di-apertura",
-      "orari": {
-        "lunedi": [
-          {
-            "apre": "08:30",
-            "chiude": "20:30"
-          }
-        ],
-        "martedi": [
-          {
-            "apre": "08:30",
-            "chiude": "20:30"
-          }
-        ],
-        "mercoledi": [
-          {
-            "apre": "08:30",
-            "chiude": "20:30"
-          }
-        ],
-        "giovedi": [
-          {
-            "apre": "08:30",
-            "chiude": "20:30"
-          }
-        ],
-        "venerdi": [
-          {
-            "apre": "08:30",
-            "chiude": "20:30"
-          }
-        ],
-        "sabato": [
-          {
-            "apre": "08:30",
-            "chiude": "20:30"
-          }
-        ],
-        "domenica": [
-          {
-            "apre": "09:00",
-            "chiude": "20:00"
-          }
-        ]
-      },
-      "apertura_24h": false,
-      "temporaneamente_chiuso": false,
-      "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-11",
-      "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
-    },
-    {
-      "id": "UD-102",
-      "nome": "ALDI Codroipo",
-      "insegna": "ALDI",
-      "categoria": "Discount",
-      "indirizzo": "Viale Venezia",
-      "cap": "33033",
-      "comune": "Codroipo",
-      "provincia": "UD",
-      "latitudine": 45.9677539,
-      "longitudine": 12.9631323,
-      "telefono": "800 370 370",
-      "sito_pagina_ufficiale": "https://www.aldi.it/punti-vendita-e-orari-di-apertura",
-      "orari": {
-        "lunedi": [
-          {
-            "apre": "08:30",
-            "chiude": "20:30"
-          }
-        ],
-        "martedi": [
-          {
-            "apre": "08:30",
-            "chiude": "20:30"
-          }
-        ],
-        "mercoledi": [
-          {
-            "apre": "08:30",
-            "chiude": "20:30"
-          }
-        ],
-        "giovedi": [
-          {
-            "apre": "08:30",
-            "chiude": "20:30"
-          }
-        ],
-        "venerdi": [
-          {
-            "apre": "08:30",
-            "chiude": "20:30"
-          }
-        ],
-        "sabato": [
-          {
-            "apre": "08:30",
-            "chiude": "20:30"
-          }
-        ],
-        "domenica": [
-          {
-            "apre": "09:00",
-            "chiude": "20:00"
-          }
-        ]
-      },
-      "apertura_24h": false,
-      "temporaneamente_chiuso": false,
-      "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-11",
-      "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
-    },
-    {
-      "id": "UD-103",
-      "nome": "ALDI Cervignano",
-      "insegna": "ALDI",
-      "categoria": "Discount",
-      "indirizzo": "Via Aquileia",
-      "cap": "33052",
-      "comune": "Cervignano del Friuli",
-      "provincia": "UD",
-      "latitudine": 45.8104016,
-      "longitudine": 13.3425085,
-      "telefono": "800 370 370",
-      "sito_pagina_ufficiale": "https://www.aldi.it/punti-vendita-e-orari-di-apertura",
-      "orari": {
-        "lunedi": [
-          {
-            "apre": "08:30",
-            "chiude": "20:30"
-          }
-        ],
-        "martedi": [
-          {
-            "apre": "08:30",
-            "chiude": "20:30"
-          }
-        ],
-        "mercoledi": [
-          {
-            "apre": "08:30",
-            "chiude": "20:30"
-          }
-        ],
-        "giovedi": [
-          {
-            "apre": "08:30",
-            "chiude": "20:30"
-          }
-        ],
-        "venerdi": [
-          {
-            "apre": "08:30",
-            "chiude": "20:30"
-          }
-        ],
-        "sabato": [
-          {
-            "apre": "08:30",
-            "chiude": "20:30"
-          }
-        ],
-        "domenica": [
-          {
-            "apre": "09:00",
-            "chiude": "20:00"
-          }
-        ]
-      },
-      "apertura_24h": false,
-      "temporaneamente_chiuso": false,
-      "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-11",
-      "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
-    },
-    {
-      "id": "UD-104",
-      "nome": "ALDI Cividale",
-      "insegna": "ALDI",
-      "categoria": "Discount",
-      "indirizzo": "Via Udine",
-      "cap": "33043",
-      "comune": "Cividale del Friuli",
-      "provincia": "UD",
-      "latitudine": 46.091498,
-      "longitudine": 13.4184773,
-      "telefono": "800 370 370",
-      "sito_pagina_ufficiale": "https://www.aldi.it/punti-vendita-e-orari-di-apertura",
-      "orari": {
-        "lunedi": [
-          {
-            "apre": "08:30",
-            "chiude": "20:30"
-          }
-        ],
-        "martedi": [
-          {
-            "apre": "08:30",
-            "chiude": "20:30"
-          }
-        ],
-        "mercoledi": [
-          {
-            "apre": "08:30",
-            "chiude": "20:30"
-          }
-        ],
-        "giovedi": [
-          {
-            "apre": "08:30",
-            "chiude": "20:30"
-          }
-        ],
-        "venerdi": [
-          {
-            "apre": "08:30",
-            "chiude": "20:30"
-          }
-        ],
-        "sabato": [
-          {
-            "apre": "08:30",
-            "chiude": "20:30"
-          }
-        ],
-        "domenica": [
-          {
-            "apre": "09:00",
-            "chiude": "20:00"
-          }
-        ]
-      },
-      "apertura_24h": false,
-      "temporaneamente_chiuso": false,
-      "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-11",
-      "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza e indirizzo documentati da fonte ufficiale ALDI; orari settimanali non pubblicati nella fonte utilizzata.",
+      "url": "https://carriera.aldi.it/job/1401311033",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://carriera.aldi.it/job/1401311033",
+      "stato_verifica": "verificato_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-105",
-      "nome": "ALDI Gemona",
+      "nome": "ALDI Gemona del Friuli",
       "insegna": "ALDI",
       "categoria": "Discount",
-      "indirizzo": "Via Taboga",
+      "indirizzo": "Via Campagnola, 2",
       "cap": "33013",
       "comune": "Gemona del Friuli",
       "provincia": "UD",
-      "latitudine": 46.2772377,
-      "longitudine": 13.1088281,
+      "latitudine": null,
+      "longitudine": null,
       "telefono": "800 370 370",
-      "sito_pagina_ufficiale": "https://www.aldi.it/punti-vendita-e-orari-di-apertura",
+      "sito_pagina_ufficiale": "https://carriera.aldi.it/job/1435312733",
       "orari": {
-        "lunedi": [
-          {
-            "apre": "08:30",
-            "chiude": "20:30"
-          }
-        ],
-        "martedi": [
-          {
-            "apre": "08:30",
-            "chiude": "20:30"
-          }
-        ],
-        "mercoledi": [
-          {
-            "apre": "08:30",
-            "chiude": "20:30"
-          }
-        ],
-        "giovedi": [
-          {
-            "apre": "08:30",
-            "chiude": "20:30"
-          }
-        ],
-        "venerdi": [
-          {
-            "apre": "08:30",
-            "chiude": "20:30"
-          }
-        ],
-        "sabato": [
-          {
-            "apre": "08:30",
-            "chiude": "20:30"
-          }
-        ],
-        "domenica": [
-          {
-            "apre": "09:00",
-            "chiude": "20:00"
-          }
-        ]
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
       },
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
-      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "fonte": "ALDI Italia – pagina ufficiale relativa alla sede",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza e indirizzo documentati da fonte ufficiale ALDI; orari settimanali non pubblicati nella fonte utilizzata.",
+      "url": "https://carriera.aldi.it/job/1435312733",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://carriera.aldi.it/job/1435312733",
+      "stato_verifica": "verificato_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-106",
       "nome": "ALDI Tolmezzo",
       "insegna": "ALDI",
       "categoria": "Discount",
-      "indirizzo": "Via Val di Gorto",
+      "indirizzo": "Via Val di Gorto, 44",
       "cap": "33028",
       "comune": "Tolmezzo",
       "provincia": "UD",
-      "latitudine": 46.4009957,
-      "longitudine": 13.0057231,
+      "latitudine": null,
+      "longitudine": null,
       "telefono": "800 370 370",
-      "sito_pagina_ufficiale": "https://www.aldi.it/punti-vendita-e-orari-di-apertura",
+      "sito_pagina_ufficiale": "https://carriera.aldi.it/job/1292720901",
       "orari": {
-        "lunedi": [
-          {
-            "apre": "08:30",
-            "chiude": "20:30"
-          }
-        ],
-        "martedi": [
-          {
-            "apre": "08:30",
-            "chiude": "20:30"
-          }
-        ],
-        "mercoledi": [
-          {
-            "apre": "08:30",
-            "chiude": "20:30"
-          }
-        ],
-        "giovedi": [
-          {
-            "apre": "08:30",
-            "chiude": "20:30"
-          }
-        ],
-        "venerdi": [
-          {
-            "apre": "08:30",
-            "chiude": "20:30"
-          }
-        ],
-        "sabato": [
-          {
-            "apre": "08:30",
-            "chiude": "20:30"
-          }
-        ],
-        "domenica": [
-          {
-            "apre": "09:00",
-            "chiude": "20:00"
-          }
-        ]
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
       },
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
-      "fonte": "Sito ufficiale insegna; controllo cartografico",
+      "fonte": "ALDI Italia – pagina ufficiale relativa alla sede",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
-    },
-    {
-      "id": "UD-107",
-      "nome": "ALDI San Daniele",
-      "insegna": "ALDI",
-      "categoria": "Discount",
-      "indirizzo": "Viale Venezia",
-      "cap": "33038",
-      "comune": "San Daniele del Friuli",
-      "provincia": "UD",
-      "latitudine": 46.151615,
-      "longitudine": 13.0081406,
-      "telefono": "800 370 370",
-      "sito_pagina_ufficiale": "https://www.aldi.it/punti-vendita-e-orari-di-apertura",
-      "orari": {
-        "lunedi": [
-          {
-            "apre": "08:30",
-            "chiude": "20:30"
-          }
-        ],
-        "martedi": [
-          {
-            "apre": "08:30",
-            "chiude": "20:30"
-          }
-        ],
-        "mercoledi": [
-          {
-            "apre": "08:30",
-            "chiude": "20:30"
-          }
-        ],
-        "giovedi": [
-          {
-            "apre": "08:30",
-            "chiude": "20:30"
-          }
-        ],
-        "venerdi": [
-          {
-            "apre": "08:30",
-            "chiude": "20:30"
-          }
-        ],
-        "sabato": [
-          {
-            "apre": "08:30",
-            "chiude": "20:30"
-          }
-        ],
-        "domenica": [
-          {
-            "apre": "09:00",
-            "chiude": "20:00"
-          }
-        ]
-      },
-      "apertura_24h": false,
-      "temporaneamente_chiuso": false,
-      "fonte": "Sito ufficiale insegna; controllo cartografico",
-      "data_verifica": "2026-09-11",
-      "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza e indirizzo documentati da fonte ufficiale ALDI; orari settimanali non pubblicati nella fonte utilizzata.",
+      "url": "https://carriera.aldi.it/job/1292720901",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://carriera.aldi.it/job/1292720901",
+      "stato_verifica": "verificato_ufficiale_orari_da_verificare"
     },
     {
       "id": "UD-108",
@@ -7082,7 +6996,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": false,
-      "note_verifica": "Orario settimanale verificato; festività e aperture straordinarie escluse."
+      "note_verifica": "Orario settimanale verificato; festività e aperture straordinarie escluse.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.conad.it/ricerca-negozi/tuday-conad-via-vittorio-veneto-37-33100-udine--009097",
+      "stato_verifica": "verificato_scheda_ufficiale"
     },
     {
       "id": "UD-109",
@@ -7146,7 +7063,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": false,
-      "note_verifica": "Orario settimanale verificato; festività e aperture straordinarie escluse."
+      "note_verifica": "Orario settimanale verificato; festività e aperture straordinarie escluse.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.conad.it/ricerca-negozi/spazio-conad-via-antonio-bardelli-4-33035-martignacco--009714",
+      "stato_verifica": "verificato_scheda_ufficiale"
     },
     {
       "id": "UD-110",
@@ -7210,7 +7130,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "https://www.conad.it/ricerca-negozi",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-111",
@@ -7274,7 +7197,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "https://www.conad.it/ricerca-negozi",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-112",
@@ -7338,7 +7264,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "https://www.conad.it/ricerca-negozi",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-113",
@@ -7402,7 +7331,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Esistenza presente nell’elenco ufficiale indicato; calendario settimanale e variazioni stagionali da riconfermare.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.famila.it/famila-nordest/punti-vendita/friuli-venezia-giulia/famila-market-di-udine",
+      "stato_verifica": "verificato_scheda_ufficiale"
     },
     {
       "id": "UD-114",
@@ -7466,7 +7398,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "https://www.famila.it/tutti-i-punti-vendita/italia/friuli-venezia-giulia",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-115",
@@ -7530,7 +7465,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "https://www.famila.it/tutti-i-punti-vendita/italia/friuli-venezia-giulia",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-116",
@@ -7594,7 +7532,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "https://www.pampanorama.it/",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-117",
@@ -7658,7 +7599,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "https://www.pampanorama.it/",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-118",
@@ -7722,7 +7666,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "https://supermercativisotto.it/punti-vendita",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-119",
@@ -7786,7 +7733,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "https://supermercativisotto.it/punti-vendita",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-120",
@@ -7850,7 +7800,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "https://supermercativisotto.it/punti-vendita",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-121",
@@ -7914,7 +7867,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "https://supermercativisotto.it/punti-vendita",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-122",
@@ -7978,7 +7934,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "https://supermercativisotto.it/punti-vendita",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-123",
@@ -8042,7 +8001,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "https://www.cadoro.it/",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-124",
@@ -8106,7 +8068,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "https://www.cadoro.it/",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-125",
@@ -8170,7 +8135,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-126",
@@ -8234,7 +8202,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "https://www.prixquality.com/",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-127",
@@ -8298,7 +8269,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "https://www.d-piu.com/",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-128",
@@ -8362,7 +8336,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "https://www.d-piu.com/",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-129",
@@ -8426,7 +8403,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-130",
@@ -8490,7 +8470,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "https://www.eurospin.it/punti-vendita/",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-131",
@@ -8554,7 +8537,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "https://www.coop.it/",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-132",
@@ -8618,7 +8604,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "https://www.coopalleanza3-0.it/",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-133",
@@ -8682,7 +8671,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare. Coordinate non risolte automaticamente."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "https://www.coopalleanza3-0.it/",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-134",
@@ -8746,7 +8738,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "http://www.spaksupermercati.it/",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-135",
@@ -8810,7 +8805,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "http://www.spaksupermercati.it/",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-136",
@@ -8874,7 +8872,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "https://www.d-piu.com/",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-137",
@@ -8938,7 +8939,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "https://www.eurospin.it/punti-vendita/",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-138",
@@ -9002,7 +9006,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "https://www.gruppounicomm.it/insegne/mega/",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-139",
@@ -9066,7 +9073,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-140",
@@ -9130,7 +9140,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "https://www.ipertosano.it/",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-141",
@@ -9194,7 +9207,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "https://www.d-piu.com/",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-142",
@@ -9258,7 +9274,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "https://www.eurospin.it/punti-vendita/",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-143",
@@ -9322,7 +9341,10 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "https://www.conad.it/ricerca-negozi",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
     },
     {
       "id": "UD-144",
@@ -9386,7 +9408,142 @@
       "fonte": "Sito ufficiale insegna; controllo cartografico",
       "data_verifica": "2026-09-11",
       "orari_non_verificati": true,
-      "note_verifica": "Anagrafica verificata; orario ordinario ricavato dalla fonte disponibile ma calendario settimanale da riconfermare."
+      "note_verifica": "Record proveniente da elenco manuale. La fonte indicata è generica: esistenza, indirizzo e orari richiedono una verifica puntuale.",
+      "esistenza_verificata": false,
+      "fonte_anagrafica_specifica": "",
+      "stato_verifica": "da_verificare_anagrafica_e_orari"
+    },
+    {
+      "id": "UD-145",
+      "insegna": "ALDI",
+      "categoria": "Discount",
+      "provincia": "UD",
+      "telefono": "800 370 370",
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "nome": "ALDI Bagnaria Arsa",
+      "indirizzo": "Via Bachelet, 1",
+      "cap": "33050",
+      "comune": "Bagnaria Arsa",
+      "url": "https://carriera.aldi.it/job/1408335033",
+      "latitudine": null,
+      "longitudine": null,
+      "sito_pagina_ufficiale": "https://carriera.aldi.it/job/1408335033",
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "fonte": "ALDI Italia – pagina ufficiale relativa alla sede",
+      "data_verifica": "2026-09-11",
+      "orari_non_verificati": true,
+      "note_verifica": "Esistenza e indirizzo documentati da fonte ufficiale ALDI; orari settimanali non pubblicati nella fonte utilizzata.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://carriera.aldi.it/job/1408335033",
+      "stato_verifica": "verificato_ufficiale_orari_da_verificare"
+    },
+    {
+      "id": "UD-146",
+      "insegna": "ALDI",
+      "categoria": "Discount",
+      "provincia": "UD",
+      "telefono": "800 370 370",
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "nome": "ALDI Martignacco",
+      "indirizzo": "Via Antonio Bardelli, 4",
+      "cap": "33035",
+      "comune": "Martignacco",
+      "url": "https://carriera.aldi.it/job/1381707033",
+      "latitudine": null,
+      "longitudine": null,
+      "sito_pagina_ufficiale": "https://carriera.aldi.it/job/1381707033",
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "fonte": "ALDI Italia – pagina ufficiale relativa alla sede",
+      "data_verifica": "2026-09-11",
+      "orari_non_verificati": true,
+      "note_verifica": "Esistenza e indirizzo documentati da fonte ufficiale ALDI; orari settimanali non pubblicati nella fonte utilizzata.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://carriera.aldi.it/job/1381707033",
+      "stato_verifica": "verificato_ufficiale_orari_da_verificare"
+    },
+    {
+      "id": "UD-147",
+      "insegna": "ALDI",
+      "categoria": "Discount",
+      "provincia": "UD",
+      "telefono": "800 370 370",
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "nome": "ALDI Reana del Rojale",
+      "indirizzo": "Via Nazionale, 21/D",
+      "cap": "33010",
+      "comune": "Reana del Rojale",
+      "url": "https://carriera.aldi.it/job/1215308601",
+      "latitudine": null,
+      "longitudine": null,
+      "sito_pagina_ufficiale": "https://carriera.aldi.it/job/1215308601",
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "fonte": "ALDI Italia – pagina ufficiale relativa alla sede",
+      "data_verifica": "2026-09-11",
+      "orari_non_verificati": true,
+      "note_verifica": "Esistenza e indirizzo documentati da fonte ufficiale ALDI; orari settimanali non pubblicati nella fonte utilizzata.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://carriera.aldi.it/job/1215308601",
+      "stato_verifica": "verificato_ufficiale_orari_da_verificare"
+    },
+    {
+      "id": "UD-148",
+      "insegna": "ALDI",
+      "categoria": "Discount",
+      "provincia": "UD",
+      "telefono": "800 370 370",
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "nome": "ALDI Udine Tricesimo",
+      "indirizzo": "Via Tricesimo, 95",
+      "cap": "33100",
+      "comune": "Udine",
+      "url": "https://www.aldi.it/punti-vendita-e-orari-di-apertura",
+      "latitudine": null,
+      "longitudine": null,
+      "sito_pagina_ufficiale": "https://www.aldi.it/punti-vendita-e-orari-di-apertura",
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "fonte": "ALDI Italia – pagina ufficiale relativa alla sede",
+      "data_verifica": "2026-09-11",
+      "orari_non_verificati": true,
+      "note_verifica": "Esistenza e indirizzo documentati da fonte ufficiale ALDI; orari settimanali non pubblicati nella fonte utilizzata.",
+      "esistenza_verificata": true,
+      "fonte_anagrafica_specifica": "https://www.aldi.it/punti-vendita-e-orari-di-apertura",
+      "stato_verifica": "verificato_ufficiale_orari_da_verificare"
     }
   ]
 }

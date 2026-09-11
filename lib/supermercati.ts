@@ -30,27 +30,39 @@ export { adessoEuropeRome };
 // ricognizione strutturata" ma allineato alle altre 3 province
 // ("supermercati, ipermercati e discount... esclusi minimarket e
 // botteghe"), e la maggior parte delle voci ora ha coordinate reali.
-// Restano null solo 15 voci su 144 (UD-005, UD-017, UD-023, UD-030,
-// UD-039, UD-044, UD-049, UD-061, UD-064, UD-067, UD-068, UD-121,
-// UD-127, UD-132, UD-133), ciascuna con `note_verifica` che segnala
-// esplicitamente "Coordinate non risolte automaticamente."
-// — non compaiono quindi sulla mappa, solo nell'elenco testuale. Il
-// flag `orari_non_verificati: true` resta invece su 141 voci su 144
-// (quasi tutte, invariato rispetto al file precedente) — mostrato con
-// una piccola nota "orario non confermato" invece di ometterlo o darlo
-// per buono. Le altre province hanno singole voci con
-// `orari_non_verificati: true` (Gorizia 6, Pordenone 31).
+// Corretto di nuovo lo stesso giorno ("il database aggiornato e
+// corretto"): 144 → 143 voci — 5 ALDI rimosse per mancanza di riscontro
+// ufficiale (UD-101/102/103/104/107), 4 ALDI aggiunte su fonte diversa
+// e più affidabile (UD-145/146/147/148), 3 ALDI esistenti con indirizzo
+// corretto ma coordinate azzerate a null (UD-100/105/106 — non ancora
+// ri-geocodificate sul nuovo indirizzo). Restano null 22 voci su 143
+// (le 15 precedenti — UD-005, UD-017, UD-023, UD-030, UD-039, UD-044,
+// UD-049, UD-061, UD-064, UD-067, UD-068, UD-121, UD-127, UD-132,
+// UD-133 — più le 3 appena corrette e le 4 nuove), ciascuna con
+// `note_verifica` che ne spiega il motivo — non compaiono quindi sulla
+// mappa, solo nell'elenco testuale. Il flag `orari_non_verificati: true`
+// resta su 141 voci su 143 (quasi tutte) — mostrato con una piccola nota
+// "orario non confermato" invece di ometterlo o darlo per buono. Le
+// altre province hanno singole voci con `orari_non_verificati: true`
+// (Gorizia 6, Pordenone 31).
 
 export type FasciaOrariaSettimanale = { apre: string; chiude: string }; // "HH:MM"
 
+// Per giorno: array di fasce (eventualmente vuoto = chiuso quel giorno),
+// oppure `null` quando la fonte non pubblica affatto l'orario di quel
+// punto vendita — distinzione introdotta l'11/09/2026 con la correzione
+// del dato Udine (7 voci ALDI con `orari` interamente `null` per fonte:
+// "orari settimanali non pubblicati nella fonte utilizzata"). `null` NON
+// va confuso con array vuoto: il primo è "non sappiamo", il secondo è
+// "sappiamo che è chiuso quel giorno".
 export type OrariSettimana = {
-  lunedi: FasciaOrariaSettimanale[];
-  martedi: FasciaOrariaSettimanale[];
-  mercoledi: FasciaOrariaSettimanale[];
-  giovedi: FasciaOrariaSettimanale[];
-  venerdi: FasciaOrariaSettimanale[];
-  sabato: FasciaOrariaSettimanale[];
-  domenica: FasciaOrariaSettimanale[];
+  lunedi: FasciaOrariaSettimanale[] | null;
+  martedi: FasciaOrariaSettimanale[] | null;
+  mercoledi: FasciaOrariaSettimanale[] | null;
+  giovedi: FasciaOrariaSettimanale[] | null;
+  venerdi: FasciaOrariaSettimanale[] | null;
+  sabato: FasciaOrariaSettimanale[] | null;
+  domenica: FasciaOrariaSettimanale[] | null;
 };
 
 export type CategoriaSupermercato = "Supermercato" | "Ipermercato" | "Discount";
@@ -89,7 +101,7 @@ type RecordGrezzo = {
   longitudine: number | null;
   telefono: string;
   sito_pagina_ufficiale: string;
-  orari: Record<string, { apre: string; chiude: string }[]>;
+  orari: Record<string, { apre: string; chiude: string }[] | null>;
   apertura_24h: boolean;
   temporaneamente_chiuso: boolean;
   orari_non_verificati: boolean;
@@ -160,15 +172,17 @@ export function giornoSettimana(adesso: string): keyof OrariSettimana {
 // SETTIMANALI ricorrenti ("HH:MM" senza data): niente concetto di
 // "sconosciuto per ingestione in ritardo" (non c'è nessuna ingestione,
 // il dato è statico), quindi un giorno con array vuoto è semplicemente
-// "chiuso oggi" — mai "sconosciuto" a meno che l'orario non sia
-// verificato (vedi `orariNonVerificati` sopra, mostrato a parte come
-// nota testuale, non come terzo stato del pallino).
+// "chiuso oggi". "sconosciuto" resta possibile per un motivo diverso,
+// introdotto l'11/09/2026: un punto vendita il cui `orari[giorno]` è
+// `null` (fonte che non pubblica affatto l'orario, non un giorno di
+// chiusura accertato) — vedi commento su OrariSettimana sopra.
 export function statoAperturaSupermercato(v: VoceSupermercato, adesso: string): StatoApertura {
   if (v.temporaneamenteChiuso) return "chiusa";
   if (v.apertura24h) return "aperta";
 
   const giorno = giornoSettimana(adesso);
-  const fasceOggi = v.orari[giorno] ?? [];
+  const fasceOggi = v.orari[giorno];
+  if (fasceOggi === null) return "sconosciuto";
   if (fasceOggi.length === 0) return "chiusa";
 
   const oraAdesso = adesso.slice(11, 16); // "HH:MM"
@@ -176,7 +190,8 @@ export function statoAperturaSupermercato(v: VoceSupermercato, adesso: string): 
   return aperta ? "aperta" : "chiusa";
 }
 
-export function formattaFasceGiorno(fasce: FasciaOrariaSettimanale[]): string {
+export function formattaFasceGiorno(fasce: FasciaOrariaSettimanale[] | null): string {
+  if (fasce === null) return "Orario non disponibile";
   if (fasce.length === 0) return "Chiuso";
   return fasce.map((f) => `${f.apre}–${f.chiude}`).join(", ");
 }
