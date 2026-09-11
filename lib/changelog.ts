@@ -22,6 +22,13 @@ export type VoceChangelog = {
 export const CHANGELOG: VoceChangelog[] = [
   {
     data: "11/09/2026",
+    titolo: "Corretto l'ordine delle partite in Baseball & Softball",
+    dettagli: [
+      "Nella pagina Baseball & Softball (dentro Sport) le partite erano ordinate dalla data più lontana a quella più vicina: ora vengono mostrate a partire da quelle più vicine a oggi, come nel calendario ufficiale.",
+    ],
+  },
+  {
+    data: "11/09/2026",
     titolo: "Riorganizzazione del menù: Ambiente, Turismo e FVG in immagini",
     dettagli: [
       "Nel menù sono comparse tre nuove sezioni che raggruppano voci già esistenti: \"Ambiente\" (Dati ambientali per provincia + Terremoti), \"Turismo\" (Strutture ricettive + Piste ciclabili) e \"FVG in immagini\" (Webcam regionali, con una Galleria fotografica in arrivo).",

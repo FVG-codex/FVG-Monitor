@@ -3455,10 +3455,26 @@ async function ingestBaseballFvg() {
   }
 
   for (const comp of competizioni.values()) {
+    // Selezioniamo le 10 partite più vicine ad "adesso" (sia risultati
+    // recenti nel passato che prossimi incontri nel futuro), poi le
+    // riordiniamo in ordine cronologico crescente per la visualizzazione:
+    // prima le partite più vicine a oggi, poi quelle più lontane (es.
+    // prima il 12 settembre, poi il 19). In precedenza si ordinava per
+    // data decrescente e si prendevano le prime 10, il che mostrava le
+    // partite più lontane nel futuro per prime — ordine invertito rispetto
+    // a quanto atteso, ed era anche facile scambiarlo per un disallineamento
+    // rispetto al calendario ufficiale, dato che le partite più vicine a
+    // oggi (facilmente confrontabili con il calendario) finivano in fondo
+    // alla lista invece che in cima.
+    const ora = Date.now();
     const partiteRecenti = comp.partite
       .slice()
-      .sort((a, b) => new Date(b.startsAt) - new Date(a.startsAt))
+      .sort(
+        (a, b) =>
+          Math.abs(new Date(a.startsAt) - ora) - Math.abs(new Date(b.startsAt) - ora)
+      )
       .slice(0, 10)
+      .sort((a, b) => new Date(a.startsAt) - new Date(b.startsAt))
       .map((g) => ({
         casa: g.homeTeam?.name ?? "?",
         casaFvg: !!g.homeTeam?.isFvg,

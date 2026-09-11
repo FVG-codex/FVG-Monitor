@@ -3220,6 +3220,53 @@ questo ambiente di sviluppo (nessun accesso a Supabase da qui) — non un
 problema di codice, stesso limite già incontrato per le altre pagine con
 dati live. **Non ancora confermato dall'utente in produzione.**
 
+## Fix — Baseball & Softball, ordine partite e fuso orario (11/09/2026)
+
+Segnalato dall'utente con screenshot di confronto: nella pagina
+`/baseball` le partite comparivano ordinate dalla data più lontana a
+quella più vicina (es. prima il 20 settembre, poi il 19, poi il 13, poi
+il 12) — l'opposto di quanto atteso. A un primo sguardo sembrava anche
+che le partite non corrispondessero al calendario ufficiale
+(live.baseballfvg.it), ma confrontando gli screenshot partita per
+partita per le date effettivamente visibili in entrambi (12 e 13
+settembre) i dati risultavano coerenti: l'impressione di
+disallineamento nasceva dal fatto che le partite del 12/13 — le uniche
+confrontabili con gli screenshot del calendario ufficiale forniti —
+finivano in fondo alla lista invece che in cima, a causa dell'ordinamento
+invertito.
+
+**Causa**: in `scripts/ingest-light.mjs`, `ingestBaseballFvg()` ordinava
+le partite per data decrescente (`new Date(b.startsAt) - new
+Date(a.startsAt)`) e prendeva le prime 10 — le 10 partite più lontane nel
+futuro, in ordine dalla più lontana alla più vicina.
+
+**Fix**: le partite vengono ora selezionate in base alla vicinanza
+temporale a "adesso" (valore assoluto della distanza, che copre sia
+risultati recenti nel passato sia i prossimi incontri), prendendo le 10
+più vicine; quel sottoinsieme viene poi riordinato in ordine cronologico
+crescente per la visualizzazione — prima le partite più vicine a oggi,
+poi quelle più lontane. `components/BaseballPage.tsx` mostra l'array
+così com'è ricevuto, quindi la correzione nello script di ingest basta
+da sola a sistemare l'ordine in pagina.
+
+Colto anche un problema minore collegato mentre si era lì:
+`formattaData()` in `components/BaseballPage.tsx` non fissava
+esplicitamente il fuso orario (`timeZone`) nella formattazione della
+data, a differenza della convenzione seguita ovunque altrove nel
+progetto (`lib/farmacie.ts`, `lib/supermercati.ts`, `SoleLunaPanel.tsx`)
+proprio per evitare che una data si sposti di un giorno a seconda del
+fuso di chi legge. Aggiunto `timeZone: "Europe/Rome"` per coerenza — non
+la causa del problema segnalato, ma una correzione preventiva nello
+stesso file.
+
+`npx tsc --noEmit` e `node --check scripts/ingest-light.mjs` puliti dopo
+la modifica. **Nota**: l'ingest verso Supabase e la chiamata a
+live.baseballfvg.it non sono raggiungibili da questo ambiente sandbox
+(stesso limite di rete già documentato altrove in questo file), quindi
+la correzione non è stata verificata con un nuovo ingest reale in questo
+ambiente — prenderà effetto al prossimo ingest eseguito in produzione
+(GitHub Actions). **Non ancora confermato dall'utente in produzione.**
+
 ## Idee future (annotate, non richieste esplicitamente per l'implementazione)
 
 - **Strutture ricettive — implementate il 26/08/2026** (vedi sezioni dedicate sopra): hub + 8 pagine, arricchimento contatti da OpenStreetMap lo stesso giorno, poi scraping incrementale turismofvg.it per gli Agriturismi (sempre 26/08/2026, vedi "Agriturismi — scraping incrementale turismofvg.it" sopra per i dettagli — DevTools fornito dall'utente, stesso metodo già servito per Tennis/Sci/Autobus). **Prossimo passo su questo modulo**: estendere lo scraping turismofvg.it alle altre 7 categorie (B&B, Affittacamere, Campeggi, Alberghi Diffusi, Sociali, Marina, Rifugi) — richiede prima di verificare che URL/etichette HTML siano gli stessi osservati per Agriturismi (non garantito), idealmente con un altro campione reale fornito dall'utente per categoria prima di aggiungerla a `TURISMOFVG_CATEGORIE`.
