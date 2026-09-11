@@ -8,6 +8,16 @@ import { Footer } from "@/components/Footer";
 import { PROVINCE, PROVINCE_LIST, type ProvinciaSlug } from "@/lib/province";
 import { PROVINCE_NOTIZIE_ATTIVE, type SnapshotNotizieProvincia } from "@/lib/notizieProvincia";
 
+// Una quinta scheda oltre alle 4 province (11/09/2026, richiesto
+// dall'utente): "Sport" — notizie sportive regionali, non ancora
+// implementate (nessuna fonte ancora scelta/verificata), solo un
+// segnaposto "in arrivo" accanto ai tab provincia. Non una provincia,
+// quindi un tipo a sé (non aggiunta a ProvinciaSlug/PROVINCE_LIST) —
+// stesso principio di "Cliniche"/"Dentisti" in Sanità o "Galleria
+// fotografica" in FVG in immagini: la struttura di navigazione è pronta
+// prima del dato reale.
+type SchedaNotizie = ProvinciaSlug | "sport";
+
 function tempoRelativo(dataStr: string): string {
   const diffMs = Date.now() - new Date(dataStr).getTime();
   const minuti = Math.floor(diffMs / 60000);
@@ -28,14 +38,15 @@ function tempoRelativo(dataStr: string): string {
  * amministrativi o simili, ma con l'elenco attuale non compare più.
  */
 export function NotizieProvinciaPage() {
-  const [provincia, setProvincia] = useState<ProvinciaSlug>("trieste");
+  const [scheda, setScheda] = useState<SchedaNotizie>("trieste");
   const [dati, setDati] = useState<SnapshotNotizieProvincia | null>(null);
   const [stato, setStato] = useState<"loading" | "ready" | "error">("loading");
 
-  const attiva = PROVINCE_NOTIZIE_ATTIVE.includes(provincia);
+  const provincia = scheda === "sport" ? null : scheda;
+  const attiva = provincia !== null && PROVINCE_NOTIZIE_ATTIVE.includes(provincia);
 
   useEffect(() => {
-    if (!attiva) return;
+    if (!attiva || !provincia) return;
     let attivoEffect = true;
     setStato("loading");
     async function carica() {
@@ -60,6 +71,8 @@ export function NotizieProvinciaPage() {
     };
   }, [provincia, attiva]);
 
+  const titoloScheda = scheda === "sport" ? "Sport" : PROVINCE[scheda].nome;
+
   return (
     <>
       <TopHeader />
@@ -75,10 +88,10 @@ export function NotizieProvinciaPage() {
           {PROVINCE_LIST.map((p) => (
             <button
               key={p.slug}
-              onClick={() => setProvincia(p.slug)}
-              aria-pressed={provincia === p.slug}
+              onClick={() => setScheda(p.slug)}
+              aria-pressed={scheda === p.slug}
               className={`px-3 py-1.5 rounded text-xs font-cond font-semibold uppercase tracking-wide transition-colors ${
-                provincia === p.slug
+                scheda === p.slug
                   ? "bg-cool text-on-accent"
                   : "border border-line text-ink-dim hover:text-ink"
               }`}
@@ -86,13 +99,28 @@ export function NotizieProvinciaPage() {
               {p.nome}
             </button>
           ))}
+          <button
+            onClick={() => setScheda("sport")}
+            aria-pressed={scheda === "sport"}
+            className={`px-3 py-1.5 rounded text-xs font-cond font-semibold uppercase tracking-wide transition-colors ${
+              scheda === "sport"
+                ? "bg-cool text-on-accent"
+                : "border border-line text-ink-dim hover:text-ink"
+            }`}
+          >
+            Sport
+          </button>
         </div>
 
         <div className="grid grid-cols-1 gap-px bg-line border border-line">
-          <Panel title={`Notizie · ${PROVINCE[provincia].nome}`}>
-            {!attiva ? (
+          <Panel title={`Notizie · ${titoloScheda}`}>
+            {scheda === "sport" ? (
               <p className="text-ink-faint text-sm font-mono">
-                Notizie per {PROVINCE[provincia].nome} in arrivo in una prossima fase.
+                Notizie sportive regionali in arrivo in una prossima fase.
+              </p>
+            ) : !attiva ? (
+              <p className="text-ink-faint text-sm font-mono">
+                Notizie per {titoloScheda} in arrivo in una prossima fase.
               </p>
             ) : stato === "loading" ? (
               <p className="text-ink-faint text-sm font-mono">Caricamento notizie…</p>

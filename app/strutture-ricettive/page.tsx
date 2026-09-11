@@ -110,7 +110,10 @@ export default function StruttureRicettiveHubPage() {
       <div className="isobar" />
 
       <main id="contenuto-principale" className="max-w-[1180px] mx-auto px-5 py-6">
-        <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1">Strutture ricettive</h1>
+        <a href="/turismo" className="text-cool-ink text-xs font-mono hover:underline">
+          ← Turismo
+        </a>
+        <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1 mt-1">Strutture ricettive</h1>
         <p className="text-ink-faint text-xs font-mono mb-6">
           Registri regionali delle strutture ricettive del Friuli Venezia Giulia, certificate dai Comuni e dalla
           Direzione centrale attività produttive — fonte: Regione Autonoma FVG (dati.friuliveneziagiulia.it)

@@ -18,10 +18,16 @@ function formattaData(iso: string): string {
   return d.toLocaleDateString("it-IT", { day: "numeric", month: "short" });
 }
 
-export function PolliniPanel() {
+// provincia opzionale (11/09/2026, per la nuova pagina "Dati ambientali"
+// sotto Ambiente): quando assente resta il comportamento di sempre (tab
+// interno, usato in homepage), quando presente la provincia è imposta
+// dall'esterno e i tab interni non vengono mostrati — stesso principio
+// già usato per VentoPanel/PioggiaPanel/FiumePanel.
+export function PolliniPanel({ provincia: provinciaProp }: { provincia?: ProvinciaSlug } = {}) {
   const [dati, setDati] = useState<SnapshotPollini | null>(null);
   const [stato, setStato] = useState<"loading" | "ready" | "error">("loading");
-  const [tab, setTab] = useState<ProvinciaSlug>("trieste");
+  const [tabInterno, setTabInterno] = useState<ProvinciaSlug>("trieste");
+  const tab = provinciaProp ?? tabInterno;
 
   useEffect(() => {
     let attivo = true;
@@ -55,20 +61,22 @@ export function PolliniPanel() {
 
   return (
     <div>
-      <div className="flex gap-1 mb-3 flex-wrap">
-        {PROVINCE_LIST.map((p) => (
-          <button
-            key={p.slug}
-            onClick={() => setTab(p.slug)}
-            aria-pressed={tab === p.slug}
-            className={`px-2.5 py-1 rounded text-xs font-cond font-semibold uppercase tracking-wide transition-colors ${
-              tab === p.slug ? "bg-cool text-on-accent" : "border border-line text-ink-dim hover:text-ink"
-            }`}
-          >
-            {p.nome}
-          </button>
-        ))}
-      </div>
+      {!provinciaProp && (
+        <div className="flex gap-1 mb-3 flex-wrap">
+          {PROVINCE_LIST.map((p) => (
+            <button
+              key={p.slug}
+              onClick={() => setTabInterno(p.slug)}
+              aria-pressed={tab === p.slug}
+              className={`px-2.5 py-1 rounded text-xs font-cond font-semibold uppercase tracking-wide transition-colors ${
+                tab === p.slug ? "bg-cool text-on-accent" : "border border-line text-ink-dim hover:text-ink"
+              }`}
+            >
+              {p.nome}
+            </button>
+          ))}
+        </div>
+      )}
 
       {!stazioni || stazioni.length === 0 ? (
         <p className="text-ink-faint text-sm font-mono">

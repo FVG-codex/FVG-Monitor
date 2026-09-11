@@ -72,7 +72,10 @@ export function TerremotiPage() {
       <div className="isobar" />
 
       <main id="contenuto-principale" className="max-w-[1180px] mx-auto px-5 py-6">
-        <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1">Terremoti</h1>
+        <a href="/ambiente" className="text-cool-ink text-xs font-mono hover:underline">
+          ← Ambiente
+        </a>
+        <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1 mt-1">Terremoti</h1>
         <p className="text-ink-faint text-xs font-mono mb-6">
           Eventi sismici in FVG e zone limitrofe, ultimi 30 giorni — fonte: INGV (Istituto Nazionale di Geofisica
           e Vulcanologia)

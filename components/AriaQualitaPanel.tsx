@@ -38,7 +38,12 @@ function formattaData(iso: string): string {
   return d.toLocaleDateString("it-IT", { day: "numeric", month: "short" });
 }
 
-export function AriaQualitaPanel() {
+// provincia opzionale (11/09/2026, per la nuova pagina "Dati ambientali"
+// sotto Ambiente): quando assente il comportamento è quello di sempre
+// (griglia con tutte e 4 le province, usata in homepage), quando
+// presente mostra un solo valore più grande per quella provincia —
+// stesso principio già usato per VentoPanel/PioggiaPanel/FiumePanel.
+export function AriaQualitaPanel({ provincia }: { provincia?: ProvinciaSlug } = {}) {
   const [datiPerInquinante, setDatiPerInquinante] = useState<Partial<Record<string, SnapshotInquinante>>>({});
   const [stato, setStato] = useState<"loading" | "ready" | "error">("loading");
   const [tab, setTab] = useState<string>("pm10");
@@ -98,6 +103,39 @@ export function AriaQualitaPanel() {
 
       {!dati ? (
         <p className="text-ink-faint text-sm font-mono">Dati {attivo.label} non disponibili al momento.</p>
+      ) : provincia ? (
+        (() => {
+          const d = dati.per_provincia[provincia];
+          const valore = d ? (d[attivo.campoValore] as number | null) : null;
+          const superamento = d ? (d[attivo.campoSuperamento] as boolean | null) : null;
+          return (
+            <>
+              {valore !== null && valore !== undefined ? (
+                <div className="mb-3">
+                  <div className="flex items-baseline gap-2">
+                    <span
+                      className={`font-cond font-bold text-[52px] leading-[0.9] ${
+                        superamento ? "text-allerta-rossa-ink" : ""
+                      }`}
+                    >
+                      {valore}
+                    </span>
+                    <span className="text-ink-dim text-sm">µg/m³</span>
+                  </div>
+                  {superamento && (
+                    <div className="font-mono text-[10px] text-allerta-rossa-ink uppercase mt-1">Oltre soglia</div>
+                  )}
+                </div>
+              ) : (
+                <p className="text-ink-faint text-sm font-mono mb-3">Dato non disponibile per questa stazione.</p>
+              )}
+              <p className="text-ink-faint text-[10px] font-mono">
+                {attivo.label}, {attivo.noteTipo} del {formattaData(dati.data_misura)} — soglia{" "}
+                {dati[attivo.campoSoglia] as number} µg/m³ · fonte: ARPA FVG
+              </p>
+            </>
+          );
+        })()
       ) : (
         <>
           <div className="flex flex-wrap gap-1.5 mb-3">

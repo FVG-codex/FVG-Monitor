@@ -9,7 +9,7 @@ import { Footer } from "@/components/Footer";
 // (vedi MenuHamburger.tsx, voce "Farmacie" sostituita da "Sanità").
 // Cliniche & centri medici e Dentisti & Odontoiatri sono nuove voci
 // strutturali senza dati ancora (componenti/route placeholder, vedi
-// components/SanitaInArrivoPage.tsx) — solo Veterinari & Emergenze ha
+// components/InArrivoPage.tsx) — solo Veterinari & Emergenze ha
 // dati reali in questa consegna (provincia di Trieste, vedi
 // lib/veterinari.ts).
 const SEZIONI = [

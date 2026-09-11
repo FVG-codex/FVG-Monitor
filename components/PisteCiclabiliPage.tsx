@@ -261,7 +261,10 @@ export function PisteCiclabiliPage() {
       <div className="isobar" />
 
       <main id="contenuto-principale" className="max-w-[1180px] mx-auto px-5 py-6">
-        <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1">Piste Ciclabili</h1>
+        <a href="/turismo" className="text-cool-ink text-xs font-mono hover:underline">
+          ← Turismo
+        </a>
+        <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1 mt-1">Piste Ciclabili</h1>
         <p className="text-ink-faint text-xs font-mono mb-2">
           {totalePercorsi > 0 ? `${totalePercorsi} percorsi` : "Percorsi"} ciclabili in Friuli Venezia Giulia — 6
           fonti indipendenti: le 4 serie con codice di turismofvg.it (Anelli, Percorsi lineari, Ciclovie a tappe,

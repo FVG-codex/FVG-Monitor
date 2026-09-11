@@ -71,7 +71,10 @@ export function WebcamPage() {
       <div className="isobar" />
 
       <main id="contenuto-principale" className="max-w-[1180px] mx-auto px-5 py-6">
-        <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1">Webcam regionali</h1>
+        <a href="/fvg-in-immagini" className="text-cool-ink text-xs font-mono hover:underline">
+          ← FVG in immagini
+        </a>
+        <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1 mt-1">Webcam regionali</h1>
         <p className="text-ink-faint text-xs font-mono mb-4">
           Immagini fornite da OSMER ARPA FVG (CC BY-SA 3.0) — la validità dei dati non è garantita da ARPA FVG,
           che aggrega webcam gestite da terzi. Clicca su una webcam per aprire la fonte originale

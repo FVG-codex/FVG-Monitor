@@ -22,6 +22,15 @@ export type VoceChangelog = {
 export const CHANGELOG: VoceChangelog[] = [
   {
     data: "11/09/2026",
+    titolo: "Riorganizzazione del menù: Ambiente, Turismo e FVG in immagini",
+    dettagli: [
+      "Nel menù sono comparse tre nuove sezioni che raggruppano voci già esistenti: \"Ambiente\" (Dati ambientali per provincia + Terremoti), \"Turismo\" (Strutture ricettive + Piste ciclabili) e \"FVG in immagini\" (Webcam regionali, con una Galleria fotografica in arrivo).",
+      "La pagina Notizie ha ora anche una scheda \"Sport\", accanto alle 4 province, in attesa delle prime notizie sportive.",
+      "\"Dati ambientali\" è una pagina nuova: gli stessi dati di vento, pioggia, aria, pollini, mare, fiumi e balneazione già visibili in homepage, ma selezionabili una provincia alla volta — la sezione Ambiente della homepage resta invariata.",
+    ],
+  },
+  {
+    data: "11/09/2026",
     titolo: "Nuova sezione \"Sanità\": Veterinari & Emergenze",
     dettagli: [
       "Nel menù, \"Farmacie\" è confluita in una nuova voce \"Sanità\", insieme a due sezioni in arrivo (Cliniche & centri medici, Dentisti & Odontoiatri) e alla nuova sezione \"Veterinari & Emergenze\" (provincia di Trieste): un riquadro dedicato mostra subito le strutture con un servizio di emergenza dichiarato, con numero di telefono in evidenza.",

@@ -6,18 +6,25 @@ import Link from "next/link";
 // Sezioni extra del sito, distinte dalla navigazione principale per
 // provincia (già visibile nei tab dell'header). Aggiungi qui nuove
 // voci man mano che si aggiungono sezioni indipendenti.
+//
+// Riorganizzazione dell'11/09/2026 (richiesta dall'utente): tre voci
+// che prima erano a sé — Terremoti, Webcam regionali, Strutture
+// ricettive, Piste ciclabili — sono confluite in tre nuovi hub
+// (Ambiente, FVG in immagini, Turismo), stesso principio già seguito
+// per Farmacie → Sanità nella sessione precedente. Le pagine di
+// destinazione restano tutte raggiungibili, solo un livello più in
+// basso, con un breadcrumb "← <Hub>" in cima a ciascuna.
 const SEZIONI_EXTRA = [
   { label: "Meteo", href: "/meteo" },
   { label: "Notizie", href: "/notizie" },
-  { label: "Terremoti", href: "/terremoti" },
+  { label: "Ambiente", href: "/ambiente" },
   { label: "Sport", href: "/sport" },
-  { label: "Webcam regionali", href: "/webcam" },
+  { label: "FVG in immagini", href: "/fvg-in-immagini" },
   { label: "Viabilità", href: "/viabilita" },
   { label: "Trasporti", href: "/trasporti" },
   { label: "Aviazione", href: "/aviazione" },
   { label: "Sanità", href: "/sanita" },
-  { label: "Strutture ricettive", href: "/strutture-ricettive" },
-  { label: "Piste ciclabili", href: "/piste-ciclabili" },
+  { label: "Turismo", href: "/turismo" },
   { label: "Economia", href: "/economia" },
   { label: "Commercio", href: "/commercio" },
 ];

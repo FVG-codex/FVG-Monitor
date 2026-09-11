@@ -3143,6 +3143,83 @@ comune con i 3 comuni presenti — Trieste 26, Muggia 1, Duino-Aurisina
 (placeholder "in arrivo"), menù ad amburger con "Sanità" al posto di
 "Farmacie". **Non ancora confermato dall'utente in produzione.**
 
+## Riorganizzazione del menù: Ambiente, Turismo, FVG in immagini, Sport nelle Notizie (11/09/2026)
+
+L'utente ha chiesto una seconda riorganizzazione del menù ad amburger
+nella stessa sessione di Sanità/Veterinari (vedi sezione sopra), stesso
+principio: raggruppare sotto un hub voci che prima erano a sé, senza
+toccare il contenuto delle pagine di destinazione (solo un breadcrumb
+"← <Hub>" aggiunto in cima a ciascuna).
+
+**Quattro richieste, tutte implementate in questa consegna:**
+
+1. **Notizie → scheda "Sport"**: accanto ai 4 tab provincia di
+   `NotizieProvinciaPage.tsx` è comparso un 5° tab "Sport", non una
+   provincia (nuovo tipo `SchedaNotizie = ProvinciaSlug | "sport"`, non
+   aggiunto a `ProvinciaSlug`/`PROVINCE_LIST` per non falsare i posti del
+   codice che assumono 4 province). Nessuna fonte ancora scelta per le
+   notizie sportive — solo un messaggio "in arrivo", stesso principio
+   già usato per le province non ancora attive in `PROVINCE_NOTIZIE_ATTIVE`.
+
+2. **Hub `/turismo`** (`TurismoPage.tsx`, stesso schema a card di
+   `CommercioPage.tsx`/`SanitaPage.tsx`): raggruppa "Strutture ricettive"
+   e "Piste ciclabili", entrambe esistenti e invariate nel contenuto,
+   prima voci a sé nel menù.
+
+3. **Hub `/ambiente`** (`AmbientePage.tsx`): raggruppa "Terremoti"
+   (esistente, invariato) e la nuova pagina "Dati ambientali"
+   (`/dati-ambientali`, `DatiAmbientaliPage.tsx`) — gli stessi dati già
+   presenti nella sezione "Ambiente" della homepage (Vento, Pioggia,
+   Qualità aria, Pollini, Mare, Fiumi, Balneazione), ma con un tab
+   provincia per vederne uno alla volta invece della vista aggregata.
+   **La sezione Ambiente della homepage resta identica** (nessuna
+   card/pannello rimosso o modificato lì) — è stato l'esplicito vincolo
+   posto dall'utente ("i dati già disponibili in homepage, che
+   rimarranno anche in homepage").
+
+   Per farlo senza duplicare i pannelli, `AriaQualitaPanel.tsx`,
+   `PolliniPanel.tsx`, `BalneazionePanel.tsx` e `MarePanel.tsx` hanno
+   ricevuto un prop opzionale `provincia?: ProvinciaSlug` (stesso
+   pattern già in uso in `VentoPanel.tsx`/`PioggiaPanel.tsx`/
+   `FiumePanel.tsx`, questi ultimi due invariati): omesso, il
+   comportamento resta esattamente quello di sempre (griglia di 4
+   province per l'aria, tab interno per Pollini/Balneazione, 3 riquadri
+   località per il Mare — così come chiamati in homepage); passato,
+   mostra un solo valore per quella provincia (Pollini/Balneazione
+   nascondono anche i propri tab interni). Il Mare non è nativamente per
+   provincia ma per 3 località costiere puntuali — mappa esplicita
+   `LOCALITA_PER_PROVINCIA` (Trieste→Trieste, Gorizia→Grado,
+   Udine→Lignano); Pordenone non ha sbocco al mare, mostra un messaggio
+   invece di un riquadro vuoto o un dato inventato.
+
+4. **Hub `/fvg-in-immagini`** (`FvgInImmaginiPage.tsx`): raggruppa
+   "Webcam regionali" (esistente, invariata) e una nuova "Galleria
+   fotografica" — solo un placeholder "in arrivo" per ora, l'utente ha
+   detto esplicitamente che un database fotografico verrà aggiunto in
+   una fase successiva. Il placeholder usa un nuovo componente generico
+   `InArrivoPage.tsx` (titolo/backHref/backLabel come prop), che
+   generalizza `SanitaInArrivoPage.tsx` della sessione precedente (ora
+   rimosso, sostituito ovunque da questo componente — anche `/cliniche`
+   e `/dentisti` lo usano adesso).
+
+**Menù risultante** (`MenuHamburger.tsx`, 12 voci): Meteo, Notizie,
+Ambiente, Sport, FVG in immagini, Viabilità, Trasporti, Aviazione,
+Sanità, Turismo, Economia, Commercio.
+
+`npx tsc --noEmit` e `node --check scripts/ingest-light.mjs` puliti.
+Verifica visiva con `next dev` + Chromium headless: `/notizie` (tab
+Sport, messaggio "in arrivo"), `/turismo`, `/strutture-ricettive` e
+`/piste-ciclabili` (breadcrumb "← Turismo"), `/ambiente`,
+`/dati-ambientali` (tab Trieste/Udine/Pordenone, layout a 3 colonne
+coerente in tutti e tre), `/terremoti` (breadcrumb "← Ambiente"),
+`/fvg-in-immagini`, `/webcam` (breadcrumb "← FVG in immagini"),
+`/galleria` (placeholder), homepage (sezione Ambiente confermata
+invariata), menù ad amburger (12 voci nell'ordine atteso). I pannelli
+con dati da Supabase mostrano "Caricamento…" negli screenshot presi in
+questo ambiente di sviluppo (nessun accesso a Supabase da qui) — non un
+problema di codice, stesso limite già incontrato per le altre pagine con
+dati live. **Non ancora confermato dall'utente in produzione.**
+
 ## Idee future (annotate, non richieste esplicitamente per l'implementazione)
 
 - **Strutture ricettive — implementate il 26/08/2026** (vedi sezioni dedicate sopra): hub + 8 pagine, arricchimento contatti da OpenStreetMap lo stesso giorno, poi scraping incrementale turismofvg.it per gli Agriturismi (sempre 26/08/2026, vedi "Agriturismi — scraping incrementale turismofvg.it" sopra per i dettagli — DevTools fornito dall'utente, stesso metodo già servito per Tennis/Sci/Autobus). **Prossimo passo su questo modulo**: estendere lo scraping turismofvg.it alle altre 7 categorie (B&B, Affittacamere, Campeggi, Alberghi Diffusi, Sociali, Marina, Rifugi) — richiede prima di verificare che URL/etichette HTML siano gli stessi osservati per Agriturismi (non garantito), idealmente con un altro campione reale fornito dall'utente per categoria prima di aggiungerla a `TURISMOFVG_CATEGORIE`.
