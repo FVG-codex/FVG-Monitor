@@ -21,6 +21,14 @@ export type VoceChangelog = {
 
 export const CHANGELOG: VoceChangelog[] = [
   {
+    data: "13/09/2026",
+    titolo: "Supermercati: verifica completa della provincia di Udine",
+    dettagli: [
+      "Aggiornata con una revisione più ampia la lista dei supermercati di Udine: tutti i 145 punti vendita hanno ora coordinate sulla mappa (prima 22 ne erano privi) e la quasi totalità ha l'orario verificato.",
+      "Aggiunti Aldi Manzano ed Eurospin a San Giorgio di Nogaro e San Giovanni al Natisone; rimossa una voce risultata non essere un supermercato.",
+    ],
+  },
+  {
     data: "11/09/2026",
     titolo: "Supermercati: corretta la lista ALDI di Udine",
     dettagli: [

@@ -23,28 +23,36 @@ export { adessoEuropeRome };
 // pattern di lib/aviostrutture.ts) e aggiornato solo quando l'utente
 // fornirà un nuovo file.
 //
-// Limiti noti nel dato (documentati qui, non nascosti in UI). Il file
-// Udine è stato sostituito l'11/09/2026 con una versione completa
-// fornita dall'utente ("Ecco la lista completa della provincia di
-// Udine, aggiorna"): 107 → 144 voci, `scope` non più "prima
-// ricognizione strutturata" ma allineato alle altre 3 province
-// ("supermercati, ipermercati e discount... esclusi minimarket e
-// botteghe"), e la maggior parte delle voci ora ha coordinate reali.
-// Corretto di nuovo lo stesso giorno ("il database aggiornato e
-// corretto"): 144 → 143 voci — 5 ALDI rimosse per mancanza di riscontro
-// ufficiale (UD-101/102/103/104/107), 4 ALDI aggiunte su fonte diversa
-// e più affidabile (UD-145/146/147/148), 3 ALDI esistenti con indirizzo
-// corretto ma coordinate azzerate a null (UD-100/105/106 — non ancora
-// ri-geocodificate sul nuovo indirizzo). Restano null 22 voci su 143
-// (le 15 precedenti — UD-005, UD-017, UD-023, UD-030, UD-039, UD-044,
-// UD-049, UD-061, UD-064, UD-067, UD-068, UD-121, UD-127, UD-132,
-// UD-133 — più le 3 appena corrette e le 4 nuove), ciascuna con
-// `note_verifica` che ne spiega il motivo — non compaiono quindi sulla
-// mappa, solo nell'elenco testuale. Il flag `orari_non_verificati: true`
-// resta su 141 voci su 143 (quasi tutte) — mostrato con una piccola nota
-// "orario non confermato" invece di ometterlo o darlo per buono. Le
-// altre province hanno singole voci con `orari_non_verificati: true`
-// (Gorizia 6, Pordenone 31).
+// Limiti noti nel dato (documentati qui, non nascosti in UI). Storia
+// del file Udine, sostituito 3 volte in 2 giorni dall'utente man mano
+// che rifiniva la verifica:
+// - 11/09/2026, prima sostituzione ("lista completa della provincia di
+//   Udine"): 107 → 144 voci, `scope` allineato alle altre 3 province.
+// - 11/09/2026, stesso giorno ("database aggiornato e corretto"):
+//   144 → 143 voci — 5 ALDI rimosse per mancanza di riscontro ufficiale,
+//   4 ALDI aggiunte su fonte diversa, 3 ALDI esistenti con indirizzo
+//   corretto ma coordinate azzerate a null. Questa versione aveva anche
+//   7 voci ALDI con TUTTI i giorni dell'`orari` a `null` (fonte che non
+//   pubblica l'orario) invece di array vuoto — bug di codice scoperto e
+//   corretto in quella sessione: vedi il commento su `OrariSettimana`
+//   poco sotto per il modello dati null-vs-array-vuoto tuttora in vigore
+//   (il codice lo gestisce correttamente, anche se il file attuale non
+//   ha più questo caso).
+// - 13/09/2026, terza sostituzione ("supermercati della provincia di
+//   Udine, verificati") — revisione molto più ampia, quasi ogni voce
+//   toccata: 143 → **145** voci; **tutte** e 145 ora hanno coordinate
+//   (prima 22 erano null); `orari_non_verificati: true` crollato da
+//   141 a **19 voci su 145** (verifica sistematica degli orari); 1 voce
+//   rimossa (UD-139 "Al Platano", riclassificata come pizzeria/bar, non
+//   supermercato) e 3 nuove aggiunte (ALDI Manzano, Eurospin San
+//   Giorgio di Nogaro, Eurospin San Giovanni al Natisone); decine di
+//   indirizzi/nomi/insegne corretti (es. UD-057 da "Interspar" a
+//   "Eurospar", UD-001 da "Eurospar" a "Despar" — controlli insegna
+//   errati nella base precedente). Nessuna voce ha più `orari` con
+//   giorni `null`.
+// Le altre province hanno singole voci con `orari_non_verificati: true`
+// (Gorizia 6, Pordenone 31) — invariate da questo aggiornamento, che ha
+// toccato solo il file Udine.
 
 export type FasciaOrariaSettimanale = { apre: string; chiude: string }; // "HH:MM"
 

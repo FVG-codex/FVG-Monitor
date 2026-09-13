@@ -3130,6 +3130,60 @@ elenco mostra "UDINE (143)", ALDI Bagnaria Arsa mostra "Orario non
 disponibile" senza badge di stato, mappa con marker per le voci con
 coordinate. **Non ancora confermato dall'utente in produzione.**
 
+### Terza sostituzione dato Udine — verifica completa (13/09/2026)
+
+Due giorni dopo, l'utente ha fornito un terzo file Udine ("i
+supermercati della provincia di Udine, verificati"), questa volta con
+una revisione molto più ampia delle due precedenti: 123 delle 143 voci
+comuni ai due file risultano modificate. Stessa disciplina di verifica
+delle volte precedenti — script Python di confronto record-per-record
+prima di toccare qualunque file, poi controllo strutturale completo
+(range di coordinate plausibile per il FVG, coerenza delle chiavi
+`orari`, tipi booleani, id duplicati) prima di sostituire il JSON.
+
+- Voci: 143 → **145** (Supermercato 92, Discount 46, Ipermercato 7).
+- **1 voce rimossa**: UD-139 "Al Platano" — l'`audit.record_esclusi` del
+  nuovo file la motiva così: "Attività verificata come pizzeria/bar, non
+  come supermercato; record classificato erroneamente nella base
+  originaria." Non un problema di indirizzo o esistenza, ma di
+  categoria: non era un supermercato.
+- **3 voci nuove**: ALDI Manzano, Eurospin San Giorgio di Nogaro,
+  Eurospin San Giovanni al Natisone — tutte con coordinate e orario
+  settimanale completo fin da subito.
+- **Coordinate: da 22 voci null a ZERO** — tutte e 145 le voci hanno ora
+  `latitudine`/`longitudine` valorizzate (comprese le 7 voci ALDI
+  toccate dalla correzione dell'11/09, incluse le 3 che in quella
+  versione le avevano perse). Tutte le coordinate ricadono in un range
+  plausibile per il FVG (45.3–46.7 lat, 12.2–14.0 lon), controllato
+  programmaticamente.
+- **`orari_non_verificati: true`: da 141/143 a 19/145** — verifica
+  sistematica degli orari settimanali per la quasi totalità dei punti
+  vendita. Nessuna voce ha più `orari` con un giorno a `null` (il caso
+  gestito dal fix di codice della sessione precedente, per ora inerte
+  su questo file — il codice resta comunque pronto a gestirlo se
+  ricomparisse in futuro o in un'altra provincia).
+- **Decine di correzioni testuali** (insegna, nome, indirizzo, comune)
+  su voci esistenti — es. UD-057 da "Interspar Udine Montalcini" a
+  "Eurospar Udine Montalcini" (insegna errata), UD-001 da "Eurospar
+  Aprilia Marittima" a "Despar Aprilia Marittima" (insegna errata),
+  UD-142 indirizzo da "Via Spilimbergo, 46 - Passons" a "Via
+  Spilimbergo ss 464" più nome comune standardizzato. Nessuna di queste
+  modifiche richiede cambi di codice: sono valori di campi già letti
+  da `normalizza()`.
+
+Nessuna modifica di schema o di codice necessaria in questa sessione
+(il fix per `orari` con giorni `null`, introdotto l'11/09/2026, resta
+in `lib/supermercati.ts` e continua a coprire anche questo file, anche
+se qui non serve). Solo sostituzione di
+`lib/data/supermercati-udine.json` e aggiornamento del commento di
+documentazione in testa a `lib/supermercati.ts` con lo storico
+completo delle 3 sostituzioni. `npx tsc --noEmit` pulito. Verifica
+visiva con `next dev` + Chromium headless: tab Udine di `/supermercati`
+mostra "UDINE (145)" senza errori, le 3 voci nuove compaiono
+nell'elenco, mappa più densa di marker (zero voci escluse per
+coordinate mancanti). **Non ancora confermato dall'utente in
+produzione.**
+
 ## Sanità — nuova voce di menù, Veterinari & Emergenze (11/09/2026)
 
 L'utente ha chiesto una ristrutturazione del menù ad amburger: la voce
