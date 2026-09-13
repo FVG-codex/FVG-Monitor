@@ -22,6 +22,34 @@ export type VoceChangelog = {
 export const CHANGELOG: VoceChangelog[] = [
   {
     data: "13/09/2026",
+    titolo: "Veterinari & Emergenze: corretta la lista di Pordenone",
+    dettagli: [
+      "Tre strutture risultate chiuse o con l'attività non confermata sono state rimosse dall'elenco della provincia di Pordenone; per altre due sono state verificate meglio le fonti degli orari.",
+    ],
+  },
+  {
+    data: "13/09/2026",
+    titolo: "Veterinari & Emergenze: aggiunta la provincia di Pordenone",
+    dettagli: [
+      "La pagina Veterinari & Emergenze (dentro Sanità) mostra ora anche le 33 strutture della provincia di Pordenone, con lo stesso riquadro Emergenze in evidenza già disponibile per Trieste e Gorizia.",
+    ],
+  },
+  {
+    data: "13/09/2026",
+    titolo: "Veterinari & Emergenze: corretta la lista di Gorizia",
+    dettagli: [
+      "Una struttura risultata trasferita fuori provincia è stata rimossa e una nuova è stata aggiunta a Cormons; per un'altra struttura sono stati corretti nome, orari e contatti sulla base della fonte ufficiale.",
+    ],
+  },
+  {
+    data: "13/09/2026",
+    titolo: "Veterinari & Emergenze: aggiunta la provincia di Gorizia",
+    dettagli: [
+      "La pagina Veterinari & Emergenze (dentro Sanità) mostra ora anche le 16 strutture della provincia di Gorizia, con lo stesso riquadro Emergenze in evidenza già disponibile per Trieste.",
+    ],
+  },
+  {
+    data: "13/09/2026",
     titolo: "Supermercati: verifica completa della provincia di Udine",
     dettagli: [
       "Aggiornata con una revisione più ampia la lista dei supermercati di Udine: tutti i 145 punti vendita hanno ora coordinate sulla mappa (prima 22 ne erano privi) e la quasi totalità ha l'orario verificato.",

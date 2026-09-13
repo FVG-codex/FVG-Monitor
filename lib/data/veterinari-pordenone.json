@@ -1,0 +1,2431 @@
+{
+  "schema_version": "1.1",
+  "generated_at": "2026-09-13",
+  "timezone": "Europe/Rome",
+  "scope": "strutture e servizi veterinari aperti al pubblico nella provincia di Pordenone",
+  "audit": {
+    "record_esclusi": [
+      {
+        "nome": "ASFO - Ambulatorio territoriale di Spilimbergo",
+        "esito": "Chiuso dal 01/01/2026",
+        "motivazione": "Le prestazioni istituzionali sono trasferite alle sedi di Aviano, Azzano Decimo e San Quirino.",
+        "fonte": "https://asfo.sanita.fvg.it/it/news/2025_12_10-00.html",
+        "data_verifica": "2026-09-13"
+      },
+      {
+        "nome": "Veterinary Treatment Facility - Base USAF Aviano",
+        "esito": "Escluso dal censimento pubblico",
+        "motivazione": "Accesso riservato alla comunità autorizzata della base; non è un servizio aperto alla generalità dei cittadini.",
+        "fonte": "OpenStreetMap / struttura militare",
+        "data_verifica": "2026-09-13"
+      },
+      {
+        "nome": "Ambulatorio Veterinario Scomparcini Dott. Paolo",
+        "esito": "Chiuso per pensionamento",
+        "motivazione": "La chiusura è dichiarata nelle schede PagineGialle e Virgilio; Tuttiaffari segnala inoltre la sede come chiusa. Gli orari pubblicati da altre directory sono considerati storici.",
+        "fonte": "https://www.paginegialle.it/friuli_venezia_giulia/pordenone/ambulatorio_veterinario_dr_paolo_scomparcini.html",
+        "data_verifica": "2026-09-13"
+      },
+      {
+        "nome": "Ambulatorio Veterinario Califano Caterina",
+        "esito": "Attività da confermare - non pubblicata",
+        "motivazione": "Tuttiaffari segnala la sede come chiusa; altre directory continuano a pubblicare orari tra loro incompatibili. L’iscrizione FNOVI della professionista non conferma l’operatività della sede. Necessaria conferma diretta.",
+        "fonte": "https://www.tuttiaffari.com/califano-ambulatorio-veterinario-0434-932920",
+        "data_verifica": "2026-09-13"
+      },
+      {
+        "nome": "Ambulatorio Veterinario Locatello Dott. Claudio",
+        "esito": "Orari incongruenti - non pubblicato",
+        "motivazione": "Cylex e Veterinariovicino riportano ampie aperture continuate; Virgilio e Cani in Casa riportano invece fasce brevi e spezzate. Nessuna fonte ufficiale consente di risolvere il conflitto. Necessaria conferma diretta.",
+        "fonte": "https://www.cylex-italia.it/maniago/ambulatorio-veterinario-locatello-dr--claudio-7257914.html",
+        "data_verifica": "2026-09-13"
+      }
+    ]
+  },
+  "records": [
+    {
+      "id": "PN-VET-001",
+      "provincia": "PN",
+      "temporaneamente_chiuso": false,
+      "apertura_24h": true,
+      "ricovero_notturno": true,
+      "presenza_veterinario_notturno": true,
+      "emergenze_su_appuntamento": false,
+      "emergenze_solo_clienti": false,
+      "nome": "Clinica Veterinaria Serenissima",
+      "tipo_struttura": "Clinica veterinaria",
+      "indirizzo": "Via Borgo Lacchin, 1/A",
+      "cap": "33077",
+      "comune": "Sacile",
+      "telefono": "0434 783070",
+      "telefono_emergenze": "393 3512926",
+      "email": "info@clinicaveterinariaserenissima.it",
+      "sito_ufficiale": "https://www.clinicaveterinariaserenissima.it/contattaci",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "09:00",
+            "chiude": "17:00"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": false,
+      "specie": "Animali da compagnia; animali esotici",
+      "servizi": "Medicina generale e specialistica; chirurgia; diagnostica; ricovero",
+      "gestione_emergenze": "pronto_soccorso_24h",
+      "orari_emergenze": "H24 7 giorni su 7; chiamare prima dell’arrivo",
+      "fonte_principale": "Sito ufficiale o istituzionale",
+      "fonte_orari": "https://www.clinicaveterinariaserenissima.it/contattaci",
+      "fonte_emergenze": "https://www.clinicaveterinariaserenissima.it/contattaci",
+      "orari_verificati": true,
+      "emergenze_verificate": true,
+      "esistenza_verificata": true,
+      "note": "Medico veterinario sempre presente.",
+      "data_verifica": "2026-09-13",
+      "latitudine": 45.95015,
+      "longitudine": 12.48476,
+      "livello_verifica_orari": "ufficiale",
+      "fonte_orari_controllo": "",
+      "stato_verifica": "completo"
+    },
+    {
+      "id": "PN-VET-002",
+      "provincia": "PN",
+      "temporaneamente_chiuso": false,
+      "apertura_24h": false,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "nome": "Ambulatorio Veterinario D'Andrea",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via Roveredo, 22",
+      "cap": "33170",
+      "comune": "Pordenone",
+      "telefono": "0434 364839; 334 7870330",
+      "telefono_emergenze": "334 7870330",
+      "email": "veterinariodandrea@gmail.com",
+      "sito_ufficiale": "https://www.ambulatorioveterinariodandrea.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina generale; chirurgia; diagnostica",
+      "gestione_emergenze": "urgenze_su_chiamata",
+      "orari_emergenze": "Fuori orario telefonare prima; disponibilità non dichiarata H24",
+      "fonte_principale": "Sito ufficiale o istituzionale",
+      "fonte_orari": "https://www.ambulatorioveterinariodandrea.it/",
+      "fonte_emergenze": "https://www.ambulatorioveterinariodandrea.it/",
+      "orari_verificati": true,
+      "emergenze_verificate": true,
+      "esistenza_verificata": true,
+      "note": "",
+      "data_verifica": "2026-09-13",
+      "latitudine": 45.9956251,
+      "longitudine": 12.6323817,
+      "livello_verifica_orari": "ufficiale",
+      "fonte_orari_controllo": "",
+      "stato_verifica": "completo"
+    },
+    {
+      "id": "PN-VET-003",
+      "provincia": "PN",
+      "temporaneamente_chiuso": false,
+      "apertura_24h": false,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "nome": "Ambulatori Veterinari Associati - Azzano Decimo",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via Roma, 35/B",
+      "cap": "33082",
+      "comune": "Azzano Decimo",
+      "telefono": "0434 640433",
+      "telefono_emergenze": "347 4250756",
+      "email": "info@ambulatoriveterinariassociati.com",
+      "sito_ufficiale": "https://www.ambulatoriveterinariassociati.com/contatti/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina generale e specialistica; chirurgia; diagnostica",
+      "gestione_emergenze": "reperibilita_fuori_orario",
+      "orari_emergenze": "Emergenze fuori orario al numero dedicato",
+      "fonte_principale": "Sito ufficiale o istituzionale",
+      "fonte_orari": "https://www.ambulatoriveterinariassociati.com/contatti/",
+      "fonte_emergenze": "https://www.ambulatoriveterinariassociati.com/contatti/",
+      "orari_verificati": true,
+      "emergenze_verificate": true,
+      "esistenza_verificata": true,
+      "note": "",
+      "data_verifica": "2026-09-13",
+      "latitudine": 45.8832918,
+      "longitudine": 12.7167855,
+      "livello_verifica_orari": "ufficiale",
+      "fonte_orari_controllo": "",
+      "stato_verifica": "completo"
+    },
+    {
+      "id": "PN-VET-004",
+      "provincia": "PN",
+      "temporaneamente_chiuso": false,
+      "apertura_24h": false,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "nome": "Ambulatori Veterinari Associati - Casarsa",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via Pasolini, 25",
+      "cap": "33072",
+      "comune": "Casarsa della Delizia",
+      "telefono": "0434 870171",
+      "telefono_emergenze": "347 4250756",
+      "email": "info@ambulatoriveterinariassociati.com",
+      "sito_ufficiale": "https://www.ambulatoriveterinariassociati.com/contatti/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina generale e specialistica; chirurgia; diagnostica",
+      "gestione_emergenze": "reperibilita_fuori_orario",
+      "orari_emergenze": "Emergenze fuori orario al numero dedicato",
+      "fonte_principale": "Sito ufficiale o istituzionale",
+      "fonte_orari": "https://www.ambulatoriveterinariassociati.com/contatti/",
+      "fonte_emergenze": "https://www.ambulatoriveterinariassociati.com/contatti/",
+      "orari_verificati": true,
+      "emergenze_verificate": true,
+      "esistenza_verificata": true,
+      "note": "",
+      "data_verifica": "2026-09-13",
+      "latitudine": 45.9544669,
+      "longitudine": 12.841699,
+      "livello_verifica_orari": "ufficiale",
+      "fonte_orari_controllo": "",
+      "stato_verifica": "completo"
+    },
+    {
+      "id": "PN-VET-005",
+      "provincia": "PN",
+      "temporaneamente_chiuso": false,
+      "apertura_24h": false,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "nome": "Ambulatori Veterinari Associati - Zoppola",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via Roma, 10",
+      "cap": "33080",
+      "comune": "Zoppola",
+      "telefono": "389 5734914",
+      "telefono_emergenze": "347 4250756",
+      "email": "info@ambulatoriveterinariassociati.com",
+      "sito_ufficiale": "https://www.ambulatoriveterinariassociati.com/contatti/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "13:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "13:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina generale e specialistica; chirurgia; diagnostica",
+      "gestione_emergenze": "reperibilita_fuori_orario",
+      "orari_emergenze": "Emergenze fuori orario al numero dedicato",
+      "fonte_principale": "Sito ufficiale o istituzionale",
+      "fonte_orari": "https://www.ambulatoriveterinariassociati.com/contatti/",
+      "fonte_emergenze": "https://www.ambulatoriveterinariassociati.com/contatti/",
+      "orari_verificati": true,
+      "emergenze_verificate": true,
+      "esistenza_verificata": true,
+      "note": "",
+      "data_verifica": "2026-09-13",
+      "latitudine": 45.9690042,
+      "longitudine": 12.768378,
+      "livello_verifica_orari": "ufficiale",
+      "fonte_orari_controllo": "",
+      "stato_verifica": "completo"
+    },
+    {
+      "id": "PN-VET-006",
+      "provincia": "PN",
+      "temporaneamente_chiuso": false,
+      "apertura_24h": false,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "nome": "Ambulatorio Veterinario Tovoli - Cigagna",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via Mazzini, 41/C",
+      "cap": "33086",
+      "comune": "Montereale Valcellina",
+      "telefono": "0427 797008",
+      "telefono_emergenze": "346 0471783",
+      "email": "info@veterinari-tovoli-cigagna.it",
+      "sito_ufficiale": "https://www.veterinari-tovoli-cigagna.it/ambulatorio-di-montereale/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "specie": "Animali da compagnia; animali esotici",
+      "servizi": "Medicina generale e specialistica; chirurgia; diagnostica; day hospital",
+      "gestione_emergenze": "reperibilita_telefonica",
+      "orari_emergenze": "Reperibilità telefonica fuori orario",
+      "fonte_principale": "Sito ufficiale o istituzionale",
+      "fonte_orari": "https://www.veterinari-tovoli-cigagna.it/ambulatorio-di-montereale/",
+      "fonte_emergenze": "https://www.veterinari-tovoli-cigagna.it/ambulatorio-di-montereale/",
+      "orari_verificati": true,
+      "emergenze_verificate": true,
+      "esistenza_verificata": true,
+      "note": "",
+      "data_verifica": "2026-09-13",
+      "latitudine": 46.1509043,
+      "longitudine": 12.6493418,
+      "livello_verifica_orari": "ufficiale",
+      "fonte_orari_controllo": "",
+      "stato_verifica": "completo"
+    },
+    {
+      "id": "PN-VET-007",
+      "provincia": "PN",
+      "temporaneamente_chiuso": false,
+      "apertura_24h": false,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "nome": "Ambulatorio Veterinario PN - Dott. Matteo Monacolli",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via Sclavons, 231",
+      "cap": "33084",
+      "comune": "Cordenons",
+      "telefono": "0434 44127",
+      "telefono_emergenze": "",
+      "email": "",
+      "sito_ufficiale": "https://www.ambulatorioveterinariopn.it/contattaci.php",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "18:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "18:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "18:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "18:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "18:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "specie": "Animali da compagnia; animali esotici",
+      "servizi": "Medicina generale e specialistica; chirurgia; odontoiatria; diagnostica",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "fonte_principale": "Sito ufficiale o istituzionale",
+      "fonte_orari": "https://www.ambulatorioveterinariopn.it/contattaci.php",
+      "fonte_emergenze": "",
+      "orari_verificati": true,
+      "emergenze_verificate": false,
+      "esistenza_verificata": true,
+      "note": "",
+      "data_verifica": "2026-09-13",
+      "latitudine": 45.9747512,
+      "longitudine": 12.6871727,
+      "livello_verifica_orari": "ufficiale",
+      "fonte_orari_controllo": "",
+      "stato_verifica": "orari_confermati_emergenze_non_dichiarate"
+    },
+    {
+      "id": "PN-VET-009",
+      "provincia": "PN",
+      "temporaneamente_chiuso": false,
+      "apertura_24h": false,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "nome": "Ambulatorio Veterinario Stella Dott. Giorgio",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via della Colonna, 22/B",
+      "cap": "33170",
+      "comune": "Pordenone",
+      "telefono": "0434 20250",
+      "telefono_emergenze": "",
+      "email": "",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "10:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "17:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "10:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "17:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [],
+        "giovedi": [
+          {
+            "apre": "10:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "17:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "10:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "17:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "10:00",
+            "chiude": "13:00"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "nessuna_dichiarata",
+      "orari_emergenze": "",
+      "fonte_principale": "Directory/anagrafe di settore",
+      "fonte_orari": "https://www.caniincasa.it/veterinari/ambulatorio-veterinario-dr-giorgio-stella/",
+      "fonte_emergenze": "https://www.caniincasa.it/veterinari/ambulatorio-veterinario-dr-giorgio-stella/",
+      "orari_verificati": false,
+      "emergenze_verificate": false,
+      "esistenza_verificata": true,
+      "note": "Orario coincidente in almeno due fonti secondarie correnti; manca una pubblicazione ufficiale.",
+      "data_verifica": "2026-09-13",
+      "livello_verifica_orari": "secondaria_concordante",
+      "fonte_orari_controllo": "https://www.tuttiaffari.com/ambulatorio-veterinario-stella-dr-0434-20250",
+      "latitudine": 45.9628167,
+      "longitudine": 12.663787,
+      "stato_verifica": "orari_riscontrati_non_ufficiali"
+    },
+    {
+      "id": "PN-VET-010",
+      "provincia": "PN",
+      "temporaneamente_chiuso": false,
+      "apertura_24h": false,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "nome": "Ambulatorio Veterinario Dott.ssa Paola Puiatti",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via Suor Serafina Gregoris, 20",
+      "cap": "33080",
+      "comune": "Fiume Veneto",
+      "telefono": "0434 457717",
+      "telefono_emergenze": "",
+      "email": "ambufiume@libero.it",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "18:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "18:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "18:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "18:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "18:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "09:30",
+            "chiude": "11:00"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "nessuna_dichiarata",
+      "orari_emergenze": "",
+      "fonte_principale": "Directory/anagrafe di settore",
+      "fonte_orari": "https://www.oraridiapertura24.it/filiale/Fiume%2520Veneto-Ambulatorio%2520Veterinario%2520Dott.ssa%2520Paola%2520Puiatti-4877897F.html",
+      "fonte_emergenze": "https://www.caniincasa.it/veterinari/ambulatorio-veterinario-ass-to-dr-sse-leandrin-e-e-puiatti-p/",
+      "orari_verificati": false,
+      "emergenze_verificate": false,
+      "esistenza_verificata": true,
+      "note": "Orario coincidente in almeno due fonti secondarie correnti; manca una pubblicazione ufficiale.",
+      "data_verifica": "2026-09-13",
+      "livello_verifica_orari": "secondaria_concordante",
+      "fonte_orari_controllo": "https://www.cylex-italia.it/fiume-veneto/ambulatorio-veterinario-associato-dott-ssa-leandrin-e-dott-ssa-puiatti-13007034.html",
+      "latitudine": 45.9302344,
+      "longitudine": 12.7366943,
+      "stato_verifica": "orari_riscontrati_non_ufficiali"
+    },
+    {
+      "id": "PN-VET-012",
+      "provincia": "PN",
+      "temporaneamente_chiuso": false,
+      "apertura_24h": false,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "nome": "ReproVetPoint - Dott. Mauro Ronchese",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via Maestra, 113",
+      "cap": "33084",
+      "comune": "Cordenons",
+      "telefono": "0434 314519",
+      "telefono_emergenze": "",
+      "email": "info@reprovetpoint.it",
+      "sito_ufficiale": "https://sites.google.com/view/reprovetpoint/home",
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "reperibilita_da_confermare",
+      "orari_emergenze": "Telefonare prima; copertura e modalità da confermare",
+      "fonte_principale": "Pagina ufficiale",
+      "fonte_orari": "https://sites.google.com/view/reprovetpoint/home",
+      "fonte_emergenze": "https://sites.google.com/view/reprovetpoint/home",
+      "orari_verificati": false,
+      "emergenze_verificate": false,
+      "esistenza_verificata": true,
+      "note": "Attività riscontrata, ma nessun orario pubblico corrente sufficientemente affidabile.",
+      "data_verifica": "2026-09-13",
+      "livello_verifica_orari": "non_pubblicato",
+      "fonte_orari_controllo": "https://sites.google.com/view/reprovetpoint/home",
+      "latitudine": 45.9896224,
+      "longitudine": 12.6956969,
+      "stato_verifica": "orari_non_pubblicati"
+    },
+    {
+      "id": "PN-VET-013",
+      "provincia": "PN",
+      "temporaneamente_chiuso": false,
+      "apertura_24h": false,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "nome": "Ambulatorio Veterinario Garlato e Levine",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via Friuli, 11",
+      "cap": "33080",
+      "comune": "Roveredo in Piano",
+      "telefono": "0434 949696",
+      "telefono_emergenze": "",
+      "email": "",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "fonte_principale": "Directory/anagrafe di settore",
+      "fonte_orari": "https://www.tuttiaffari.com/ambulatorio-veterinario-associato_150z-0434-949696",
+      "fonte_emergenze": "https://www.tuttiaffari.com/ambulatorio-veterinario-associato_150z-0434-949696",
+      "orari_verificati": false,
+      "emergenze_verificate": false,
+      "esistenza_verificata": true,
+      "note": "Orario coincidente in almeno due fonti secondarie correnti; manca una pubblicazione ufficiale.",
+      "data_verifica": "2026-09-13",
+      "livello_verifica_orari": "secondaria_concordante",
+      "fonte_orari_controllo": "https://altraopinione.org/veterinario/roveredo-in-piano/ambulatorio-veterinario-associ/",
+      "latitudine": 46.0122797,
+      "longitudine": 12.6187148,
+      "stato_verifica": "orari_riscontrati_non_ufficiali"
+    },
+    {
+      "id": "PN-VET-014",
+      "provincia": "PN",
+      "temporaneamente_chiuso": false,
+      "apertura_24h": false,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "nome": "Ambulatorio Veterinario Chisari - Solari",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via del Parco, 8",
+      "cap": "33074",
+      "comune": "Fontanafredda",
+      "telefono": "0434 997816",
+      "telefono_emergenze": "",
+      "email": "",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "16:30",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "10:30",
+            "chiude": "12:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "16:30",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "10:30",
+            "chiude": "12:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "16:30",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "fonte_principale": "Directory/anagrafe di settore",
+      "fonte_orari": "https://aziende.virgilio.it/veterinaria/fontanafredda-pn/chisari-solari",
+      "fonte_emergenze": "https://aziende.virgilio.it/veterinaria/fontanafredda-pn/chisari-solari",
+      "orari_verificati": false,
+      "emergenze_verificate": false,
+      "esistenza_verificata": true,
+      "note": "Una sola fonte corrente pubblica l’orario; conferma telefonica consigliata.",
+      "data_verifica": "2026-09-13",
+      "livello_verifica_orari": "una_fonte_corrente",
+      "fonte_orari_controllo": "https://aziende.virgilio.it/veterinaria/fontanafredda-pn/chisari-solari",
+      "stato_verifica": "una_fonte_da_confermare"
+    },
+    {
+      "id": "PN-VET-015",
+      "provincia": "PN",
+      "temporaneamente_chiuso": false,
+      "apertura_24h": false,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "nome": "Ambulatorio Veterinario Cappellin Cristina",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via delle Acque, 2",
+      "cap": "33080",
+      "comune": "Porcia",
+      "telefono": "0434 361757",
+      "telefono_emergenze": "",
+      "email": "",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "16:30",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "10:30",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "16:30",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "10:30",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "10:30",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "fonte_principale": "Directory/anagrafe di settore",
+      "fonte_orari": "https://www.farmaciecomunalifvg.it/i-veterinari/",
+      "fonte_emergenze": "https://www.farmaciecomunalifvg.it/i-veterinari/",
+      "orari_verificati": false,
+      "emergenze_verificate": false,
+      "esistenza_verificata": true,
+      "note": "Orario coincidente in almeno due fonti secondarie correnti; manca una pubblicazione ufficiale.",
+      "data_verifica": "2026-09-13",
+      "livello_verifica_orari": "secondaria_concordante",
+      "fonte_orari_controllo": "https://www.farmaciecomunalifvg.it/i-veterinari/",
+      "latitudine": 45.9604702,
+      "longitudine": 12.6283579,
+      "stato_verifica": "orari_riscontrati_non_ufficiali"
+    },
+    {
+      "id": "PN-VET-016",
+      "provincia": "PN",
+      "temporaneamente_chiuso": false,
+      "apertura_24h": false,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "nome": "Ambulatorio Veterinario Cossettini Dott.ssa Romina",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via del Tulipifero, 11",
+      "cap": "33080",
+      "comune": "Porcia",
+      "telefono": "0434 920483",
+      "telefono_emergenze": "",
+      "email": "",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "17:00",
+            "chiude": "19:00"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "fonte_principale": "Directory/anagrafe di settore",
+      "fonte_orari": "https://www.farmaciecomunalifvg.it/i-veterinari/",
+      "fonte_emergenze": "https://www.farmaciecomunalifvg.it/i-veterinari/",
+      "orari_verificati": false,
+      "emergenze_verificate": false,
+      "esistenza_verificata": true,
+      "note": "Orario coincidente in almeno due fonti secondarie correnti; manca una pubblicazione ufficiale.",
+      "data_verifica": "2026-09-13",
+      "livello_verifica_orari": "secondaria_concordante",
+      "fonte_orari_controllo": "https://www.oraridiapertura24.it/filiale/Porcia-Ambulatirio%2520veterinario%2520Dott%2520Cossettini-814261V.html",
+      "latitudine": 45.9603216,
+      "longitudine": 12.6174514,
+      "stato_verifica": "orari_riscontrati_non_ufficiali"
+    },
+    {
+      "id": "PN-VET-017",
+      "provincia": "PN",
+      "temporaneamente_chiuso": false,
+      "apertura_24h": false,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "nome": "Ambulatorio Veterinario Dott.ssa Laura Zanette",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via Santissima Trinità, 73",
+      "cap": "33070",
+      "comune": "Brugnera",
+      "telefono": "",
+      "telefono_emergenze": "",
+      "email": "",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "18:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "18:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "18:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "18:30"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "fonte_principale": "Directory/anagrafe di settore",
+      "fonte_orari": "https://altraopinione.org/veterinario/brugnera/ambulatorio-veterinario-dott-s/",
+      "fonte_emergenze": "https://altraopinione.org/veterinario/brugnera/ambulatorio-veterinario-dott-s/",
+      "orari_verificati": false,
+      "emergenze_verificate": false,
+      "esistenza_verificata": true,
+      "note": "Una sola fonte corrente pubblica l’orario; conferma telefonica consigliata.",
+      "data_verifica": "2026-09-13",
+      "livello_verifica_orari": "una_fonte_corrente",
+      "fonte_orari_controllo": "https://altraopinione.org/veterinario/brugnera/ambulatorio-veterinario-dott-s/",
+      "latitudine": 45.9002292,
+      "longitudine": 12.5343889,
+      "stato_verifica": "una_fonte_da_confermare"
+    },
+    {
+      "id": "PN-VET-018",
+      "provincia": "PN",
+      "temporaneamente_chiuso": false,
+      "apertura_24h": false,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "nome": "Ambulatorio Veterinario Dott. Roberto Moro e Dott.ssa Novella Naldoni",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via Ponte Meduna, 7",
+      "cap": "33080",
+      "comune": "Zoppola",
+      "telefono": "0434 21004",
+      "telefono_emergenze": "",
+      "email": "",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "fonte_principale": "Directory/anagrafe di settore",
+      "fonte_orari": "https://trova-aperto.it/zoppola/ambulatorio-veterinario-dott-roberto-moro-e-dottssa-novella-naldoni-roberto-642414",
+      "fonte_emergenze": "https://trova-aperto.it/zoppola/ambulatorio-veterinario-dott-roberto-moro-e-dottssa-novella-naldoni-roberto-642414",
+      "orari_verificati": false,
+      "emergenze_verificate": false,
+      "esistenza_verificata": true,
+      "note": "Orario coincidente in almeno due fonti secondarie correnti; manca una pubblicazione ufficiale.",
+      "data_verifica": "2026-09-13",
+      "livello_verifica_orari": "secondaria_concordante",
+      "fonte_orari_controllo": "https://www.cylex-italia.it/zoppola/ambulatorio-veterinario-dott--roberto-moro-e-dott-ssa-novella-naldoni-roberto-7257701.html",
+      "latitudine": 45.9440047,
+      "longitudine": 12.7052152,
+      "stato_verifica": "orari_riscontrati_non_ufficiali"
+    },
+    {
+      "id": "PN-VET-019",
+      "provincia": "PN",
+      "temporaneamente_chiuso": false,
+      "apertura_24h": false,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "nome": "Ambulatorio Veterinario Dott. Rino Bolzan",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via Roma, 87",
+      "cap": "33080",
+      "comune": "Prata di Pordenone",
+      "telefono": "0434 610460",
+      "telefono_emergenze": "",
+      "email": "ribovet@virgilio.it",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "16:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "16:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "16:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "16:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "10:00",
+            "chiude": "12:30"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "nessuna_dichiarata",
+      "orari_emergenze": "",
+      "fonte_principale": "Directory/anagrafe di settore",
+      "fonte_orari": "https://www.caniincasa.it/veterinari/ambulatorio-veterinario-dr-bolzan/",
+      "fonte_emergenze": "https://www.caniincasa.it/veterinari/ambulatorio-veterinario-dr-bolzan/",
+      "orari_verificati": false,
+      "emergenze_verificate": false,
+      "esistenza_verificata": true,
+      "note": "Una sola fonte corrente pubblica l’orario; conferma telefonica consigliata.",
+      "data_verifica": "2026-09-13",
+      "livello_verifica_orari": "una_fonte_corrente",
+      "fonte_orari_controllo": "https://www.caniincasa.it/veterinari/ambulatorio-veterinario-dr-bolzan/",
+      "latitudine": 45.8963367,
+      "longitudine": 12.6016161,
+      "stato_verifica": "una_fonte_da_confermare"
+    },
+    {
+      "id": "PN-VET-020",
+      "provincia": "PN",
+      "temporaneamente_chiuso": false,
+      "apertura_24h": false,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "nome": "Ambulatorio Veterinario Dott.ssa Silvia Pegoraro",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via Villafranca, 30",
+      "cap": "33083",
+      "comune": "Chions",
+      "telefono": "0434 635266",
+      "telefono_emergenze": "347 0440108",
+      "email": "spegora@gmail.com",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": [],
+        "martedi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "10:00",
+            "chiude": "16:00"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "reperibilita_telefonica",
+      "orari_emergenze": "Telefonare prima; copertura e modalità da confermare",
+      "fonte_principale": "Directory/anagrafe di settore",
+      "fonte_orari": "https://www.caniincasa.it/veterinari/ambulatorio-veterinario-dr-ssa-silvia-pegoraro/",
+      "fonte_emergenze": "https://www.caniincasa.it/veterinari/ambulatorio-veterinario-dr-ssa-silvia-pegoraro/",
+      "orari_verificati": false,
+      "emergenze_verificate": false,
+      "esistenza_verificata": true,
+      "note": "Una sola fonte corrente pubblica l’orario; conferma telefonica consigliata.",
+      "data_verifica": "2026-09-13",
+      "livello_verifica_orari": "una_fonte_corrente",
+      "fonte_orari_controllo": "https://www.caniincasa.it/veterinari/ambulatorio-veterinario-dr-ssa-silvia-pegoraro/",
+      "latitudine": 45.8903049,
+      "longitudine": 12.7740937,
+      "stato_verifica": "una_fonte_da_confermare"
+    },
+    {
+      "id": "PN-VET-021",
+      "provincia": "PN",
+      "temporaneamente_chiuso": false,
+      "apertura_24h": false,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "nome": "Clinica Veterinaria Madonna di Rosa",
+      "tipo_struttura": "Clinica veterinaria",
+      "indirizzo": "Via Rosa, 1",
+      "cap": "33078",
+      "comune": "San Vito al Tagliamento",
+      "telefono": "0434 875515",
+      "telefono_emergenze": "0434 875515",
+      "email": "",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "15:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "15:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "15:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "15:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "15:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "15:00",
+            "chiude": "19:00"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "reperibilita_telefonica",
+      "orari_emergenze": "Telefonare prima; copertura e modalità da confermare",
+      "fonte_principale": "Directory/anagrafe di settore",
+      "fonte_orari": "https://www.caniincasa.it/veterinari/clinica-veterinaria-madonna-di-rosa/",
+      "fonte_emergenze": "https://www.caniincasa.it/veterinari/clinica-veterinaria-madonna-di-rosa/",
+      "orari_verificati": false,
+      "emergenze_verificate": false,
+      "esistenza_verificata": true,
+      "note": "Una sola fonte corrente pubblica l’orario; conferma telefonica consigliata.",
+      "data_verifica": "2026-09-13",
+      "livello_verifica_orari": "una_fonte_corrente",
+      "fonte_orari_controllo": "https://www.caniincasa.it/veterinari/clinica-veterinaria-madonna-di-rosa/",
+      "latitudine": 45.9237121,
+      "longitudine": 12.8739625,
+      "stato_verifica": "una_fonte_da_confermare"
+    },
+    {
+      "id": "PN-VET-022",
+      "provincia": "PN",
+      "temporaneamente_chiuso": false,
+      "apertura_24h": false,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "nome": "Ambulatorio Veterinario Dott. Silvio Ros",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via Sassonia, 1",
+      "cap": "33098",
+      "comune": "Valvasone Arzene",
+      "telefono": "0434 899466",
+      "telefono_emergenze": "349 8059934",
+      "email": "",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "reperibilita_telefonica",
+      "orari_emergenze": "Telefonare prima; copertura e modalità da confermare",
+      "fonte_principale": "Directory/anagrafe di settore",
+      "fonte_orari": "https://www.waze.com/it/live-map/directions/ambulatorio-veterinario-dott.-silvio-ros-via-sassonia-1-valvasone%2C-valvasone-arzene",
+      "fonte_emergenze": "https://www.caniincasa.it/veterinari/ambulatorio-veterinario-dott-silvio-ros/",
+      "orari_verificati": false,
+      "emergenze_verificate": false,
+      "esistenza_verificata": true,
+      "note": "Orario coincidente in almeno due fonti secondarie correnti; manca una pubblicazione ufficiale.",
+      "data_verifica": "2026-09-13",
+      "livello_verifica_orari": "secondaria_concordante",
+      "fonte_orari_controllo": "https://altraopinione.org/veterinario/valvasone-arzene/ambulatorio-veterinario-dott-s/",
+      "latitudine": 45.9989165,
+      "longitudine": 12.8686671,
+      "stato_verifica": "orari_riscontrati_non_ufficiali"
+    },
+    {
+      "id": "PN-VET-024",
+      "provincia": "PN",
+      "temporaneamente_chiuso": false,
+      "apertura_24h": false,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "nome": "Ambulatorio Veterinario Lotti - Santangelo",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Piazza Nicolò di Maniago, 32",
+      "cap": "33085",
+      "comune": "Maniago",
+      "telefono": "0427 72329; 337 1338034",
+      "telefono_emergenze": "",
+      "email": "",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "10:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "18:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "10:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "18:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "10:30",
+            "chiude": "16:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "10:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "18:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "10:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "18:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "urgenze_su_chiamata",
+      "orari_emergenze": "Telefonare prima; copertura e modalità da confermare",
+      "fonte_principale": "Directory/anagrafe di settore",
+      "fonte_orari": "https://www.cylex-italia.it/maniago/ambulatorio-veterinario-lotti---santangelo-12746931.html",
+      "fonte_emergenze": "https://www.cylex-italia.it/maniago/ambulatorio-veterinario-lotti---santangelo-12746931.html",
+      "orari_verificati": false,
+      "emergenze_verificate": false,
+      "esistenza_verificata": true,
+      "note": "Una sola fonte corrente pubblica l’orario; conferma telefonica consigliata.",
+      "data_verifica": "2026-09-13",
+      "livello_verifica_orari": "una_fonte_corrente",
+      "fonte_orari_controllo": "https://www.cylex-italia.it/maniago/ambulatorio-veterinario-lotti---santangelo-12746931.html",
+      "latitudine": 46.1701958,
+      "longitudine": 12.7115574,
+      "stato_verifica": "una_fonte_da_confermare"
+    },
+    {
+      "id": "PN-VET-025",
+      "provincia": "PN",
+      "temporaneamente_chiuso": false,
+      "apertura_24h": false,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "nome": "Ambulatorio Veterinario Cortina Sonia",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via San Foca, 26",
+      "cap": "33080",
+      "comune": "San Quirino",
+      "telefono": "331 4023472",
+      "telefono_emergenze": "331 4023472",
+      "email": "vetsedrano@yahoo.it",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "15:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "14:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "10:00",
+            "chiude": "14:00"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "pronto_soccorso_h24_da_confermare",
+      "orari_emergenze": "",
+      "fonte_principale": "Directory/anagrafe di settore",
+      "fonte_orari": "https://www.caniincasa.it/veterinari/ambulatorio-veterinario-178/",
+      "fonte_emergenze": "https://www.caniincasa.it/veterinari/ambulatorio-veterinario-178/",
+      "orari_verificati": false,
+      "emergenze_verificate": false,
+      "esistenza_verificata": true,
+      "note": "Una sola fonte corrente pubblica l’orario; conferma telefonica consigliata.",
+      "data_verifica": "2026-09-13",
+      "livello_verifica_orari": "una_fonte_corrente",
+      "fonte_orari_controllo": "https://www.caniincasa.it/veterinari/ambulatorio-veterinario-178/",
+      "latitudine": 46.0545621,
+      "longitudine": 12.6715745,
+      "stato_verifica": "una_fonte_da_confermare"
+    },
+    {
+      "id": "PN-VET-026",
+      "provincia": "PN",
+      "temporaneamente_chiuso": false,
+      "apertura_24h": false,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "nome": "Ambulatorio Veterinario Dott. Danilo Ledda",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via Giusto Fontanini, 3",
+      "cap": "33081",
+      "comune": "Aviano",
+      "telefono": "339 1066027",
+      "telefono_emergenze": "",
+      "email": "ma.dandre@tiscali.it",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "nessuna_dichiarata",
+      "orari_emergenze": "",
+      "fonte_principale": "Directory/anagrafe di settore",
+      "fonte_orari": "https://www.caniincasa.it/veterinari/ambulatorio-veterinario-101/",
+      "fonte_emergenze": "https://www.caniincasa.it/veterinari/ambulatorio-veterinario-101/",
+      "orari_verificati": false,
+      "emergenze_verificate": false,
+      "esistenza_verificata": true,
+      "note": "Una sola fonte corrente pubblica l’orario; conferma telefonica consigliata.",
+      "data_verifica": "2026-09-13",
+      "livello_verifica_orari": "una_fonte_corrente",
+      "fonte_orari_controllo": "https://www.caniincasa.it/veterinari/ambulatorio-veterinario-101/",
+      "latitudine": 46.0686734,
+      "longitudine": 12.5936351,
+      "stato_verifica": "una_fonte_da_confermare"
+    },
+    {
+      "id": "PN-VET-027",
+      "provincia": "PN",
+      "temporaneamente_chiuso": false,
+      "apertura_24h": false,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "nome": "Ambulatorio Veterinario Dott.ssa Silvia Rossi",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Viale Giuseppe Mazzini, 28",
+      "cap": "33081",
+      "comune": "Aviano",
+      "telefono": "0434 661537",
+      "telefono_emergenze": "",
+      "email": "",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "fonte_principale": "Directory/anagrafe di settore",
+      "fonte_orari": "https://www.paginebianche.it/friuli-venezia-giulia/pn/ambulatorio-veterinario.html",
+      "fonte_emergenze": "https://www.paginebianche.it/friuli-venezia-giulia/pn/ambulatorio-veterinario.html",
+      "orari_verificati": false,
+      "emergenze_verificate": false,
+      "esistenza_verificata": true,
+      "note": "Attività riscontrata, ma nessun orario pubblico corrente sufficientemente affidabile.",
+      "data_verifica": "2026-09-13",
+      "livello_verifica_orari": "non_pubblicato",
+      "fonte_orari_controllo": "https://www.paginebianche.it/friuli-venezia-giulia/pn/ambulatorio-veterinario.html",
+      "stato_verifica": "orari_non_pubblicati"
+    },
+    {
+      "id": "PN-VET-028",
+      "provincia": "PN",
+      "temporaneamente_chiuso": false,
+      "apertura_24h": false,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "nome": "Ambulatorio Veterinario Dott. Paolo Chiapolino",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via Segluzza, 30",
+      "cap": "33072",
+      "comune": "Casarsa della Delizia",
+      "telefono": "339 1015812",
+      "telefono_emergenze": "",
+      "email": "",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "18:30",
+            "chiude": "20:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "18:30",
+            "chiude": "20:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "18:30",
+            "chiude": "20:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "18:30",
+            "chiude": "20:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "18:30",
+            "chiude": "20:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "18:30",
+            "chiude": "20:30"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "nessuna_dichiarata",
+      "orari_emergenze": "",
+      "fonte_principale": "Directory/anagrafe di settore",
+      "fonte_orari": "https://www.caniincasa.it/veterinari/ambulatorio-veterinario-dott-paolo-chiapolino/",
+      "fonte_emergenze": "https://www.caniincasa.it/veterinari/ambulatorio-veterinario-dott-paolo-chiapolino/",
+      "orari_verificati": false,
+      "emergenze_verificate": false,
+      "esistenza_verificata": true,
+      "note": "Una sola fonte corrente pubblica l’orario; conferma telefonica consigliata.",
+      "data_verifica": "2026-09-13",
+      "livello_verifica_orari": "una_fonte_corrente",
+      "fonte_orari_controllo": "https://www.caniincasa.it/veterinari/ambulatorio-veterinario-dott-paolo-chiapolino/",
+      "latitudine": 45.9564468,
+      "longitudine": 12.8405969,
+      "stato_verifica": "una_fonte_da_confermare"
+    },
+    {
+      "id": "PN-VET-029",
+      "provincia": "PN",
+      "temporaneamente_chiuso": false,
+      "apertura_24h": false,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "nome": "Ambulatorio Veterinario Benedet Dott. Alessandro",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via Ponte Roitero, 12",
+      "cap": "33097",
+      "comune": "Spilimbergo",
+      "telefono": "0427 51183",
+      "telefono_emergenze": "",
+      "email": "",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "16:30",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "10:30",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "10:30",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "10:30",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "10:30",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "10:30",
+            "chiude": "12:00"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "urgenze_su_chiamata",
+      "orari_emergenze": "Telefonare prima; copertura e modalità da confermare",
+      "fonte_principale": "Directory/anagrafe di settore",
+      "fonte_orari": "https://www.veterinariovicino.com/public/ambulatorio-veterinario/spilimbergo/ambulatorio-veterinario-benedet-dr-alessandro",
+      "fonte_emergenze": "https://www.veterinariovicino.com/public/ambulatorio-veterinario/spilimbergo/ambulatorio-veterinario-benedet-dr-alessandro",
+      "orari_verificati": false,
+      "emergenze_verificate": false,
+      "esistenza_verificata": true,
+      "note": "Orario coincidente in almeno due fonti secondarie correnti; manca una pubblicazione ufficiale.",
+      "data_verifica": "2026-09-13",
+      "livello_verifica_orari": "secondaria_concordante",
+      "fonte_orari_controllo": "https://www.zampaconnect.com/veterinari/spilimbergo",
+      "latitudine": 46.1041379,
+      "longitudine": 12.9007475,
+      "stato_verifica": "orari_riscontrati_non_ufficiali"
+    },
+    {
+      "id": "PN-VET-030",
+      "provincia": "PN",
+      "temporaneamente_chiuso": false,
+      "apertura_24h": false,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "nome": "Ambulatorio Veterinario Del Grano Dott. Nicola e Associati",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via Umberto I, 73",
+      "cap": "33097",
+      "comune": "Spilimbergo",
+      "telefono": "0427 51569",
+      "telefono_emergenze": "",
+      "email": "",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "fonte_principale": "Directory/anagrafe di settore",
+      "fonte_orari": "https://www.zampaconnect.com/veterinari/spilimbergo",
+      "fonte_emergenze": "https://www.zampaconnect.com/veterinari/spilimbergo",
+      "orari_verificati": false,
+      "emergenze_verificate": false,
+      "esistenza_verificata": true,
+      "note": "Attività riscontrata, ma nessun orario pubblico corrente sufficientemente affidabile.",
+      "data_verifica": "2026-09-13",
+      "livello_verifica_orari": "non_pubblicato",
+      "fonte_orari_controllo": "https://www.zampaconnect.com/veterinari/spilimbergo",
+      "latitudine": 46.1152296,
+      "longitudine": 12.8990187,
+      "stato_verifica": "orari_non_pubblicati"
+    },
+    {
+      "id": "PN-VET-031",
+      "provincia": "PN",
+      "temporaneamente_chiuso": false,
+      "apertura_24h": false,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "nome": "ASFO - Ambulatorio veterinario territoriale di Aviano",
+      "tipo_struttura": "Servizio veterinario pubblico",
+      "indirizzo": "Via Sacile, 28",
+      "cap": "33081",
+      "comune": "Aviano",
+      "telefono": "0434 369701",
+      "telefono_emergenze": "",
+      "email": "",
+      "sito_ufficiale": "https://asfo.sanita.fvg.it/it/news/2025_12_10-00.html",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:00"
+          }
+        ],
+        "martedi": [],
+        "mercoledi": [],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:00"
+          }
+        ],
+        "venerdi": [],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "specie": "Animali da compagnia",
+      "servizi": "Microchip; SINAC FVG; passaporto UE; certificazioni",
+      "gestione_emergenze": "sanita_pubblica_veterinaria",
+      "orari_emergenze": "Non è un pronto soccorso clinico",
+      "fonte_principale": "Sito ufficiale o istituzionale",
+      "fonte_orari": "https://asfo.sanita.fvg.it/it/news/2025_12_10-00.html",
+      "fonte_emergenze": "https://asfo.sanita.fvg.it/it/news/2025_12_10-00.html",
+      "orari_verificati": true,
+      "emergenze_verificate": true,
+      "esistenza_verificata": true,
+      "note": "Il giovedì è riservato al personale della Base USAF.",
+      "data_verifica": "2026-09-13",
+      "latitudine": 46.0677406,
+      "longitudine": 12.5860145,
+      "livello_verifica_orari": "ufficiale",
+      "fonte_orari_controllo": "",
+      "stato_verifica": "completo"
+    },
+    {
+      "id": "PN-VET-032",
+      "provincia": "PN",
+      "temporaneamente_chiuso": false,
+      "apertura_24h": false,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "nome": "ASFO - Ambulatorio veterinario territoriale di Azzano Decimo",
+      "tipo_struttura": "Servizio veterinario pubblico",
+      "indirizzo": "Via Belvedere, 2",
+      "cap": "33082",
+      "comune": "Azzano Decimo",
+      "telefono": "0434 369701",
+      "telefono_emergenze": "",
+      "email": "",
+      "sito_ufficiale": "https://asfo.sanita.fvg.it/it/news/2025_12_10-00.html",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "14:00",
+            "chiude": "16:00"
+          }
+        ],
+        "martedi": [],
+        "mercoledi": [],
+        "giovedi": [],
+        "venerdi": [],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "specie": "Animali da compagnia",
+      "servizi": "Microchip; SINAC FVG; passaporto UE; certificazioni",
+      "gestione_emergenze": "sanita_pubblica_veterinaria",
+      "orari_emergenze": "Non è un pronto soccorso clinico",
+      "fonte_principale": "Sito ufficiale o istituzionale",
+      "fonte_orari": "https://asfo.sanita.fvg.it/it/news/2025_12_10-00.html",
+      "fonte_emergenze": "https://asfo.sanita.fvg.it/it/news/2025_12_10-00.html",
+      "orari_verificati": true,
+      "emergenze_verificate": true,
+      "esistenza_verificata": true,
+      "note": "",
+      "data_verifica": "2026-09-13",
+      "latitudine": 45.8923838,
+      "longitudine": 12.7018643,
+      "livello_verifica_orari": "ufficiale",
+      "fonte_orari_controllo": "",
+      "stato_verifica": "completo"
+    },
+    {
+      "id": "PN-VET-033",
+      "provincia": "PN",
+      "temporaneamente_chiuso": false,
+      "apertura_24h": false,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "nome": "ASFO - Ambulatorio veterinario territoriale di San Quirino",
+      "tipo_struttura": "Servizio veterinario pubblico",
+      "indirizzo": "Via Valle d'Istria, 2",
+      "cap": "33080",
+      "comune": "San Quirino",
+      "telefono": "0434 369701",
+      "telefono_emergenze": "",
+      "email": "",
+      "sito_ufficiale": "https://asfo.sanita.fvg.it/it/news/2025_12_10-00.html",
+      "orari": {
+        "lunedi": [],
+        "martedi": [],
+        "mercoledi": [],
+        "giovedi": [
+          {
+            "apre": "14:00",
+            "chiude": "16:00"
+          }
+        ],
+        "venerdi": [],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "specie": "Animali da compagnia",
+      "servizi": "Microchip; SINAC FVG; passaporto UE; certificazioni",
+      "gestione_emergenze": "sanita_pubblica_veterinaria",
+      "orari_emergenze": "Non è un pronto soccorso clinico",
+      "fonte_principale": "Sito ufficiale o istituzionale",
+      "fonte_orari": "https://asfo.sanita.fvg.it/it/news/2025_12_10-00.html",
+      "fonte_emergenze": "https://asfo.sanita.fvg.it/it/news/2025_12_10-00.html",
+      "orari_verificati": true,
+      "emergenze_verificate": true,
+      "esistenza_verificata": true,
+      "note": "",
+      "data_verifica": "2026-09-13",
+      "latitudine": 46.0165885,
+      "longitudine": 12.6398172,
+      "livello_verifica_orari": "ufficiale",
+      "fonte_orari_controllo": "",
+      "stato_verifica": "completo"
+    }
+  ]
+}

@@ -1,0 +1,1132 @@
+{
+  "schema_version": "1.1",
+  "generated_at": "2026-09-13",
+  "timezone": "Europe/Rome",
+  "scope": "strutture e servizi veterinari aperti al pubblico nella provincia di Gorizia; verifica distinta di orari ed emergenze",
+  "emergency_values": [
+    "non_dichiarata",
+    "nessuna_dichiarata",
+    "urgenze_su_chiamata_da_confermare",
+    "reperibilita_telefonica",
+    "pronto_soccorso_24h",
+    "sanita_pubblica_veterinaria"
+  ],
+  "audit": {
+    "record_esclusi": [
+      {
+        "id_precedente": "GO-VET-010",
+        "nome": "Ambulatorio Veterinario Dott.ssa Barbara Borsetta",
+        "indirizzo_precedente": "Via Verdi, 101, Ronchi dei Legionari (GO)",
+        "esito": "Escluso dal censimento attivo",
+        "motivazione": "La professionista risulta oggi operativa in Via Cavour 94, Mortegliano (UD), fuori provincia.",
+        "fonte": "Convenzione Università degli Studi di Udine 2024-2027; riscontri anagrafici correnti",
+        "data_verifica": "2026-09-13"
+      }
+    ]
+  },
+  "records": [
+    {
+      "id": "GO-VET-001",
+      "provincia": "GO",
+      "temporaneamente_chiuso": false,
+      "nome": "Clinica Veterinaria Timavo",
+      "tipo_struttura": "Clinica veterinaria",
+      "indirizzo": "Via Timavo, 74",
+      "cap": "34074",
+      "comune": "Monfalcone",
+      "telefono": "0481 412390",
+      "telefono_emergenze": "338 8889909",
+      "email": "info@clinicatimavo.com",
+      "sito_ufficiale": "https://www.clinicatimavo.com/index.php/contatti/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "22:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "22:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "22:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "22:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "22:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "14:30"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": false,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina generale; chirurgia; diagnostica; ricovero",
+      "gestione_emergenze": "pronto_soccorso_24h",
+      "orari_emergenze": "Reperibilità H24 7/7 fuori dall’orario ordinario; telefonare o presentarsi in sede",
+      "emergenze_su_appuntamento": false,
+      "emergenze_solo_clienti": false,
+      "ricovero_notturno": true,
+      "presenza_veterinario_notturno": true,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": "https://www.clinicatimavo.com/index.php/contatti/",
+      "fonte_emergenze": "https://www.clinicatimavo.com/index.php/carta-dei-servizi/",
+      "orari_verificati": true,
+      "emergenze_verificate": true,
+      "note": "Il sito dichiara presenza fissa di un medico durante la chiusura e ricovero H24.",
+      "data_verifica": "2026-09-13",
+      "esistenza_verificata": true,
+      "stato_verifica": "completo",
+      "latitudine": 45.7937287,
+      "longitudine": 13.5564211
+    },
+    {
+      "id": "GO-VET-002",
+      "provincia": "GO",
+      "temporaneamente_chiuso": false,
+      "nome": "La Serenissima Veterinaria",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via Ugo Foscolo, 6/A",
+      "cap": "34074",
+      "comune": "Monfalcone",
+      "telefono": "0481 790170; 328 7154080",
+      "telefono_emergenze": "",
+      "email": "laura.lombardelli@virgilio.it",
+      "sito_ufficiale": "https://www.laserenissimaveterinaria.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina generale; laboratorio; radiologia; chirurgia; day hospital",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": "https://www.laserenissimaveterinaria.it/",
+      "fonte_emergenze": "",
+      "orari_verificati": true,
+      "emergenze_verificate": false,
+      "note": "",
+      "data_verifica": "2026-09-13",
+      "esistenza_verificata": true,
+      "stato_verifica": "orari_confermati_emergenze_non_dichiarate",
+      "latitudine": 45.8050077,
+      "longitudine": 13.5395145
+    },
+    {
+      "id": "GO-VET-003",
+      "provincia": "GO",
+      "temporaneamente_chiuso": false,
+      "nome": "Ambulatorio Veterinario Dott.ssa Ilaria Argentini",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via Brigata Campobasso, 4/C",
+      "cap": "34170",
+      "comune": "Gorizia",
+      "telefono": "328 4624634",
+      "telefono_emergenze": "",
+      "email": "",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:30",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "18:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:30",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "18:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:30",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "18:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:30",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "18:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:30",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "18:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "09:30",
+            "chiude": "10:30"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Chirurgia generale; medicina generale",
+      "gestione_emergenze": "nessuna_dichiarata",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "fonte_principale": "Directory/anagrafe di settore",
+      "fonte_orari": "https://www.caniincasa.it/veterinari/ambulatorio-veterinario-dott-argentini-ilaria/",
+      "fonte_emergenze": "https://www.caniincasa.it/veterinari/ambulatorio-veterinario-dott-argentini-ilaria/",
+      "orari_verificati": false,
+      "emergenze_verificate": false,
+      "note": "Dati secondari: conferma telefonica consigliata.",
+      "data_verifica": "2026-09-13",
+      "esistenza_verificata": true,
+      "stato_verifica": "orari_secondari_da_confermare",
+      "latitudine": 45.9355514,
+      "longitudine": 13.5905975
+    },
+    {
+      "id": "GO-VET-004",
+      "provincia": "GO",
+      "temporaneamente_chiuso": false,
+      "nome": "Ambulatorio Veterinario Dott.ssa Michela Pecora",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via della Cappella, 38",
+      "cap": "34170",
+      "comune": "Gorizia",
+      "telefono": "0481 532003",
+      "telefono_emergenze": "",
+      "email": "",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "16:00",
+            "chiude": "18:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "10:30",
+            "chiude": "15:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "16:00",
+            "chiude": "18:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "10:30",
+            "chiude": "15:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "16:00",
+            "chiude": "18:00"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina generale",
+      "gestione_emergenze": "nessuna_dichiarata",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "fonte_principale": "Directory/anagrafe di settore",
+      "fonte_orari": "https://www.caniincasa.it/veterinari/ambulatorio-veterinario-dr-ssa-pecora-michela/",
+      "fonte_emergenze": "https://www.caniincasa.it/veterinari/ambulatorio-veterinario-dr-ssa-pecora-michela/",
+      "orari_verificati": false,
+      "emergenze_verificate": false,
+      "note": "Dati secondari: conferma telefonica consigliata.",
+      "data_verifica": "2026-09-13",
+      "esistenza_verificata": true,
+      "stato_verifica": "orari_secondari_da_confermare",
+      "latitudine": 45.9498511,
+      "longitudine": 13.6310312
+    },
+    {
+      "id": "GO-VET-005",
+      "provincia": "GO",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Associato Coz Daniele e Legisa Nadia",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via G. B. Garzarolli, 148",
+      "cap": "34170",
+      "comune": "Gorizia",
+      "telefono": "0481 524297",
+      "telefono_emergenze": "0481 524297",
+      "email": "",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "16:30",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "11:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "10:00",
+            "chiude": "12:30"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia; animali esotici",
+      "servizi": "Laboratorio; chirurgia; diagnostica; medicina generale",
+      "gestione_emergenze": "reperibilita_telefonica",
+      "orari_emergenze": "Reperibilità dichiarata dalla directory; chiamare prima di recarsi in sede",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "fonte_principale": "Directory/anagrafe di settore",
+      "fonte_orari": "https://www.caniincasa.it/veterinari/studio-associato-dr-coz-daniele-dr-legisa-nadia-ambulatorio-veterinario/",
+      "fonte_emergenze": "https://www.caniincasa.it/veterinari/studio-associato-dr-coz-daniele-dr-legisa-nadia-ambulatorio-veterinario/",
+      "orari_verificati": false,
+      "emergenze_verificate": false,
+      "note": "Dati secondari: conferma telefonica consigliata.",
+      "data_verifica": "2026-09-13",
+      "esistenza_verificata": true,
+      "stato_verifica": "orari_secondari_da_confermare"
+    },
+    {
+      "id": "GO-VET-006",
+      "provincia": "GO",
+      "temporaneamente_chiuso": false,
+      "nome": "Ambulatorio Veterinario San Rocco - Dott. Marco Goruppi",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via Lantieri, 27",
+      "cap": "34170",
+      "comune": "Gorizia",
+      "telefono": "0481 537268",
+      "telefono_emergenze": "330 240743",
+      "email": "",
+      "sito_ufficiale": "https://ambulatorioveterinariosanroccogoruppidrmarco-veterinarian.business.site/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "10:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "10:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "10:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "10:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "10:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "10:00",
+            "chiude": "13:00"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Laboratorio; chirurgia; medicina generale e specialistica",
+      "gestione_emergenze": "reperibilita_telefonica",
+      "orari_emergenze": "Reperibilità dichiarata dalla directory; chiamare prima di recarsi in sede",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "fonte_principale": "Profilo ufficiale della struttura",
+      "fonte_orari": "https://ambulatorioveterinariosanroccogoruppidrmarco-veterinarian.business.site/",
+      "fonte_emergenze": "https://www.caniincasa.it/veterinari/ambulatorio-veterinario-san-rocco-dott-marco-goruppi/",
+      "orari_verificati": true,
+      "emergenze_verificate": false,
+      "note": "Orari confermati sul profilo ufficiale della struttura; fuori orario solo previo contatto/appuntamento.",
+      "data_verifica": "2026-09-13",
+      "esistenza_verificata": true,
+      "stato_verifica": "orari_confermati_emergenze_non_dichiarate",
+      "latitudine": 45.939675,
+      "longitudine": 13.6274764
+    },
+    {
+      "id": "GO-VET-007",
+      "provincia": "GO",
+      "temporaneamente_chiuso": false,
+      "nome": "Ambulatorio Veterinario Goriziano - Dott. Giovanni Tel",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via Giuseppe Tominz, 26",
+      "cap": "34170",
+      "comune": "Gorizia",
+      "telefono": "0481 531701",
+      "telefono_emergenze": "335 6609204",
+      "email": "",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "14:00",
+            "chiude": "16:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "14:00",
+            "chiude": "16:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "14:00",
+            "chiude": "16:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "14:00",
+            "chiude": "16:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "14:00",
+            "chiude": "16:30"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Chirurgia generale; medicina generale",
+      "gestione_emergenze": "reperibilita_telefonica",
+      "orari_emergenze": "Reperibilità dichiarata dalla directory; chiamare prima di recarsi in sede",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "fonte_principale": "Directory/anagrafe di settore",
+      "fonte_orari": "https://www.caniincasa.it/veterinari/ambulatorio-veterinario-goriziano-dr-tel-giovanni/",
+      "fonte_emergenze": "https://www.caniincasa.it/veterinari/ambulatorio-veterinario-goriziano-dr-tel-giovanni/",
+      "orari_verificati": false,
+      "emergenze_verificate": false,
+      "note": "Dati secondari: conferma telefonica consigliata.",
+      "data_verifica": "2026-09-13",
+      "esistenza_verificata": true,
+      "stato_verifica": "orari_secondari_da_confermare",
+      "latitudine": 45.939153,
+      "longitudine": 13.6189357
+    },
+    {
+      "id": "GO-VET-008",
+      "provincia": "GO",
+      "temporaneamente_chiuso": false,
+      "nome": "Ambulatorio Veterinario Boscato",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via Italia, 43",
+      "cap": "34071",
+      "comune": "Cormons",
+      "telefono": "0481 61752",
+      "telefono_emergenze": "338 8892906",
+      "email": "",
+      "sito_ufficiale": "https://www.ambulatorioveterinarioboscato.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [],
+        "mercoledi": [
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [],
+        "venerdi": [
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "specie": "Cani e gatti",
+      "servizi": "Medicina generale; odontostomatologia; chirurgia; dermatologia",
+      "gestione_emergenze": "urgenze_su_chiamata_da_confermare",
+      "orari_emergenze": "Numero per urgenze disponibile; modalità e fasce da confermare",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": "https://www.oraridiapertura24.it/filiale/Cormons-Ambulatorio%20Veterinario%20Dr.%20Umberto%20Boscato-602422O.html",
+      "fonte_emergenze": "https://www.ambulatorioveterinarioboscato.it/",
+      "orari_verificati": false,
+      "emergenze_verificate": false,
+      "note": "Il sito ufficiale conferma attività e ricevimento su appuntamento; le fasce settimanali provengono da directory e restano da confermare telefonicamente.",
+      "data_verifica": "2026-09-13",
+      "esistenza_verificata": true,
+      "stato_verifica": "orari_secondari_da_confermare",
+      "latitudine": 45.9764502,
+      "longitudine": 13.4491047
+    },
+    {
+      "id": "GO-VET-009",
+      "provincia": "GO",
+      "temporaneamente_chiuso": false,
+      "nome": "Ambulatorio Veterinario Isontino",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via Giuseppe Bugatto, 2/2",
+      "cap": "34077",
+      "comune": "Ronchi dei Legionari",
+      "telefono": "348 8422209",
+      "telefono_emergenze": "",
+      "email": "veterinarioisontino@gmail.com",
+      "sito_ufficiale": "https://www.gruppoanimalia.it/cliniche/ambulatorio-veterinario-isontino/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:15"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "18:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:15"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "18:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:15"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "18:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:15"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "18:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:15"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "18:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina generale; diagnostica; chirurgia; day hospital",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "fonte_principale": "Gruppo Animalia - pagina ufficiale",
+      "fonte_orari": "https://www.gruppoanimalia.it/cliniche/ambulatorio-veterinario-isontino/",
+      "fonte_emergenze": "",
+      "orari_verificati": true,
+      "emergenze_verificate": false,
+      "note": "Denominazione e orari aggiornati dalla pagina ufficiale del Gruppo Animalia; direttrice sanitaria Dott.ssa Luisa Borgia.",
+      "data_verifica": "2026-09-13",
+      "esistenza_verificata": true,
+      "stato_verifica": "orari_confermati_emergenze_non_dichiarate",
+      "latitudine": 45.821579,
+      "longitudine": 13.4721111
+    },
+    {
+      "id": "GO-VET-011",
+      "provincia": "GO",
+      "temporaneamente_chiuso": false,
+      "nome": "Ambulatorio Veterinario Rusin",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via A. Diaz, 37",
+      "cap": "34070",
+      "comune": "Villesse",
+      "telefono": "338 3124307",
+      "telefono_emergenze": "",
+      "email": "",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "16:30",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [],
+        "giovedi": [
+          {
+            "apre": "16:30",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina generale",
+      "gestione_emergenze": "nessuna_dichiarata",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "fonte_principale": "Directory/anagrafe di settore",
+      "fonte_orari": "https://www.caniincasa.it/veterinari/ambulatorio-veterinario-rusin/",
+      "fonte_emergenze": "https://www.caniincasa.it/veterinari/ambulatorio-veterinario-rusin/",
+      "orari_verificati": false,
+      "emergenze_verificate": false,
+      "note": "Dati secondari: conferma telefonica consigliata.",
+      "data_verifica": "2026-09-13",
+      "esistenza_verificata": true,
+      "stato_verifica": "orari_secondari_da_confermare"
+    },
+    {
+      "id": "GO-VET-012",
+      "provincia": "GO",
+      "temporaneamente_chiuso": false,
+      "nome": "Il Borgo - Indagini Diagnostiche Veterinarie",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Borgo Santa Maria Maddalena, 32",
+      "cap": "34072",
+      "comune": "Gradisca d'Isonzo",
+      "telefono": "347 9781575",
+      "telefono_emergenze": "",
+      "email": "",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": true,
+      "specie": "Cani e gatti",
+      "servizi": "Laboratorio; diagnostica per immagini; medicina specialistica",
+      "gestione_emergenze": "nessuna_dichiarata",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "fonte_principale": "Directory/anagrafe di settore",
+      "fonte_orari": "https://www.caniincasa.it/veterinari/il-borgo-indagini-diagnostiche-veterinarie/",
+      "fonte_emergenze": "https://www.caniincasa.it/veterinari/il-borgo-indagini-diagnostiche-veterinarie/",
+      "orari_verificati": false,
+      "emergenze_verificate": false,
+      "note": "La fonte corrente indica ricevimento solo su appuntamento e non pubblica fasce fisse.",
+      "data_verifica": "2026-09-13",
+      "esistenza_verificata": true,
+      "stato_verifica": "orari_non_pubblicati",
+      "latitudine": 45.8890833,
+      "longitudine": 13.4877721
+    },
+    {
+      "id": "GO-VET-013",
+      "provincia": "GO",
+      "temporaneamente_chiuso": false,
+      "nome": "Ambulatorio Veterinario Roppa - Dott. Paolo",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Viale Trieste, 131",
+      "cap": "34072",
+      "comune": "Gradisca d'Isonzo",
+      "telefono": "0481 93683",
+      "telefono_emergenze": "",
+      "email": "",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "specie": "Da verificare",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "fonte_principale": "Directory/anagrafe di settore",
+      "fonte_orari": "https://www.impresaitalia.info/852/1/veterinari/visco.aspx",
+      "fonte_emergenze": "https://www.impresaitalia.info/852/1/veterinari/visco.aspx",
+      "orari_verificati": false,
+      "emergenze_verificate": false,
+      "note": "Dati secondari: conferma telefonica consigliata.",
+      "data_verifica": "2026-09-13",
+      "esistenza_verificata": false,
+      "stato_verifica": "orari_non_pubblicati",
+      "latitudine": 45.8855042,
+      "longitudine": 13.4955182
+    },
+    {
+      "id": "GO-VET-014",
+      "provincia": "GO",
+      "temporaneamente_chiuso": false,
+      "nome": "Ambulatorio Veterinario Puntin - Dott. Fabio",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via Guido Brunner, 77/B",
+      "cap": "34075",
+      "comune": "San Canzian d'Isonzo",
+      "telefono": "0481 726690",
+      "telefono_emergenze": "",
+      "email": "puntovet@ambulatoriopuntin.it",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "nessuna_dichiarata",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "fonte_principale": "Directory/anagrafe di settore",
+      "fonte_orari": "https://www.caniincasa.it/veterinari/ambulatorio-veterinario-puntin-dott-fabio/",
+      "fonte_emergenze": "https://www.caniincasa.it/veterinari/ambulatorio-veterinario-puntin-dott-fabio/",
+      "orari_verificati": false,
+      "emergenze_verificate": false,
+      "note": "Orari da directory corrente; conflitto sulla chiusura del sabato (12:00 oppure 13:00), quindi non certificati.",
+      "data_verifica": "2026-09-13",
+      "esistenza_verificata": true,
+      "stato_verifica": "orari_secondari_da_confermare",
+      "latitudine": 45.804545,
+      "longitudine": 13.4441571
+    },
+    {
+      "id": "GO-VET-015",
+      "provincia": "GO",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Veterinario Dott.ssa Laura Valenti",
+      "tipo_struttura": "Studio veterinario",
+      "indirizzo": "Viale Argine dei Moreri, 34",
+      "cap": "34073",
+      "comune": "Grado",
+      "telefono": "0431 80556",
+      "telefono_emergenze": "340 5933680",
+      "email": "",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina generale",
+      "gestione_emergenze": "urgenze_su_chiamata_da_confermare",
+      "orari_emergenze": "Numero per urgenze disponibile; modalità e fasce da confermare",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "fonte_principale": "Directory/anagrafe di settore",
+      "fonte_orari": "https://www.turismofvg.it/ProxyVFS.axd/null/r19874/Vademecum-Grado-pdf?ext=.pdf",
+      "fonte_emergenze": "https://www.turismofvg.it/ProxyVFS.axd/null/r19874/Vademecum-Grado-pdf?ext=.pdf",
+      "orari_verificati": false,
+      "emergenze_verificate": false,
+      "note": "Attività e contatti riscontrati in directory corrente; gli orari reperiti in una guida turistica datata presentano un refuso e non sono importati.",
+      "data_verifica": "2026-09-13",
+      "latitudine": 45.6800375,
+      "longitudine": 13.4009,
+      "esistenza_verificata": true,
+      "stato_verifica": "orari_non_pubblicati"
+    },
+    {
+      "id": "GO-VET-016",
+      "provincia": "GO",
+      "temporaneamente_chiuso": false,
+      "nome": "Sanità Pubblica Veterinaria ASUGI - sede Gorizia",
+      "tipo_struttura": "Servizio veterinario pubblico",
+      "indirizzo": "Via Vittorio Veneto, 169",
+      "cap": "34170",
+      "comune": "Gorizia",
+      "telefono": "0481 592847",
+      "telefono_emergenze": "",
+      "email": "",
+      "sito_ufficiale": "https://asugi.sanita.fvg.it/it/strutture/direz_sanitaria/dip_prevenzione/sc_san_anim/sedego.html",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "14:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "14:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "14:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "14:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "14:00"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "specie": "Animali d’affezione; sanità animale",
+      "servizi": "Sanità pubblica veterinaria; anagrafe animali; sportello BDN",
+      "gestione_emergenze": "sanita_pubblica_veterinaria",
+      "orari_emergenze": "Non è un pronto soccorso clinico per animali da compagnia",
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "fonte_principale": "Sito istituzionale ASUGI",
+      "fonte_orari": "https://asugi.sanita.fvg.it/it/strutture/direz_sanitaria/dip_prevenzione/sc_san_anim/sedego.html",
+      "fonte_emergenze": "",
+      "orari_verificati": true,
+      "emergenze_verificate": true,
+      "note": "Prestazioni istituzionali, preferibilmente su appuntamento.",
+      "data_verifica": "2026-09-13",
+      "esistenza_verificata": true,
+      "stato_verifica": "completo",
+      "latitudine": 45.9343742,
+      "longitudine": 13.6329059
+    },
+    {
+      "id": "GO-VET-017",
+      "provincia": "GO",
+      "temporaneamente_chiuso": false,
+      "nome": "Ambulatorio Veterinario Dott.ssa Alberta Bigot",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via Udine, 64",
+      "cap": "34071",
+      "comune": "Cormons",
+      "telefono": "0481 630677",
+      "telefono_emergenze": "",
+      "email": "",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "fonte_principale": "Directory professionale corrente",
+      "fonte_orari": "",
+      "fonte_emergenze": "",
+      "orari_verificati": false,
+      "emergenze_verificate": false,
+      "note": "Struttura aggiunta al censimento; attività e contatto riscontrati, ma nessun orario pubblico affidabile.",
+      "data_verifica": "2026-09-13",
+      "esistenza_verificata": true,
+      "stato_verifica": "orari_non_pubblicati",
+      "latitudine": 45.9595587,
+      "longitudine": 13.4680208
+    }
+  ]
+}

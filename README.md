@@ -3268,6 +3268,220 @@ comune con i 3 comuni presenti — Trieste 26, Muggia 1, Duino-Aurisina
 (placeholder "in arrivo"), menù ad amburger con "Sanità" al posto di
 "Farmacie". **Non ancora confermato dall'utente in produzione.**
 
+### Estensione a Gorizia (13/09/2026)
+
+L'utente ha fornito un JSON Veterinari per la provincia di Gorizia (16
+voci), chiedendo di "compilare la pagina dedicata". Poiché
+`VeterinariPage.tsx`/`VeterinariMap.tsx` erano già scritti in modo
+generico per provincia (nessun riferimento hardcoded a Trieste),
+l'estensione ha richiesto solo modifiche a `lib/veterinari.ts`: nuovo
+import, una riga nell'oggetto `VETERINARI_PER_PROVINCIA`, "gorizia"
+aggiunta a `PROVINCE_VETERINARI_ATTIVE`. Nessuna modifica ai componenti.
+
+Verificato con script Python (stessa disciplina delle sessioni
+Supermercati) prima di collegare il file, scoprendo 2 fragilità di
+schema non presenti nel file Trieste:
+
+- **`gestione_emergenze` con un vocabolario diverso**: il file Gorizia
+  dichiara un proprio `emergency_values` con solo 6 valori (contro i 9
+  di Trieste), incluso `urgenze_su_chiamata_da_confermare` — assente dal
+  tipo `GestioneEmergenza` esistente. Usato da 2 voci (Ambulatorio
+  Veterinario Boscato, Studio Veterinario Valenti). Prima del fix, la
+  vecchia riga `gestioneEmergenze: r.gestione_emergenze as
+  GestioneEmergenza` avrebbe prodotto un valore fuori dall'unione a
+  runtime, e `LIVELLO_EMERGENZA[valore]` sarebbe risultato `undefined`
+  — crash alla prima lettura di `.rango`/`.classeBadge` in
+  `VeterinariPage.tsx`. **Fix**: nuova funzione
+  `normalizzaGestioneEmergenza()` con una mappa esplicita
+  stringa-grezza → valore canonico, che mappa il sinonimo di Gorizia su
+  `pronto_intervento_da_confermare` (stesso significato: urgenza gestita
+  solo su chiamata, da confermare telefonicamente) e fa ricadere
+  qualunque valore non riconosciuto su `non_dichiarata` invece di
+  propagarlo. Verificato visivamente: le 2 voci mostrano il badge
+  "Pronto intervento (da confermare)" nel riquadro Emergenze, ordinate
+  correttamente per rango.
+- **2 voci senza le chiavi `latitudine`/`longitudine`** (Studio Associato
+  Coz Daniele e Legisa Nadia, Ambulatorio Veterinario Rusin) — non
+  valorizzate a `null`, proprio assenti dal JSON. `VeterinariMap.tsx`
+  filtra i marker con `v.lat !== null && v.lon !== null`: senza
+  correzione, `undefined !== null` è `true`, quindi queste 2 voci
+  sarebbero passate il filtro e Leaflet avrebbe ricevuto `center:
+  [undefined, undefined]` — stessa classe di crash già vista con
+  `orari` nulli su Supermercati Udine (11/09/2026), stavolta su un
+  campo diverso. **Fix**: `normalizza()` ora usa `r.latitudine ?? null`/
+  `r.longitudine ?? null` invece di un passthrough diretto. Stessa
+  coercizione applicata per coerenza anche a
+  `emergenze_su_appuntamento`/`emergenze_solo_clienti` (2 voci diverse
+  le omettono, Dott.ssa Ilaria Argentini escluse — questi 2 campi non
+  sono ancora letti da alcun componente UI, quindi non causavano un
+  crash, ma la correzione evita che lo facciano in futuro).
+
+`npx tsc --noEmit` pulito dopo il fix. Verifica visiva con `next dev` +
+Chromium headless: `/veterinari` tab "GORIZIA (16)" senza errori in
+console, riquadro Emergenze con le 7 voci attese (1 pronto soccorso
+24h, 4 reperibilità telefonica, 2 pronto intervento da confermare),
+Ambulatorio Veterinario Boscato (uno dei 5 casi con `orari` interamente
+`null`) mostra "Oggi: Orario non pubblicato · su appuntamento" senza
+badge di stato apertura, le 2 voci senza coordinate compaiono
+nell'elenco testuale ma non generano errori di mappa. **Non ancora
+confermato dall'utente in produzione.**
+
+### Correzione dato Gorizia (13/09/2026, stesso giorno)
+
+L'utente ha fornito un secondo file Gorizia ("il database Gorizia
+aggiornato") poche ore dopo il primo. Ancora 16 voci, ma non le stesse:
+stessa disciplina di verifica delle altre sessioni — confronto
+record-per-record per id, poi controllo strutturale completo — prima
+di sostituire `lib/data/veterinari-gorizia.json`.
+
+- **1 voce rimossa**: GO-VET-010 (Dott.ssa Barbara Borsetta) — motivata
+  in un nuovo blocco `audit.record_esclusi` (`schema_version` alzato a
+  "1.1", stesso pattern già visto sui file Supermercati Udine): "La
+  professionista risulta oggi operativa in Via Cavour 94, Mortegliano
+  (UD), fuori provincia." Non un errore di dato, un cambio di sede reale
+  fuori dal perimetro geografico di questa pagina.
+- **1 voce aggiunta**: GO-VET-017, Ambulatorio Veterinario Dott.ssa
+  Alberta Bigot (Cormons) — orario non pubblicato (`orari` con tutti i
+  giorni a `null`, già gestito dal codice esistente).
+- **1 voce con identità corretta**: GO-VET-009, da "Studio Veterinario
+  Del Medico, Borgia e Nano" a "Ambulatorio Veterinario Isontino" —
+  stesso indirizzo (Via Bugatto, solo scritto per esteso), fonte ora la
+  pagina ufficiale del Gruppo Animalia invece di una directory di
+  settore; telefono, orari e gestione emergenze aggiornati di
+  conseguenza (`gestione_emergenze` passa da "reperibilità telefonica"
+  a "non dichiarata" sulla fonte più autorevole).
+- **3 voci con orari/contatti meglio verificati**: GO-VET-006 (sito
+  ufficiale aggiunto, `orari_verificati` da `false` a `true`),
+  GO-VET-008 Boscato (orari da tutti `null` a parzialmente compilati),
+  GO-VET-014 Puntin (telefono aggiunto, orari da tutti `null` a
+  compilati, nota che segnala un conflitto sull'orario di chiusura del
+  sabato tra due fonti, non risolto e dichiarato esplicitamente).
+- Le altre 12 voci hanno ricevuto solo i 2 nuovi campi di metadato
+  `esistenza_verificata`/`stato_verifica` (non letti dal codice, come
+  già i campi analoghi introdotti sui file Supermercati).
+
+**Nessuna nuova fragilità di schema**: gli stessi 2 casi di
+lat/lon assenti (GO-VET-005, GO-VET-011) e lo stesso vocabolario
+`gestione_emergenze` (incluso il sinonimo `urgenze_su_chiamata_da_confermare`)
+restano identici alla versione precedente — già coperti dal fix della
+sessione precedente, verificato con lo stesso script Python prima di
+toccare il file. Nessuna modifica a `lib/veterinari.ts` oltre
+all'aggiornamento del commento di documentazione in testa con lo
+storico delle 2 versioni del file Gorizia.
+
+`npx tsc --noEmit` pulito. Verifica visiva con `next dev` + Chromium
+headless: `/veterinari` tab "GORIZIA (16)" senza errori in console,
+"Ambulatorio Veterinario Isontino" e "Alberta Bigot" presenti in
+elenco, "Barbara Borsetta" non più presente. **Non ancora confermato
+dall'utente in produzione.**
+
+### Estensione a Pordenone (13/09/2026, stesso giorno)
+
+L'utente ha fornito un JSON Veterinari per la provincia di Pordenone
+("Aggiungi i veterinari della provincia di Pordenone, risolveremo i
+vari conflitti più avanti") — terza provincia dopo Trieste e Gorizia,
+33 voci. Stesso pattern di estensione già usato per Gorizia: nuovo
+`lib/data/veterinari-pordenone.json`, un nuovo import in
+`lib/veterinari.ts`, una riga in `VETERINARI_PER_PROVINCIA` e
+l'aggiunta di `"pordenone"` a `PROVINCE_VETERINARI_ATTIVE` — nessuna
+modifica a `VeterinariPage.tsx`/`VeterinariMap.tsx`, già scritti in
+modo generico rispetto alla provincia.
+
+**Verifica prima di scrivere codice** (stessa disciplina Python già
+seguita per Gorizia): 33 id univoci, nessun duplicato; 2 voci
+(PN-VET-014, PN-VET-027) omettono `latitudine`/`longitudine` come già
+visto a Gorizia — già gestito dalla coercizione `?? null` esistente in
+`normalizza()`, nessuna modifica necessaria; 2 voci escluse in un
+blocco `audit.record_esclusi` (stesso formato Udine/Gorizia): "ASFO -
+Ambulatorio territoriale di Spilimbergo" (chiuso dal 01/01/2026,
+prestazioni trasferite ad Aviano/Azzano Decimo/San Quirino) e
+"Veterinary Treatment Facility - Base USAF Aviano" (struttura militare
+ad accesso riservato, non un servizio pubblico) — entrambe
+correttamente assenti dal file consegnato dall'utente, verificato con
+uno script di confronto invece di limitarsi a fidarsi del blocco audit.
+
+**Il vero punto di attenzione — vocabolario `gestione_emergenze`**: il
+file Pordenone non dichiara affatto un proprio `emergency_values` (a
+differenza di Trieste e Gorizia) e introduce 4 valori mai visti prima:
+`urgenze_su_chiamata` (3 voci) e `reperibilita_fuori_orario` (3 voci),
+tutte con un `orari_emergenze` che descrive una reperibilità telefonica
+dedicata reale — mappate su `reperibilita_telefonica`;
+`reperibilita_da_confermare` e `pronto_soccorso_h24_da_confermare` (1
+voce ciascuno) mappate su `pronto_intervento_da_confermare`. Quest'ultimo
+caso (PN-VET-025, Ambulatorio Veterinario Cortina Sonia) meritava un
+controllo puntuale prima di decidere: nonostante il nome del valore
+suggerisca un pronto soccorso H24, il record ha `emergenze_verificate:
+false`, nessun `orari_emergenze` valorizzato e una nota che raccomanda
+conferma telefonica — non fa quindi un'affermazione realmente più forte
+del generico "da confermare", per cui non è stato introdotto un decimo
+valore canonico solo per questo caso. Stessa scelta di fondo già presa
+per il sinonimo di Gorizia: mappatura su un valore esistente in
+`MAPPA_GESTIONE_EMERGENZA` invece di ampliare l'enum, coerente con la
+richiesta esplicita dell'utente di rimandare la riconciliazione
+completa del vocabolario ("risolveremo i vari conflitti più avanti").
+Nessun record produce un valore non mappato: verificato con uno script
+Python che confronta l'insieme dei valori usati nel file con le chiavi
+di `MAPPA_GESTIONE_EMERGENZA` prima di consegnare, così da escludere in
+anticipo un crash su `LIVELLO_EMERGENZA[valore].rango`.
+
+Un campo nuovo, `apertura_24h`, compare nel file ma non viene letto: è
+booleano `true` solo per PN-VET-001 (Clinica Veterinaria Serenissima),
+che ha già `gestione_emergenze: "pronto_soccorso_24h"` — puro doppione
+dell'informazione già rappresentata dall'enum, non introduce nulla di
+nuovo. Altri campi di metadato mai visti prima
+(`fonte_orari_controllo`, `livello_verifica_orari`, `stato_verifica`,
+`esistenza_verificata`, `data_verifica`, `fonte_principale`,
+`fonte_emergenze`, `fonte_orari`) non sono letti da alcun componente UI,
+stessa scelta già fatta per campi analoghi introdotti sui file Gorizia.
+
+`npx tsc --noEmit` e `node --check scripts/ingest-light.mjs` puliti.
+Verifica visiva con `next dev` + Chromium headless: `/veterinari` tab
+"PORDENONE (33)" senza errori in console né in pagina, riquadro
+"Emergenze — Pordenone" con le etichette corrette per tutti i valori
+(incluso "Pronto soccorso 24h" per la Clinica Serenissima e
+"Reperibilità telefonica"/"Pronto intervento (da confermare)" per i 4
+valori nuovi), "ASFO" e "Veterinary Treatment Facility" assenti
+dall'elenco, le 2 voci senza coordinate non mandano in crash la mappa.
+**Non ancora confermato dall'utente in produzione.**
+
+### Correzione dato Pordenone, stesso giorno (13/09/2026)
+
+L'utente ha fornito un secondo file Pordenone ("la provincia di
+Pordenone completa e verificata") poche ore dopo il primo. Stessa
+disciplina di verifica delle altre sessioni — confronto record-per-record
+per id, poi controllo strutturale completo — prima di sostituire
+`lib/data/veterinari-pordenone.json`: da 33 a 30 voci, tutte già
+presenti (nessun id nuovo).
+
+- **3 voci rimosse**, tutte motivate in `audit.record_esclusi`:
+  Ambulatorio Veterinario Scomparcini Dott. Paolo (chiuso per
+  pensionamento, dichiarato da più directory concordi), Ambulatorio
+  Veterinario Califano Caterina (attività non confermata: una fonte la
+  segnala chiusa, altre pubblicano orari fra loro incompatibili,
+  l'iscrizione FNOVI della professionista non basta da sola a
+  confermare che la sede sia ancora operativa) e Ambulatorio
+  Veterinario Locatello Dott. Claudio (stesso problema: fonti in
+  conflitto sugli orari, nessuna fonte ufficiale risolutiva).
+- **2 voci con fonte orari migliorata** (Puiatti, Ros): solo i campi di
+  metadato di provenienza (`fonte_orari`, `fonte_orari_controllo`,
+  `note`, `stato_verifica`) aggiornati da "orari conflittuali" a "due
+  fonti secondarie concordanti" — nessun orario/telefono/gestione
+  emergenze effettivamente cambiato.
+
+**Nessuna nuova fragilità di schema**: stesso key-union, stesso insieme
+di valori `gestione_emergenze` (tutti già coperti da
+`MAPPA_GESTIONE_EMERGENZA`), le stesse 2 voci senza lat/lon (PN-VET-014,
+PN-VET-027) — nessuna modifica a `lib/veterinari.ts` oltre
+all'aggiornamento del commento di documentazione in testa con lo
+storico delle 2 versioni del file Pordenone.
+
+`npx tsc --noEmit` e `node --check scripts/ingest-light.mjs` puliti.
+Verifica visiva con `next dev` + Chromium headless: tab "PORDENONE
+(30)" senza errori in console né in pagina, "Scomparcini"/"Califano"/
+"Locatello" non più presenti in elenco, "Clinica Veterinaria
+Serenissima" ancora presente con l'etichetta emergenze corretta.
+**Non ancora confermato dall'utente in produzione.**
+
 ## Riorganizzazione del menù: Ambiente, Turismo, FVG in immagini, Sport nelle Notizie (11/09/2026)
 
 L'utente ha chiesto una seconda riorganizzazione del menù ad amburger
