@@ -3616,6 +3616,61 @@ il primo deploy: che `ingestProntoSoccorso()` giri senza errori nel log
 GitHub Actions e che la pagina mostri dati coerenti con quanto visibile
 sul sito ufficiale. **Non ancora confermato dall'utente in produzione.**
 
+## Viabilità — Confini (16/09/2026)
+
+L'utente ha caricato un secondo pacchetto di partenza generato con
+ChatGPT (`FVG_Monitor_Confini_v3.zip`), per `Viabilità → Confini`:
+schema SQLite in 3 stadi (fonti grezze → normalizzatore eventi →
+aggregatore per valico), CSV anagrafico di 15 valichi/direttrici (11
+Italia-Slovenia, 4 Italia-Austria) e tre script Python
+(`update_border_sources.py`, `normalize_traffic.py`,
+`aggregate_crossings.py`).
+
+**Verificato prima di implementare — e ridimensionato di conseguenza**:
+a differenza di Neve & Impianti, qui NESSUNA delle fonti quantitative
+indicate nel pacchetto si è rivelata utilizzabile da questa sessione:
+Promet.si (Slovenia, la fonte migliore secondo il pacchetto stesso) è
+una SPA JavaScript lato pubblico e il suo endpoint B2B richiede un
+token che non è stato fornito (il pacchetto lo dichiara esso stesso);
+ASFINAG (Austria) ha risposto 403 a questa sessione; ANAS (Italia,
+strade statali) ha risposto 429/robots bloccato. Nessun endpoint CCISS
+concreto era indicato nel pacchetto. Gli script Python forniti NON sono
+stati eseguiti né portati in JavaScript — dipendono tutti da fonti non
+verificabili da qui, stessa disciplina già applicata al pacchetto Neve
+& Impianti.
+
+**Un'eccezione reale**: per i 2 valichi autostradali (Tarvisio
+Autostrada/A23 verso l'Austria, Sant'Andrea/Vrtojba sulla A34 verso la
+Slovenia) il sito ingerisce già un feed reale (InfoViaggiando/
+Autostrade Alto Adriatico, `ingestViabilita()`, esistente da prima di
+questa sessione) — questi 2 valichi mostrano quindi eventi reali,
+filtrati per codice autostrada, riusando l'ingestione esistente senza
+aggiungerne una nuova.
+
+**Scope di questa consegna**: solo l'anagrafica dei 15 valichi (comune,
+strada, tipologia, note) più gli eventi reali già disponibili per i 2
+valichi autostradali. Per gli altri 13, un'indicazione onesta che
+nessuna fonte live è verificabile da qui, invece di un dato inventato
+o silenziosamente assente. Nessuna tabella traffico/contatori/webcam/
+stato controlli di frontiera — il pacchetto stesso avvisa di tenere lo
+stato controlli separato dal traffico e di non dedurlo da una coda; qui
+non c'è nemmeno una coda misurata per la maggior parte dei valichi,
+quindi a maggior ragione nessuna implementazione.
+
+**Implementazione**: `lib/confini.ts` (anagrafica statica dei 15
+valichi, con il commento esteso che spiega la verifica fatta),
+`components/ConfiniSection.tsx` (griglia di card, legge lo snapshot
+`viabilita:autostrade` già esistente e filtra per i 2 codici
+autostrada), sezione "Confini" aggiunta in fondo a `ViabilitaPage.tsx`.
+Nessuna modifica a `scripts/ingest-light.mjs` — nessuna nuova
+ingestione, nessun nuovo rischio di rete introdotto.
+
+`npx tsc --noEmit` pulito. Verifica visiva con `next dev` + Chromium
+headless: `/viabilita` risponde 200, tutti e 15 i valichi compaiono
+(incl. i nomi ai due estremi della lista, Fernetti e Monte Croce
+Carnico), nessun errore in pagina/console. **Non ancora confermato
+dall'utente in produzione.**
+
 ## Turismo — Neve & Impianti (16/09/2026)
 
 L'utente ha fornito un pacchetto di partenza (`FVG_Monitor_Neve_Impianti_v2.zip`)

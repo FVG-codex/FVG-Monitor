@@ -22,6 +22,13 @@ export type VoceChangelog = {
 export const CHANGELOG: VoceChangelog[] = [
   {
     data: "16/09/2026",
+    titolo: "Viabilità: nuova sezione Confini",
+    dettagli: [
+      "Aggiunta una sezione Confini alla pagina Viabilità: i 15 valichi/direttrici verso Slovenia e Austria con comune, strada e tipologia; per i 2 valichi autostradali (A23 Tarvisio, A34 Sant'Andrea/Vrtojba) anche gli eventi di traffico in tempo reale già disponibili sul sito.",
+    ],
+  },
+  {
+    data: "16/09/2026",
     titolo: "Turismo: nuova pagina Neve & Impianti",
     dettagli: [
       "Nuova voce Turismo → Neve & Impianti: stato degli impianti, neve in pista, piste e tappeti aperti, per tutti e 7 i poli sciistici della regione (Tarvisio, Sella Nevea, Zoncolan, Piancavallo, Forni di Sopra, Sappada/Forni Avoltri, Sauris), con link a pagina ufficiale e webcam per ciascuno.",

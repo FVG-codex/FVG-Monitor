@@ -7,6 +7,7 @@ import { Panel } from "@/components/Panel";
 import { TopHeader } from "@/components/TopHeader";
 import { Footer } from "@/components/Footer";
 import { ViabilitaPanel } from "@/components/ViabilitaPanel";
+import { ConfiniSection } from "@/components/ConfiniSection";
 import { WebcamCard, type Webcam } from "@/components/WebcamCard";
 
 type WebcamData = { webcam: Webcam[]; aggiornato_al: string };
@@ -88,6 +89,15 @@ export function ViabilitaPage() {
             ))}
           </div>
         )}
+
+        <h2 className="font-cond font-bold text-xl uppercase tracking-wide mb-1 mt-8">Confini</h2>
+        <p className="text-ink-faint text-xs font-mono mb-4">
+          15 valichi/direttrici verso Slovenia e Austria — dati anagrafici (comune, strada, tipologia). Eventi di
+          traffico in tempo reale disponibili solo per i 2 valichi autostradali (A23 Tarvisio, A34 Sant&apos;Andrea/
+          Vrtojba): per gli altri nessuna fonte pubblica verificabile è stata trovata finora (Promet.si richiede un
+          token B2B, ASFINAG e ANAS non raggiungibili da questa sessione — vedi lib/confini.ts).
+        </p>
+        <ConfiniSection />
       </main>
 
       <Footer />
