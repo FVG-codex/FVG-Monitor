@@ -3482,6 +3482,140 @@ Verifica visiva con `next dev` + Chromium headless: tab "PORDENONE
 Serenissima" ancora presente con l'etichetta emergenze corretta.
 **Non ancora confermato dall'utente in produzione.**
 
+### Estensione a Udine (15/09/2026) — rollout completo, tutte e 4 le province
+
+L'utente ha fornito il "database completo" dei veterinari per la
+provincia di Udine — quarta e ultima provincia, 40 voci. Con questa
+consegna `PROVINCE_VETERINARI_ATTIVE` include finalmente tutte e 4 le
+province FVG. Stesso pattern di estensione già usato per Gorizia e
+Pordenone: nuovo `lib/data/veterinari-udine.json`, import + riga in
+`VETERINARI_PER_PROVINCIA` + `"udine"` aggiunta a
+`PROVINCE_VETERINARI_ATTIVE` in `lib/veterinari.ts`.
+
+**3 nuovi valori `gestione_emergenze`**, tutti mappati su valori
+canonici esistenti in `MAPPA_GESTIONE_EMERGENZA`: "urgenze_durante_apertura"
+è lo stesso concetto già canonico "Urgenze in orario di apertura"
+(Trieste), solo un nome diverso nel file — sinonimo diretto.
+"emergenze_07_23" (Animal Care S.r.l., emergenze dichiarate 07:00-23:00,
+esplicitamente non H24) e "reperibilita_emergenze_h24" (AniCura Clinica
+Veterinaria Gaspardis, reperibilità telefonica H24 verificata ma senza
+presenza fisica continuativa del veterinario, a differenza di un vero
+pronto soccorso) sono entrambe reperibilità telefoniche reali e
+verificate, non un pronto soccorso fisico — mappate su "Reperibilità
+telefonica" invece di aggiungere due nuovi valori canonici per una
+differenza di grado (le ore esatte, incluso il caso H24) e non di
+natura del servizio: il dettaglio resta comunque leggibile nel testo
+libero mostrato sotto l'etichetta in pagina, quindi nessuna
+informazione va persa.
+
+**Scoperta più interessante di questa consegna — `audit.record_esclusi`
+qui non significa sempre "struttura rimossa"**: delle 5 voci in audit,
+3 sono esclusioni totali verificate assenti dall'elenco (Studio
+Veterinario Silvana Lazzarin; 4 Talpes - Gemona e Tolmezzo, un pet
+shop/toelettatura non una struttura sanitaria; Ca' Zampa Udine, chiusa
+definitivamente). Le altre 2 voci ("Rita Duratti" e "Peresson, Isler,
+Roppa, Crosere e Londero") sono invece **presenti** nell'elenco con
+scheda completa (rispettivamente 1 e 5 strutture, per un totale di 6
+voci) — l'audit in questi 2 casi documenta solo che la loro
+dichiarazione di reperibilità/pronto soccorso non è stata considerata
+abbastanza attendibile (fonti secondarie discordanti, nessuna conferma
+ufficiale), non che l'attività sia stata rimossa: tutte e 6 le schede
+hanno infatti `gestione_emergenze: "non_dichiarata"`, coerente con
+l'esclusione della sola dichiarazione, non della struttura. Scoperto
+confrontando ogni nome dell'audit contro l'intero elenco `records`
+prima di assumere un'esclusione totale come nelle province precedenti
+— nessuna modifica di codice necessaria, il campo `gestione_emergenze`
+del JSON è già la fonte di verità, ma vale la pena tenerne conto per i
+prossimi file.
+
+3 voci (i servizi istituzionali ASUFC di sanità animale — Udine,
+Palmanova, Gemona) hanno `orari` con ogni giorno a `null` — già
+gestito dal codice esistente. Nessuna voce priva di lat/lon in questo
+file, a differenza delle altre 3 province.
+
+`npx tsc --noEmit` e `node --check scripts/ingest-light.mjs` puliti.
+Verifica visiva con `next dev` + Chromium headless: tab "UDINE (40)"
+senza errori in console né in pagina, "Lazzarin"/"4 Talpes"/"Ca' Zampa"
+assenti dall'elenco, "Rita Duratti" presente (senza etichetta
+emergenza), "AniCura Clinica Veterinaria Gaspardis" presente nel
+riquadro Emergenze con l'etichetta "Reperibilità telefonica". **Non
+ancora confermato dall'utente in produzione.**
+
+## Sanità — Pronto Soccorso in tempo reale (16/09/2026)
+
+L'utente ha chiesto una nuova pagina Sanità → Pronto Soccorso con,
+per ogni sede (Cattinara, Burlo, Monfalcone, Gorizia, Udine, Palmanova,
+Latisana, Tolmezzo, San Daniele, Pordenone, San Vito, ecc.): pazienti
+in attesa, pazienti in trattamento, stato aggiornamento, indirizzo,
+telefono, mappa e navigazione, definendola "probabilmente una delle
+pagine con maggiore utilità reale del portale".
+
+**Fonte**: il sistema ufficiale regionale esiste (`servizionline.sanita.fvg.it/psonline/`)
+ma è una SPA JavaScript — l'HTML iniziale non contiene alcun dato,
+irraggiungibile via WebFetch o dal sandbox (`ERR_TUNNEL_CONNECTION_FAILED`,
+stesso blocco già visto per altre fonti live). Sbloccato dall'utente
+stesso, che ha catturato via DevTools → Rete del proprio browser la
+richiesta reale dietro la pagina: `GET https://servizionline.sanita.fvg.it/tempiAttesaService/tempiAttesaPs?datetime=<epoch_ms>`
+— pubblica, senza autenticazione, `datetime` è solo un cache-buster.
+Un secondo URL fornito dall'utente (`.../psonline/tempiAttesaStruttura/codice/tutti`)
+risponde solo `"OK"` via GET (verosimilmente POST-only) e non è stato
+usato: il primo endpoint contiene già tutto il necessario.
+
+**Struttura del payload**: gerarchia `aziende → prontoSoccorsi →
+dipartimenti`, appiattita in un unico array `dipartimenti` in
+ingestione (il raggruppamento per azienda sanitaria non è utile
+all'utente; la provincia — filtro già usato in tutto il sito — è
+derivata dal campo `comune` con una tabella statica di 13 comuni noti).
+17 sedi totali nella risposta reale. Ogni dipartimento ha `codiciColore`
+(Rosso/Arancione/Azzurro/Verde/Bianco, ciascuno con pazienti in
+attesa/in trattamento e tempo di attesa medio "HH:MM") — i colori
+mostrati in pagina sono gli `rgb` esatti restituiti dalla fonte, non
+un'approssimazione con i colori "allerta" già in uso altrove nel sito
+(che ne ha solo 3-4, non 5).
+
+**Telefono**: il campo `telefono` della fonte è sempre `null` (gap noto,
+non un errore) — richiesto esplicitamente dall'utente come informazione
+della pagina. Ricercati manualmente i numeri ufficiali (solo fonti
+`asugi`/`asufc`/`asfo`/`burlo.sanita.fvg.it`, mai directory non
+ufficiali), trovati 16 su 17; per l'unico mancante (punto di primo
+soccorso stagionale di Grado) la pagina mostra "Telefono non
+disponibile" invece di un numero indovinato o un campo vuoto senza
+spiegazione.
+
+**Mappa**: un solo colore marker fisso (nessun tentativo di
+sintetizzare "quanto è affollato" in un colore/livello — il dettaglio
+per codice triage resta nel popup, coerente col principio del progetto
+di non interpretare il dato oltre quanto dichiarato dalla fonte), raggio
+che varia leggermente col totale pazienti solo come indizio visivo.
+
+**Implementazione**: `lib/prontosoccorso.ts` (tipi, mappa
+comune→provincia, tabella statica telefoni, helper di formattazione),
+`ingestProntoSoccorso()` aggiunta a `scripts/ingest-light.mjs`
+(snapshot Supabase `pronto-soccorso`), `ProntoSoccorsoMap.tsx`,
+`ProntoSoccorsoPage.tsx` (filtro provincia che parte da "Tutte le sedi",
+ricerca per nome/comune, elenco con riquadro colori per triage +
+mappa), pagina `/pronto-soccorso`, nuova voce in cima all'hub Sanità
+(prima di Farmacie, per la rilevanza che le ha attribuito l'utente).
+
+`npx tsc --noEmit` e `node --check scripts/ingest-light.mjs` puliti.
+Verificata a parte (script Node standalone contro un campione reale
+salvato, senza toccare Supabase) la logica di trasformazione: 17
+dipartimenti, 0 id duplicati, 0 sedi senza provincia derivabile, 1 sola
+sede senza telefono (Grado, come atteso), tutti i valori `mediaAttesa`
+nel formato `HH:MM`, nessuna discrepanza tra somma per colore e totale
+dipartimento. Verifica visiva con `next dev` + Chromium headless:
+`/sanita` e `/pronto-soccorso` rispondono 200, la card "Pronto Soccorso"
+compare nell'hub, nessun errore in pagina/console (solo i fallimenti di
+rete attesi verso Supabase e le tile OpenStreetMap, bloccate da questo
+sandbox). **A differenza delle altre fonti live del sito, l'intera
+pipeline (ingestione reale + pagina con dati reali) non ha mai potuto
+essere eseguita da questa sessione contro l'endpoint vero: nessun run
+GitHub Actions l'ha ancora toccata, e Supabase non è raggiungibile da
+qui per vedere la pagina con dati veri.** Da confermare con priorità dopo
+il primo deploy: che `ingestProntoSoccorso()` giri senza errori nel log
+GitHub Actions e che la pagina mostri dati coerenti con quanto visibile
+sul sito ufficiale. **Non ancora confermato dall'utente in produzione.**
+
 ## Riorganizzazione del menù: Ambiente, Turismo, FVG in immagini, Sport nelle Notizie (11/09/2026)
 
 L'utente ha chiesto una seconda riorganizzazione del menù ad amburger

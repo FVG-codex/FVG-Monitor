@@ -21,6 +21,20 @@ export type VoceChangelog = {
 
 export const CHANGELOG: VoceChangelog[] = [
   {
+    data: "16/09/2026",
+    titolo: "Sanità: nuova pagina Pronto Soccorso in tempo reale",
+    dettagli: [
+      "Nuova voce Sanità → Pronto Soccorso: pazienti in attesa e in trattamento per codice di triage, aggiornati ogni 15 minuti, per tutte le sedi della regione — con indirizzo, telefono (quando disponibile), mappa e indicazioni stradali.",
+    ],
+  },
+  {
+    data: "15/09/2026",
+    titolo: "Veterinari & Emergenze: aggiunta la provincia di Udine",
+    dettagli: [
+      "La pagina Veterinari & Emergenze (dentro Sanità) mostra ora anche le 40 strutture della provincia di Udine, con lo stesso riquadro Emergenze in evidenza già disponibile per le altre province. Con questa aggiunta la pagina copre tutte e 4 le province del FVG.",
+    ],
+  },
+  {
     data: "13/09/2026",
     titolo: "Veterinari & Emergenze: corretta la lista di Pordenone",
     dettagli: [

@@ -5,6 +5,7 @@ import type { StatoApertura } from "@/lib/farmacie";
 import datiTrieste from "@/lib/data/veterinari-trieste.json";
 import datiGorizia from "@/lib/data/veterinari-gorizia.json";
 import datiPordenone from "@/lib/data/veterinari-pordenone.json";
+import datiUdine from "@/lib/data/veterinari-udine.json";
 
 export { adessoEuropeRome, giornoSettimana };
 export type { FasciaOrariaSettimanale };
@@ -19,7 +20,9 @@ export type { FasciaOrariaSettimanale };
 // Commercio/Supermercati (vedi lib/supermercati.ts): nessun
 // ingestX()/Supabase, un file JSON per provincia importato direttamente
 // nel bundle via resolveJsonModule. Trieste (28 voci) + Gorizia (16
-// voci) + Pordenone (30 voci, dal 13/09/2026) per ora — `PROVINCE_VETERINARI_ATTIVE` sotto elenca
+// voci) + Pordenone (30 voci, dal 13/09/2026) + Udine (40 voci, dal
+// 15/09/2026, rollout completo — tutte e 4 le province ora attive) per
+// ora — `PROVINCE_VETERINARI_ATTIVE` sotto elenca
 // esplicitamente le province con dati reali, stesso principio di
 // rollout parziale già usato per Notizie (`PROVINCE_NOTIZIE_ATTIVE` in
 // lib/notizieProvincia.ts): un array esplicito invece di derivarlo da
@@ -141,6 +144,45 @@ export type { FasciaOrariaSettimanale };
 // `MAPPA_GESTIONE_EMERGENZA`), stesse 2 voci senza lat/lon — nessuna
 // modifica a `normalizza()`/`normalizzaGestioneEmergenza()` necessaria,
 // solo la sostituzione del file JSON.
+//
+// Estensione a Udine (15/09/2026, "database completo"): quarta e
+// ultima provincia, 40 voci — con questa tutte e 4 le province FVG
+// hanno dati reali su Veterinari & Emergenze. Stesso pattern di
+// estensione. 3 valori `gestione_emergenze` mai visti prima, tutti
+// sinonimi verificati mappati su valori canonici esistenti (vedi
+// `MAPPA_GESTIONE_EMERGENZA` sopra): "urgenze_durante_apertura" →
+// "urgenze_in_orario" (stesso concetto di Trieste, solo nome diverso);
+// "emergenze_07_23" e "reperibilita_emergenze_h24" → "reperibilita_telefonica"
+// (entrambe reperibilità telefoniche vere e confermate, non un pronto
+// soccorso fisico — il dettaglio delle ore effettive, incluso il caso
+// H24, resta comunque visibile nel testo libero `orariEmergenze`
+// mostrato in pagina, quindi nessuna informazione va persa nel
+// raggruppamento sotto lo stesso valore canonico).
+//
+// Novità importante nel significato di `audit.record_esclusi` rispetto
+// alle altre province: qui non sempre indica una struttura rimossa per
+// intero. Su 5 voci in audit, 3 sono esclusioni totali (Studio
+// Veterinario Silvana Lazzarin, 4 Talpes - Gemona e Tolmezzo — un
+// pet-shop/toelettatura, non una struttura sanitaria — e Ca' Zampa
+// Udine, chiusa definitivamente), verificate assenti da `records`
+// controllando l'intero file, non solo l'elenco audit. Le altre 2 voci
+// audit invece SONO presenti in `records` con la loro scheda completa
+// (indirizzo/orari/telefono): "Rita Duratti" corrisponde a UD-VET-019 e
+// "Peresson, Isler, Roppa, Crosere e Londero" corrisponde a 5 schede
+// distinte (UD-VET-017/027/030/103/104) — in questi 2 casi l'audit
+// documenta solo perché la loro dichiarazione di reperibilità/urgenza/
+// pronto soccorso non è stata considerata attendibile (fonti secondarie
+// discordanti, nessuna conferma ufficiale), non che la struttura sia
+// stata rimossa: infatti tutte e 6 queste schede hanno
+// `gestione_emergenze: "non_dichiarata"` nel file, coerente con
+// l'esclusione della sola dichiarazione di emergenza. Nessuna modifica
+// di codice necessaria per questo (il campo `gestione_emergenze` del
+// JSON è già la fonte di verità), ma vale la pena annotarlo per chi
+// legge `audit.record_esclusi` di un file futuro aspettandosi sempre
+// un'esclusione totale come nelle province precedenti. 3 voci
+// (UD-VET-032/033/034, i servizi ASUFC di sanità animale) hanno `orari`
+// con ogni giorno a `null` — già gestito dal codice esistente. Nessuna
+// voce priva di lat/lon in questo file.
 
 export type GestioneEmergenza =
   | "non_dichiarata"
@@ -265,6 +307,19 @@ const MAPPA_GESTIONE_EMERGENZA: Record<string, GestioneEmergenza> = {
   urgenze_su_chiamata: "reperibilita_telefonica",
   reperibilita_da_confermare: "pronto_intervento_da_confermare",
   pronto_soccorso_h24_da_confermare: "pronto_intervento_da_confermare",
+  // Sinonimi introdotti dal file Udine (15/09/2026, vocabolario proprio
+  // di nuovo, "emergency_values" assente). "urgenze_durante_apertura"
+  // è lo stesso concetto già canonico "urgenze_in_orario" (Trieste),
+  // solo un nome diverso. "emergenze_07_23"/"reperibilita_emergenze_h24"
+  // sono entrambe reperibilità telefoniche vere e verificate (non
+  // pronto soccorso fisico, il testo libero `orari_emergenze` porta il
+  // dettaglio delle ore effettive, incluso il caso H24) — mappate sullo
+  // stesso valore canonico "reperibilita_telefonica" già usato per
+  // Trieste/Gorizia/Pordenone invece di introdurre un ennesimo valore
+  // per una differenza di grado, non di natura del servizio.
+  urgenze_durante_apertura: "urgenze_in_orario",
+  emergenze_07_23: "reperibilita_telefonica",
+  reperibilita_emergenze_h24: "reperibilita_telefonica",
 };
 
 function normalizzaGestioneEmergenza(raw: string): GestioneEmergenza {
@@ -309,12 +364,12 @@ function normalizza(r: RecordGrezzo): VoceVeterinario {
 // nessuna modifica al resto del file.
 export const VETERINARI_PER_PROVINCIA: Record<ProvinciaSlug, VoceVeterinario[]> = {
   trieste: (datiTrieste.records as RecordGrezzo[]).map(normalizza),
-  udine: [],
+  udine: (datiUdine.records as RecordGrezzo[]).map(normalizza),
   gorizia: (datiGorizia.records as RecordGrezzo[]).map(normalizza),
   pordenone: (datiPordenone.records as RecordGrezzo[]).map(normalizza),
 };
 
-export const PROVINCE_VETERINARI_ATTIVE: ProvinciaSlug[] = ["trieste", "gorizia", "pordenone"];
+export const PROVINCE_VETERINARI_ATTIVE: ProvinciaSlug[] = ["trieste", "gorizia", "pordenone", "udine"];
 
 // Rango (1 = massima disponibilità/prontezza) + etichetta + stile per
 // ciascun valore di gestione_emergenze. "sanita_pubblica_veterinaria" è

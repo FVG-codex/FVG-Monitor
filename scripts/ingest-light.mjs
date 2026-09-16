@@ -2005,6 +2005,85 @@ async function ingestFarmacie() {
 }
 
 // ---------------------------------------------------------------------
+// PRONTO SOCCORSO — tempi di attesa in tempo reale (16/09/2026,
+// richiesto dall'utente). Endpoint pubblico NON documentato di
+// servizionline.sanita.fvg.it, individuato dall'utente stesso via
+// DevTools → Rete del proprio browser (la pagina ufficiale
+// https://servizionline.sanita.fvg.it/psonline/ è una SPA il cui HTML
+// iniziale non contiene alcun dato — vedi il commento esteso in
+// lib/prontosoccorso.ts per il dettaglio completo della ricerca e
+// della struttura del payload).
+//
+// `datetime` è un cache-buster (epoch ms), non un parametro di
+// filtro — passato ad ogni chiamata solo per coerenza con l'URL
+// osservato nel browser dell'utente.
+// ---------------------------------------------------------------------
+
+const PRONTO_SOCCORSO_URL = "https://servizionline.sanita.fvg.it/tempiAttesaService/tempiAttesaPs";
+
+async function ingestProntoSoccorso() {
+  const res = await fetchConRetry(`${PRONTO_SOCCORSO_URL}?datetime=${Date.now()}`);
+  if (!res.ok) {
+    console.warn(`Pronto Soccorso non disponibile (HTTP ${res.status})`);
+    return;
+  }
+
+  const payload = await res.json();
+  if (!payload || !Array.isArray(payload.aziende)) {
+    console.warn("Risposta Pronto Soccorso inattesa (chiave 'aziende' mancante)");
+    return;
+  }
+
+  // Appiattisce aziende → prontoSoccorsi → dipartimenti in un unico
+  // array: il raggruppamento per azienda sanitaria non serve al
+  // frontend (vedi lib/prontosoccorso.ts), solo le sedi fisiche
+  // (dipartimenti) contano.
+  const dipartimenti = [];
+  for (const azienda of payload.aziende) {
+    for (const ps of azienda.prontoSoccorsi ?? []) {
+      for (const dip of ps.dipartimenti ?? []) {
+        dipartimenti.push({
+          id: dip.id,
+          nome: testo(dip.descrizione),
+          info: testo(dip.info),
+          lat: typeof dip.latitudine === "number" ? dip.latitudine : null,
+          lon: typeof dip.longitudine === "number" ? dip.longitudine : null,
+          indirizzo: testo(dip.indirizzo),
+          localita: testo(dip.localita),
+          comune: testo(dip.comune),
+          codiciColore: (dip.codiciColore ?? []).map((c) => ({
+            id: c.id,
+            descrizione: testo(c.descrizione),
+            rgb: c.rgb,
+            priorita: c.priorita,
+            situazionePazienti: {
+              numeroPazienti: c.situazionePazienti?.numeroPazienti ?? 0,
+              numeroPazientiInVisita: c.situazionePazienti?.numeroPazientiInVisita ?? 0,
+              numeroPazientiInAttesa: c.situazionePazienti?.numeroPazientiInAttesa ?? 0,
+              mediaAttesa: c.situazionePazienti?.mediaAttesa ?? "00:00",
+            },
+          })),
+          totalePazienti: dip.numeroPazienti ?? 0,
+        });
+      }
+    }
+  }
+
+  if (dipartimenti.length === 0) {
+    console.warn("Nessun dipartimento Pronto Soccorso trovato nella risposta");
+    return;
+  }
+
+  dipartimenti.sort((a, b) => (a.nome ?? "").localeCompare(b.nome ?? "", "it"));
+
+  await upsertSnapshot("pronto-soccorso", "pronto-soccorso", null, {
+    dataAggiornamento: typeof payload.dataAggiornamento === "number" ? payload.dataAggiornamento : Date.now(),
+    dipartimenti,
+  });
+  console.log(`Pronto Soccorso aggiornato: ${dipartimenti.length} sedi`);
+}
+
+// ---------------------------------------------------------------------
 // STRUTTURE RICETTIVE — 8 registri regionali distinti (Bed & Breakfast,
 // Affittacamere, Campeggi/Villaggi Turistici, Alloggi Agrituristici,
 // Alberghi Diffusi, Strutture Ricettive a carattere Sociale, Dry
@@ -5295,6 +5374,7 @@ async function main() {
     ["mare", ingestMare()],
     ["balneazione", ingestBalneazione()],
     ["farmacie", ingestFarmacie()],
+    ["pronto-soccorso", ingestProntoSoccorso()],
     ["strutture-ricettive", ingestStruttureRicettive()],
     ["ozono", ingestOzono()],
     ["no2", ingestNo2()],

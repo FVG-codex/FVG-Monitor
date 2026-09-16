@@ -9,10 +9,24 @@ import { Footer } from "@/components/Footer";
 // (vedi MenuHamburger.tsx, voce "Farmacie" sostituita da "Sanità").
 // Cliniche & centri medici e Dentisti & Odontoiatri sono nuove voci
 // strutturali senza dati ancora (componenti/route placeholder, vedi
-// components/InArrivoPage.tsx) — solo Veterinari & Emergenze ha
-// dati reali in questa consegna (provincia di Trieste, vedi
-// lib/veterinari.ts).
+// components/InArrivoPage.tsx). Veterinari & Emergenze ha dati reali
+// per tutte e 4 le province (vedi lib/veterinari.ts). Pronto Soccorso
+// (16/09/2026) è la voce con dati in tempo reale più richiesta
+// dall'utente ("probabilmente una delle pagine con maggiore utilità
+// reale del portale") — messa per prima nell'elenco per questo motivo,
+// vedi lib/prontosoccorso.ts.
 const SEZIONI = [
+  {
+    nome: "Pronto Soccorso",
+    href: "/pronto-soccorso",
+    descrizione: "Pazienti in attesa e in trattamento per codice di triage, in tempo reale, per tutte le sedi",
+    icona: (
+      <svg viewBox="0 0 48 48" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <path d="M24 8l14 6v10c0 10-6 17-14 16-8-1-14-8-14-16V14z" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M24 18v12M18 24h12" strokeLinecap="round" />
+      </svg>
+    ),
+  },
   {
     nome: "Farmacie",
     href: "/farmacie",

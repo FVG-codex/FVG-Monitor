@@ -1,0 +1,3288 @@
+{
+  "schema_version": "1.1",
+  "generated_at": "2026-09-15",
+  "timezone": "Europe/Rome",
+  "scope": "strutture e servizi veterinari aperti al pubblico nella provincia di Udine",
+  "audit": {
+    "record_esclusi": [
+      {
+        "nome": "Studio Veterinario Silvana Lazzarin",
+        "esito": "Emergenza H24 non pubblicata",
+        "motivazione": "La dichiarazione di pronto soccorso H24 compare solo in una directory e riguarda attività equina; mantenere fuori finché non confermata.",
+        "fonte": "Cani in Casa",
+        "data_verifica": "2026-09-15"
+      },
+      {
+        "nome": "4 Talpes - Gemona e Tolmezzo",
+        "esito": "Escluso - attività commerciale",
+        "motivazione": "Le fonti correnti identificano 4 Talpes come pet shop e toelettatura, non come struttura sanitaria veterinaria.",
+        "fonte": "Sito 4 Talpes / Waze",
+        "data_verifica": "2026-09-15"
+      },
+      {
+        "nome": "Rita Duratti",
+        "esito": "Reperibilità H24 non pubblicata",
+        "motivazione": "La reperibilità compare in una sola directory, che nella stessa scheda dichiara pronto soccorso H24 NO. Nessuna conferma ufficiale o indipendente corrente.",
+        "fonte": "Cani in Casa",
+        "data_verifica": "2026-09-15"
+      },
+      {
+        "nome": "Peresson, Isler, Roppa, Crosere e Londero",
+        "esito": "Dichiarazioni di emergenza non pubblicate",
+        "motivazione": "Le indicazioni di reperibilità, urgenza o pronto soccorso provengono solo da directory o fonti datate e non hanno conferma ufficiale corrente.",
+        "fonte": "Directory multiple",
+        "data_verifica": "2026-09-15"
+      },
+      {
+        "nome": "Ca’ Zampa Udine",
+        "esito": "Chiuso definitivamente - fuori dai record",
+        "motivazione": "La scheda cartografica corrente segnala la sede come chiusa definitivamente e la sede di Udine non compare più nell’elenco ufficiale delle cliniche Ca’ Zampa.",
+        "fonte": "Google Maps / cazampa.it/cliniche",
+        "data_verifica": "2026-09-15"
+      }
+    ]
+  },
+  "records": [
+    {
+      "id": "UD-VET-001",
+      "nome": "AniCura Clinica Veterinaria Gaspardis",
+      "tipo_struttura": "Clinica veterinaria",
+      "indirizzo": "Via Giovanni Battista Gaspardis, 2",
+      "cap": "33040",
+      "comune": "Visco",
+      "provincia": "UD",
+      "latitudine": 45.8902345,
+      "longitudine": 13.3513996,
+      "telefono": "0432 997005",
+      "telefono_emergenze": "366 4779079",
+      "email": "info.gaspardis@anicura.it",
+      "sito_ufficiale": "https://www.anicura.it/cliniche/clinica-veterinaria-gaspardis/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "reperibilita_emergenze_h24",
+      "orari_emergenze": "H24; reperibilità notturna al numero dedicato",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": "https://www.anicura.it/cliniche/clinica-veterinaria-gaspardis/",
+      "fonte_orari_controllo": "",
+      "fonte_emergenze": "https://www.anicura.it/cliniche/clinica-veterinaria-gaspardis/contatti/",
+      "data_verifica": "2026-09-15",
+      "orari_verificati": true,
+      "livello_verifica_orari": "ufficiale",
+      "emergenze_verificate": true,
+      "note": "Clinica lunedì-venerdì 09:00-19:00 e sabato 09:00-13:00; emergenze H24 con reperibilità notturna telefonica. Chiamare prima. Non è dichiarata la presenza fisica continuativa del veterinario.",
+      "esistenza_verificata": true,
+      "stato_verifica": "completo"
+    },
+    {
+      "id": "UD-VET-002",
+      "nome": "Ambulatorio Veterinario Schiavi Colautti Padovani",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via Gaeta, 84",
+      "cap": "33100",
+      "comune": "Udine",
+      "provincia": "UD",
+      "latitudine": 46.0571272,
+      "longitudine": 13.2261162,
+      "telefono": "",
+      "telefono_emergenze": "",
+      "email": "scpveterinarie@gmail.com",
+      "sito_ufficiale": "https://www.gruppoanimalia.it/cliniche/ambulatorio-veterinario-schiavi-colautti-padovani/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "18:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "18:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "18:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "18:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "18:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": "https://www.gruppoanimalia.it/cliniche/ambulatorio-veterinario-schiavi-colautti-padovani/",
+      "fonte_orari_controllo": "",
+      "fonte_emergenze": "",
+      "data_verifica": "2026-09-15",
+      "orari_verificati": true,
+      "livello_verifica_orari": "ufficiale",
+      "emergenze_verificate": false,
+      "note": "",
+      "esistenza_verificata": true,
+      "stato_verifica": "orari_confermati_emergenze_non_dichiarate"
+    },
+    {
+      "id": "UD-VET-003",
+      "nome": "Ambulatorio Veterinario Pet&Vet",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via Andrea Palladio, 32",
+      "cap": "33010",
+      "comune": "Tavagnacco",
+      "provincia": "UD",
+      "latitudine": 46.1123495,
+      "longitudine": 13.2208793,
+      "telefono": "0432 570234",
+      "telefono_emergenze": "",
+      "email": "",
+      "sito_ufficiale": "https://www.gruppoanimalia.it/cliniche/ambulatorio-veterinario-petvet/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "10:00",
+            "chiude": "18:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "10:00",
+            "chiude": "18:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "10:00",
+            "chiude": "18:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "10:00",
+            "chiude": "18:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "10:00",
+            "chiude": "18:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "10:00",
+            "chiude": "14:00"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": "https://www.gruppoanimalia.it/cliniche/ambulatorio-veterinario-petvet/",
+      "fonte_orari_controllo": "",
+      "fonte_emergenze": "",
+      "data_verifica": "2026-09-15",
+      "orari_verificati": true,
+      "livello_verifica_orari": "ufficiale",
+      "emergenze_verificate": false,
+      "note": "",
+      "esistenza_verificata": true,
+      "stato_verifica": "orari_confermati_emergenze_non_dichiarate"
+    },
+    {
+      "id": "UD-VET-004",
+      "nome": "Studio Veterinario Associato Miglio - Forzano - Campagna",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Viale Trieste, 48",
+      "cap": "33100",
+      "comune": "Udine",
+      "provincia": "UD",
+      "latitudine": 46.0662582,
+      "longitudine": 13.2460277,
+      "telefono": "0432 510125; 0432 1505788",
+      "telefono_emergenze": "",
+      "email": "ambvet.vialetrieste@gmail.com",
+      "sito_ufficiale": "https://ambulatorioveterinarioassociato-miglio-forzano-campagna.it/contatti/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "18:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "18:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "18:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "18:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "18:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": "https://ambulatorioveterinarioassociato-miglio-forzano-campagna.it/contatti/",
+      "fonte_orari_controllo": "",
+      "fonte_emergenze": "",
+      "data_verifica": "2026-09-15",
+      "orari_verificati": true,
+      "livello_verifica_orari": "ufficiale",
+      "emergenze_verificate": false,
+      "note": "",
+      "esistenza_verificata": true,
+      "stato_verifica": "orari_confermati_emergenze_non_dichiarate"
+    },
+    {
+      "id": "UD-VET-005",
+      "nome": "Ambulatorio Veterinario Leonardo da Vinci",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Viale Leonardo da Vinci, 46",
+      "cap": "33100",
+      "comune": "Udine",
+      "provincia": "UD",
+      "latitudine": 46.0706569,
+      "longitudine": 13.2179924,
+      "telefono": "0432 541347",
+      "telefono_emergenze": "",
+      "email": "leonardo@veterinariudine.it",
+      "sito_ufficiale": "https://www.veterinariudine.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "10:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "10:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [],
+        "giovedi": [
+          {
+            "apre": "10:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "10:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "10:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "17:00"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "Directory/anagrafe di settore",
+      "fonte_orari": "https://www.veterinariudine.it/",
+      "fonte_orari_controllo": "",
+      "fonte_emergenze": "",
+      "data_verifica": "2026-09-15",
+      "orari_verificati": true,
+      "livello_verifica_orari": "secondaria_concordante",
+      "emergenze_verificate": false,
+      "note": "",
+      "esistenza_verificata": true,
+      "stato_verifica": "orari_confermati_emergenze_non_dichiarate"
+    },
+    {
+      "id": "UD-VET-006",
+      "nome": "Animal Care S.r.l.",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via Maù, 18",
+      "cap": "33035",
+      "comune": "Martignacco",
+      "provincia": "UD",
+      "latitudine": 46.0858135,
+      "longitudine": 13.1460643,
+      "telefono": "0432 657223",
+      "telefono_emergenze": "335 5665523",
+      "email": "info.animalcare@anicura.it",
+      "sito_ufficiale": "https://www.anicura.it/cliniche/animal-care/contatti/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "18:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "18:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "18:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "18:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "18:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "emergenze_07_23",
+      "orari_emergenze": "Ogni giorno 07:00-23:00; chiamare 335 5665523",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": "https://www.anicura.it/cliniche/animal-care/contatti/",
+      "fonte_orari_controllo": "",
+      "fonte_emergenze": "https://www.anicura.it/cliniche/animal-care/contatti/",
+      "data_verifica": "2026-09-15",
+      "orari_verificati": true,
+      "livello_verifica_orari": "ufficiale",
+      "emergenze_verificate": true,
+      "note": "Emergenze dichiarate 07:00-23:00, non H24.",
+      "esistenza_verificata": true,
+      "stato_verifica": "completo"
+    },
+    {
+      "id": "UD-VET-007",
+      "nome": "Clinica Domus Vet",
+      "tipo_struttura": "Clinica veterinaria",
+      "indirizzo": "Via Carnia, 20",
+      "cap": "33030",
+      "comune": "Majano",
+      "provincia": "UD",
+      "latitudine": 46.1889969,
+      "longitudine": 13.0566922,
+      "telefono": "0432 959086",
+      "telefono_emergenze": "",
+      "email": "",
+      "sito_ufficiale": "https://www.clinicadomusvet.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "Directory/anagrafe di settore",
+      "fonte_orari": "https://www.cylex-italia.it/majano/clinica-domus-vet-14665813.html",
+      "fonte_orari_controllo": "https://altraopinione.org/veterinario/majano/clinica-domus-vet/",
+      "fonte_emergenze": "",
+      "data_verifica": "2026-09-15",
+      "orari_verificati": true,
+      "livello_verifica_orari": "secondaria_concordante",
+      "emergenze_verificate": false,
+      "note": "Orario coincidente in due fonti secondarie; emergenze non dichiarate ufficialmente.",
+      "esistenza_verificata": true,
+      "stato_verifica": "orari_confermati_emergenze_non_dichiarate"
+    },
+    {
+      "id": "UD-VET-008",
+      "nome": "La Clinica degli Animali",
+      "tipo_struttura": "Clinica veterinaria",
+      "indirizzo": "Via Giovanni Battista Candotti, 199",
+      "cap": "33033",
+      "comune": "Codroipo",
+      "provincia": "UD",
+      "latitudine": 45.9582063,
+      "longitudine": 12.9763757,
+      "telefono": "0432 900711",
+      "telefono_emergenze": "334 3817613",
+      "email": "",
+      "sito_ufficiale": "https://www.laclinicadeglianimali.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "reperibilita_fuori_orario",
+      "orari_emergenze": "Domenica, festivi e fuori orario; chiamare prima per verificare la presenza del veterinario di turno",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": true,
+      "presenza_veterinario_notturno": true,
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": "https://www.laclinicadeglianimali.it/",
+      "fonte_orari_controllo": "",
+      "fonte_emergenze": "https://www.laclinicadeglianimali.it/servizi-veterinari",
+      "data_verifica": "2026-09-15",
+      "orari_verificati": true,
+      "livello_verifica_orari": "ufficiale",
+      "emergenze_verificate": true,
+      "note": "Il pronto soccorso non è sempre attivo per clienti privati: chiamare prima. Il sito dichiara personale veterinario presente H24 per gli animali ricoverati.",
+      "esistenza_verificata": true,
+      "stato_verifica": "completo"
+    },
+    {
+      "id": "UD-VET-009",
+      "nome": "Ambulatorio Veterinario Nordest",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via Bariglaria, 269",
+      "cap": "33100",
+      "comune": "Udine",
+      "provincia": "UD",
+      "latitudine": 46.093406,
+      "longitudine": 13.267319,
+      "telefono": "0432 565212",
+      "telefono_emergenze": "",
+      "email": "nordest.vet@gmail.com",
+      "sito_ufficiale": "https://www.facebook.com/veterinario.udine",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "11:00",
+            "chiude": "15:00"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "Directory/anagrafe di settore",
+      "fonte_orari": "https://www.facebook.com/veterinario.udine",
+      "fonte_orari_controllo": "https://www.tuttiaffari.com/ambulatorio-veterinario-nordest-s-a-r-0432-565212",
+      "fonte_emergenze": "",
+      "data_verifica": "2026-09-15",
+      "orari_verificati": true,
+      "livello_verifica_orari": "secondaria_concordante",
+      "emergenze_verificate": false,
+      "note": "Orari coincidenti in due fonti secondarie correnti. Le fonti dichiarano NO pronto soccorso H24.",
+      "esistenza_verificata": true,
+      "stato_verifica": "orari_confermati_emergenze_non_dichiarate"
+    },
+    {
+      "id": "UD-VET-010",
+      "nome": "Ambulatorio Veterinario Neri Dott. Alberto - New Life Center",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via Braida Grande, 8",
+      "cap": "33010",
+      "comune": "Pagnacco",
+      "provincia": "UD",
+      "latitudine": 46.1004734,
+      "longitudine": 13.1826941,
+      "telefono": "",
+      "telefono_emergenze": "",
+      "email": "",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "Directory/anagrafe di settore",
+      "fonte_orari": "https://www.caniincasa.it/veterinari/",
+      "fonte_orari_controllo": "",
+      "fonte_emergenze": "",
+      "data_verifica": "2026-09-15",
+      "orari_verificati": false,
+      "livello_verifica_orari": "una_fonte_corrente",
+      "emergenze_verificate": false,
+      "note": "Orario pubblicato da una sola fonte secondaria corrente: conferma telefonica consigliata.",
+      "esistenza_verificata": true,
+      "stato_verifica": "una_fonte_da_confermare"
+    },
+    {
+      "id": "UD-VET-011",
+      "nome": "Ambulatorio Veterinario Laura Bertoli",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via Tisanella, 98",
+      "cap": "33053",
+      "comune": "Latisana",
+      "provincia": "UD",
+      "latitudine": 45.7748827,
+      "longitudine": 13.0107825,
+      "telefono": "338 9325485",
+      "telefono_emergenze": "",
+      "email": "",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "Directory/anagrafe di settore",
+      "fonte_orari": "https://aziende.virgilio.it/veterinaria/latisana-ud/ambulatorio-veterinario-laura-dott-ssa-bertoli",
+      "fonte_orari_controllo": "https://www.google.com/maps/place/Ambulatorio+veterinario+-+Laura+Dott.ssa+Bertoli/@45.7748089,13.0107732,17z",
+      "fonte_emergenze": "",
+      "data_verifica": "2026-09-15",
+      "orari_verificati": true,
+      "livello_verifica_orari": "secondaria_concordante",
+      "emergenze_verificate": false,
+      "note": "Risolto il conflitto: Virgilio, JustDog e Google Maps concordano su Via Tisanella 98 e sul telefono. Google Maps conferma anche l’apertura del mercoledì alle 09:00; gli orari settimanali completi sono quelli pubblicati da Virgilio. Il civico 152 di Cani in Casa è trattato come scheda obsoleta/duplicata.",
+      "esistenza_verificata": true,
+      "stato_verifica": "verificato"
+    },
+    {
+      "id": "UD-VET-012",
+      "nome": "Ambulatorio Veterinario Le Rondini - Dott.ssa Elena Barth",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via dei Platani, 23",
+      "cap": "33052",
+      "comune": "Cervignano del Friuli",
+      "provincia": "UD",
+      "latitudine": 45.8396143,
+      "longitudine": 13.3305433,
+      "telefono": "",
+      "telefono_emergenze": "",
+      "email": "",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "11:30"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "18:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "11:30"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "18:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "11:30"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "18:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "11:30"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "18:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "11:30"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "18:30"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "Directory/anagrafe di settore",
+      "fonte_orari": "https://www.caniincasa.it/veterinari/",
+      "fonte_orari_controllo": "",
+      "fonte_emergenze": "",
+      "data_verifica": "2026-09-15",
+      "orari_verificati": false,
+      "livello_verifica_orari": "una_fonte_corrente",
+      "emergenze_verificate": false,
+      "note": "Orario pubblicato da una sola fonte secondaria corrente: conferma telefonica consigliata.",
+      "esistenza_verificata": true,
+      "stato_verifica": "una_fonte_da_confermare"
+    },
+    {
+      "id": "UD-VET-013",
+      "nome": "Ambulatorio Veterinario Pozzuolo",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via Lignano, 51",
+      "cap": "33050",
+      "comune": "Pozzuolo del Friuli",
+      "provincia": "UD",
+      "latitudine": 46.014811,
+      "longitudine": 13.2117229,
+      "telefono": "0432 562606",
+      "telefono_emergenze": "",
+      "email": "mariacristina.riva@libero.it",
+      "sito_ufficiale": "https://www.rivavet.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "17:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "17:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "10:00",
+            "chiude": "17:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "17:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "17:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "Directory/anagrafe di settore",
+      "fonte_orari": "https://www.rivavet.it/",
+      "fonte_orari_controllo": "",
+      "fonte_emergenze": "",
+      "data_verifica": "2026-09-15",
+      "orari_verificati": false,
+      "livello_verifica_orari": "una_fonte_corrente",
+      "emergenze_verificate": false,
+      "note": "Orario pubblicato da una sola fonte secondaria corrente: conferma telefonica consigliata.",
+      "esistenza_verificata": true,
+      "stato_verifica": "una_fonte_da_confermare"
+    },
+    {
+      "id": "UD-VET-014",
+      "nome": "Ambulatorio Veterinario Dott.ssa Silvia Lucca",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via Umberto I, 93",
+      "cap": "33034",
+      "comune": "Fagagna",
+      "provincia": "UD",
+      "latitudine": 46.1150648,
+      "longitudine": 13.0837696,
+      "telefono": "0432 810347",
+      "telefono_emergenze": "",
+      "email": "colombofranca.vet@gmail.com",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "16:30",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "16:30",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "16:30",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "16:30",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "16:30",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "Directory/anagrafe di settore",
+      "fonte_orari": "https://www.caniincasa.it/veterinari/",
+      "fonte_orari_controllo": "",
+      "fonte_emergenze": "",
+      "data_verifica": "2026-09-15",
+      "orari_verificati": false,
+      "livello_verifica_orari": "una_fonte_corrente",
+      "emergenze_verificate": false,
+      "note": "Orario pubblicato da una sola fonte secondaria corrente: conferma telefonica consigliata.",
+      "esistenza_verificata": true,
+      "stato_verifica": "una_fonte_da_confermare"
+    },
+    {
+      "id": "UD-VET-015",
+      "nome": "Ambulatorio Veterinario Dott. Carmelo Intersimone",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via Patrioti, 18",
+      "cap": "33010",
+      "comune": "Tavagnacco",
+      "provincia": "UD",
+      "latitudine": 46.0908386,
+      "longitudine": 13.2001696,
+      "telefono": "0432 541286",
+      "telefono_emergenze": "",
+      "email": "dottorintersimone@libero.it",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "15:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "10:30",
+            "chiude": "13:30"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "Directory/anagrafe di settore",
+      "fonte_orari": "https://www.caniincasa.it/veterinari/",
+      "fonte_orari_controllo": "",
+      "fonte_emergenze": "",
+      "data_verifica": "2026-09-15",
+      "orari_verificati": false,
+      "livello_verifica_orari": "una_fonte_corrente",
+      "emergenze_verificate": false,
+      "note": "Orario pubblicato da una sola fonte secondaria corrente: conferma telefonica consigliata.",
+      "esistenza_verificata": true,
+      "stato_verifica": "una_fonte_da_confermare"
+    },
+    {
+      "id": "UD-VET-016",
+      "nome": "Ambulatorio Veterinario Dott.ssa Elena Fornasarig",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via Marconi, 7/B",
+      "cap": "33050",
+      "comune": "Pavia di Udine",
+      "provincia": "UD",
+      "latitudine": 45.9728144,
+      "longitudine": 13.3128311,
+      "telefono": "338 8273705",
+      "telefono_emergenze": "",
+      "email": "elenafornasarig@hotmail.com",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "17:00",
+            "chiude": "18:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "11:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "18:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "11:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "18:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "18:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "11:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "18:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "Directory/anagrafe di settore",
+      "fonte_orari": "https://www.caniincasa.it/veterinari/",
+      "fonte_orari_controllo": "",
+      "fonte_emergenze": "",
+      "data_verifica": "2026-09-15",
+      "orari_verificati": false,
+      "livello_verifica_orari": "una_fonte_corrente",
+      "emergenze_verificate": false,
+      "note": "Orario pubblicato da una sola fonte secondaria corrente: conferma telefonica consigliata.",
+      "esistenza_verificata": true,
+      "stato_verifica": "una_fonte_da_confermare"
+    },
+    {
+      "id": "UD-VET-017",
+      "nome": "Ambulatorio Veterinario Dott. Giovanni Peresson",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via Aldo Moro, 4",
+      "cap": "33028",
+      "comune": "Tolmezzo",
+      "provincia": "UD",
+      "latitudine": 46.4022428,
+      "longitudine": 13.0142899,
+      "telefono": "0433 44559",
+      "telefono_emergenze": "",
+      "email": "giovanni.peresson@virgilio.it",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "15:30",
+            "chiude": "18:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "15:30",
+            "chiude": "18:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "15:30",
+            "chiude": "18:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "15:30",
+            "chiude": "18:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "17:30",
+            "chiude": "18:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "11:00",
+            "chiude": "12:00"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "Directory/anagrafe di settore",
+      "fonte_orari": "https://www.caniincasa.it/veterinari/",
+      "fonte_orari_controllo": "",
+      "fonte_emergenze": "https://www.caniincasa.it/veterinari/ambulatorio-veterinario-44/",
+      "data_verifica": "2026-09-15",
+      "orari_verificati": false,
+      "livello_verifica_orari": "una_fonte_corrente",
+      "emergenze_verificate": false,
+      "note": "Reperibilità H24 dichiarata solo da directory; non pubblicata come pronto soccorso. Coordinate verificate sul civico Viale Aldo Moro 4.",
+      "esistenza_verificata": true,
+      "stato_verifica": "una_fonte_da_confermare"
+    },
+    {
+      "id": "UD-VET-018",
+      "nome": "Ambulatorio Veterinario Dott.ssa Graziella Viganò",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via Repudio, 10",
+      "cap": "33038",
+      "comune": "San Daniele del Friuli",
+      "provincia": "UD",
+      "latitudine": 46.1662466,
+      "longitudine": 13.0231634,
+      "telefono": "0432 940672",
+      "telefono_emergenze": "",
+      "email": "",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "16:30",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "16:30",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "16:30",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "Directory/anagrafe di settore",
+      "fonte_orari": "https://www.caniincasa.it/veterinari/",
+      "fonte_orari_controllo": "",
+      "fonte_emergenze": "",
+      "data_verifica": "2026-09-15",
+      "orari_verificati": false,
+      "livello_verifica_orari": "una_fonte_corrente",
+      "emergenze_verificate": false,
+      "note": "Orario pubblicato da una sola fonte secondaria corrente: conferma telefonica consigliata.",
+      "esistenza_verificata": true,
+      "stato_verifica": "una_fonte_da_confermare"
+    },
+    {
+      "id": "UD-VET-019",
+      "nome": "Ambulatorio Veterinario Dott.ssa Rita Duratti",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via Udine, 108",
+      "cap": "33030",
+      "comune": "Campoformido",
+      "provincia": "UD",
+      "latitudine": 46.03381,
+      "longitudine": 13.1515799,
+      "telefono": "320 4218201",
+      "telefono_emergenze": "",
+      "email": "ritaduratti@hotmail.com",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "Directory/anagrafe di settore",
+      "fonte_orari": "https://www.google.com/maps/place/Ambulatorio+Veterinario+dott.ssa+Rita+Duratti/@46.03381,13.1515799,17z",
+      "fonte_orari_controllo": "https://www.caniincasa.it/veterinari/ambulatorio-veterinario-dott-ssa-rita-duratti/",
+      "fonte_emergenze": "https://www.caniincasa.it/veterinari/ambulatorio-veterinario-dott-ssa-rita-duratti/",
+      "data_verifica": "2026-09-15",
+      "orari_verificati": true,
+      "livello_verifica_orari": "secondaria_concordante",
+      "emergenze_verificate": false,
+      "note": "Google Maps conferma sede, telefono e orario lunedì-venerdì 08:00-19:00. La reperibilità H24 compare solo su Cani in Casa, che contemporaneamente dichiara pronto soccorso H24 NO: indicazione non confermata ed esclusa dai dati operativi.",
+      "esistenza_verificata": true,
+      "stato_verifica": "orari_confermati_emergenze_non_dichiarate"
+    },
+    {
+      "id": "UD-VET-022",
+      "nome": "Ambulatorio Veterinario Collalto",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "S.S. Pontebbana km 146 n. 54",
+      "cap": "33017",
+      "comune": "Tarcento",
+      "provincia": "UD",
+      "latitudine": 46.2053889,
+      "longitudine": 13.189224,
+      "telefono": "0432 783941",
+      "telefono_emergenze": "0432 783941",
+      "email": "vet_tarcento146@libero.it",
+      "sito_ufficiale": "https://www.veterinaricollalto.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "urgenze_durante_apertura",
+      "orari_emergenze": "Chirurgia d’urgenza e visite urgenti durante l’apertura; telefonare prima",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": "https://www.veterinaricollalto.it/contact/",
+      "fonte_orari_controllo": "https://www.google.com/maps/search/Ambulatorio+Veterinario+Collalto+Tarcento",
+      "fonte_emergenze": "https://www.veterinaricollalto.it/",
+      "data_verifica": "2026-09-15",
+      "orari_verificati": true,
+      "livello_verifica_orari": "ufficiale",
+      "emergenze_verificate": true,
+      "note": "Sito ufficiale e Google Maps concordano: lunedì-venerdì 09:00-19:00, sabato 09:00-13:00. Nessun pronto soccorso H24 dichiarato.",
+      "esistenza_verificata": true,
+      "stato_verifica": "completo"
+    },
+    {
+      "id": "UD-VET-023",
+      "nome": "Ambulatorio Veterinario Friulano De Stefanis",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via Santa Caterina, 88",
+      "cap": "33037",
+      "comune": "Pasian di Prato",
+      "provincia": "UD",
+      "latitudine": 46.0485253,
+      "longitudine": 13.2013563,
+      "telefono": "0432 690313",
+      "telefono_emergenze": "",
+      "email": "ambulatoriofriulano@hotmail.com",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "10:30",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "10:30",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "10:30",
+            "chiude": "12:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "10:30",
+            "chiude": "12:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "10:30",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "10:30",
+            "chiude": "12:00"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "Directory/anagrafe di settore",
+      "fonte_orari": "https://www.oraridiapertura24.it/filiale/Pasian%2520di%2520Prato-Ambulatorio%2520Veterinario%2520Friulano-4936660T.html",
+      "fonte_orari_controllo": "https://aziende.virgilio.it/veterinaria/pasian-di-prato-ud/ambulatorio-veterinario-friulano-pasian-di-prato-ud",
+      "fonte_emergenze": "",
+      "data_verifica": "2026-09-15",
+      "orari_verificati": true,
+      "livello_verifica_orari": "secondaria_concordante",
+      "emergenze_verificate": false,
+      "note": "Orari coincidenti in due fonti secondarie aggiornate.",
+      "esistenza_verificata": true,
+      "stato_verifica": "orari_confermati_emergenze_non_dichiarate"
+    },
+    {
+      "id": "UD-VET-024",
+      "nome": "Ambulatorio Veterinario Sandanielese",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via Udine, 40",
+      "cap": "33038",
+      "comune": "San Daniele del Friuli",
+      "provincia": "UD",
+      "latitudine": 46.1556974,
+      "longitudine": 13.0128761,
+      "telefono": "0432 955889",
+      "telefono_emergenze": "",
+      "email": "cardonavet@libero.it",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "10:00",
+            "chiude": "12:30"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "Directory/anagrafe di settore",
+      "fonte_orari": "https://www.caniincasa.it/veterinari/ambulatorio-veterinario-sandanielese/",
+      "fonte_orari_controllo": "https://www.oraridiapertura24.it/filiale/San%2520Daniele%2520del%2520Friuli%2520%2528UD%2529-Ambulatorio%2520Veterinario%2520Sandanielese-5045807D.html",
+      "fonte_emergenze": "https://www.caniincasa.it/veterinari/ambulatorio-veterinario-sandanielese/",
+      "data_verifica": "2026-09-15",
+      "orari_verificati": true,
+      "livello_verifica_orari": "secondaria_concordante",
+      "emergenze_verificate": false,
+      "note": "Due fonti correnti concordano sulle fasce con apertura pomeridiana alle 16:30. La vecchia fascia 15:30 è trattata come non aggiornata. Reperibilità non confermata e pronto soccorso H24 dichiarato NO.",
+      "esistenza_verificata": true,
+      "stato_verifica": "orari_confermati_emergenze_non_dichiarate"
+    },
+    {
+      "id": "UD-VET-025",
+      "nome": "Studio Veterinario Minerbi-Cargnelutti",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via Pozzuolo, 242",
+      "cap": "33100",
+      "comune": "Udine",
+      "provincia": "UD",
+      "latitudine": 46.0423884,
+      "longitudine": 13.2216582,
+      "telefono": "0432 233949",
+      "telefono_emergenze": "",
+      "email": "",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "10:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "10:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "10:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "10:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "10:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "10:30",
+            "chiude": "12:30"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "Directory/anagrafe di settore",
+      "fonte_orari": "https://www.caniincasa.it/veterinari/studio-veterinario-minerbi-cargnelutti/",
+      "fonte_orari_controllo": "",
+      "fonte_emergenze": "",
+      "data_verifica": "2026-09-15",
+      "orari_verificati": false,
+      "livello_verifica_orari": "una_fonte_corrente",
+      "emergenze_verificate": false,
+      "note": "Orari pubblicati da una directory corrente; pronto soccorso H24 dichiarato NO.",
+      "esistenza_verificata": true,
+      "stato_verifica": "una_fonte_da_confermare"
+    },
+    {
+      "id": "UD-VET-026",
+      "nome": "Ambulatorio Medico Veterinario Associato Roussel-Fracasso",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via Veneto, 42",
+      "cap": "33100",
+      "comune": "Udine",
+      "provincia": "UD",
+      "latitudine": 46.0347427,
+      "longitudine": 13.2506806,
+      "telefono": "0432 602073",
+      "telefono_emergenze": "",
+      "email": "ambmedvet-rf@libero.it",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "Directory/anagrafe di settore",
+      "fonte_orari": "https://www.caniincasa.it/veterinari/ambulatorio-medico-veterinario-associato-dott-elena-roussel-dott-paolo-fracasso/",
+      "fonte_orari_controllo": "",
+      "fonte_emergenze": "",
+      "data_verifica": "2026-09-15",
+      "orari_verificati": false,
+      "livello_verifica_orari": "una_fonte_corrente",
+      "emergenze_verificate": false,
+      "note": "Orari pubblicati da una directory corrente; pronto soccorso H24 dichiarato NO.",
+      "esistenza_verificata": true,
+      "stato_verifica": "una_fonte_da_confermare"
+    },
+    {
+      "id": "UD-VET-027",
+      "nome": "Ambulatorio Veterinario Dott. Keith Isler",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via Grazzano, 102/A",
+      "cap": "33100",
+      "comune": "Udine",
+      "provincia": "UD",
+      "latitudine": 46.0562213,
+      "longitudine": 13.2307357,
+      "telefono": "0432 502484",
+      "telefono_emergenze": "",
+      "email": "",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "18:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "18:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "18:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "18:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "18:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "Directory/anagrafe di settore",
+      "fonte_orari": "https://www.zampaconnect.com/veterinari/udine/isler-dr-keith-udine-ud",
+      "fonte_orari_controllo": "",
+      "fonte_emergenze": "",
+      "data_verifica": "2026-09-15",
+      "orari_verificati": false,
+      "livello_verifica_orari": "una_fonte_corrente",
+      "emergenze_verificate": false,
+      "note": "Una directory indica accesso diretto per visite urgenti durante l’apertura, senza fonte ufficiale o seconda conferma. Indicazione esclusa dai dati operativi.",
+      "esistenza_verificata": true,
+      "stato_verifica": "una_fonte_da_confermare"
+    },
+    {
+      "id": "UD-VET-028",
+      "nome": "Ambulatorio Veterinario S. Leo",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via Bonaldo Stringher, 13/G",
+      "cap": "33042",
+      "comune": "Buttrio",
+      "provincia": "UD",
+      "latitudine": 46.010577,
+      "longitudine": 13.3242,
+      "telefono": "0432 674854",
+      "telefono_emergenze": "",
+      "email": "ambulatoriosanleo@gmail.com",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "14:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "14:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "09:30",
+            "chiude": "12:30"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "Directory/anagrafe di settore",
+      "fonte_orari": "https://www.caniincasa.it/veterinari/ambulatorio-veterinario-s-leo/",
+      "fonte_orari_controllo": "",
+      "fonte_emergenze": "",
+      "data_verifica": "2026-09-15",
+      "orari_verificati": false,
+      "livello_verifica_orari": "una_fonte_corrente",
+      "emergenze_verificate": false,
+      "note": "Orari pubblicati da una directory corrente; pronto soccorso H24 dichiarato NO.",
+      "esistenza_verificata": true,
+      "stato_verifica": "una_fonte_da_confermare"
+    },
+    {
+      "id": "UD-VET-029",
+      "nome": "Ambulatorio Veterinario Dott.ssa Luisa Di Gaspero",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Piazzale Kuchl, 2",
+      "cap": "33048",
+      "comune": "San Giovanni al Natisone",
+      "provincia": "UD",
+      "latitudine": 45.9805586,
+      "longitudine": 13.4010351,
+      "telefono": "0432 743168",
+      "telefono_emergenze": "",
+      "email": "luisadigaspero@hotmail.com",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "18:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "18:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:30",
+            "chiude": "12:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "18:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "16:30",
+            "chiude": "18:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "09:30",
+            "chiude": "12:30"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "Directory/anagrafe di settore",
+      "fonte_orari": "https://www.caniincasa.it/veterinari/ambulatorio-veterinario-dott-ssa-di-gaspero/",
+      "fonte_orari_controllo": "",
+      "fonte_emergenze": "",
+      "data_verifica": "2026-09-15",
+      "orari_verificati": false,
+      "livello_verifica_orari": "una_fonte_corrente",
+      "emergenze_verificate": false,
+      "note": "Orari pubblicati da una directory corrente; pronto soccorso H24 dichiarato NO. Coordinate verificate sulla scheda cartografica della struttura.",
+      "esistenza_verificata": true,
+      "stato_verifica": "una_fonte_da_confermare"
+    },
+    {
+      "id": "UD-VET-030",
+      "nome": "Ambulatorio Veterinario Dott. Paolo Roppa",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Piazza Guglielmo Marconi, 14",
+      "cap": "33052",
+      "comune": "Cervignano del Friuli",
+      "provincia": "UD",
+      "latitudine": 45.8216122,
+      "longitudine": 13.3318523,
+      "telefono": "0431 30852",
+      "telefono_emergenze": "",
+      "email": "roppaolo@alice.it",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "17:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "17:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "17:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "17:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "17:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "11:00",
+            "chiude": "12:00"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "Directory/anagrafe di settore",
+      "fonte_orari": "https://www.caniincasa.it/veterinari/ambulatorio-veterinario-dr-roppa/",
+      "fonte_orari_controllo": "",
+      "fonte_emergenze": "https://www.caniincasa.it/veterinari/ambulatorio-veterinario-dr-roppa/",
+      "data_verifica": "2026-09-15",
+      "orari_verificati": false,
+      "livello_verifica_orari": "una_fonte_corrente",
+      "emergenze_verificate": false,
+      "note": "Un numero per urgenze compare in fonti datate e una directory attribuisce reperibilità H24 ma dichiara pronto soccorso H24 NO. Indicazione esclusa dai dati operativi.",
+      "esistenza_verificata": true,
+      "stato_verifica": "una_fonte_da_confermare"
+    },
+    {
+      "id": "UD-VET-031",
+      "nome": "Clinica Veterinaria Animal House",
+      "tipo_struttura": "Clinica veterinaria",
+      "indirizzo": "Via Cividale, 20",
+      "cap": "33050",
+      "comune": "Mortegliano",
+      "provincia": "UD",
+      "latitudine": 45.9499948,
+      "longitudine": 13.1804671,
+      "telefono": "0432 761776",
+      "telefono_emergenze": "",
+      "email": "",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "11:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "17:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "11:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "17:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "11:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "17:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [],
+        "venerdi": [
+          {
+            "apre": "11:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "17:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "15:30",
+            "chiude": "17:00"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "Directory/anagrafe di settore",
+      "fonte_orari": "https://www.caniincasa.it/veterinari/clinica-veterinaria-animal-house/",
+      "fonte_orari_controllo": "",
+      "fonte_emergenze": "",
+      "data_verifica": "2026-09-15",
+      "orari_verificati": false,
+      "livello_verifica_orari": "una_fonte_corrente",
+      "emergenze_verificate": false,
+      "note": "Orari pubblicati da una directory corrente; pronto soccorso H24 dichiarato NO.",
+      "esistenza_verificata": true,
+      "stato_verifica": "una_fonte_da_confermare"
+    },
+    {
+      "id": "UD-VET-032",
+      "nome": "ASUFC - Sanità animale Udine",
+      "tipo_struttura": "Servizio veterinario pubblico",
+      "indirizzo": "Via Lumignacco, 337",
+      "cap": "33100",
+      "comune": "Udine",
+      "provincia": "UD",
+      "latitudine": 46.0279327,
+      "longitudine": 13.2378139,
+      "telefono": "0432 601228",
+      "telefono_emergenze": "112",
+      "email": "vete@asufc.sanita.fvg.it",
+      "sito_ufficiale": "https://asufc.sanita.fvg.it/it/strutture/dir_sanitaria/dipartimento_prevenzione/area_a_sanita_animale/sede1.html",
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": true,
+      "specie": "Animali d’affezione e sanità pubblica veterinaria",
+      "servizi": "Sanità animale; anagrafe; certificazioni",
+      "gestione_emergenze": "sanita_pubblica_veterinaria",
+      "orari_emergenze": "Per emergenze di competenza pubblica chiamare 112; per animali di proprietà contattare un libero professionista",
+      "emergenze_su_appuntamento": false,
+      "emergenze_solo_clienti": false,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "ASUFC",
+      "fonte_orari": "https://asufc.sanita.fvg.it/it/strutture/dir_sanitaria/dipartimento_prevenzione/area_a_sanita_animale/sede1.html",
+      "fonte_orari_controllo": "",
+      "fonte_emergenze": "https://asufc.sanita.fvg.it/it/strutture/dir_sanitaria/dipartimento_prevenzione/area_a_sanita_animale/sede1.html",
+      "data_verifica": "2026-09-15",
+      "orari_verificati": true,
+      "livello_verifica_orari": "ufficiale_su_appuntamento",
+      "emergenze_verificate": true,
+      "note": "Sede ufficiale ASUFC attiva su appuntamento. Non è pubblicato un calendario settimanale di accesso libero e le fasce restano correttamente nulle.",
+      "esistenza_verificata": true,
+      "stato_verifica": "completo"
+    },
+    {
+      "id": "UD-VET-033",
+      "nome": "ASUFC - Sanità animale Palmanova",
+      "tipo_struttura": "Servizio veterinario pubblico",
+      "indirizzo": "Via Molin, 21",
+      "cap": "33057",
+      "comune": "Palmanova",
+      "provincia": "UD",
+      "latitudine": 45.908028,
+      "longitudine": 13.3116579,
+      "telefono": "0432 921859",
+      "telefono_emergenze": "112",
+      "email": "veterinaria@asufc.sanita.fvg.it",
+      "sito_ufficiale": "https://asufc.sanita.fvg.it/it/strutture/dir_sanitaria/dipartimento_prevenzione/area_a_sanita_animale/sede1.html",
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": true,
+      "specie": "Animali d’affezione e sanità pubblica veterinaria",
+      "servizi": "Sanità animale; anagrafe; certificazioni",
+      "gestione_emergenze": "sanita_pubblica_veterinaria",
+      "orari_emergenze": "Per emergenze di competenza pubblica chiamare 112; per animali di proprietà contattare un libero professionista",
+      "emergenze_su_appuntamento": false,
+      "emergenze_solo_clienti": false,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "ASUFC",
+      "fonte_orari": "https://asufc.sanita.fvg.it/it/strutture/dir_sanitaria/dipartimento_prevenzione/area_a_sanita_animale/sede1.html",
+      "fonte_orari_controllo": "",
+      "fonte_emergenze": "https://asufc.sanita.fvg.it/it/strutture/dir_sanitaria/dipartimento_prevenzione/area_a_sanita_animale/sede1.html",
+      "data_verifica": "2026-09-15",
+      "orari_verificati": true,
+      "livello_verifica_orari": "ufficiale_su_appuntamento",
+      "emergenze_verificate": true,
+      "note": "Sede ufficiale ASUFC attiva su appuntamento. Non è pubblicato un calendario settimanale di accesso libero e le fasce restano correttamente nulle.",
+      "esistenza_verificata": true,
+      "stato_verifica": "completo"
+    },
+    {
+      "id": "UD-VET-034",
+      "nome": "ASUFC - Sanità animale Gemona",
+      "tipo_struttura": "Servizio veterinario pubblico",
+      "indirizzo": "Via Dante, 163",
+      "cap": "33013",
+      "comune": "Gemona del Friuli",
+      "provincia": "UD",
+      "latitudine": 46.2753351,
+      "longitudine": 13.1349501,
+      "telefono": "0432 989512; 0432 989563",
+      "telefono_emergenze": "112",
+      "email": "veterinarito@asufc.sanita.fvg.it",
+      "sito_ufficiale": "https://asufc.sanita.fvg.it/it/strutture/dir_sanitaria/dipartimento_prevenzione/area_a_sanita_animale/sede1.html",
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": true,
+      "specie": "Animali d’affezione e sanità pubblica veterinaria",
+      "servizi": "Sanità animale; anagrafe; certificazioni",
+      "gestione_emergenze": "sanita_pubblica_veterinaria",
+      "orari_emergenze": "Per emergenze di competenza pubblica chiamare 112; per animali di proprietà contattare un libero professionista",
+      "emergenze_su_appuntamento": false,
+      "emergenze_solo_clienti": false,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "ASUFC",
+      "fonte_orari": "https://asufc.sanita.fvg.it/it/strutture/dir_sanitaria/dipartimento_prevenzione/area_a_sanita_animale/sede1.html",
+      "fonte_orari_controllo": "",
+      "fonte_emergenze": "https://asufc.sanita.fvg.it/it/strutture/dir_sanitaria/dipartimento_prevenzione/area_a_sanita_animale/sede1.html",
+      "data_verifica": "2026-09-15",
+      "orari_verificati": true,
+      "livello_verifica_orari": "ufficiale_su_appuntamento",
+      "emergenze_verificate": true,
+      "note": "Sede ufficiale ASUFC attiva su appuntamento. Non è pubblicato un calendario settimanale di accesso libero e le fasce restano correttamente nulle.",
+      "esistenza_verificata": true,
+      "stato_verifica": "completo"
+    },
+    {
+      "id": "UD-VET-035",
+      "nome": "ASUFC - Sanità animale Tolmezzo",
+      "tipo_struttura": "Servizio veterinario pubblico",
+      "indirizzo": "Via San Giovanni Bosco, 6",
+      "cap": "33028",
+      "comune": "Tolmezzo",
+      "provincia": "UD",
+      "latitudine": 46.4090376,
+      "longitudine": 13.0122177,
+      "telefono": "",
+      "telefono_emergenze": "112",
+      "email": "veterinarito@asufc.sanita.fvg.it",
+      "sito_ufficiale": "https://asufc.sanita.fvg.it/it/strutture/dir_sanitaria/dipartimento_prevenzione/area_a_sanita_animale/sede1.html",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          }
+        ],
+        "martedi": [],
+        "mercoledi": [],
+        "giovedi": [],
+        "venerdi": [],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "specie": "Animali d’affezione e sanità pubblica veterinaria",
+      "servizi": "Sanità animale; anagrafe; certificazioni",
+      "gestione_emergenze": "sanita_pubblica_veterinaria",
+      "orari_emergenze": "Per emergenze di competenza pubblica chiamare 112; per animali di proprietà contattare un libero professionista",
+      "emergenze_su_appuntamento": false,
+      "emergenze_solo_clienti": false,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "ASUFC",
+      "fonte_orari": "https://asufc.sanita.fvg.it/it/strutture/dir_sanitaria/dipartimento_prevenzione/area_a_sanita_animale/sede1.html",
+      "fonte_orari_controllo": "",
+      "fonte_emergenze": "https://asufc.sanita.fvg.it/it/strutture/dir_sanitaria/dipartimento_prevenzione/area_a_sanita_animale/sede1.html",
+      "data_verifica": "2026-09-15",
+      "orari_verificati": true,
+      "livello_verifica_orari": "ufficiale",
+      "emergenze_verificate": true,
+      "note": "Non è un pronto soccorso clinico per animali di proprietà.",
+      "esistenza_verificata": true,
+      "stato_verifica": "completo"
+    },
+    {
+      "id": "UD-VET-100",
+      "nome": "Clinica Veterinaria Diana",
+      "tipo_struttura": "Clinica veterinaria",
+      "indirizzo": "Via Celio Nanino, 129/13",
+      "cap": "33010",
+      "comune": "Reana del Rojale",
+      "provincia": "UD",
+      "latitudine": 46.1441713,
+      "longitudine": 13.2228407,
+      "telefono": "0432 851466",
+      "telefono_emergenze": "",
+      "email": "clinicaveterinariadiana@gmail.com",
+      "sito_ufficiale": "https://www.clinicadiana.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "09:00",
+            "chiude": "14:00"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": "https://www.clinicadiana.it/",
+      "fonte_orari_controllo": "",
+      "fonte_emergenze": "",
+      "data_verifica": "2026-09-15",
+      "orari_verificati": true,
+      "livello_verifica_orari": "ufficiale",
+      "emergenze_verificate": false,
+      "note": "",
+      "esistenza_verificata": true,
+      "stato_verifica": "orari_confermati_emergenze_non_dichiarate"
+    },
+    {
+      "id": "UD-VET-102",
+      "nome": "Ambulatorio Veterinario Dott.ssa Margherita Buzzi",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via Taboga, 289",
+      "cap": "33013",
+      "comune": "Gemona del Friuli",
+      "provincia": "UD",
+      "latitudine": 46.2789556,
+      "longitudine": 13.1088807,
+      "telefono": "338 9884469",
+      "telefono_emergenze": "",
+      "email": "margheritabuzzi.vet@libero.it",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "15:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "15:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "Directory/anagrafe di settore",
+      "fonte_orari": "https://www.caniincasa.it/veterinari/",
+      "fonte_orari_controllo": "",
+      "fonte_emergenze": "",
+      "data_verifica": "2026-09-15",
+      "orari_verificati": false,
+      "livello_verifica_orari": "una_fonte_corrente",
+      "emergenze_verificate": false,
+      "note": "Orari pubblicati da fonte secondaria; conferma telefonica consigliata.",
+      "esistenza_verificata": true,
+      "stato_verifica": "una_fonte_da_confermare"
+    },
+    {
+      "id": "UD-VET-103",
+      "nome": "Ambulatorio Veterinario Crosere",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via Crosere, 23/C",
+      "cap": "33053",
+      "comune": "Latisana",
+      "provincia": "UD",
+      "latitudine": 45.788319,
+      "longitudine": 13.0122049,
+      "telefono": "0431 511514",
+      "telefono_emergenze": "",
+      "email": "alphius@netanday.it",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "18:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "18:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "18:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "18:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "18:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "13:30"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "Directory/anagrafe di settore",
+      "fonte_orari": "https://www.caniincasa.it/veterinari/",
+      "fonte_orari_controllo": "",
+      "fonte_emergenze": "",
+      "data_verifica": "2026-09-15",
+      "orari_verificati": false,
+      "livello_verifica_orari": "una_fonte_corrente",
+      "emergenze_verificate": false,
+      "note": "Orari pubblicati da fonte secondaria; conferma telefonica consigliata. Dichiarazione di emergenza presente solo in directory e non confermata: esclusa dai dati operativi.",
+      "esistenza_verificata": true,
+      "stato_verifica": "una_fonte_da_confermare"
+    },
+    {
+      "id": "UD-VET-104",
+      "nome": "Ambulatorio Veterinario Mauro Londero",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via Aquileia, 3",
+      "cap": "33013",
+      "comune": "Gemona del Friuli",
+      "provincia": "UD",
+      "latitudine": 46.2797842,
+      "longitudine": 13.1195264,
+      "telefono": "0432 981697",
+      "telefono_emergenze": "",
+      "email": "londer06@alelondero.191.it",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "14:00",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "14:00",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "14:00",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "14:00",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "14:00",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "14:00",
+            "chiude": "15:30"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "Directory/anagrafe di settore",
+      "fonte_orari": "https://www.caniincasa.it/veterinari/",
+      "fonte_orari_controllo": "",
+      "fonte_emergenze": "",
+      "data_verifica": "2026-09-15",
+      "orari_verificati": false,
+      "livello_verifica_orari": "una_fonte_corrente",
+      "emergenze_verificate": false,
+      "note": "Orari pubblicati da fonte secondaria; conferma telefonica consigliata. Dichiarazione di emergenza presente solo in directory e non confermata: esclusa dai dati operativi.",
+      "esistenza_verificata": true,
+      "stato_verifica": "una_fonte_da_confermare"
+    },
+    {
+      "id": "UD-VET-106",
+      "nome": "Ambulatorio Veterinario Guaderelli Marisa",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via Daniele Manin, 7/A",
+      "cap": "33057",
+      "comune": "Palmanova",
+      "provincia": "UD",
+      "latitudine": 45.9040062,
+      "longitudine": 13.3108483,
+      "telefono": "0432 920162",
+      "telefono_emergenze": "",
+      "email": "marisaguaderelli@libero.it",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:30",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:30",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:30",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:30",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:30",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "09:30",
+            "chiude": "11:30"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "Directory/anagrafe di settore",
+      "fonte_orari": "https://www.caniincasa.it/veterinari/",
+      "fonte_orari_controllo": "",
+      "fonte_emergenze": "",
+      "data_verifica": "2026-09-15",
+      "orari_verificati": false,
+      "livello_verifica_orari": "una_fonte_corrente",
+      "emergenze_verificate": false,
+      "note": "Orari pubblicati da fonte secondaria; conferma telefonica consigliata.",
+      "esistenza_verificata": true,
+      "stato_verifica": "una_fonte_da_confermare"
+    },
+    {
+      "id": "UD-VET-107",
+      "nome": "Ambulatorio Veterinario Morassi",
+      "tipo_struttura": "Ambulatorio veterinario",
+      "indirizzo": "Via della Vittoria, 15/C",
+      "cap": "33028",
+      "comune": "Tolmezzo",
+      "provincia": "UD",
+      "latitudine": 46.4088678,
+      "longitudine": 13.0135354,
+      "telefono": "0433 40420",
+      "telefono_emergenze": "",
+      "email": "mailrobertomorassi@yahoo.it",
+      "sito_ufficiale": "",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "18:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "18:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "18:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "18:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "18:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "14:30",
+            "chiude": "15:30"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "Directory/anagrafe di settore",
+      "fonte_orari": "https://www.caniincasa.it/veterinari/ambulatorio-veterinario-morassi/",
+      "fonte_orari_controllo": "https://aziende.virgilio.it/tolmezzo-ud/morassi-dr-roberto",
+      "fonte_emergenze": "",
+      "data_verifica": "2026-09-15",
+      "orari_verificati": true,
+      "livello_verifica_orari": "secondaria_concordante",
+      "emergenze_verificate": false,
+      "note": "Orari coincidenti in due fonti secondarie correnti; pronto soccorso H24 dichiarato NO.",
+      "esistenza_verificata": true,
+      "stato_verifica": "orari_confermati_emergenze_non_dichiarate"
+    },
+    {
+      "id": "UD-VET-108",
+      "nome": "Ambulatorio Veterinario Associato Garlatti Costa-Maiero",
+      "tipo_struttura": "Clinica veterinaria",
+      "indirizzo": "Via Malborghetto, 2",
+      "cap": "33100",
+      "comune": "Udine",
+      "provincia": "UD",
+      "latitudine": 46.0707818,
+      "longitudine": 13.2257527,
+      "telefono": "0432 481548",
+      "telefono_emergenze": "",
+      "email": "",
+      "sito_ufficiale": "https://www.veterinarigarlatticostamaiero.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "10:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "10:00",
+            "chiude": "14:00"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": null,
+      "specie": "Animali da compagnia",
+      "servizi": "Medicina veterinaria",
+      "gestione_emergenze": "non_dichiarata",
+      "orari_emergenze": "",
+      "emergenze_su_appuntamento": null,
+      "emergenze_solo_clienti": null,
+      "ricovero_notturno": false,
+      "presenza_veterinario_notturno": false,
+      "apertura_24h": false,
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "Directory/anagrafe di settore",
+      "fonte_orari": "https://www.tuttiaffari.com/ambulatorio-veterinario-ass-garlatti-0432-481548",
+      "fonte_orari_controllo": "https://www.google.com/maps/search/Ambulatorio+Veterinario+Garlatti+Costa+Maiero+Udine",
+      "fonte_emergenze": "",
+      "data_verifica": "2026-09-15",
+      "orari_verificati": true,
+      "livello_verifica_orari": "secondaria_concordante",
+      "emergenze_verificate": false,
+      "note": "Tuttiaffari e Google Maps concordano su Via Malborghetto 2 e sugli orari: lunedì-venerdì 10:00-12:00 / 16:00-19:30, sabato 10:00-14:00. Emergenze e pronto soccorso H24 non dichiarati.",
+      "esistenza_verificata": true,
+      "stato_verifica": "orari_confermati_emergenze_non_dichiarate"
+    }
+  ]
+}
