@@ -2084,6 +2084,252 @@ async function ingestProntoSoccorso() {
 }
 
 // ---------------------------------------------------------------------
+// TURISMO — Neve & Impianti (16/09/2026). L'utente ha fornito un
+// pacchetto di partenza generato con ChatGPT (schema SQLite, CSV
+// anagrafica dei 7 poli sciistici, script Python di aggiornamento,
+// note sulle route verificate). Nessuna API JSON pubblica documentata
+// per questa fonte (confermato dal pacchetto e riverificato qui) — a
+// differenza di Pronto Soccorso, qui la fonte è testo visibile di
+// pagine HTML server-rendered pubbliche di TurismoFVG, non un endpoint
+// dedicato.
+//
+// Base: https://www.turismofvg.it/montagna/infoneve?day=today&hub=<hub>&type=1
+// (un valore `hub` per polo, elenco in NEVE_IMPIANTI_POLI sotto — vedi
+// anche `infosummer` per la stagione estiva, non ancora integrata).
+// Testata pagina già nel testo visibile: "<Polo> meteo X°C neve in
+// pista Y Orari Z impianti aperti A/B piste aperte C% tappeti aperti
+// D/E Strutture F/G Fondo H/I" per OGNI polo (la stessa striscia
+// riepilogativa compare su ogni pagina, indipendentemente dal `hub`
+// richiesto) seguita dal dettaglio piste/impianti del solo polo
+// richiesto (non ancora utilizzato qui, solo la striscia
+// riepilogativa).
+//
+// **Due bug reali trovati e corretti nello script Python fornito
+// dall'utente** (per questo riscritto qui in JavaScript, stesso stile
+// del resto del file, invece di eseguire quello — verificato tutto
+// contro il testo reale della pagina prima di scrivere questo codice):
+// 1. Cercava la PRIMA occorrenza del nome del polo in TUTTO il testo
+//    della pagina per delimitare il blocco dati — ma il nome di ogni
+//    polo compare anche nel menù di navigazione, PRIMA della striscia
+//    dati vera e propria. Risultato verificato: ogni singolo polo
+//    restituiva gli identici valori di "Forni di Sopra" (il primo
+//    della lista), sempre — bug silenzioso, nessun errore lanciato.
+//    Corretto ancorando la ricerca a "<nome> meteo" (compare SOLO nel
+//    blocco dati reale).
+// 2. Anche con l'ancora corretta, un limite fisso di caratteri per
+//    delimitare il blocco lascia trapelare i campi del polo successivo
+//    in quello corrente ogni volta che un campo manca nel proprio
+//    blocco (es. quando un polo non ha l'orario pubblicato, il pattern
+//    "salta" fino a trovare il prossimo "Orari ... impianti aperti"
+//    utile, che appartiene al polo successivo) — verificato: succedeva
+//    per temperatura e orari. Corretto delimitando ogni blocco fino
+//    alla prossima occorrenza di " meteo" (inizio del polo successivo)
+//    invece che a un numero fisso di caratteri, così nessun campo può
+//    più "sconfinare".
+//
+// **Comportamento richiesto esplicitamente dall'utente**: se la fonte
+// non risponde (o il blocco dati non si trova più nella pagina), NON
+// si cancella mai l'ultimo dato valido di quel polo — si mantiene,
+// marcato `stale: true`, per evitare che il sito mostri improvvisamente
+// tutti i comprensori a zero per un problema temporaneo della fonte.
+// Per questo, a differenza della maggior parte dei moduli di questo
+// file, l'ingestione qui legge prima lo snapshot precedente
+// (`leggiSnapshotEsistente`) e fa un fetch/merge indipendente per
+// ciascun polo, non un unico payload sostituito in blocco.
+//
+// **Corretto anche un piccolo errore nei dati anagrafici statici del
+// pacchetto fornito dall'utente**: Sappada/Forni Avoltri era indicato
+// con 9 impianti — la striscia riepilogativa reale della fonte mostra
+// invece un totale di 8 (`impianti aperti 0/8`), verificato più volte.
+// Corretto in lib/neveImpianti.ts, segnalato nel README.
+// ---------------------------------------------------------------------
+
+const NEVE_IMPIANTI_BASE = "https://www.turismofvg.it/montagna/infoneve";
+
+const NEVE_IMPIANTI_POLI = [
+  { slug: "tarvisio", nome: "Tarvisio", hub: "tarvisio" },
+  { slug: "sella-nevea", nome: "Sella Nevea", hub: "sella" },
+  { slug: "ravascletto-zoncolan", nome: "Ravascletto / Zoncolan", hub: "zoncolan" },
+  { slug: "piancavallo", nome: "Piancavallo", hub: "piancavallo" },
+  { slug: "forni-di-sopra", nome: "Forni di Sopra", hub: "forni" },
+  { slug: "sappada-forni-avoltri", nome: "Sappada / Forni Avoltri", hub: "sappada" },
+  { slug: "sauris", nome: "Sauris", hub: "sauris" },
+];
+
+function neveImpiantiNorm(s) {
+  return (s ?? "").replace(/\s+/g, " ").trim();
+}
+
+function neveImpiantiEstraiBlocco(testoPagina, nome) {
+  const text = neveImpiantiNorm(testoPagina);
+  const ancora = `${nome} meteo`;
+  const idx = text.toLowerCase().indexOf(ancora.toLowerCase());
+  if (idx < 0) return null;
+
+  // Delimita il blocco alla prossima occorrenza di " meteo" (inizio del
+  // polo successivo nella striscia), mai a un numero fisso di
+  // caratteri — vedi commento esteso sopra ingestNeveImpianti().
+  const idxProssimo = text.toLowerCase().indexOf(" meteo", idx + ancora.length);
+  const fine = idxProssimo >= 0 ? idxProssimo : Math.min(text.length, idx + 400);
+  const segmento = text.slice(idx, fine);
+
+  const coppia = (patterns) => {
+    for (const pat of patterns) {
+      const m = segmento.match(pat);
+      if (m) return [parseInt(m[1], 10), parseInt(m[2], 10)];
+    }
+    return [null, null];
+  };
+
+  let temperaturaC = null;
+  let m = segmento.match(/(?:meteo|weather)\s+(-?\d+(?:[.,]\d+)?)\s*°C/i);
+  if (m) temperaturaC = parseFloat(m[1].replace(",", "."));
+
+  let neveSuPista = null;
+  m = segmento.match(/(?:neve in pista|snow on the slopes)\s*(.*?)\s*(?:orari|opening hours)/i);
+  if (m) {
+    const v = neveImpiantiNorm(m[1]);
+    if (v && v !== "---" && v !== "-" && v.length <= 40 && !/meteo/i.test(v)) neveSuPista = v;
+  }
+
+  const [impiantiAperti, impiantiTotali] = coppia([
+    /impianti aperti\s*(\d+)\s*\/\s*(\d+)/i,
+    /open skilifts\s*(\d+)\s*\/\s*(\d+)/i,
+  ]);
+  const [tappetiAperti, tappetiTotali] = coppia([
+    /tappeti aperti\s*(\d+)\s*\/\s*(\d+)/i,
+    /conveyor belts\s*(\d+)\s*\/\s*(\d+)/i,
+  ]);
+  const [struttureAperte, struttureTotali] = coppia([
+    /strutture\s*(\d+)\s*\/\s*(\d+)/i,
+    /facility\s*(\d+)\s*\/\s*(\d+)/i,
+  ]);
+  const [fondoAperto, fondoTotale] = coppia([
+    /fondo\s*(\d+)\s*\/\s*(\d+)/i,
+    /cross-country ski\s*(\d+)\s*\/\s*(\d+)/i,
+  ]);
+
+  let pisteApertePct = null;
+  for (const pat of [/piste aperte\s*(\d+)\s*%/i, /open slopes\s*(\d+)\s*%/i]) {
+    m = segmento.match(pat);
+    if (m) {
+      pisteApertePct = parseInt(m[1], 10);
+      break;
+    }
+  }
+
+  let orari = null;
+  m = segmento.match(/(?:orari|opening hours)\s*(.*?)\s*(?:impianti aperti|open skilifts)/i);
+  if (m) {
+    const v = neveImpiantiNorm(m[1]);
+    if (v && v.length <= 60 && !/meteo|neve in pista/i.test(v)) orari = v;
+  }
+
+  let neveMinCm = null;
+  let neveMaxCm = null;
+  if (neveSuPista) {
+    const numeri = (neveSuPista.match(/\d+(?:[.,]\d+)?/g) || [])
+      .map((n) => parseFloat(n.replace(",", ".")))
+      .filter((n) => !Number.isNaN(n));
+    if (numeri.length) {
+      neveMinCm = Math.min(...numeri);
+      neveMaxCm = Math.max(...numeri);
+    }
+  }
+
+  let stato;
+  if (impiantiTotali === null) stato = "sconosciuto";
+  else if (impiantiTotali === 0 || impiantiAperti === 0) stato = "chiuso";
+  else if (impiantiAperti === impiantiTotali) stato = "aperto";
+  else stato = "parziale";
+
+  return {
+    stato,
+    temperaturaC,
+    neveSuPista,
+    neveMinCm,
+    neveMaxCm,
+    impiantiAperti,
+    impiantiTotali,
+    pisteApertePct,
+    tappetiAperti,
+    tappetiTotali,
+    struttureAperte,
+    struttureTotali,
+    fondoAperto,
+    fondoTotale,
+    orari,
+  };
+}
+
+async function ingestNeveImpianti() {
+  const precedente = (await leggiSnapshotEsistente("neve-impianti")) ?? { perComprensorio: {} };
+  const now = new Date().toISOString();
+  const perComprensorio = {};
+
+  for (const polo of NEVE_IMPIANTI_POLI) {
+    const precedenteLive = precedente.perComprensorio?.[polo.slug] ?? null;
+    const url = `${NEVE_IMPIANTI_BASE}?day=today&hub=${polo.hub}&type=1`;
+    try {
+      const res = await fetchConRetry(url);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const $ = cheerio.load(await res.text());
+      const testoPagina = $.root().text();
+      const estratto = neveImpiantiEstraiBlocco(testoPagina, polo.nome);
+      if (!estratto) throw new Error("blocco dati non trovato nella pagina");
+
+      perComprensorio[polo.slug] = {
+        ...estratto,
+        osservatoIl: now,
+        controllatoIl: now,
+        stale: false,
+        errore: null,
+      };
+    } catch (err) {
+      // Non cancelliamo mai l'ultimo dato valido: lo manteniamo e lo
+      // marchiamo "stale", come richiesto esplicitamente dall'utente.
+      if (precedenteLive) {
+        perComprensorio[polo.slug] = {
+          ...precedenteLive,
+          controllatoIl: now,
+          stale: true,
+          errore: `${err.name ?? "Errore"}: ${err.message}`,
+        };
+      } else {
+        perComprensorio[polo.slug] = {
+          stato: "sconosciuto",
+          temperaturaC: null,
+          neveSuPista: null,
+          neveMinCm: null,
+          neveMaxCm: null,
+          impiantiAperti: null,
+          impiantiTotali: null,
+          pisteApertePct: null,
+          tappetiAperti: null,
+          tappetiTotali: null,
+          struttureAperte: null,
+          struttureTotali: null,
+          fondoAperto: null,
+          fondoTotale: null,
+          orari: null,
+          osservatoIl: null,
+          controllatoIl: now,
+          stale: true,
+          errore: `${err.name ?? "Errore"}: ${err.message}`,
+        };
+      }
+      console.warn(`Neve & Impianti — ${polo.nome} non aggiornato: ${err.message}`);
+    }
+  }
+
+  await upsertSnapshot("neve-impianti", "neve-impianti", null, {
+    generatoIl: now,
+    perComprensorio,
+  });
+  console.log(`Neve & Impianti aggiornato: ${Object.keys(perComprensorio).length} poli`);
+}
+
+// ---------------------------------------------------------------------
 // STRUTTURE RICETTIVE — 8 registri regionali distinti (Bed & Breakfast,
 // Affittacamere, Campeggi/Villaggi Turistici, Alloggi Agrituristici,
 // Alberghi Diffusi, Strutture Ricettive a carattere Sociale, Dry
@@ -5375,6 +5621,7 @@ async function main() {
     ["balneazione", ingestBalneazione()],
     ["farmacie", ingestFarmacie()],
     ["pronto-soccorso", ingestProntoSoccorso()],
+    ["neve-impianti", ingestNeveImpianti()],
     ["strutture-ricettive", ingestStruttureRicettive()],
     ["ozono", ingestOzono()],
     ["no2", ingestNo2()],

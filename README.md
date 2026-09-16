@@ -3616,6 +3616,103 @@ il primo deploy: che `ingestProntoSoccorso()` giri senza errori nel log
 GitHub Actions e che la pagina mostri dati coerenti con quanto visibile
 sul sito ufficiale. **Non ancora confermato dall'utente in produzione.**
 
+## Turismo — Neve & Impianti (16/09/2026)
+
+L'utente ha fornito un pacchetto di partenza (`FVG_Monitor_Neve_Impianti_v2.zip`)
+generato con ChatGPT: schema SQLite, CSV anagrafica dei 7 poli sciistici,
+un JSON "import-friendly", uno script Python `update_ski_data.py` e note
+sulle route TurismoFVG verificate (`FONTI_E_ROUTE.md`), con l'architettura
+suggerita `cron → update_ski_data.py → JSON → API → frontend` e la
+richiesta esplicita: se la fonte non risponde, non cancellare mai
+l'ultimo dato valido, mantenerlo marcato `stale: true`.
+
+**Verificato con WebFetch prima di usare il pacchetto così com'era**
+(disciplina di questo progetto: mai fidarsi di una fonte/architettura
+proposta da un altro strumento senza controllo diretto): le route
+`https://www.turismofvg.it/montagna/infoneve?day=today&hub=<hub>&type=<n>`
+sono reali e pubbliche — confermata la striscia riepilogativa descritta
+nel pacchetto ("Tarvisio meteo 19,7°C neve in pista --- Orari impianti
+aperti 0/10 piste aperte 0% tappeti aperti 0/3 Strutture 0/5 Fondo
+0/7", stessa forma per tutti e 7 i poli), oltre al dettaglio piste/
+impianti per singolo polo (nomi, lunghezze, dislivelli, quote di
+partenza/arrivo, portata oraria).
+
+**Due bug reali trovati nello script Python fornito e NON usati per
+questo motivo** (riscritta la logica da zero in JavaScript dentro
+`scripts/ingest-light.mjs`, stesso stile del resto del progetto —
+vedi il commento esteso lì per il dettaglio):
+
+1. Lo script cercava la prima occorrenza del nome del polo in tutto il
+   testo della pagina — ma quel nome compare anche nel menù di
+   navigazione, PRIMA della striscia dati vera. Risultato verificato
+   eseguendo la funzione reale contro il testo reale della pagina:
+   **ogni singolo polo restituiva sempre gli identici valori di "Forni
+   di Sopra"** (il primo della lista), senza alcun errore visibile —
+   avrebbe pubblicato lo stesso identico stato per tutti e 7 i
+   comprensori. Corretto ancorando la ricerca a `"<nome> meteo"`
+   (stringa che compare solo nel blocco dati reale).
+2. Anche con l'ancora corretta, delimitare il blocco a un numero fisso
+   di caratteri lasciava trapelare campi del polo successivo quando un
+   campo mancava nel proprio blocco (es. nessun orario pubblicato →
+   temperatura/orario finivano per leggere quelli del polo successivo,
+   verificato su Sauris/Sella Nevea). Corretto delimitando ogni blocco
+   fino alla prossima occorrenza di `" meteo"` invece che a un numero
+   fisso di caratteri.
+
+**Corretto anche un piccolo errore nei dati anagrafici statici**:
+Sappada/Forni Avoltri era indicato con 9 impianti nel pacchetto, ma la
+striscia live della fonte mostra un totale di 8 (`impianti aperti
+0/8`, verificato più volte) — corretto a 8 in `lib/neveImpianti.ts`.
+
+**Architettura**: NON adottata la pipeline Python/SQLite/JSON-file
+suggerita dal pacchetto — portata invece nella stessa pipeline già in
+uso per tutte le altre sezioni live del sito (Node, `scripts/ingest-light.mjs`
+su GitHub Actions ogni 15 minuti, snapshot Supabase), per coerenza
+architetturale e per non introdurre un secondo sistema di
+hosting/scheduling. Il comportamento "non cancellare mai l'ultimo dato
+valido, marcare `stale: true`" richiesto dall'utente **è stato
+implementato correttamente**: `ingestNeveImpianti()` legge prima lo
+snapshot precedente e fa un fetch indipendente per ciascun polo — un
+polo il cui fetch fallisce mantiene i propri ultimi valori validi
+(marcati `stale`), gli altri 6 poli continuano ad aggiornarsi
+normalmente nella stessa esecuzione.
+
+**Cosa NON è stato implementato in questa prima consegna** (per
+restare a ciò che è stato verificato con dati reali, stessa disciplina
+di sempre): il dettaglio per singolo impianto/pista (tabelle `lifts`/
+`pistes` dello schema SQLite del pacchetto) — la pagina mostra solo il
+livello "scheda per comprensorio" (stesso livello dell'esempio
+`Zoncolan · Neve 85–140 cm · 9/11 impianti · 18/23 piste · 3°C` del
+pacchetto, con UNA differenza: la fonte dà "piste aperte" solo in
+percentuale, non come conteggio X/Y — mostrato quindi come percentuale,
+non inventato un conteggio assente dalla fonte). Nessuna mappa: i 7
+poli sono destinazioni note, non indirizzi da geolocalizzare — pagina
+ufficiale + webcam per ciascuno, stesso principio già seguito per le
+Strutture ricettive.
+
+**Implementazione**: `lib/neveImpianti.ts` (anagrafica statica dei 7
+poli + tipi dati live + helper di formattazione), `ingestNeveImpianti()`
+in `scripts/ingest-light.mjs` (nuovo job in `main()`, snapshot Supabase
+`neve-impianti`, un fetch indipendente per polo con retry), pagina
+`NeveImpiantiPage.tsx` (una card per polo: stato, temperatura, neve,
+impianti/tappeti/strutture/fondo aperti, orari, link pagina ufficiale
+e webcam, indicazione dato obsoleto se `stale`), route
+`/neve-impianti`, nuova card "Neve & Impianti" nell'hub Turismo
+(messa per prima).
+
+`npx tsc --noEmit` e `node --check scripts/ingest-light.mjs` puliti.
+Estrazione dati verificata contro il testo reale della pagina (salvato
+da una chiamata WebFetch reale) con uno script Node a sé — confermato
+che ciascuno dei 7 poli restituisce i propri valori corretti, non più
+quelli del polo sbagliato. Verifica visiva con `next dev` + Chromium
+headless: `/turismo` e `/neve-impianti` rispondono 200, la card "Neve &
+Impianti" compare nell'hub, nessun errore in pagina/console. **Come per
+Pronto Soccorso, l'ingestione reale non ha mai girato contro Supabase
+da questa sessione** (nessun run GitHub Actions l'ha ancora toccata) —
+e siamo fuori stagione (16/09/2026): tutti i valori live mostreranno
+0/impianti chiusi finché la stagione non riapre, comportamento atteso
+e non un bug. **Non ancora confermato dall'utente in produzione.**
+
 ## Riorganizzazione del menù: Ambiente, Turismo, FVG in immagini, Sport nelle Notizie (11/09/2026)
 
 L'utente ha chiesto una seconda riorganizzazione del menù ad amburger

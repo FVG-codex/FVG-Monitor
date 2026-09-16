@@ -22,6 +22,13 @@ export type VoceChangelog = {
 export const CHANGELOG: VoceChangelog[] = [
   {
     data: "16/09/2026",
+    titolo: "Turismo: nuova pagina Neve & Impianti",
+    dettagli: [
+      "Nuova voce Turismo → Neve & Impianti: stato degli impianti, neve in pista, piste e tappeti aperti, per tutti e 7 i poli sciistici della regione (Tarvisio, Sella Nevea, Zoncolan, Piancavallo, Forni di Sopra, Sappada/Forni Avoltri, Sauris), con link a pagina ufficiale e webcam per ciascuno.",
+    ],
+  },
+  {
+    data: "16/09/2026",
     titolo: "Sanità: nuova pagina Pronto Soccorso in tempo reale",
     dettagli: [
       "Nuova voce Sanità → Pronto Soccorso: pazienti in attesa e in trattamento per codice di triage, aggiornati ogni 15 minuti, per tutte le sedi della regione — con indirizzo, telefono (quando disponibile), mappa e indicazioni stradali.",
