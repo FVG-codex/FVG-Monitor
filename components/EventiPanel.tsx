@@ -2,20 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
-
-type Evento = {
-  titolo: string;
-  luogo: string;
-  giorno: string;
-  mese: string;
-  data_testo: string;
-  link: string;
-};
-
-type EventiData = { eventi: Evento[]; aggiornato_al: string };
+import type { Evento, EventiSnapshot } from "@/lib/eventi";
 
 export function EventiPanel() {
-  const [dati, setDati] = useState<EventiData | null>(null);
+  const [dati, setDati] = useState<EventiSnapshot | null>(null);
   const [stato, setStato] = useState<"loading" | "ready" | "error">("loading");
 
   useEffect(() => {
@@ -31,7 +21,7 @@ export function EventiPanel() {
         setStato("error");
         return;
       }
-      setDati(data.data as EventiData);
+      setDati(data.data as EventiSnapshot);
       setStato("ready");
     }
     carica();
@@ -45,15 +35,18 @@ export function EventiPanel() {
   if (stato === "loading") {
     return <p className="text-ink-faint text-sm font-mono">Caricamento eventi…</p>;
   }
-  if (stato === "error" || !dati || dati.eventi.length === 0) {
+
+  const prossimi: Evento[] = dati?.prossimi ?? [];
+
+  if (stato === "error" || !dati || prossimi.length === 0) {
     return <p className="text-ink-faint text-sm font-mono">Eventi non disponibili al momento.</p>;
   }
 
   return (
     <div>
-      {dati.eventi.slice(0, 5).map((e, i) => (
+      {prossimi.slice(0, 5).map((e, i) => (
         <a
-          key={e.link}
+          key={`${e.link}|${e.dataIso}`}
           href={e.link}
           target="_blank"
           rel="noopener noreferrer"
@@ -72,9 +65,9 @@ export function EventiPanel() {
           </div>
         </a>
       ))}
-      <p className="text-ink-faint text-[10px] font-mono mt-3 border-t border-line pt-2">
-        Fonte: Turismo FVG (PromoTurismoFVG)
-      </p>
+      <a href="/eventi" className="block text-cool-ink text-[10px] font-mono mt-3 border-t border-line pt-2 hover:underline">
+        Tutti gli eventi →
+      </a>
     </div>
   );
 }

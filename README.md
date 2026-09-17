@@ -3845,6 +3845,93 @@ e siamo fuori stagione (16/09/2026): tutti i valori live mostreranno
 0/impianti chiusi finché la stagione non riapre, comportamento atteso
 e non un bug. **Non ancora confermato dall'utente in produzione.**
 
+## Turismo → Eventi, pagina dedicata `/eventi` (17/09/2026)
+
+L'utente ha chiesto una pagina dedicata solo agli eventi dentro Turismo,
+allegando un pacchetto generato con ChatGPT (`FVG_Monitor_Eventi_v2.zip`):
+uno script TypeScript separato (`sync_turismofvg_events.ts`, da eseguire
+con `npx tsx`), un nuovo schema Supabase relazionale (tabelle
+`event_sources`/`event_categories`/`event_locations`/`events`/
+`event_occurrences`/`event_ingestion_runs` + viste), e una route cron
+Vercel dedicata. **Questa architettura non è stata adottata**: è
+incompatibile con il pattern del progetto (un solo `ingest-light.mjs`
+eseguito ogni 15 minuti da GitHub Actions, snapshot singoli su una
+tabella `snapshots`), e per come era scritta avrebbe aperto centinaia di
+pagine-dettaglio evento ad ogni ciclo, rischiando di sovraccaricare
+turismofvg.it e sforare il budget di tempo di GitHub Actions. Prima di
+scegliere, è stata posta esplicitamente all'utente la domanda se
+preferire "solo elenco" (nessun fetch delle pagine dettaglio) o "elenco +
+arricchimento" (fetch dettaglio limitato, come già fatto per
+Agriturismi/FISI/Tennis) — **l'utente ha scelto "solo elenco"**.
+
+**Verifica del sito reale**: come già successo più volte in questo
+progetto (Agriturismi, piste ciclabili, Sci, Tennis, gare.lnd.it),
+WebFetch su `https://www.turismofvg.it/eventi` restituisce solo testo
+visibile (titoli, "8 eventi"/"449 eventi trovati", pulsante "carica
+altri eventi") ma non i nomi esatti di classi/attributi HTML necessari
+per scrivere i selettori cheerio corretti — la conversione HTML→markdown
+di WebFetch elimina anche i tag `<script>`. È stato quindi chiesto
+direttamente all'utente l'HTML reale della pagina (`view-source`), che
+ha fornito per intero. Da questo HTML reale sono emerse due varianti di
+card evento (`a.c-eventsResults__item`, classe `big` per la prima card
+di ogni pagina, `small` per tutte le altre) con strutture interne
+diverse per data/categoria/orario/luogo, e il fatto che **nessuna card
+dell'elenco mostra una data di fine evento** (solo 4 eventi editoriali
+in evidenza in cima alla pagina la mostrano, fuori dal flusso normale
+delle card).
+
+**Design scelto — finestra esplicita di 14 giorni**: non essendo chiaro
+quale sia l'ordinamento/filtro di default della paginazione base di
+`/eventi`, e non essendo possibile determinare la data di fine di un
+evento multi-giorno dalle card, l'ingestione richiede sempre
+esplicitamente `start`/`end` (parametri GET dichiarati nel form di
+filtro reale della pagina) per una finestra nota di 14 giorni (oggi →
+oggi+13, fuso Europe/Rome), poi risolve ogni card ricevuta (che riporta
+solo giorno+mese abbreviato) contro una tabella di lookup precalcolata
+per quella finestra. Le card che non corrispondono a nessuna data attesa
+vengono scartate (con avviso in log), invece di essere indovinate.
+**Importante**: non è stato possibile verificare dal sandbox che il
+filtro `start`/`end` funzioni davvero lato server come dichiarato dal
+form (turismofvg.it non è raggiungibile via fetch diretto da questa
+sessione) — sarà confermato (o smentito) dal primo run reale su GitHub
+Actions, da controllare guardando il conteggio "card scartate" nei log
+(deve restare a 0 o vicino a 0 se l'assunzione è corretta).
+
+**Implementazione**: `ingestEventi()` in `scripts/ingest-light.mjs`
+riscritta da zero (sostituisce il vecchio scraper mono-pagina). Nuove
+funzioni: `eventiCostruisciFinestra`, `eventiFetchFinestra` (paginazione
+con tetto di sicurezza `EVENTI_MAX_PAGINE_PER_FINESTRA = 12`, ~96 card),
+`eventiEstraiCard` (selettori per entrambe le varianti big/small),
+`eventiProssimoWeekend`. Lo snapshot `eventi:turismofvg` cambia forma —
+**breaking change**: non più `{ eventi: [...], aggiornato_al }` ma `{
+oggi, domani, weekend, prossimi, finestra: {da, a}, aggiornato_al }`,
+con ogni evento arricchito di `orario`, `categoria`, `immagine` (oltre a
+`titolo`, `luogo`, `giorno`, `mese`, `link`, più il nuovo `dataIso`).
+
+**Frontend**: `components/EventiPanel.tsx` (pannello homepage)
+aggiornato per la nuova forma (`dati.prossimi.slice(0, 5)` invece di
+`dati.eventi.slice(0, 5)`, campo `data_testo` rimosso) — altrimenti si
+sarebbe rotto silenziosamente al primo giro reale. Nuova pagina dedicata
+`/eventi` (`components/EventiPage.tsx` + `app/eventi/page.tsx`), stesso
+pattern di `/neve-impianti` e `/calcio`: tab Oggi/Domani/Weekend/
+Prossimi 14 giorni (bottoni, stesso stile di `CalcioPage.tsx`), filtro
+categoria lato client, card con immagine (fallback grigio se l'immagine
+non carica, stesso pattern di `WebcamCard.tsx`). Nuovo file condiviso
+`lib/eventi.ts` con i tipi TypeScript e gli helper di formattazione data.
+Aggiunta una quarta card "Eventi" in `components/TurismoPage.tsx`.
+
+**Verifica**: `npx tsc --noEmit` e `node --check scripts/ingest-light.mjs`
+puliti. Verifica visiva con `next dev` + Chromium headless: `/`,
+`/turismo` e `/eventi` rispondono senza errori in pagina, tutti e 4 i
+tab di `/eventi` sono cliccabili senza errori. Gli unici errori console
+osservati sono `ERR_TUNNEL_CONNECTION_FAILED` verso Supabase, limite di
+rete noto di questa sandbox (stesso comportamento di ogni altra pagina
+testata qui), non un problema del codice. **Non è stato possibile
+verificare i dati reali** (Supabase non raggiungibile da qui, e
+soprattutto **l'assunzione sul filtro start/end non è mai stata testata
+con una richiesta live**). **Non ancora confermato dall'utente in
+produzione.**
+
 ## Calcio — Terza Categoria, 4 nuovi gironi (17/09/2026)
 
 L'utente ha chiesto di aggiungere la Terza Categoria alla sezione

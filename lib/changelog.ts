@@ -22,6 +22,13 @@ export type VoceChangelog = {
 export const CHANGELOG: VoceChangelog[] = [
   {
     data: "17/09/2026",
+    titolo: "Turismo: nuova pagina dedicata Eventi",
+    dettagli: [
+      "Nuova sezione /eventi dentro Turismo, con tab Oggi/Domani/Weekend/Prossimi 14 giorni, immagini, orario, categoria e filtro per categoria. Il pannello Eventi in homepage ora rimanda alla pagina completa.",
+    ],
+  },
+  {
+    data: "17/09/2026",
     titolo: "Calcio: aggiunta la Terza Categoria (4 gironi)",
     dettagli: [
       "Nuovi gironi selezionabili nella pagina Calcio: Terza Categoria Girone D, A, B e C, con calendario e classifica come per le altre categorie già presenti (Eccellenza, Promozione, Prima e Seconda Categoria).",

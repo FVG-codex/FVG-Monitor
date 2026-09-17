@@ -1633,56 +1633,233 @@ async function ingestCarburanti() {
 // ---------------------------------------------------------------------
 // EVENTI — scraping HTML della pagina eventi di turismofvg.it
 // (portale ufficiale PromoTurismoFVG). La pagina è renderizzata
-// server-side (verificato: un semplice fetch restituisce già tutti gli
-// eventi, senza bisogno di eseguire JavaScript), quindi niente browser
-// headless necessario. Struttura HTML verificata manualmente via
-// devtools — se il sito cambia layout, questo parser andrà aggiornato.
+// server-side (verificato più volte: un semplice fetch restituisce già
+// tutti gli eventi, senza bisogno di eseguire JavaScript), quindi
+// niente browser headless necessario.
 //
-// Estraiamo solo i campi presenti in modo coerente in entrambe le
-// varianti di card osservate (big/small): titolo, data, luogo, link —
-// non l'ora o la categoria, che variano tra le due varianti.
+// Estesa il 17/09/2026 (richiesta esplicita dell'utente: pagina dedicata
+// Eventi dentro Turismo). L'utente ha caricato un pacchetto generato con
+// ChatGPT (`FVG_Monitor_Eventi_v2.zip`) che proponeva una pipeline
+// separata (script TypeScript a sé via tsx, tabelle Supabase
+// relazionali nuove — event_sources/event_locations/events/
+// event_occurrences —, cron route Vercel) e uno scraping "a cascata" di
+// TUTTE le ~450 schede evento (listing + apertura di ogni singola
+// scheda) ad ogni sync. Architettura NON adottata: non coerente con
+// questo progetto (un solo script, ingest-light.mjs, su GitHub Actions
+// ogni 15 minuti, tabella `snapshots` singola) e troppo pesante per
+// turismofvg.it (centinaia di richieste per esecuzione, ogni 15-30
+// minuti, per sempre — il pacchetto stesso segnalava onestamente questo
+// rischio). Scelta concordata con l'utente: solo i dati già visibili
+// nella pagina elenco, nessuna apertura delle singole schede evento.
+//
+// **HTML reale fornito dall'utente prima di scrivere i selettori**
+// (stessa disciplina già seguita per Agriturismi/bike routes/Sci — mai
+// selettori scritti "a naso" da un riassunto WebFetch, che taglia via
+// attributi/icone necessari qui). Scoperte rispetto ai selettori già in
+// uso in precedenza:
+// - Le card evento (`a.c-eventsResults__item`) esistono in 2 varianti,
+//   "big" (una sola per pagina, la prima) e "small" (tutte le altre).
+// - Categoria: variante big → testo diretto in `.info_category .col2`
+//   ("Spettacoli teatrali"); variante small → attributo `title` di
+//   `.info_date .col3` ("Musica") — entrambe leggibili direttamente,
+//   nessun bisogno di decodificare lo slug dell'icona.
+// - Immagine: presente su entrambe le varianti come
+//   `background-image: url('...')` nello style dell'elemento `<a>`
+//   stesso.
+// - Orario: presente SOLO sulla variante big (`.info_hour .col2`).
+// - **Nessuna data di fine evento nella card stessa** (né big né small),
+//   solo un singolo giorno/mese. Un evento multi-giorno (es.
+//   "Pordenonelegge", 16-20 settembre) sembra comparire con più card
+//   distinte, una per ciascun giorno in cui è attivo, quando l'elenco è
+//   filtrato su quell'intervallo — non con un'unica card che indica un
+//   intervallo (il periodo completo è visibile solo nella sezione "in
+//   evidenza" in cima alla pagina, 4 eventi scelti a mano dalla
+//   redazione, non utile per uno scraping generico).
+//
+// **Filtro data lato server, dedotto dal form reale (NON verificato con
+// una richiesta diretta da questa sessione)**: la pagina ha un form
+// `GET /eventi` con campi `start`/`end` (date AAAA-MM-GG). Invece di
+// scaricare l'elenco generico (finestra di default non chiara) e poi
+// indovinare a quale giorno appartiene ciascuna card, qui interroghiamo
+// SEMPRE esplicitamente una finestra nota di `EVENTI_FINESTRA_GIORNI`
+// giorni (oggi→oggi+13, fuso Europe/Rome) — così ogni card restituita
+// ha un giorno/mese risolvibile con certezza in una data ISO nota. Se
+// un giorno/mese restituito non corrisponde a NESSUNA delle date
+// attese, la card viene scartata con un avviso invece di essere
+// ingerita con una data indovinata (mai inventare dati) — questo è
+// anche il modo in cui ci accorgeremmo se l'assunzione sul filtro
+// start/end si rivelasse sbagliata in produzione: controllare i log
+// della prossima esecuzione GitHub Actions per l'avviso "card
+// scartate". Stesso discorso per la combinazione `start`/`end` insieme
+// a `page` (paginazione "carica altri" dentro un elenco già filtrato
+// per data): non verificata con una richiesta reale da questa sessione,
+// ma resa innocua dallo stesso controllo difensivo.
+//
+// Tetto di sicurezza `EVENTI_MAX_PAGINE_PER_FINESTRA` pagine (8
+// card/pagina) sulla finestra di 14 giorni — un giorno eccezionalmente
+// denso di eventi oltre il tetto semplicemente non compare per intero
+// in quell'esecuzione (nessun errore, nessun dato inventato), invece di
+// scaricare un numero di pagine potenzialmente enorme ad ogni run.
 // ---------------------------------------------------------------------
 
-async function ingestEventi() {
-  const res = await fetchConRetry("https://www.turismofvg.it/eventi", {
-    headers: { "User-Agent": "Mozilla/5.0 (compatible; FVGMonitorBot/1.0)" },
-  });
-  if (!res.ok) {
-    console.warn(`Pagina eventi non disponibile (HTTP ${res.status})`);
-    return;
+const EVENTI_BASE_URL = "https://www.turismofvg.it/eventi";
+const EVENTI_FINESTRA_GIORNI = 14; // oggi + 13 giorni successivi
+const EVENTI_MAX_PAGINE_PER_FINESTRA = 12; // ~96 card, tetto di sicurezza
+
+const EVENTI_MESI_ABBR_IT = ["GEN", "FEB", "MAR", "APR", "MAG", "GIU", "LUG", "AGO", "SET", "OTT", "NOV", "DIC"];
+
+function eventiDataAggiungiGiorni(dataIso, giorni) {
+  // Ancorato a mezzogiorno UTC per evitare che l'aggiunta di giorni
+  // scavalchi un cambio di ora legale — stesso accorgimento già usato
+  // altrove in questo file per calcoli di data.
+  const d = new Date(`${dataIso}T12:00:00Z`);
+  d.setUTCDate(d.getUTCDate() + giorni);
+  return d.toISOString().slice(0, 10);
+}
+
+function eventiCostruisciFinestra(oggiIso) {
+  const date = [];
+  for (let i = 0; i < EVENTI_FINESTRA_GIORNI; i++) {
+    const iso = eventiDataAggiungiGiorni(oggiIso, i);
+    const [, meseNum, giornoNum] = iso.split("-").map(Number);
+    date.push({ iso, giorno: String(giornoNum), mese: EVENTI_MESI_ABBR_IT[meseNum - 1] });
   }
+  return date;
+}
 
-  const html = await res.text();
-  const $ = cheerio.load(html);
+// Weekend "corrente" (sab+dom se oggi è già nel weekend) o il prossimo.
+// Se oggi è domenica, il sabato del weekend in corso è ieri — fuori
+// dalla finestra che interroghiamo (guardiamo solo in avanti nel
+// tempo): in quel caso il weekend mostrato è solo la domenica odierna,
+// limite intrinseco del non poter interrogare il passato, non un bug.
+function eventiProssimoWeekend(oggiIso) {
+  const giornoSettimana = new Date(`${oggiIso}T12:00:00Z`).getUTCDay(); // 0 domenica ... 6 sabato
+  let giorniAlSabato;
+  if (giornoSettimana === 6) giorniAlSabato = 0;
+  else if (giornoSettimana === 0) giorniAlSabato = -1;
+  else giorniAlSabato = 6 - giornoSettimana;
+  const domenica = eventiDataAggiungiGiorni(oggiIso, giorniAlSabato + 1);
+  return {
+    sabato: giorniAlSabato < 0 ? null : eventiDataAggiungiGiorni(oggiIso, giorniAlSabato),
+    domenica,
+  };
+}
 
-  const eventi = [];
-  $("a.c-eventsResults__item").each((_, el) => {
-    const $el = $(el);
-    const href = $el.attr("href");
-    if (!href) return;
-    const link = href.startsWith("http") ? href : `https://www.turismofvg.it${href}`;
+function eventiUrlAssoluto(href) {
+  if (!href) return null;
+  return href.startsWith("http") ? href : `https://www.turismofvg.it${href}`;
+}
 
-    const giorno = $el.find(".info_date strong").first().text().trim();
-    const mese = $el.find(".info_date p").first().text().trim();
-    const luogo = $el.find(".col2").first().text().trim();
-    const dataTesto = $el.find(".item_title p strong").first().text().trim();
-    const titolo = $el.find(".item_title h1 strong, .item_title h2 strong").first().text().trim();
+function eventiEstraiImmagine($el) {
+  const style = $el.attr("style") || "";
+  const m = style.match(/background-image:\s*url\('([^']+)'\)/);
+  return m ? eventiUrlAssoluto(m[1]) : null;
+}
 
-    if (titolo) {
-      eventi.push({ titolo, luogo, giorno, mese, data_testo: dataTesto, link });
+function eventiEstraiCard($, el) {
+  const $el = $(el);
+  const link = eventiUrlAssoluto($el.attr("href"));
+  if (!link) return null;
+
+  const giornoGrezzo = $el.find(".info_date .col1 strong").first().text().trim();
+  const giorno = giornoGrezzo && !Number.isNaN(parseInt(giornoGrezzo, 10)) ? String(parseInt(giornoGrezzo, 10)) : "";
+  const mese = $el.find(".info_date .col1 p").first().text().trim().toUpperCase();
+  const luogo = $el.find(".info_location .col2, .info_date .col2").first().text().trim();
+  const orario = $el.find(".info_hour .col2").first().text().trim();
+  let categoria = $el.find(".info_category .col2").first().text().trim();
+  if (!categoria) {
+    const titleAttr = $el.find(".info_date .col3").first().attr("title");
+    categoria = titleAttr ? titleAttr.trim() : "";
+  }
+  const titolo = $el.find(".item_title h1 strong, .item_title h2 strong").first().text().trim();
+  const immagine = eventiEstraiImmagine($el);
+
+  if (!titolo || !giorno || !mese) return null;
+  return { titolo, luogo, giorno, mese, orario, categoria, immagine, link };
+}
+
+async function eventiFetchFinestra(startIso, endIso) {
+  const card = [];
+  for (let pagina = 0; pagina < EVENTI_MAX_PAGINE_PER_FINESTRA; pagina++) {
+    const url = `${EVENTI_BASE_URL}?hidehighlights=true&start=${startIso}&end=${endIso}&page=${pagina}`;
+    const res = await fetchConRetry(url, {
+      headers: { "User-Agent": "Mozilla/5.0 (compatible; FVGMonitorBot/1.0)" },
+    });
+    if (!res.ok) {
+      if (pagina === 0) throw new Error(`HTTP ${res.status}`);
+      break; // pagina successiva non disponibile: fine paginazione, teniamo quanto raccolto finora
     }
-  });
 
-  if (eventi.length === 0) {
-    console.warn("Nessun evento estratto — la struttura HTML della pagina potrebbe essere cambiata");
+    const $ = cheerio.load(await res.text());
+    const trovate = $("a.c-eventsResults__item").toArray();
+    if (trovate.length === 0) break;
+
+    for (const el of trovate) {
+      const c = eventiEstraiCard($, el);
+      if (c) card.push(c);
+    }
+
+    if ($("a.js-loadmorebox__button").length === 0) break; // ultima pagina
+  }
+  return card;
+}
+
+async function ingestEventi() {
+  const oggiIso = oggiEuropeRome();
+  const finestra = eventiCostruisciFinestra(oggiIso);
+  const ultimaIso = finestra[finestra.length - 1].iso;
+
+  const card = await eventiFetchFinestra(oggiIso, ultimaIso);
+  if (card.length === 0) {
+    console.warn(
+      "Eventi: nessuna card estratta — la struttura HTML potrebbe essere cambiata, oppure il filtro start/end non funziona come atteso"
+    );
     return;
   }
+
+  const finestraLookup = new Map(finestra.map((f) => [`${f.giorno}|${f.mese}`, f.iso]));
+
+  const eventiConData = [];
+  const visti = new Set();
+  let scartate = 0;
+  for (const c of card) {
+    const dataIso = finestraLookup.get(`${c.giorno}|${c.mese}`);
+    if (!dataIso) {
+      scartate++;
+      continue;
+    }
+    const chiave = `${c.link}|${dataIso}`;
+    if (visti.has(chiave)) continue; // stessa card ripetuta da una pagina di "carica altri"
+    visti.add(chiave);
+    eventiConData.push({ ...c, dataIso });
+  }
+
+  if (scartate > 0) {
+    console.warn(
+      `Eventi: ${scartate} card scartate (giorno/mese fuori dalla finestra richiesta — possibile che il filtro start/end non funzioni come atteso)`
+    );
+  }
+
+  eventiConData.sort((a, b) => (a.dataIso < b.dataIso ? -1 : a.dataIso > b.dataIso ? 1 : 0));
+
+  const domaniIso = finestra[1]?.iso ?? null;
+  const { sabato: sabatoIso, domenica: domenicaIso } = eventiProssimoWeekend(oggiIso);
+
+  const oggi = eventiConData.filter((e) => e.dataIso === oggiIso);
+  const domani = domaniIso ? eventiConData.filter((e) => e.dataIso === domaniIso) : [];
+  const weekend = eventiConData.filter((e) => e.dataIso === sabatoIso || e.dataIso === domenicaIso);
 
   await upsertSnapshot("eventi:turismofvg", "eventi", null, {
-    eventi: eventi.slice(0, 20),
+    oggi,
+    domani,
+    weekend,
+    prossimi: eventiConData,
+    finestra: { da: oggiIso, a: ultimaIso },
     aggiornato_al: new Date().toISOString(),
   });
-  console.log(`Eventi aggiornati: ${eventi.length} trovati`);
+  console.log(
+    `Eventi aggiornati: ${eventiConData.length} nella finestra ${oggiIso}→${ultimaIso} (oggi ${oggi.length}, domani ${domani.length}, weekend ${weekend.length})`
+  );
 }
 
 // ---------------------------------------------------------------------
