@@ -93,9 +93,10 @@ export function ViabilitaPage() {
         <h2 className="font-cond font-bold text-xl uppercase tracking-wide mb-1 mt-8">Confini</h2>
         <p className="text-ink-faint text-xs font-mono mb-4">
           15 valichi/direttrici verso Slovenia e Austria — dati anagrafici (comune, strada, tipologia). Eventi di
-          traffico in tempo reale disponibili solo per i 2 valichi autostradali (A23 Tarvisio, A34 Sant&apos;Andrea/
-          Vrtojba): per gli altri nessuna fonte pubblica verificabile è stata trovata finora (Promet.si richiede un
-          token B2B, ASFINAG e ANAS non raggiungibili da questa sessione — vedi lib/confini.ts).
+          traffico in tempo reale: lato italiano per i 2 valichi autostradali (A23 Tarvisio, A34 Sant&apos;Andrea/
+          Vrtojba); lato sloveno (sperimentale, fonte Promet.si) per Fernetti, Rabuiese/Škofije, Sant&apos;Andrea/
+          Vrtojba e Pesek/Kozina. Per gli altri 9 valichi nessuna fonte pubblica verificabile è stata trovata finora
+          (ASFINAG e ANAS non raggiungibili da questa sessione — vedi lib/confini.ts).
         </p>
         <ConfiniSection />
       </main>

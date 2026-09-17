@@ -3671,6 +3671,83 @@ headless: `/viabilita` risponde 200, tutti e 15 i valichi compaiono
 Carnico), nessun errore in pagina/console. **Non ancora confermato
 dall'utente in produzione.**
 
+## Viabilità — Confini, sblocco Promet.si (16/09/2026)
+
+Subito dopo la consegna precedente l'utente ha chiesto di "sbloccare le
+fonti mancanti". Promet.si è risultato irraggiungibile via WebFetch/curl
+diretto da questa sessione (stesso limite di rete già visto altrove), ma
+la sua pagina pubblica funziona normalmente in un browser reale — stessa
+situazione già affrontata per Pronto Soccorso in una sessione precedente.
+L'utente ha quindi catturato dal proprio browser (Chrome DevTools) un
+file HAR completo della pagina "potovalni časi" di Promet.si e lo ha
+caricato in sessione.
+
+**Reverse engineering (senza alcuna libreria protobuf/MVT aggiunta)**: la
+mappa di Promet.si carica "vector tile" (formato Mapbox Vector Tile,
+un wrapper protobuf) da vari endpoint. Un endpoint POST (`/dc/agg`)
+richiede un cookie `DARS_WAF` (probabile protezione anti-bot) ed è
+comunque risultato irrilevante: copre solo 10 direttrici nazionali fisse
+centrate su Lubiana, nessuna delle nostre. Analizzando sistematicamente
+gli altri endpoint visti nell'HAR è stato trovato quello utile: GET
+`coreTileVector{1,2,3}/tiles/prometsi_sl_SI/google4mb/{z}/{x}/{y}` — la
+tile z=7 x=68 y=45 contiene un livello `mejniprehodi` (anagrafica valichi
+sloveni) e due livelli `dogodki_clustered`/`dogodki_nonclustered` con
+eventi di traffico reali (`Cesta`, `IsZastoj`, `QueueLength`,
+`DelaySeconds`, `IsRoadClosed`, `isMejniPrehod`, `Title`/`Description`).
+Il formato protobuf/MVT è stato decodificato a mano da zero (varint,
+zigzag, campi length-delimited) e verificato contro i dati reali
+catturati prima di scrivere qualunque codice per il sito — stessa
+disciplina di sempre. Un bug reale è stato trovato in questa fase: i
+campi logicamente booleani/numerici (`IsZastoj`, `QueueLength`, ecc.)
+sono codificati come STRINGHE letterali (`"True"`/`"False"`, `"0"`), non
+come booleani/interi nativi — un `Boolean("False")` ingenuo in
+JavaScript avrebbe dato `true` per qualunque evento. Corretto con un
+parsing esplicito, verificato di nuovo contro i dati reali dopo la
+correzione.
+
+**Autenticazione**: tutte le 52 richieste GET a `coreTileVector*`
+nell'HAR (stesse 4 tile ripetute più volte, polling periodico del
+browser) usano solo `User-Agent` + `Referer`, nessun cookie, e ricevono
+sempre HTTP 200 — a differenza di `/dc/agg`. **Non è stato possibile
+testare la richiesta direttamente da questa sandbox** (promet.si non
+raggiungibile da qui): la conferma che funzioni davvero arriverà solo
+dai log della prossima esecuzione GitHub Actions.
+
+**Copertura**: solo 4 dei nostri 11 valichi Italia-Slovenia sono coperti
+dalla tile catturata — Fernetti (A3), Rabuiese/Škofije (H5),
+Sant'Andrea/Vrtojba (H4), Pesek/Kozina (G1-7, dedotto dall'anagrafica ma
+mai osservato in un evento reale nel campione, da riverificare). Le
+altre due tile "vuote" catturate nello stesso HAR (68/44, 69/44) non
+contenevano nessun valico nostro; la quarta (69/45) copre l'area
+Slovenia-Croazia, irrilevante. Gli altri 7 valichi verso la Slovenia
+(Basovizza, Lazzaretto, Casa Rossa, Stupizza, Uccea, Predil, Fusine) non
+sono coperti — servirebbe una nuova cattura HAR con la mappa centrata più
+a nord (Tarvisio/Bovec/Nova Gorica). I 4 valichi Italia-Austria restano
+interamente scoperti (serve ASFINAG o ANAS, non ancora sbloccati).
+
+**Implementazione**: `ingestConfiniPrometsi()` in
+`scripts/ingest-light.mjs` (decoder MVT/protobuf minimale scritto a
+mano, fetch della tile 7/68/45, estrazione eventi per i 4 valichi,
+snapshot `confini-prometsi`, stesso pattern "mantieni l'ultimo dato
+valido e marca stale" già usato per Neve & Impianti in caso di
+fallimento). `lib/confini.ts`: nuovo campo `codiceStradaPromet` per
+valico, valorizzato solo per i 4 confermati; commento in cima
+aggiornato. `components/ConfiniSection.tsx`: ogni card mostra ora, dove
+disponibile, una sezione "Lato italiano" (invariata) e una sezione "Lato
+sloveno" separata (nuova) — sono fonti e lati diversi, non lo stesso
+dato, quindi non uniti in un'unica lista.
+
+`npx tsc --noEmit` e `node --check scripts/ingest-light.mjs` puliti.
+Decoder JS riverificato contro gli stessi dati reali già usati per il
+decoder Python di analisi (output identico). Verifica visiva con
+`next dev` + Chromium headless: `/viabilita` risponde 200, tutte le
+card mostrano le nuove sezioni "Lato italiano"/"Lato sloveno" dove
+previsto, nessun errore in pagina/console (i "Caricamento…" visti nel
+test sono attesi: Supabase non è raggiungibile da questa sandbox, non
+un errore del codice). **Non ancora confermato dall'utente in
+produzione — in particolare, non ancora confermato che il fetch della
+tile Promet.si funzioni davvero da GitHub Actions.**
+
 ## Turismo — Neve & Impianti (16/09/2026)
 
 L'utente ha fornito un pacchetto di partenza (`FVG_Monitor_Neve_Impianti_v2.zip`)

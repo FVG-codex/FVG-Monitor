@@ -1275,6 +1275,274 @@ async function ingestViabilita() {
 // ---------------------------------------------------------------------
 
 // ---------------------------------------------------------------------
+// VIABILITÀ — Confini, lato sloveno: Promet.si "coreTileVector"
+// (16/09/2026, sblocco richiesto dall'utente dopo la consegna MVP di
+// Confini). Vedi il commento esteso in cima a lib/confini.ts per il
+// contesto completo. Riassunto qui di cosa fa questo modulo e perché.
+//
+// Il sito pubblico Promet.si è una SPA che disegna la mappa con "vector
+// tile" (formato Mapbox Vector Tile / protobuf) scaricate da
+// `www.promet.si/coreTileVector{1,2,3}/tiles/prometsi_sl_SI/google4mb/
+// {z}/{x}/{y}`. Analizzando un HAR fornito dall'utente (catturato dal
+// suo browser reale) abbiamo scoperto che la tile z=7 x=68 y=45 contiene
+// due livelli utili:
+//  - `mejniprehodi`: anagrafica dei valichi sloveni (nome, strada,
+//    tratto) — usata SOLO per verificare la corrispondenza coi nostri
+//    valichi, non ri-ingerita qui (l'anagrafica statica è già in
+//    lib/confini.ts).
+//  - `dogodki_clustered` / `dogodki_nonclustered`: eventi di traffico
+//    reali, con `Cesta` (codice strada), `IsZastoj` (coda), `QueueLength`
+//    (lunghezza coda in metri), `DelaySeconds`, `IsRoadClosed`,
+//    `isMejniPrehod`, `Title`/`Description`/`VzrokShortName` (causa).
+//
+// Confrontando i valori di `Cesta` con l'anagrafica `mejniprehodi`
+// abbiamo trovato SOLO 4 dei nostri 11 valichi Italia-Slovenia in questa
+// tile (le altre celle catturate nell'HAR, 68/44 e 69/44, non
+// contenevano alcun valico nostro; 69/45 copre l'area Slovenia-Croazia,
+// irrilevante): Fernetti (A3), Rabuiese/Škofije (H5), Sant'Andrea/
+// Vrtojba (H4), Pesek/Kozina (probabilmente "G1-7", MAI osservato in un
+// evento reale nel campione catturato — corrispondenza dedotta
+// dall'anagrafica, da trattare con cautela). Gli altri 7 valichi verso
+// la Slovenia (Basovizza, Lazzaretto, Casa Rossa, Stupizza, Uccea,
+// Predil, Fusine) NON sono coperti: servirebbe una nuova cattura HAR con
+// la mappa spostata più a nord (area Tarvisio/Bovec/Nova Gorica) per
+// scoprire quali altre tile z/x/y li contengono.
+//
+// **Autenticazione**: a differenza dell'endpoint POST `/dc/agg` (che
+// richiede un cookie `DARS_WAF` non ottenibile da uno script stateless),
+// tutte le 52 richieste GET a `coreTileVector*` presenti nell'HAR
+// (messe in sequenza dal browser ogni pochi secondi, stesse 4 tile
+// ripetute) usano SOLO `User-Agent` + `Referer`, nessun cookie, e
+// ricevono sempre HTTP 200 — nessuna eccezione. Per questo qui
+// replichiamo esattamente quegli header (non lo User-Agent identificativo
+// "FVGMonitorBot" usato altrove in questo file), invece di indovinare:
+// è l'unica combinazione osservata funzionare davvero. **Non è però
+// stato possibile testare la richiesta da questa sandbox di sviluppo
+// (promet.si non raggiungibile direttamente da qui, stesso limite già
+// visto altrove) — la prima conferma reale arriverà dai log della
+// prossima esecuzione su GitHub Actions.** Se dovesse fallire (403/429/
+// blocco WAF su user-agent non-browser), il fallback "mantieni l'ultimo
+// dato valido e marca stale" sotto evita comunque di rompere la pagina.
+//
+// Nessuna libreria di decodifica protobuf/MVT è stata aggiunta come
+// dipendenza: il formato (Mapbox Vector Tile, un semplice wrapper
+// protobuf) è stato decodificato a mano e verificato contro dati reali
+// catturati (vedi sessione di analisi), quindi il decoder qui sotto è
+// volutamente minimale — legge solo i campi che usiamo davvero
+// (mejniprehodi non viene nemmeno decodificato in produzione, solo i
+// due livelli `dogodki_*`).
+// ---------------------------------------------------------------------
+
+const CONFINI_PROMETSI_TILE_URL =
+  "https://www.promet.si/coreTileVector2/tiles/prometsi_sl_SI/google4mb/7/68/45";
+const CONFINI_PROMETSI_HEADERS = {
+  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36",
+  Referer: "https://www.promet.si/sl/potovalni-casi",
+};
+
+// Corrispondenza valico → codice strada sloveno nel campo `Cesta` dei
+// livelli `dogodki_*`, dedotta incrociando `mejniprehodi` (vedi sopra).
+// Solo i 4 valichi confermati; tutti gli altri restano `null` (nessuna
+// fonte sloveno-lato per loro, per ora).
+const CONFINI_PROMETSI_STRADE = {
+  fernetti: "A3",
+  rabuiese: "H5",
+  "sant-andrea-vrtojba": "H4",
+  pesek: "G1-7", // dedotto dall'anagrafica, mai osservato in un evento reale — da riverificare
+};
+
+// --- decoder MVT/protobuf minimale (varint, zigzag, campi length-delimited) ---
+
+function mvtLeggiVarint(buf, pos) {
+  let result = 0;
+  let shift = 0;
+  let b;
+  do {
+    b = buf[pos++];
+    result += (b & 0x7f) * 2 ** shift;
+    shift += 7;
+  } while (b & 0x80);
+  return [result, pos];
+}
+
+function mvtZigzag(n) {
+  return n % 2 === 0 ? n / 2 : -(n + 1) / 2;
+}
+
+function mvtLeggiCampo(buf, pos) {
+  let tag;
+  [tag, pos] = mvtLeggiVarint(buf, pos);
+  const campo = Math.floor(tag / 8);
+  const wireType = tag % 8;
+  if (wireType === 0) {
+    let val;
+    [val, pos] = mvtLeggiVarint(buf, pos);
+    return [campo, wireType, val, pos];
+  } else if (wireType === 2) {
+    let len;
+    [len, pos] = mvtLeggiVarint(buf, pos);
+    const val = buf.subarray(pos, pos + len);
+    pos += len;
+    return [campo, wireType, val, pos];
+  } else if (wireType === 5) {
+    const val = buf.subarray(pos, pos + 4);
+    pos += 4;
+    return [campo, wireType, val, pos];
+  } else if (wireType === 1) {
+    const val = buf.subarray(pos, pos + 8);
+    pos += 8;
+    return [campo, wireType, val, pos];
+  }
+  throw new Error(`wire type MVT non supportato: ${wireType}`);
+}
+
+function mvtDecodificaVarintImpacchettati(buf) {
+  const out = [];
+  let pos = 0;
+  while (pos < buf.length) {
+    let v;
+    [v, pos] = mvtLeggiVarint(buf, pos);
+    out.push(v);
+  }
+  return out;
+}
+
+function mvtDecodificaValore(buf) {
+  let pos = 0;
+  while (pos < buf.length) {
+    let campo, wireType, val;
+    [campo, wireType, val, pos] = mvtLeggiCampo(buf, pos);
+    if (campo === 1) return Buffer.from(val).toString("utf-8"); // string_value
+    if (campo === 4) return Number(val); // int_value (varint)
+    if (campo === 5) return Number(val); // uint_value
+    if (campo === 6) return mvtZigzag(val); // sint_value
+    if (campo === 7) return Boolean(val); // bool_value
+    // float_value/double_value (campo 2/3, wire type 5/1) non ci servono qui
+  }
+  return null;
+}
+
+function mvtDecodificaFeature(buf) {
+  const feat = { tags: [] };
+  let pos = 0;
+  while (pos < buf.length) {
+    let campo, wireType, val;
+    [campo, wireType, val, pos] = mvtLeggiCampo(buf, pos);
+    if (campo === 2) feat.tags = mvtDecodificaVarintImpacchettati(val);
+  }
+  return feat;
+}
+
+function mvtDecodificaLayer(buf) {
+  const layer = { name: null, features: [], keys: [], values: [] };
+  let pos = 0;
+  while (pos < buf.length) {
+    let campo, wireType, val;
+    [campo, wireType, val, pos] = mvtLeggiCampo(buf, pos);
+    if (campo === 1) layer.name = Buffer.from(val).toString("utf-8");
+    else if (campo === 2) layer.features.push(mvtDecodificaFeature(val));
+    else if (campo === 3) layer.keys.push(Buffer.from(val).toString("utf-8"));
+    else if (campo === 4) layer.values.push(mvtDecodificaValore(val));
+  }
+  return layer;
+}
+
+function mvtDecodificaTile(buf) {
+  const layers = [];
+  let pos = 0;
+  while (pos < buf.length) {
+    let campo, wireType, val;
+    [campo, wireType, val, pos] = mvtLeggiCampo(buf, pos);
+    if (campo === 3) layers.push(mvtDecodificaLayer(val));
+  }
+  return layers;
+}
+
+function mvtFeatureATag(layer, feat) {
+  const out = {};
+  for (let i = 0; i < feat.tags.length; i += 2) {
+    const chiave = layer.keys[feat.tags[i]];
+    const valore = layer.values[feat.tags[i + 1]];
+    if (chiave !== undefined) out[chiave] = valore;
+  }
+  return out;
+}
+
+// IMPORTANTE (verificato contro dati reali, vedi sessione di analisi):
+// nei livelli `dogodki_*` di Promet.si, campi logicamente booleani/
+// numerici come `IsZastoj`, `QueueLength`, `isMejniPrehod` sono codificati
+// come STRINGHE letterali ("True"/"False", "0", "2000"), non come
+// bool_value/int_value nativi del protobuf. Un `Boolean("False")`
+// ingenuo in JS darebbe `true` (qualsiasi stringa non vuota è truthy) —
+// serve un parsing esplicito.
+function mvtValoreBooleano(v) {
+  return v === "True" || v === true;
+}
+function mvtValoreNumerico(v) {
+  if (typeof v === "number") return v;
+  if (typeof v === "string" && v.trim() !== "") {
+    const n = Number(v);
+    return Number.isFinite(n) ? n : null;
+  }
+  return null;
+}
+
+async function ingestConfiniPrometsi() {
+  const precedente = (await leggiSnapshotEsistente("confini-prometsi")) ?? { perValico: {} };
+  const now = new Date().toISOString();
+
+  let layers;
+  try {
+    const res = await fetchConRetry(CONFINI_PROMETSI_TILE_URL, { headers: CONFINI_PROMETSI_HEADERS });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const buf = Buffer.from(await res.arrayBuffer());
+    layers = mvtDecodificaTile(buf);
+  } catch (err) {
+    // Fonte non disponibile: manteniamo l'ultimo dato valido (se c'è) e
+    // lo marchiamo stale, stesso pattern di ingestNeveImpianti().
+    const perValico = {};
+    for (const id of Object.keys(CONFINI_PROMETSI_STRADE)) {
+      const prec = precedente.perValico?.[id] ?? null;
+      perValico[id] = prec
+        ? { ...prec, controllatoIl: now, stale: true, errore: `${err.name ?? "Errore"}: ${err.message}` }
+        : { eventi: [], osservatoIl: null, controllatoIl: now, stale: true, errore: `${err.name ?? "Errore"}: ${err.message}` };
+    }
+    await upsertSnapshot("confini-prometsi", "viabilita-confini", "SI", { generatoIl: now, perValico });
+    console.warn(`Confini (Promet.si) non aggiornato: ${err.message}`);
+    return;
+  }
+
+  const dogodkiClustered = layers.find((l) => l.name === "dogodki_clustered");
+  const dogodkiNonClustered = layers.find((l) => l.name === "dogodki_nonclustered");
+  const eventiGrezzi = [
+    ...(dogodkiClustered ? dogodkiClustered.features.map((f) => mvtFeatureATag(dogodkiClustered, f)) : []),
+    ...(dogodkiNonClustered ? dogodkiNonClustered.features.map((f) => mvtFeatureATag(dogodkiNonClustered, f)) : []),
+  ];
+
+  const perValico = {};
+  for (const [id, codiceStrada] of Object.entries(CONFINI_PROMETSI_STRADE)) {
+    const eventi = eventiGrezzi
+      .filter((e) => e.Cesta === codiceStrada)
+      .map((e) => ({
+        titolo: testo(e.Title),
+        descrizione: testo(e.Description),
+        causa: testo(e.VzrokShortName),
+        zastoj: mvtValoreBooleano(e.IsZastoj),
+        codaM: mvtValoreNumerico(e.QueueLength),
+        ritardoSec: mvtValoreNumerico(e.DelaySeconds),
+        stradaChiusa: mvtValoreBooleano(e.IsRoadClosed),
+        alValico: mvtValoreBooleano(e.isMejniPrehod),
+      }));
+    perValico[id] = { eventi, osservatoIl: now, controllatoIl: now, stale: false, errore: null };
+  }
+
+  await upsertSnapshot("confini-prometsi", "viabilita-confini", "SI", { generatoIl: now, perValico });
+  console.log(
+    `Confini (Promet.si) aggiornato: ${eventiGrezzi.length} eventi nella tile, ${Object.values(perValico).reduce((n, v) => n + v.eventi.length, 0)} rilevanti per i nostri valichi`
+  );
+}
+
+// ---------------------------------------------------------------------
 // CARBURANTI — prezzo medio regionale, fonte ufficiale MIMIT
 // (Ministero delle Imprese e del Made in Italy), CSV pubblicato ogni
 // mattina alle 8:00 con i prezzi medi di tutte le regioni italiane.
@@ -5610,6 +5878,7 @@ async function main() {
     ["notizie", ingestNotizie()],
     ["vento", ingestVento()],
     ["viabilita", ingestViabilita()],
+    ["confini-prometsi", ingestConfiniPrometsi()],
     ["carburanti", ingestCarburanti()],
     ["eventi", ingestEventi()],
     ["qualita-aria", ingestQualitaAria()],

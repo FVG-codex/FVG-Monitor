@@ -1,22 +1,20 @@
-// Viabilità → Confini (16/09/2026). L'utente ha caricato un pacchetto
-// di partenza generato con ChatGPT (`FVG_Monitor_Confini_v3.zip`):
-// schema SQLite in 3 stadi (fonti grezze → normalizzatore eventi →
-// aggregatore per valico), CSV anagrafico di 15 valichi/direttrici
-// (11 Italia-Slovenia, 4 Italia-Austria), e tre script Python
-// (update_border_sources.py, normalize_traffic.py, aggregate_crossings.py).
+// Viabilità → Confini (16/09/2026, esteso il 16/09/2026 — sblocco
+// Promet.si). L'utente ha caricato un pacchetto di partenza generato
+// con ChatGPT (`FVG_Monitor_Confini_v3.zip`): schema SQLite in 3 stadi
+// (fonti grezze → normalizzatore eventi → aggregatore per valico), CSV
+// anagrafico di 15 valichi/direttrici (11 Italia-Slovenia, 4
+// Italia-Austria), e tre script Python (update_border_sources.py,
+// normalize_traffic.py, aggregate_crossings.py).
 //
 // **Verificato prima di implementare, e ridimensionato di conseguenza**:
 // a differenza di Neve & Impianti (dove una fonte pubblica verificabile
 // esisteva davvero), qui NESSUNA delle fonti quantitative indicate nel
-// pacchetto si è rivelata utilizzabile da questa sessione:
-// - Promet.si (Slovenia, la fonte "tecnicamente migliore" secondo il
-//   pacchetto stesso): le pagine pubbliche di fallback sono SPA
-//   JavaScript, nessun dato nell'HTML iniziale (stesso limite già visto
-//   per Pronto Soccorso prima che l'utente fornisse l'endpoint reale).
-//   L'endpoint B2B (quello con dati veri) richiede un token
-//   `Authorization: bearer` che non è stato fornito — il pacchetto
-//   stesso lo segnala esplicitamente ("I valori live non sono
-//   inventati... Promet.si B2B richiede un token").
+// pacchetto si è rivelata direttamente utilizzabile da questa sessione:
+// - Promet.si (Slovenia): le pagine pubbliche di fallback sono SPA
+//   JavaScript, nessun dato nell'HTML iniziale. L'endpoint B2B
+//   ufficiale richiede un token `Authorization: bearer` mai fornito.
+//   **Sbloccato parzialmente il 16/09/2026** (vedi sotto) tramite
+//   reverse engineering delle vector tile della mappa, non l'API B2B.
 // - ASFINAG (Austria): pagina pubblica non raggiungibile (403) da
 //   questa sessione; nessun endpoint di open data verificato.
 // - ANAS (Italia, strade statali): portali "VAI"/InfoAnas non
@@ -25,29 +23,56 @@
 // - CCISS: nessun endpoint concreto indicato nel pacchetto, solo
 //   citato come fonte prevista dal normalizzatore.
 //
-// **Un'eccezione reale**: per i 2 valichi autostradali (Tarvisio
-// Autostrada/A23 verso l'Austria, Sant'Andrea/Vrtojba sulla A34 verso
-// la Slovenia) il sito ingerisce GIÀ un feed reale e verificato,
-// `ingestViabilita()` in scripts/ingest-light.mjs (InfoViaggiando/
-// Autostrade Alto Adriatico, snapshot Supabase `viabilita:autostrade`,
-// usato anche da ViabilitaPanel.tsx) — questi due valichi mostrano
-// quindi gli eventi reali già raccolti per quell'autostrada, filtrati
-// per codice. Nessuna nuova ingestione aggiunta: si riusa quella
-// esistente, nessun rischio nuovo introdotto.
+// **Due fonti reali oggi**:
+// 1. Per i 2 valichi autostradali (Tarvisio Autostrada/A23 verso
+//    l'Austria, Sant'Andrea/Vrtojba sulla A34 verso la Slovenia) il
+//    sito ingerisce GIÀ un feed reale e verificato, `ingestViabilita()`
+//    in scripts/ingest-light.mjs (InfoViaggiando/Autostrade Alto
+//    Adriatico, snapshot Supabase `viabilita:autostrade`, usato anche
+//    da ViabilitaPanel.tsx) — lato ITALIANO della strada.
+// 2. **Nuovo (16/09/2026)**: `ingestConfiniPrometsi()` in
+//    scripts/ingest-light.mjs legge la vector tile pubblica di
+//    Promet.si (`coreTileVector`, z=7 x=68 y=45 — formato Mapbox
+//    Vector Tile/protobuf, decodificato a mano, nessuna libreria
+//    aggiunta) e ne estrae gli eventi reali di traffico per i valichi
+//    coperti da quella tile, lato SLOVENO. Scoperto analizzando un HAR
+//    catturato dal browser dell'utente: la richiesta GET funziona con
+//    solo `User-Agent` + `Referer` (nessun cookie/token), a differenza
+//    dell'endpoint POST `/dc/agg` (irrilevante comunque per i nostri
+//    valichi: copre solo le 10 direttrici nazionali slovene verso
+//    Lubiana). **Copre SOLO 4 dei nostri 11 valichi verso la Slovenia**
+//    (`codiceStradaPromet` sotto): Fernetti (A3), Rabuiese/Škofije
+//    (H5), Sant'Andrea/Vrtojba (H4), Pesek/Kozina (G1-7, dedotto
+//    dall'anagrafica ma mai osservato in un evento reale nel campione
+//    — da riverificare). Gli altri 7 valichi sloveni (Basovizza,
+//    Lazzaretto, Casa Rossa, Stupizza, Uccea, Predil, Fusine) non sono
+//    coperti dalla tile catturata — servirebbe un nuovo HAR con la
+//    mappa centrata più a nord (Tarvisio/Bovec/Nova Gorica) per
+//    scoprire le tile giuste. I 4 valichi Italia-Austria restano
+//    interamente scoperti (serve ASFINAG o ANAS, non ancora sbloccati).
+//    **Non ancora confermato in produzione**: questa sandbox non può
+//    raggiungere promet.si direttamente, quindi la richiesta non è
+//    mai stata eseguita con successo da qui — solo dedotta dall'HAR.
+//    La prima conferma reale arriva dai log di GitHub Actions. Se
+//    dovesse fallire, il fallback "mantieni l'ultimo dato valido e
+//    marca stale" (stesso pattern di Neve & Impianti) evita comunque
+//    che la pagina si rompa o mostri dati inventati.
 //
-// **Per questo la pagina qui è volutamente più semplice del pacchetto
-// originale**: solo l'anagrafica dei 15 valichi (dati amministrativi
-// stabili, non time-sensitive — nome, comune, strada, classe) più gli
-// eventi reali già disponibili per i 2 valichi autostradali. Nessuna
-// tabella traffico/contatori/webcam/stato controlli di frontiera (il
-// pacchetto stesso avvisa di tenere separato lo stato controlli e di
-// "non dedurlo da una coda" — qui non c'è nemmeno una coda misurata,
-// quindi a maggior ragione nessuna deduzione). Gli script Python del
-// pacchetto (aggregatore/normalizzatore/updater) NON sono stati
-// eseguiti né portati in JavaScript, perché dipendono tutti da fonti
-// non verificabili da qui — stessa disciplina già applicata al
-// pacchetto Neve & Impianti (mai fidarsi di una pipeline generata da
-// un altro strumento senza controllo diretto).
+// **Per questo la pagina qui resta più semplice del pacchetto
+// originale**: anagrafica dei 15 valichi (dati amministrativi stabili,
+// non time-sensitive — nome, comune, strada, classe) più gli eventi
+// reali disponibili (lato italiano per i 2 valichi autostradali, lato
+// sloveno per i 4 valichi coperti da Promet.si). Nessuna tabella
+// traffico/contatori/webcam/stato controlli di frontiera (il pacchetto
+// stesso avvisa di tenere separato lo stato controlli e di "non
+// dedurlo da una coda" — qui non c'è nemmeno una coda misurata per la
+// maggior parte dei valichi, quindi a maggior ragione nessuna
+// deduzione). Gli script Python del pacchetto (aggregatore/
+// normalizzatore/updater) NON sono stati eseguiti né portati in
+// JavaScript, perché dipendono tutti da fonti non verificabili da qui
+// — stessa disciplina già applicata al pacchetto Neve & Impianti (mai
+// fidarsi di una pipeline generata da un altro strumento senza
+// controllo diretto).
 
 export type PaeseConfine = "SI" | "AT";
 
@@ -71,6 +96,10 @@ export type Valico = {
    * già un'ingestione reale nel sito — solo questi 2 valichi hanno un
    * riquadro "eventi in corso" popolato con dati veri. */
   autostradeCollegate: string[];
+  /** Codice strada sloveno (campo `Cesta` nella tile Promet.si) per cui
+   * `ingestConfiniPrometsi()` cerca eventi live — null per i valichi non
+   * ancora coperti dalla tile catturata finora (vedi commento in cima). */
+  codiceStradaPromet: string | null;
 };
 
 export const NOME_PAESE: Record<PaeseConfine, string> = {
@@ -107,10 +136,11 @@ export const VALICHI: Valico[] = [
     classe: "primary",
     modalita: "motorway",
     mapQuery: "Valico di Fernetti, Italia Slovenia",
-    fonteTraffico: "Promet.si B2B (non disponibile: token richiesto)",
+    fonteTraffico: "Promet.si (coreTileVector, lato sloveno — sperimentale, vedi commento in cima al file)",
     fonteItalia: "ANAS",
     note: "Principale direttrice Trieste–Lubiana. Promet.si segnala anche limitazioni stagionali merci sulla A3 Divača–Fernetiči.",
     autostradeCollegate: [],
+    codiceStradaPromet: "A3",
   },
   {
     id: "rabuiese",
@@ -125,10 +155,11 @@ export const VALICHI: Valico[] = [
     classe: "primary",
     modalita: "expressway",
     mapQuery: "Valico di Rabuiese Škofije",
-    fonteTraffico: "Promet.si B2B (non disponibile: token richiesto)",
+    fonteTraffico: "Promet.si (coreTileVector, lato sloveno — sperimentale, vedi commento in cima al file)",
     fonteItalia: "ANAS",
     note: "Direttrice principale verso Koper/Capodistria e Istria.",
     autostradeCollegate: [],
+    codiceStradaPromet: "H5",
   },
   {
     id: "pesek",
@@ -143,10 +174,11 @@ export const VALICHI: Valico[] = [
     classe: "primary",
     modalita: "road",
     mapQuery: "Valico di Pesek Kozina",
-    fonteTraffico: "Promet.si B2B (non disponibile: token richiesto)",
+    fonteTraffico: "Promet.si (coreTileVector, lato sloveno — codice strada dedotto, mai osservato in un evento reale, vedi commento in cima al file)",
     fonteItalia: "ANAS",
     note: "Valico stradale utile per Carso, Kozina e direttrici verso Croazia.",
     autostradeCollegate: [],
+    codiceStradaPromet: "G1-7",
   },
   {
     id: "basovizza-lipica",
@@ -165,6 +197,7 @@ export const VALICHI: Valico[] = [
     fonteItalia: "Ente regionale/locale",
     note: "Traffico prevalentemente locale/turistico.",
     autostradeCollegate: [],
+    codiceStradaPromet: null,
   },
   {
     id: "lazaret",
@@ -183,6 +216,7 @@ export const VALICHI: Valico[] = [
     fonteItalia: "Ente regionale/locale",
     note: "Valico costiero locale Muggia–Ankaran.",
     autostradeCollegate: [],
+    codiceStradaPromet: null,
   },
   {
     id: "sant-andrea-vrtojba",
@@ -197,10 +231,11 @@ export const VALICHI: Valico[] = [
     classe: "primary",
     modalita: "expressway",
     mapQuery: "Valico Sant'Andrea Vrtojba Gorizia",
-    fonteTraffico: "Promet.si B2B (non disponibile: token richiesto)",
+    fonteTraffico: "InfoViaggiando (lato italiano) + Promet.si coreTileVector (lato sloveno — sperimentale)",
     fonteItalia: "InfoViaggiando / Autostrade Alto Adriatico",
     note: "Principale direttrice Gorizia–Nova Gorica–H4. Molto sensibile ai lavori sulla H4.",
     autostradeCollegate: ["A34"],
+    codiceStradaPromet: "H4",
   },
   {
     id: "casa-rossa",
@@ -219,6 +254,7 @@ export const VALICHI: Valico[] = [
     fonteItalia: "Ente regionale/locale",
     note: "Valico urbano Gorizia–Nova Gorica.",
     autostradeCollegate: [],
+    codiceStradaPromet: null,
   },
   {
     id: "stupizza-robic",
@@ -237,6 +273,7 @@ export const VALICHI: Valico[] = [
     fonteItalia: "ANAS",
     note: "Direttrice Cividale–Kobarid.",
     autostradeCollegate: [],
+    codiceStradaPromet: null,
   },
   {
     id: "uccea-ucja",
@@ -255,6 +292,7 @@ export const VALICHI: Valico[] = [
     fonteItalia: "Ente regionale/locale",
     note: "Valico montano secondario.",
     autostradeCollegate: [],
+    codiceStradaPromet: null,
   },
   {
     id: "predil-predel",
@@ -273,6 +311,7 @@ export const VALICHI: Valico[] = [
     fonteItalia: "ANAS",
     note: "Passo montano; stato viario e meteo particolarmente rilevanti in inverno.",
     autostradeCollegate: [],
+    codiceStradaPromet: null,
   },
   {
     id: "fusine-ratece",
@@ -291,6 +330,7 @@ export const VALICHI: Valico[] = [
     fonteItalia: "ANAS",
     note: "Principale collegamento stradale Tarvisio–Kranjska Gora.",
     autostradeCollegate: [],
+    codiceStradaPromet: null,
   },
   {
     id: "tarvisio-autostrada",
@@ -309,6 +349,7 @@ export const VALICHI: Valico[] = [
     fonteItalia: "Autostrade per l'Italia",
     note: "Principale valico autostradale FVG–Austria.",
     autostradeCollegate: ["A23"],
+    codiceStradaPromet: null,
   },
   {
     id: "coccau-arnoldstein",
@@ -327,6 +368,7 @@ export const VALICHI: Valico[] = [
     fonteItalia: "ANAS",
     note: "Alternativa stradale alla A23/A2; ASFINAG dispone di webcam nell'area Zollamt Arnoldstein.",
     autostradeCollegate: [],
+    codiceStradaPromet: null,
   },
   {
     id: "pramollo-nassfeld",
@@ -345,6 +387,7 @@ export const VALICHI: Valico[] = [
     fonteItalia: "Ente regionale/locale",
     note: "Valico montano/turistico; priorità a stato strada, neve e chiusure.",
     autostradeCollegate: [],
+    codiceStradaPromet: null,
   },
   {
     id: "monte-croce-carnico",
@@ -363,5 +406,6 @@ export const VALICHI: Valico[] = [
     fonteItalia: "ANAS",
     note: "Riaperto nel 2026 dopo lunga chiusura; possibili chiusure temporanee per lavori. Da trattare con stato strada prioritario.",
     autostradeCollegate: [],
+    codiceStradaPromet: null,
   },
 ];

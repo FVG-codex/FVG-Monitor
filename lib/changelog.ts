@@ -22,6 +22,13 @@ export type VoceChangelog = {
 export const CHANGELOG: VoceChangelog[] = [
   {
     data: "16/09/2026",
+    titolo: "Viabilità: Confini, eventi live anche lato sloveno (sperimentale)",
+    dettagli: [
+      "Per 4 valichi verso la Slovenia (Fernetti, Rabuiese/Škofije, Sant'Andrea/Vrtojba, Pesek/Kozina) la sezione Confini mostra ora anche gli eventi di traffico reali del lato sloveno (fonte: Promet.si), oltre a quelli già disponibili lato italiano per i 2 valichi autostradali.",
+    ],
+  },
+  {
+    data: "16/09/2026",
     titolo: "Viabilità: nuova sezione Confini",
     dettagli: [
       "Aggiunta una sezione Confini alla pagina Viabilità: i 15 valichi/direttrici verso Slovenia e Austria con comune, strada e tipologia; per i 2 valichi autostradali (A23 Tarvisio, A34 Sant'Andrea/Vrtojba) anche gli eventi di traffico in tempo reale già disponibili sul sito.",
