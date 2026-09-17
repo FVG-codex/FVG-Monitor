@@ -3845,6 +3845,62 @@ e siamo fuori stagione (16/09/2026): tutti i valori live mostreranno
 0/impianti chiusi finché la stagione non riapre, comportamento atteso
 e non un bug. **Non ancora confermato dall'utente in produzione.**
 
+## Calcio — Terza Categoria, 4 nuovi gironi (17/09/2026)
+
+L'utente ha chiesto di aggiungere la Terza Categoria alla sezione
+Calcio, fornendo direttamente 4 link a gare.lnd.it: girone D
+(campionato 32), girone A (campionato 33), girone B e girone C
+(entrambi campionato 36). I primi due usano la stessa forma URL già in
+uso per tutte le altre competizioni (`https://gare.lnd.it/?campionato=
+...&cr=07&girone=...&stagione=...`); gli ultimi due sono stati
+incollati dall'utente con un percorso diverso,
+`https://gare.lnd.it/competizione/friuli-venezia-giulia?campionato=36&
+girone=...&stagione=...`, senza `cr=07` esplicito.
+
+**Non è stato possibile verificare direttamente da questa sessione se
+le due forme di URL siano equivalenti**: gare.lnd.it non è raggiungibile
+via curl da questa sandbox (bloccato dal proxy, stesso limite già visto
+per altri domini in questo progetto) e WebFetch, pur raggiungendo le 4
+pagine con successo (titolo "Gare LND", token CSRF presente — quindi
+pagine reali, non errori), non può leggerne i dati: gare.lnd.it è
+un'app Inertia.js che incorpora l'intero stato in un tag
+`<script data-page="app" type="application/json">`, tagliato via dalla
+conversione HTML→markdown di WebFetch prima che il modello possa
+vederlo (stesso limite già documentato nel codice per questo sito).
+Per prudenza, invece di riscrivere gli ultimi due link nella forma
+"classica" e rischiare di rompere qualcosa che l'utente aveva già
+verificato funzionare nel proprio browser, il codice ora supporta un
+`urlBase` opzionale per competizione e per queste due usa **esattamente**
+l'URL fornito dall'utente.
+
+**Implementazione**: 4 nuove voci in `COMPETIZIONI_CALCIO`
+(`scripts/ingest-light.mjs`) — `terza-categoria-d`, `terza-categoria-a`,
+`terza-categoria-b`, `terza-categoria-c` — che riusano interamente
+`ingestCalcioCompetizione()` già esistente (stessa logica di estrazione
+già in produzione per le altre 9 competizioni, nessun nuovo codice di
+parsing). Nuova funzione `urlCalcio()` per gestire le due forme di URL.
+Aggiunti gli stessi 4 slug come bottoni in `COMPETIZIONI`
+(`components/CalcioPage.tsx`), con le etichette "3ª Cat. — Girone
+D/A/B/C". Come per tutte le altre competizioni, `ingestCalcio()` prova
+automaticamente sia la stagione corrente (2026) sia quella precedente
+(2025) per ciascuna delle 4 nuove voci — se la Terza Categoria non
+esisteva sotto lo stesso codice campionato nella stagione 2025/26, quel
+singolo tentativo fallisce silenziosamente (avviso in log, nessun dato
+scritto) senza bloccare le altre 8 richieste della stessa esecuzione,
+comportamento già esistente e invariato.
+
+**Verifica**: `npx tsc --noEmit` e `node --check scripts/ingest-light.mjs`
+puliti. Verifica visiva con `next dev` + Chromium headless: `/calcio`
+risponde 200, tutti e 13 i bottoni competizione compaiono (i 9 esistenti
+più i 4 nuovi), click su "3ª Cat. — Girone D" non causa errori in
+pagina/console. **Non è stato possibile verificare che i dati mostrati
+siano quelli corretti** (Supabase non raggiungibile da questa sandbox,
+quindi nessun dato reale caricato durante il test — comportamento
+identico a tutte le altre pagine quando testate da qui) **né che il
+fetch delle 2 competizioni con `urlBase` funzioni davvero in
+produzione** (stesso limite di rete spiegato sopra). **Non ancora
+confermato dall'utente in produzione.**
+
 ## Riorganizzazione del menù: Ambiente, Turismo, FVG in immagini, Sport nelle Notizie (11/09/2026)
 
 L'utente ha chiesto una seconda riorganizzazione del menù ad amburger

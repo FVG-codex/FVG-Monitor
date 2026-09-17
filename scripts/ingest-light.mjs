@@ -3805,17 +3805,16 @@ async function ingestPollini() {
 // ---------------------------------------------------------------------
 
 // ---------------------------------------------------------------------
-// CALCIO — Eccellenza FVG Girone A (gare.lnd.it). La pagina è
+// CALCIO — campionati dilettantistici FVG (gare.lnd.it). La pagina è
 // un'app Inertia.js: al primo caricamento normale (nessun header
 // speciale necessario) incorpora l'intero stato in un tag
 // <script data-page="app" type="application/json"> — lo estraiamo
 // con cheerio invece di scrapare l'HTML visibile, stesso principio
-// degli altri moduli ma sorgente diversa (JSON incorporato).
-//
-// Per ora solo Eccellenza Girone A (il livello regionale più seguito).
-// Altri campionati (Promozione, Prima Categoria, ecc.) hanno la
-// stessa struttura URL — estendibile in futuro aggiungendo altre
-// voci a COMPETIZIONI_CALCIO.
+// degli altri moduli ma sorgente diversa (JSON incorporato). Questa
+// struttura è comune a tutto il dominio gare.lnd.it — verificata più
+// volte su più campionati diversi (Eccellenza, Promozione, Prima/
+// Seconda/Terza Categoria) — estendibile aggiungendo voci a
+// COMPETIZIONI_CALCIO.
 //
 // Stagioni: si tengono SEMPRE due stagioni per competizione — quella
 // corrente (default in UI) e quella immediatamente precedente
@@ -3842,10 +3841,54 @@ const COMPETIZIONI_CALCIO = [
   { slug: "seconda-categoria-pordenone", nome: "Seconda Categoria Pordenone", girone: "Girone A", campionato: "23", gironeParam: "A" },
   { slug: "seconda-categoria-udine-b", nome: "Seconda Categoria Udine", girone: "Girone B", campionato: "26", gironeParam: "B" },
   { slug: "seconda-categoria-udine-c", nome: "Seconda Categoria Udine", girone: "Girone C", campionato: "26", gironeParam: "C" },
+  // Terza Categoria (17/09/2026, richiesta esplicita dell'utente con 4
+  // link diretti già navigati/copiati da lui su gare.lnd.it). I primi 2
+  // (girone D, girone A) usano l'URL "classico" già in uso per tutte le
+  // altre competizioni sopra. Gli ultimi 2 (girone B, girone C, stesso
+  // campionato "36") sono stati incollati dall'utente con un percorso
+  // diverso, `/competizione/friuli-venezia-giulia` invece di `/` con
+  // `cr=07` esplicito — non verificabile da questa sessione se le due
+  // forme siano intercambiabili (gare.lnd.it non è raggiungibile
+  // direttamente da questa sandbox, e WebFetch non vede i dati perché
+  // sono incorporati in un tag <script> JSON, tagliato via dalla
+  // conversione HTML→markdown — stesso limite già noto per questo
+  // sito). Per questo qui si replica ESATTAMENTE il link fornito
+  // dall'utente (vedi `urlBase` sotto e `urlCalcio()`), invece di
+  // riscriverlo nella forma "classica" e rischiare di rompere qualcosa
+  // che l'utente aveva già verificato funzionare nel proprio browser.
+  { slug: "terza-categoria-d", nome: "Terza Categoria", girone: "Girone D", campionato: "32", gironeParam: "D" },
+  { slug: "terza-categoria-a", nome: "Terza Categoria", girone: "Girone A", campionato: "33", gironeParam: "A" },
+  {
+    slug: "terza-categoria-b",
+    nome: "Terza Categoria",
+    girone: "Girone B",
+    campionato: "36",
+    gironeParam: "B",
+    urlBase: "https://gare.lnd.it/competizione/friuli-venezia-giulia",
+  },
+  {
+    slug: "terza-categoria-c",
+    nome: "Terza Categoria",
+    girone: "Girone C",
+    campionato: "36",
+    gironeParam: "C",
+    urlBase: "https://gare.lnd.it/competizione/friuli-venezia-giulia",
+  },
 ];
 
+// Costruisce l'URL gare.lnd.it per una competizione/stagione. Forma
+// "classica" (`https://gare.lnd.it/?campionato=...&cr=07`) per default;
+// se la competizione specifica `urlBase`, usa quella base invece (senza
+// `cr=07` esplicito — vedi commento sopra su Terza Categoria B/C).
+function urlCalcio(comp, stagione) {
+  if (comp.urlBase) {
+    return `${comp.urlBase}?campionato=${comp.campionato}&girone=${comp.gironeParam}&stagione=${stagione}`;
+  }
+  return `https://gare.lnd.it/?campionato=${comp.campionato}&girone=${comp.gironeParam}&stagione=${stagione}&cr=07`;
+}
+
 async function ingestCalcioCompetizione(comp, stagione) {
-  const url = `https://gare.lnd.it/?campionato=${comp.campionato}&girone=${comp.gironeParam}&stagione=${stagione}&cr=07`;
+  const url = urlCalcio(comp, stagione);
   const res = await fetchConRetry(url, {
     headers: { "User-Agent": "Mozilla/5.0 (compatible; FVGMonitorBot/1.0)" },
   });

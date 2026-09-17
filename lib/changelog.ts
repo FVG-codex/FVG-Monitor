@@ -21,6 +21,13 @@ export type VoceChangelog = {
 
 export const CHANGELOG: VoceChangelog[] = [
   {
+    data: "17/09/2026",
+    titolo: "Calcio: aggiunta la Terza Categoria (4 gironi)",
+    dettagli: [
+      "Nuovi gironi selezionabili nella pagina Calcio: Terza Categoria Girone D, A, B e C, con calendario e classifica come per le altre categorie già presenti (Eccellenza, Promozione, Prima e Seconda Categoria).",
+    ],
+  },
+  {
     data: "16/09/2026",
     titolo: "Viabilità: Confini, eventi live anche lato sloveno (sperimentale)",
     dettagli: [

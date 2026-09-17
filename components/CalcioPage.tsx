@@ -73,6 +73,10 @@ const COMPETIZIONI = [
   { slug: "seconda-categoria-pordenone", label: "2ª Cat. Pordenone" },
   { slug: "seconda-categoria-udine-b", label: "2ª Cat. Udine — B" },
   { slug: "seconda-categoria-udine-c", label: "2ª Cat. Udine — C" },
+  { slug: "terza-categoria-d", label: "3ª Cat. — Girone D" },
+  { slug: "terza-categoria-a", label: "3ª Cat. — Girone A" },
+  { slug: "terza-categoria-b", label: "3ª Cat. — Girone B" },
+  { slug: "terza-categoria-c", label: "3ª Cat. — Girone C" },
 ];
 
 export function CalcioPage() {
