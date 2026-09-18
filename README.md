@@ -3845,6 +3845,254 @@ e siamo fuori stagione (16/09/2026): tutti i valori live mostreranno
 0/impianti chiusi finché la stagione non riapre, comportamento atteso
 e non un bug. **Non ancora confermato dall'utente in produzione.**
 
+## Fix — Isontina, comuni multi-zona persi silenziosamente (18/09/2026)
+
+**Segnalato dall'utente** con un pacchetto "correzione multizona" generato
+con ChatGPT (`FVG_Monitor_Rifiuti_Isontina_v4_multizone.zip`) — stessa
+architettura a schema Supabase/script separato già vista per i pacchetti
+precedenti (Isontina v3, GEA v1) e **mai adottata**, stesso principio di
+sempre: il progetto resta su `ingest-light.mjs` + `snapshots`. Lo spunto
+tecnico sulla regex, però, era fondato — verificato in modo indipendente
+con WebFetch reale su più comuni prima di scrivere qualunque fix, non
+preso per buono dal pacchetto (che tra l'altro sbagliava lui stesso: dà
+per certe solo 3 zone per Monfalcone — Nord/Ovest/Sud — mentre la verifica
+reale ne mostra 4, inclusa Est).
+
+**Bug reale confermato**: `rifiutiParseIndirizzi()` estraeva l'area da
+ogni opzione dell'`<select name="indirizzo">` con la regex
+`/Area\s+([A-Za-z0-9]+)\s*$/i` — una sola parola dopo "Area". Funzionava
+per i comuni con codice a lettera (Gorizia "...Area B", Ronchi dei
+Legionari "...Area C", Cormons "...Area D" — tutti verificati via
+WebFetch, nessun problema) ma falliva in silenzio (nessun errore, solo
+`area: null` per ogni indirizzo) sui comuni dove l'etichetta ripete il
+nome del comune prima della zona: **Monfalcone** ("...Area Monfalcone
+Nord/Est/Sud/Ovest", 4 zone) e **Grado** ("...Area Grado Fossalon
+Boscat"/"...Area Grado Cavarera", 2 zone) — entrambi confermati con
+WebFetch reale sulla pagina comunale. Con `area: null` ovunque, il
+raggruppamento in `rifiutiFetchComune()` collassava tutti gli indirizzi
+sotto la stessa chiave e teneva solo il PRIMO indirizzo trovato in tutto
+il comune come rappresentante — Monfalcone e Grado mostravano quindi una
+sola area invece delle 4/2 reali, senza che nulla nei log segnalasse il
+problema.
+
+**Fix**: la regex ora cattura tutto il resto dell'etichetta dopo "Area"
+(non solo una parola), e una nuova `rifiutiNormalizzaAreaLabel()` toglie
+l'eventuale ripetizione del nome del comune davanti alla zona (per
+restare coerenti con lo stile "Nord"/"Sud" già usato per Tolmezzo/
+AET2000 invece di mostrare "Area Monfalcone Nord" in un selettore che ha
+già "Monfalcone" scelto come comune) — le zone diventano quindi "Nord",
+"Est", "Sud", "Ovest" per Monfalcone e "Fossalon Boscat", "Cavarera" per
+Grado. Stesso trattamento applicato a `rifiutiParseAreaDaIntestazione()`
+(usata solo per i comuni a area unica, meno a rischio ma corretta per
+coerenza). I codici a lettera corti (1-3 caratteri) restano in
+maiuscolo come prima.
+
+**Verifica**: `npx tsc --noEmit` + `node --check` puliti. Test offline
+dedicato (funzioni estratte via script, eseguite con cheerio contro
+fixture HTML costruite dalle etichette reali riportate da WebFetch per
+Gorizia/Ronchi dei Legionari/Cormons/Monfalcone/Grado/Sagrado) — 8
+asserzioni, tutte passate, incluse quelle che confermano che il
+raggruppamento ora produce 4 aree per Monfalcone e 2 per Grado invece di
+1. **Non ricontrollati con HTML reale gli altri ~22 comuni** di questo
+modulo (solo un campione di 6 è stato verificato in questa sessione via
+WebFetch) — se emergessero altri comuni con lo stesso pattern "Area
+NomeComune Zona", il fix li gestisce già correttamente dato che è
+generico, non serve altro intervento. **Duino Aurisina**, controllato di
+passaggio, non usa affatto un calendario porta a porta con indirizzi ma
+"cassonetti di prossimità" (bidoni di zona, non porta a porta) — fuori
+dal problema di questa sessione, nessuna modifica fatta, solo annotato
+qui per chi riprenderà il modulo in futuro. **Non confermato in
+produzione**: nessun run GitHub Actions reale ha ancora toccato questo
+fix.
+
+## Ambiente → Servizi → Rifiuti, terzo gestore GEA (18/09/2026, stesso giorno)
+
+Continuazione, nella stessa giornata, del lavoro Rifiuti descritto nelle
+due sezioni sotto: l'utente ha caricato 3 PDF reali (calendari 2026 di
+GEA, gestore della provincia di Pordenone) richiesti in una sessione
+precedente — Calendario Aviano (24 pagine), Calendario Pordenone
+(28 pagine, il più complesso: 6 zone) e Calendario Ecocentro Mobile
+(8 zone a rotazione per rifiuti pericolosi, servizio diverso dal porta a
+porta, non incorporato in questa v1).
+
+**Fonte fondamentalmente diversa dagli altri due gestori**: GEA pubblica
+il calendario come PDF annuale con badge grafici colorati/con lettera,
+non come HTML rifetchabile ad ogni run — non è realisticamente possibile
+scrivere un parser che "legge" il PDF ogni volta come per Isontina/AET2000.
+Prima di scrivere qualunque codice, la scelta tra tre opzioni (regola
+settimanale approssimata / dati esatti giorno per giorno / solo Aviano
+per ora) è stata posta esplicitamente all'utente, che ha scelto **"Dati
+esatti giorno per giorno"** — trascrizione letterale del PDF reale,
+accettando il costo di ri-trascrizione manuale ad ogni nuovo calendario
+annuale.
+
+**Metodo di trascrizione**: dato il volume (12-13 mesi × fino a 6 zone
+per Pordenone) e la posta in gioco, la trascrizione pagina-per-pagina è
+stata delegata a sub-agent dedicati (uno per Aviano, due per Pordenone
+gennaio-giugno/luglio-gennaio 2027), ciascuno con la mappatura esatta
+badge/lettera → tipo di rifiuto, le regole di esclusione (codice "SR"
+sfalci e ramaglie, a adesione volontaria; icona blu "a onda" per il
+cartone delle attività commerciali, servizio separato), le regole per i
+marcatori di eccezione del PDF (cerchio rosso con "!" = raccolta
+modificata, il giorno disegnato è quello effettivo; cerchio rosso
+crociato = raccolta annullata, nessun giorno sostitutivo inventato), lo
+schema JSON di output, e l'istruzione esplicita di segnalare con una
+nota i giorni letti con incertezza invece di indovinare in silenzio.
+**Verifica incrociata**: prima di assemblare i dati, ho controllato
+personalmente un'immagine reale del calendario (gennaio 2026 di
+Pordenone) contro l'output dei sub-agent giorno per giorno — tutte le
+letture (incluse le eccezioni con marcatore "!" e la cancellazione
+completa del 1° gennaio, festivo) corrispondono. Le note di incertezza
+raccolte dai sub-agent sono elencate per intero nel commento sopra
+`RIFIUTI_COMUNI_GEA` in `scripts/ingest-light.mjs` — nessuna scartata.
+
+**Dato incorporato come statico** (non un fetch ad ogni run): stesso
+principio già usato per `lib/aviostrutture.ts` ("dati quasi statici"),
+ma qui `rifiutiIngestGea()` resta dentro `ingestRifiuti()` e restituisce
+l'array direttamente, così lo snapshot "rifiuti" resta un'unica
+scrittura condivisa fra i tre gestori. Periodo coperto: Aviano
+gennaio-dicembre 2026 (12 mesi, tutto il PDF); Pordenone gennaio
+2026-gennaio 2027 (13 mesi — il PDF include un tredicesimo mese "bonus",
+utile per non restare scoperti a inizio 2027 in attesa del prossimo
+calendario). **Da ri-trascrivere a mano quando GEA pubblica il PDF
+dell'anno successivo** — nessun meccanismo automatico.
+
+**Tipi di rifiuto**: Aviano usa tutti e 5 i tipi (icone su badge:
+umido/organic, carta/paper, plastica/plastic_metals, secco/residual,
+vetro/glass — porta a porta anche per il vetro, come A&T 2000). Pordenone
+usa solo 3 lettere nel calendario porta a porta (S→residual, C→paper,
+P→plastic_metals): umido e vetro lì sono raccolta stradale a tessera
+magnetica, non nel calendario, quindi i comuni di Pordenone non hanno mai
+i tipi "organic"/"glass" — `campane_vetro` resta `[]` per entrambi (per
+Pordenone perché le posizioni dei cassonetti a tessera non sono note,
+fuori scope; per Aviano perché il vetro è già porta a porta).
+
+**Scope ridotto rispetto a GEA nel suo complesso**: coerente con la
+disciplina già seguita per A&T 2000, la v1 include SOLO i due comuni di
+cui si è vista la fonte reale (Aviano e Pordenone) — GEA serve una
+ventina di comuni della provincia in totale, gli altri restano fuori
+finché non arriva il loro PDF reale. `PROVINCE_RIFIUTI_ATTIVE` include
+ora anche `"pordenone"`. Pordenone stesso (il comune) ha 6 zone (Blu,
+Gialla, Rossa, Marrone, Verde Nord, Verde Sud) — stesso selettore "Area"
+già usato per Tolmezzo Nord/Sud, nessuna modifica UI necessaria.
+
+**Verificato**: `npx tsc --noEmit` e `node --check scripts/ingest-light.mjs`
+puliti; verifica visiva con Playwright + risposta Supabase mockata (dati
+GEA reali incorporati, stub minimi per Isontina/AET2000) — tab Pordenone
+con Aviano (2 zone) e Pordenone (6 zone, inclusa l'alternanza quindicinale
+del secco su Verde Nord/Sud visibile nelle prossime raccolte), nessuna
+regressione su Udine/Gorizia. **Non confermato dall'utente in produzione**:
+nessun run GitHub Actions reale ha ancora toccato questo codice (è dato
+statico, quindi non c'è comunque nulla da "fetchare" — ma lo snapshot va
+comunque rigenerato da un run reale per arrivare in produzione).
+
+## Ambiente → Servizi → Rifiuti, secondo gestore A&T 2000 (18/09/2026, stesso giorno)
+
+Continuazione, nella stessa giornata, del lavoro Rifiuti descritto nella
+sezione sotto: l'utente ha incollato direttamente in chat l'HTML reale
+(view-source) richiesto in precedenza — la pagina modalita-di-raccolta/
+di San Daniele del Friuli (comune a area unica), la pagina
+modalita-di-raccolta/ di Tolmezzo (che mostra la vera struttura a due
+calendari separati, Zona Nord e Zona Sud, sulla stessa pagina) e due
+copie quasi identiche di una pagina centro-di-raccolta/ di Tolmezzo.
+
+**Parser scritto e verificato offline** (stesso metodo già usato per
+Isontina: funzioni estratte dal file reale via script, eseguite con
+cheerio contro fixture HTML costruite dall'incolla dell'utente, asserzioni
+sui risultati attesi — non solo lette a occhio):
+- `table.calendar-table` con celle `td.text-center` → `div.giorno`
+  (quelle con classe aggiuntiva `not_current_month`, giorni del mese
+  prima/dopo mostrati per riempire la griglia, vengono scartate per non
+  costruire date inesistenti tipo "31 settembre") → zero o più bottoni
+  dentro `.raccolto`, ciascuno con `<img alt="umido|plastica|vetro|
+  secco|carta">` — l'attributo `alt` basta da solo per il tipo di
+  rifiuto (5 valori fissi verificati nell'HTML reale), senza dover
+  leggere colori o testo. Ogni bottone ha anche un modal con un secondo
+  `<img>` dello stesso `alt`: il selettore scende fino a `.raccolto
+  button .rifiuto.icon img` apposta per non contarlo due volte;
+- l'intestazione `<h3>` di ogni blocco calendario (sempre il fratello
+  immediatamente precedente della sua `table.calendar-table`) contiene
+  "Mese AAAA" e, quando il comune ha più calendari sulla stessa pagina
+  (finora solo Tolmezzo), un prefisso "NomeComune - Zona X |". **Invece
+  di hardcodare "Tolmezzo" e Nord/Sud**, il parser estrae ogni
+  `table.calendar-table` della pagina come blocco a sé e legge "Zona X"
+  dalla sua intestazione quando presente (null altrimenti) — funziona
+  automaticamente anche per un futuro comune con 3+ zone, senza
+  modifiche al codice;
+- navigazione mese `?month=X&year=Y` sulla stessa URL, dedotta dallo
+  script inline della pagina stessa (`fetch(url + "?month="+...)`) — non
+  da una richiesta di rete reale (questa sandbox non raggiunge
+  aet2000.it, stesso limite già noto), quindi non confermata al 100% ma
+  con lo stesso fallback stale/cache di Isontina se si rivelasse
+  sbagliata su GitHub Actions;
+- pagina centro-di-raccolta/: indirizzo da `.row.indirizzo p.blockquote`;
+  orari da due elenchi `<ul class="opening-list">` (Invernale/Estivo,
+  individuati da `.period-title`), con le date di validità di ciascuna
+  stagione lette da `#opening-notes li` e anteposte al relativo elenco
+  orari; materiali accettati dall'accordion "Rifiuti conferibili" (due
+  `<ul>`: generali e, quando presente un secondo elenco dopo "Solo
+  utenze domestiche:", riservati alle utenze domestiche, marcati con un
+  suffisso). A differenza di Isontina, AET2000 non ha una sezione
+  "Campane del vetro" separata: il vetro è raccolto porta a porta come
+  gli altri tipi (compare quindi nel calendario), quindi
+  `campane_vetro` resta vuoto per questo gestore.
+
+Codice aggiunto in `scripts/ingest-light.mjs`: `RIFIUTI_COMUNI_AET2000`,
+`rifiutiAet2000ParseIntestazione/ParseCalendario/ParseMateriali/
+ParseCentro`, `rifiutiAet2000FetchComune`, `rifiutiIngestAet2000` (stesso
+pattern non-scrivente di `rifiutiIngestIsontina`) — `ingestRifiuti()`
+ora unisce `comuniIsontina` e `comuniAet2000` prima dell'unica
+`upsertSnapshot("rifiuti", ...)`.
+
+**Nuovo tipo di rifiuto**: `lib/rifiuti.ts` aveva `TipoRifiuto` limitato
+a `paper | organic | plastic_metals | residual` (il vetro di Isontina
+è sempre andato nelle "campane", mai nel calendario). AET2000 lo
+raccoglie invece porta a porta, quindi è stato aggiunto `"glass"` al
+tipo, a `ETICHETTA_TIPO` ("Vetro") e a `COLORE_TIPO` (verde `#3E9B6F`,
+scelto perché non era già usato dagli altri 4 colori e richiama il
+colore convenzionale della raccolta vetro in Italia).
+
+**Cosa NON è stato fatto, deliberatamente**: la v1 include SOLO 2 comuni
+(San Daniele del Friuli e Tolmezzo) su un totale di **~80 comuni**
+serviti da AET2000 secondo la ricognizione WebFetch della sessione
+precedente. Il motivo: l'utente ha fornito HTML reale delle pagine di
+questi 2 comuni (più una pagina centro-di-raccolta), ma **non** della
+pagina indice `https://aet2000.it/comuni/` che elenca tutti gli slug —
+quella pagina è stata vista solo via WebFetch, che in questo stesso
+progetto si è già dimostrato inaffidabile su liste (vedi GEA più sotto:
+"26 comuni" nel riassunto contro 24 nell'elenco puntato dello stesso
+risultato). Gli slug di San Daniele del Friuli e Tolmezzo usati qui sono
+stati dedotti per kebab-case standard del nome (coerente con l'URL
+pattern `/comuni/{slug}/...` visto nel pacchetto e con gli altri gestori
+di questo progetto), non confermati da un link/canonical nell'HTML
+ricevuto — rischio ritenuto basso per questi due nomi "semplici", a
+differenza di Tarcento (slug descrittivo lungo, secondo WebFetch) e San
+Dorligo della Valle - Dolina (tre trattini, provincia di Trieste,
+secondo WebFetch), lasciati fuori dalla v1 apposta. Per estendere la
+copertura serve o l'HTML reale della pagina indice (tutti gli slug in
+un colpo) o altro HTML comune per comune.
+
+`lib/rifiuti.ts`: `PROVINCE_RIFIUTI_ATTIVE` ora include `"udine"` (prima
+solo `["gorizia", "trieste"]`) — la tab Udine passa da "in arrivo" a
+popolata, ma con solo 2 comuni su ~80, non l'intera provincia.
+
+**Verifica**: `npx tsc --noEmit` e `node --check scripts/ingest-light.mjs`
+puliti. Parser testato offline (vedi sopra) contro le fixture reali per
+tutti e 3 i casi (area unica, Nord/Sud, centro di raccolta) con
+asserzioni sui giorni/tipi attesi (es. 4 settembre → umido+secco,
+verificato leggendo anche l'HTML grezzo riga per riga, non solo l'output
+del parser). Verifica visiva con `next dev` + Chromium headless e
+risposte Supabase REST intercettate (`page.route`) con dati misti
+Isontina+AET2000: confermate le tab Udine (San Daniele con badge
+"Vetro" nel colore nuovo, Tolmezzo con selettore Area Nord/Sud che
+mostra dati indipendenti per zona), Gorizia (nessuna regressione sui
+dati Isontina esistenti) e Pordenone (ancora "in arrivo", nessun comune
+per quella provincia). **Non ancora confermato**: un'esecuzione reale
+contro aet2000.it (questa sandbox non lo raggiunge, stesso limite già
+noto per gli altri gestori di questo progetto) — solo un'esecuzione reale
+su GitHub Actions potrà confermare che `?month=`/`?year=` e gli slug
+dedotti funzionano davvero.
+
 ## Ambiente → Servizi → Rifiuti divisi per provincia, ricognizione AET2000 (18/09/2026)
 
 L'utente ha chiesto di continuare la sezione Rifiuti dividendola per

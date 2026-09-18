@@ -20,15 +20,23 @@ import {
 } from "@/lib/rifiuti";
 
 // Ambiente → Servizi → Rifiuti (17/09/2026, richiesto dall'utente).
-// Riorganizzata per provincia il 18/09/2026 (idem, richiesto
-// dall'utente in vista di un secondo gestore per la provincia di
-// Udine). Vedi il commento esteso sopra ingestRifiuti() in
-// scripts/ingest-light.mjs per fonti, metodo di verifica con HTML reale
-// e i limiti noti: per ora solo Gorizia e Trieste sono coperte (28
-// comuni, Isontina Ambiente — non tutta la regione), calendario "solo
-// comune" — quando un comune ha più aree al suo interno (es. Gorizia, 6
-// aree) qui sotto compare un piccolo selettore di area, non una ricerca
-// per via. Le tab provincia seguono lo stesso pattern già usato in
+// Riorganizzata per provincia il 18/09/2026, stesso giorno in cui sono
+// arrivati un secondo gestore (A&T 2000, provincia di Udine) e un terzo
+// (GEA, provincia di Pordenone). Vedi il commento esteso sopra
+// ingestRifiuti()/rifiutiIngestAet2000()/RIFIUTI_COMUNI_GEA in
+// scripts/ingest-light.mjs per fonti, metodo di verifica/trascrizione e
+// i limiti noti: Gorizia e Trieste sono coperte per intero (28 comuni,
+// Isontina Ambiente), Udine solo parzialmente (2 comuni su ~80, A&T
+// 2000 — San Daniele del Friuli e Tolmezzo, gli unici di cui si è vista
+// HTML reale finora), Pordenone anch'essa parzialmente (2 comuni su una
+// ventina serviti da GEA — Aviano e Pordenone, gli unici di cui si sono
+// visti i PDF reali; a differenza degli altri due gestori il dato GEA è
+// statico, trascritto a mano dai calendari PDF annuali). Calendario
+// "solo comune" — quando un comune ha più aree al suo interno (es.
+// Gorizia, 6 aree; Tolmezzo, 2 zone Nord/Sud; Pordenone stesso, 6 zone
+// Blu/Gialla/Rossa/Marrone/Verde Nord/Verde Sud) qui sotto compare un
+// piccolo selettore di area, non una ricerca per via/indirizzo. Le tab
+// provincia seguono lo stesso pattern già usato in
 // NotizieProvinciaPage.tsx: tutte e 4 visibili, quelle non ancora
 // coperte mostrano un messaggio "in arrivo" invece di restare
 // disabilitate.

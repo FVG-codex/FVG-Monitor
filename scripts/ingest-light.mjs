@@ -4164,7 +4164,49 @@ function rifiutiParseLegenda($) {
   return map.size > 0 ? map : RIFIUTI_COLORI_DEFAULT;
 }
 
-function rifiutiParseIndirizzi($) {
+// Corretto il 18/09/2026 — bug reale, non solo teorico: la vecchia
+// regex `/Area\s+([A-Za-z0-9]+)\s*$/i` catturava una sola parola dopo
+// "Area", andava bene per Gorizia/Ronchi dei Legionari ("...Area B",
+// "...Area C" — verificati su HTML reale/WebFetch) ma falliva in
+// silenzio (nessun match, `area: null` per OGNI indirizzo) su comuni
+// dove l'etichetta ripete il nome del comune prima della zona, es.
+// Monfalcone ("...Area Monfalcone Nord/Est/Sud/Ovest", 4 zone — confermato
+// via WebFetch) e Grado ("...Area Grado Fossalon Boscat"/"...Area Grado
+// Cavarera", 2 zone). Con `area: null` per tutti gli indirizzi, il
+// raggruppamento in rifiutiFetchComune() li collassava tutti sotto la
+// stessa chiave "?" e teneva SOLO il primo indirizzo trovato in tutto il
+// comune come rappresentante — Monfalcone e Grado mostravano quindi UNA
+// sola area invece delle 4/2 reali, silenziosamente (nessun errore in
+// log, semplicemente un comune multi-zona trattato come se fosse a zona
+// unica). Individuato da una segnalazione dell'utente (pacchetto
+// "correzione multizona" generato con ChatGPT, con la sua solita
+// architettura a schema Supabase separato — MAI adottata, stesso
+// principio di questo intero modulo — ma lo spunto sulla regex è stato
+// verificato in modo indipendente con WebFetch reale su Monfalcone,
+// Ronchi dei Legionari e Grado prima di scrivere questo fix, non preso
+// per buono dal pacchetto). Ora la regex cattura tutto il resto
+// dell'etichetta dopo "Area" (non solo una parola), e
+// rifiutiNormalizzaAreaLabel() toglie l'eventuale ripetizione del nome
+// del comune davanti alla zona, per restare coerenti con lo stile
+// "Nord"/"Sud" già usato per Tolmezzo (AET2000) invece di mostrare
+// "Area Monfalcone Nord" in un selettore che ha già "Monfalcone" scelto
+// come comune.
+function rifiutiNormalizzaAreaLabel(testoArea, nomeComune) {
+  let area = clean(testoArea).replace(/\)\s*$/, "");
+  if (!area) return null;
+  if (nomeComune) {
+    const prefisso = new RegExp(`^${nomeComune.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\s+`, "i");
+    area = area.replace(prefisso, "").trim();
+  }
+  if (!area) return null;
+  // Codici corti tipo lettera (Gorizia "A".."F", Ronchi dei Legionari
+  // "B"/"C"/"F") restano in maiuscolo come prima; nomi di zona più
+  // lunghi (Monfalcone Nord/Est/Sud/Ovest, Grado Fossalon Boscat/
+  // Cavarera) restano scritti come nella pagina.
+  return /^[A-Za-z0-9]{1,3}$/.test(area) ? area.toUpperCase() : area;
+}
+
+function rifiutiParseIndirizzi($, nomeComune) {
   const sel = $('select[name="indirizzo"]');
   if (!sel.length) return [];
   const out = [];
@@ -4172,19 +4214,19 @@ function rifiutiParseIndirizzi($) {
     const value = clean($(opt).attr("value") || "");
     const label = clean($(opt).text());
     if (!value || !label) return;
-    const m = label.match(/Area\s+([A-Za-z0-9]+)\s*$/i);
-    out.push({ id: value, label, area: m ? m[1].toUpperCase() : null });
+    const m = label.match(/Area\s+(.+)$/i);
+    out.push({ id: value, label, area: m ? rifiutiNormalizzaAreaLabel(m[1], nomeComune) : null });
   });
   return out;
 }
 
-function rifiutiParseAreaDaIntestazione($) {
+function rifiutiParseAreaDaIntestazione($, nomeComune) {
   const h2 = $("h2")
     .filter((_, el) => /calendario porta a porta/i.test(clean($(el).text())))
     .first();
   if (!h2.length) return null;
-  const m = clean(h2.text()).match(/Area\s+([A-Za-z0-9]+)/i);
-  return m ? m[1].toUpperCase() : null;
+  const m = clean(h2.text()).match(/Area\s+([^)]+)\)?/i);
+  return m ? rifiutiNormalizzaAreaLabel(m[1], nomeComune) : null;
 }
 
 function rifiutiPaginaCorrispondeAMese($, anno, mese) {
@@ -4314,7 +4356,7 @@ async function rifiutiFetchComune(comune, anno, mese) {
   const $base = await rifiutiGetHtml(urlBase.toString());
 
   const mappaColori = rifiutiParseLegenda($base);
-  const indirizzi = rifiutiParseIndirizzi($base);
+  const indirizzi = rifiutiParseIndirizzi($base, comune.nome);
   const centro = rifiutiParseCentro($base);
   const campaneVetro = rifiutiParseCampaneVetro($base);
 
@@ -4323,7 +4365,7 @@ async function rifiutiFetchComune(comune, anno, mese) {
   if (indirizzi.length === 0) {
     // Comune a area unica: nessun <select>, il calendario compare già
     // nella pagina base senza bisogno di un indirizzo specifico.
-    const area = rifiutiParseAreaDaIntestazione($base);
+    const area = rifiutiParseAreaDaIntestazione($base, comune.nome);
     const giorniMese1 = rifiutiParseCalendario($base, anno, mese, mappaColori);
 
     const urlMese2 = new URL(comune.url);
@@ -4406,12 +4448,1454 @@ async function rifiutiIngestIsontina(annoCorrente, meseCorrente, precedentePerSl
   return comuni;
 }
 
-// TODO: rifiutiIngestAet2000(annoCorrente, meseCorrente, precedentePerSlug) —
-// stesso pattern di rifiutiIngestIsontina(), per i comuni della
-// provincia di Udine (+ San Dorligo della Valle - Dolina, TS) serviti
-// da A&T 2000. In attesa di HTML reale delle pagine
-// modalita-di-raccolta/ e centro-di-raccolta/ del sito aet2000.it
-// prima di scrivere i selettori cheerio (vedi README/changelog).
+// ---------------------------------------------------------------------
+// Rifiuti — A&T 2000 (secondo gestore, provincia di Udine)
+// ---------------------------------------------------------------------
+//
+// Pacchetto ChatGPT ricevuto (FVG_Monitor_Rifiuti_AET2000_v1.zip): uno
+// script sync_aet2000.ts a parte con proprio client Supabase e scoperta
+// dinamica dei comuni da https://aet2000.it/comuni/. Stessa architettura
+// NON adottata di Isontina/GEA: resta un solo ingest-light.mjs + tabella
+// snapshots. La scoperta dinamica dei comuni NON è stata adottata
+// nemmeno come idea, per lo stesso motivo per cui non si è mai scritto
+// un selettore di produzione basato solo su WebFetch in questo
+// progetto: la pagina indice /comuni/ è stata vista solo via WebFetch
+// (80 comuni, alcuni slug non banali — vedi sotto), mai come HTML
+// reale, e WebFetch si è già dimostrato inaffidabile su liste in questo
+// stesso progetto (GEA: "26 comuni" nel riassunto contro 24 nell'elenco
+// puntato dello stesso risultato).
+//
+// **HTML reale ricevuto e usato per questo parser** (18/09/2026): San
+// Daniele del Friuli (comune a area unica) e Tolmezzo (comune con DUE
+// calendari sulla stessa pagina, Nord e Sud) per modalita-di-raccolta/,
+// più una pagina centro-di-raccolta/ di Tolmezzo. Struttura scoperta:
+// - `<table class="calendar-table">` con celle `<td class="text-center">`
+//   → `<div class="giorno ...">` (quelle del mese precedente/successivo
+//   hanno la classe aggiuntiva "not_current_month" e vengono scartate,
+//   altrimenti si costruirebbe una data inesistente tipo 31 settembre)
+//   → zero o più bottoni dentro `.raccolto`, ciascuno con `<div
+//   class="rifiuto icon"><img alt="umido|plastica|vetro|secco|carta">`
+//   — l'attributo `alt` (5 valori fissi, verificati nell'HTML reale)
+//   basta da solo per il tipo di rifiuto, senza bisogno di leggere
+//   colori o testo. Ogni bottone ha anche un modal con un secondo
+//   `<img>` dello stesso `alt` (per l'etichetta estesa): il selettore
+//   `.raccolto button .rifiuto.icon img` prende solo l'icona visibile
+//   del bottone, non quella duplicata dentro il modal;
+// - intestazione `<h3>` dentro `div#calendar` (sempre il fratello
+//   immediatamente precedente della `table.calendar-table` dello stesso
+//   blocco) con "Mese AAAA" e, quando il comune ha più calendari sulla
+//   stessa pagina (finora solo Tolmezzo), un prefisso "NomeComune - Zona
+//   X |" prima del mese. Invece di hardcodare "Tolmezzo Nord/Sud", il
+//   parser estrae ogni `table.calendar-table` della pagina come blocco
+//   a sé (un comune può averne 1 o più) e usa "Zona X" come etichetta
+//   d'area quando presente nell'intestazione, null quando assente (area
+//   unica) — funziona automaticamente anche per un futuro comune con
+//   3+ zone, senza modifiche;
+// - navigazione mese `?month=X&year=Y` sulla stessa URL (script inline
+//   della pagina, `fetch(url + "?month="+...)"`), stessa convenzione già
+//   verificata per Isontina — qui è stata solo dedotta dal codice JS
+//   della pagina (non da una vera richiesta di rete, dato che questa
+//   sandbox non raggiunge aet2000.it), con lo stesso fallback stale/
+//   cache di Isontina in caso si rivelasse sbagliata su GitHub Actions;
+// - pagina centro-di-raccolta/: indirizzo in `.row.indirizzo
+//   p.blockquote`; orari in due elenchi `<ul class="opening-list">` (uno
+//   per "Invernale", uno per "Estivo", individuati da `.period-title`),
+//   con le date di validità delle due stagioni lette da `#opening-notes
+//   li` e anteposte all'elenco orari di quella stagione; materiali
+//   accettati nell'accordion la cui intestazione (`.large-text`) è
+//   "Rifiuti conferibili" — due `<ul>` dentro il suo `.accordion-body`,
+//   generali e (quando presente un secondo elenco) riservati alle
+//   utenze domestiche, marcati con un suffisso "(solo utenze
+//   domestiche)". Diversamente da Isontina, qui non c'è una sezione
+//   "Campane del vetro": il vetro è raccolta porta a porta (tipo
+//   "vetro" nel calendario stesso), quindi `campane_vetro` resta un
+//   array vuoto per questo gestore.
+//
+// **Non verificato con HTML reale**: l'elenco dei comuni e i relativi
+// slug — solo WebFetch nella sessione precedente (vedi README). Per
+// questo la v1 include SOLO i due comuni di cui si è visto l'HTML reale
+// (San Daniele del Friuli e Tolmezzo; slug dedotti per kebab-case
+// standard del nome, coerente con l'URL pattern `/comuni/{slug}/...`
+// del pacchetto e con gli altri gestori di questo progetto, ma non
+// confermato da un link/canonical nell'HTML ricevuto). Tarcento (comune
+// non servito per il porta a porta, solo centro di raccolta secondo
+// WebFetch) e San Dorligo della Valle - Dolina (provincia di Trieste,
+// slug con tre trattini secondo WebFetch) restano fuori dalla v1: prima
+// di aggiungerli serve l'HTML reale della pagina indice
+// https://aet2000.it/comuni/ (per lo slug esatto di tutti gli ~80
+// comuni) oppure l'HTML reale comune per comune.
+// ---------------------------------------------------------------------
+
+const RIFIUTI_COMUNI_AET2000 = [
+  {
+    slug: "san-daniele-del-friuli",
+    nome: "San Daniele del Friuli",
+    url: "https://aet2000.it/comuni/san-daniele-del-friuli/modalita-di-raccolta/",
+    urlCentro: "https://aet2000.it/comuni/san-daniele-del-friuli/centro-di-raccolta/",
+    provincia: "udine",
+    gestore: "A&T 2000",
+  },
+  {
+    slug: "tolmezzo",
+    nome: "Tolmezzo",
+    url: "https://aet2000.it/comuni/tolmezzo/modalita-di-raccolta/",
+    urlCentro: "https://aet2000.it/comuni/tolmezzo/centro-di-raccolta/",
+    provincia: "udine",
+    gestore: "A&T 2000",
+  },
+];
+
+const RIFIUTI_AET2000_TIPO_DA_ALT = new Map([
+  ["umido", "organic"],
+  ["plastica", "plastic_metals"],
+  ["vetro", "glass"],
+  ["secco", "residual"],
+  ["carta", "paper"],
+]);
+
+// Interpreta il testo (già pulito) dell'intestazione <h3> di un blocco
+// calendario: "[NomeComune - Zona X |] Mese AAAA". Restituisce null se
+// il mese/anno non corrispondono a quelli richiesti (pagina/blocco da
+// scartare), altrimenti { area } (null se non c'è "Zona X").
+function rifiutiAet2000ParseIntestazione(testo, anno, mese) {
+  const meseAtteso = RIFIUTI_MESI_IT[mese - 1];
+  const meseRegex = new RegExp(`(${RIFIUTI_MESI_IT.join("|")})\\s+(\\d{4})\\s*$`, "i");
+  const m = testo.match(meseRegex);
+  if (!m) return null;
+  if (m[1].toLowerCase() !== meseAtteso || Number(m[2]) !== anno) return null;
+  const resto = clean(testo.slice(0, m.index).replace(/\|\s*$/, ""));
+  const zm = resto.match(/Zona\s+([A-Za-zÀ-ÖØ-öø-ÿ]+)\s*$/i);
+  const area = zm ? zm[1].charAt(0).toUpperCase() + zm[1].slice(1).toLowerCase() : null;
+  return { area };
+}
+
+// Estrae tutti i blocchi calendario presenti nella pagina (1 per i
+// comuni a area unica, 2+ per un comune come Tolmezzo) e per ciascuno i
+// giorni del mese/anno richiesti con i tipi di rifiuto raccolti.
+function rifiutiAet2000ParseCalendario($, anno, mese) {
+  const aree = [];
+  $("table.calendar-table").each((_, table) => {
+    const $table = $(table);
+    const $header = $table.prevAll("#calendar").first();
+    const testo = clean($header.find("h3").text());
+    const intestazione = rifiutiAet2000ParseIntestazione(testo, anno, mese);
+    if (!intestazione) return;
+
+    const giorni = [];
+    $table.find("td.text-center").each((_, td) => {
+      const $giorno = $(td).find(".giorno").first();
+      if (!$giorno.length || $giorno.hasClass("not_current_month")) return;
+      const giornoNum = parseInt(clean($giorno.find(".small-text").first().text()), 10);
+      if (!giornoNum || giornoNum < 1 || giornoNum > 31) return;
+      const tipi = new Set();
+      $giorno.find(".raccolto button .rifiuto.icon img[alt]").each((_, img) => {
+        const alt = clean($(img).attr("alt") || "").toLowerCase();
+        const tipo = RIFIUTI_AET2000_TIPO_DA_ALT.get(alt);
+        if (tipo) tipi.add(tipo);
+      });
+      if (tipi.size === 0) return;
+      giorni.push({ data: `${anno}-${pad2(mese)}-${pad2(giornoNum)}`, tipi: [...tipi] });
+    });
+
+    aree.push({ area: intestazione.area, giorni });
+  });
+  return aree;
+}
+
+function rifiutiAet2000ParseMateriali($) {
+  const $header = $(".large-text")
+    .filter((_, el) => /rifiuti conferibili/i.test(clean($(el).text())))
+    .first();
+  if (!$header.length) return [];
+  const $body = $header.closest(".accordion-item").find(".accordion-body").first();
+  if (!$body.length) return [];
+  const liste = $body.find("ul").toArray();
+  const generali = liste[0]
+    ? $(liste[0]).find("li").map((_, li) => clean($(li).text())).get().filter(Boolean)
+    : [];
+  const domestici = liste[1]
+    ? $(liste[1]).find("li").map((_, li) => clean($(li).text())).get().filter(Boolean)
+    : [];
+  return [...generali, ...domestici.map((m) => `${m} (solo utenze domestiche)`)];
+}
+
+function rifiutiAet2000ParseCentro($) {
+  const $riga = $(".row.indirizzo").first();
+  if (!$riga.length) return null;
+  const indirizzo = clean($riga.find("p.blockquote").first().text()) || null;
+
+  // "Orario estivo (dal 16 marzo al 31 ottobre)" / "Orario invernale
+  // (dal 1 novembre al 15 marzo)" — date di validità delle due stagioni,
+  // usate come etichetta davanti al rispettivo elenco orari invece del
+  // solo nome della stagione.
+  const noteStagioni = new Map();
+  $("#opening-notes li").each((_, li) => {
+    const testo = clean($(li).text());
+    if (/invernale/i.test(testo)) noteStagioni.set("invernale", testo);
+    else if (/estivo/i.test(testo)) noteStagioni.set("estivo", testo);
+  });
+
+  const blocchiOrari = [];
+  $(".period-title").each((_, el) => {
+    const $titolo = $(el);
+    const stagione = clean($titolo.text());
+    const chiave = /invernale/i.test(stagione) ? "invernale" : /estivo/i.test(stagione) ? "estivo" : null;
+    const $ul = $titolo.closest(".d-flex").nextAll("ul.opening-list").first();
+    if (!$ul.length) return;
+    const righe = [];
+    $ul.find("li.opening-slot").each((_, li) => {
+      const $li = $(li);
+      const giorno = clean($li.find(".opening-date p.font-semibold").first().text());
+      // cheerio .text() non inserisce uno spazio ai <br> — clonato e
+      // sostituito con ", " prima di leggere il testo, stesso problema
+      // già risolto per il centro di raccolta di Isontina.
+      const $clone = $li.find(".opening-date").first().clone();
+      $clone.find("p.font-semibold").remove();
+      $clone.find("br").replaceWith(", ");
+      const orari = clean($clone.text()).replace(/^,\s*/, "").replace(/\s+,/g, ",");
+      if (giorno && orari) righe.push(`${giorno} ${orari}`);
+    });
+    if (righe.length === 0) return;
+    const etichetta = (chiave && noteStagioni.get(chiave)) || stagione;
+    blocchiOrari.push(`${etichetta}: ${righe.join("; ")}`);
+  });
+  const apertura = blocchiOrari.length > 0 ? blocchiOrari.join(". ") : null;
+
+  const materiali = rifiutiAet2000ParseMateriali($);
+
+  if (!indirizzo && !apertura && materiali.length === 0) return null;
+  return { indirizzo, apertura, materiali };
+}
+
+async function rifiutiAet2000FetchComune(comune, anno, mese) {
+  const prossimo = rifiutiMeseSuccessivo(anno, mese);
+
+  const urlMese1 = new URL(comune.url);
+  urlMese1.searchParams.set("month", String(mese));
+  urlMese1.searchParams.set("year", String(anno));
+  const $mese1 = await rifiutiGetHtml(urlMese1.toString());
+  const areeMese1 = rifiutiAet2000ParseCalendario($mese1, anno, mese);
+
+  const urlMese2 = new URL(comune.url);
+  urlMese2.searchParams.set("month", String(prossimo.mese));
+  urlMese2.searchParams.set("year", String(prossimo.anno));
+  const $mese2 = await rifiutiGetHtml(urlMese2.toString());
+  const areeMese2 = rifiutiAet2000ParseCalendario($mese2, prossimo.anno, prossimo.mese);
+
+  // Unisce i giorni dei due mesi per ciascuna area (stessa etichetta —
+  // null per un comune a area unica, "Nord"/"Sud" per Tolmezzo — sui
+  // due mesi, assumendo che l'insieme delle aree non cambi da un mese
+  // all'altro).
+  const areePerEtichetta = new Map();
+  for (const { area, giorni } of [...areeMese1, ...areeMese2]) {
+    const chiave = area ?? "?";
+    if (!areePerEtichetta.has(chiave)) areePerEtichetta.set(chiave, { area, giorni: [] });
+    areePerEtichetta.get(chiave).giorni.push(...giorni);
+  }
+  const aree = [...areePerEtichetta.values()];
+
+  let centro = null;
+  if (comune.urlCentro) {
+    try {
+      const $centro = await rifiutiGetHtml(comune.urlCentro);
+      centro = rifiutiAet2000ParseCentro($centro);
+    } catch (err) {
+      console.warn(`Rifiuti (AET2000): errore centro di raccolta ${comune.nome}: ${err.message}`);
+    }
+  }
+
+  return {
+    slug: comune.slug,
+    nome: comune.nome,
+    provincia: comune.provincia,
+    gestore: comune.gestore,
+    aree,
+    centro_raccolta: centro,
+    campane_vetro: [],
+    stale: false,
+  };
+}
+
+// Recupera i comuni gestiti da A&T 2000. Come rifiutiIngestIsontina(),
+// non scrive lo snapshot — vedi il commento sopra quella funzione.
+async function rifiutiIngestAet2000(annoCorrente, meseCorrente, precedentePerSlug) {
+  const risultati = await rifiutiConLimiteConcorrenza(RIFIUTI_COMUNI_AET2000, RIFIUTI_CONCORRENZA, async (comune) => {
+    try {
+      return await rifiutiAet2000FetchComune(comune, annoCorrente, meseCorrente);
+    } catch (err) {
+      console.warn(`Rifiuti (AET2000): errore comune ${comune.nome}: ${err.message}`);
+      const vecchio = precedentePerSlug.get(comune.slug);
+      return vecchio ? { ...vecchio, stale: true } : null;
+    }
+  });
+  const comuni = risultati.filter(Boolean);
+  const falliti = RIFIUTI_COMUNI_AET2000.length - comuni.filter((c) => !c.stale).length;
+  console.log(
+    `Rifiuti (AET2000) aggiornati: ${comuni.length}/${RIFIUTI_COMUNI_AET2000.length} comuni` +
+      (falliti > 0 ? ` (${falliti} da cache/stale per errori di rete)` : "")
+  );
+  return comuni;
+}
+
+// ---------------------------------------------------------------------
+// Rifiuti, terzo gestore: GEA - Gestioni Ecologiche e Ambientali S.p.A.
+// (provincia di Pordenone). Aggiunto il 18/09/2026, stessa sessione in
+// cui è arrivato A&T 2000 per Udine.
+//
+// **Fonte fondamentalmente diversa dagli altri due gestori**: Isontina e
+// A&T 2000 pubblicano il calendario come HTML rifetchabile ogni run
+// (`?month=&year=` sulla stessa pagina). GEA pubblica invece un PDF
+// annuale per comune/gruppo di comuni (es.
+// https://gea-pn.it/download/ecocalendari/), con le indicazioni di
+// raccolta come badge grafici colorati/con lettera, non testo in un
+// markup analizzabile — non è quindi realisticamente possibile scrivere
+// un parser che "legge" il PDF a ogni run come per gli altri due
+// gestori. La scelta (confermata dall'utente via domanda esplicita:
+// "Dati esatti giorno per giorno (Consigliato)", invece di una regola
+// settimanale approssimata) è stata di **trascrivere a mano i PDF reali
+// e incorporare il risultato come dato statico**, sullo stesso principio
+// già usato per lib/aviostrutture.ts ("dati quasi statici"): qui però il
+// dato resta dentro ingestRifiuti() (rifiutiIngestGea() sotto restituisce
+// l'array direttamente, senza fetch di rete) così lo snapshot "rifiuti"
+// resta un'unica scrittura come per gli altri gestori.
+//
+// **PDF reali usati per la trascrizione** (caricati dall'utente,
+// 18/09/2026): Calendario-Aviano-2026 (24 pagine) e
+// Calendario-Pordenone-2026-def (28 pagine, il più complesso: 6 zone).
+// Un terzo PDF ricevuto insieme ai primi due, "Calendario Ecocentro
+// Mobile" (8 zone a rotazione per il conferimento di rifiuti
+// pericolosi), è un servizio diverso dal porta a porta e NON è stato
+// incorporato in questa v1 — resta fuori scope, da valutare in futuro.
+//
+// **Metodo di trascrizione**: dato il volume (12-13 mesi × fino a 6
+// zone) e la posta in gioco (dati usati da persone reali per sapere
+// quando portare fuori i sacchi), la trascrizione pagina-per-pagina è
+// stata delegata a sub-agent dedicati (uno per Aviano, due per
+// Pordenone gennaio-giugno/luglio-gennaio 2027), ciascuno con: la
+// mappatura esatta lettera/icona → tipo di rifiuto, le regole di
+// esclusione (vedi sotto), lo schema JSON di output, e l'istruzione
+// esplicita di segnalare con una nota i giorni letti con incertezza
+// invece di indovinare in silenzio. Le note di incertezza raccolte sono
+// elencate in fondo a questo commento — nessuna cancellata, per
+// trasparenza in caso di verifica futura contro il calendario cartaceo.
+//
+// **Mappatura badge → tipo**:
+// - Aviano (5 icone): umido→organic, carta→paper, plastica→plastic_metals,
+//   secco→residual, vetro→glass (raccolta porta a porta anche per il
+//   vetro, come A&T 2000 — a differenza di Isontina).
+// - Pordenone (lettere): S→residual (secco), C→paper (carta e cartone),
+//   P→plastic_metals (plastica e metalli). Umido e vetro a Pordenone
+//   NON sono nel calendario porta a porta: sono raccolta stradale con
+//   tessera magnetica (cassonetti aperti con tessera, non "campane"
+//   pubbliche) — per questo i comuni di Pordenone qui sotto non hanno
+//   mai i tipi "organic"/"glass" e campane_vetro resta [] (non essendo
+//   note le posizioni dei cassonetti magnetici, fuori scope v1).
+//
+// **Esclusioni deliberate** (confermate dalla legenda reale del PDF di
+// Pordenone, pagina 10): il codice "SR" (sfalci e ramaglie/verde) è a
+// adesione volontaria su richiesta, mai incluso; l'icona blu "a onda"
+// indica raccolta cartone riservata alle attività commerciali/produttive
+// del centro storico (servizio separato, non residenziale) ed è sempre
+// ignorata anche quando compare nella stessa cella di una lettera
+// valida (la lettera viene comunque registrata).
+//
+// **Marcatori di eccezione nel PDF di Pordenone** (usati dai sub-agent
+// per decidere cosa registrare):
+// - un cerchio/ovale rosso con "!" ("raccolta modificata") accanto a un
+//   badge → il giorno su cui è disegnato il badge È il giorno effettivo
+//   di raccolta (spostato dal solito giorno della settimana): registrato
+//   normalmente, il "!" stesso viene ignorato;
+// - un cerchio rosso con una riga diagonale sopra un badge → raccolta
+//   annullata quel giorno (tipicamente festività): non registrato, e non
+//   si inventa un giorno sostitutivo se non ne compare uno disegnato
+//   altrove nel calendario.
+//
+// **Periodo coperto**: Aviano, gennaio-dicembre 2026 (12 mesi, tutto
+// quanto pubblicato nel PDF). Pordenone, gennaio 2026-gennaio 2027 (13
+// mesi: il PDF include un tredicesimo mese "bonus", gennaio 2027, oltre
+// ai 12 del 2026) — utile per non restare "scoperti" a inizio gennaio
+// 2027 quando arriverà un nuovo PDF che questa v1 statica non potrà
+// ovviamente recepire da sola.
+//
+// **Manutenzione**: essendo dati statici trascritti da un PDF annuale,
+// vanno ri-trascritti a mano quando GEA pubblica il calendario
+// dell'anno successivo — nessun meccanismo automatico li aggiorna. Da
+// tenere presente per una sessione futura (probabilmente fine 2026/
+// inizio 2027).
+//
+// **Scope ridotto rispetto a GEA nel suo complesso**: GEA serve un
+// gruppo di comuni della provincia di Pordenone più ampio di Aviano e
+// Pordenone (una ricerca precedente, non basata su HTML/PDF reale,
+// aveva indicato una ventina di comuni) — coerente con la disciplina già
+// seguita per A&T 2000, la v1 include SOLO i due comuni di cui si è
+// vista la fonte reale (i PDF caricati dall'utente). Gli altri comuni
+// GEA restano fuori finché non arriva il loro PDF/calendario reale.
+//
+// **Note di incertezza raccolte dai sub-agent di trascrizione**
+// (Pordenone; nessuna per Aviano):
+// - Blu 2026-05-04, 2026-12-28, 2027-01-02: badge di "raccolta
+//   modificata" con una sola lettera visibile invece della coppia
+//   abituale — letti come "makeup" parziale di una raccolta annullata
+//   per festività, l'altra metà risulta persa senza sostituto visibile.
+// - Gialla 2026-04-10: idem, "raccolta modificata" di venerdì (giorno
+//   non abituale per questa zona) con una sola lettera "P" visibile.
+// - Rossa 2026-01-02: "raccolta modificata" di venerdì per la carta,
+//   normalmente di giovedì — registrato come mostrato.
+// - Marrone 2026-12-23/24 e 2027-01-01: cluster di eccezioni attorno al
+//   Natale/Capodanno, lettura resa più incerta dalla risoluzione della
+//   scansione — vedi il testo delle note nei dati stessi (campo `note`
+//   nei file sorgente .scratch/gea_data/, non incorporato nel runtime).
+// - Verde Sud 2026-01-03/08: due "raccolta modificata" nella prima
+//   settimana di gennaio, incluso un caso anomalo (carta il giovedì,
+//   zona che normalmente non la riceve mai).
+// - Verde Sud 2026-07-09/23: le uniche due letture risolte per pattern
+//   (alternanza quindicinale della lettera S su questa zona, confermata
+//   su tutti gli altri mesi) invece che per lettura diretta certa
+//   dell'immagine.
+// ---------------------------------------------------------------------
+
+const RIFIUTI_GEA_AVIANO_BLU = [
+  { data: "2026-01-05", tipi: ["organic"] },
+  { data: "2026-01-06", tipi: ["paper"] },
+  { data: "2026-01-07", tipi: ["residual", "glass"] },
+  { data: "2026-01-12", tipi: ["organic"] },
+  { data: "2026-01-13", tipi: ["plastic_metals"] },
+  { data: "2026-01-19", tipi: ["organic"] },
+  { data: "2026-01-20", tipi: ["paper"] },
+  { data: "2026-01-21", tipi: ["residual", "glass"] },
+  { data: "2026-01-26", tipi: ["organic"] },
+  { data: "2026-01-27", tipi: ["plastic_metals"] },
+  { data: "2026-02-02", tipi: ["organic"] },
+  { data: "2026-02-03", tipi: ["paper"] },
+  { data: "2026-02-04", tipi: ["residual", "glass"] },
+  { data: "2026-02-09", tipi: ["organic"] },
+  { data: "2026-02-10", tipi: ["plastic_metals"] },
+  { data: "2026-02-16", tipi: ["organic"] },
+  { data: "2026-02-17", tipi: ["paper"] },
+  { data: "2026-02-18", tipi: ["residual", "glass"] },
+  { data: "2026-02-23", tipi: ["organic"] },
+  { data: "2026-02-24", tipi: ["plastic_metals"] },
+  { data: "2026-03-02", tipi: ["organic"] },
+  { data: "2026-03-03", tipi: ["paper"] },
+  { data: "2026-03-04", tipi: ["residual", "glass"] },
+  { data: "2026-03-09", tipi: ["organic"] },
+  { data: "2026-03-10", tipi: ["plastic_metals"] },
+  { data: "2026-03-16", tipi: ["organic"] },
+  { data: "2026-03-17", tipi: ["paper"] },
+  { data: "2026-03-18", tipi: ["residual", "glass"] },
+  { data: "2026-03-23", tipi: ["organic"] },
+  { data: "2026-03-24", tipi: ["plastic_metals"] },
+  { data: "2026-03-30", tipi: ["organic"] },
+  { data: "2026-03-31", tipi: ["paper"] },
+  { data: "2026-04-01", tipi: ["residual", "glass"] },
+  { data: "2026-04-04", tipi: ["organic"] },
+  { data: "2026-04-07", tipi: ["plastic_metals"] },
+  { data: "2026-04-13", tipi: ["organic"] },
+  { data: "2026-04-14", tipi: ["paper"] },
+  { data: "2026-04-15", tipi: ["residual", "glass"] },
+  { data: "2026-04-20", tipi: ["organic"] },
+  { data: "2026-04-21", tipi: ["plastic_metals"] },
+  { data: "2026-04-27", tipi: ["organic"] },
+  { data: "2026-04-28", tipi: ["paper"] },
+  { data: "2026-04-29", tipi: ["residual", "glass"] },
+  { data: "2026-05-04", tipi: ["organic"] },
+  { data: "2026-05-05", tipi: ["plastic_metals"] },
+  { data: "2026-05-11", tipi: ["organic"] },
+  { data: "2026-05-12", tipi: ["paper"] },
+  { data: "2026-05-13", tipi: ["residual", "glass"] },
+  { data: "2026-05-18", tipi: ["organic"] },
+  { data: "2026-05-19", tipi: ["plastic_metals"] },
+  { data: "2026-05-25", tipi: ["organic"] },
+  { data: "2026-05-26", tipi: ["paper"] },
+  { data: "2026-05-27", tipi: ["residual", "glass"] },
+  { data: "2026-06-01", tipi: ["organic"] },
+  { data: "2026-06-02", tipi: ["plastic_metals"] },
+  { data: "2026-06-04", tipi: ["organic"] },
+  { data: "2026-06-08", tipi: ["organic"] },
+  { data: "2026-06-09", tipi: ["paper"] },
+  { data: "2026-06-10", tipi: ["residual", "glass"] },
+  { data: "2026-06-11", tipi: ["organic"] },
+  { data: "2026-06-15", tipi: ["organic"] },
+  { data: "2026-06-16", tipi: ["plastic_metals"] },
+  { data: "2026-06-18", tipi: ["organic"] },
+  { data: "2026-06-22", tipi: ["organic"] },
+  { data: "2026-06-23", tipi: ["paper"] },
+  { data: "2026-06-24", tipi: ["residual", "glass"] },
+  { data: "2026-06-25", tipi: ["organic"] },
+  { data: "2026-06-29", tipi: ["organic"] },
+  { data: "2026-06-30", tipi: ["plastic_metals"] },
+  { data: "2026-07-02", tipi: ["organic"] },
+  { data: "2026-07-06", tipi: ["organic"] },
+  { data: "2026-07-07", tipi: ["paper"] },
+  { data: "2026-07-08", tipi: ["residual", "glass"] },
+  { data: "2026-07-09", tipi: ["organic"] },
+  { data: "2026-07-13", tipi: ["organic"] },
+  { data: "2026-07-14", tipi: ["plastic_metals"] },
+  { data: "2026-07-16", tipi: ["organic"] },
+  { data: "2026-07-20", tipi: ["organic"] },
+  { data: "2026-07-21", tipi: ["paper"] },
+  { data: "2026-07-22", tipi: ["residual", "glass"] },
+  { data: "2026-07-23", tipi: ["organic"] },
+  { data: "2026-07-27", tipi: ["organic"] },
+  { data: "2026-07-28", tipi: ["plastic_metals"] },
+  { data: "2026-07-30", tipi: ["organic"] },
+  { data: "2026-08-03", tipi: ["organic"] },
+  { data: "2026-08-04", tipi: ["paper"] },
+  { data: "2026-08-05", tipi: ["residual", "glass"] },
+  { data: "2026-08-06", tipi: ["organic"] },
+  { data: "2026-08-10", tipi: ["organic"] },
+  { data: "2026-08-11", tipi: ["plastic_metals"] },
+  { data: "2026-08-13", tipi: ["organic"] },
+  { data: "2026-08-17", tipi: ["organic"] },
+  { data: "2026-08-18", tipi: ["paper"] },
+  { data: "2026-08-19", tipi: ["residual", "glass"] },
+  { data: "2026-08-20", tipi: ["organic"] },
+  { data: "2026-08-24", tipi: ["organic"] },
+  { data: "2026-08-25", tipi: ["plastic_metals"] },
+  { data: "2026-08-27", tipi: ["organic"] },
+  { data: "2026-08-31", tipi: ["organic"] },
+  { data: "2026-09-01", tipi: ["paper"] },
+  { data: "2026-09-02", tipi: ["residual", "glass"] },
+  { data: "2026-09-03", tipi: ["organic"] },
+  { data: "2026-09-07", tipi: ["organic"] },
+  { data: "2026-09-08", tipi: ["plastic_metals"] },
+  { data: "2026-09-10", tipi: ["organic"] },
+  { data: "2026-09-14", tipi: ["organic"] },
+  { data: "2026-09-15", tipi: ["paper"] },
+  { data: "2026-09-16", tipi: ["residual", "glass"] },
+  { data: "2026-09-17", tipi: ["organic"] },
+  { data: "2026-09-21", tipi: ["organic"] },
+  { data: "2026-09-22", tipi: ["plastic_metals"] },
+  { data: "2026-09-24", tipi: ["organic"] },
+  { data: "2026-09-28", tipi: ["organic"] },
+  { data: "2026-09-29", tipi: ["paper"] },
+  { data: "2026-09-30", tipi: ["residual", "glass"] },
+  { data: "2026-10-05", tipi: ["organic"] },
+  { data: "2026-10-06", tipi: ["plastic_metals"] },
+  { data: "2026-10-12", tipi: ["organic"] },
+  { data: "2026-10-13", tipi: ["paper"] },
+  { data: "2026-10-14", tipi: ["residual", "glass"] },
+  { data: "2026-10-19", tipi: ["organic"] },
+  { data: "2026-10-20", tipi: ["plastic_metals"] },
+  { data: "2026-10-26", tipi: ["organic"] },
+  { data: "2026-10-27", tipi: ["paper"] },
+  { data: "2026-10-28", tipi: ["residual", "glass"] },
+  { data: "2026-11-02", tipi: ["organic"] },
+  { data: "2026-11-03", tipi: ["plastic_metals"] },
+  { data: "2026-11-09", tipi: ["organic"] },
+  { data: "2026-11-10", tipi: ["paper"] },
+  { data: "2026-11-11", tipi: ["residual", "glass"] },
+  { data: "2026-11-16", tipi: ["organic"] },
+  { data: "2026-11-17", tipi: ["plastic_metals"] },
+  { data: "2026-11-23", tipi: ["organic"] },
+  { data: "2026-11-24", tipi: ["paper"] },
+  { data: "2026-11-25", tipi: ["residual", "glass"] },
+  { data: "2026-11-30", tipi: ["organic"] },
+  { data: "2026-12-01", tipi: ["plastic_metals"] },
+  { data: "2026-12-07", tipi: ["organic"] },
+  { data: "2026-12-08", tipi: ["paper"] },
+  { data: "2026-12-09", tipi: ["residual", "glass"] },
+  { data: "2026-12-14", tipi: ["organic"] },
+  { data: "2026-12-15", tipi: ["plastic_metals"] },
+  { data: "2026-12-21", tipi: ["organic"] },
+  { data: "2026-12-22", tipi: ["paper"] },
+  { data: "2026-12-23", tipi: ["residual", "glass"] },
+  { data: "2026-12-28", tipi: ["organic"] },
+  { data: "2026-12-29", tipi: ["plastic_metals"] },
+];
+
+const RIFIUTI_GEA_AVIANO_GIALLA = [
+  { data: "2026-01-02", tipi: ["organic"] },
+  { data: "2026-01-06", tipi: ["plastic_metals"] },
+  { data: "2026-01-09", tipi: ["organic"] },
+  { data: "2026-01-13", tipi: ["paper"] },
+  { data: "2026-01-14", tipi: ["residual", "glass"] },
+  { data: "2026-01-16", tipi: ["organic"] },
+  { data: "2026-01-20", tipi: ["plastic_metals"] },
+  { data: "2026-01-23", tipi: ["organic"] },
+  { data: "2026-01-27", tipi: ["paper"] },
+  { data: "2026-01-28", tipi: ["residual", "glass"] },
+  { data: "2026-01-30", tipi: ["organic"] },
+  { data: "2026-02-03", tipi: ["plastic_metals"] },
+  { data: "2026-02-06", tipi: ["organic"] },
+  { data: "2026-02-10", tipi: ["paper"] },
+  { data: "2026-02-11", tipi: ["residual", "glass"] },
+  { data: "2026-02-13", tipi: ["organic"] },
+  { data: "2026-02-17", tipi: ["plastic_metals"] },
+  { data: "2026-02-20", tipi: ["organic"] },
+  { data: "2026-02-24", tipi: ["paper"] },
+  { data: "2026-02-25", tipi: ["residual", "glass"] },
+  { data: "2026-02-27", tipi: ["organic"] },
+  { data: "2026-03-03", tipi: ["plastic_metals"] },
+  { data: "2026-03-06", tipi: ["organic"] },
+  { data: "2026-03-10", tipi: ["paper"] },
+  { data: "2026-03-11", tipi: ["residual", "glass"] },
+  { data: "2026-03-13", tipi: ["organic"] },
+  { data: "2026-03-17", tipi: ["plastic_metals"] },
+  { data: "2026-03-20", tipi: ["organic"] },
+  { data: "2026-03-24", tipi: ["paper"] },
+  { data: "2026-03-25", tipi: ["residual", "glass"] },
+  { data: "2026-03-27", tipi: ["organic"] },
+  { data: "2026-03-31", tipi: ["plastic_metals"] },
+  { data: "2026-04-03", tipi: ["organic"] },
+  { data: "2026-04-07", tipi: ["paper"] },
+  { data: "2026-04-08", tipi: ["residual", "glass"] },
+  { data: "2026-04-10", tipi: ["organic"] },
+  { data: "2026-04-14", tipi: ["plastic_metals"] },
+  { data: "2026-04-17", tipi: ["organic"] },
+  { data: "2026-04-21", tipi: ["paper"] },
+  { data: "2026-04-22", tipi: ["residual", "glass"] },
+  { data: "2026-04-24", tipi: ["organic"] },
+  { data: "2026-04-28", tipi: ["plastic_metals"] },
+  { data: "2026-05-02", tipi: ["organic"] },
+  { data: "2026-05-05", tipi: ["paper"] },
+  { data: "2026-05-06", tipi: ["residual", "glass"] },
+  { data: "2026-05-08", tipi: ["organic"] },
+  { data: "2026-05-12", tipi: ["plastic_metals"] },
+  { data: "2026-05-15", tipi: ["organic"] },
+  { data: "2026-05-19", tipi: ["paper"] },
+  { data: "2026-05-20", tipi: ["residual", "glass"] },
+  { data: "2026-05-22", tipi: ["organic"] },
+  { data: "2026-05-26", tipi: ["plastic_metals"] },
+  { data: "2026-05-29", tipi: ["organic"] },
+  { data: "2026-06-02", tipi: ["paper"] },
+  { data: "2026-06-03", tipi: ["residual", "glass"] },
+  { data: "2026-06-05", tipi: ["organic"] },
+  { data: "2026-06-09", tipi: ["organic", "plastic_metals"] },
+  { data: "2026-06-12", tipi: ["organic"] },
+  { data: "2026-06-16", tipi: ["organic", "paper"] },
+  { data: "2026-06-17", tipi: ["residual", "glass"] },
+  { data: "2026-06-19", tipi: ["organic"] },
+  { data: "2026-06-23", tipi: ["organic", "plastic_metals"] },
+  { data: "2026-06-26", tipi: ["organic"] },
+  { data: "2026-06-30", tipi: ["organic", "paper"] },
+  { data: "2026-07-01", tipi: ["residual", "glass"] },
+  { data: "2026-07-03", tipi: ["organic"] },
+  { data: "2026-07-07", tipi: ["organic", "plastic_metals"] },
+  { data: "2026-07-10", tipi: ["organic"] },
+  { data: "2026-07-14", tipi: ["organic", "paper"] },
+  { data: "2026-07-15", tipi: ["residual", "glass"] },
+  { data: "2026-07-17", tipi: ["organic"] },
+  { data: "2026-07-21", tipi: ["organic", "plastic_metals"] },
+  { data: "2026-07-24", tipi: ["organic"] },
+  { data: "2026-07-28", tipi: ["organic", "paper"] },
+  { data: "2026-07-29", tipi: ["residual", "glass"] },
+  { data: "2026-07-31", tipi: ["organic"] },
+  { data: "2026-08-04", tipi: ["organic", "plastic_metals"] },
+  { data: "2026-08-07", tipi: ["organic"] },
+  { data: "2026-08-11", tipi: ["organic", "paper"] },
+  { data: "2026-08-12", tipi: ["residual", "glass"] },
+  { data: "2026-08-14", tipi: ["organic"] },
+  { data: "2026-08-18", tipi: ["organic", "plastic_metals"] },
+  { data: "2026-08-21", tipi: ["organic"] },
+  { data: "2026-08-25", tipi: ["organic", "paper"] },
+  { data: "2026-08-26", tipi: ["residual", "glass"] },
+  { data: "2026-08-28", tipi: ["organic"] },
+  { data: "2026-09-01", tipi: ["organic", "plastic_metals"] },
+  { data: "2026-09-04", tipi: ["organic"] },
+  { data: "2026-09-08", tipi: ["organic", "paper"] },
+  { data: "2026-09-09", tipi: ["residual", "glass"] },
+  { data: "2026-09-11", tipi: ["organic"] },
+  { data: "2026-09-15", tipi: ["organic", "plastic_metals"] },
+  { data: "2026-09-18", tipi: ["organic"] },
+  { data: "2026-09-22", tipi: ["organic", "paper"] },
+  { data: "2026-09-23", tipi: ["residual", "glass"] },
+  { data: "2026-09-25", tipi: ["organic"] },
+  { data: "2026-09-29", tipi: ["organic", "plastic_metals"] },
+  { data: "2026-10-02", tipi: ["organic"] },
+  { data: "2026-10-06", tipi: ["paper"] },
+  { data: "2026-10-07", tipi: ["residual", "glass"] },
+  { data: "2026-10-09", tipi: ["organic"] },
+  { data: "2026-10-13", tipi: ["plastic_metals"] },
+  { data: "2026-10-16", tipi: ["organic"] },
+  { data: "2026-10-20", tipi: ["paper"] },
+  { data: "2026-10-21", tipi: ["residual", "glass"] },
+  { data: "2026-10-23", tipi: ["organic"] },
+  { data: "2026-10-27", tipi: ["plastic_metals"] },
+  { data: "2026-10-30", tipi: ["organic"] },
+  { data: "2026-11-03", tipi: ["paper"] },
+  { data: "2026-11-04", tipi: ["residual", "glass"] },
+  { data: "2026-11-06", tipi: ["organic"] },
+  { data: "2026-11-10", tipi: ["plastic_metals"] },
+  { data: "2026-11-13", tipi: ["organic"] },
+  { data: "2026-11-17", tipi: ["paper"] },
+  { data: "2026-11-18", tipi: ["residual", "glass"] },
+  { data: "2026-11-20", tipi: ["organic"] },
+  { data: "2026-11-24", tipi: ["plastic_metals"] },
+  { data: "2026-11-27", tipi: ["organic"] },
+  { data: "2026-12-01", tipi: ["paper"] },
+  { data: "2026-12-02", tipi: ["residual", "glass"] },
+  { data: "2026-12-04", tipi: ["organic"] },
+  { data: "2026-12-08", tipi: ["plastic_metals"] },
+  { data: "2026-12-11", tipi: ["organic"] },
+  { data: "2026-12-15", tipi: ["paper"] },
+  { data: "2026-12-16", tipi: ["residual", "glass"] },
+  { data: "2026-12-18", tipi: ["organic"] },
+  { data: "2026-12-22", tipi: ["plastic_metals"] },
+  { data: "2026-12-26", tipi: ["organic"] },
+  { data: "2026-12-29", tipi: ["paper"] },
+  { data: "2026-12-30", tipi: ["residual", "glass"] },
+];
+
+const RIFIUTI_GEA_PORDENONE_BLU = [
+  { data: "2026-01-02", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-01-03", tipi: ["paper"] },
+  { data: "2026-01-09", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-01-10", tipi: ["paper"] },
+  { data: "2026-01-16", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-01-17", tipi: ["paper"] },
+  { data: "2026-01-23", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-01-24", tipi: ["paper"] },
+  { data: "2026-01-30", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-01-31", tipi: ["paper"] },
+  { data: "2026-02-06", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-02-07", tipi: ["paper"] },
+  { data: "2026-02-13", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-02-14", tipi: ["paper"] },
+  { data: "2026-02-20", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-02-21", tipi: ["paper"] },
+  { data: "2026-02-27", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-02-28", tipi: ["paper"] },
+  { data: "2026-03-06", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-03-07", tipi: ["paper"] },
+  { data: "2026-03-13", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-03-14", tipi: ["paper"] },
+  { data: "2026-03-20", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-03-21", tipi: ["paper"] },
+  { data: "2026-03-27", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-03-28", tipi: ["paper"] },
+  { data: "2026-04-03", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-04-04", tipi: ["paper"] },
+  { data: "2026-04-10", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-04-11", tipi: ["paper"] },
+  { data: "2026-04-17", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-04-18", tipi: ["paper"] },
+  { data: "2026-04-24", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-04-25", tipi: ["paper"] },
+  { data: "2026-05-02", tipi: ["paper"] },
+  { data: "2026-05-04", tipi: ["plastic_metals"] },
+  { data: "2026-05-08", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-05-09", tipi: ["paper"] },
+  { data: "2026-05-15", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-05-16", tipi: ["paper"] },
+  { data: "2026-05-22", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-05-23", tipi: ["paper"] },
+  { data: "2026-05-29", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-05-30", tipi: ["paper"] },
+  { data: "2026-06-05", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-06-06", tipi: ["paper"] },
+  { data: "2026-06-12", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-06-13", tipi: ["paper"] },
+  { data: "2026-06-19", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-06-20", tipi: ["paper"] },
+  { data: "2026-06-26", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-06-27", tipi: ["paper"] },
+  { data: "2026-07-03", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-07-04", tipi: ["paper"] },
+  { data: "2026-07-10", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-07-11", tipi: ["paper"] },
+  { data: "2026-07-17", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-07-18", tipi: ["paper"] },
+  { data: "2026-07-24", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-07-25", tipi: ["paper"] },
+  { data: "2026-07-31", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-08-01", tipi: ["paper"] },
+  { data: "2026-08-07", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-08-08", tipi: ["paper"] },
+  { data: "2026-08-14", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-08-21", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-08-22", tipi: ["paper"] },
+  { data: "2026-08-28", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-08-29", tipi: ["paper"] },
+  { data: "2026-09-04", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-09-05", tipi: ["paper"] },
+  { data: "2026-09-11", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-09-12", tipi: ["paper"] },
+  { data: "2026-09-18", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-09-19", tipi: ["paper"] },
+  { data: "2026-09-25", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-09-26", tipi: ["paper"] },
+  { data: "2026-10-02", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-10-03", tipi: ["paper"] },
+  { data: "2026-10-09", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-10-10", tipi: ["paper"] },
+  { data: "2026-10-16", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-10-17", tipi: ["paper"] },
+  { data: "2026-10-23", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-10-24", tipi: ["paper"] },
+  { data: "2026-10-30", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-10-31", tipi: ["paper"] },
+  { data: "2026-11-06", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-11-07", tipi: ["paper"] },
+  { data: "2026-11-13", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-11-14", tipi: ["paper"] },
+  { data: "2026-11-20", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-11-21", tipi: ["paper"] },
+  { data: "2026-11-27", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-11-28", tipi: ["paper"] },
+  { data: "2026-12-04", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-12-05", tipi: ["paper"] },
+  { data: "2026-12-11", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-12-12", tipi: ["paper"] },
+  { data: "2026-12-18", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-12-19", tipi: ["paper"] },
+  { data: "2026-12-26", tipi: ["paper"] },
+  { data: "2026-12-28", tipi: ["plastic_metals"] },
+  { data: "2027-01-02", tipi: ["paper", "residual"] },
+  { data: "2027-01-08", tipi: ["residual", "plastic_metals"] },
+  { data: "2027-01-09", tipi: ["paper"] },
+  { data: "2027-01-15", tipi: ["residual", "plastic_metals"] },
+  { data: "2027-01-16", tipi: ["paper"] },
+  { data: "2027-01-22", tipi: ["residual", "plastic_metals"] },
+  { data: "2027-01-23", tipi: ["paper"] },
+  { data: "2027-01-29", tipi: ["residual", "plastic_metals"] },
+  { data: "2027-01-30", tipi: ["paper"] },
+];
+
+const RIFIUTI_GEA_PORDENONE_GIALLA = [
+  { data: "2026-01-05", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-01-06", tipi: ["paper"] },
+  { data: "2026-01-12", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-01-13", tipi: ["paper"] },
+  { data: "2026-01-19", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-01-20", tipi: ["paper"] },
+  { data: "2026-01-26", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-01-27", tipi: ["paper"] },
+  { data: "2026-02-02", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-02-03", tipi: ["paper"] },
+  { data: "2026-02-09", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-02-10", tipi: ["paper"] },
+  { data: "2026-02-16", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-02-17", tipi: ["paper"] },
+  { data: "2026-02-23", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-02-24", tipi: ["paper"] },
+  { data: "2026-03-02", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-03-03", tipi: ["paper"] },
+  { data: "2026-03-09", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-03-10", tipi: ["paper"] },
+  { data: "2026-03-16", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-03-17", tipi: ["paper"] },
+  { data: "2026-03-23", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-03-24", tipi: ["paper"] },
+  { data: "2026-03-30", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-03-31", tipi: ["paper"] },
+  { data: "2026-04-07", tipi: ["paper"] },
+  { data: "2026-04-10", tipi: ["plastic_metals"] },
+  { data: "2026-04-13", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-04-14", tipi: ["paper"] },
+  { data: "2026-04-20", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-04-21", tipi: ["paper"] },
+  { data: "2026-04-27", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-04-28", tipi: ["paper"] },
+  { data: "2026-05-04", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-05-05", tipi: ["paper"] },
+  { data: "2026-05-11", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-05-12", tipi: ["paper"] },
+  { data: "2026-05-18", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-05-19", tipi: ["paper"] },
+  { data: "2026-05-25", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-05-26", tipi: ["paper"] },
+  { data: "2026-06-01", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-06-02", tipi: ["paper"] },
+  { data: "2026-06-08", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-06-09", tipi: ["paper"] },
+  { data: "2026-06-15", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-06-16", tipi: ["paper"] },
+  { data: "2026-06-22", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-06-23", tipi: ["paper"] },
+  { data: "2026-06-29", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-06-30", tipi: ["paper"] },
+  { data: "2026-07-06", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-07-07", tipi: ["paper"] },
+  { data: "2026-07-13", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-07-14", tipi: ["paper"] },
+  { data: "2026-07-20", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-07-21", tipi: ["paper"] },
+  { data: "2026-07-27", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-07-28", tipi: ["paper"] },
+  { data: "2026-08-03", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-08-04", tipi: ["paper"] },
+  { data: "2026-08-10", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-08-11", tipi: ["paper"] },
+  { data: "2026-08-17", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-08-18", tipi: ["paper"] },
+  { data: "2026-08-24", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-08-25", tipi: ["paper"] },
+  { data: "2026-08-31", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-09-01", tipi: ["paper"] },
+  { data: "2026-09-07", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-09-08", tipi: ["paper"] },
+  { data: "2026-09-14", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-09-15", tipi: ["paper"] },
+  { data: "2026-09-21", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-09-22", tipi: ["paper"] },
+  { data: "2026-09-28", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-09-29", tipi: ["paper"] },
+  { data: "2026-10-05", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-10-06", tipi: ["paper"] },
+  { data: "2026-10-12", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-10-13", tipi: ["paper"] },
+  { data: "2026-10-19", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-10-20", tipi: ["paper"] },
+  { data: "2026-10-26", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-10-27", tipi: ["paper"] },
+  { data: "2026-11-02", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-11-03", tipi: ["paper"] },
+  { data: "2026-11-09", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-11-10", tipi: ["paper"] },
+  { data: "2026-11-16", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-11-17", tipi: ["paper"] },
+  { data: "2026-11-23", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-11-24", tipi: ["paper"] },
+  { data: "2026-11-30", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-12-01", tipi: ["paper"] },
+  { data: "2026-12-07", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-12-08", tipi: ["paper"] },
+  { data: "2026-12-14", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-12-15", tipi: ["paper"] },
+  { data: "2026-12-21", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-12-22", tipi: ["paper"] },
+  { data: "2026-12-28", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-12-29", tipi: ["paper"] },
+  { data: "2027-01-04", tipi: ["residual", "plastic_metals"] },
+  { data: "2027-01-05", tipi: ["paper"] },
+  { data: "2027-01-11", tipi: ["residual", "plastic_metals"] },
+  { data: "2027-01-12", tipi: ["paper"] },
+  { data: "2027-01-18", tipi: ["residual", "plastic_metals"] },
+  { data: "2027-01-19", tipi: ["paper"] },
+  { data: "2027-01-25", tipi: ["residual", "plastic_metals"] },
+  { data: "2027-01-26", tipi: ["paper"] },
+];
+
+const RIFIUTI_GEA_PORDENONE_ROSSA = [
+  { data: "2026-01-02", tipi: ["paper"] },
+  { data: "2026-01-07", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-01-08", tipi: ["paper"] },
+  { data: "2026-01-14", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-01-15", tipi: ["paper"] },
+  { data: "2026-01-21", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-01-22", tipi: ["paper"] },
+  { data: "2026-01-28", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-01-29", tipi: ["paper"] },
+  { data: "2026-02-04", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-02-05", tipi: ["paper"] },
+  { data: "2026-02-11", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-02-12", tipi: ["paper"] },
+  { data: "2026-02-18", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-02-19", tipi: ["paper"] },
+  { data: "2026-02-25", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-02-26", tipi: ["paper"] },
+  { data: "2026-03-04", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-03-05", tipi: ["paper"] },
+  { data: "2026-03-11", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-03-12", tipi: ["paper"] },
+  { data: "2026-03-18", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-03-19", tipi: ["paper"] },
+  { data: "2026-03-25", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-03-26", tipi: ["paper"] },
+  { data: "2026-04-01", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-04-02", tipi: ["paper"] },
+  { data: "2026-04-08", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-04-09", tipi: ["paper"] },
+  { data: "2026-04-15", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-04-16", tipi: ["paper"] },
+  { data: "2026-04-22", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-04-23", tipi: ["paper"] },
+  { data: "2026-04-29", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-04-30", tipi: ["paper"] },
+  { data: "2026-05-06", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-05-07", tipi: ["paper"] },
+  { data: "2026-05-13", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-05-14", tipi: ["paper"] },
+  { data: "2026-05-20", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-05-21", tipi: ["paper"] },
+  { data: "2026-05-27", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-05-28", tipi: ["paper"] },
+  { data: "2026-06-03", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-06-04", tipi: ["paper"] },
+  { data: "2026-06-10", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-06-11", tipi: ["paper"] },
+  { data: "2026-06-17", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-06-18", tipi: ["paper"] },
+  { data: "2026-06-24", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-06-25", tipi: ["paper"] },
+  { data: "2026-07-01", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-07-02", tipi: ["paper"] },
+  { data: "2026-07-08", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-07-09", tipi: ["paper"] },
+  { data: "2026-07-15", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-07-16", tipi: ["paper"] },
+  { data: "2026-07-22", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-07-23", tipi: ["paper"] },
+  { data: "2026-07-29", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-07-30", tipi: ["paper"] },
+  { data: "2026-08-05", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-08-06", tipi: ["paper"] },
+  { data: "2026-08-12", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-08-13", tipi: ["paper"] },
+  { data: "2026-08-19", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-08-20", tipi: ["paper"] },
+  { data: "2026-08-26", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-08-27", tipi: ["paper"] },
+  { data: "2026-09-02", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-09-03", tipi: ["paper"] },
+  { data: "2026-09-09", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-09-10", tipi: ["paper"] },
+  { data: "2026-09-16", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-09-17", tipi: ["paper"] },
+  { data: "2026-09-23", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-09-24", tipi: ["paper"] },
+  { data: "2026-09-30", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-10-01", tipi: ["paper"] },
+  { data: "2026-10-07", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-10-08", tipi: ["paper"] },
+  { data: "2026-10-14", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-10-15", tipi: ["paper"] },
+  { data: "2026-10-21", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-10-22", tipi: ["paper"] },
+  { data: "2026-10-28", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-10-29", tipi: ["paper"] },
+  { data: "2026-11-04", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-11-05", tipi: ["paper"] },
+  { data: "2026-11-11", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-11-12", tipi: ["paper"] },
+  { data: "2026-11-18", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-11-19", tipi: ["paper"] },
+  { data: "2026-11-25", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-11-26", tipi: ["paper"] },
+  { data: "2026-12-02", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-12-03", tipi: ["paper"] },
+  { data: "2026-12-09", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-12-10", tipi: ["paper"] },
+  { data: "2026-12-16", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-12-17", tipi: ["paper"] },
+  { data: "2026-12-23", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-12-24", tipi: ["paper"] },
+  { data: "2026-12-30", tipi: ["residual", "plastic_metals"] },
+  { data: "2027-01-06", tipi: ["residual", "plastic_metals"] },
+  { data: "2027-01-07", tipi: ["paper"] },
+  { data: "2027-01-13", tipi: ["residual", "plastic_metals"] },
+  { data: "2027-01-14", tipi: ["paper"] },
+  { data: "2027-01-20", tipi: ["residual", "plastic_metals"] },
+  { data: "2027-01-21", tipi: ["paper"] },
+  { data: "2027-01-27", tipi: ["residual", "plastic_metals"] },
+  { data: "2027-01-28", tipi: ["paper"] },
+];
+
+const RIFIUTI_GEA_PORDENONE_MARRONE = [
+  { data: "2026-01-02", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-01-08", tipi: ["paper"] },
+  { data: "2026-01-09", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-01-15", tipi: ["paper"] },
+  { data: "2026-01-16", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-01-22", tipi: ["paper"] },
+  { data: "2026-01-23", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-01-29", tipi: ["paper"] },
+  { data: "2026-01-30", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-02-05", tipi: ["paper"] },
+  { data: "2026-02-06", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-02-12", tipi: ["paper"] },
+  { data: "2026-02-13", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-02-19", tipi: ["paper"] },
+  { data: "2026-02-20", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-02-26", tipi: ["paper"] },
+  { data: "2026-02-27", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-03-05", tipi: ["paper"] },
+  { data: "2026-03-06", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-03-12", tipi: ["paper"] },
+  { data: "2026-03-13", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-03-19", tipi: ["paper"] },
+  { data: "2026-03-20", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-03-26", tipi: ["paper"] },
+  { data: "2026-03-27", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-04-02", tipi: ["paper"] },
+  { data: "2026-04-03", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-04-09", tipi: ["paper"] },
+  { data: "2026-04-10", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-04-16", tipi: ["paper"] },
+  { data: "2026-04-17", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-04-23", tipi: ["paper"] },
+  { data: "2026-04-24", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-04-30", tipi: ["paper"] },
+  { data: "2026-05-07", tipi: ["paper"] },
+  { data: "2026-05-08", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-05-14", tipi: ["paper"] },
+  { data: "2026-05-15", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-05-21", tipi: ["paper"] },
+  { data: "2026-05-22", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-05-28", tipi: ["paper"] },
+  { data: "2026-05-29", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-06-04", tipi: ["paper"] },
+  { data: "2026-06-05", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-06-11", tipi: ["paper"] },
+  { data: "2026-06-12", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-06-18", tipi: ["paper"] },
+  { data: "2026-06-19", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-06-25", tipi: ["paper"] },
+  { data: "2026-06-26", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-07-02", tipi: ["paper"] },
+  { data: "2026-07-03", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-07-09", tipi: ["paper"] },
+  { data: "2026-07-10", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-07-16", tipi: ["paper"] },
+  { data: "2026-07-17", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-07-23", tipi: ["paper"] },
+  { data: "2026-07-24", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-07-30", tipi: ["paper"] },
+  { data: "2026-07-31", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-08-06", tipi: ["paper"] },
+  { data: "2026-08-07", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-08-13", tipi: ["paper"] },
+  { data: "2026-08-14", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-08-20", tipi: ["paper"] },
+  { data: "2026-08-21", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-08-27", tipi: ["paper"] },
+  { data: "2026-08-28", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-09-03", tipi: ["paper"] },
+  { data: "2026-09-04", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-09-10", tipi: ["paper"] },
+  { data: "2026-09-11", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-09-17", tipi: ["paper"] },
+  { data: "2026-09-18", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-09-24", tipi: ["paper"] },
+  { data: "2026-09-25", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-10-01", tipi: ["paper"] },
+  { data: "2026-10-02", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-10-08", tipi: ["paper"] },
+  { data: "2026-10-09", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-10-15", tipi: ["paper"] },
+  { data: "2026-10-16", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-10-22", tipi: ["paper"] },
+  { data: "2026-10-23", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-10-29", tipi: ["paper"] },
+  { data: "2026-10-30", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-11-05", tipi: ["paper"] },
+  { data: "2026-11-06", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-11-12", tipi: ["paper"] },
+  { data: "2026-11-13", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-11-19", tipi: ["paper"] },
+  { data: "2026-11-20", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-11-26", tipi: ["paper"] },
+  { data: "2026-11-27", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-12-03", tipi: ["paper"] },
+  { data: "2026-12-04", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-12-10", tipi: ["paper"] },
+  { data: "2026-12-11", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-12-17", tipi: ["paper"] },
+  { data: "2026-12-18", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-12-23", tipi: ["residual"] },
+  { data: "2026-12-24", tipi: ["paper"] },
+  { data: "2027-01-01", tipi: ["residual"] },
+  { data: "2027-01-07", tipi: ["paper"] },
+  { data: "2027-01-08", tipi: ["residual", "plastic_metals"] },
+  { data: "2027-01-14", tipi: ["paper"] },
+  { data: "2027-01-15", tipi: ["residual", "plastic_metals"] },
+  { data: "2027-01-21", tipi: ["paper"] },
+  { data: "2027-01-22", tipi: ["residual", "plastic_metals"] },
+  { data: "2027-01-28", tipi: ["paper"] },
+  { data: "2027-01-29", tipi: ["residual", "plastic_metals"] },
+];
+
+const RIFIUTI_GEA_PORDENONE_VERDE_NORD = [
+  { data: "2026-01-05", tipi: ["plastic_metals"] },
+  { data: "2026-01-06", tipi: ["paper"] },
+  { data: "2026-01-12", tipi: ["plastic_metals"] },
+  { data: "2026-01-13", tipi: ["paper", "residual"] },
+  { data: "2026-01-19", tipi: ["plastic_metals"] },
+  { data: "2026-01-20", tipi: ["paper"] },
+  { data: "2026-01-26", tipi: ["plastic_metals"] },
+  { data: "2026-01-27", tipi: ["paper", "residual"] },
+  { data: "2026-02-02", tipi: ["plastic_metals"] },
+  { data: "2026-02-03", tipi: ["paper"] },
+  { data: "2026-02-09", tipi: ["plastic_metals"] },
+  { data: "2026-02-10", tipi: ["paper", "residual"] },
+  { data: "2026-02-16", tipi: ["plastic_metals"] },
+  { data: "2026-02-17", tipi: ["paper"] },
+  { data: "2026-02-23", tipi: ["plastic_metals"] },
+  { data: "2026-02-24", tipi: ["paper", "residual"] },
+  { data: "2026-03-02", tipi: ["plastic_metals"] },
+  { data: "2026-03-03", tipi: ["paper"] },
+  { data: "2026-03-09", tipi: ["plastic_metals"] },
+  { data: "2026-03-10", tipi: ["paper", "residual"] },
+  { data: "2026-03-16", tipi: ["plastic_metals"] },
+  { data: "2026-03-17", tipi: ["paper"] },
+  { data: "2026-03-23", tipi: ["plastic_metals"] },
+  { data: "2026-03-24", tipi: ["paper", "residual"] },
+  { data: "2026-03-30", tipi: ["plastic_metals"] },
+  { data: "2026-03-31", tipi: ["paper"] },
+  { data: "2026-04-13", tipi: ["plastic_metals"] },
+  { data: "2026-04-14", tipi: ["paper", "residual"] },
+  { data: "2026-04-20", tipi: ["plastic_metals"] },
+  { data: "2026-04-21", tipi: ["paper", "residual"] },
+  { data: "2026-04-27", tipi: ["plastic_metals"] },
+  { data: "2026-04-28", tipi: ["paper"] },
+  { data: "2026-05-04", tipi: ["plastic_metals"] },
+  { data: "2026-05-05", tipi: ["paper", "residual"] },
+  { data: "2026-05-11", tipi: ["plastic_metals"] },
+  { data: "2026-05-12", tipi: ["paper"] },
+  { data: "2026-05-18", tipi: ["plastic_metals"] },
+  { data: "2026-05-19", tipi: ["paper", "residual"] },
+  { data: "2026-05-25", tipi: ["plastic_metals"] },
+  { data: "2026-05-26", tipi: ["paper"] },
+  { data: "2026-06-01", tipi: ["plastic_metals"] },
+  { data: "2026-06-02", tipi: ["paper", "residual"] },
+  { data: "2026-06-08", tipi: ["plastic_metals"] },
+  { data: "2026-06-09", tipi: ["paper"] },
+  { data: "2026-06-15", tipi: ["plastic_metals"] },
+  { data: "2026-06-16", tipi: ["paper", "residual"] },
+  { data: "2026-06-22", tipi: ["plastic_metals"] },
+  { data: "2026-06-23", tipi: ["paper"] },
+  { data: "2026-06-29", tipi: ["plastic_metals"] },
+  { data: "2026-06-30", tipi: ["paper", "residual"] },
+  { data: "2026-07-06", tipi: ["plastic_metals"] },
+  { data: "2026-07-07", tipi: ["paper"] },
+  { data: "2026-07-13", tipi: ["plastic_metals"] },
+  { data: "2026-07-14", tipi: ["paper", "residual"] },
+  { data: "2026-07-20", tipi: ["plastic_metals"] },
+  { data: "2026-07-21", tipi: ["paper"] },
+  { data: "2026-07-27", tipi: ["plastic_metals"] },
+  { data: "2026-07-28", tipi: ["paper", "residual"] },
+  { data: "2026-08-03", tipi: ["plastic_metals"] },
+  { data: "2026-08-04", tipi: ["paper"] },
+  { data: "2026-08-10", tipi: ["plastic_metals"] },
+  { data: "2026-08-11", tipi: ["paper", "residual"] },
+  { data: "2026-08-17", tipi: ["plastic_metals"] },
+  { data: "2026-08-18", tipi: ["paper"] },
+  { data: "2026-08-24", tipi: ["plastic_metals"] },
+  { data: "2026-08-25", tipi: ["paper", "residual"] },
+  { data: "2026-08-31", tipi: ["plastic_metals"] },
+  { data: "2026-09-01", tipi: ["paper"] },
+  { data: "2026-09-07", tipi: ["plastic_metals"] },
+  { data: "2026-09-08", tipi: ["paper", "residual"] },
+  { data: "2026-09-14", tipi: ["plastic_metals"] },
+  { data: "2026-09-15", tipi: ["paper"] },
+  { data: "2026-09-21", tipi: ["plastic_metals"] },
+  { data: "2026-09-22", tipi: ["paper", "residual"] },
+  { data: "2026-09-28", tipi: ["plastic_metals"] },
+  { data: "2026-09-29", tipi: ["paper"] },
+  { data: "2026-10-05", tipi: ["plastic_metals"] },
+  { data: "2026-10-06", tipi: ["paper", "residual"] },
+  { data: "2026-10-12", tipi: ["plastic_metals"] },
+  { data: "2026-10-13", tipi: ["paper"] },
+  { data: "2026-10-19", tipi: ["plastic_metals"] },
+  { data: "2026-10-20", tipi: ["paper", "residual"] },
+  { data: "2026-10-26", tipi: ["plastic_metals"] },
+  { data: "2026-10-27", tipi: ["paper"] },
+  { data: "2026-11-02", tipi: ["plastic_metals"] },
+  { data: "2026-11-03", tipi: ["paper", "residual"] },
+  { data: "2026-11-09", tipi: ["plastic_metals"] },
+  { data: "2026-11-10", tipi: ["paper"] },
+  { data: "2026-11-16", tipi: ["plastic_metals"] },
+  { data: "2026-11-17", tipi: ["paper", "residual"] },
+  { data: "2026-11-23", tipi: ["plastic_metals"] },
+  { data: "2026-11-24", tipi: ["paper"] },
+  { data: "2026-11-30", tipi: ["plastic_metals"] },
+  { data: "2026-12-01", tipi: ["paper", "residual"] },
+  { data: "2026-12-07", tipi: ["plastic_metals"] },
+  { data: "2026-12-08", tipi: ["paper"] },
+  { data: "2026-12-14", tipi: ["plastic_metals"] },
+  { data: "2026-12-15", tipi: ["paper", "residual"] },
+  { data: "2026-12-21", tipi: ["plastic_metals"] },
+  { data: "2026-12-22", tipi: ["paper"] },
+  { data: "2026-12-28", tipi: ["plastic_metals"] },
+  { data: "2026-12-29", tipi: ["paper", "residual"] },
+  { data: "2027-01-04", tipi: ["plastic_metals"] },
+  { data: "2027-01-05", tipi: ["paper"] },
+  { data: "2027-01-11", tipi: ["plastic_metals"] },
+  { data: "2027-01-12", tipi: ["paper", "residual"] },
+  { data: "2027-01-18", tipi: ["plastic_metals"] },
+  { data: "2027-01-19", tipi: ["paper"] },
+  { data: "2027-01-25", tipi: ["plastic_metals"] },
+  { data: "2027-01-26", tipi: ["paper", "residual"] },
+];
+
+const RIFIUTI_GEA_PORDENONE_VERDE_SUD = [
+  { data: "2026-01-03", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-01-08", tipi: ["paper", "plastic_metals"] },
+  { data: "2026-01-15", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-01-22", tipi: ["plastic_metals"] },
+  { data: "2026-01-29", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-02-03", tipi: ["paper"] },
+  { data: "2026-02-05", tipi: ["plastic_metals"] },
+  { data: "2026-02-10", tipi: ["paper"] },
+  { data: "2026-02-12", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-02-17", tipi: ["paper"] },
+  { data: "2026-02-19", tipi: ["plastic_metals"] },
+  { data: "2026-02-24", tipi: ["paper"] },
+  { data: "2026-02-26", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-03-03", tipi: ["paper"] },
+  { data: "2026-03-05", tipi: ["plastic_metals"] },
+  { data: "2026-03-10", tipi: ["paper"] },
+  { data: "2026-03-12", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-03-17", tipi: ["paper"] },
+  { data: "2026-03-19", tipi: ["plastic_metals"] },
+  { data: "2026-03-24", tipi: ["paper"] },
+  { data: "2026-03-26", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-04-02", tipi: ["plastic_metals"] },
+  { data: "2026-04-07", tipi: ["paper"] },
+  { data: "2026-04-09", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-04-14", tipi: ["paper"] },
+  { data: "2026-04-16", tipi: ["plastic_metals"] },
+  { data: "2026-04-21", tipi: ["paper"] },
+  { data: "2026-04-23", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-04-28", tipi: ["paper"] },
+  { data: "2026-04-30", tipi: ["plastic_metals"] },
+  { data: "2026-05-05", tipi: ["paper"] },
+  { data: "2026-05-07", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-05-12", tipi: ["paper"] },
+  { data: "2026-05-14", tipi: ["plastic_metals"] },
+  { data: "2026-05-19", tipi: ["paper"] },
+  { data: "2026-05-21", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-05-26", tipi: ["paper"] },
+  { data: "2026-05-28", tipi: ["plastic_metals"] },
+  { data: "2026-06-02", tipi: ["paper"] },
+  { data: "2026-06-04", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-06-09", tipi: ["paper"] },
+  { data: "2026-06-11", tipi: ["plastic_metals"] },
+  { data: "2026-06-16", tipi: ["paper"] },
+  { data: "2026-06-18", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-06-23", tipi: ["paper"] },
+  { data: "2026-06-25", tipi: ["plastic_metals"] },
+  { data: "2026-06-30", tipi: ["paper"] },
+  { data: "2026-07-02", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-07-07", tipi: ["paper"] },
+  { data: "2026-07-09", tipi: ["plastic_metals"] },
+  { data: "2026-07-14", tipi: ["paper"] },
+  { data: "2026-07-16", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-07-21", tipi: ["paper"] },
+  { data: "2026-07-23", tipi: ["plastic_metals"] },
+  { data: "2026-07-28", tipi: ["paper"] },
+  { data: "2026-07-30", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-08-04", tipi: ["paper"] },
+  { data: "2026-08-06", tipi: ["plastic_metals"] },
+  { data: "2026-08-11", tipi: ["paper"] },
+  { data: "2026-08-13", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-08-18", tipi: ["paper"] },
+  { data: "2026-08-20", tipi: ["plastic_metals"] },
+  { data: "2026-08-25", tipi: ["paper"] },
+  { data: "2026-08-27", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-09-01", tipi: ["paper"] },
+  { data: "2026-09-03", tipi: ["plastic_metals"] },
+  { data: "2026-09-08", tipi: ["paper"] },
+  { data: "2026-09-10", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-09-15", tipi: ["paper"] },
+  { data: "2026-09-17", tipi: ["plastic_metals"] },
+  { data: "2026-09-22", tipi: ["paper"] },
+  { data: "2026-09-24", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-09-29", tipi: ["paper"] },
+  { data: "2026-10-01", tipi: ["plastic_metals"] },
+  { data: "2026-10-06", tipi: ["paper"] },
+  { data: "2026-10-08", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-10-13", tipi: ["paper"] },
+  { data: "2026-10-15", tipi: ["plastic_metals"] },
+  { data: "2026-10-20", tipi: ["paper"] },
+  { data: "2026-10-22", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-10-27", tipi: ["paper"] },
+  { data: "2026-10-29", tipi: ["plastic_metals"] },
+  { data: "2026-11-03", tipi: ["paper"] },
+  { data: "2026-11-05", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-11-10", tipi: ["paper"] },
+  { data: "2026-11-12", tipi: ["plastic_metals"] },
+  { data: "2026-11-17", tipi: ["paper"] },
+  { data: "2026-11-19", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-11-24", tipi: ["paper"] },
+  { data: "2026-11-26", tipi: ["plastic_metals"] },
+  { data: "2026-12-01", tipi: ["paper"] },
+  { data: "2026-12-03", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-12-08", tipi: ["paper"] },
+  { data: "2026-12-10", tipi: ["plastic_metals"] },
+  { data: "2026-12-15", tipi: ["paper"] },
+  { data: "2026-12-17", tipi: ["residual", "plastic_metals"] },
+  { data: "2026-12-22", tipi: ["paper"] },
+  { data: "2026-12-24", tipi: ["plastic_metals"] },
+  { data: "2026-12-29", tipi: ["paper"] },
+  { data: "2026-12-31", tipi: ["residual", "plastic_metals"] },
+  { data: "2027-01-05", tipi: ["paper"] },
+  { data: "2027-01-07", tipi: ["plastic_metals"] },
+  { data: "2027-01-12", tipi: ["paper"] },
+  { data: "2027-01-14", tipi: ["residual", "plastic_metals"] },
+  { data: "2027-01-19", tipi: ["paper"] },
+  { data: "2027-01-21", tipi: ["plastic_metals"] },
+  { data: "2027-01-26", tipi: ["paper"] },
+  { data: "2027-01-28", tipi: ["residual", "plastic_metals"] },
+];
+
+const RIFIUTI_COMUNI_GEA = [
+  {
+    slug: "aviano",
+    nome: "Aviano",
+    provincia: "pordenone",
+    gestore: "GEA",
+    aree: [
+      { area: "Blu", giorni: RIFIUTI_GEA_AVIANO_BLU },
+      { area: "Gialla", giorni: RIFIUTI_GEA_AVIANO_GIALLA },
+    ],
+    centro_raccolta: {
+      indirizzo: "Zona Industriale, via Ellero",
+      apertura:
+        "Lun, Mer, Ven 14:15-17:00 (15:15-18:00 in orario legale); Mar, Sab 8:30-12:00",
+      materiali: [
+        "Ingombranti",
+        "Carta e cartone",
+        "Imballaggi in plastica",
+        "Tessili",
+        "Vetro",
+        "Ferro e metalli",
+        "Materiale inerte (max 30 kg)",
+        "Verde",
+        "Legno",
+        "Olio minerale e vegetale",
+        "Batterie, pile e medicinali",
+        "Pneumatici",
+        "RAEE",
+      ],
+    },
+    campane_vetro: [],
+    stale: false,
+  },
+  {
+    slug: "pordenone",
+    nome: "Pordenone",
+    provincia: "pordenone",
+    gestore: "GEA",
+    aree: [
+      { area: "Blu", giorni: RIFIUTI_GEA_PORDENONE_BLU },
+      { area: "Gialla", giorni: RIFIUTI_GEA_PORDENONE_GIALLA },
+      { area: "Rossa", giorni: RIFIUTI_GEA_PORDENONE_ROSSA },
+      { area: "Marrone", giorni: RIFIUTI_GEA_PORDENONE_MARRONE },
+      { area: "Verde Nord", giorni: RIFIUTI_GEA_PORDENONE_VERDE_NORD },
+      { area: "Verde Sud", giorni: RIFIUTI_GEA_PORDENONE_VERDE_SUD },
+    ],
+    centro_raccolta: {
+      indirizzo: "Via Nuova di Corva (angolo tra via Santorini e via Segaluzza), Pordenone",
+      apertura:
+        "Lun-Ven 8:00-12:00 e 14:00-17:00, Sab 8:00-12:00 e 13:00-18:00 (ultimo accesso mattutino entro le 11:50)",
+      materiali: [
+        "Tessili",
+        "Ingombranti",
+        "RAEE",
+        "Vetro (lastre)",
+        "Rifiuti inerti",
+        "Rifiuti pericolosi (vernici, solventi)",
+        "Oli minerali",
+        "Pile e accumulatori",
+        "Prodotti chimici pericolosi",
+        "Sfalci e ramaglie, cassette in legno",
+      ],
+    },
+    campane_vetro: [],
+    stale: false,
+  },
+];
+
+// GEA è dato statico (vedi commento sopra): nessun fetch di rete, nessun
+// fallback stale/cache — restituisce sempre lo stesso array. I parametri
+// sono tenuti per uniformità di firma con rifiutiIngestIsontina()/
+// rifiutiIngestAet2000(), anche se non usati.
+async function rifiutiIngestGea(_annoCorrente, _meseCorrente, _precedentePerSlug) {
+  console.log(`Rifiuti (GEA) dati statici: ${RIFIUTI_COMUNI_GEA.length} comuni (Aviano, Pordenone)`);
+  return RIFIUTI_COMUNI_GEA;
+}
 
 async function ingestRifiuti() {
   const forzato = process.env.GITHUB_EVENT_NAME === "workflow_dispatch";
@@ -4430,11 +5914,11 @@ async function ingestRifiuti() {
   const precedentePerSlug = new Map(precedente.map((c) => [c.slug, c]));
 
   // Ogni gestore viene recuperato separatamente e unito qui in un unico
-  // array prima dell'unica scrittura sullo snapshot condiviso "rifiuti"
-  // — quando si aggiungerà AET2000 basterà richiamare la sua funzione
-  // di ingest e concatenare il risultato.
+  // array prima dell'unica scrittura sullo snapshot condiviso "rifiuti".
   const comuniIsontina = await rifiutiIngestIsontina(annoCorrente, meseCorrente, precedentePerSlug);
-  const comuni = [...comuniIsontina];
+  const comuniAet2000 = await rifiutiIngestAet2000(annoCorrente, meseCorrente, precedentePerSlug);
+  const comuniGea = await rifiutiIngestGea(annoCorrente, meseCorrente, precedentePerSlug);
+  const comuni = [...comuniIsontina, ...comuniAet2000, ...comuniGea];
 
   if (comuni.length === 0) {
     console.warn("Rifiuti: nessun comune recuperato, snapshot non aggiornato.");

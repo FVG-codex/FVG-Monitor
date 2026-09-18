@@ -16,7 +16,12 @@
 
 import type { ProvinciaSlug } from "@/lib/province";
 
-export type TipoRifiuto = "paper" | "organic" | "plastic_metals" | "residual";
+// "glass" aggiunto il 18/09/2026 con A&T 2000: a differenza di Isontina
+// (vetro solo tramite campane stradali, mai nel calendario porta a
+// porta), AET2000 raccoglie il vetro porta a porta come gli altri tipi
+// — compare quindi come tipo nel calendario solo per i comuni di questo
+// secondo gestore.
+export type TipoRifiuto = "paper" | "organic" | "plastic_metals" | "residual" | "glass";
 
 export type GiornoRaccolta = {
   data: string; // YYYY-MM-DD
@@ -24,7 +29,7 @@ export type GiornoRaccolta = {
 };
 
 export type AreaRifiuti = {
-  area: string | null; // "A".."F", o null se il comune non ha aree distinte
+  area: string | null; // es. "A".."F" (Isontina), "Nord"/"Sud" (AET2000), o null se il comune non ha aree distinte
   giorni: GiornoRaccolta[];
 };
 
@@ -50,15 +55,23 @@ export type SnapshotRifiuti = {
   aggiornato_al: string;
 };
 
-// Solo Trieste e Gorizia sono coperte per ora (Isontina Ambiente).
-// Udine arriverà con A&T 2000 (in ricognizione, vedi il commento sopra
-// rifiutiIngestIsontina() in scripts/ingest-light.mjs); Pordenone non ha
-// ancora un gestore integrato. Tenuta come lista esplicita — stesso
-// principio già usato per PROVINCE_NOTIZIE_ATTIVE: derivarla dai comuni
-// effettivamente presenti nello snapshot funzionerebbe già oggi, ma
-// un elenco esplicito rende visibile a colpo d'occhio lo stato del
-// rollout anche leggendo solo il codice, senza dati live sottomano.
-export const PROVINCE_RIFIUTI_ATTIVE: ProvinciaSlug[] = ["gorizia", "trieste"];
+// Trieste e Gorizia: Isontina Ambiente, copertura completa (28 comuni).
+// Udine: A&T 2000, aggiunta il 18/09/2026 ma con SOLO 2 comuni su ~80
+// (San Daniele del Friuli e Tolmezzo) — gli unici di cui si è vista
+// HTML reale finora (vedi il commento esteso sopra
+// rifiutiIngestAet2000() in scripts/ingest-light.mjs per il perché il
+// resto dell'elenco comuni non è stato aggiunto). Pordenone: GEA,
+// aggiunta lo stesso giorno con SOLO 2 comuni (Aviano e Pordenone) su
+// una ventina serviti da questo gestore — vedi il commento esteso sopra
+// RIFIUTI_COMUNI_GEA in scripts/ingest-light.mjs per fonte (due PDF
+// reali caricati dall'utente), metodo di trascrizione e perché qui i
+// dati sono statici (non un fetch ad ogni run, a differenza degli altri
+// due gestori). Tenuta come lista esplicita — stesso principio già
+// usato per PROVINCE_NOTIZIE_ATTIVE: derivarla dai comuni effettivamente
+// presenti nello snapshot funzionerebbe già oggi, ma un elenco esplicito
+// rende visibile a colpo d'occhio lo stato del rollout anche leggendo
+// solo il codice, senza dati live sottomano.
+export const PROVINCE_RIFIUTI_ATTIVE: ProvinciaSlug[] = ["gorizia", "trieste", "udine", "pordenone"];
 
 // Raggruppa i comuni per provincia, nell'ordine di PROVINCE_RIFIUTI_ATTIVE
 // (più eventuali province con dati presenti ma non ancora in quella
@@ -87,6 +100,7 @@ export const ETICHETTA_TIPO: Record<TipoRifiuto, string> = {
   organic: "Organico umido",
   plastic_metals: "Plastica e lattine",
   residual: "Secco residuo",
+  glass: "Vetro",
 };
 
 // Stessi colori della legenda reale del sito (viola/marrone/giallo/
@@ -100,6 +114,7 @@ export const COLORE_TIPO: Record<TipoRifiuto, string> = {
   organic: "#8B5E3C",
   plastic_metals: "#E8B93E",
   residual: "#8A8F98",
+  glass: "#3E9B6F",
 };
 
 export function formattaDataRifiuti(dataIso: string): string {

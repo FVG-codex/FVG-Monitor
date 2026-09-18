@@ -22,6 +22,27 @@ export type VoceChangelog = {
 export const CHANGELOG: VoceChangelog[] = [
   {
     data: "18/09/2026",
+    titolo: "Raccolta differenziata: corretti Monfalcone e Grado (mostravano una sola zona)",
+    dettagli: [
+      "Bug corretto: Monfalcone (4 zone: Nord/Est/Sud/Ovest) e Grado (2 zone: Fossalon Boscat/Cavarera) mostravano una sola zona invece delle reali, per un difetto nel modo in cui il sito leggeva l'elenco delle vie. Ora il selettore Area su questi due comuni mostra tutte le zone corrette.",
+    ],
+  },
+  {
+    data: "18/09/2026",
+    titolo: "Raccolta differenziata: aggiunta la provincia di Pordenone (GEA)",
+    dettagli: [
+      "La tab Pordenone di /rifiuti mostra ora dati reali (GEA) invece di \"in arrivo\": per ora solo Aviano (2 zone) e il comune di Pordenone stesso (6 zone: Blu, Gialla, Rossa, Marrone, Verde Nord, Verde Sud), non tutta la provincia. A differenza degli altri due gestori il calendario è trascritto a mano da PDF ufficiali (giorno per giorno, non una regola approssimata) e andrà aggiornato manualmente quando GEA pubblicherà il calendario dell'anno successivo.",
+    ],
+  },
+  {
+    data: "18/09/2026",
+    titolo: "Raccolta differenziata: aggiunto un secondo gestore (A&T 2000, Udine)",
+    dettagli: [
+      "La tab Udine di /rifiuti mostra ora dati reali (A&T 2000) invece di \"in arrivo\": per ora solo San Daniele del Friuli e Tolmezzo (quest'ultimo con calendario diviso in Zona Nord/Sud), non tutta la provincia. Aggiunto anche il vetro come tipo di rifiuto separato (raccolto porta a porta da questo gestore, a differenza di Isontina).",
+    ],
+  },
+  {
+    data: "18/09/2026",
     titolo: "Raccolta differenziata: ora divisa per provincia",
     dettagli: [
       "La pagina /rifiuti ha ora delle tab per provincia (Trieste, Udine, Gorizia, Pordenone) invece di un unico elenco comuni. Per ora sono coperte solo Gorizia e Trieste (Isontina Ambiente); le altre due mostrano \"in arrivo\" in attesa di un secondo gestore.",
