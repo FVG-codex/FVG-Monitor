@@ -3845,6 +3845,118 @@ e siamo fuori stagione (16/09/2026): tutti i valori live mostreranno
 0/impianti chiusi finché la stagione non riapre, comportamento atteso
 e non un bug. **Non ancora confermato dall'utente in produzione.**
 
+## Ambiente → Servizi → Raccolta differenziata (17/09/2026)
+
+L'utente ha chiesto una nuova sezione "Servizi" dentro Ambiente, con la
+raccolta differenziata dei rifiuti come primo servizio, allegando un
+pacchetto generato con ChatGPT (`FVG_Monitor_Rifiuti_Isontina_v3.zip`):
+uno script di sync separato (`sync_isontina_ambiente.ts`, da eseguire
+con `npx tsx`), un proprio schema Supabase relazionale
+(`waste_municipalities`/`waste_address_options`/
+`waste_collection_occurrences` + vista `waste_next_collections`), e un
+set di "regole standard Area A-E" pensate come fallback diagnostico
+quando l'HTML non si riesce a leggere. **Questa architettura non è
+stata adottata**, stesso principio già seguito per Eventi: il progetto
+usa un solo `ingest-light.mjs` + tabella `snapshots`, non una
+pipeline/schema a parte. Le "regole standard Area A-E" del pacchetto,
+inoltre, citano come fonte dei PDF calendario del **2022**
+(`isontina_area_rules_2026.json` → `meta.sources`, URL con
+"A4_2022_STAMPA_..." nonostante il nome del file suggerisca il 2026) —
+per prudenza NON sono state usate come fallback: se il parser HTML non
+trova nulla per un giorno, il modulo lo lascia semplicemente vuoto
+invece di inventare un pattern basato su PDF di 4 anni prima.
+
+**Verifica con HTML reale**: come già successo con gare.lnd.it e
+turismofvg.it in questo progetto, WebFetch su una pagina calendario di
+isontinambiente.it vede la griglia del mese ma non l'associazione
+giorno→tipo di rifiuto (è in `<div class="dot COLORE">` senza testo,
+persa dalla conversione in markdown). Prima di scegliere fra "solo
+comune" e "comune + ricerca per via" (come nel pacchetto originale) è
+stata usata AskUserQuestion — **l'utente ha scelto "solo comune"**.
+L'utente ha poi fornito l'HTML reale di due pagine: Gorizia (comune con
+**più aree** al suo interno — un `<select name="indirizzo">` con
+centinaia di vie, ciascuna etichettata "VIA X , Gorizia Area B") e
+Sagrado (comune ad **area unica** — nessun `<select>`, il calendario
+compare direttamente). Da questi due esempi reali sono stati scoperti:
+tabella `table.calendar` con celle `td` che contengono solo il numero
+del giorno più zero o più `<div class="dot COLORE"></div>` (uno per
+tipo di rifiuto raccolto quel giorno); legenda in `.legend > div` per
+costruire la mappa colore→tipo dinamicamente; intestazione
+`<h3>Settembre 2026</h3>` per validare che la pagina risposta
+corrisponda davvero al mese/anno richiesti; blocco "Conferimenti
+ingombranti e verde" (tabella Indirizzo/Apertura/materiali) e "Campane
+del vetro" (lista). Il parser è stato testato offline contro l'HTML
+reale di Gorizia (funzioni estratte ed eseguite con l'HTML reale come
+input, non solo lette) prima di essere consegnato — confermati
+corretti giorno per giorno i 5 giorni di calendario di settembre 2026
+controllati a mano, l'area (B), gli indirizzi (6, incluso un caso senza
+suffisso "Area" gestito correttamente come `area: null`), il centro di
+raccolta e le campane del vetro. Durante questo test sono stati trovati
+e corretti due bug reali prima della consegna: un riferimento a una
+funzione `clean()` mai definita nel file (avrebbe fatto fallire il
+modulo al primo giorno di produzione) e uno split ingenuo sulla virgola
+per l'elenco materiali che spezzava voci con una virgola interna fra
+parentesi (es. "Verde (ramaglie, potature, sfalci)" diventava 3 voci
+separate).
+
+**Livello di dettaglio (scelto dall'utente)**: "solo comune", niente
+ricerca per via/indirizzo. Il dato reale mostra però che un comune può
+avere più aree al suo interno (Gorizia ne ha 6, A-F, a seconda della
+via) — per restare corretti senza costruire una ricerca fra centinaia
+di indirizzi, quando un comune ha più aree il modulo le tiene TUTTE
+(un indirizzo rappresentante per area) e il frontend mostra un piccolo
+selettore "Area A/B/C..." solo per quei comuni, non una ricerca.
+
+**Frequenza**: a differenza del resto del sito (ogni 15 minuti), questo
+modulo esegue il fetch reale una sola volta al giorno (finestra
+03:00-03:14 Europe/Rome) — i calendari di raccolta non cambiano quasi
+mai, e con 28 comuni × fino a 2 richieste per area ogni esecuzione
+sarebbe stata pesante sia per isontinambiente.it sia per il budget di
+tempo condiviso di GitHub Actions (10 minuti per l'intero script, ~40
+moduli). Un avvio manuale (workflow_dispatch) bypassa la finestra
+oraria per verificare subito dopo il deploy.
+
+**Implementazione**: `ingestRifiuti()` in `scripts/ingest-light.mjs`
+(nuova sezione, ~250 righe): scoperta indirizzi/aree, parser calendario
+via i `<div class="dot">`, parser centro di raccolta e campane vetro,
+fallback su un piccolo limitatore di concorrenza fatto in casa (nessuna
+libreria nuova, poche decine di richieste una volta al giorno) e su
+cache dell'esecuzione precedente per singolo comune in caso di errore
+di rete (marcato `stale: true`, mostrato con un avviso in pagina).
+Nuovo snapshot `rifiuti:isontina` con forma `{ comuni: [{ slug, nome,
+aree: [{ area, giorni: [{ data, tipi }] }], centro_raccolta, 
+campane_vetro, stale? }], aggiornato_al }`. Nuova pagina dedicata
+`/rifiuti` (`components/RifiutiPage.tsx` + `app/rifiuti/page.tsx`):
+selettore comune (dropdown, 28 comuni), selettore area (bottoni, solo
+se il comune ne ha più di una), prossime raccolte con puntini colorati
+come sul calendario ufficiale, centro di raccolta e campane del vetro.
+Nuovo hub `/servizi` (`components/ServiziPage.tsx` + `app/servizi/
+page.tsx`), stesso pattern di TurismoPage.tsx — per ora una sola voce
+(Raccolta differenziata), pensato per accoglierne altre in futuro senza
+riorganizzare di nuovo il menù. Aggiunta una card "Servizi" in
+`components/AmbientePage.tsx`. Nuovo file condiviso `lib/rifiuti.ts`
+con i tipi TypeScript e gli helper di formattazione/colore.
+
+**Verifica**: `npx tsc --noEmit` e `node --check scripts/ingest-light.mjs`
+puliti. Il parser del calendario, oltre al test automatico offline
+descritto sopra, è stato controllato riga per riga a mano contro
+l'HTML reale di entrambi i comuni forniti dall'utente (i pattern
+settimanali osservati per le Aree B e C coincidono con quelli descritti
+nel pacchetto originale, buon segno anche se quelle regole non sono
+usate come fonte). Verifica visiva con `next dev` + Chromium headless:
+`/ambiente`, `/servizi` e `/rifiuti` rispondono senza errori in
+pagina/console (a parte i normali `ERR_TUNNEL_CONNECTION_FAILED` verso
+Supabase, limite di rete noto di questa sandbox). **Non verificato**:
+il comportamento delle altre 26 pagine comune (solo Gorizia e Sagrado
+sono state controllate con HTML reale — il parser assume che tutte
+condividano lo stesso template, ragionevole ma non confermato da questa
+sandbox, isontinambiente.it non è raggiungibile con una richiesta
+diretta da qui) e se il fetch reale contro tutti i 28 comuni rientri
+comodamente nel budget di tempo di un'esecuzione GitHub Actions.
+**Non ancora confermato dall'utente in produzione** — da controllare al
+primo giro reale delle 03:00 (o con un avvio manuale) i log per
+eventuali comuni falliti.
+
 ## Turismo → Eventi, pagina dedicata `/eventi` (17/09/2026)
 
 L'utente ha chiesto una pagina dedicata solo agli eventi dentro Turismo,

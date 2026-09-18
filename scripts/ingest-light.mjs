@@ -3982,6 +3982,447 @@ async function ingestPollini() {
 // ---------------------------------------------------------------------
 
 // ---------------------------------------------------------------------
+// AMBIENTE → SERVIZI → RIFIUTI — calendario raccolta differenziata,
+// Isontina Ambiente (17/09/2026, richiesto dall'utente: nuova sezione
+// "Servizi" dentro Ambiente, si parte con la raccolta rifiuti).
+//
+// L'utente ha allegato un pacchetto generato con ChatGPT
+// (FVG_Monitor_Rifiuti_Isontina_v3.zip): uno script di sync separato
+// (sync_isontina_ambiente.ts, da eseguire con npx tsx), un proprio
+// schema Supabase relazionale (waste_municipalities/
+// waste_address_options/waste_collection_occurrences + vista
+// waste_next_collections), e un set di "regole standard Area A-E" come
+// fallback quando l'HTML non si riesce a leggere. **Questa architettura
+// non è stata adottata**, stesso principio già seguito per Eventi: il
+// progetto usa un solo ingest-light.mjs + tabella snapshots, non una
+// pipeline/schema a parte. Le "regole standard Area A-E" del pacchetto,
+// inoltre, citano come fonte dei PDF calendario del **2022** (vedi
+// isontina_area_rules_2026.json → meta.sources, URL con
+// "A4_2022_STAMPA_..." nonostante il nome del file), quindi NON sono
+// state usate come fallback autoritativo: se il parser HTML non trova
+// nulla per un giorno, questo modulo lo lascia semplicemente vuoto
+// invece di inventare un pattern.
+//
+// Verifica con HTML reale (WebFetch, come già successo con
+// gare.lnd.it/turismofvg.it in questo progetto, vede il calendario ma
+// non l'associazione giorno→tipo di rifiuto: è in <div class="dot
+// COLORE"> senza testo, perso dalla conversione in markdown) — l'utente
+// ha fornito il sorgente pagina reale di Gorizia (comune con PIÙ aree:
+// ha un <select name="indirizzo"> con centinaia di vie, ciascuna con
+// una etichetta "VIA X , Gorizia Area B") e di Sagrado (comune con
+// UN'AREA sola: nessun <select>, il calendario compare direttamente).
+// Da questi due esempi reali:
+// - tabella `table.calendar`, celle `td` con il numero del giorno come
+//   unico testo e zero o più `<div class="dot COLORE"></div>` per i
+//   tipi di rifiuto raccolti quel giorno (nessun altro testo nella
+//   cella, quindi `clean($td.text())` dà esattamente il numero);
+// - legenda in `.legend > div` (`<span class="dot COLORE"></span>
+//   ETICHETTA`) — usata per costruire la mappa colore→tipo invece di
+//   fissarla via codice, più robusta a variazioni;
+// - intestazione mese "<h3>Settembre 2026</h3>" per validare che la
+//   pagina restituita corrisponda davvero al mese/anno richiesti;
+// - link "Scarica il Calendario porta a porta (Area X)" per leggere
+//   l'area quando non c'è un select (comune a area unica);
+// - blocco "Conferimenti ingombranti e verde" (tabella th/td: Indirizzo
+//   / Apertura+materiali) e "Campane del vetro" (lista `<ul><li>`).
+//
+// **Non verificato**: il comportamento delle altre 26 pagine comune
+// (solo Gorizia e Sagrado sono state controllate con HTML reale) — il
+// parser assume che tutte condividano lo stesso template (stessa
+// piattaforma, stesse classi CSS), ragionevole ma non confermato da
+// questa sandbox (isontinambiente.it non è raggiungibile con una
+// richiesta diretta da qui, stesso limite già visto per altri domini in
+// questo progetto). Confermato solo da un'esecuzione reale su GitHub
+// Actions.
+//
+// **Livello di dettaglio (scelto dall'utente)**: "solo comune", niente
+// ricerca per via/indirizzo come nel pacchetto originale — troppo
+// complesso da costruire e verificare per centinaia di indirizzi su 28
+// comuni. Il dato reale mostra però che un comune può avere PIÙ aree al
+// suo interno (Gorizia ne ha 6, A-F, a seconda della via); per restare
+// corretti senza costruire una ricerca per via, quando un comune ha più
+// aree questo modulo le tiene TUTTE (una per area, usando il primo
+// indirizzo trovato in quell'area come rappresentante) — il frontend
+// mostra poi un piccolo selettore di area solo per i comuni che ne
+// hanno più di una, non una ricerca fra centinaia di vie.
+//
+// **Frequenza**: i calendari di raccolta non cambiano quasi mai (il
+// pacchetto originale raccomandava "1 volta al giorno") — a differenza
+// del resto del sito, che gira ogni 15 minuti via cron, questo modulo
+// esegue il fetch reale solo una volta al giorno (finestra 03:00-03:14
+// Europe/Rome) per non sovraccaricare isontinambiente.it con ~28 comuni
+// × fino a 2 richieste per area ad ogni esecuzione da 15 minuti. Un
+// avvio manuale (workflow_dispatch da GitHub Actions) bypassa la
+// finestra oraria, utile per verificare subito dopo il deploy.
+// ---------------------------------------------------------------------
+
+const RIFIUTI_ORA_SYNC = 3; // 03:00 Europe/Rome, una volta al giorno
+const RIFIUTI_CONCORRENZA = 4; // richieste in parallelo verso isontinambiente.it
+
+const RIFIUTI_COMUNI = [
+  { slug: "capriva-del-friuli", nome: "Capriva del Friuli", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/capriva-del-friuli/" },
+  { slug: "cormons", nome: "Cormons", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/cormons/" },
+  { slug: "doberdo-del-lago", nome: "Doberdò del Lago", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/doberdo-del-lago/" },
+  { slug: "dolegna-del-collio", nome: "Dolegna del Collio", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/dolegna-del-collio/" },
+  { slug: "duino-aurisina", nome: "Duino Aurisina", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/duino-aurisina/" },
+  { slug: "farra-disonzo", nome: "Farra d’Isonzo", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/farra-disonzo/" },
+  { slug: "fogliano-redipuglia", nome: "Fogliano Redipuglia", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/fogliano-redipuglia/" },
+  { slug: "gorizia", nome: "Gorizia", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/gorizia/" },
+  { slug: "gradisca-disonzo", nome: "Gradisca d’Isonzo", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/gradisca-disonzo/" },
+  { slug: "grado", nome: "Grado", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/grado/" },
+  { slug: "mariano-del-friuli", nome: "Mariano del Friuli", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/mariano-del-friuli/" },
+  { slug: "medea", nome: "Medea", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/medea/" },
+  { slug: "monfalcone", nome: "Monfalcone", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/monfalcone/" },
+  { slug: "monrupino", nome: "Monrupino", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/monrupino/" },
+  { slug: "moraro", nome: "Moraro", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/moraro/" },
+  { slug: "mossa", nome: "Mossa", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/mossa/" },
+  { slug: "romans-disonzo", nome: "Romans d’Isonzo", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/romans-disonzo/" },
+  { slug: "ronchi-dei-legionari", nome: "Ronchi dei Legionari", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/ronchi-dei-legionari/" },
+  { slug: "sagrado", nome: "Sagrado", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/sagrado/" },
+  { slug: "san-canzian-disonzo", nome: "San Canzian d’Isonzo", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/san-canzian-disonzo/" },
+  { slug: "san-floriano-del-collio", nome: "San Floriano del Collio", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/san-floriano-del-collio/" },
+  { slug: "san-lorenzo-isontino", nome: "San Lorenzo Isontino", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/san-lorenzo-isontino/" },
+  { slug: "san-pier-disonzo", nome: "San Pier d’Isonzo", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/san-pier-disonzo/" },
+  { slug: "savogna-disonzo", nome: "Savogna d’Isonzo", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/savogna-disonzo/" },
+  { slug: "sgonico-zgonik", nome: "Sgonico - Zgonik", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/sgonico-zgonik/" },
+  { slug: "staranzano", nome: "Staranzano", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/staranzano/" },
+  { slug: "turriaco", nome: "Turriaco", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/turriaco/" },
+  { slug: "villesse", nome: "Villesse", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/villesse/" },
+];
+
+const RIFIUTI_MESI_IT = [
+  "gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno",
+  "luglio", "agosto", "settembre", "ottobre", "novembre", "dicembre",
+];
+
+// Normalizza spazi/a-capo del testo estratto — a differenza di altre
+// sezioni di questo file, qui il markup della fonte (tabelle/liste con
+// molta indentazione) rende questo helper necessario in quasi ogni
+// funzione di parsing sotto, quindi lo definiamo una sola volta invece
+// di ripetere .replace(/\s+/g," ").trim() ad ogni chiamata.
+function clean(s = "") {
+  return (s ?? "").replace(/\s+/g, " ").trim();
+}
+
+// Fallback fisso se per qualche motivo la legenda non si riesce a
+// leggere dalla pagina — i colori osservati nell'HTML reale di Gorizia
+// e Sagrado (17/09/2026).
+const RIFIUTI_COLORI_DEFAULT = new Map([
+  ["viola", "paper"],
+  ["marrone", "organic"],
+  ["giallo", "plastic_metals"],
+  ["grigio", "residual"],
+]);
+
+function rifiutiTipoDaEtichetta(s = "") {
+  const n = s.normalize("NFKD").replace(/[̀-ͯ]/g, "").toLowerCase();
+  if (n.includes("carta") || n.includes("cartone")) return "paper";
+  if (n.includes("organico") || n.includes("umido")) return "organic";
+  if (n.includes("plastica") || n.includes("lattine")) return "plastic_metals";
+  if (n.includes("secco") || n.includes("residuo") || n.includes("indifferenzi")) return "residual";
+  if (n.includes("vetro")) return "glass";
+  return null;
+}
+
+function oraEuropeRome() {
+  const parti = new Intl.DateTimeFormat("en-GB", {
+    timeZone: "Europe/Rome",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  }).formatToParts(new Date());
+  return {
+    ora: Number(parti.find((p) => p.type === "hour")?.value ?? 0),
+    minuti: Number(parti.find((p) => p.type === "minute")?.value ?? 0),
+  };
+}
+
+function rifiutiMeseSuccessivo(anno, mese) {
+  return mese === 12 ? { anno: anno + 1, mese: 1 } : { anno, mese: mese + 1 };
+}
+
+async function rifiutiGetHtml(url) {
+  const res = await fetchConRetry(url, {
+    headers: { "User-Agent": "Mozilla/5.0 (compatible; FVGMonitorBot/1.0)" },
+  });
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  return cheerio.load(await res.text());
+}
+
+function rifiutiParseLegenda($) {
+  const map = new Map();
+  $(".legend > div").each((_, div) => {
+    const $div = $(div);
+    const dot = $div.find(".dot").first();
+    if (!dot.length) return;
+    const classi = (dot.attr("class") || "").split(/\s+/).filter(Boolean);
+    const colore = classi.find((c) => c !== "dot");
+    if (!colore) return;
+    const tipo = rifiutiTipoDaEtichetta(clean($div.text()));
+    if (tipo) map.set(colore, tipo);
+  });
+  return map.size > 0 ? map : RIFIUTI_COLORI_DEFAULT;
+}
+
+function rifiutiParseIndirizzi($) {
+  const sel = $('select[name="indirizzo"]');
+  if (!sel.length) return [];
+  const out = [];
+  sel.find("option").each((_, opt) => {
+    const value = clean($(opt).attr("value") || "");
+    const label = clean($(opt).text());
+    if (!value || !label) return;
+    const m = label.match(/Area\s+([A-Za-z0-9]+)\s*$/i);
+    out.push({ id: value, label, area: m ? m[1].toUpperCase() : null });
+  });
+  return out;
+}
+
+function rifiutiParseAreaDaIntestazione($) {
+  const h2 = $("h2")
+    .filter((_, el) => /calendario porta a porta/i.test(clean($(el).text())))
+    .first();
+  if (!h2.length) return null;
+  const m = clean(h2.text()).match(/Area\s+([A-Za-z0-9]+)/i);
+  return m ? m[1].toUpperCase() : null;
+}
+
+function rifiutiPaginaCorrispondeAMese($, anno, mese) {
+  const h3 = clean($("h3").first().text()).toLowerCase();
+  return h3.includes(RIFIUTI_MESI_IT[mese - 1]) && h3.includes(String(anno));
+}
+
+function rifiutiParseCalendario($, anno, mese, mappaColori) {
+  if (!rifiutiPaginaCorrispondeAMese($, anno, mese)) return [];
+  const giorni = [];
+  $("table.calendar tbody td").each((_, td) => {
+    const $td = $(td);
+    const giornoNum = parseInt(clean($td.text()), 10);
+    if (!giornoNum || giornoNum < 1 || giornoNum > 31) return;
+    const tipi = new Set();
+    $td.find("div.dot").each((_, dot) => {
+      const classi = ($(dot).attr("class") || "").split(/\s+/).filter(Boolean);
+      const colore = classi.find((c) => c !== "dot");
+      const tipo = colore ? mappaColori.get(colore) : null;
+      if (tipo) tipi.add(tipo);
+    });
+    if (tipi.size === 0) return;
+    giorni.push({ data: `${anno}-${pad2(mese)}-${pad2(giornoNum)}`, tipi: [...tipi] });
+  });
+  return giorni;
+}
+
+function rifiutiParseCentro($) {
+  const h2 = $("h2")
+    .filter((_, el) => /conferimenti ingombranti/i.test(clean($(el).text())))
+    .first();
+  if (!h2.length) return null;
+  const tabella = h2.nextAll("table").first();
+  if (!tabella.length) return null;
+
+  let indirizzo = null;
+  let aperturaHtml = null;
+  tabella.find("tr").each((_, tr) => {
+    const etichetta = clean($(tr).find("th").text()).toLowerCase();
+    const cella = $(tr).find("td").first();
+    if (etichetta === "indirizzo") indirizzo = clean(cella.text());
+    if (etichetta === "apertura") aperturaHtml = cella;
+  });
+
+  // La cella "Apertura" contiene sia gli orari sia, dopo un <h3>"Cosa
+  // puoi portare", l'elenco materiali — come paragrafi <p> fratelli,
+  // non un unico blocco di testo. Estrarre child per child (invece di
+  // un'unica .text() + substring) evita due problemi visti nei primi
+  // test contro l'HTML reale: paragrafi che si accostano senza spazio
+  // ("...venerdìdalle 14:30...") e materiali con una virgola interna fra
+  // parentesi (es. "Verde (ramaglie, potature, sfalci)") spezzati in tre
+  // voci separate da uno split ingenuo sulla virgola.
+  let apertura = null;
+  let materiali = [];
+  if (aperturaHtml) {
+    const h3PuoiPortare = aperturaHtml
+      .find("h3")
+      .filter((_, el) => /cosa puoi portare/i.test(clean($(el).text())))
+      .first();
+    const paragrafiApertura = [];
+    const paragrafiMateriali = [];
+    let dopoIntestazione = false;
+    aperturaHtml.children().each((_, el) => {
+      if (h3PuoiPortare.length && el === h3PuoiPortare.get(0)) {
+        dopoIntestazione = true;
+        return;
+      }
+      // cheerio .text() non inserisce uno spazio ai <br> (es. "<b>Dal
+      // lunedì al venerdì</b><br/>dalle 14:30..." darebbe
+      // "venerdìdalle 14:30" senza spazio) — sostituiti con uno spazio
+      // su un clone prima di leggere il testo.
+      const $clone = $(el).clone();
+      $clone.find("br").replaceWith(" ");
+      const t = clean($clone.text());
+      if (!t) return;
+      (dopoIntestazione ? paragrafiMateriali : paragrafiApertura).push(t);
+    });
+    apertura = paragrafiApertura.join(" ") || null;
+    materiali = paragrafiMateriali
+      .join(", ")
+      .split(/,(?![^(]*\))/) // non spezzare una virgola dentro le parentesi
+      .map(clean)
+      .filter(Boolean);
+  }
+
+  if (!indirizzo && !apertura && materiali.length === 0) return null;
+  return { indirizzo, apertura, materiali };
+}
+
+function rifiutiParseCampaneVetro($) {
+  const h2 = $("h2")
+    .filter((_, el) => /campane del vetro/i.test(clean($(el).text())))
+    .first();
+  if (!h2.length) return [];
+  const ul = h2.nextAll("ul").first();
+  if (!ul.length) return [];
+  return ul
+    .find("li")
+    .map((_, li) => clean($(li).text()))
+    .get()
+    .filter(Boolean);
+}
+
+// Esegue un elenco di funzioni async con un massimo di `limite` in volo
+// contemporaneamente — nessuna libreria esterna, elenco piccolo
+// (qualche decina di richieste verso lo stesso sito, una volta al
+// giorno): non vale la pena aggiungere una dipendenza per questo.
+async function rifiutiConLimiteConcorrenza(elementi, limite, fn) {
+  const risultati = new Array(elementi.length);
+  let indice = 0;
+  async function worker() {
+    while (indice < elementi.length) {
+      const i = indice++;
+      risultati[i] = await fn(elementi[i], i);
+    }
+  }
+  await Promise.all(Array.from({ length: Math.min(limite, elementi.length) }, worker));
+  return risultati;
+}
+
+async function rifiutiFetchComune(comune, anno, mese) {
+  const prossimo = rifiutiMeseSuccessivo(anno, mese);
+
+  const urlBase = new URL(comune.url);
+  urlBase.searchParams.set("month", String(mese));
+  urlBase.searchParams.set("year", String(anno));
+  const $base = await rifiutiGetHtml(urlBase.toString());
+
+  const mappaColori = rifiutiParseLegenda($base);
+  const indirizzi = rifiutiParseIndirizzi($base);
+  const centro = rifiutiParseCentro($base);
+  const campaneVetro = rifiutiParseCampaneVetro($base);
+
+  const aree = [];
+
+  if (indirizzi.length === 0) {
+    // Comune a area unica: nessun <select>, il calendario compare già
+    // nella pagina base senza bisogno di un indirizzo specifico.
+    const area = rifiutiParseAreaDaIntestazione($base);
+    const giorniMese1 = rifiutiParseCalendario($base, anno, mese, mappaColori);
+
+    const urlMese2 = new URL(comune.url);
+    urlMese2.searchParams.set("month", String(prossimo.mese));
+    urlMese2.searchParams.set("year", String(prossimo.anno));
+    const $mese2 = await rifiutiGetHtml(urlMese2.toString());
+    const giorniMese2 = rifiutiParseCalendario($mese2, prossimo.anno, prossimo.mese, mappaColori);
+
+    aree.push({ area, giorni: [...giorniMese1, ...giorniMese2] });
+  } else {
+    // Comune con più indirizzi: raggruppa per area (etichetta "Area X"
+    // già presente nel testo di ogni opzione) e usa il primo indirizzo
+    // trovato in ciascuna area come rappresentante — niente ricerca per
+    // via, solo le aree distinte presenti nel comune (v. commento sopra
+    // la sezione).
+    const primoIndirizzoPerArea = new Map();
+    for (const opt of indirizzi) {
+      const chiave = opt.area || "?";
+      if (!primoIndirizzoPerArea.has(chiave)) primoIndirizzoPerArea.set(chiave, opt.id);
+    }
+
+    await rifiutiConLimiteConcorrenza(
+      [...primoIndirizzoPerArea.entries()],
+      RIFIUTI_CONCORRENZA,
+      async ([area, indirizzoId]) => {
+        const url1 = new URL(comune.url);
+        url1.searchParams.set("indirizzo", indirizzoId);
+        url1.searchParams.set("month", String(mese));
+        url1.searchParams.set("year", String(anno));
+        const $1 = await rifiutiGetHtml(url1.toString());
+        const giorniMese1 = rifiutiParseCalendario($1, anno, mese, mappaColori);
+
+        const url2 = new URL(comune.url);
+        url2.searchParams.set("indirizzo", indirizzoId);
+        url2.searchParams.set("month", String(prossimo.mese));
+        url2.searchParams.set("year", String(prossimo.anno));
+        const $2 = await rifiutiGetHtml(url2.toString());
+        const giorniMese2 = rifiutiParseCalendario($2, prossimo.anno, prossimo.mese, mappaColori);
+
+        aree.push({ area: area === "?" ? null : area, giorni: [...giorniMese1, ...giorniMese2] });
+      }
+    );
+  }
+
+  return {
+    slug: comune.slug,
+    nome: comune.nome,
+    aree,
+    centro_raccolta: centro,
+    campane_vetro: campaneVetro,
+    stale: false,
+  };
+}
+
+async function ingestRifiuti() {
+  const forzato = process.env.GITHUB_EVENT_NAME === "workflow_dispatch";
+  if (!forzato) {
+    const { ora, minuti } = oraEuropeRome();
+    if (ora !== RIFIUTI_ORA_SYNC || minuti >= 15) {
+      console.log("Rifiuti (Isontina): fuori dalla finestra di sync giornaliera (03:00 Europe/Rome), salto.");
+      return;
+    }
+  }
+
+  const oggiIso = oggiEuropeRome();
+  const [annoCorrente, meseCorrente] = oggiIso.split("-").map(Number);
+
+  const precedente = (await leggiSnapshotEsistente("rifiuti:isontina"))?.comuni ?? [];
+  const precedentePerSlug = new Map(precedente.map((c) => [c.slug, c]));
+
+  const risultati = await rifiutiConLimiteConcorrenza(RIFIUTI_COMUNI, RIFIUTI_CONCORRENZA, async (comune) => {
+    try {
+      return await rifiutiFetchComune(comune, annoCorrente, meseCorrente);
+    } catch (err) {
+      console.warn(`Rifiuti: errore comune ${comune.nome}: ${err.message}`);
+      const vecchio = precedentePerSlug.get(comune.slug);
+      return vecchio ? { ...vecchio, stale: true } : null;
+    }
+  });
+
+  const comuni = risultati.filter(Boolean);
+  if (comuni.length === 0) {
+    console.warn("Rifiuti: nessun comune recuperato, snapshot non aggiornato.");
+    return;
+  }
+
+  await upsertSnapshot("rifiuti:isontina", "ambiente", null, {
+    comuni,
+    aggiornato_al: new Date().toISOString(),
+  });
+  const falliti = RIFIUTI_COMUNI.length - comuni.filter((c) => !c.stale).length;
+  console.log(
+    `Rifiuti (Isontina) aggiornati: ${comuni.length}/${RIFIUTI_COMUNI.length} comuni` +
+      (falliti > 0 ? ` (${falliti} da cache/stale per errori di rete)` : "")
+  );
+}
+// ---------------------------------------------------------------------
+
+// ---------------------------------------------------------------------
 // CALCIO — campionati dilettantistici FVG (gare.lnd.it). La pagina è
 // un'app Inertia.js: al primo caricamento normale (nessun header
 // speciale necessario) incorpora l'intero stato in un tag
@@ -6101,6 +6542,7 @@ async function main() {
     ["confini-prometsi", ingestConfiniPrometsi()],
     ["carburanti", ingestCarburanti()],
     ["eventi", ingestEventi()],
+    ["rifiuti", ingestRifiuti()],
     ["qualita-aria", ingestQualitaAria()],
     ["voli", ingestVoli()],
     ["pioggia", ingestPioggia()],

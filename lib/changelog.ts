@@ -22,6 +22,13 @@ export type VoceChangelog = {
 export const CHANGELOG: VoceChangelog[] = [
   {
     data: "17/09/2026",
+    titolo: "Ambiente: nuova sezione Servizi, si parte con la Raccolta differenziata",
+    dettagli: [
+      "Nuova sezione /servizi dentro Ambiente. Prima voce: calendario della raccolta differenziata per 28 comuni dell'Isontino/Carso (fonte: Isontina Ambiente), con centro di raccolta e campane del vetro. Aggiornato una volta al giorno.",
+    ],
+  },
+  {
+    data: "17/09/2026",
     titolo: "Turismo: nuova pagina dedicata Eventi",
     dettagli: [
       "Nuova sezione /eventi dentro Turismo, con tab Oggi/Domani/Weekend/Prossimi 14 giorni, immagini, orario, categoria e filtro per categoria. Il pannello Eventi in homepage ora rimanda alla pagina completa.",
