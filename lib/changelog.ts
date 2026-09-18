@@ -22,6 +22,20 @@ export type VoceChangelog = {
 export const CHANGELOG: VoceChangelog[] = [
   {
     data: "18/09/2026",
+    titolo: "Raccolta differenziata: calendario porta a porta di Trieste per indirizzo",
+    dettagli: [
+      "Nella scheda di Trieste città su /rifiuti si può ora cercare la propria via e civico per vedere il calendario dei prossimi 30 giorni (cosa viene ritirato e in che orario). A differenza del resto della pagina è una ricerca dal vivo, non un dato aggiornato una volta al giorno — Trieste è troppo grande per un calendario per area come i comuni più piccoli.",
+    ],
+  },
+  {
+    data: "18/09/2026",
+    titolo: "Raccolta differenziata: aggiunto un quarto gestore (AcegasApsAmga, Trieste città)",
+    dettagli: [
+      "La tab Trieste di /rifiuti mostra ora anche il comune di Trieste città (fonte: AcegasApsAmga/Il Rifiutologo), finora coperta solo per i comuni minori (Isontina Ambiente): elenco dei punti di raccolta fissi (stazioni ecologiche, con indirizzo, orari e materiali conferibili). La ricerca \"dove lo butto\" per singolo oggetto, disponibile sul sito originale, non è ancora inclusa.",
+    ],
+  },
+  {
+    data: "18/09/2026",
     titolo: "Raccolta differenziata: corretti Monfalcone e Grado (mostravano una sola zona)",
     dettagli: [
       "Bug corretto: Monfalcone (4 zone: Nord/Est/Sud/Ovest) e Grado (2 zone: Fossalon Boscat/Cavarera) mostravano una sola zona invece delle reali, per un difetto nel modo in cui il sito leggeva l'elenco delle vie. Ora il selettore Area su questi due comuni mostra tutte le zone corrette.",

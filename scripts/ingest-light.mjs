@@ -5897,6 +5897,223 @@ async function rifiutiIngestGea(_annoCorrente, _meseCorrente, _precedentePerSlug
   return RIFIUTI_COMUNI_GEA;
 }
 
+// ---------------------------------------------------------------------
+// Rifiuti, quarto gestore: AcegasApsAmga (Trieste città), via Il
+// Rifiutologo — piattaforma "Officine Digitali"/Gruppo Hera, usata sia
+// per i comuni Hera sia per Acegas (parametro isAcegas=1). Aggiunto il
+// 18/09/2026.
+//
+// **CORREZIONE (stesso giorno, dopo l'HTML/JS reale della pagina
+// principale "il Rifiutologo" /casa/rifiutologo/Trieste)**: la
+// conclusione originale qui sotto — "Trieste non ha un calendario porta
+// a porta per indirizzo" — **era sbagliata**, dedotta da una sola
+// chiamata (getDataRifiutologoWeb.php) e da una cattura di rete
+// incompleta (la tab Network catturata dall'utente in quel momento era
+// a metà del flusso di ricerca indirizzo, PRIMA che scattasse la
+// chiamata del calendario). L'HTML/JS della pagina principale mostra
+// `urlWs.GetCalendarioPap: .../getCalendarioPap.php`, chiamata con
+// `idComune/idIndirizzo/idCivico/isBusiness/idCategoriaAzienda/date/
+// giorniDaMostrare=31` non appena l'utente arriva sulla pagina
+// "SceltaProdotto" (subito dopo aver scelto comune+indirizzo+civico,
+// PRIMA di cercare un oggetto specifico) — risposta
+// `{ notaPap, calendario: [{ data, conferimenti: [{ macroprodotto:
+// {descrizione, pittogramma}, orario, note }] }] }`, un vero calendario
+// giorno-per-giorno con "orario di esposizione" per categoria di
+// rifiuto. **Trieste ha quindi un calendario reale, ma è per
+// indirizzo/civico (via+numero civico), non selezionabile per sola area
+// come i comuni minori di Isontina** — richiede lo stesso flusso di
+// ricerca indirizzo del sito vero (`getIndirizzi.php`/
+// `getNumeriCivici.php`) prima di poter interrogare il calendario,
+// diversamente dal semplice "primo indirizzo per area" bastato per
+// Gorizia/Monfalcone/Grado (comuni molto più piccoli). Non ancora
+// implementato in questa sessione — v. la richiesta di indicazioni
+// all'utente subito dopo questo modulo, prima di scriverlo, viste le
+// dimensioni di Trieste rispetto ai comuni già coperti.
+//
+// **Ancora valido**, invece, quanto segue sui punti fissi: Il
+// Rifiutologo distingue chiaramente conferimenti "a calendario"
+// (ingombranti/cartone/altre categorie con esposizione programmata,
+// gestiti da getCalendarioPap.php) da conferimenti a punto fisso
+// (stazioni ecologiche/isole interrate/campane, gestiti dagli endpoint
+// sotto) — le due cose coesistono, non si escludono a vicenda.
+//
+// Per questo motivo rifiutiIngestAcegas() non riempie mai `aree` (resta
+// [] per Trieste, il frontend mostra "nessun dato di calendario" com'è
+// già il comportamento esistente per un comune senza raccolte) né
+// `centro_raccolta` (resta null) — riempie invece il nuovo campo
+// `stazioni_ecologiche` (v. lib/rifiuti.ts), un elenco anziché un
+// singolo oggetto perché Trieste ne ha più d'uno in contemporanea.
+//
+// **Fonte verificata da sorgente reale**, non da un solo esempio di
+// risposta: l'utente ha incollato l'HTML/JS completo della pagina
+// "Stazioni ecologiche" di Trieste (https://www.ilrifiutologo.it/casa/
+// stazioni-ecologiche/Trieste), che dichiara esplicitamente
+//   newIdComune = 424 (fisso per Trieste), isAcegas = 1
+//   urlWsBase = "https://webapp-ambiente.gruppohera.it"
+//   path_ws_rifiutologo = "rifiutologo/rifiutologoweb"
+//   GetListaStazioniEcologiche: .../getListaStazioniEcologiche.php
+//   GetDettaglioStazione: .../getDettaglioStazione.php
+// e i campi letti dal JS (setMarkers/addContentMappa/
+// initDettaglioStazioneEcologica): id, nome, indirizzo, comune,
+// latitudine, longitudine per l'elenco; aperture[] (dataInizio,
+// dataFine, giorno 1-7, orarioInizio, orarioFine, note), chiusure[],
+// comuni[] (sovracomunalità), macroprodotti[].descrizione per il
+// dettaglio.
+//
+// **Non verificato da questa sandbox**: se questi due endpoint sono
+// raggiungibili da una richiesta reale senza sessione browser — sia il
+// proxy di rete del sandbox sia, separatamente, il sito stesso hanno
+// rifiutato ogni tentativo di chiamata diretta da qui durante lo
+// sviluppo. Confermato solo da un'esecuzione reale su GitHub Actions,
+// come per isontinambiente.it.
+//
+// **Orari**: la pagina reale mostra intervalli di validità (dataInizio/
+// dataFine) con possibili sovrapposizioni per giorno (vedi la dedup lato
+// client in JS, arrayAperturaInizioFine). Qui si tiene solo l'intervallo
+// attualmente valido per ciascuna stazione (senza dataFine, o con
+// dataFine non ancora passata) invece di portarsi dietro l'intera
+// storia — coerente con quanto mostra di default la pagina stessa.
+//
+// **"Dove lo butto?" (catalogo macroprodotti, ricerca oggetto→
+// destinazione) NON incluso in questa prima versione**: l'endpoint che
+// alimenta la casella di ricerca sulla pagina principale (/casa/
+// rifiutologo/Trieste, diversa da questa) non è ancora stato confermato
+// da sorgente reale — in attesa dell'HTML/JS di quella pagina prima di
+// scriverne il parser, stesso principio (mai inventare un endpoint) già
+// seguito per il resto di questo modulo.
+// ---------------------------------------------------------------------
+
+const ACEGAS_ID_COMUNE_TRIESTE = 424;
+const ACEGAS_URL_WS_BASE = "https://webapp-ambiente.gruppohera.it/rifiutologo/rifiutologoweb";
+
+// I campi descrizione/descrizioneServizi/note della scheda stazione
+// contengono HTML (il JS reale li inserisce con jQuery `.html()`, non
+// `.text()` — coerente con il markup visto in macroprodotti[].note
+// nell'endpoint getDataRifiutologoWeb.php, es. "<p>Recuperando gli
+// abiti usati...</p>"). Qui li vogliamo come testo semplice (React li
+// mostra senza dangerouslySetInnerHTML), quindi i tag vengono tolti
+// invece di essere salvati/mostrati così come sono.
+function acegasStripHtml(s = "") {
+  return clean((s ?? "").replace(/<[^>]*>/g, " "));
+}
+
+async function acegasGetJson(url) {
+  const res = await fetchConRetry(url, {
+    headers: {
+      "User-Agent": "Mozilla/5.0 (compatible; FVGMonitorBot/1.0)",
+      Accept: "*/*",
+      Referer: "https://www.ilrifiutologo.it/",
+      Origin: "https://www.ilrifiutologo.it",
+    },
+  });
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  return res.json();
+}
+
+// Tiene solo gli intervalli di apertura ancora validi oggi (senza
+// dataFine, o con dataFine non ancora passata) e li converte nella
+// forma OrarioSettimanale di lib/rifiuti.ts — v. commento sopra questa
+// sezione per il perché non si tiene tutta la storia.
+function acegasOrariCorrenti(aperture, oggiIso) {
+  if (!Array.isArray(aperture)) return [];
+  return aperture
+    .filter((a) => !a.dataFine || String(a.dataFine).slice(0, 10) >= oggiIso)
+    .filter((a) => a.giorno && a.orarioInizio && a.orarioFine)
+    .map((a) => ({ giorno: Number(a.giorno), orarioInizio: String(a.orarioInizio), orarioFine: String(a.orarioFine) }))
+    .sort((a, b) => a.giorno - b.giorno);
+}
+
+async function acegasFetchDettaglioStazione(idStazione, oggiIso) {
+  const url = new URL(`${ACEGAS_URL_WS_BASE}/getDettaglioStazione.php`);
+  url.searchParams.set("idComune", String(ACEGAS_ID_COMUNE_TRIESTE));
+  url.searchParams.set("idStazione", String(idStazione));
+  url.searchParams.set("isBusiness", "0");
+  const dettaglio = await acegasGetJson(url.toString());
+
+  const materiali = Array.isArray(dettaglio.macroprodotti)
+    ? dettaglio.macroprodotti.map((m) => acegasStripHtml(m.descrizione || "")).filter(Boolean)
+    : [];
+
+  // Il sito reale unisce descrizione + descrizioneServizi + note in
+  // un unico blocco di testo (vedi initDettaglioStazioneEcologica() in
+  // JS, arrayNote.filter(Boolean).join("<br/>")) invece di mostrarne
+  // solo uno: replicato qui invece di scegliere arbitrariamente un solo
+  // campo, per non perdere informazione realmente presente sul sito.
+  const note = [dettaglio.descrizione, dettaglio.descrizioneServizi, dettaglio.note]
+    .map((t) => acegasStripHtml(t || ""))
+    .filter(Boolean)
+    .join(" — ");
+
+  return {
+    orari: acegasOrariCorrenti(dettaglio.aperture, oggiIso),
+    materiali,
+    note: note || null,
+  };
+}
+
+async function acegasFetchStazione(staz, oggiIso) {
+  const base = {
+    id: Number(staz.id),
+    nome: clean(staz.nome || ""),
+    indirizzo: clean(staz.indirizzo || "") || null,
+    comune: clean(staz.comune || "") || null,
+    latitudine: staz.latitudine != null ? Number(staz.latitudine) : null,
+    longitudine: staz.longitudine != null ? Number(staz.longitudine) : null,
+  };
+  try {
+    return { ...base, ...(await acegasFetchDettaglioStazione(staz.id, oggiIso)) };
+  } catch (err) {
+    console.warn(`Rifiuti (AcegasApsAmga): errore dettaglio stazione ${staz.id}: ${err.message}`);
+    // Meglio una stazione senza orari/materiali (la posizione resta
+    // comunque utile) che ometterla del tutto per un errore sul solo
+    // dettaglio.
+    return { ...base, note: null, orari: [], materiali: [] };
+  }
+}
+
+// A differenza degli altri gestori (un comune = una riga), qui c'è un
+// solo "comune" (Trieste) con un elenco di stazioni al suo interno:
+// se la lista fallisce del tutto si ricade sull'intera riga precedente
+// marcata stale, stesso principio di stale-fallback per-comune usato da
+// Isontina/AET2000.
+async function rifiutiIngestAcegas(oggiIso, precedentePerSlug) {
+  const vecchioTrieste = precedentePerSlug.get("trieste");
+  try {
+    const urlLista = new URL(`${ACEGAS_URL_WS_BASE}/getListaStazioniEcologiche.php`);
+    urlLista.searchParams.set("idComune", String(ACEGAS_ID_COMUNE_TRIESTE));
+    urlLista.searchParams.set("isBusiness", "0");
+    const lista = await acegasGetJson(urlLista.toString());
+
+    if (!Array.isArray(lista) || lista.length === 0) {
+      throw new Error("elenco stazioni ecologiche vuoto o non valido");
+    }
+
+    const stazioni = await rifiutiConLimiteConcorrenza(lista, RIFIUTI_CONCORRENZA, (staz) =>
+      acegasFetchStazione(staz, oggiIso)
+    );
+
+    console.log(`Rifiuti (AcegasApsAmga): ${stazioni.length} stazioni ecologiche per Trieste.`);
+
+    return [
+      {
+        slug: "trieste",
+        nome: "Trieste",
+        provincia: "trieste",
+        gestore: "AcegasApsAmga",
+        aree: [],
+        centro_raccolta: null,
+        campane_vetro: [],
+        stazioni_ecologiche: stazioni,
+        stale: false,
+      },
+    ];
+  } catch (err) {
+    console.warn(`Rifiuti (AcegasApsAmga): errore, salto Trieste in questo run: ${err.message}`);
+    return vecchioTrieste ? [{ ...vecchioTrieste, stale: true }] : [];
+  }
+}
+// ---------------------------------------------------------------------
+
 async function ingestRifiuti() {
   const forzato = process.env.GITHUB_EVENT_NAME === "workflow_dispatch";
   if (!forzato) {
@@ -5918,7 +6135,8 @@ async function ingestRifiuti() {
   const comuniIsontina = await rifiutiIngestIsontina(annoCorrente, meseCorrente, precedentePerSlug);
   const comuniAet2000 = await rifiutiIngestAet2000(annoCorrente, meseCorrente, precedentePerSlug);
   const comuniGea = await rifiutiIngestGea(annoCorrente, meseCorrente, precedentePerSlug);
-  const comuni = [...comuniIsontina, ...comuniAet2000, ...comuniGea];
+  const comuniAcegas = await rifiutiIngestAcegas(oggiIso, precedentePerSlug);
+  const comuni = [...comuniIsontina, ...comuniAet2000, ...comuniGea, ...comuniAcegas];
 
   if (comuni.length === 0) {
     console.warn("Rifiuti: nessun comune recuperato, snapshot non aggiornato.");

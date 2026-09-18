@@ -39,14 +39,52 @@ export type CentroRaccolta = {
   materiali: string[];
 } | null;
 
+// Aggiunto il 18/09/2026 con AcegasApsAmga (Trieste città). **Trieste ha
+// in realtà anche un calendario porta a porta per indirizzo/civico**
+// (endpoint getCalendarioPap.php, scoperto solo dopo — v. la
+// correzione esplicita sopra rifiutiIngestAcegas() in
+// scripts/ingest-light.mjs), non ancora implementato qui perché richiede
+// un vero flusso di ricerca indirizzo (via+civico) come il sito reale,
+// diversamente dal semplice "primo indirizzo per area" bastato per i
+// comuni molto più piccoli di Isontina. Questo tipo copre per ora SOLO i
+// punti di raccolta fissi (stazioni ecologiche) — a differenza di
+// CentroRaccolta (singolare, usato da Isontina/AET2000/GEA per l'unico
+// centro ingombranti/verde del comune), Trieste ne ha più d'uno in
+// contemporanea. Vedi rifiutiIngestAcegas() in scripts/ingest-light.mjs
+// per le fonti (getListaStazioniEcologiche.php + getDettaglioStazione.php,
+// confermate dal sorgente JS reale della pagina "Stazioni ecologiche"
+// incollato dall'utente, non solo da un esempio di risposta).
+export type OrarioSettimanale = {
+  giorno: number; // 1=lunedì … 7=domenica, come nel sorgente Il Rifiutologo
+  orarioInizio: string;
+  orarioFine: string;
+};
+
+export type StazioneEcologica = {
+  id: number;
+  nome: string;
+  indirizzo: string | null;
+  comune: string | null;
+  latitudine: number | null;
+  longitudine: number | null;
+  note: string | null;
+  orari: OrarioSettimanale[];
+  materiali: string[]; // da macroprodotti[].descrizione della scheda stazione
+};
+
 export type ComuneRifiuti = {
   slug: string;
   nome: string;
   provincia: ProvinciaSlug;
-  gestore: string; // es. "Isontina Ambiente", "A&T 2000"
+  gestore: string; // es. "Isontina Ambiente", "A&T 2000", "AcegasApsAmga"
   aree: AreaRifiuti[];
   centro_raccolta: CentroRaccolta;
   campane_vetro: string[];
+  // Presente solo per i comuni senza calendario porta a porta (oggi:
+  // Trieste città, AcegasApsAmga) — aree resta [] e centro_raccolta
+  // resta null in quel caso, il frontend controlla questo campo per
+  // scegliere il layout da mostrare.
+  stazioni_ecologiche?: StazioneEcologica[];
   stale?: boolean;
 };
 
@@ -115,6 +153,19 @@ export const COLORE_TIPO: Record<TipoRifiuto, string> = {
   plastic_metals: "#E8B93E",
   residual: "#8A8F98",
   glass: "#3E9B6F",
+};
+
+// Etichette brevi per OrarioSettimanale.giorno (1=lunedì…7=domenica,
+// come nel sorgente Il Rifiutologo) — usate solo per le stazioni
+// ecologiche di AcegasApsAmga, v. sopra.
+export const GIORNI_SETTIMANA_BREVE: Record<number, string> = {
+  1: "Lun",
+  2: "Mar",
+  3: "Mer",
+  4: "Gio",
+  5: "Ven",
+  6: "Sab",
+  7: "Dom",
 };
 
 export function formattaDataRifiuti(dataIso: string): string {

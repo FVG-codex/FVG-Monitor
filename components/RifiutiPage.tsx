@@ -5,6 +5,7 @@ import Link from "next/link";
 import { TopHeader } from "@/components/TopHeader";
 import { Footer } from "@/components/Footer";
 import { Panel } from "@/components/Panel";
+import { RifiutiTriesteCalendario } from "@/components/RifiutiTriesteCalendario";
 import { supabase } from "@/lib/supabase";
 import { PROVINCE, PROVINCE_LIST, type ProvinciaSlug } from "@/lib/province";
 import {
@@ -12,6 +13,7 @@ import {
   type ComuneRifiuti,
   ETICHETTA_TIPO,
   COLORE_TIPO,
+  GIORNI_SETTIMANA_BREVE,
   PROVINCE_RIFIUTI_ATTIVE,
   formattaDataRifiuti,
   prossimeRaccolte,
@@ -25,21 +27,34 @@ import {
 // (GEA, provincia di Pordenone). Vedi il commento esteso sopra
 // ingestRifiuti()/rifiutiIngestAet2000()/RIFIUTI_COMUNI_GEA in
 // scripts/ingest-light.mjs per fonti, metodo di verifica/trascrizione e
-// i limiti noti: Gorizia e Trieste sono coperte per intero (28 comuni,
-// Isontina Ambiente), Udine solo parzialmente (2 comuni su ~80, A&T
-// 2000 — San Daniele del Friuli e Tolmezzo, gli unici di cui si è vista
-// HTML reale finora), Pordenone anch'essa parzialmente (2 comuni su una
-// ventina serviti da GEA — Aviano e Pordenone, gli unici di cui si sono
-// visti i PDF reali; a differenza degli altri due gestori il dato GEA è
-// statico, trascritto a mano dai calendari PDF annuali). Calendario
-// "solo comune" — quando un comune ha più aree al suo interno (es.
-// Gorizia, 6 aree; Tolmezzo, 2 zone Nord/Sud; Pordenone stesso, 6 zone
-// Blu/Gialla/Rossa/Marrone/Verde Nord/Verde Sud) qui sotto compare un
-// piccolo selettore di area, non una ricerca per via/indirizzo. Le tab
-// provincia seguono lo stesso pattern già usato in
-// NotizieProvinciaPage.tsx: tutte e 4 visibili, quelle non ancora
-// coperte mostrano un messaggio "in arrivo" invece di restare
-// disabilitate.
+// i limiti noti: Gorizia e i comuni minori di Trieste sono coperti per
+// intero (28 comuni, Isontina Ambiente), Udine solo parzialmente (2
+// comuni su ~80, A&T 2000 — San Daniele del Friuli e Tolmezzo, gli
+// unici di cui si è vista HTML reale finora), Pordenone anch'essa
+// parzialmente (2 comuni su una ventina serviti da GEA — Aviano e
+// Pordenone, gli unici di cui si sono visti i PDF reali; a differenza
+// degli altri due gestori il dato GEA è statico, trascritto a mano dai
+// calendari PDF annuali). Calendario "solo comune" — quando un comune
+// ha più aree al suo interno (es. Gorizia, 6 aree; Tolmezzo, 2 zone
+// Nord/Sud; Pordenone stesso, 6 zone Blu/Gialla/Rossa/Marrone/Verde
+// Nord/Verde Sud) qui sotto compare un piccolo selettore di area, non
+// una ricerca per via/indirizzo. Le tab provincia seguono lo stesso
+// pattern già usato in NotizieProvinciaPage.tsx: tutte e 4 visibili,
+// quelle non ancora coperte mostrano un messaggio "in arrivo" invece di
+// restare disabilitate.
+//
+// Quarto gestore aggiunto lo stesso giorno: AcegasApsAmga (Trieste
+// città, via Il Rifiutologo/webapp-ambiente.gruppohera.it — v. commento
+// esteso sopra rifiutiIngestAcegas() in scripts/ingest-light.mjs).
+// Copre per ora solo i punti di raccolta fissi: `aree` resta sempre []
+// e `centro_raccolta` null per questo comune — il pannello destro
+// mostra invece l'elenco `stazioni_ecologiche` quando presente. Trieste
+// ha in realtà anche un calendario porta a porta per indirizzo/civico
+// (scoperta corretta lo stesso giorno, v. commento sopra
+// rifiutiIngestAcegas() in scripts/ingest-light.mjs), non ancora
+// implementato perché richiede un vero flusso di ricerca indirizzo
+// (v. sotto), non il blocco singolo centro/campane usato dagli altri
+// gestori.
 
 function oggiIsoLocale(): string {
   return new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Rome" }).format(new Date());
@@ -197,8 +212,10 @@ export function RifiutiPage() {
 
             {comune && (
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-line border border-line">
-                <Panel title="Prossime raccolte">
-                  {prossime.length === 0 ? (
+                <Panel title={comune.gestore === "AcegasApsAmga" ? "Calendario porta a porta" : "Prossime raccolte"}>
+                  {comune.gestore === "AcegasApsAmga" ? (
+                    <RifiutiTriesteCalendario />
+                  ) : prossime.length === 0 ? (
                     <p className="text-ink-faint text-sm font-mono">
                       Nessun dato di calendario disponibile per quest&apos;area al momento.
                     </p>
@@ -227,48 +244,95 @@ export function RifiutiPage() {
                   )}
                 </Panel>
 
-                <Panel title="Centro di raccolta e vetro">
-                  {comune.centro_raccolta ? (
-                    <div className="mb-4">
-                      <div className="font-cond font-semibold text-sm uppercase tracking-wide mb-1">
-                        Conferimenti ingombranti e verde
-                      </div>
-                      {comune.centro_raccolta.indirizzo && (
-                        <div className="text-ink text-sm mb-1">{comune.centro_raccolta.indirizzo}</div>
-                      )}
-                      {comune.centro_raccolta.apertura && (
-                        <div className="text-ink-dim text-xs mb-2">{comune.centro_raccolta.apertura}</div>
-                      )}
-                      {comune.centro_raccolta.materiali.length > 0 && (
-                        <div className="flex flex-wrap gap-1.5">
-                          {comune.centro_raccolta.materiali.map((m) => (
-                            <span
-                              key={m}
-                              className="px-2 py-0.5 rounded text-[10px] font-mono bg-panel-alt text-ink-dim"
-                            >
-                              {m}
-                            </span>
-                          ))}
+                <Panel
+                  title={
+                    comune.stazioni_ecologiche && comune.stazioni_ecologiche.length > 0
+                      ? "Stazioni ecologiche"
+                      : "Centro di raccolta e vetro"
+                  }
+                >
+                  {comune.stazioni_ecologiche && comune.stazioni_ecologiche.length > 0 ? (
+                    <div className="space-y-4">
+                      {comune.stazioni_ecologiche.map((s, i) => (
+                        <div key={s.id} className={i > 0 ? "border-t border-line pt-3" : ""}>
+                          <div className="font-cond font-semibold text-sm uppercase tracking-wide mb-1">
+                            {s.nome}
+                          </div>
+                          {s.indirizzo && (
+                            <div className="text-ink text-sm mb-1">
+                              {s.indirizzo}
+                              {s.comune ? ` — ${s.comune}` : ""}
+                            </div>
+                          )}
+                          {s.orari.length > 0 && (
+                            <div className="text-ink-dim text-xs mb-2">
+                              {s.orari.map((o, oi) => (
+                                <span key={oi} className="mr-2 whitespace-nowrap">
+                                  {GIORNI_SETTIMANA_BREVE[o.giorno] ?? o.giorno} {o.orarioInizio}–{o.orarioFine}
+                                </span>
+                              ))}
+                            </div>
+                          )}
+                          {s.materiali.length > 0 && (
+                            <div className="flex flex-wrap gap-1.5">
+                              {s.materiali.map((m) => (
+                                <span
+                                  key={m}
+                                  className="px-2 py-0.5 rounded text-[10px] font-mono bg-panel-alt text-ink-dim"
+                                >
+                                  {m}
+                                </span>
+                              ))}
+                            </div>
+                          )}
                         </div>
-                      )}
+                      ))}
                     </div>
                   ) : (
-                    <p className="text-ink-faint text-sm font-mono mb-4">
-                      Info centro di raccolta non disponibili per questo comune.
-                    </p>
-                  )}
+                    <>
+                      {comune.centro_raccolta ? (
+                        <div className="mb-4">
+                          <div className="font-cond font-semibold text-sm uppercase tracking-wide mb-1">
+                            Conferimenti ingombranti e verde
+                          </div>
+                          {comune.centro_raccolta.indirizzo && (
+                            <div className="text-ink text-sm mb-1">{comune.centro_raccolta.indirizzo}</div>
+                          )}
+                          {comune.centro_raccolta.apertura && (
+                            <div className="text-ink-dim text-xs mb-2">{comune.centro_raccolta.apertura}</div>
+                          )}
+                          {comune.centro_raccolta.materiali.length > 0 && (
+                            <div className="flex flex-wrap gap-1.5">
+                              {comune.centro_raccolta.materiali.map((m) => (
+                                <span
+                                  key={m}
+                                  className="px-2 py-0.5 rounded text-[10px] font-mono bg-panel-alt text-ink-dim"
+                                >
+                                  {m}
+                                </span>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      ) : (
+                        <p className="text-ink-faint text-sm font-mono mb-4">
+                          Info centro di raccolta non disponibili per questo comune.
+                        </p>
+                      )}
 
-                  {comune.campane_vetro.length > 0 && (
-                    <div>
-                      <div className="font-cond font-semibold text-sm uppercase tracking-wide mb-1">
-                        Campane del vetro
-                      </div>
-                      <ul className="text-ink-dim text-xs space-y-1 list-disc list-inside">
-                        {comune.campane_vetro.map((c) => (
-                          <li key={c}>{c}</li>
-                        ))}
-                      </ul>
-                    </div>
+                      {comune.campane_vetro.length > 0 && (
+                        <div>
+                          <div className="font-cond font-semibold text-sm uppercase tracking-wide mb-1">
+                            Campane del vetro
+                          </div>
+                          <ul className="text-ink-dim text-xs space-y-1 list-disc list-inside">
+                            {comune.campane_vetro.map((c) => (
+                              <li key={c}>{c}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </>
                   )}
                 </Panel>
               </div>
