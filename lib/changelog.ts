@@ -21,6 +21,13 @@ export type VoceChangelog = {
 
 export const CHANGELOG: VoceChangelog[] = [
   {
+    data: "18/09/2026",
+    titolo: "Raccolta differenziata: ora divisa per provincia",
+    dettagli: [
+      "La pagina /rifiuti ha ora delle tab per provincia (Trieste, Udine, Gorizia, Pordenone) invece di un unico elenco comuni. Per ora sono coperte solo Gorizia e Trieste (Isontina Ambiente); le altre due mostrano \"in arrivo\" in attesa di un secondo gestore.",
+    ],
+  },
+  {
     data: "17/09/2026",
     titolo: "Ambiente: nuova sezione Servizi, si parte con la Raccolta differenziata",
     dettagli: [

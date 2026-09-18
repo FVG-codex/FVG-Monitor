@@ -4060,34 +4060,34 @@ const RIFIUTI_ORA_SYNC = 3; // 03:00 Europe/Rome, una volta al giorno
 const RIFIUTI_CONCORRENZA = 4; // richieste in parallelo verso isontinambiente.it
 
 const RIFIUTI_COMUNI = [
-  { slug: "capriva-del-friuli", nome: "Capriva del Friuli", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/capriva-del-friuli/" },
-  { slug: "cormons", nome: "Cormons", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/cormons/" },
-  { slug: "doberdo-del-lago", nome: "Doberdò del Lago", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/doberdo-del-lago/" },
-  { slug: "dolegna-del-collio", nome: "Dolegna del Collio", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/dolegna-del-collio/" },
-  { slug: "duino-aurisina", nome: "Duino Aurisina", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/duino-aurisina/" },
-  { slug: "farra-disonzo", nome: "Farra d’Isonzo", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/farra-disonzo/" },
-  { slug: "fogliano-redipuglia", nome: "Fogliano Redipuglia", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/fogliano-redipuglia/" },
-  { slug: "gorizia", nome: "Gorizia", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/gorizia/" },
-  { slug: "gradisca-disonzo", nome: "Gradisca d’Isonzo", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/gradisca-disonzo/" },
-  { slug: "grado", nome: "Grado", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/grado/" },
-  { slug: "mariano-del-friuli", nome: "Mariano del Friuli", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/mariano-del-friuli/" },
-  { slug: "medea", nome: "Medea", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/medea/" },
-  { slug: "monfalcone", nome: "Monfalcone", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/monfalcone/" },
-  { slug: "monrupino", nome: "Monrupino", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/monrupino/" },
-  { slug: "moraro", nome: "Moraro", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/moraro/" },
-  { slug: "mossa", nome: "Mossa", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/mossa/" },
-  { slug: "romans-disonzo", nome: "Romans d’Isonzo", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/romans-disonzo/" },
-  { slug: "ronchi-dei-legionari", nome: "Ronchi dei Legionari", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/ronchi-dei-legionari/" },
-  { slug: "sagrado", nome: "Sagrado", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/sagrado/" },
-  { slug: "san-canzian-disonzo", nome: "San Canzian d’Isonzo", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/san-canzian-disonzo/" },
-  { slug: "san-floriano-del-collio", nome: "San Floriano del Collio", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/san-floriano-del-collio/" },
-  { slug: "san-lorenzo-isontino", nome: "San Lorenzo Isontino", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/san-lorenzo-isontino/" },
-  { slug: "san-pier-disonzo", nome: "San Pier d’Isonzo", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/san-pier-disonzo/" },
-  { slug: "savogna-disonzo", nome: "Savogna d’Isonzo", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/savogna-disonzo/" },
-  { slug: "sgonico-zgonik", nome: "Sgonico - Zgonik", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/sgonico-zgonik/" },
-  { slug: "staranzano", nome: "Staranzano", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/staranzano/" },
-  { slug: "turriaco", nome: "Turriaco", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/turriaco/" },
-  { slug: "villesse", nome: "Villesse", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/villesse/" },
+  { slug: "capriva-del-friuli", nome: "Capriva del Friuli", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/capriva-del-friuli/", provincia: "gorizia", gestore: "Isontina Ambiente" },
+  { slug: "cormons", nome: "Cormons", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/cormons/", provincia: "gorizia", gestore: "Isontina Ambiente" },
+  { slug: "doberdo-del-lago", nome: "Doberdò del Lago", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/doberdo-del-lago/", provincia: "gorizia", gestore: "Isontina Ambiente" },
+  { slug: "dolegna-del-collio", nome: "Dolegna del Collio", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/dolegna-del-collio/", provincia: "gorizia", gestore: "Isontina Ambiente" },
+  { slug: "duino-aurisina", nome: "Duino Aurisina", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/duino-aurisina/", provincia: "trieste", gestore: "Isontina Ambiente" },
+  { slug: "farra-disonzo", nome: "Farra d’Isonzo", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/farra-disonzo/", provincia: "gorizia", gestore: "Isontina Ambiente" },
+  { slug: "fogliano-redipuglia", nome: "Fogliano Redipuglia", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/fogliano-redipuglia/", provincia: "gorizia", gestore: "Isontina Ambiente" },
+  { slug: "gorizia", nome: "Gorizia", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/gorizia/", provincia: "gorizia", gestore: "Isontina Ambiente" },
+  { slug: "gradisca-disonzo", nome: "Gradisca d’Isonzo", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/gradisca-disonzo/", provincia: "gorizia", gestore: "Isontina Ambiente" },
+  { slug: "grado", nome: "Grado", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/grado/", provincia: "gorizia", gestore: "Isontina Ambiente" },
+  { slug: "mariano-del-friuli", nome: "Mariano del Friuli", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/mariano-del-friuli/", provincia: "gorizia", gestore: "Isontina Ambiente" },
+  { slug: "medea", nome: "Medea", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/medea/", provincia: "gorizia", gestore: "Isontina Ambiente" },
+  { slug: "monfalcone", nome: "Monfalcone", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/monfalcone/", provincia: "gorizia", gestore: "Isontina Ambiente" },
+  { slug: "monrupino", nome: "Monrupino", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/monrupino/", provincia: "trieste", gestore: "Isontina Ambiente" },
+  { slug: "moraro", nome: "Moraro", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/moraro/", provincia: "gorizia", gestore: "Isontina Ambiente" },
+  { slug: "mossa", nome: "Mossa", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/mossa/", provincia: "gorizia", gestore: "Isontina Ambiente" },
+  { slug: "romans-disonzo", nome: "Romans d’Isonzo", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/romans-disonzo/", provincia: "gorizia", gestore: "Isontina Ambiente" },
+  { slug: "ronchi-dei-legionari", nome: "Ronchi dei Legionari", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/ronchi-dei-legionari/", provincia: "gorizia", gestore: "Isontina Ambiente" },
+  { slug: "sagrado", nome: "Sagrado", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/sagrado/", provincia: "gorizia", gestore: "Isontina Ambiente" },
+  { slug: "san-canzian-disonzo", nome: "San Canzian d’Isonzo", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/san-canzian-disonzo/", provincia: "gorizia", gestore: "Isontina Ambiente" },
+  { slug: "san-floriano-del-collio", nome: "San Floriano del Collio", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/san-floriano-del-collio/", provincia: "gorizia", gestore: "Isontina Ambiente" },
+  { slug: "san-lorenzo-isontino", nome: "San Lorenzo Isontino", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/san-lorenzo-isontino/", provincia: "gorizia", gestore: "Isontina Ambiente" },
+  { slug: "san-pier-disonzo", nome: "San Pier d’Isonzo", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/san-pier-disonzo/", provincia: "gorizia", gestore: "Isontina Ambiente" },
+  { slug: "savogna-disonzo", nome: "Savogna d’Isonzo", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/savogna-disonzo/", provincia: "gorizia", gestore: "Isontina Ambiente" },
+  { slug: "sgonico-zgonik", nome: "Sgonico - Zgonik", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/sgonico-zgonik/", provincia: "trieste", gestore: "Isontina Ambiente" },
+  { slug: "staranzano", nome: "Staranzano", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/staranzano/", provincia: "gorizia", gestore: "Isontina Ambiente" },
+  { slug: "turriaco", nome: "Turriaco", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/turriaco/", provincia: "gorizia", gestore: "Isontina Ambiente" },
+  { slug: "villesse", nome: "Villesse", url: "https://isontinambiente.it/it/servizi/servizi-per-il-tuo-comune/villesse/", provincia: "gorizia", gestore: "Isontina Ambiente" },
 ];
 
 const RIFIUTI_MESI_IT = [
@@ -4371,6 +4371,8 @@ async function rifiutiFetchComune(comune, anno, mese) {
   return {
     slug: comune.slug,
     nome: comune.nome,
+    provincia: comune.provincia,
+    gestore: comune.gestore,
     aree,
     centro_raccolta: centro,
     campane_vetro: campaneVetro,
@@ -4378,12 +4380,45 @@ async function rifiutiFetchComune(comune, anno, mese) {
   };
 }
 
+// Recupera i comuni gestiti da Isontina Ambiente. Non scrive lo
+// snapshot — restituisce solo l'elenco comuni, così ingestRifiuti()
+// può unirlo con quelli degli altri gestori (es. AET2000, provincia di
+// Udine) prima di un unico upsertSnapshot() sullo snapshot condiviso
+// "rifiuti". Tenere i fetch dei vari gestori come funzioni separate ma
+// il salvataggio unificato è intenzionale: evita che due scritture
+// concorrenti sullo stesso snapshot si sovrascrivano a vicenda.
+async function rifiutiIngestIsontina(annoCorrente, meseCorrente, precedentePerSlug) {
+  const risultati = await rifiutiConLimiteConcorrenza(RIFIUTI_COMUNI, RIFIUTI_CONCORRENZA, async (comune) => {
+    try {
+      return await rifiutiFetchComune(comune, annoCorrente, meseCorrente);
+    } catch (err) {
+      console.warn(`Rifiuti (Isontina): errore comune ${comune.nome}: ${err.message}`);
+      const vecchio = precedentePerSlug.get(comune.slug);
+      return vecchio ? { ...vecchio, stale: true } : null;
+    }
+  });
+  const comuni = risultati.filter(Boolean);
+  const falliti = RIFIUTI_COMUNI.length - comuni.filter((c) => !c.stale).length;
+  console.log(
+    `Rifiuti (Isontina) aggiornati: ${comuni.length}/${RIFIUTI_COMUNI.length} comuni` +
+      (falliti > 0 ? ` (${falliti} da cache/stale per errori di rete)` : "")
+  );
+  return comuni;
+}
+
+// TODO: rifiutiIngestAet2000(annoCorrente, meseCorrente, precedentePerSlug) —
+// stesso pattern di rifiutiIngestIsontina(), per i comuni della
+// provincia di Udine (+ San Dorligo della Valle - Dolina, TS) serviti
+// da A&T 2000. In attesa di HTML reale delle pagine
+// modalita-di-raccolta/ e centro-di-raccolta/ del sito aet2000.it
+// prima di scrivere i selettori cheerio (vedi README/changelog).
+
 async function ingestRifiuti() {
   const forzato = process.env.GITHUB_EVENT_NAME === "workflow_dispatch";
   if (!forzato) {
     const { ora, minuti } = oraEuropeRome();
     if (ora !== RIFIUTI_ORA_SYNC || minuti >= 15) {
-      console.log("Rifiuti (Isontina): fuori dalla finestra di sync giornaliera (03:00 Europe/Rome), salto.");
+      console.log("Rifiuti: fuori dalla finestra di sync giornaliera (03:00 Europe/Rome), salto.");
       return;
     }
   }
@@ -4391,34 +4426,26 @@ async function ingestRifiuti() {
   const oggiIso = oggiEuropeRome();
   const [annoCorrente, meseCorrente] = oggiIso.split("-").map(Number);
 
-  const precedente = (await leggiSnapshotEsistente("rifiuti:isontina"))?.comuni ?? [];
+  const precedente = (await leggiSnapshotEsistente("rifiuti"))?.comuni ?? [];
   const precedentePerSlug = new Map(precedente.map((c) => [c.slug, c]));
 
-  const risultati = await rifiutiConLimiteConcorrenza(RIFIUTI_COMUNI, RIFIUTI_CONCORRENZA, async (comune) => {
-    try {
-      return await rifiutiFetchComune(comune, annoCorrente, meseCorrente);
-    } catch (err) {
-      console.warn(`Rifiuti: errore comune ${comune.nome}: ${err.message}`);
-      const vecchio = precedentePerSlug.get(comune.slug);
-      return vecchio ? { ...vecchio, stale: true } : null;
-    }
-  });
+  // Ogni gestore viene recuperato separatamente e unito qui in un unico
+  // array prima dell'unica scrittura sullo snapshot condiviso "rifiuti"
+  // — quando si aggiungerà AET2000 basterà richiamare la sua funzione
+  // di ingest e concatenare il risultato.
+  const comuniIsontina = await rifiutiIngestIsontina(annoCorrente, meseCorrente, precedentePerSlug);
+  const comuni = [...comuniIsontina];
 
-  const comuni = risultati.filter(Boolean);
   if (comuni.length === 0) {
     console.warn("Rifiuti: nessun comune recuperato, snapshot non aggiornato.");
     return;
   }
 
-  await upsertSnapshot("rifiuti:isontina", "ambiente", null, {
+  await upsertSnapshot("rifiuti", "ambiente", null, {
     comuni,
     aggiornato_al: new Date().toISOString(),
   });
-  const falliti = RIFIUTI_COMUNI.length - comuni.filter((c) => !c.stale).length;
-  console.log(
-    `Rifiuti (Isontina) aggiornati: ${comuni.length}/${RIFIUTI_COMUNI.length} comuni` +
-      (falliti > 0 ? ` (${falliti} da cache/stale per errori di rete)` : "")
-  );
+  console.log(`Rifiuti: snapshot aggiornato con ${comuni.length} comuni totali.`);
 }
 // ---------------------------------------------------------------------
 

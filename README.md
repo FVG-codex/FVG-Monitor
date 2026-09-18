@@ -3845,6 +3845,87 @@ e siamo fuori stagione (16/09/2026): tutti i valori live mostreranno
 0/impianti chiusi finché la stagione non riapre, comportamento atteso
 e non un bug. **Non ancora confermato dall'utente in produzione.**
 
+## Ambiente → Servizi → Rifiuti divisi per provincia, ricognizione AET2000 (18/09/2026)
+
+L'utente ha chiesto di continuare la sezione Rifiuti dividendola per
+provincia ("Continuiamo con la sezione rifiuti, che andrà divisa per
+provincia"), allegando un secondo pacchetto generato con ChatGPT
+(`FVG_Monitor_Rifiuti_AET2000_v1.zip`) per un secondo gestore, **A&T
+2000**, che serve la maggior parte dei comuni della provincia di Udine
+(più San Dorligo della Valle - Dolina, in provincia di Trieste). Stessa
+architettura del pacchetto non adottata (script `sync_aet2000.ts`
+separato con proprio Supabase client): resta un solo
+`ingest-light.mjs` + tabella `snapshots`.
+
+**Ricognizione aet2000.it (WebFetch, non ancora HTML reale)**: l'indice
+`https://aet2000.it/comuni/` espone realmente 80 comuni con slug
+propri — alcuni slug reali differiscono da quelli assunti dal
+pacchetto. In particolare: Tarcento è
+`tarcento-comune-non-servito-solo-gestione-del-centro-di-raccolta`
+(comune non servito per il calendario porta a porta, solo gestione del
+centro di raccolta — coerente con `center_only` nel pacchetto, ma con
+slug diverso), e San Dorligo della Valle è
+`san-dorligo-della-valle---dolina` (tre trattini) mentre il pacchetto
+usa `san-dorligo-della-valle-dolina` (un trattino) nella sua logica di
+assegnazione provincia (`m.slug==="san-dorligo-della-valle-dolina"?
+"TS":"UD"`) — un confronto esatto su quello slug avrebbe classificato
+San Dorligo nella provincia sbagliata. Le pagine
+`modalita-di-raccolta/` di AET2000 sembrano esporre più testo visibile
+di quelle di Isontina (giorno→tipo di rifiuto in testo, non solo
+pallini colorati) — ma **Tolmezzo** ha almeno due calendari separati
+(Nord/Sud), una struttura diversa dal sistema "Area" di Isontina, non
+ancora capita nel dettaglio. Come già per Isontina, WebFetch non basta
+per scrivere selettori cheerio di produzione: **è stato chiesto
+all'utente l'HTML reale** (view-source) di una pagina
+`modalita-di-raccolta/` di un comune senza zone multiple, della pagina
+di Tolmezzo (per il markup Nord/Sud) e di una pagina
+`centro-di-raccolta/`, prima di scrivere qualunque parser AET2000 —
+**nessun codice di parsing AET2000 è stato scritto in questa sessione**,
+in attesa di quell'HTML.
+
+**Riorganizzazione per provincia (fatta ora, indipendente dall'HTML
+AET2000 mancante)**: preparato il terreno per più gestori senza
+aspettare AET2000, dato che riguarda solo dati Isontina già verificati:
+- Snapshot rinominato da `rifiuti:isontina` a **`rifiuti`** (la vecchia
+  riga in Supabase resta semplicemente inutilizzata, nessuna
+  migrazione necessaria — stessa tabella generica `snapshots`).
+- Ogni comune di `RIFIUTI_COMUNI` in `scripts/ingest-light.mjs` ha ora
+  `provincia` (convenzione slug minuscolo del progetto — la stessa di
+  `PROVINCE_NOTIZIE`/`PROVINCE_STRUTTURE_RICETTIVE` — non i codici a 2
+  lettere "TS"/"GO" assunti dai due pacchetti ChatGPT) e `gestore`:
+  `duino-aurisina`, `monrupino`, `sgonico-zgonik` → `"trieste"`, gli
+  altri 25 → `"gorizia"`, tutti `gestore: "Isontina Ambiente"`.
+- `ingestRifiuti()` è stata scomposta: `rifiutiIngestIsontina(...)`
+  recupera solo i comuni Isontina (stessa logica di prima, invariata)
+  senza scrivere lo snapshot; `ingestRifiuti()` la richiama, unisce
+  l'array risultante (in futuro anche quello di AET2000) e fa **una
+  sola** `upsertSnapshot("rifiuti", ...)` — evita che due scritture
+  concorrenti sullo stesso snapshot condiviso si sovrascrivano a
+  vicenda quando arriverà un secondo gestore. Punto di innesto già
+  pronto (commento `TODO: rifiutiIngestAet2000(...)` sopra
+  `ingestRifiuti()`).
+- `lib/rifiuti.ts`: `ComuneRifiuti` ha ora `provincia`/`gestore`; nuovo
+  `PROVINCE_RIFIUTI_ATTIVE = ["gorizia", "trieste"]` (stesso pattern di
+  rollout parziale di `PROVINCE_NOTIZIE_ATTIVE`) e due helper,
+  `comuniPerProvincia()` e `provinceConDati()`.
+- `components/RifiutiPage.tsx`: aggiunte tab provincia (tutte e 4,
+  stesso stile di `NotizieProvinciaPage.tsx` — bottoni, non un
+  `<select>`), quelle senza dati mostrano "in arrivo" invece di restare
+  disabilitate; il dropdown comune ora è filtrato per provincia
+  selezionata; aggiunta un'etichetta "Gestore: …" accanto al dropdown
+  (prima era un sottotitolo fisso "fonte: Isontina Ambiente", ora
+  sbagliato con più gestori); testo del footer generalizzato (non cita
+  più isontinambiente.it esplicitamente).
+
+**Verifica**: `npx tsc --noEmit` e `node --check scripts/ingest-light.mjs`
+puliti. Le funzioni di parsing HTML esistenti (Isontina) non sono state
+toccate — solo il passaggio a valle di due campi già presenti
+nell'oggetto comune (`provincia`, `gestore`), quindi non è stato
+rieseguito il test harness offline (nessuna logica di parsing nuova da
+verificare). **Non ancora fatto**: parsing AET2000 (bloccato in attesa
+dell'HTML reale richiesto all'utente), verifica visiva con
+`next dev` + Chromium headless delle nuove tab provincia su `/rifiuti`.
+
 ## Ambiente → Servizi → Raccolta differenziata (17/09/2026)
 
 L'utente ha chiesto una nuova sezione "Servizi" dentro Ambiente, con la

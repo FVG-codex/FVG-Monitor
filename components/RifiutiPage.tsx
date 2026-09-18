@@ -6,22 +6,32 @@ import { TopHeader } from "@/components/TopHeader";
 import { Footer } from "@/components/Footer";
 import { Panel } from "@/components/Panel";
 import { supabase } from "@/lib/supabase";
+import { PROVINCE, PROVINCE_LIST, type ProvinciaSlug } from "@/lib/province";
 import {
   type SnapshotRifiuti,
   type ComuneRifiuti,
   ETICHETTA_TIPO,
   COLORE_TIPO,
+  PROVINCE_RIFIUTI_ATTIVE,
   formattaDataRifiuti,
   prossimeRaccolte,
+  comuniPerProvincia,
+  provinceConDati,
 } from "@/lib/rifiuti";
 
-// Ambiente → Servizi → Rifiuti (17/09/2026, richiesto dall'utente). Vedi
-// il commento esteso sopra ingestRifiuti() in scripts/ingest-light.mjs
-// per fonte (Isontina Ambiente, Isontino/Carso), metodo di verifica con
-// HTML reale e i limiti noti: solo i 28 comuni serviti da Isontina
-// Ambiente (non tutta la regione), calendario "solo comune" — quando un
-// comune ha più aree al suo interno (es. Gorizia, 6 aree) qui sotto
-// compare un piccolo selettore di area, non una ricerca per via.
+// Ambiente → Servizi → Rifiuti (17/09/2026, richiesto dall'utente).
+// Riorganizzata per provincia il 18/09/2026 (idem, richiesto
+// dall'utente in vista di un secondo gestore per la provincia di
+// Udine). Vedi il commento esteso sopra ingestRifiuti() in
+// scripts/ingest-light.mjs per fonti, metodo di verifica con HTML reale
+// e i limiti noti: per ora solo Gorizia e Trieste sono coperte (28
+// comuni, Isontina Ambiente — non tutta la regione), calendario "solo
+// comune" — quando un comune ha più aree al suo interno (es. Gorizia, 6
+// aree) qui sotto compare un piccolo selettore di area, non una ricerca
+// per via. Le tab provincia seguono lo stesso pattern già usato in
+// NotizieProvinciaPage.tsx: tutte e 4 visibili, quelle non ancora
+// coperte mostrano un messaggio "in arrivo" invece di restare
+// disabilitate.
 
 function oggiIsoLocale(): string {
   return new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Rome" }).format(new Date());
@@ -30,6 +40,7 @@ function oggiIsoLocale(): string {
 export function RifiutiPage() {
   const [dati, setDati] = useState<SnapshotRifiuti | null>(null);
   const [stato, setStato] = useState<"loading" | "ready" | "error">("loading");
+  const [provincia, setProvincia] = useState<ProvinciaSlug>("gorizia");
   const [comuneSlug, setComuneSlug] = useState<string>("");
   const [areaIndice, setAreaIndice] = useState(0);
 
@@ -39,7 +50,7 @@ export function RifiutiPage() {
       const { data, error } = await supabase
         .from("snapshots")
         .select("data")
-        .eq("id", "rifiuti:isontina")
+        .eq("id", "rifiuti")
         .single();
       if (!attivo) return;
       if (error || !data) {
@@ -49,9 +60,6 @@ export function RifiutiPage() {
       const snapshot = data.data as SnapshotRifiuti;
       setDati(snapshot);
       setStato("ready");
-      if (snapshot.comuni.length > 0) {
-        setComuneSlug((prev) => prev || snapshot.comuni[0].slug);
-      }
     }
     carica();
     const id = setInterval(carica, 15 * 60 * 1000);
@@ -61,9 +69,27 @@ export function RifiutiPage() {
     };
   }, []);
 
+  const gruppi = useMemo(() => comuniPerProvincia(dati?.comuni ?? []), [dati]);
+  const provinceAttive = useMemo(
+    () => (dati ? provinceConDati(dati.comuni) : PROVINCE_RIFIUTI_ATTIVE),
+    [dati]
+  );
+  const comuniProvincia = gruppi.get(provincia) ?? [];
+
+  // Se la provincia selezionata non ha (ancora) comuni nello snapshot,
+  // o il comune scelto non appartiene più a quella provincia (es. dopo
+  // un cambio di tab), si riallinea sul primo comune disponibile.
+  useEffect(() => {
+    if (comuniProvincia.length === 0) return;
+    if (!comuniProvincia.some((c) => c.slug === comuneSlug)) {
+      setComuneSlug(comuniProvincia[0].slug);
+      setAreaIndice(0);
+    }
+  }, [provincia, comuniProvincia, comuneSlug]);
+
   const comune: ComuneRifiuti | undefined = useMemo(
-    () => dati?.comuni.find((c) => c.slug === comuneSlug),
-    [dati, comuneSlug]
+    () => comuniProvincia.find((c) => c.slug === comuneSlug),
+    [comuniProvincia, comuneSlug]
   );
 
   const areaCorrente = comune?.aree[areaIndice] ?? comune?.aree[0];
@@ -83,16 +109,37 @@ export function RifiutiPage() {
           Raccolta differenziata
         </h1>
         <p className="text-ink-faint text-xs font-mono mb-4">
-          Calendario porta a porta, centro di raccolta e campane del vetro — fonte: Isontina Ambiente. Copre i 28
-          comuni serviti (Isontino e parte del Carso), non tutta la regione.
+          Calendario porta a porta, centro di raccolta e campane del vetro, divisi per provincia. Copre solo i
+          comuni serviti dai gestori già integrati, non tutta la regione — vedi sotto per la provincia selezionata.
         </p>
+
+        <div className="flex gap-1.5 flex-wrap mb-4">
+          {PROVINCE_LIST.map((p) => (
+            <button
+              key={p.slug}
+              onClick={() => setProvincia(p.slug)}
+              aria-pressed={provincia === p.slug}
+              className={`px-3 py-1.5 rounded text-xs font-cond font-semibold uppercase tracking-wide transition-colors ${
+                provincia === p.slug ? "bg-cool text-on-accent" : "border border-line text-ink-dim hover:text-ink"
+              }`}
+            >
+              {p.nome}
+            </button>
+          ))}
+        </div>
 
         {stato === "loading" && <p className="text-ink-faint text-sm font-mono">Caricamento…</p>}
         {stato === "error" && (
           <p className="text-ink-faint text-sm font-mono">Dati raccolta rifiuti non disponibili al momento.</p>
         )}
 
-        {stato === "ready" && dati && (
+        {stato === "ready" && dati && !provinceAttive.includes(provincia) && (
+          <p className="text-ink-faint text-sm font-mono">
+            Raccolta differenziata per la provincia di {PROVINCE[provincia].nome} in arrivo in una prossima fase.
+          </p>
+        )}
+
+        {stato === "ready" && dati && provinceAttive.includes(provincia) && (
           <>
             <div className="flex items-center gap-2 flex-wrap mb-3">
               <label htmlFor="rifiuti-comune" className="text-ink-faint text-xs font-mono uppercase tracking-wide">
@@ -107,12 +154,13 @@ export function RifiutiPage() {
                 }}
                 className="border border-line rounded px-2 py-1.5 text-sm font-mono bg-panel text-ink"
               >
-                {dati.comuni.map((c) => (
+                {comuniProvincia.map((c) => (
                   <option key={c.slug} value={c.slug}>
                     {c.nome}
                   </option>
                 ))}
               </select>
+              {comune && <span className="text-ink-faint text-[10px] font-mono">Gestore: {comune.gestore}</span>}
             </div>
 
             {comune && comune.stale && (
@@ -219,9 +267,9 @@ export function RifiutiPage() {
             )}
 
             <p className="text-ink-faint text-[10px] font-mono mt-6 border-t border-line pt-3">
-              Aggiornato al {new Date(dati.aggiornato_al).toLocaleString("it-IT")} — il calendario ufficiale ha
-              sempre la precedenza su questa pagina: verificare su isontinambiente.it in caso di dubbio, specie in
-              prossimità di festività.
+              Aggiornato al {new Date(dati.aggiornato_al).toLocaleString("it-IT")} — il calendario ufficiale del
+              gestore ha sempre la precedenza su questa pagina: verificare in caso di dubbio, specie in prossimità
+              di festività.
             </p>
           </>
         )}
