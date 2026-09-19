@@ -6160,6 +6160,23 @@ function rifiutiNetParseCalId($scope) {
   return m ? m[1] : null;
 }
 
+// Classificazione dedicata a NET, DIVERSA da `rifiutiTipoDaEtichetta()`
+// usata da Isontina: per NET plastica e lattine NON sono lo stesso
+// giro di raccolta — le lattine (e il "barattolame", stesso termine
+// usato nell'elenco tipologie NET per "Imballaggi vetro e barattolame")
+// vanno con il vetro, non con la plastica. Controllare vetro/lattine
+// PRIMA di plastica è quindi essenziale: una cella con titolo tipo
+// "Vetro e lattine" non deve mai finire in plastic_metals.
+function rifiutiNetTipoDaEtichetta(s = "") {
+  const n = s.normalize("NFKD").replace(/[̀-ͯ]/g, "").toLowerCase();
+  if (n.includes("carta") || n.includes("cartone")) return "paper";
+  if (n.includes("organico") || n.includes("umido")) return "organic";
+  if (n.includes("vetro") || n.includes("lattine") || n.includes("barattolame")) return "glass";
+  if (n.includes("plastica")) return "plastic_metals";
+  if (n.includes("secco") || n.includes("residuo") || n.includes("indifferenzi")) return "residual";
+  return null;
+}
+
 function rifiutiNetParseGiorni($, $scope, anno, mese) {
   const giorni = [];
   $scope.find("table.calendar td").each((_, td) => {
@@ -6174,7 +6191,7 @@ function rifiutiNetParseGiorni($, $scope, anno, mese) {
     if (!giornoNum || giornoNum < 1 || giornoNum > 31) return;
     const tipi = new Set();
     $td.find("div.raccolta[title]").each((_, div) => {
-      const tipo = rifiutiTipoDaEtichetta(clean($(div).attr("title") || ""));
+      const tipo = rifiutiNetTipoDaEtichetta(clean($(div).attr("title") || ""));
       if (tipo) tipi.add(tipo);
     });
     if (tipi.size === 0) return;
