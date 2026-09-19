@@ -141,6 +141,22 @@ export const ETICHETTA_TIPO: Record<TipoRifiuto, string> = {
   glass: "Vetro",
 };
 
+// Corretto il 19/09/2026, richiesto dall'utente: "Plastica e lattine" è
+// l'etichetta corretta per Isontina/AET2000/GEA (stesso giro di
+// raccolta), ma NON per NET — v. `rifiutiNetTipoDaEtichetta()` in
+// scripts/ingest-light.mjs, dove per questo gestore le lattine vanno
+// sempre con il vetro, mai con la plastica. Da quella correzione in poi
+// un giorno `plastic_metals` di un comune NET non contiene più lattine
+// per costruzione, quindi l'etichetta generica sarebbe fuorviante lì.
+// Questa funzione è l'unico punto da cui il frontend deve leggere
+// l'etichetta di un tipo (mai indicizzare ETICHETTA_TIPO direttamente
+// per un giorno di calendario), cosi un domani un altro gestore con la
+// stessa esigenza si aggiunge qui senza toccare i chiamanti.
+export function etichettaTipo(tipo: TipoRifiuto, gestore?: string): string {
+  if (tipo === "plastic_metals" && gestore === "NET S.p.A.") return "Plastica";
+  return ETICHETTA_TIPO[tipo];
+}
+
 // Stessi colori della legenda reale del sito (viola/marrone/giallo/
 // grigio), così chi già conosce il calendario cartaceo/PDF riconosce
 // subito i puntini. Valori fissi (non da tema) — non esiste ancora un

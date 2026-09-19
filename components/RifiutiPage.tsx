@@ -11,7 +11,7 @@ import { PROVINCE, PROVINCE_LIST, type ProvinciaSlug } from "@/lib/province";
 import {
   type SnapshotRifiuti,
   type ComuneRifiuti,
-  ETICHETTA_TIPO,
+  etichettaTipo,
   COLORE_TIPO,
   GIORNI_SETTIMANA_BREVE,
   PROVINCE_RIFIUTI_ATTIVE,
@@ -235,7 +235,7 @@ export function RifiutiPage() {
                                 className="inline-block w-2.5 h-2.5 rounded-full flex-shrink-0"
                                 style={{ backgroundColor: COLORE_TIPO[t] }}
                               />
-                              {ETICHETTA_TIPO[t]}
+                              {etichettaTipo(t, comune.gestore)}
                             </span>
                           ))}
                         </div>
