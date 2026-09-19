@@ -6012,6 +6012,255 @@ async function rifiutiIngestAcegas(precedentePerSlug) {
 }
 // ---------------------------------------------------------------------
 
+// ---------------------------------------------------------------------
+// Rifiuti, quinto gestore: NET S.p.A. (provincia di Udine + Muggia, TS),
+// via netaziendapulita.it. Aggiunto il 19/09/2026, a partire da un audit
+// (pacchetto ChatGPT, `FVG_Monitor_NET_Multizone_Audit_v1.zip`) su quali
+// comuni NET fossero multi-zona — architettura SQL proposta (tabelle
+// `waste_collection_zones`/`waste_calendar_profiles`) NON adottata, come
+// sempre in questo modulo: si resta su ingest-light.mjs + snapshot
+// condiviso "rifiuti".
+//
+// **Verificato da questa sessione, non preso per buono dall'audit**: un
+// WebFetch su netaziendapulita.it (raggiungibile, a differenza di
+// gruppohera.it/aet2000.it) e soprattutto HTML reale incollato
+// dall'utente (pagina indice comuni + Cervignano del Friuli) prima di
+// scrivere qualunque selettore — stesso principio di sempre. Struttura
+// reale: un `<select id="id-comune">`/elenco `<ul class="info-comune">`
+// con 57 comuni e i loro slug reali (alcuni non deducibili per
+// kebab-case ovvio, es. "Terzo di Aquileia" → `terzo-daquileia`, non
+// `terzo-di-aquileia` — da qui l'insistenza su HTML reale invece di
+// derivare gli slug dal nome). **Muggia è incluso nell'elenco NET** pur
+// essendo provincia di Trieste, non Udine — stesso pattern già esistente
+// per Isontina Ambiente (duino-aurisina/monrupino/sgonico-zgonik, sopra),
+// un gestore può coprire comuni di più province.
+//
+// **Scope di questa v1, deciso esplicitamente con l'utente**: SOLO i
+// comuni a calendario unico (nessuna suddivisione geografica in zone).
+// Restano fuori Udine (multi-zona reale: 7 zone geografiche raggruppate
+// in 3 calendari "Zona 1"/"Zone 2-4-5-6"/"Zone 3-7" — e, scoperta da
+// questa sessione e non presente nell'audit, **il sito NON offre alcuna
+// ricerca indirizzo→zona**: l'utente reale deve consultare un PDF
+// "Elenco vie" o una mappa, esattamente come dovrebbe fare un ipotetico
+// utente di questo sito) e Tarcento/Tavagnacco (regole "esclusive" non
+// meglio specificate dall'audit, mai viste su HTML reale). Tutti e tre
+// da valutare in una sessione futura.
+//
+// **Struttura di una pagina comune** (verificata su Cervignano del
+// Friuli, HTML reale): calendario diviso in due blocchi, `#calendario-1`
+// "Domestico" e `#calendario-2` "Non domestico", ciascuno con un proprio
+// id numerico `cal=<id>` (diverso per ogni comune E per ogni blocco —
+// mai fisso, va letto dal link "mese successivo" di ciascun blocco) e
+// tabella `table.calendar` con celle `<td>` contenenti il numero del
+// giorno seguito da zero o più `<div class="raccolta COLORE"
+// title="Tipo">` (il `title` basta da solo per il tipo, come già per
+// Acegas — non serve la `<dl class="legenda">`). Giorni del mese
+// adiacente marcati `<span class="out">N</span>` dentro la cella, invece
+// di una classe sulla cella stessa come AET2000 (`.not_current_month`)
+// — stesso principio di scarto per non costruire date inesistenti.
+//
+// **Solo il calendario "Domestico" viene ingerito in questa v1**: è
+// quello rilevante per l'utenza residenziale a cui si rivolge il resto
+// del sito (nessun altro gestore già integrato distingue
+// domestico/non-domestico) — dimezza anche le richieste di rete per
+// comune. Non essendoci una suddivisione geografica per i comuni in
+// questa v1, l'unica voce di `aree` ha sempre `area: null`.
+//
+// **Centro di raccolta**: sezione `#centri-raccolta`, indirizzo nell'
+// `<h3>Centro di raccolta VIA</h3>` dentro `.info-centro`, orario nel
+// testo libero che segue (separato da `<br>`, stesso trattamento già
+// usato per Isontina/AET2000). Il paragrafo introduttivo con l'elenco
+// materiali accettati è un testo boilerplate quasi identico su ogni
+// comune (mai un elenco strutturato) — non affidabile da estrarre con un
+// selettore robusto, quindi `materiali` resta sempre `[]` per questo
+// gestore, deliberatamente (meglio vuoto che un'estrazione fragile).
+//
+// **Verifica**: fixture HTML reali (indice comuni + Cervignano) salvate
+// su disco e parser testati offline con cheerio prima di scrivere questo
+// codice — 57 comuni estratti correttamente inclusi gli slug non ovvi,
+// 13 giorni corretti per settembre 2026 su Cervignano (carta/secco/
+// plastica, pannolini scartato perché non è uno dei 5 TipoRifiuto
+// standard — corretto, è un servizio opzionale non paragonabile agli
+// altri), centro di raccolta estratto correttamente. **Non verificato**:
+// il comportamento reale della navigazione mese-successivo con `cal=`
+// sui 54 comuni in produzione (questa sandbox non raggiunge il sito per
+// un test dal vivo, stesso limite di sempre) — la richiesta per il mese
+// successivo passa sempre il `cal` del blocco #calendario-1 letto dalla
+// pagina base, per restare corretti anche se la navigazione dell'altro
+// blocco (#calendario-2, non ingerito) si comportasse diversamente.
+const RIFIUTI_COMUNI_NET = [
+  { slug: "aiello-del-friuli", nome: "Aiello del Friuli" },
+  { slug: "aquileia", nome: "Aquileia" },
+  { slug: "attimis", nome: "Attimis" },
+  { slug: "bagnaria-arsa", nome: "Bagnaria Arsa" },
+  { slug: "bicinicco", nome: "Bicinicco" },
+  { slug: "buja", nome: "Buja" },
+  { slug: "campolongo-tapogliano", nome: "Campolongo Tapogliano" },
+  { slug: "carlino", nome: "Carlino" },
+  { slug: "cassacco", nome: "Cassacco" },
+  { slug: "castions-di-strada", nome: "Castions di Strada" },
+  { slug: "cervignano-del-friuli", nome: "Cervignano del Friuli" },
+  { slug: "chiopris-viscone", nome: "Chiopris Viscone" },
+  { slug: "chiusaforte", nome: "Chiusaforte" },
+  { slug: "cividale-del-friuli", nome: "Cividale del Friuli" },
+  { slug: "drenchia", nome: "Drenchia" },
+  { slug: "faedis", nome: "Faedis" },
+  { slug: "fiumicello-villa-vicentina", nome: "Fiumicello Villa Vicentina" },
+  { slug: "gonars", nome: "Gonars" },
+  { slug: "grimacco", nome: "Grimacco" },
+  { slug: "latisana", nome: "Latisana" },
+  { slug: "malborghetto-valbruna", nome: "Malborghetto - Valbruna" },
+  { slug: "manzano", nome: "Manzano" },
+  { slug: "marano-lagunare", nome: "Marano Lagunare" },
+  { slug: "mereto-di-tomba", nome: "Mereto di Tomba" },
+  // Provincia di Trieste, non Udine — v. commento sopra.
+  { slug: "muggia", nome: "Muggia", provincia: "trieste" },
+  { slug: "muzzana-del-turgnano", nome: "Muzzana del Turgnano" },
+  { slug: "palazzolo-dello-stella", nome: "Palazzolo dello Stella" },
+  { slug: "palmanova", nome: "Palmanova" },
+  { slug: "pocenia", nome: "Pocenia" },
+  { slug: "pontebba", nome: "Pontebba" },
+  { slug: "porpetto", nome: "Porpetto" },
+  { slug: "povoletto", nome: "Povoletto" },
+  { slug: "precenicco", nome: "Precenicco" },
+  { slug: "prepotto", nome: "Prepotto" },
+  { slug: "pulfero", nome: "Pulfero" },
+  { slug: "resia", nome: "Resia" },
+  { slug: "rivignano-teor", nome: "Rivignano Teor" },
+  { slug: "ronchis", nome: "Ronchis" },
+  { slug: "ruda", nome: "Ruda" },
+  { slug: "san-giorgio-di-nogaro", nome: "San Giorgio di Nogaro" },
+  { slug: "san-leonardo", nome: "San Leonardo" },
+  { slug: "san-pietro-al-natisone", nome: "San Pietro al Natisone" },
+  { slug: "san-vito-al-torre", nome: "San Vito al Torre" },
+  { slug: "santa-maria-la-longa", nome: "Santa Maria La Longa" },
+  { slug: "savogna", nome: "Savogna" },
+  { slug: "stregna", nome: "Stregna" },
+  { slug: "talmassons", nome: "Talmassons" },
+  // Tarcento, Tavagnacco e Udine restano fuori da questa v1 — v. commento sopra.
+  { slug: "tarvisio", nome: "Tarvisio" },
+  { slug: "terzo-daquileia", nome: "Terzo di Aquileia" },
+  { slug: "torreano", nome: "Torreano" },
+  { slug: "torviscosa", nome: "Torviscosa" },
+  { slug: "tricesimo", nome: "Tricesimo" },
+  { slug: "trivignano-udinese", nome: "Trivignano Udinese" },
+  { slug: "visco", nome: "Visco" },
+].map((c) => ({
+  ...c,
+  url: `https://netaziendapulita.it/comuni/${c.slug}/`,
+  provincia: c.provincia ?? "udine",
+  gestore: "NET S.p.A.",
+}));
+
+// Legge il `cal=` del blocco #calendario-1 (Domestico) dal link "mese
+// successivo" — diverso per ogni comune, non va mai fissato a mano.
+function rifiutiNetParseCalId($scope) {
+  const href = $scope.find('a[href*="cal="]').first().attr("href") || "";
+  const m = href.match(/[?&]cal=(\d+)/);
+  return m ? m[1] : null;
+}
+
+function rifiutiNetParseGiorni($, $scope, anno, mese) {
+  const giorni = [];
+  $scope.find("table.calendar td").each((_, td) => {
+    const $td = $(td);
+    // Giorno del mese adiacente: marcato con uno span, non una classe
+    // sulla cella (a differenza di AET2000) — v. commento in testa alla
+    // sezione.
+    if ($td.find("span.out").length) return;
+    const $clone = $td.clone();
+    $clone.find("div.raccolta").remove();
+    const giornoNum = parseInt(clean($clone.text()), 10);
+    if (!giornoNum || giornoNum < 1 || giornoNum > 31) return;
+    const tipi = new Set();
+    $td.find("div.raccolta[title]").each((_, div) => {
+      const tipo = rifiutiTipoDaEtichetta(clean($(div).attr("title") || ""));
+      if (tipo) tipi.add(tipo);
+    });
+    if (tipi.size === 0) return;
+    giorni.push({ data: `${anno}-${pad2(mese)}-${pad2(giornoNum)}`, tipi: [...tipi] });
+  });
+  return giorni;
+}
+
+// Indirizzo/orario del centro di raccolta. `materiali` resta sempre []
+// — v. commento in testa alla sezione sul perché.
+function rifiutiNetParseCentro($) {
+  const $h3 = $("#centri-raccolta h3")
+    .filter((_, el) => /centro di raccolta/i.test(clean($(el).text())))
+    .first();
+  if (!$h3.length) return null;
+  const indirizzo = clean($h3.text()).replace(/^centro di raccolta\s*/i, "") || null;
+
+  const $infoCentro = $h3.closest(".info-centro");
+  let apertura = null;
+  if ($infoCentro.length) {
+    // cheerio .text() non inserisce uno spazio ai <br> — stesso problema
+    // già risolto per i centri di raccolta di Isontina/AET2000.
+    const $clone = $infoCentro.clone();
+    $clone.find("h3, h4").remove();
+    $clone.find("br").replaceWith(" | ");
+    apertura = clean($clone.text()).replace(/^\|\s*/, "") || null;
+  }
+
+  if (!indirizzo && !apertura) return null;
+  return { indirizzo, apertura, materiali: [] };
+}
+
+async function rifiutiNetFetchComune(comune, anno, mese) {
+  const prossimo = rifiutiMeseSuccessivo(anno, mese);
+
+  const $base = await rifiutiGetHtml(comune.url);
+  const $domestico = $base("#calendario-1");
+  if (!$domestico.length) throw new Error("blocco calendario domestico (#calendario-1) non trovato");
+  const calId = rifiutiNetParseCalId($domestico);
+  if (!calId) throw new Error("cal id del blocco domestico non trovato");
+
+  const giorniMese1 = rifiutiNetParseGiorni($base, $domestico, anno, mese);
+
+  const urlMese2 = new URL(comune.url);
+  urlMese2.searchParams.set("month", String(prossimo.mese));
+  urlMese2.searchParams.set("year", String(prossimo.anno));
+  urlMese2.searchParams.set("cal", calId);
+  const $mese2 = await rifiutiGetHtml(urlMese2.toString());
+  const giorniMese2 = rifiutiNetParseGiorni($mese2, $mese2("#calendario-1"), prossimo.anno, prossimo.mese);
+
+  const centro = rifiutiNetParseCentro($base);
+
+  return {
+    slug: comune.slug,
+    nome: comune.nome,
+    provincia: comune.provincia,
+    gestore: comune.gestore,
+    aree: [{ area: null, giorni: [...giorniMese1, ...giorniMese2] }],
+    centro_raccolta: centro,
+    campane_vetro: [],
+    stale: false,
+  };
+}
+
+// Recupera i comuni gestiti da NET. Come gli altri gestori, non scrive
+// lo snapshot — vedi il commento sopra rifiutiIngestIsontina().
+async function rifiutiIngestNet(annoCorrente, meseCorrente, precedentePerSlug) {
+  const risultati = await rifiutiConLimiteConcorrenza(RIFIUTI_COMUNI_NET, RIFIUTI_CONCORRENZA, async (comune) => {
+    try {
+      return await rifiutiNetFetchComune(comune, annoCorrente, meseCorrente);
+    } catch (err) {
+      console.warn(`Rifiuti (NET): errore comune ${comune.nome}: ${err.message}`);
+      const vecchio = precedentePerSlug.get(comune.slug);
+      return vecchio ? { ...vecchio, stale: true } : null;
+    }
+  });
+  const comuni = risultati.filter(Boolean);
+  const falliti = RIFIUTI_COMUNI_NET.length - comuni.filter((c) => !c.stale).length;
+  console.log(
+    `Rifiuti (NET) aggiornati: ${comuni.length}/${RIFIUTI_COMUNI_NET.length} comuni` +
+      (falliti > 0 ? ` (${falliti} da cache/stale per errori di rete)` : "")
+  );
+  return comuni;
+}
+// ---------------------------------------------------------------------
+
 async function ingestRifiuti() {
   const forzato = process.env.GITHUB_EVENT_NAME === "workflow_dispatch";
   if (!forzato) {
@@ -6034,7 +6283,8 @@ async function ingestRifiuti() {
   const comuniAet2000 = await rifiutiIngestAet2000(annoCorrente, meseCorrente, precedentePerSlug);
   const comuniGea = await rifiutiIngestGea(annoCorrente, meseCorrente, precedentePerSlug);
   const comuniAcegas = await rifiutiIngestAcegas(precedentePerSlug);
-  const comuni = [...comuniIsontina, ...comuniAet2000, ...comuniGea, ...comuniAcegas];
+  const comuniNet = await rifiutiIngestNet(annoCorrente, meseCorrente, precedentePerSlug);
+  const comuni = [...comuniIsontina, ...comuniAet2000, ...comuniGea, ...comuniAcegas, ...comuniNet];
 
   if (comuni.length === 0) {
     console.warn("Rifiuti: nessun comune recuperato, snapshot non aggiornato.");
