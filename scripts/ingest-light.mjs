@@ -5983,134 +5983,32 @@ async function rifiutiIngestGea(_annoCorrente, _meseCorrente, _precedentePerSlug
 // seguito per il resto di questo modulo.
 // ---------------------------------------------------------------------
 
-const ACEGAS_ID_COMUNE_TRIESTE = 424;
-const ACEGAS_URL_WS_BASE = "https://webapp-ambiente.gruppohera.it/rifiutologo/rifiutologoweb";
-
-// I campi descrizione/descrizioneServizi/note della scheda stazione
-// contengono HTML (il JS reale li inserisce con jQuery `.html()`, non
-// `.text()` — coerente con il markup visto in macroprodotti[].note
-// nell'endpoint getDataRifiutologoWeb.php, es. "<p>Recuperando gli
-// abiti usati...</p>"). Qui li vogliamo come testo semplice (React li
-// mostra senza dangerouslySetInnerHTML), quindi i tag vengono tolti
-// invece di essere salvati/mostrati così come sono.
-function acegasStripHtml(s = "") {
-  return clean((s ?? "").replace(/<[^>]*>/g, " "));
-}
-
-async function acegasGetJson(url) {
-  const res = await fetchConRetry(url, {
-    headers: {
-      "User-Agent": "Mozilla/5.0 (compatible; FVGMonitorBot/1.0)",
-      Accept: "*/*",
-      Referer: "https://www.ilrifiutologo.it/",
-      Origin: "https://www.ilrifiutologo.it",
-    },
-  });
-  if (!res.ok) throw new Error(`HTTP ${res.status}`);
-  return res.json();
-}
-
-// Tiene solo gli intervalli di apertura ancora validi oggi (senza
-// dataFine, o con dataFine non ancora passata) e li converte nella
-// forma OrarioSettimanale di lib/rifiuti.ts — v. commento sopra questa
-// sezione per il perché non si tiene tutta la storia.
-function acegasOrariCorrenti(aperture, oggiIso) {
-  if (!Array.isArray(aperture)) return [];
-  return aperture
-    .filter((a) => !a.dataFine || String(a.dataFine).slice(0, 10) >= oggiIso)
-    .filter((a) => a.giorno && a.orarioInizio && a.orarioFine)
-    .map((a) => ({ giorno: Number(a.giorno), orarioInizio: String(a.orarioInizio), orarioFine: String(a.orarioFine) }))
-    .sort((a, b) => a.giorno - b.giorno);
-}
-
-async function acegasFetchDettaglioStazione(idStazione, oggiIso) {
-  const url = new URL(`${ACEGAS_URL_WS_BASE}/getDettaglioStazione.php`);
-  url.searchParams.set("idComune", String(ACEGAS_ID_COMUNE_TRIESTE));
-  url.searchParams.set("idStazione", String(idStazione));
-  url.searchParams.set("isBusiness", "0");
-  const dettaglio = await acegasGetJson(url.toString());
-
-  const materiali = Array.isArray(dettaglio.macroprodotti)
-    ? dettaglio.macroprodotti.map((m) => acegasStripHtml(m.descrizione || "")).filter(Boolean)
-    : [];
-
-  // Il sito reale unisce descrizione + descrizioneServizi + note in
-  // un unico blocco di testo (vedi initDettaglioStazioneEcologica() in
-  // JS, arrayNote.filter(Boolean).join("<br/>")) invece di mostrarne
-  // solo uno: replicato qui invece di scegliere arbitrariamente un solo
-  // campo, per non perdere informazione realmente presente sul sito.
-  const note = [dettaglio.descrizione, dettaglio.descrizioneServizi, dettaglio.note]
-    .map((t) => acegasStripHtml(t || ""))
-    .filter(Boolean)
-    .join(" — ");
-
-  return {
-    orari: acegasOrariCorrenti(dettaglio.aperture, oggiIso),
-    materiali,
-    note: note || null,
-  };
-}
-
-async function acegasFetchStazione(staz, oggiIso) {
-  const base = {
-    id: Number(staz.id),
-    nome: clean(staz.nome || ""),
-    indirizzo: clean(staz.indirizzo || "") || null,
-    comune: clean(staz.comune || "") || null,
-    latitudine: staz.latitudine != null ? Number(staz.latitudine) : null,
-    longitudine: staz.longitudine != null ? Number(staz.longitudine) : null,
-  };
-  try {
-    return { ...base, ...(await acegasFetchDettaglioStazione(staz.id, oggiIso)) };
-  } catch (err) {
-    console.warn(`Rifiuti (AcegasApsAmga): errore dettaglio stazione ${staz.id}: ${err.message}`);
-    // Meglio una stazione senza orari/materiali (la posizione resta
-    // comunque utile) che ometterla del tutto per un errore sul solo
-    // dettaglio.
-    return { ...base, note: null, orari: [], materiali: [] };
-  }
-}
-
-// A differenza degli altri gestori (un comune = una riga), qui c'è un
-// solo "comune" (Trieste) con un elenco di stazioni al suo interno:
-// se la lista fallisce del tutto si ricade sull'intera riga precedente
-// marcata stale, stesso principio di stale-fallback per-comune usato da
-// Isontina/AET2000.
-async function rifiutiIngestAcegas(oggiIso, precedentePerSlug) {
+// SPOSTATO su Vercel il 19/09/2026 — questa sezione non fa più fetch
+// da qui. Test reale dell'utente il 19/09/2026: la stessa identica
+// richiesta a getListaStazioniEcologiche.php restituisce 200 con dati
+// veri da una rete normale ma 403 da GitHub Actions — blocco per IP
+// datacenter/cloud (stesso pattern già noto per TPL FVG/autobus), non
+// risolvibile restando su questa infrastruttura. Il fetch (lista +
+// dettaglio per stazione, stessi endpoint/campi documentati sopra) vive
+// ora in app/api/cron/rifiuti-acegas/route.ts, richiamato una volta al
+// giorno da un Vercel Cron Job (vedi vercel.json, orario fissato dopo
+// la finestra di sync di questo script per evitare che una scrittura
+// sovrascriva l'altra — v. commento lì per l'analisi dell'ordinamento).
+// Dettagli/opzioni valutate: claude/fvgmonitor-stato.md, sezione
+// "Rifiutologo/AcegasApsAmga — 403 solo da GitHub Actions..."
+// (19/09/2026).
+//
+// Qui ci limitiamo a riproporre invariata l'ultima riga "trieste" già
+// presente nello snapshot (scritta dalla route Vercel) — nessun nuovo
+// tentativo di rete, nessuna modifica al campo `stale`: la freschezza
+// di questo comune è decisa solo dalla route Vercel, non da questo
+// script. Se la route Vercel non ha ancora mai girato (bootstrap),
+// `vecchioTrieste` è `undefined` e Trieste resta assente da questo
+// gestore per questo run, esattamente come per un gestore che non ha
+// ancora prodotto nulla.
+async function rifiutiIngestAcegas(precedentePerSlug) {
   const vecchioTrieste = precedentePerSlug.get("trieste");
-  try {
-    const urlLista = new URL(`${ACEGAS_URL_WS_BASE}/getListaStazioniEcologiche.php`);
-    urlLista.searchParams.set("idComune", String(ACEGAS_ID_COMUNE_TRIESTE));
-    urlLista.searchParams.set("isBusiness", "0");
-    const lista = await acegasGetJson(urlLista.toString());
-
-    if (!Array.isArray(lista) || lista.length === 0) {
-      throw new Error("elenco stazioni ecologiche vuoto o non valido");
-    }
-
-    const stazioni = await rifiutiConLimiteConcorrenza(lista, RIFIUTI_CONCORRENZA, (staz) =>
-      acegasFetchStazione(staz, oggiIso)
-    );
-
-    console.log(`Rifiuti (AcegasApsAmga): ${stazioni.length} stazioni ecologiche per Trieste.`);
-
-    return [
-      {
-        slug: "trieste",
-        nome: "Trieste",
-        provincia: "trieste",
-        gestore: "AcegasApsAmga",
-        aree: [],
-        centro_raccolta: null,
-        campane_vetro: [],
-        stazioni_ecologiche: stazioni,
-        stale: false,
-      },
-    ];
-  } catch (err) {
-    console.warn(`Rifiuti (AcegasApsAmga): errore, salto Trieste in questo run: ${err.message}`);
-    return vecchioTrieste ? [{ ...vecchioTrieste, stale: true }] : [];
-  }
+  return vecchioTrieste ? [vecchioTrieste] : [];
 }
 // ---------------------------------------------------------------------
 
@@ -6135,7 +6033,7 @@ async function ingestRifiuti() {
   const comuniIsontina = await rifiutiIngestIsontina(annoCorrente, meseCorrente, precedentePerSlug);
   const comuniAet2000 = await rifiutiIngestAet2000(annoCorrente, meseCorrente, precedentePerSlug);
   const comuniGea = await rifiutiIngestGea(annoCorrente, meseCorrente, precedentePerSlug);
-  const comuniAcegas = await rifiutiIngestAcegas(oggiIso, precedentePerSlug);
+  const comuniAcegas = await rifiutiIngestAcegas(precedentePerSlug);
   const comuni = [...comuniIsontina, ...comuniAet2000, ...comuniGea, ...comuniAcegas];
 
   if (comuni.length === 0) {
