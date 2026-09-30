@@ -143,6 +143,19 @@ export type ComuneRifiuti = {
   // cassonetti, senza calendario porta a porta (oggi: solo Lignano
   // Sabbiadoro, MTF S.r.l.) — v. sopra.
   raccolta_stradale?: RaccoltaStradale;
+  // Aggiunto il 30/09/2026 per Cordenons (GEA) — testo libero per
+  // servizi/eccezioni che non rientrano in nessuna delle strutture sopra
+  // e che non vale la pena modellare con un campo dedicato per un solo
+  // comune. Cordenons è il primo caso: umido e vetro non sono a
+  // calendario (bidoni stradali sempre disponibili con chiave), sfalci e
+  // ramaglie hanno un proprio sistema di zone indipendente, e il
+  // cartone è un servizio a parte riservato alle attività commerciali —
+  // nessuno dei tre modellato in questa v1 (v. il commento esteso sopra
+  // RIFIUTI_GEA_CORDENONS_ZONA1 in scripts/ingest-light.mjs). Se in
+  // futuro più comuni avessero bisogno dello stesso tipo di eccezione
+  // vale la pena valutare un campo strutturato invece di questo testo
+  // libero.
+  nota?: string;
   stale?: boolean;
 };
 

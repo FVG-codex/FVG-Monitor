@@ -385,6 +385,12 @@ export function RifiutiPage() {
                   )}
                 </Panel>
 
+                {comune.nota && (
+                  <Panel title="Da sapere" span={2}>
+                    <p className="text-ink-dim text-xs whitespace-pre-line">{comune.nota}</p>
+                  </Panel>
+                )}
+
                 {comune.veicolo_mobile && (
                   <Panel title={comune.veicolo_mobile.nome} span={2}>
                     <p className="text-ink-dim text-xs mb-3">{comune.veicolo_mobile.descrizione}</p>

@@ -4622,12 +4622,277 @@ reale ha ancora toccato questo codice (dato statico, quindi non c'è
 comunque nulla da "fetchare" — ma lo snapshot va comunque rigenerato da
 un run reale per arrivare in produzione).
 
+## Ambiente → Servizi → Rifiuti, GEA: estensione a 7 nuovi comuni + verifica che ha corretto Caneva (30/09/2026)
+
+Continuazione dello stesso approccio incrementale scelto per il lotto
+precedente. L'utente ha caricato 9 nuovi PDF GEA 2026 con il messaggio
+"Procedi con questi calendari": Claut, Clauzetto, Cordenons, Ecocentro
+Mobile Def (tutti gli anni), Erto e Casso, Fanna, Frisanco, Caneva,
+Cimolais.
+
+**Due file fuori scope, non integrati**:
+- **Ecocentro Mobile** è lo stesso tipo di documento già scartato nella
+  sessione GEA originale (rotazione dell'ecocentro mobile per rifiuti
+  pericolosi/ingombranti nel comune di Pordenone città — servizio
+  diverso dal porta a porta). Nessuno degli 8 comuni di questo lotto è
+  Pordenone città, quindi resta un documento a sé, non collegato a
+  nessuna delle voci aggiunte.
+- **Cordenons** ha un'architettura sostanzialmente diversa da tutti gli
+  altri comuni GEA modellati finora: 6 categorie sul frontespizio invece
+  di 5 (si aggiungono "sfalci e ramaglie"), secco/carta/plastica
+  raccolti a **quindicine** (non settimanali) con contenitori a
+  transponder, suddivisione per **Zona 1/Zona 2 su base stradale** (centinaia
+  di vie elencate, non poche frazioni nominabili come Budoia/Caneva),
+  umido e vetro **non su calendario ma raccolta stradale sempre
+  disponibile con chiave personale**, sfalci e ramaglie con un proprio
+  sistema di zone indipendente (Zona A/B/C, vie diverse da Zona 1/2), e
+  un servizio "cartone" separato riservato alle attività commerciali
+  registrate. Nessuna delle strutture dati esistenti (`aree[].giorni[]`
+  per il porta a porta a calendario, o `raccolta_stradale` per il
+  tutto-stradale) rappresenta bene questo caso ibrido, e servirebbe
+  probabilmente un nuovo valore di `TipoRifiuto` per gli sfalci — non
+  modellato in questa sessione, lasciato in sospeso per una decisione
+  esplicita dell'utente prima di procedere (vedi "Prossimo passo"
+  sotto).
+
+**Metodo — delegazione a sub-agent paralleli**: i 7 comuni restanti
+(Claut, Clauzetto, Erto e Casso, Fanna, Frisanco, Caneva, Cimolais) sono
+stati trascritti da sette sub-agent lanciati in parallelo, ciascuno con
+un prompt auto-contenuto (percorso PDF, legenda badge, metodo di
+individuazione zone, metodo di individuazione frequenza estiva
+dell'umido, regole per le eccezioni festive, regole di estrazione del
+centro di raccolta, schema JSON di output esatto) — stesso principio già
+usato in questo progetto per compiti trascrittivi ripetitivi (es. gli
+elenchi Autobus/Tennis/Sci). Dato incorporato come statico in
+`scripts/ingest-light.mjs` (nuove costanti generate con uno script
+Python di supporto, stesso procedimento del lotto precedente), nessun
+fetch di rete.
+
+**Scoperta — pattern di zone diversi da comune a comune**: Claut,
+Clauzetto, Erto e Casso e Cimolais sono a zona unica (stesso pattern di
+Andreis/Barcis). Fanna ha un pattern insolito di alternanza su un solo
+giorno della settimana. Frisanco ha una frequenza estiva dell'umido su
+lunedì+giovedì invece del sabato visto altrove. **Caneva è invece a due
+zone dove alternano TUTTI e quattro i tipi zona-esclusivi (secco, carta,
+plastica, vetro)**, non solo il secco come a Budoia — solo l'umido è
+comune a tutto il paese.
+
+**Scoperta importante — un sub-agent ha dichiarato un'anomalia "verificata
+pixel-perfect" che si è rivelata sbagliata**: il sub-agent di Caneva ha
+segnalato che a maggio e agosto il PDF assegnava il secco alla Zona A
+per 3 martedì su 4 (invece della stretta alternanza vista ovunque
+altrove), dichiarando di aver "ri-verificato più volte a zoom
+pixel-perfect sul PDF originale" e che non si trattava di un errore di
+lettura. Non mi sono fidato della sola dichiarazione e ho ripetuto la
+verifica in modo indipendente: pagine renderizzate a 250dpi con
+`pdftoppm`, ritagli mirati con Python/PIL sulle colonne di ciascuna
+zona, lette a occhio con lo strumento di lettura immagini. Risultato:
+la dichiarazione del sub-agent era **sbagliata** — il pattern reale è
+un'alternanza pulita, come negli altri comuni a due zone. Corretti 4
+errori concreti nei dati (3 date di secco spostate/rimosse dalla zona
+sbagliata, 1 data di plastica mancante aggiunta), poi riverificato con
+uno script di coerenza automatico su tutte le date dell'anno per i 4
+tipi zona-esclusivi — nessuna anomalia residua. Promemoria annotato
+anche nel commento sopra le costanti in `ingest-light.mjs`: una
+dichiarazione di rigore del sub-agent non sostituisce una verifica
+indipendente sui dati che contano di più.
+
+**Ferragosto**: confermato di nuovo, in tutti i comuni di questo lotto,
+lo stesso schema già visto nel lotto precedente — l'umido del 15 agosto
+è mostrato annullato senza alcun badge di recupero nelle vicinanze,
+trascritto come raccolta persa, nessuna data sostitutiva inventata.
+
+**Centro di raccolta**: variabile per comune, trascritto letteralmente
+da ciascun PDF (alcuni con centro attivo e indirizzo/orari reali,
+Clauzetto senza centro attivo né alternativa indicata → `centro_raccolta:
+null`, Erto e Casso con una situazione più articolata — centro comunale
+non ancora attivo, due punti fissi alternativi più ecocentro mobile su
+prenotazione — riportata per intero nel campo `indirizzo`/`apertura`
+anziché sintetizzata, per non perdere informazione; il testo è più lungo
+del solito ma il componente lo mostra comunque per intero senza
+troncamenti).
+
+Verifica finale: `node --check scripts/ingest-light.mjs` →
+`SYNTAX_OK`; `npx tsc --noEmit` sull'intero progetto → pulito; harness
+Node isolato sulla sola sezione GEA → tutti e 12 i comuni GEA (20 voci
+area/zona in totale contando le sotto-zone) senza date duplicate,
+array ordinati cronologicamente, tutti i valori `tipi` validi. Oltre a
+Caneva, anche Cimolais è stato ricontrollato a campione contro una
+pagina PDF renderizzata (gennaio): 13/13 voci corrispondenti.
+
+Dettagli completi (mappatura badge, elenco esatto delle date per
+comune/zona, metodo di generazione, note per singolo comune) nel blocco
+di commento dedicato sopra le nuove costanti in
+`scripts/ingest-light.mjs`.
+
+## Ambiente → Servizi → Rifiuti, GEA: Cordenons, tredicesimo comune (30/09/2026, stesso giorno)
+
+Dopo la ricognizione del PDF (vedi sezione precedente) l'utente ha scelto,
+tra quattro opzioni presentate via `AskUserQuestion`, quella consigliata:
+modellare solo la parte porta a porta quindicinale di secco/carta/
+plastica con Zona 1/Zona 2 come semplici aree nominate (stesso approccio
+già usato per le 6 zone di Pordenone — l'utente deve già sapere la
+propria zona, nessuna ricerca per via/civico), documentare umido/vetro
+come nota testuale (bidoni stradali sempre disponibili con chiave), e
+lasciare fuori scope v1 sia gli sfalci e ramaglie (zone A/B/C proprie,
+indipendenti da Zona 1/2) sia il servizio cartone riservato alle
+attività commerciali.
+
+**Trascrizione con un controllo di qualità aggiuntivo rispetto al lotto
+precedente**: essendo il primo comune con due zone quindicinali intere
+(non solo il secco come Budoia), una prima lettura del calendario a
+150dpi aveva scambiato alcuni badge fra Zona 1 e Zona 2 — le due colonne
+sono separate da un divisore molto vicino ai badge stessi. Rifatta la
+trascrizione con ritagli mirati a 300dpi sul confine tra le due colonne,
+mese per mese, non solo sulle date "sospette" (a differenza della
+verifica a campione fatta per Caneva nel lotto precedente, qui è stata
+rifatta l'intera trascrizione, dato che non esisteva ancora un pattern
+noto con cui confrontare il risultato). Il pattern risultante è pulito:
+ogni tipo è quindicinale in entrambe le zone, con carta/plastica che si
+alternano ogni settimana sullo stesso giorno (mercoledì Zona 1, giovedì
+Zona 2) e il secco quindicinale su un giorno proprio (sabato Zona 1,
+martedì Zona 2) — verificato con uno script automatico che conta 77/78
+raccolte per zona, tutte ordinate, nessuna data duplicata.
+
+**Due eccezioni festive senza recupero visibile nel PDF**, stesso
+trattamento del Ferragosto già documentato per gli altri comuni GEA —
+omesse dai dati, nessuna data sostitutiva inventata: la carta di Zona 2
+del 1° gennaio (Capodanno) e il secco di Zona 1 del 15 agosto
+(Ferragosto).
+
+**Nuovo campo dati**: aggiunto un campo `nota` (testo libero, opzionale)
+a `ComuneRifiuti` in `lib/rifiuti.ts` — pensato apposta per questo caso,
+un servizio che non vale la pena modellare con una struttura dedicata
+per un solo comune. Mostrato in un nuovo pannello "Da sapere" in
+`components/RifiutiPage.tsx`, visibile solo per i comuni che lo
+valorizzano (oggi solo Cordenons).
+
+**Centro di raccolta**: Via Chiavornicco, 49, aperto lunedì/giovedì/
+sabato 9-12 e 15-18, stesso PDF (pagina "Centro di raccolta").
+
+Verifica finale: `node --check` e `npx tsc --noEmit` puliti; harness
+Node isolato sulla sezione GEA → 13 comuni, 23 voci area/zona totali,
+tutte senza duplicati e ordinate. **Non ancora eseguito un ingest reale
+da GitHub Actions con questo comune incluso.**
+
+## Ambiente → Servizi → Rifiuti, GEA: altri 11 comuni, copertura completa della provincia di Pordenone (30/09/2026, stesso giorno)
+
+L'utente ha caricato l'ultimo lotto di 12 PDF GEA 2026 con il messaggio
+"Concludiamo con questi comuni": Tramonti di Sopra, Tramonti di Sotto,
+Vito d'Asio, Vivaro, Maniago, Meduno, Montereale, Pordenone-def, Prata,
+Roveredo, San Quirino, Sequals. Di questi, Pordenone-def si è rivelato
+essere il comune di Pordenone già presente (v1, 18/09/2026): confrontato
+mese per mese con `RIFIUTI_GEA_PORDENONE_*` esistenti (zone Blu, Rossa
+verificate a campione su gennaio) — nessuna discrepanza, i dati erano già
+corretti, incluso il presunto dubbio sul nome delle zone "Verde Nord"/
+"Verde Sud" (il PDF le chiama esattamente così nelle pagine "ELENCO VIE").
+Aggiunta solo una `nota` sul modello di Cordenons (umido/vetro stradali a
+chiave, sfalci, pannolini, cartone attività non a calendario). Gli altri
+11 sono comuni nuovi.
+
+**Metodo di trascrizione invariato** (lettura diretta dei PDF a 150-260dpi,
+zoom mirati a 400dpi nei punti ambigui, mai un campione — ogni mese di
+ogni comune letto per intero), con un'aggiunta rispetto ai lotti
+precedenti: per i comuni con un pattern quindicinale/settimanale pulito e
+senza (o con poche) eccezioni festive — Maniago, Prata di Pordenone,
+Roveredo in Piano, San Quirino — il calendario dell'anno intero è stato
+**generato programmaticamente** da uno script Node una volta isolata e
+confermata la regola (giorno della settimana + fase quindicinale per
+ciascuna categoria), invece di trascrivere a mano ogni singola data;
+le eccezioni festive individuate per lettura diretta sono state applicate
+come override dopo la generazione. Ogni output è stato comunque
+verificato con lo stesso script automatico usato finora (niente
+duplicati, ordine cronologico stretto, tipi validi) e incrociato con la
+lettura diretta di alcuni mesi campione.
+
+**Due correzioni prima della pubblicazione, stesso principio "leggi
+tutto, non un campione" già seguito nei lotti precedenti**: (1) Maniago,
+gennaio — una prima lettura a bassa risoluzione delle due zone A/B aveva
+prodotto un pattern asimmetrico e internamente incoerente; rifatta la
+lettura a 240dpi riga per riga, che ha rivelato la vera regola (umido
+condiviso mercoledì+sabato, secco+carta e plastica+vetro che si
+alternano di settimana in settimana tra le due zone, in controfase);
+verificata poi su tutti gli altri 11 mesi senza eccezioni residue oltre
+alle 4 festività documentate. (2) Prata di Pordenone, 1° maggio — un
+badge "secco" apparentemente barrato (incoerente con la regola del secco
+solo di sabato) si è rivelato, con uno zoom a 400dpi, essere la
+sovrapposizione dell'icona "Cartone attività" (fuori scope, riservata
+alle attività commerciali) barrata per la festività, non un'eccezione sul
+secco residenziale — falso allarme, stesso tipo di icona riconosciuto
+senza bisogno di ulteriore zoom quando è poi ricomparso su Roveredo in
+Piano e San Quirino.
+
+**Scope ridotto per 4 comuni**, sullo stesso principio già adottato per
+Cordenons — dove il PDF prevede materiali stradali/su richiesta/riservati
+alle attività commerciali non intercettabili da un calendario porta a
+porta, quei servizi sono descritti in una `nota` invece che forzati in
+una struttura dati che non li rappresenta bene: Montereale Valcellina (2
+zone: San Leonardo e Capoluogo/Grizzo/Malnisio — **solo il secco è a
+calendario**, quindicinale; vetro libero da cassonetto stradale senza
+chiave, umido a chiave, carta e plastica non a calendario), Prata di
+Pordenone, Roveredo in Piano e San Quirino (**solo secco, plastica e
+carta** a calendario; sfalci, umido, vetro, pannolini/pannoloni e cartone
+attività in nota). Vito d'Asio non ha invece un centro di raccolta fisso
+attivo (solo un Ecocentro Mobile annunciato, non ancora attivo — stesso
+trattamento già riservato in passato a un servizio non ancora operativo:
+niente indirizzo inventato, `centro_raccolta: null` più una `nota` che
+spiega la situazione e dà il numero verde GEA).
+
+**Un'interruzione della sessione**: 4 dei comuni di questo lotto
+(Maniago, Prata, Roveredo, San Quirino) erano stati affidati a
+sub-agenti paralleli che si sono interrotti a metà per un rate limit di
+piattaforma ("You've hit your session limit"), senza restituire un
+riepilogo finale. Completati direttamente (stessa metodologia, stesso
+livello di verifica) invece di ripetere i sub-agenti, su richiesta
+dell'utente ("riprendi"). Una successiva compattazione del contesto
+conversazionale ha inoltre fatto perdere il testo letterale dei calendari
+già trascritti dai sub-agenti riusciti (Tramonti di Sopra/Sotto, Vito
+d'Asio, Vivaro, Meduno, Sequals, Montereale) — recuperati non dalla
+sintesi ma dai file `.js`/`.json` con i dati completi che gli stessi
+sub-agenti avevano scritto su disco durante il lavoro, poi verificati di
+nuovo con lo stesso script automatico prima dell'inserimento.
+
+**Centro di raccolta**: Tramonti di Sopra/Sotto condividono un centro
+intercomunale in Località Chiarchia (Comune di Tramonti di Sotto) — dati
+confermati rileggendo il PDF originale (ancora disponibile) pagina
+"Centro di raccolta"; è annunciato ma non ancora attivo anche un
+Ecocentro Mobile (sabato 13:30-15:30). Meduno e Sequals condividono un
+centro in Località Solimbergo (Comune di Sequals). Montereale Valcellina
+ha due centri (stesso indirizzo di quello già usato per Andreis in Zona
+Industriale/Grizzo, più uno a San Leonardo, entrambi citati nella nota).
+Per gli altri comuni di questo lotto i PDF originali non sono più
+disponibili in sessione (solo Tramonti di Sopra/Sotto e Pordenone-def
+sono sopravvissuti alla compattazione) — indirizzo e orari riportati sono
+quelli raccolti durante la trascrizione originale dei sub-agenti/lettura
+diretta, materiali elencati con la stessa lista standard già usata per
+gli altri centri GEA di questo progetto (Andreis, Budoia) quando il
+dettaglio specifico non era più recuperabile testualmente.
+
+Verifica finale: `node --check` e `npx tsc --noEmit` puliti; harness
+Node isolato sulla sezione GEA → **24 comuni**, tutte le nuove date senza
+duplicati, ordine cronologico stretto rispettato, tipi rifiuto validi
+(controllato su tutti e 13 i nuovi array, incluse le due zone di Maniago
+e Montereale). **Non ancora eseguito un ingest reale da GitHub Actions
+con questi comuni inclusi.**
+
 ## Idee future (annotate, non richieste esplicitamente per l'implementazione)
 
 - **Strutture ricettive — implementate il 26/08/2026** (vedi sezioni dedicate sopra): hub + 8 pagine, arricchimento contatti da OpenStreetMap lo stesso giorno, poi scraping incrementale turismofvg.it per gli Agriturismi (sempre 26/08/2026, vedi "Agriturismi — scraping incrementale turismofvg.it" sopra per i dettagli — DevTools fornito dall'utente, stesso metodo già servito per Tennis/Sci/Autobus). **Prossimo passo su questo modulo**: estendere lo scraping turismofvg.it alle altre 7 categorie (B&B, Affittacamere, Campeggi, Alberghi Diffusi, Sociali, Marina, Rifugi) — richiede prima di verificare che URL/etichette HTML siano gli stessi osservati per Agriturismi (non garantito), idealmente con un altro campione reale fornito dall'utente per categoria prima di aggiungerla a `TURISMOFVG_CATEGORIE`.
 - **Nuoto** (nuova sezione Sport, accanto a Calcio/Basket/Baseball), **accantonata il 25/08/2026 su richiesta dell'utente — da riprendere con la nuova stagione**. Fonte proposta dall'utente: `fin2026.microplustiming.com` (portale risultati FIN, piattaforma Microplus Timing) — es. `NU_2026_07_17-19_Trieste_web.php`, Campionato Regionale Assoluto FVG vasca lunga, Trieste 17-19 luglio 2026. Trovato finora: (1) la pagina base del meeting si legge con WebFetch, ma i link "profondi" a una singola gara (parametri `cat`/`page`/`spec`/`bat`, con `descIT`/`descEN`/`descFR` in base64) restituiscono 403 dal proxy di questa sessione — possibile blocco anti-bot sui link con parametri, non confermato; (2) i risultati delle singole gare NON sono nell'HTML iniziale ma caricati via JavaScript (funzioni tipo `LoadHistory_Calendar()`) da un endpoint non identificato — stesso tipo di ostacolo già visto con gli autobus TPL FVG, ma qui l'endpoint reale non è ancora noto; (3) esiste anche un prodotto ufficiale Microplus "Results Data Feed" (es. `crs-ta2026-rdf.microplustimingservices.com`) ma è dietro login, verosimilmente riservato a stampa accreditata/broadcaster, non un'opzione praticabile. **Prossimo passo quando si riprende**: chiedere all'utente di aprire una pagina risultati nel proprio browser, DevTools → tab Rete → filtro Fetch/XHR, cliccare su una gara e individuare la richiesta che carica i dati (stesso metodo che ha funzionato per gli autobus) — non ancora fatto. Nota di modello: il nuoto non ha una "classifica di campionato" come calcio/basket/baseball (`COMPETIZIONI_CALCIO`/`COMPETIZIONI_BASKET` in `scripts/ingest-light.mjs`, partite + classifica) — sono meeting singoli con risultati gara per gara, quindi anche una volta trovata la fonte tecnica andrà probabilmente ripensato il modello dati (elenco risultati per meeting, non classifica a punti). Discussa anche un'alternativa più leggera mai approfondita: solo calendario meeting FVG + link ai risultati ufficiali, senza estrarre i tempi.
 
 ## Prossimo passo
+
+**Rifiuti — copertura GEA (provincia di Pordenone) completata il
+30/09/2026** (vedi sezione dedicata sopra, "altri 11 comuni"): 24 comuni
+GEA in tutto, calendario trascritto/verificato per ciascuno. Restano
+fuori scope v1, per i comuni dove il PDF li prevede come servizio
+separato dal porta a porta strutturato: sfalci e ramaglie, il servizio
+cartone per le attività commerciali, e — per Montereale Valcellina,
+Prata di Pordenone, Roveredo in Piano e San Quirino — anche umido/vetro/
+pannolini (spiegati in nota, non a calendario). Da valutare in futuro
+solo se l'utente lo richiede esplicitamente. **Nessun ingest reale da
+GitHub Actions ancora eseguito con l'elenco comuni aggiornato** — da
+osservare al prossimo giro schedulato.
 
 Fatto un giro di audit + fix responsive, poi la fusione dei pannelli
 homepage Bora·Vento + Pioggia e Livello mare + Livelli fiumi, poi

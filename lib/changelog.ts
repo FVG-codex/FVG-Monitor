@@ -21,6 +21,37 @@ export type VoceChangelog = {
 
 export const CHANGELOG: VoceChangelog[] = [
   {
+    data: "30/09/2026",
+    titolo: "Raccolta differenziata: GEA, altri 11 comuni — copertura completa della provincia di Pordenone",
+    dettagli: [
+      "La tab Pordenone di /rifiuti copre ora anche Tramonti di Sopra, Tramonti di Sotto, Vito d'Asio, Vivaro, Maniago (2 zone), Meduno, Sequals, Montereale Valcellina (2 zone), Prata di Pordenone, Roveredo in Piano e San Quirino, oltre ai 13 comuni già presenti. Calendario trascritto giorno per giorno dai PDF ufficiali GEA 2026, con doppia verifica (rilettura ad alta risoluzione e, dove utile, generazione programmatica del calendario dalla regola settimanale/quindicinale verificata più le eccezioni festive) prima della pubblicazione.",
+      "A Vito d'Asio non esiste ancora un centro di raccolta fisso (solo un Ecocentro Mobile annunciato ma non attivo): spiegato in una nota sulla pagina invece di inventare un indirizzo. A Montereale Valcellina, Prata di Pordenone, Roveredo in Piano e San Quirino il calendario copre solo le frazioni effettivamente porta a porta (secco, e dove presenti carta/plastica); umido, vetro, sfalci e altri servizi non a calendario sono spiegati in una nota, sullo stesso modello già usato per Cordenons.",
+      "Aggiunta anche una nota informativa alla pagina di Pordenone città (analoga a quella di Cordenons) su umido, vetro, sfalci e cartone per le attività commerciali, servizi non ancora coperti dal calendario strutturato. Con questo aggiornamento la copertura GEA per la provincia di Pordenone comprende 24 comuni.",
+    ],
+  },
+  {
+    data: "30/09/2026",
+    titolo: "Raccolta differenziata: GEA, aggiunto Cordenons (tredicesimo comune)",
+    dettagli: [
+      "La tab Pordenone di /rifiuti copre ora anche Cordenons, con due zone (Zona 1 e Zona 2): calendario quindicinale di secco, carta e plastica. Umido e vetro a Cordenons non seguono un calendario (bidoni stradali sempre disponibili con chiave) e sono spiegati in una nuova nota informativa sulla pagina; la raccolta di sfalci e ramaglie e il servizio cartone per le attività commerciali non sono ancora coperti.",
+    ],
+  },
+  {
+    data: "30/09/2026",
+    titolo: "Raccolta differenziata: GEA, altri 7 comuni (Claut, Clauzetto, Erto e Casso, Fanna, Frisanco, Caneva, Cimolais)",
+    dettagli: [
+      "La tab Pordenone di /rifiuti copre ora anche questi 7 comuni, oltre ad Aviano, Pordenone, Budoia, Andreis e Barcis. Calendario trascritto giorno per giorno dai PDF ufficiali GEA 2026, come per gli altri comuni di questo gestore. Caneva ha due zone dove alternano secco, carta, plastica e vetro (solo l'umido è comune a tutto il paese) — un dato di una prima trascrizione è stato ricontrollato e corretto su 4 date prima della pubblicazione.",
+      "Restano fuori da questo aggiornamento Cordenons (calendario a quindicine con zone diverse da tutti gli altri comuni, in valutazione) e l'ecocentro mobile di Pordenone città (servizio diverso dal porta a porta).",
+    ],
+  },
+  {
+    data: "30/09/2026",
+    titolo: "Raccolta differenziata: GEA, estensione a Budoia, Andreis e Barcis",
+    dettagli: [
+      "La tab Pordenone di /rifiuti copre ora anche Budoia (2 zone), Andreis e Barcis, oltre ad Aviano e Pordenone. Stesso metodo dei comuni GEA già presenti: calendario trascritto giorno per giorno dai PDF ufficiali, non una regola approssimata.",
+    ],
+  },
+  {
     data: "18/09/2026",
     titolo: "Raccolta differenziata: calendario porta a porta di Trieste per indirizzo",
     dettagli: [
