@@ -72,6 +72,57 @@ export type StazioneEcologica = {
   materiali: string[]; // da macroprodotti[].descrizione della scheda stazione
 };
 
+// Aggiunto il 19/09/2026 per Monfalcone (Isontina Ambiente) — V.A.SCO.
+// ("Veicolo Anti SCOvazze"), un container mobile per chi ha difficoltà
+// a usare la raccolta porta a porta, verificato dalla pagina reale del
+// Comune (v. commento esteso sopra la costante `VASCO_MONFALCONE` in
+// scripts/ingest-light.mjs per fonte e dettagli). Non è né un centro
+// fisso (`CentroRaccolta`, un solo indirizzo/orario) né un calendario
+// per tipo di rifiuto (`AreaRifiuti`/`GiornoRaccolta`): è un elenco di
+// soste itineranti, ciascuna con il proprio giorno/orario, condiviso
+// fra tutte le soste lo stesso elenco di materiali accettati.
+export type SostaVeicoloMobile = {
+  luogo: string;
+  giorni: string; // testo libero, es. "Lunedì, mercoledì e giovedì" — non uno slug di giorni della settimana
+  orario: string; // testo libero, es. "15:00–18:00"
+};
+
+export type VeicoloMobileRifiuti = {
+  nome: string;
+  descrizione: string;
+  materiali: TipoRifiuto[];
+  soste: SostaVeicoloMobile[];
+};
+
+// Aggiunto il 19/09/2026 per Lignano Sabbiadoro — MTF S.r.l., sesto
+// gestore. A differenza di tutti gli altri (porta a porta con
+// calendario per data), qui la raccolta è interamente stradale a
+// cassonetti colorati, sempre disponibili — non esiste un calendario
+// giorno-per-tipo da mostrare (`aree` resta [] per questo comune, come
+// per Trieste/AcegasApsAmga, ma per un motivo diverso: qui non è che il
+// calendario non sia stato implementato, è che semplicemente non
+// esiste). **Verificato con cura nella Carta della Qualità reale (PDF
+// MTF, v. commento esteso sopra `RACCOLTA_STRADALE_LIGNANO` in
+// scripts/ingest-light.mjs)**: il comune è diviso in zone (Pedonale/A/
+// B/C, mappa Google My Maps reale) ma quelle zone determinano SOLO la
+// frequenza di spazzamento strade — un servizio di pulizia urbana,
+// non di raccolta differenziata — mentre lo svuotamento dei cassonetti
+// è alla STESSA frequenza in tutto il comune, variabile solo per
+// stagione. Per questo qui non c'è alcun campo "zona": mostrare una
+// mappa di zone che non influiscono sui rifiuti sarebbe stato
+// fuorviante, non solo superfluo.
+export type MaterialeCassonetto = {
+  tipo: TipoRifiuto;
+  colore: string; // descrizione del colore del cassonetto stradale, es. "Giallo"
+};
+
+export type RaccoltaStradale = {
+  descrizione: string;
+  materiali: MaterialeCassonetto[];
+  frequenza_estate: string;
+  frequenza_inverno: string;
+};
+
 export type ComuneRifiuti = {
   slug: string;
   nome: string;
@@ -85,6 +136,13 @@ export type ComuneRifiuti = {
   // resta null in quel caso, il frontend controlla questo campo per
   // scegliere il layout da mostrare.
   stazioni_ecologiche?: StazioneEcologica[];
+  // Presente solo per i comuni con un servizio di raccolta mobile
+  // aggiuntivo (oggi: solo Monfalcone, V.A.SCO.) — v. sopra.
+  veicolo_mobile?: VeicoloMobileRifiuti;
+  // Presente solo per i comuni con raccolta interamente stradale a
+  // cassonetti, senza calendario porta a porta (oggi: solo Lignano
+  // Sabbiadoro, MTF S.r.l.) — v. sopra.
+  raccolta_stradale?: RaccoltaStradale;
   stale?: boolean;
 };
 

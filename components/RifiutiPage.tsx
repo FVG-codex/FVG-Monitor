@@ -11,6 +11,7 @@ import { PROVINCE, PROVINCE_LIST, type ProvinciaSlug } from "@/lib/province";
 import {
   type SnapshotRifiuti,
   type ComuneRifiuti,
+  type SostaVeicoloMobile,
   etichettaTipo,
   COLORE_TIPO,
   GIORNI_SETTIMANA_BREVE,
@@ -58,6 +59,20 @@ import {
 
 function oggiIsoLocale(): string {
   return new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Rome" }).format(new Date());
+}
+
+// Raggruppa le soste di un veicolo mobile (es. VASCO) per il testo
+// libero `giorni` — la fonte (v. VASCO_MONFALCONE in
+// scripts/ingest-light.mjs) le elenca già una dopo l'altra per turno
+// settimanale, quindi qui basta preservare l'ordine di prima comparsa
+// invece di ordinare alfabeticamente.
+function raggruppaSostePerGiorni(soste: SostaVeicoloMobile[]): [string, SostaVeicoloMobile[]][] {
+  const mappa = new Map<string, SostaVeicoloMobile[]>();
+  for (const s of soste) {
+    if (!mappa.has(s.giorni)) mappa.set(s.giorni, []);
+    mappa.get(s.giorni)!.push(s);
+  }
+  return [...mappa.entries()];
 }
 
 export function RifiutiPage() {
@@ -212,9 +227,43 @@ export function RifiutiPage() {
 
             {comune && (
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-line border border-line">
-                <Panel title={comune.gestore === "AcegasApsAmga" ? "Calendario porta a porta" : "Prossime raccolte"}>
+                <Panel
+                  title={
+                    comune.gestore === "AcegasApsAmga"
+                      ? "Calendario porta a porta"
+                      : comune.raccolta_stradale
+                        ? "Raccolta stradale"
+                        : "Prossime raccolte"
+                  }
+                >
                   {comune.gestore === "AcegasApsAmga" ? (
                     <RifiutiTriesteCalendario />
+                  ) : comune.raccolta_stradale ? (
+                    <div>
+                      <p className="text-ink-dim text-xs mb-3">{comune.raccolta_stradale.descrizione}</p>
+                      <div className="flex flex-wrap gap-3 mb-4">
+                        {comune.raccolta_stradale.materiali.map((m) => (
+                          <span key={m.tipo} className="flex items-center gap-1.5 text-sm">
+                            <span
+                              className="inline-block w-2.5 h-2.5 rounded-full flex-shrink-0"
+                              style={{ backgroundColor: COLORE_TIPO[m.tipo] }}
+                            />
+                            {etichettaTipo(m.tipo, comune.gestore)}
+                            <span className="text-ink-faint text-xs">({m.colore})</span>
+                          </span>
+                        ))}
+                      </div>
+                      <div className="text-xs space-y-1">
+                        <div>
+                          <span className="text-ink-faint uppercase tracking-wide mr-1.5">Estate</span>
+                          {comune.raccolta_stradale.frequenza_estate}
+                        </div>
+                        <div>
+                          <span className="text-ink-faint uppercase tracking-wide mr-1.5">Inverno</span>
+                          {comune.raccolta_stradale.frequenza_inverno}
+                        </div>
+                      </div>
+                    </div>
                   ) : prossime.length === 0 ? (
                     <p className="text-ink-faint text-sm font-mono">
                       Nessun dato di calendario disponibile per quest&apos;area al momento.
@@ -335,6 +384,41 @@ export function RifiutiPage() {
                     </>
                   )}
                 </Panel>
+
+                {comune.veicolo_mobile && (
+                  <Panel title={comune.veicolo_mobile.nome} span={2}>
+                    <p className="text-ink-dim text-xs mb-3">{comune.veicolo_mobile.descrizione}</p>
+                    {comune.veicolo_mobile.materiali.length > 0 && (
+                      <div className="flex flex-wrap gap-3 mb-4">
+                        {comune.veicolo_mobile.materiali.map((m) => (
+                          <span key={m} className="flex items-center gap-1.5 text-sm">
+                            <span
+                              className="inline-block w-2.5 h-2.5 rounded-full flex-shrink-0"
+                              style={{ backgroundColor: COLORE_TIPO[m] }}
+                            />
+                            {etichettaTipo(m, comune.gestore)}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      {raggruppaSostePerGiorni(comune.veicolo_mobile.soste).map(([giorni, soste]) => (
+                        <div key={giorni}>
+                          <div className="font-cond font-semibold text-xs uppercase tracking-wide mb-1.5">
+                            {giorni}
+                          </div>
+                          <ul className="text-ink-dim text-xs space-y-1">
+                            {soste.map((s, i) => (
+                              <li key={i}>
+                                {s.luogo} — {s.orario}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
+                  </Panel>
+                )}
               </div>
             )}
 

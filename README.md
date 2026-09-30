@@ -4553,6 +4553,75 @@ la correzione non è stata verificata con un nuovo ingest reale in questo
 ambiente — prenderà effetto al prossimo ingest eseguito in produzione
 (GitHub Actions). **Non ancora confermato dall'utente in produzione.**
 
+## Ambiente → Servizi → Rifiuti, GEA: estensione a Budoia, Andreis, Barcis (30/09/2026)
+
+Ripresa del modulo Rifiuti dopo un reset dell'ambiente sandbox che aveva
+azzerato il progetto locale (nessuna perdita di dato: ripristinato dallo
+zip caricato dall'utente più i fix NET/VASCO/MTF riapplicati a mano dalla
+sessione precedente, verificati con `grep` mirati prima di procedere).
+L'utente ha segnalato che nella tab Pordenone di `/rifiuti` comparivano
+solo Aviano e Pordenone (i due comuni GEA della v1, 18/09/2026) e ha
+chiesto di estendere la copertura; scelto (via `AskUserQuestion`)
+l'approccio incrementale — pochi comuni per volta, PDF reale per
+ciascuno — invece di un'estensione speculativa. L'utente ha caricato tre
+nuovi calendari GEA 2026 (24 pagine ciascuno): Budoia, Andreis, Barcis.
+
+**Stesso metodo già usato per Aviano/Pordenone**: trascrizione letterale
+mese per mese dai PDF reali (badge testuali stavolta, non icone — più
+facili da leggere con certezza rispetto al calendario Pordenone), dato
+incorporato come statico in `scripts/ingest-light.mjs` (nuove costanti
+`RIFIUTI_GEA_BUDOIA_CENTRO`/`_DARDAGO`/`RIFIUTI_GEA_ANDREIS`/
+`RIFIUTI_GEA_BARCIS`, tre nuove voci in `RIFIUTI_COMUNI_GEA`), nessun
+fetch di rete. Generate con uno script Python di supporto (dati
+strutturati → JS) per evitare errori di trascrizione manuale su ~600
+righe di date, poi verificate caricando la sola sezione GEA in un
+harness Node isolato: nessuna data duplicata, tutti gli array ordinati.
+
+**Scoperta rilevante — Budoia non è comune-wide come Aviano**: il secco
+residuo (e, nei mesi estivi, l'umido quando abbinato allo stesso giro)
+alterna settimanalmente fra due frazioni/zone ("Budoia centro e Zona
+Ind." e "Dardago e S.Lucia"), mentre le altre raccolte sono uguali per
+tutto il comune — modellato con due `aree` complete (stesso pattern già
+usato per le 6 zone di Pordenone), non un'unica lista. Frequenza
+dell'umido variabile per stagione (raddoppia giugno-settembre) —
+trascritta letteralmente giorno per giorno, nessuna regola generalizzata
+che potesse introdurre un errore sistematico.
+
+**Scoperta rilevante #2 — Andreis e Barcis condividono lo stesso
+calendario**: verificato pagina per pagina su tutti e 12 i mesi di
+entrambi i PDF (non assunto dalla somiglianza dei nomi/territorio) —
+stessa rotazione settimanale, stessa frequenza estiva, persino la stessa
+eccezione del 15 agosto (umido annullato per Ferragosto senza badge di
+recupero visibile, trascritta come raccolta persa — nota di incertezza,
+nessuna data sostitutiva inventata). Modellati come due costanti
+separate comunque, non un'unica lista condivisa, per coerenza con il
+resto del file e in caso un futuro PDF li differenzi.
+
+**Centro di raccolta**: nessuno dei tre comuni ha un ecocentro fisso
+attivo (dichiarato esplicitamente nel PDF). Per Budoia c'è comunque un
+centro attivo con indirizzo/orari reali (Via della Braida, 13). Andreis
+segnala l'ecocentro di Montereale Valcellina come alternativa utilizzabile
+(indirizzo/orari reali nel PDF) — riportato come `centro_raccolta`.
+Barcis non segnala alcuna alternativa (solo ingombranti/RAEE porta a
+porta su prenotazione) — `centro_raccolta: null`, stesso pattern già
+usato per i comuni Isontina senza centro fisso.
+
+**Eccezioni festive** (Capodanno per tutti e tre; Festa del Lavoro e
+Natale anche per Budoia): stesso trattamento delle "raccolte modificate"
+di Aviano/Pordenone — la raccolta è registrata solo sulla data di
+recupero mostrata nel PDF, il giorno originale annullato non compare.
+
+Dettagli completi (mappatura badge, elenco esatto delle date per zona,
+metodo di generazione) nel blocco di commento dedicato sopra le nuove
+costanti in `scripts/ingest-light.mjs`.
+
+`node --check scripts/ingest-light.mjs` e `npx tsc --noEmit` puliti
+(dopo `npm install`, `node_modules` non incluso nel pacchetto). **Non
+ancora confermato dall'utente in produzione**: nessun run GitHub Actions
+reale ha ancora toccato questo codice (dato statico, quindi non c'è
+comunque nulla da "fetchare" — ma lo snapshot va comunque rigenerato da
+un run reale per arrivare in produzione).
+
 ## Idee future (annotate, non richieste esplicitamente per l'implementazione)
 
 - **Strutture ricettive — implementate il 26/08/2026** (vedi sezioni dedicate sopra): hub + 8 pagine, arricchimento contatti da OpenStreetMap lo stesso giorno, poi scraping incrementale turismofvg.it per gli Agriturismi (sempre 26/08/2026, vedi "Agriturismi — scraping incrementale turismofvg.it" sopra per i dettagli — DevTools fornito dall'utente, stesso metodo già servito per Tennis/Sci/Autobus). **Prossimo passo su questo modulo**: estendere lo scraping turismofvg.it alle altre 7 categorie (B&B, Affittacamere, Campeggi, Alberghi Diffusi, Sociali, Marina, Rifugi) — richiede prima di verificare che URL/etichette HTML siano gli stessi osservati per Agriturismi (non garantito), idealmente con un altro campione reale fornito dall'utente per categoria prima di aggiungerla a `TURISMOFVG_CATEGORIE`.
