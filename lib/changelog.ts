@@ -21,6 +21,14 @@ export type VoceChangelog = {
 
 export const CHANGELOG: VoceChangelog[] = [
   {
+    data: "02/10/2026",
+    titolo: "Nuova pagina Maree: alta e bassa marea osservata e prevista a Trieste, Grado e Lignano",
+    dettagli: [
+      "Nuova pagina /maree (raggiungibile da Ambiente), con due informazioni distinte per ciascuna delle 3 stazioni costiere: i picchi di alta/bassa marea realmente registrati oggi (fonte: la stessa API Protezione Civile FVG già usata per il livello mare in tempo reale, un endpoint storico scoperto in fase di sviluppo) e la previsione per i prossimi giorni (fonte: tide-forecast.com, sito non ufficiale ma con dati strutturati verificati per tutte e 3 le località).",
+      "Le due informazioni sono mostrate in due blocchi separati — 'Oggi (osservato)' e 'Prossimi giorni (previsione)' — per non confondere un dato ufficiale già misurato con una previsione di una fonte commerciale terza.",
+    ],
+  },
+  {
     data: "30/09/2026",
     titolo: "Raccolta differenziata: GEA, altri 11 comuni — copertura completa della provincia di Pordenone",
     dettagli: [

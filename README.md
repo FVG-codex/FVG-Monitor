@@ -72,6 +72,7 @@ componente React che legge da Supabase con lo stesso nome.
 | **Temperatura live** (4 province) | Stessa API, stesse stazioni | Sensore `T` — aggira il vincolo 24h di OSMER (fonte diversa, licenza esplicita) |
 | **Livelli fiumi** (4 province) | Stessa API, stazioni idrometriche dedicate | Gorizia idro/Isonzo (66), Latisana 1 idro/Tagliamento (240), Pordenone Noncello (132), Francovez Rosandra/Trieste (602) |
 | **Livello mare** | Stessa API, 3 stazioni costiere | Trieste (502), Grado (68), Lignano (77) — sensore `LIV_MARE_IGM42`, rilevante per l'acqua alta a Trieste |
+| **Maree** — pagina dedicata `/maree` (da Ambiente) | Osservate: stessa API PC FVG (endpoint storico non documentato) · Previste: tide-forecast.com (non ufficiale, JSON `window.FCGON` incorporato nella pagina) | Due blocchi separati per stazione: picchi di alta/bassa marea registrati oggi (calcolati da `trovaPicchiMarea()`) e previsione dei prossimi giorni — vedi nota "Maree" sotto per fonti e decisioni |
 | **Qualità acque di balneazione** — homepage | Dataset Socrata ARPA FVG "Acqua - Acque di Balneazione" (`fpj6-y9vk`) | `BalneazionePanel.tsx`, un tab per provincia. 66 punti di monitoraggio in tutta la regione (non solo i capoluoghi) — sia acque marino-costiere sia acque interne (laghi, fiumi). Provincia ricavata dal codice ufficiale `id_area_balneazione` (`IT006` + codice provincia ISTAT: 030 Udine, 031 Gorizia, 032 Trieste, 093 Pordenone), più affidabile del match per nome usato altrove. Per ciascun punto, esito favorevole/sfavorevole sull'ultimo prelievo confrontando enterococchi/E. coli con i valori limite per singolo campione dell'Allegato A del D.Lgs 116/2008 (soglie diverse tra acque marine e interne) — **non** è la classificazione stagionale eccellente/buona/sufficiente/scarsa (quella si basa sul 95°/90° percentile di 4 stagioni, non riproducibile da un solo prelievo). Indicativo, non sostituisce un'eventuale ordinanza comunale di divieto |
 | **Qualità dell'aria** (4 province, 4 inquinanti a tab) | 4 dataset Socrata ARPA FVG: PM10 (`qp5k-6pvm`), PM2.5 (`d63p-pqpr`), Ozono (`7vnx-28uy`), NO2 (`ke9b-p6z2`) | Un unico pannello (`AriaQualitaPanel.tsx`) con tab per inquinante — dato giornaliero/orario con qualche giorno di ritardo (validazione ARPA). Match per nome città in `ubicazione` (il campo `rete` esisteva nei dati storici ma non in quelli recenti). Soglie: PM10 50 µg/m³, PM2.5 linea guida OMS 15 µg/m³ 24h (l'Italia ha solo limite annuale), Ozono 120 µg/m³ media mobile 8h, NO2 200 µg/m³ media oraria. Pordenone spesso "n.d." per l'ozono: la stazione storica è dismessa dal 2013-2014 |
 | **Pollini** (tab per provincia) | Dataset Socrata ARPA FVG "Aria - Pollini" (`rnci-smsu`), rete aerobiologica POLLnet | `PolliniPanel.tsx`, un tab per provincia invece che per genere (a differenza del pannello qualità aria) — dentro ogni tab, i generi con presenza rilevata questa settimana (media > 0 granuli/m³), ordinati dal più alto. Dato **settimanale** (rilevamento continuo, pubblicazione a cadenza settimanale), non giornaliero. Stazioni attive verificate manualmente (agosto 2026): Trieste (Castello di S. Giusto), Lignano Sabbiadoro e Tolmezzo (entrambe provincia di Udine — nessuna stazione è nel capoluogo), Pordenone. **Nessuna stazione attiva in provincia di Gorizia** (Monfalcone, l'unica storica lì, ferma al 2011) — gap reale della rete regionale, il tab mostra il messaggio esplicito invece di "n.d." silenzioso. Nessuna classificazione di rischio (assente/scarsa/media/alta): ARPA la pubblica ma con soglie diverse per ciascun genere, non estratte in modo affidabile — mostriamo solo il dato grezzo, rimandando al bollettino ufficiale per l'interpretazione |
@@ -4874,6 +4875,93 @@ duplicati, ordine cronologico stretto rispettato, tipi rifiuto validi
 (controllato su tutti e 13 i nuovi array, incluse le due zone di Maniago
 e Montereale). **Non ancora eseguito un ingest reale da GitHub Actions
 con questi comuni inclusi.**
+
+## Maree — nuova pagina dedicata, osservate + previste (02/10/2026)
+
+Richiesta dall'utente il 13/09/2026 (annotata sotto "Idee future"), ripresa
+il 02/10/2026. Prima di scrivere qualsiasi codice, ricerca approfondita
+delle fonti dati reali — nessuna ipotizzata, tutte verificate
+concretamente — perché per le maree (a differenza di quasi tutti gli
+altri moduli) **non esiste una singola fonte italiana ufficiale e
+gratuita con dati sia osservati che previsti e sempre aggiornati**:
+
+1. **CNR-ISMAR** (prima ipotesi) — scartato: statico, fermo al
+   2015-2019 (confermato da due screenshot forniti dall'utente), solo
+   Trieste, nessuna API.
+2. Le **"Previsioni di marea per il Golfo di Trieste"** dell'Università
+   di Trieste (ARTS repository, Stravisi poi Cirilli & Bussi) — scartate:
+   PDF annuale statico, solo Trieste, stessa linea di ricerca di sopra.
+3. **Maree osservate oggi** — soluzione trovata **senza bisogno di una
+   nuova fonte esterna**: la stessa API Protezione Civile FVG già usata
+   per il "Livello mare" in tempo reale (vedi riga tabella sopra) ha,
+   oltre a `/sensors/{id}/measures/latest` (già usato), anche
+   `/sensors/{id}/measures` **senza** `/latest` — scoperto per tentativi,
+   non documentato da nessuna parte. Restituisce l'intera serie della
+   giornata corrente (un punto ogni 15 minuti, dalle 00:00 di oggi) per
+   lo stesso sensore `LIV_MARE_IGM42`, confermato presente con lo stesso
+   id (86) su tutte e 3 le stazioni costiere (Trieste 502, Grado 68,
+   Lignano 77) interrogando direttamente `/stations/{id}/sensors` per
+   ciascuna. I picchi di alta/bassa marea effettivamente registrati si
+   calcolano confrontando ogni punto della serie con il precedente e il
+   successivo (massimo/minimo locale) — vedi `trovaPicchiMarea()` in
+   `ingest-light.mjs`.
+4. **Maree previste** — nessuna fonte ufficiale/gratuita trovata con
+   previsioni astronomiche aggiornate per queste 3 località specifiche.
+   Valutata anche **WorldTides.info** (API a pagamento, 100 crediti
+   gratuiti poi minimo $4.99/mese — sarebbe stata la prima fonte a
+   pagamento del progetto). L'utente ha scelto invece di procedere con
+   **tide-forecast.com** ("procedi con lo scraping", 02/10/2026): sito
+   commerciale senza API pubblica, ma con pagine dedicate esatte per
+   Trieste (`/tide/Trieste-Italy/tide-times`), Grado
+   (`/tide/Grado-1/tide-times`) e Lignano
+   (`/tide/Lignano-Sabbiadoro/tide-times`). Verificato — importante,
+   perché cambia la valutazione di fragilità iniziale — che ciascuna
+   pagina incorpora in uno `<script>` un oggetto JS strutturato
+   (`window.FCGON = {...}`) con gli stessi dati della tabella HTML
+   visibile (`tideDays[].tides[]`, ognuno con `timestamp`/`height`/
+   `type: "high"|"low"|null`): si estrae con una regex ancorata al
+   delimitatore di chiusura dello script (`//]]>`) + `JSON.parse`, **non**
+   un vero parsing del DOM/selettori CSS — molto più robusto di quanto
+   temuto all'inizio. Schema e freschezza del dato (`tideDays[0].date` =
+   oggi, `serverTime` coerente col footer "Generated ... UTC" della
+   pagina) verificati manualmente per **tutte e 3** le località il
+   02/10/2026, tramite pagina incollata per intero dall'utente (questo
+   sandbox non raggiunge `tide-forecast.com` — `curl` diretto rifiutato
+   dall'allowlist di rete, e `WebFetch` non riusciva a recuperare lo
+   script, molto in fondo a una pagina lunghissima, nonostante leggesse
+   correttamente altre parti della stessa pagina).
+   **Rischio accettato consapevolmente**: fonte non ufficiale e non
+   documentata — se tide-forecast.com cambia pagina, `ingestMareePreviste()`
+   può smettere di funzionare senza preavviso. Il modulo fallisce in modo
+   silenzioso (solo un `console.warn`, uno snapshot semplicemente non
+   aggiornato) e non blocca gli altri moduli (`Promise.allSettled` in
+   `main()`).
+
+**Architettura, decisa con l'utente (non derivata/presunta) il 02/10/2026**:
+pagina dedicata `/maree` (non un pannello homepage, a differenza di
+"Livello mare") — raggiungibile da `/ambiente`, stesso punto d'accesso di
+"Terremoti`. Per ciascuna delle 3 stazioni, **due blocchi separati** (non
+un'unica lista cronologica mescolata): "Oggi (osservato)" e "Prossimi
+giorni (previsione)" — per non confondere un dato ufficiale già misurato
+con una previsione di una fonte commerciale terza. Due snapshot Supabase
+distinti per stazione, categoria **`maree`** (nuova, diversa da `mare`
+che resta il livello mare in tempo reale): `maree-osservate:{slug}` e
+`maree-previste:{slug}` (`slug` ∈ `trieste`/`grado`/`lignano`, stessi usati
+da `mare:{slug}`).
+
+Componenti: `MareePage.tsx` (nuovo), route `app/maree/page.tsx` (nuovo),
+voce "Maree" aggiunta a `AmbientePage.tsx`. Ingestione: `ingestMareeOsservate()`
++ `ingestMareePreviste()` in `ingest-light.mjs`, registrati in `main()`
+subito dopo `ingestMare()`.
+
+Verifica eseguita: `node --check` su `ingest-light.mjs` e
+`npx tsc --noEmit` sull'intero progetto, entrambi puliti. **Non ancora
+verificato**: un `next build` completo (questo sandbox non raggiunge
+Google Fonts, usati in `app/layout.tsx` — limite di rete del sandbox,
+non del codice: funzionerà in build reale su Vercel/CI, con rete
+completa), un ingest reale da GitHub Actions con questi due nuovi moduli,
+e naturalmente nessuna conferma visuale su browser vero (nessun accesso a
+un browser in questa sessione) — da fare al primo giro utile.
 
 ## Idee future (annotate, non richieste esplicitamente per l'implementazione)
 

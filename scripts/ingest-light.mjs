@@ -2184,6 +2184,200 @@ async function ingestMare() {
 // ---------------------------------------------------------------------
 
 // ---------------------------------------------------------------------
+// MAREE (02/10/2026, richiesto dall'utente il 13/09/2026) — due
+// sotto-funzionalità distinte, con fonti e affidabilità diverse, perciò
+// in snapshot separati (categoria "maree", id diversi da "mare:*" che
+// resta il livello mare in tempo reale già esistente sopra):
+//
+// 1) "maree-osservate:{slug}" — picchi di alta/bassa marea REALMENTE
+//    REGISTRATI oggi. Fonte: la stessa API Protezione Civile FVG già
+//    usata per il livello mare in tempo reale, ma un endpoint diverso
+//    e non documentato, scoperto per tentativi il 02/10/2026:
+//    /stations/{id}/sensors/{id}/measures (SENZA "/latest") restituisce
+//    l'intera serie della giornata corrente, un punto ogni 15 minuti,
+//    invece della sola ultima misura. Stesso sensore LIV_MARE_IGM42
+//    (id 86), confermato presente su tutte e 3 le stazioni costiere
+//    (Trieste 502, Grado 68, Lignano 77). Dato 100% ufficiale e
+//    gratuito, nessuna nuova fonte esterna.
+//
+// 2) "maree-previste:{slug}" — previsione di alta/bassa marea per i
+//    prossimi giorni. In Italia non esiste una fonte ufficiale/gratuita
+//    con previsioni astronomiche aggiornate per queste 3 località (vedi
+//    ricerca del 02/10/2026: CNR-ISMAR è statico e fermo al 2015-2019,
+//    le "Previsioni di marea per il Golfo di Trieste" dell'Università di
+//    Trieste sono un PDF annuale e riguardano solo Trieste). Scelta
+//    dell'utente ("procedi con lo scraping", 02/10/2026): tide-forecast.com,
+//    sito commerciale senza API pubblica ma con pagine dedicate esatte per
+//    Trieste/Grado/Lignano. Ogni pagina incorpora però, in uno <script>,
+//    un oggetto JS strutturato `window.FCGON = {...}` con gli stessi dati
+//    della tabella HTML (tideDays[].tides[], ognuno con timestamp/height/
+//    type "high"|"low"|null) — estratto via regex + JSON.parse, non vero
+//    e proprio DOM-scraping. Verificato manualmente (pagina incollata
+//    dall'utente, il sandbox di sviluppo non raggiunge questo host) per
+//    tutte e 3 le località il 02/10/2026: stesso schema, dato sempre
+//    fresco (tideDays[0].date = oggi, serverTime coerente col footer
+//    "Generated ... UTC" della pagina). Fonte non ufficiale e non
+//    documentata: se tide-forecast.com cambia pagina, questo modulo può
+//    smettere di funzionare senza preavviso — fallisce in modo silenzioso
+//    (solo un warning in log), non blocca gli altri moduli.
+// ---------------------------------------------------------------------
+
+// Trova i picchi (massimi/minimi locali) in una serie di misure ordinate
+// cronologicamente, confrontando ogni punto con il precedente e il
+// successivo. I dati del sensore sono una curva di marea reale, quindi
+// liscia su scala di ore — un confronto punto-a-punto è sufficiente senza
+// bisogno di filtri anti-rumore più sofisticati. L'unico caso da gestire
+// è un plateau (più punti identici consecutivi al vertice): si accorpano
+// tenendo solo il valore più estremo, per non riportare due "alte" o due
+// "basse" a pochi minuti di distanza l'una dall'altra.
+function trovaPicchiMarea(punti) {
+  if (punti.length < 3) return [];
+  const grezzi = [];
+  for (let i = 1; i < punti.length - 1; i++) {
+    const prima = punti[i - 1].value;
+    const centro = punti[i].value;
+    const dopo = punti[i + 1].value;
+    if (centro > prima && centro >= dopo) {
+      grezzi.push({ ...punti[i], tipo: "alta" });
+    } else if (centro < prima && centro <= dopo) {
+      grezzi.push({ ...punti[i], tipo: "bassa" });
+    }
+  }
+  const puliti = [];
+  for (const p of grezzi) {
+    const ultimo = puliti[puliti.length - 1];
+    if (ultimo && ultimo.tipo === p.tipo) {
+      const migliore =
+        p.tipo === "alta" ? (p.value > ultimo.value ? p : ultimo) : p.value < ultimo.value ? p : ultimo;
+      puliti[puliti.length - 1] = migliore;
+    } else {
+      puliti.push(p);
+    }
+  }
+  return puliti;
+}
+
+async function serieOggiStazione(stationId, sensorId) {
+  const res = await fetchConRetry(`${PC_API_BASE}/stations/${stationId}/sensors/${sensorId}/measures`);
+  if (!res.ok) return [];
+  const json = await res.json();
+  return json.measures ?? [];
+}
+
+async function ingestMareeOsservateStazione(stazione) {
+  const sensori = await sensoriStazione(stazione.id);
+  const idLivello = sensori.find((s) => s.code === "LIV_MARE_IGM42")?.id ?? null;
+  if (!idLivello) {
+    console.warn(`Maree osservate: stazione "${stazione.nome}" non ha il sensore livello mare — salto`);
+    return;
+  }
+
+  const misure = await serieOggiStazione(stazione.id, idLivello);
+  if (misure.length < 3) {
+    console.warn(`Maree osservate: serie di oggi insufficiente per "${stazione.nome}" (${misure.length} punti)`);
+    return;
+  }
+
+  const punti = misure
+    .map((m) => ({ dt: m.dt, value: m.value }))
+    .sort((a, b) => new Date(a.dt) - new Date(b.dt));
+
+  const picchi = trovaPicchiMarea(punti).map((p) => ({
+    ora: p.dt,
+    altezza_m: Math.round(p.value * 100) / 100,
+    tipo: p.tipo,
+  }));
+
+  await upsertSnapshot(`maree-osservate:${stazione.slug}`, "maree", null, {
+    stazione: stazione.nome,
+    aggiornato_al: punti[punti.length - 1].dt,
+    picchi,
+  });
+  console.log(`Maree osservate aggiornate (${stazione.nome}):`, picchi.length, "picchi");
+}
+
+async function ingestMareeOsservate() {
+  await Promise.all(STAZIONI_MARE.map((s) => ingestMareeOsservateStazione(s)));
+}
+
+const STAZIONI_MAREE_PREVISTE = [
+  { slug: "trieste", nome: "Trieste", url: "https://www.tide-forecast.com/tide/Trieste-Italy/tide-times" },
+  { slug: "grado", nome: "Grado", url: "https://www.tide-forecast.com/tide/Grado-1/tide-times" },
+  { slug: "lignano", nome: "Lignano", url: "https://www.tide-forecast.com/tide/Lignano-Sabbiadoro/tide-times" },
+];
+
+// Quante giornate di previsione salvare per stazione — la pagina ne offre
+// fino a ~30, ma il frontend mostra solo i prossimi giorni ("Prossimi
+// giorni (previsione)"): 10 è ampiamente sufficiente ed evita di
+// appesantire lo snapshot senza motivo.
+const MAREE_PREVISTE_GIORNI_MAX = 10;
+
+// Estrae l'oggetto `window.FCGON = {...};` incorporato nella pagina.
+// L'ancora sul delimitatore successivo (`//]]>`, chiusura del CDATA dello
+// <script> che lo contiene in tutte le pagine verificate) rende il match
+// univoco anche se il JSON stesso contenesse la sottostringa "};" al suo
+// interno — il motore regex continua ad estendere il blocco catturato
+// (lazy) finché non trova anche quel delimitatore, che compare una sola
+// volta nella pagina.
+function estraiFcgon(html) {
+  const m = html.match(/window\.FCGON\s*=\s*(\{[\s\S]*?\});\s*\r?\n\s*\/\/\]\]>/);
+  if (!m) return null;
+  try {
+    return JSON.parse(m[1]);
+  } catch {
+    return null;
+  }
+}
+
+async function ingestMareePrevisteStazione(stazione) {
+  let res;
+  try {
+    res = await fetchConRetry(stazione.url, {
+      headers: { "User-Agent": "Mozilla/5.0 (compatible; fvgmonitor/1.0; +https://fvgmonitor.vercel.app)" },
+    });
+  } catch (err) {
+    console.warn(`Maree previste: richiesta fallita per "${stazione.nome}" — ${err.message}`);
+    return;
+  }
+  if (!res.ok) {
+    console.warn(`Maree previste: risposta ${res.status} per "${stazione.nome}" — salto`);
+    return;
+  }
+
+  const html = await res.text();
+  const fcgon = estraiFcgon(html);
+  if (!fcgon || !Array.isArray(fcgon.tideDays)) {
+    console.warn(`Maree previste: blocco FCGON non trovato/non valido per "${stazione.nome}" — il sito potrebbe aver cambiato formato`);
+    return;
+  }
+
+  const giorni = fcgon.tideDays.slice(0, MAREE_PREVISTE_GIORNI_MAX).map((giorno) => ({
+    data: giorno.date,
+    picchi: (giorno.tides ?? [])
+      .filter((t) => t.type === "high" || t.type === "low")
+      .map((t) => ({
+        ora: new Date(t.timestamp * 1000).toISOString(),
+        altezza_m: Math.round(t.height * 100) / 100,
+        tipo: t.type === "high" ? "alta" : "bassa",
+      })),
+  }));
+
+  await upsertSnapshot(`maree-previste:${stazione.slug}`, "maree", null, {
+    stazione: stazione.nome,
+    aggiornato_al: new Date(fcgon.serverTime * 1000).toISOString(),
+    fonte: "tide-forecast.com",
+    giorni,
+  });
+  console.log(`Maree previste aggiornate (${stazione.nome}):`, giorni.length, "giorni");
+}
+
+async function ingestMareePreviste() {
+  await Promise.all(STAZIONI_MAREE_PREVISTE.map((s) => ingestMareePrevisteStazione(s)));
+}
+
+// ---------------------------------------------------------------------
+
+// ---------------------------------------------------------------------
 // BALNEAZIONE — qualità delle acque di balneazione, dataset Socrata
 // "Acqua - Acque di Balneazione" (id fpj6-y9vk) su
 // dati.friuliveneziagiulia.it, esiti dei prelievi ARPA FVG (rete
@@ -12534,6 +12728,8 @@ async function main() {
     ["temperatura", ingestTemperatura()],
     ["fiumi", ingestFiumi()],
     ["mare", ingestMare()],
+    ["maree-osservate", ingestMareeOsservate()],
+    ["maree-previste", ingestMareePreviste()],
     ["balneazione", ingestBalneazione()],
     ["farmacie", ingestFarmacie()],
     ["pronto-soccorso", ingestProntoSoccorso()],
