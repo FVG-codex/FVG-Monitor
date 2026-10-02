@@ -95,6 +95,14 @@ const config: Config = {
           "rossa-ink": "rgb(var(--color-allerta-rossa-ink) / <alpha-value>)",
           "arancione-ink": "rgb(var(--color-allerta-arancione-ink) / <alpha-value>)",
         },
+        // Palette categorica del grafico "Andamento di oggi" (Maree,
+        // 02/10/2026, MareeGraficoOggi.tsx) — vedi commento sopra
+        // --color-serie-* in globals.css per come è stata scelta/validata.
+        serie: {
+          trieste: "rgb(var(--color-serie-trieste) / <alpha-value>)",
+          grado: "rgb(var(--color-serie-grado) / <alpha-value>)",
+          lignano: "rgb(var(--color-serie-lignano) / <alpha-value>)",
+        },
       },
       fontFamily: {
         cond: ["var(--font-barlow-condensed)", "sans-serif"],

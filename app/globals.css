@@ -37,6 +37,17 @@
   --color-allerta-verde-ink: 99 184 114;
   --color-allerta-rossa-ink: 250 130 114;
   --color-allerta-arancione-ink: 232 150 79;
+  /* Grafico "Andamento di oggi" (02/10/2026, MareeGraficoOggi.tsx) — 3
+     colori categorici per Trieste/Grado/Lignano, validati con lo script
+     della skill dataviz (node scripts/validate_palette.js) contro le
+     superfici REALI di questo sito (panel scuro rgb(21,51,56) e chiaro
+     #FFFFFF), non contro le superfici generiche di default della skill:
+     tutti i controlli passano in entrambi i temi (distinguibilità
+     daltonismo, contrasto). Ordine fisso, mai ciclico, mai riusato per
+     altro — stesso principio già seguito per "zone" sopra. */
+  --color-serie-trieste: 57 135 229;
+  --color-serie-grado: 217 89 38;
+  --color-serie-lignano: 25 158 112;
 }
 
 :root[data-theme="light"] {
@@ -52,6 +63,9 @@
   --color-allerta-verde-ink: 39 102 51;
   --color-allerta-rossa-ink: 178 48 37;
   --color-allerta-arancione-ink: 156 79 14;
+  --color-serie-trieste: 42 120 214;
+  --color-serie-grado: 235 104 52;
+  --color-serie-lignano: 27 175 122;
 }
 
 html,

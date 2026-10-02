@@ -5,6 +5,7 @@ import { supabase } from "@/lib/supabase";
 import { TopHeader } from "@/components/TopHeader";
 import { Footer } from "@/components/Footer";
 import { Panel } from "@/components/Panel";
+import { MareeGraficoOggi } from "@/components/MareeGraficoOggi";
 
 // Pagina "Maree" (02/10/2026, richiesto dall'utente il 13/09/2026) — vedi
 // i commenti sopra ingestMareeOsservate()/ingestMareePreviste() in
@@ -23,8 +24,16 @@ const STAZIONI = [
   { slug: "lignano", nome: "Lignano" },
 ] as const;
 
+type PuntoSerie = { ora: string; altezza_m: number };
 type PiccoOsservato = { ora: string; altezza_m: number; tipo: "alta" | "bassa" };
-type MareeOsservateData = { stazione: string; aggiornato_al: string; picchi: PiccoOsservato[] };
+type MareeOsservateData = {
+  stazione: string;
+  aggiornato_al: string;
+  picchi: PiccoOsservato[];
+  // Serie completa di oggi (non solo i picchi) — aggiunta il 02/10/2026,
+  // usata solo dal grafico "Andamento di oggi" (MareeGraficoOggi.tsx).
+  serie?: PuntoSerie[];
+};
 
 type PiccoPrevisto = { ora: string; altezza_m: number; tipo: "alta" | "bassa" };
 type GiornoPrevisto = { data: string; picchi: PiccoPrevisto[] };
@@ -33,6 +42,9 @@ type MareePrevisteData = {
   aggiornato_al: string;
   fonte: string;
   giorni: GiornoPrevisto[];
+  // Curva completa SOLO di oggi (non limitata ai picchi) — stesso motivo
+  // di "serie" sopra.
+  serieOggi?: PuntoSerie[];
 };
 
 function formattaOra(iso: string): string {
@@ -128,7 +140,11 @@ export function MareePage() {
         {stato === "error" && <p className="text-ink-faint text-sm font-mono">Dati non disponibili al momento.</p>}
 
         {stato !== "loading" && (
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-px bg-line border border-line">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-line border border-line">
+            <Panel title="Andamento di oggi" span={3}>
+              <MareeGraficoOggi osservate={osservate} previste={previste} />
+            </Panel>
+
             {STAZIONI.map((s) => {
               const oss = osservate[s.slug];
               const prev = previste[s.slug];

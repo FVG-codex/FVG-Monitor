@@ -72,7 +72,7 @@ componente React che legge da Supabase con lo stesso nome.
 | **Temperatura live** (4 province) | Stessa API, stesse stazioni | Sensore `T` — aggira il vincolo 24h di OSMER (fonte diversa, licenza esplicita) |
 | **Livelli fiumi** (4 province) | Stessa API, stazioni idrometriche dedicate | Gorizia idro/Isonzo (66), Latisana 1 idro/Tagliamento (240), Pordenone Noncello (132), Francovez Rosandra/Trieste (602) |
 | **Livello mare** | Stessa API, 3 stazioni costiere | Trieste (502), Grado (68), Lignano (77) — sensore `LIV_MARE_IGM42`, rilevante per l'acqua alta a Trieste |
-| **Maree** — pagina dedicata `/maree` (da Ambiente) | Osservate: stessa API PC FVG (endpoint storico non documentato) · Previste: tide-forecast.com (non ufficiale, JSON `window.FCGON` incorporato nella pagina) | Due blocchi separati per stazione: picchi di alta/bassa marea registrati oggi (calcolati da `trovaPicchiMarea()`) e previsione dei prossimi giorni — vedi nota "Maree" sotto per fonti e decisioni |
+| **Maree** — pagina dedicata `/maree` (da Ambiente) | Osservate: stessa API PC FVG (endpoint storico non documentato) · Previste: tide-forecast.com (non ufficiale, JSON `window.FCGON` incorporato nella pagina) | Due blocchi separati per stazione (picchi registrati oggi + previsione dei prossimi giorni) più un grafico "Andamento di oggi" con le 3 stazioni sovrapposte (osservato continuo, previsione tratteggiata) — vedi nota "Maree" sotto per fonti e decisioni |
 | **Qualità acque di balneazione** — homepage | Dataset Socrata ARPA FVG "Acqua - Acque di Balneazione" (`fpj6-y9vk`) | `BalneazionePanel.tsx`, un tab per provincia. 66 punti di monitoraggio in tutta la regione (non solo i capoluoghi) — sia acque marino-costiere sia acque interne (laghi, fiumi). Provincia ricavata dal codice ufficiale `id_area_balneazione` (`IT006` + codice provincia ISTAT: 030 Udine, 031 Gorizia, 032 Trieste, 093 Pordenone), più affidabile del match per nome usato altrove. Per ciascun punto, esito favorevole/sfavorevole sull'ultimo prelievo confrontando enterococchi/E. coli con i valori limite per singolo campione dell'Allegato A del D.Lgs 116/2008 (soglie diverse tra acque marine e interne) — **non** è la classificazione stagionale eccellente/buona/sufficiente/scarsa (quella si basa sul 95°/90° percentile di 4 stagioni, non riproducibile da un solo prelievo). Indicativo, non sostituisce un'eventuale ordinanza comunale di divieto |
 | **Qualità dell'aria** (4 province, 4 inquinanti a tab) | 4 dataset Socrata ARPA FVG: PM10 (`qp5k-6pvm`), PM2.5 (`d63p-pqpr`), Ozono (`7vnx-28uy`), NO2 (`ke9b-p6z2`) | Un unico pannello (`AriaQualitaPanel.tsx`) con tab per inquinante — dato giornaliero/orario con qualche giorno di ritardo (validazione ARPA). Match per nome città in `ubicazione` (il campo `rete` esisteva nei dati storici ma non in quelli recenti). Soglie: PM10 50 µg/m³, PM2.5 linea guida OMS 15 µg/m³ 24h (l'Italia ha solo limite annuale), Ozono 120 µg/m³ media mobile 8h, NO2 200 µg/m³ media oraria. Pordenone spesso "n.d." per l'ozono: la stazione storica è dismessa dal 2013-2014 |
 | **Pollini** (tab per provincia) | Dataset Socrata ARPA FVG "Aria - Pollini" (`rnci-smsu`), rete aerobiologica POLLnet | `PolliniPanel.tsx`, un tab per provincia invece che per genere (a differenza del pannello qualità aria) — dentro ogni tab, i generi con presenza rilevata questa settimana (media > 0 granuli/m³), ordinati dal più alto. Dato **settimanale** (rilevamento continuo, pubblicazione a cadenza settimanale), non giornaliero. Stazioni attive verificate manualmente (agosto 2026): Trieste (Castello di S. Giusto), Lignano Sabbiadoro e Tolmezzo (entrambe provincia di Udine — nessuna stazione è nel capoluogo), Pordenone. **Nessuna stazione attiva in provincia di Gorizia** (Monfalcone, l'unica storica lì, ferma al 2011) — gap reale della rete regionale, il tab mostra il messaggio esplicito invece di "n.d." silenzioso. Nessuna classificazione di rischio (assente/scarsa/media/alta): ARPA la pubblica ma con soglie diverse per ciascun genere, non estratte in modo affidabile — mostriamo solo il dato grezzo, rimandando al bollettino ufficiale per l'interpretazione |
@@ -4962,6 +4962,101 @@ non del codice: funzionerà in build reale su Vercel/CI, con rete
 completa), un ingest reale da GitHub Actions con questi due nuovi moduli,
 e naturalmente nessuna conferma visuale su browser vero (nessun accesso a
 un browser in questa sessione) — da fare al primo giro utile.
+
+## Maree — grafico "Andamento di oggi" (02/10/2026, stesso giorno)
+
+Richiesto dall'utente subito dopo la consegna della pagina `/maree` sopra:
+un grafico dell'andamento del livello del mare della giornata in corso,
+per le 3 stazioni insieme. Due decisioni prese **con l'utente** prima di
+scrivere codice (`AskUserQuestion`): un unico grafico con le 3 stazioni
+sovrapposte (non 3 mini-grafici separati), e la curva osservata finora
+sovrapposta a quella prevista per il resto della giornata (tratto
+continuo → tratteggiato), non le due cose separate.
+
+Nessuna nuova fonte dati: sia l'osservato (API PC FVG) sia il previsto
+(FCGON di tide-forecast.com) restituivano già, nelle chiamate esistenti,
+molti più punti di quelli usati finora — i soli picchi. Aggiunta ai due
+snapshot (additiva, non rimuove nulla di già usato dai blocchi "Oggi
+(osservato)"/"Prossimi giorni" sopra): `serie` (curva completa di oggi,
+osservata, in `maree-osservate:{slug}`) e `serieOggi` (curva completa di
+oggi, prevista, in `maree-previste:{slug}`).
+
+**Bug reale trovato e corretto mentre si lavorava su questo** (non
+segnalato dall'utente, scoperto verificando empiricamente — non
+assumendo — il fuso orario del campo `dt` dell'API PC FVG, necessario per
+posizionare correttamente l'osservato sull'asse del grafico accanto al
+previsto): `dt` è in realtà UTC "nudo" (es. `"2026-10-02 11:45:00"`),
+mai dichiarato esplicitamente da nessuna parte. Verificato confrontando
+l'ora reale con l'ultima misura di `/measures/latest` nel momento esatto
+della richiesta: lo scarto tornava di soli ~15 minuti interpretando `dt`
+come UTC (coerente con la cadenza di campionamento), sarebbe stato di
+oltre 2 ore interpretandolo come ora locale italiana (CEST, implausibile
+per un endpoint "latest"). La consegna precedente di oggi passava questo
+`dt` al frontend come stringa grezza (`"YYYY-MM-DD HH:MM:SS"`, senza T/Z):
+`new Date(...)` su una stringa così non ha un comportamento garantito
+uguale tra i vari motori JS (interpretata come ora locale di chi esegue
+il codice, non come UTC) — un bug silenzioso, mai andato in produzione
+prima di essere trovato qui. Corretto con un nuovo `dtPcFvgAIso()` in
+`ingest-light.mjs`, applicato a `picchi[].ora`, `aggiornato_al` e alla
+nuova `serie` — tutti e tre i punti dove `dt` viene usato.
+
+**Palette del grafico**: 3 colori categorici (Trieste/Grado/Lignano),
+scelti e verificati con la skill "dataviz" di questa sessione
+(`scripts/validate_palette.js`) — non i colori "zone" già esistenti nel
+sito (pensati per sfondi di badge, non per tratti di linea: falliscono
+i controlli di contrasto/distinguibilità testati contro le superfici
+reali del sito), ma i primi 3 slot della palette categorica di
+riferimento della skill, **ri-validati contro le superfici vere di
+questo sito** (pannello scuro `rgb(21,51,56)`, pannello chiaro
+`#FFFFFF`) anziché contro le superfici generiche di default della skill
+— tutti i controlli passano in entrambi i temi. Nuovi token
+`--color-serie-trieste/grado/lignano` in `globals.css` (stesso pattern
+chiaro/scuro di tutti gli altri colori del sito) + `serie.*` in
+`tailwind.config.ts`.
+
+Nessuna libreria di grafici aggiunta — SVG scritto a mano
+(`MareeGraficoOggi.tsx`), stesso principio "poche dipendenze" già
+seguito ovunque nel progetto. Include crosshair + tooltip al passaggio
+del mouse/tocco (interpolazione lineare tra i punti reali, coerente con
+la linea disegnata), legenda sempre visibile con nome stazione in
+testo (non solo colore — necessario perché 2 dei 3 colori non
+raggiungono 3:1 di contrasto sullo sfondo chiaro, la skill richiede
+un'etichetta visibile come "relief" in quel caso), ed un equivalente
+testuale già disponibile nei pannelli "Oggi (osservato)"/"Prossimi
+giorni" subito sotto, che fa anche da ausilio per chi usa uno screen
+reader (`role="img"` + `aria-label` sul grafico che rimanda a quei
+pannelli).
+
+**Bug di idratazione React trovato e corretto durante la verifica
+visiva** (non in produzione, trovato qui prima della consegna): la riga
+verticale "adesso" calcolava `Date.now()` direttamente nel corpo del
+componente — tra il render lato server e l'idratazione lato client
+passano alcuni millisecondi, quindi i due calcoli differivano leggermente
+e React segnalava un mismatch (confermato con un rendering di prova via
+Chromium headless, warning "Prop did not match" in console). Corretto
+spostando `adesso` in uno stato impostato solo dopo il mount (`useEffect`,
+aggiornato ogni minuto) — nella pagina reale (`/maree`) il grafico non
+viene comunque mai renderizzato lato server (i dati arrivano da Supabase
+solo dopo il mount), quindi questo problema specifico non si sarebbe
+manifestato in produzione, ma vale la pena restasse corretto per
+qualunque uso futuro del componente.
+
+Verifica eseguita (oltre a `node --check`/`npx tsc --noEmit`, già
+puliti): un piccolo harness Node isolato per `trovaPicchiMarea()`,
+`dtPcFvgAIso()` ed `estraiFcgon()`/estrazione di `serieOggi` su un
+fixture minimo (stesso principio già usato per la sezione GEA, vedi
+sopra), tutti i controlli passati; e una verifica VISIVA reale — non
+solo letta nel codice — con `next dev` + Chromium headless (stesso
+metodo già usato altrove in questo progetto, es. "Sessione del
+28/08/2026 — Fix responsive Meteo"): una pagina di prova temporanea con
+dati sintetici (non reali — Supabase non è raggiungibile da questa
+sessione), screenshot di entrambi i temi, zero errori/warning React in
+console dopo il fix di idratazione, hover testato esplicitamente.
+Pagina di prova ed eventuali file temporanei **rimossi prima della
+consegna**, non fanno parte del sito. **Non ancora verificato**: un
+rendering reale con dati veri da Supabase (richiede un'esecuzione di
+ingest-light.mjs mai ancora girata per questo modulo, vedi sezione
+sopra) e nessuna conferma dall'utente su un browser vero.
 
 ## Idee future (annotate, non richieste esplicitamente per l'implementazione)
 

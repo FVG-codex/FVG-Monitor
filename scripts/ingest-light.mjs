@@ -2264,6 +2264,23 @@ async function serieOggiStazione(stationId, sensorId) {
   return json.measures ?? [];
 }
 
+// Il campo `dt` di questa API è "YYYY-MM-DD HH:MM:SS" SENZA fuso
+// indicato — non documentato, e qui NON va assunto. Verificato
+// empiricamente il 02/10/2026 (non per deduzione): confrontando l'ora
+// reale al momento della richiesta con `dt` dell'ultima misura di
+// /measures/latest, lo scarto risultava di soli ~15 minuti se si
+// interpreta `dt` come UTC (coerente con la cadenza di campionamento) —
+// sarebbe stato di oltre 2 ore se `dt` fosse già ora locale italiana
+// (CEST, UTC+2 in questo periodo), scarto implausibile per un endpoint
+// "latest". `dt` è quindi UTC "nudo": qui si corregge solo il formato
+// (serve T/Z per un parsing inequivocabile con `new Date()` in
+// qualunque motore/fuso d'esecuzione — lo spazio al posto della "T" è
+// interpretato in modo incoerente tra i vari browser), nessuna reale
+// conversione di fuso.
+function dtPcFvgAIso(dt) {
+  return `${dt.replace(" ", "T")}Z`;
+}
+
 async function ingestMareeOsservateStazione(stazione) {
   const sensori = await sensoriStazione(stazione.id);
   const idLivello = sensori.find((s) => s.code === "LIV_MARE_IGM42")?.id ?? null;
@@ -2279,7 +2296,7 @@ async function ingestMareeOsservateStazione(stazione) {
   }
 
   const punti = misure
-    .map((m) => ({ dt: m.dt, value: m.value }))
+    .map((m) => ({ dt: dtPcFvgAIso(m.dt), value: m.value }))
     .sort((a, b) => new Date(a.dt) - new Date(b.dt));
 
   const picchi = trovaPicchiMarea(punti).map((p) => ({
@@ -2288,12 +2305,18 @@ async function ingestMareeOsservateStazione(stazione) {
     tipo: p.tipo,
   }));
 
+  // Serie completa (non solo i picchi) — usata dal grafico "Andamento di
+  // oggi" (MareeGraficoOggi.tsx), aggiunta il 02/10/2026. ~60-96 punti
+  // (ogni 15 minuti dalla mezzanotte a "adesso"), peso trascurabile.
+  const serie = punti.map((p) => ({ ora: p.dt, altezza_m: Math.round(p.value * 100) / 100 }));
+
   await upsertSnapshot(`maree-osservate:${stazione.slug}`, "maree", null, {
     stazione: stazione.nome,
     aggiornato_al: punti[punti.length - 1].dt,
     picchi,
+    serie,
   });
-  console.log(`Maree osservate aggiornate (${stazione.nome}):`, picchi.length, "picchi");
+  console.log(`Maree osservate aggiornate (${stazione.nome}):`, picchi.length, "picchi,", serie.length, "punti serie");
 }
 
 async function ingestMareeOsservate() {
@@ -2362,13 +2385,35 @@ async function ingestMareePrevisteStazione(stazione) {
       })),
   }));
 
+  // Curva completa di oggi (anche i punti intermedi con type:null, non
+  // solo i picchi) — usata dal grafico "Andamento di oggi"
+  // (MareeGraficoOggi.tsx, 02/10/2026), non dalla lista "Prossimi giorni"
+  // sopra. `tideDays[0]` è sempre la giornata corrente (verificato per
+  // tutte e 3 le località il 02/10/2026 — vedi sezione MAREE in
+  // README.md). Punti ogni 10 minuti circa, ~150 al massimo: peso
+  // trascurabile sullo snapshot.
+  const serieOggi = (fcgon.tideDays[0]?.tides ?? [])
+    .filter((t) => typeof t.height === "number" && typeof t.timestamp === "number")
+    .map((t) => ({
+      ora: new Date(t.timestamp * 1000).toISOString(),
+      altezza_m: Math.round(t.height * 100) / 100,
+    }))
+    .sort((a, b) => new Date(a.ora) - new Date(b.ora));
+
   await upsertSnapshot(`maree-previste:${stazione.slug}`, "maree", null, {
     stazione: stazione.nome,
     aggiornato_al: new Date(fcgon.serverTime * 1000).toISOString(),
     fonte: "tide-forecast.com",
     giorni,
+    serieOggi,
   });
-  console.log(`Maree previste aggiornate (${stazione.nome}):`, giorni.length, "giorni");
+  console.log(
+    `Maree previste aggiornate (${stazione.nome}):`,
+    giorni.length,
+    "giorni,",
+    serieOggi.length,
+    "punti serie oggi"
+  );
 }
 
 async function ingestMareePreviste() {

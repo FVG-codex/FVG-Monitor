@@ -22,6 +22,13 @@ export type VoceChangelog = {
 export const CHANGELOG: VoceChangelog[] = [
   {
     data: "02/10/2026",
+    titolo: "Maree: grafico \"Andamento di oggi\" con le 3 stazioni",
+    dettagli: [
+      "Su /maree, un grafico mostra ora l'andamento del livello del mare dell'intera giornata per Trieste, Grado e Lignano insieme: tratto continuo per i dati realmente osservati finora, tratteggiato per la previsione del resto della giornata. Passando il mouse (o il dito) sul grafico compare un riquadro con l'orario e il valore di ciascuna stazione in quel momento.",
+    ],
+  },
+  {
+    data: "02/10/2026",
     titolo: "Nuova pagina Maree: alta e bassa marea osservata e prevista a Trieste, Grado e Lignano",
     dettagli: [
       "Nuova pagina /maree (raggiungibile da Ambiente), con due informazioni distinte per ciascuna delle 3 stazioni costiere: i picchi di alta/bassa marea realmente registrati oggi (fonte: la stessa API Protezione Civile FVG già usata per il livello mare in tempo reale, un endpoint storico scoperto in fase di sviluppo) e la previsione per i prossimi giorni (fonte: tide-forecast.com, sito non ufficiale ma con dati strutturati verificati per tutte e 3 le località).",
