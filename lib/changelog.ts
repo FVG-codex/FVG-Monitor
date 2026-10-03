@@ -22,6 +22,14 @@ export type VoceChangelog = {
 export const CHANGELOG: VoceChangelog[] = [
   {
     data: "03/10/2026",
+    titolo: "Fase 1 multilingua: il sito è ora disponibile anche in inglese",
+    dettagli: [
+      "In alto a destra è comparso un selettore IT/EN. L'italiano resta l'indirizzo di sempre (es. /maree), l'inglese aggiunge un prefisso (es. /en/maree). Se il browser è configurato in una lingua diversa dall'italiano, il sito ti porta automaticamente sulla versione inglese al primo accesso.",
+      "In questa prima fase è tradotta solo l'interfaccia del sito: intestazione, menu, piè di pagina e il guscio della homepage (titoli dei riquadri). Il contenuto che arriva da fonti esterne — notizie, bollettini meteo, eventi, dati di traffico, ecc. — resta in italiano anche nelle pagine raggiunte con /en, perché tradurre automaticamente dati che cambiano in tempo reale non sarebbe affidabile. Le prossime lingue (tedesco, sloveno, croato) seguiranno una alla volta, così come la traduzione delle singole pagine di contenuto.",
+    ],
+  },
+  {
+    data: "03/10/2026",
     titolo: "Fix — Colonnine elettriche non si popolava nonostante la chiave impostata",
     dettagli: [
       "Il workflow di ingestione non passava la chiave OpenChargeMap allo script, anche se il secret esisteva nel repository — ogni variabile d'ambiente va dichiarata esplicitamente nel file del workflow, non basta che il secret sia salvato su GitHub. Corretto: ora il modulo riceve la chiave e può aggiornare i dati.",

@@ -1,0 +1,70 @@
+{
+  "chrome": {
+    "siteName": "FVG Monitor",
+    "skipLink": "Vai al contenuto principale",
+    "provinceNav": "Navigazione per provincia",
+    "allRegion": "Tutta la regione",
+    "menuOpen": "Apri menu",
+    "menuClose": "Chiudi menu",
+    "menuExtraSections": "Sezioni extra",
+    "themeToDark": "Passa al tema scuro",
+    "themeToLight": "Passa al tema chiaro",
+    "languageSwitcher": "Cambia lingua"
+  },
+  "nav": {
+    "meteo": "Meteo",
+    "notizie": "Notizie",
+    "ambiente": "Ambiente",
+    "sport": "Sport",
+    "immagini": "FVG in immagini",
+    "viabilita": "Viabilità",
+    "trasporti": "Trasporti",
+    "aviazione": "Aviazione",
+    "sanita": "Sanità",
+    "turismo": "Turismo",
+    "economia": "Economia",
+    "commercio": "Commercio"
+  },
+  "footer": {
+    "changelog": "Registro modifiche →"
+  },
+  "home": {
+    "title": "FVG Monitor — dati in tempo reale per il Friuli Venezia Giulia",
+    "panels": {
+      "meteo": "Meteo · Le 4 province",
+      "meteoLink": "OSMER ARPA FVG →",
+      "allerte": "Allerte · Zone",
+      "allerteLink": "Storico →",
+      "allerteDettaglio": "Dettaglio e widget ufficiale per provincia:",
+      "notizie": "Notizie locali",
+      "notizieLink": "Tutte →",
+      "soleLuna": "Sole e luna",
+      "viabilita": "Viabilità",
+      "viabilitaLink": "InfoViaggiando →",
+      "carburanti": "Carburanti",
+      "carburantiLink": "MIMIT →",
+      "voli": "Trieste Airport",
+      "voliLink": "Tutti i voli →",
+      "tgr": "TGR FVG",
+      "eventi": "Eventi in regione",
+      "eventiLink": "Tutti →"
+    },
+    "ambiente": {
+      "title": "Ambiente",
+      "description": "Vento, pioggia, aria, pollini, mare, fiumi e balneazione — fonte: Protezione Civile FVG, ARPA FVG",
+      "bora": "Bora · Vento e Pioggia",
+      "boraLink": "Protezione Civile FVG →",
+      "aria": "Qualità dell'aria",
+      "ariaLink": "ARPA FVG →",
+      "pollini": "Pollini",
+      "polliniLink": "ARPA FVG →",
+      "livelli": "Livelli mare e fiumi",
+      "livelliLink": "Protezione Civile FVG →",
+      "mare": "Mare",
+      "fiumi": "Fiumi",
+      "balneazione": "Qualità acque di balneazione",
+      "balneazioneLink": "ARPA FVG →"
+    },
+    "fonti": "Fonti: OSMER ARPA FVG · ANSA FVG · Protezione Civile FVG (CC BY 4.0) · InfoViaggiando · Turismo FVG · RAI TGR FVG · Trieste Airport"
+  }
+}

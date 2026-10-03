@@ -5194,6 +5194,141 @@ geolocalizzazione e ricerca manuale su un browser reale dell'utente
 (incluso il prompt di permesso del browser, che questa sessione non può
 testare).
 
+## Multilingua — Fase 1: infrastruttura + inglese (03/10/2026)
+
+Richiesta dell'utente: tradurre il sito in più lingue (inglese, tedesco,
+sloveno, croato — annotata come idea il 29/09/2026, vedi anche
+`claude/fvgmonitor-stato.md`), una lingua alla volta. Tre decisioni
+architetturali confermate con l'utente prima di scrivere codice
+(`AskUserQuestion`):
+
+1. **Cosa si traduce**: solo l'interfaccia (header, menu, footer, guscio
+   della homepage), NON i dati che arrivano da fonti esterne (notizie,
+   bollettini meteo, eventi, traffico, ecc.) — tradurli in automatico
+   non sarebbe affidabile e andrebbe rifatto ad ogni aggiornamento della
+   fonte.
+2. **Prima lingua**: inglese.
+3. **Indirizzi**: l'italiano resta SENZA prefisso (es. `/maree`, uguale
+   a prima — nessun link esistente si rompe), le altre lingue hanno il
+   prefisso (es. `/en/maree`).
+
+**Libreria**: [`next-intl`](https://next-intl.dev) (v4.14.9, già
+presente come dipendenza nel progetto). Prima di scrivere qualsiasi
+file, API verificata leggendo direttamente i file `.d.ts` del pacchetto
+installato in `node_modules/next-intl/dist/types/` (stessa disciplina
+di "verifica diretta, non per sentito dire" già seguita per le fonti
+dati) — non fidandosi di esempi trovati online, che spesso si
+riferiscono a versioni diverse. Due cose scoperte così che una guida
+generica avrebbe fatto sbagliare:
+- **`hasLocale` non esiste in questa versione**: molti esempi recenti
+  di next-intl usano una funzione `hasLocale` per validare il locale
+  richiesto — cercata in tutti i file di tipo del pacchetto, l'unica
+  occorrenza è interna a un modulo non esportato (`extractor/utils`),
+  non è un export pubblico di `next-intl`/`next-intl/server` in
+  questa versione. La validazione in `i18n/request.ts` è quindi scritta
+  a mano (`routing.locales.includes(...)`).
+- **Solo `next-intl/plugin` ha un export CommonJS**: `next.config.js` è
+  un file `.js` caricato da Next.js con `require()` nativo di Node, non
+  con un bundler — confermato sul `package.json` del pacchetto che
+  SOLO l'entry point `./plugin` ha un ramo `"require"` oltre a
+  `"import"`; tutti gli altri (`.`, `./server`, `./routing`,
+  `./navigation`...) sono ESM-only e vanno importati solo dai file che
+  Next.js stesso compila (`i18n/*.ts`, `middleware.ts`), mai da
+  `next.config.js`.
+
+**File nuovi**:
+- `i18n/routing.ts` — configurazione centrale: `defineRouting({locales:
+  ["it","en"], defaultLocale: "it", localePrefix: "as-needed"})`.
+- `i18n/navigation.ts` — `Link`/`usePathname`/`useRouter`/`getPathname`
+  locale-aware, da usare al posto di `next/link` nei componenti
+  condivisi.
+- `i18n/request.ts` — risolve il locale della richiesta corrente e
+  carica il dizionario giusto (`messages/it.json` o `messages/en.json`).
+- `middleware.ts` — instrada le richieste in base al locale (redirect
+  automatico alla lingua del browser al primo accesso se diversa
+  dall'italiano, vedi sotto).
+- `messages/it.json`, `messages/en.json` — dizionari per i testi
+  dell'interfaccia (header, menu, footer, guscio homepage).
+- `components/LanguageSwitcher.tsx` — due pulsanti IT/EN nell'header,
+  accanto al cambio tema.
+
+**File ristrutturati**: tutte le 50 cartelle di pagina sotto `app/`
+(tutte tranne `api/`) spostate dentro `app/[locale]/` — segmento
+dinamico richiesto da next-intl per sapere in che lingua rendere ogni
+pagina. `app/api/` e `app/globals.css` restano al livello originale
+(le API non vanno prefissate per lingua). `app/layout.tsx` →
+`app/[locale]/layout.tsx`: `lang` dell'`<html>` ora dinamico (prima
+fisso `"it"`), avvolto in `NextIntlClientProvider` per rendere le
+traduzioni disponibili ai componenti client, resto invariato (font,
+Google Analytics, script tema chiaro/scuro, skip link). `app/page.tsx`
+→ `app/[locale]/page.tsx`: diventata async per usare le traduzioni
+server-side; solo le etichette di contorno (titolo invisibile, titoli
+dei riquadri, sezione "Ambiente") sono tradotte — i pannelli importati
+(`MeteoOverview`, `NotiziePanel`, ecc.) restano invariati, con
+contenuto in italiano in entrambe le lingue.
+
+**Componenti tradotti**: `TopHeader.tsx` (voce "Tutta la regione",
+etichetta di navigazione, orologio con formato data localizzato —
+`en-GB` per l'inglese), `Footer.tsx` (link "Registro modifiche"),
+`MenuHamburger.tsx` (12 voci di menu + etichette apri/chiudi),
+`ThemeToggle.tsx` (etichette del pulsante tema). Tutti e quattro usano
+ora `Link`/`usePathname` di `i18n/navigation.ts` invece di `next/link`,
+così la navigazione interna nell'header/menu/footer mantiene il
+prefisso di lingua attivo (da `/en/...` si resta su `/en/...`, non si
+torna all'italiano cambiando pagina).
+
+**Le altre ~50 pagine** (contenuto di ciascuna sezione — Meteo, Sanità,
+Viabilità, Colonnine elettriche, ecc.) **non sono ancora tradotte**:
+raggiungibili sotto `/en/...` (es. `/en/viabilita`), mostrano la
+stessa interfaccia inglese di contorno (header/menu/footer) ma il
+contenuto interno della pagina resta in italiano — compresi i link di
+breadcrumb (`← Viabilità`) che restano puntati all'indirizzo italiano.
+Scelta deliberata per questa prima fase, non un bug: tradurre tutte le
+pagine di contenuto è un lavoro grande, da fare incrementalmente in
+sessioni successive.
+
+**Rilevamento automatico della lingua**: `next-intl` rileva la lingua
+preferita dal browser (header `Accept-Language`) al primo accesso —
+scoperto verificando con Playwright un contesto browser con lingua
+inglese: la richiesta a `/` viene reindirizzata a `/en` automaticamente
+(comportamento di default della libreria, non disattivato: sembra
+utile per i nuovi visitatori non italiani). Un browser configurato in
+italiano continua a vedere `/` senza redirect, come sempre. La scelta
+fatta cliccando il selettore resta salvata in un cookie
+(`NEXT_LOCALE`) per le visite successive.
+
+**Dettaglio tecnico sul selettore di lingua**: next-intl, quando il
+`Link` riceve una prop `locale` esplicita (come fa
+`LanguageSwitcher.tsx` per passare da IT a EN e viceversa), genera
+SEMPRE un URL con prefisso — anche per l'italiano, che normalmente non
+ne ha (`/it/viabilita` invece di `/viabilita`). Non è un bug: è un
+comportamento intenzionale della libreria stessa (commento nel codice
+sorgente, riferito a un problema noto quando si cambia lingua),
+compensato dal middleware che reindirizza subito `/it/...` alla sua
+forma canonica senza prefisso `/...` — un redirect in più, invisibile
+all'utente, verificato con un test Playwright che segue la catena di
+richieste di rete fino all'URL finale.
+
+**Verificato**: `npx tsc --noEmit` pulito; `next build` non eseguibile
+in questo sandbox per lo stesso limite di rete già noto verso i font
+Google (non scarica i font al momento della build, fallisce prima di
+arrivare al resto — vedi "Resilienza di rete" sopra), quindi la verifica
+è stata fatta con `next dev` + richieste HTTP dirette + Chromium
+headless via Playwright: homepage e pagine di contenuto interrogate in
+italiano e inglese (codici di stato, `lang` dell'`<html>`, testi
+tradotti presenti), screenshot reali di homepage IT, homepage EN, menu
+EN aperto, pagina Colonnine elettriche in EN; selettore di lingua
+testato con un click reale seguendo la richiesta di rete fino al
+redirect finale; console del browser controllata su più pagine in
+entrambe le lingue — zero errori applicativi (solo i consueti blocchi
+di rete del sandbox verso font Google/Supabase, non imputabili a questo
+lavoro).
+
+**Non ancora fatto**: traduzione del contenuto interno delle ~50 pagine
+di sezione; tedesco, sloveno e croato (una lingua alla volta, come
+deciso con l'utente); verifica in un browser reale dell'utente (questa
+sessione ha verificato solo con Chromium headless in sandbox).
+
 ## Idee future (annotate, non richieste esplicitamente per l'implementazione)
 
 - **Strutture ricettive — implementate il 26/08/2026** (vedi sezioni dedicate sopra): hub + 8 pagine, arricchimento contatti da OpenStreetMap lo stesso giorno, poi scraping incrementale turismofvg.it per gli Agriturismi (sempre 26/08/2026, vedi "Agriturismi — scraping incrementale turismofvg.it" sopra per i dettagli — DevTools fornito dall'utente, stesso metodo già servito per Tennis/Sci/Autobus). **Prossimo passo su questo modulo**: estendere lo scraping turismofvg.it alle altre 7 categorie (B&B, Affittacamere, Campeggi, Alberghi Diffusi, Sociali, Marina, Rifugi) — richiede prima di verificare che URL/etichette HTML siano gli stessi osservati per Agriturismi (non garantito), idealmente con un altro campione reale fornito dall'utente per categoria prima di aggiungerla a `TURISMOFVG_CATEGORIE`.

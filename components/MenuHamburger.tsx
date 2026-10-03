@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 
 // Sezioni extra del sito, distinte dalla navigazione principale per
 // provincia (già visibile nei tab dell'header). Aggiungi qui nuove
@@ -14,22 +15,30 @@ import Link from "next/link";
 // per Farmacie → Sanità nella sessione precedente. Le pagine di
 // destinazione restano tutte raggiungibili, solo un livello più in
 // basso, con un breadcrumb "← <Hub>" in cima a ciascuna.
+//
+// Fase 1 — Multilingua (03/10/2026): le etichette ora vengono dalla
+// chiave di traduzione `nav.*` (messages/it.json, messages/en.json)
+// invece che da una stringa fissa qui — `href` resta la chiave unica
+// che non cambia con la lingua (next-intl usa il `Link` locale-aware
+// per anteporre /en quando serve).
 const SEZIONI_EXTRA = [
-  { label: "Meteo", href: "/meteo" },
-  { label: "Notizie", href: "/notizie" },
-  { label: "Ambiente", href: "/ambiente" },
-  { label: "Sport", href: "/sport" },
-  { label: "FVG in immagini", href: "/fvg-in-immagini" },
-  { label: "Viabilità", href: "/viabilita" },
-  { label: "Trasporti", href: "/trasporti" },
-  { label: "Aviazione", href: "/aviazione" },
-  { label: "Sanità", href: "/sanita" },
-  { label: "Turismo", href: "/turismo" },
-  { label: "Economia", href: "/economia" },
-  { label: "Commercio", href: "/commercio" },
-];
+  { chiave: "meteo", href: "/meteo" },
+  { chiave: "notizie", href: "/notizie" },
+  { chiave: "ambiente", href: "/ambiente" },
+  { chiave: "sport", href: "/sport" },
+  { chiave: "immagini", href: "/fvg-in-immagini" },
+  { chiave: "viabilita", href: "/viabilita" },
+  { chiave: "trasporti", href: "/trasporti" },
+  { chiave: "aviazione", href: "/aviazione" },
+  { chiave: "sanita", href: "/sanita" },
+  { chiave: "turismo", href: "/turismo" },
+  { chiave: "economia", href: "/economia" },
+  { chiave: "commercio", href: "/commercio" },
+] as const;
 
 export function MenuHamburger() {
+  const t = useTranslations("nav");
+  const tChrome = useTranslations("chrome");
   const [aperto, setAperto] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const bottoneRef = useRef<HTMLButtonElement>(null);
@@ -61,7 +70,7 @@ export function MenuHamburger() {
       <button
         ref={bottoneRef}
         onClick={() => setAperto((a) => !a)}
-        aria-label={aperto ? "Chiudi menu" : "Apri menu"}
+        aria-label={aperto ? tChrome("menuClose") : tChrome("menuOpen")}
         aria-expanded={aperto}
         aria-controls="menu-sezioni-extra"
         className="flex flex-col justify-center gap-[4px] w-7 h-7 flex-shrink-0"
@@ -74,7 +83,7 @@ export function MenuHamburger() {
       {aperto && (
         <nav
           id="menu-sezioni-extra"
-          aria-label="Sezioni extra"
+          aria-label={tChrome("menuExtraSections")}
           className="absolute left-0 top-full mt-2 w-56 bg-panel border border-line rounded shadow-lg py-1 z-30"
         >
           {SEZIONI_EXTRA.map((s) => (
@@ -84,7 +93,7 @@ export function MenuHamburger() {
               onClick={() => setAperto(false)}
               className="block px-4 py-2.5 text-sm text-ink-dim hover:text-ink hover:bg-panel-alt transition-colors"
             >
-              {s.label}
+              {t(s.chiave)}
             </Link>
           ))}
         </nav>

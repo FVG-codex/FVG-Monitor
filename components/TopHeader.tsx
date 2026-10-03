@@ -1,12 +1,16 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
+import { useLocale, useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { MenuHamburger } from "@/components/MenuHamburger";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { PROVINCE_LIST } from "@/lib/province";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
 export function TopHeader({ paginaAttiva }: { paginaAttiva?: "regione" | string }) {
+  const t = useTranslations("chrome");
+  const locale = useLocale();
   const [ora, setOra] = useState<string>("");
   const [data, setData] = useState<string>("");
 
@@ -16,15 +20,19 @@ export function TopHeader({ paginaAttiva }: { paginaAttiva?: "regione" | string 
       const pad = (n: number) => String(n).padStart(2, "0");
       setOra(`${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`);
       setData(
-        now.toLocaleDateString("it-IT", { day: "numeric", month: "long", year: "numeric" })
+        now.toLocaleDateString(locale === "en" ? "en-GB" : "it-IT", {
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        })
       );
     };
     tick();
     const id = setInterval(tick, 1000);
     return () => clearInterval(id);
-  }, []);
+  }, [locale]);
 
-  const voci = [{ label: "Tutta la regione", href: "/", key: "regione" }, ...PROVINCE_LIST.map((p) => ({ label: p.nome, href: `/${p.slug}`, key: p.slug }))];
+  const voci = [{ label: t("allRegion"), href: "/", key: "regione" }, ...PROVINCE_LIST.map((p) => ({ label: p.nome, href: `/${p.slug}`, key: p.slug }))];
 
   return (
     <header className="sticky top-0 z-20 border-b border-line bg-bg/95 backdrop-blur">
@@ -33,11 +41,11 @@ export function TopHeader({ paginaAttiva }: { paginaAttiva?: "regione" | string 
           <MenuHamburger />
           <Link href="/" className="font-cond font-bold text-[22px] tracking-[0.06em] uppercase flex items-baseline gap-2">
             <span className="w-[7px] h-[7px] rounded-full bg-cool inline-block pulse-dot" />
-            FVG Monitor
+            {t("siteName")}
           </Link>
         </div>
 
-        <nav aria-label="Navigazione per provincia" className="flex gap-0.5 font-cond font-semibold text-sm flex-wrap">
+        <nav aria-label={t("provinceNav")} className="flex gap-0.5 font-cond font-semibold text-sm flex-wrap">
           {voci.map((voce) => (
             <Link
               key={voce.key}
@@ -59,6 +67,7 @@ export function TopHeader({ paginaAttiva }: { paginaAttiva?: "regione" | string 
             <div className="text-[13px] text-ink-dim">{ora}</div>
             <div className="text-xs text-ink-faint">{data}</div>
           </div>
+          <LanguageSwitcher />
           <ThemeToggle />
         </div>
       </div>

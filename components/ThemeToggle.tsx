@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 
 // Tema chiaro/scuro (04/09/2026). Il default resta il tema scuro storico
 // del sito ("Adriatico notturno") — questo pulsante è l'unico modo per
@@ -23,6 +24,7 @@ function leggiTemaAttuale(): Tema {
 }
 
 export function ThemeToggle() {
+  const t = useTranslations("chrome");
   // null finché non montato lato client: evita di mostrare per un
   // istante lo stato sbagliato prima che sappiamo cosa ha impostato lo
   // script inline (rilevante soprattutto se l'utente aveva scelto il
@@ -61,8 +63,8 @@ export function ThemeToggle() {
     <button
       onClick={toggle}
       aria-pressed={tema === "chiaro"}
-      aria-label={tema === "chiaro" ? "Passa al tema scuro" : "Passa al tema chiaro"}
-      title={tema === "chiaro" ? "Tema scuro" : "Tema chiaro"}
+      aria-label={tema === "chiaro" ? t("themeToDark") : t("themeToLight")}
+      title={tema === "chiaro" ? t("themeToDark") : t("themeToLight")}
       className="w-7 h-7 rounded border border-line text-ink-dim hover:text-ink hover:border-ink-faint transition-colors flex items-center justify-center flex-shrink-0"
     >
       {tema === "chiaro" ? (
