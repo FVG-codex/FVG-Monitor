@@ -6,6 +6,12 @@
 //   SUPABASE_URL
 //   SUPABASE_SERVICE_ROLE_KEY   ← NON la chiave anon: questa bypassa RLS
 //                                  ed è l'unica autorizzata a scrivere.
+//
+// Facoltativa (solo per il modulo "Colonnine elettriche", 03/10/2026):
+//   OPENCHARGEMAP_API_KEY   ← chiave personale gratuita registrata
+//                              dall'utente su openchargemap.org. Se manca,
+//                              quel solo modulo si salta con un avviso —
+//                              non fa fallire l'intera esecuzione.
 
 import { createClient } from "@supabase/supabase-js";
 import { XMLParser } from "fast-xml-parser";
@@ -12754,6 +12760,187 @@ async function ingestTurismoFvgBikeSerie(serie) {
 }
 
 // ---------------------------------------------------------------------
+// COLONNINE ELETTRICHE — mappa di tutte le colonnine di ricarica per
+// veicoli elettrici in FVG, richiesta dall'utente il 02/10/2026 ("è
+// possibile inserire una mappa... con un selettore della propria
+// posizione, per vedere le colonnine in un raggio di 30 km?").
+//
+// Fonti valutate prima di scrivere questo codice (sessione del
+// 02-03/10/2026):
+// - PUN (piattaformaunicanazionale.it), il registro ufficiale del
+//   MASE: nessuna API pubblica, sito SPA solo-JavaScript — scartato,
+//   non ispezionabile dalla sessione di sviluppo (nessun browser reale
+//   disponibile per guardare le sue chiamate di rete).
+// - Estrazione di onData su GitHub (reverse-engineering dell'API
+//   interna di PUN, github.com/ondata/rete_ricarica_veicoli_elettrici):
+//   il README del repository stesso avverte che PUN ha cambiato il
+//   metodo di pubblicazione e i dati "NON SONO AGGIORNATI" — scartata
+//   come fonte congelata.
+// - OpenChargeMap (openchargemap.org): registro globale comunitario +
+//   import di fonti aperte dove disponibili, API REST gratuita (serve
+//   una chiave personale gratuita, registrata dall'utente) con query
+//   nativa per raggio di distanza. Scelta come fonte, con un limite
+//   dichiarato onestamente in UI: un campione reale testato il
+//   02/10/2026 (10 colonnine entro ~12 km da Trieste/Grado, incollato
+//   dall'utente da un browser vero — questo sandbox non riesce a
+//   raggiungere l'API) mostra `DateLastVerified` fra il 2015 e il
+//   2023, nessuna nel 2024-2026 — il dato è probabilmente incompleto
+//   per le installazioni più recenti. Per questo ogni colonnina
+//   mostra la propria data di verifica (vedi "verificatoIl" sotto),
+//   invece di dare un'impressione di completezza non verificata.
+//
+// Formato di /v3/poi (compact=true) verificato sul campione reale
+// incollato dall'utente — i nomi di campo usati sotto (AddressInfo,
+// Connections, NumberOfPoints, UsageCost, DateLastVerified, ecc.)
+// vengono da lì, non da documentazione generica.
+//
+// Formato di /v3/referencedata (usato solo per risolvere OperatorID/
+// ConnectionTypeID/UsageTypeID/StatusTypeID in etichette leggibili)
+// NON verificato con una richiesta reale in questa sessione — quel
+// solo endpoint non era raggiungibile né da questo sandbox né,
+// evidentemente in tempo utile, incollandolo manualmente. Il codice
+// sotto degrada senza errori se la forma non corrisponde a quella
+// documentata da OpenChargeMap: mostra l'ID numerico al posto
+// dell'etichetta. Da confermare dopo il primo run reale — vedi
+// "Prossimi passi".
+//
+// Area coperta: lo stesso bounding box "FVG + margine" già usato per
+// i terremoti (INGV_BBOX, vedi sopra) — il margine serve perché il
+// selettore "colonnine entro 30 km dalla mia posizione" deve
+// funzionare anche vicino al confine regionale. L'API OpenChargeMap
+// non ha una ricerca per rettangolo verificata in questa sessione:
+// interrogata con un cerchio (lat/lon/raggio) abbastanza grande da
+// contenere per intero il bounding box, poi filtrata di nuovo lato
+// nostro sul rettangolo esatto.
+// ---------------------------------------------------------------------
+
+const OPENCHARGEMAP_API_KEY = process.env.OPENCHARGEMAP_API_KEY;
+
+function mappaOcmPerId(elenco) {
+  const m = new Map();
+  if (!Array.isArray(elenco)) return m;
+  for (const el of elenco) {
+    if (el && typeof el.ID === "number") m.set(el.ID, el);
+  }
+  return m;
+}
+
+async function ingestColonnineElettriche() {
+  if (!OPENCHARGEMAP_API_KEY) {
+    console.warn("Colonnine elettriche: manca OPENCHARGEMAP_API_KEY nell'ambiente, salto questo modulo.");
+    return;
+  }
+
+  // Tabelle di lookup risolte dal vivo invece di hard-codate — vedi
+  // commento sopra sul perché non sono verificate in questa sessione.
+  // Mai fatale: se manca o ha una forma diversa, i punti restano con
+  // l'ID numerico al posto del nome.
+  let operatori = new Map();
+  let tipiPresa = new Map();
+  let statiPunto = new Map();
+  let tipiUso = new Map();
+  try {
+    const resRef = await fetchConRetry(
+      `https://api.openchargemap.io/v3/referencedata/?key=${OPENCHARGEMAP_API_KEY}&output=json`
+    );
+    if (resRef.ok) {
+      const ref = await resRef.json();
+      operatori = mappaOcmPerId(ref?.Operators);
+      tipiPresa = mappaOcmPerId(ref?.ConnectionTypes);
+      statiPunto = mappaOcmPerId(ref?.StatusTypes);
+      tipiUso = mappaOcmPerId(ref?.UsageTypes);
+    } else {
+      console.warn(`Colonnine elettriche: referencedata non disponibile (HTTP ${resRef.status}), uso solo gli ID.`);
+    }
+  } catch (err) {
+    console.warn(`Colonnine elettriche: referencedata non raggiungibile, uso solo gli ID — ${err.message}`);
+  }
+
+  // Centro e raggio del cerchio che contiene per intero INGV_BBOX
+  // (diagonale ≈115 km, raggio 120 km per un margine di sicurezza).
+  const centroLat = (INGV_BBOX.minLat + INGV_BBOX.maxLat) / 2;
+  const centroLon = (INGV_BBOX.minLon + INGV_BBOX.maxLon) / 2;
+  const raggioKm = 120;
+
+  const url =
+    `https://api.openchargemap.io/v3/poi/?key=${OPENCHARGEMAP_API_KEY}` +
+    `&output=json&countrycode=IT&latitude=${centroLat}&longitude=${centroLon}` +
+    `&distance=${raggioKm}&distanceunit=KM&maxresults=2000&compact=true`;
+
+  const res = await fetchConRetry(url);
+  if (!res.ok) {
+    console.warn(`Colonnine elettriche: OpenChargeMap non disponibile (HTTP ${res.status})`);
+    return;
+  }
+
+  const poiGrezzi = await res.json();
+  if (!Array.isArray(poiGrezzi)) {
+    console.warn("Colonnine elettriche: risposta OpenChargeMap non è un array (formato cambiato?), salto.");
+    return;
+  }
+
+  // maxresults=2000 non verificato contro la reale dimensione del
+  // dataset FVG in questa sessione (l'endpoint non era raggiungibile
+  // da qui) — se questo avviso compare sistematicamente, l'API sta
+  // probabilmente troncando: aumentare il valore o aggiungere
+  // paginazione (parametro "offset", documentato da OpenChargeMap ma
+  // non verificato qui).
+  if (poiGrezzi.length >= 2000) {
+    console.warn(`Colonnine elettriche: ricevuti ${poiGrezzi.length} risultati — possibile troncamento, verificare.`);
+  }
+
+  const punti = poiGrezzi
+    .map((p) => {
+      const ai = p.AddressInfo;
+      if (!ai || typeof ai.Latitude !== "number" || typeof ai.Longitude !== "number") return null;
+      const stato = statiPunto.get(p.StatusTypeID);
+      return {
+        id: p.ID,
+        uuid: p.UUID,
+        nome: ai.Title ?? null,
+        indirizzo: [ai.AddressLine1, ai.AddressLine2].filter(Boolean).join(", ") || null,
+        comune: ai.Town?.trim() || null, // il dato OpenChargeMap ha a volte spazi iniziali (visto nel campione reale)
+        provincia: ai.StateOrProvince ?? null,
+        lat: ai.Latitude,
+        lon: ai.Longitude,
+        telefono: ai.ContactTelephone1 ?? null,
+        sito: ai.RelatedURL ?? null,
+        operatore: operatori.get(p.OperatorID)?.Title ?? null,
+        tipoUso: tipiUso.get(p.UsageTypeID)?.Title ?? null,
+        costo: p.UsageCost ?? null,
+        note: p.GeneralComments ?? null,
+        numeroPostazioni: p.NumberOfPoints ?? null,
+        stato: stato?.Title ?? null,
+        operativo: typeof stato?.IsOperational === "boolean" ? stato.IsOperational : null,
+        verificatoIl: p.DateLastVerified ?? p.DateLastStatusUpdate ?? null,
+        prese: Array.isArray(p.Connections)
+          ? p.Connections.map((c) => ({
+              tipo: tipiPresa.get(c.ConnectionTypeID)?.Title ?? (c.ConnectionTypeID ? `Tipo #${c.ConnectionTypeID}` : null),
+              potenzaKw: c.PowerKW ?? null,
+              quantita: c.Quantity ?? 1,
+            }))
+          : [],
+      };
+    })
+    .filter((p) => p !== null)
+    .filter(
+      (p) =>
+        p.lat >= INGV_BBOX.minLat &&
+        p.lat <= INGV_BBOX.maxLat &&
+        p.lon >= INGV_BBOX.minLon &&
+        p.lon <= INGV_BBOX.maxLon
+    );
+
+  await upsertSnapshot("colonnine-elettriche:fvg", "trasporti", null, {
+    punti,
+    totale: punti.length,
+    aggiornato_al: new Date().toISOString(),
+    fonte: "OpenChargeMap (dato comunitario — vedi la data di verifica di ciascuna colonnina)",
+  });
+  console.log(`Colonnine elettriche aggiornate: ${punti.length} punti in FVG (OpenChargeMap)`);
+}
+
+// ---------------------------------------------------------------------
 
 async function main() {
   const jobs = [
@@ -12792,6 +12979,7 @@ async function main() {
     ["webcam-osmer", ingestWebcamOsmer()],
     ["radar-meteo", ingestRadarMeteo()],
     ["terremoti", ingestTerremoti()],
+    ["colonnine-elettriche", ingestColonnineElettriche()],
     ["economia-disoccupazione", ingestEconomiaDisoccupazione()],
     ["piste-ciclabili", ingestPisteCiclabili()],
     ["piste-ciclabili-2020", ingestCiclovie2020()],

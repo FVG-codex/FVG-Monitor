@@ -88,6 +88,7 @@ componente React che legge da Supabase con lo stesso nome.
 | **Terremoti** — pagina dedicata `/terremoti` | INGV (FDSN Event Web Service, standard internazionale, gratuito) | L'API PC FVG ha uno schema dati "Earthquake" predisposto ma **nessun endpoint GET pubblicato** per interrogarlo — usiamo quindi la fonte ufficiale italiana per la sismologia. Filtrato per area geografica FVG (bounding box), ultimi 30 giorni. Mappa Leaflet con marker colorati per magnitudo (`TerremotiMap.tsx`) + elenco cronologico |
 | **Viabilità** — pagina dedicata `/viabilita` (nel menù ad amburger) + pannello homepage | InfoViaggiando (eventi, feed WFS non dichiarato pubblico — stessa cautela di ANSA) + OSMER (webcam A4/A23/A28/SR354) | La pagina dedicata combina il pannello eventi (`ViabilitaPanel`, stesso dato del pannello homepage), il prezzo carburanti e le webcam autostradali filtrate dallo stesso snapshot `webcam:osmer` usato da `/webcam` |
 | **Trasporti** — pagina dedicata `/trasporti` (nel menù ad amburger) | Trieste Airport (voli) + ViaggiaTreno (treni, vedi nota "Ferrovie" sotto) + TPL FVG (autobus, vedi nota "Autobus" sotto) | Pagina distinta da Viabilità (quella resta sul traffico stradale). Contiene il pannello voli (stesso `VoliPanel`/dato `voli:trieste-airport` della homepage), il pannello treni (`TreniPanel.tsx`, fetch lato client verso una Route Handler nostra che interroga ViaggiaTreno lato server) e il pannello autobus (`AutobusPanel.tsx`, fetch **diretto dal browser** verso TPL FVG, niente proxy — vedi nota "Autobus" per il perché) |
+| **Colonnine elettriche** — pagina dedicata `/colonnine-elettriche` (riassunto su `/trasporti`) | OpenChargeMap (registro comunitario, richiede una chiave API gratuita) | Mappa di tutte le colonnine di ricarica EV censite in FVG, con selettore di posizione (geolocalizzazione browser o ricerca manuale via Nominatim/OpenStreetMap) e filtro per raggio (10/30/50/100 km). Dato comunitario non garantito aggiornato — ogni colonnina mostra la propria data di verifica, vedi nota "Colonnine elettriche" sotto per i dettagli e i limiti noti |
 | **Prezzo carburanti** (benzina, gasolio, GPL) — homepage + pagina `/viabilita` | CSV ufficiale MIMIT (`MediaRegionaleStradale.csv`, pubblicato ogni mattina alle 8:00) | `CarburantiPanel.tsx`, un solo valore per l'intera regione per ciascun carburante (non per provincia — è così che il ministero lo pubblica, il dato regionale FVG non è scorporato per provincia). Benzina e gasolio self-service, GPL servito (unica modalità rilevante in Italia per ciascuno) — snapshot unico `carburanti` (`{ carburanti: { benzina, gasolio, gpl } }`). Il CSV include anche il metano (servito), non ingerito perché non richiesto — estendibile in futuro aggiungendo una voce a `CARBURANTI_TIPI`. Formato CSV non standard (riga "Aggiornamento" prima dell'intestazione, `;` come separatore) — parsing manuale in `ingest-light.mjs`, nessuna libreria CSV necessaria |
 | **Eventi** | Scraping HTML turismofvg.it | Pagina server-rendered, no browser headless — fragile per natura (classi CSS specifiche) |
 | **TGR** | — | Nessun feed trovato, link statico alla sezione ufficiale |
@@ -5057,6 +5058,122 @@ consegna**, non fanno parte del sito. **Non ancora verificato**: un
 rendering reale con dati veri da Supabase (richiede un'esecuzione di
 ingest-light.mjs mai ancora girata per questo modulo, vedi sezione
 sopra) e nessuna conferma dall'utente su un browser vero.
+
+## Colonnine elettriche (03/10/2026)
+
+Richiesta dall'utente il 02/10/2026: "è possibile inserire una mappa di
+tutte le colonnine di ricarica per macchine elettriche? Magari con il
+selettore della propria posizione, per vedere le colonnine in un raggio
+di 30 chilometri."
+
+**Fonti valutate prima di scrivere codice** (per esteso nel commento
+"COLONNINE ELETTRICHE" in `scripts/ingest-light.mjs`):
+
+- **PUN** (Piattaforma Unica Nazionale, piattaformaunicanazionale.it),
+  il registro ufficiale del MASE: nessuna API pubblica, sito SPA
+  solo-JavaScript — scartato, non ispezionabile da questa sessione
+  (nessun browser reale disponibile per leggere le sue chiamate di
+  rete).
+- **Estrazione di onData su GitHub**
+  (`github.com/ondata/rete_ricarica_veicoli_elettrici`,
+  reverse-engineering dell'API interna di PUN): il README del
+  repository stesso avverte che PUN ha cambiato il metodo di
+  pubblicazione e i dati "NON SONO AGGIORNATI" — scartata come fonte
+  congelata.
+- **OpenChargeMap** (openchargemap.org): registro globale comunitario +
+  import di fonti aperte dove disponibili, API REST gratuita (richiede
+  una chiave personale gratuita, registrata dall'utente su
+  openchargemap.org/site/developerinfo) con query nativa per raggio di
+  distanza. **Scelta come fonte**, con un limite dichiarato onestamente
+  in UI: un campione reale testato il 02/10/2026 (10 colonnine entro
+  ~12 km da Trieste/Grado, richiesta fatta dall'utente dal proprio
+  browser e incollata qui — questo sandbox non riesce a raggiungere
+  l'API, né direttamente né via WebFetch, robots.txt disallow) mostra
+  `DateLastVerified` compresi fra il 2015 e il 2023, nessuna nel
+  2024-2026 — il dato è probabilmente incompleto per le installazioni
+  più recenti. Per questo ogni colonnina in UI mostra la propria data
+  di verifica, invece di dare un'impressione di completezza non
+  verificata.
+
+**Cosa è verificato e cosa no**: il formato di `/v3/poi` (compact=true)
+è verificato sul campione reale sopra — tutti i nomi di campo usati nel
+codice (`AddressInfo`, `Connections`, `NumberOfPoints`, `UsageCost`,
+`DateLastVerified`...) vengono da lì. Il formato di `/v3/referencedata`
+(usato solo per risolvere `OperatorID`/`ConnectionTypeID`/`UsageTypeID`/
+`StatusTypeID` in etichette leggibili come "Enel X" o "CCS") **non** è
+stato verificato con una richiesta reale in questa sessione — quell'unico
+endpoint non è mai stato raggiungibile. Il codice degrada senza errori
+se la forma non corrisponde a quella documentata da OpenChargeMap:
+mostra l'ID numerico (es. "Tipo #33") al posto dell'etichetta. **Da
+confermare dopo il primo run reale** se le etichette compaiono come
+previsto o restano agli ID grezzi.
+
+Allo stesso modo, la geocodifica per la ricerca manuale di una
+località (Nominatim/OpenStreetMap, vedi sotto) non è stata verificata
+con una richiesta reale in questa sessione (anche questo endpoint non
+era raggiungibile) — è però un'API pubblica stabile e documentata da
+oltre un decennio, il codice resta comunque difensivo (nessun
+risultato se la forma non torna, nessun crash).
+
+**Area coperta**: lo stesso bounding box "FVG + margine" già usato per
+i Terremoti (`INGV_BBOX` in `scripts/ingest-light.mjs`) — il margine
+serve perché il selettore "colonnine entro N km dalla mia posizione"
+deve funzionare anche vicino al confine regionale. L'API OpenChargeMap
+non ha una ricerca per rettangolo verificata in questa sessione:
+interrogata con un cerchio (centro + raggio 120 km, abbastanza grande
+da contenere per intero il bounding box), poi filtrata di nuovo lato
+nostro sul rettangolo esatto. `maxresults=2000` non verificato contro
+la reale dimensione del dataset FVG — se i log di un'esecuzione
+mostrano sistematicamente *esattamente* 2000 risultati, l'API sta
+probabilmente troncando (serve aumentare il valore o aggiungere
+paginazione).
+
+**Decisioni confermate dall'utente** (`AskUserQuestion`, 02-03/10/2026):
+procedere con OpenChargeMap nonostante il limite di aggiornamento,
+etichettando chiaramente ogni colonnina con la propria data di verifica;
+pagina dedicata (non un pannello homepage); selettore di posizione sia
+automatico (geolocalizzazione del browser) sia manuale (ricerca
+testuale), entrambi disponibili insieme.
+
+**Componenti**: `ingestColonnineElettriche()` in
+`scripts/ingest-light.mjs` (nuovo modulo, snapshot
+`colonnine-elettriche:fvg`) · `lib/colonnineElettriche.ts` (tipi +
+`distanzaKm()` haversine + `cercaLocalita()` via Nominatim, chiamata
+diretta dal browser come già fatto per Autobus) ·
+`components/ColonnineElettricheMap.tsx` (mappa Leaflet, stesso pattern
+di `TerremotiMap.tsx`/`AviazioneMap.tsx` — marker colorati per stato
+operativo: verde=operativa, rosso=non operativa, grigio=stato non
+noto; cerchio del raggio scelto intorno alla posizione) ·
+`components/ColonnineElettrichePage.tsx` (pagina dedicata `/colonnine-elettriche`,
+mappa + elenco testuale affiancati, stesso pattern di
+`TerremotiPage.tsx`) · `components/ColonninePanel.tsx` (riassunto con
+conteggio totale + link, integrato in `TrasportiPage.tsx` — hub scelto
+perché tematicamente più vicino a "mobilità" rispetto ad Ambiente).
+
+Serve una variabile d'ambiente facoltativa, `OPENCHARGEMAP_API_KEY`
+(GitHub Secret, vedi `.env.example` per i dettagli) — se manca, solo
+questo modulo si salta con un avviso, non blocca il resto del sito.
+
+**Verificato**: `node --check`/`npx tsc --noEmit` puliti; harness Node
+isolato sulla logica di trasformazione dei dati, contro il campione
+reale incollato dall'utente (incluso il caso limite "nessuna
+referencedata disponibile", che degrada correttamente a "Tipo #NN");
+verifica visiva reale (screenshot, non solo lettura del codice) con
+`next dev` + Chromium headless e dati sintetici basati sullo stesso
+campione reale — mappa, marker colorati per stato, cerchio del raggio,
+popup con tutti i dettagli, ed elenco ordinato per distanza tutti
+confermati funzionanti, zero errori console (a parte i consueti blocchi
+di rete di questo sandbox verso font Google e tile OpenStreetMap).
+Pagina di prova rimossa prima della consegna, non fa parte del sito.
+
+**Non ancora verificato**: un'esecuzione reale di
+`ingestColonnineElettriche()` da GitHub Actions (richiede che l'utente
+imposti `OPENCHARGEMAP_API_KEY` come GitHub Secret — non ancora fatto
+al momento della consegna); se la risoluzione delle etichette leggibili
+via `/v3/referencedata` funziona come previsto; se `maxresults=2000`
+è sufficiente per l'intero dataset FVG; geolocalizzazione e ricerca
+manuale su un browser reale dell'utente (incluso il prompt di permesso
+del browser, che questa sessione non può testare).
 
 ## Idee future (annotate, non richieste esplicitamente per l'implementazione)
 

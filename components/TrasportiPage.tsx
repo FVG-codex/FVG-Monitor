@@ -6,6 +6,7 @@ import { TopHeader } from "@/components/TopHeader";
 import { Footer } from "@/components/Footer";
 import { TreniPanel } from "@/components/TreniPanel";
 import { VoliPanel } from "@/components/VoliPanel";
+import { ColonninePanel } from "@/components/ColonninePanel";
 
 export function TrasportiPage() {
   return (
@@ -35,6 +36,13 @@ export function TrasportiPage() {
 
           <Panel title="Autobus" linkLabel="TPL FVG →" linkHref="https://tplfvg.it/it/orari/mappa/" span={3}>
             <AutobusPanel />
+          </Panel>
+
+          {/* Colonnine elettriche (03/10/2026) — pagina dedicata
+              (/colonnine-elettriche, decisione utente), qui solo un
+              riassunto con link, come le altre voci di questo hub. */}
+          <Panel title="Colonnine elettriche" span={3}>
+            <ColonninePanel />
           </Panel>
         </div>
       </main>

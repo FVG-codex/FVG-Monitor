@@ -21,6 +21,14 @@ export type VoceChangelog = {
 
 export const CHANGELOG: VoceChangelog[] = [
   {
+    data: "03/10/2026",
+    titolo: "Nuova pagina: Colonnine elettriche",
+    dettagli: [
+      "Nuova pagina /colonnine-elettriche (raggiungibile da Trasporti), con la mappa di tutte le colonnine di ricarica per veicoli elettrici censite in Friuli Venezia Giulia (fonte: OpenChargeMap, registro comunitario). Un pulsante usa la tua posizione, oppure puoi cercare manualmente un comune o un indirizzo, per vedere solo le colonnine entro un raggio scelto (10/30/50/100 km), ordinate per distanza.",
+      "Il dato è comunitario e non garantito aggiornato per le installazioni più recenti: ogni colonnina mostra la propria data di verifica, invece di dare un'impressione di completezza non verificata.",
+    ],
+  },
+  {
     data: "02/10/2026",
     titolo: "Maree: grafico \"Andamento di oggi\" con le 3 stazioni",
     dettagli: [
