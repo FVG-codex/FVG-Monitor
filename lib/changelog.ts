@@ -22,6 +22,13 @@ export type VoceChangelog = {
 export const CHANGELOG: VoceChangelog[] = [
   {
     data: "03/10/2026",
+    titolo: "Fix — la build di produzione falliva su Vercel dopo l'aggiunta del multilingua",
+    dettagli: [
+      "Il giorno stesso della consegna della Fase 1 multilingua, la build su Vercel falliva su ogni pagina del sito (log reale fornito dall'utente). Causa: una funzione aggiunta per velocizzare la generazione delle pagine in inglese/italiano, che però non va d'accordo con un sito come questo dove ogni pagina mostra dati in tempo reale — rimossa, le pagine tornano a essere generate al momento della visita come sono sempre state. Nessun impatto visibile per chi usa il sito, solo la build torna a funzionare.",
+    ],
+  },
+  {
+    data: "03/10/2026",
     titolo: "Fase 1 multilingua: il sito è ora disponibile anche in inglese",
     dettagli: [
       "In alto a destra è comparso un selettore IT/EN. L'italiano resta l'indirizzo di sempre (es. /maree), l'inglese aggiunge un prefisso (es. /en/maree). Se il browser è configurato in una lingua diversa dall'italiano, il sito ti porta automaticamente sulla versione inglese al primo accesso.",

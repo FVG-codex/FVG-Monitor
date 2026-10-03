@@ -5329,6 +5329,51 @@ di sezione; tedesco, sloveno e croato (una lingua alla volta, come
 deciso con l'utente); verifica in un browser reale dell'utente (questa
 sessione ha verificato solo con Chromium headless in sandbox).
 
+### Fix reale — build di produzione rotta su Vercel (03/10/2026, stesso giorno)
+
+L'utente ha incollato il log reale di una build Vercel fallita subito
+dopo la consegna della Fase 1: **ogni** pagina del sito falliva in fase
+di "Generating static pages" con un errore generico (solo un digest
+esadecimale tipo `80808467`, nessun messaggio — un errore inghiottito
+da React durante il prerendering statico in produzione). Mai riprodotto
+da questa sessione con `next dev` (sempre usato per verificare la Fase
+1, zero errori), perché `next dev` renderizza sempre dinamicamente e
+non passa mai dal percorso di generazione statica che ha rotto la
+build.
+
+**Causa**: la prima versione di `app/[locale]/layout.tsx` includeva
+`generateStaticParams()` per pre-generare `/it` ed `/en` come pagine
+statiche al momento della build — un'ottimizzazione che next-intl
+consiglia quando l'app lo permette. Ma **ogni pagina di questo sito
+legge dati live da Supabase a ogni richiesta** (meteo, allerte,
+viabilità, colonnine elettriche, ecc.): non è mai stata un'app
+renderizzabile staticamente, nemmeno prima della Fase 1 — tentare di
+pre-generarla staticamente ora che next-intl lo rendeva possibile
+(tecnicamente) ha fatto fallire il prerendering di tutte le pagine.
+
+**Fix**: rimossa `generateStaticParams()`. Il segmento `[locale]` torna
+a essere renderizzato dinamicamente per ogni richiesta — stesso
+comportamento di sempre, stesso comportamento già verificato con `next
+dev`. Nessuna perdita di funzionalità: l'ottimizzazione che
+`generateStaticParams` avrebbe dato (pagine pre-generate, servite
+all'istante) non si applicava comunque a un sito con dati sempre
+diversi a ogni richiesta.
+
+**Verificato**: non essendo possibile eseguire `next build` in questo
+sandbox (font Google bloccati dal proxy di rete, limite preesistente,
+vedi sopra), la sessione ha isolato il problema creando una copia
+temporanea del progetto con i font Google temporaneamente disattivati
+(solo nella copia di prova, mai nel progetto consegnato) per eseguire
+una build di produzione reale senza l'ostacolo di rete estraneo. Con
+`generateStaticParams` ancora presente, la build falliva con lo stesso
+tipo di errore digest visto nel log dell'utente; rimossa la funzione,
+`next build` sulla stessa copia ha completato con successo
+(`✓ Compiled successfully`, tutte le ~50 pagine × 2 lingue elencate
+come `ƒ (Dynamic)` invece di tentare la generazione statica) — stessa
+causa, stesso fix, confermati su una build di produzione reale. Dopo il
+fix, ri-verificato anche con `next dev` (homepage e pagine di contenuto
+in entrambe le lingue, tutte 200).
+
 ## Idee future (annotate, non richieste esplicitamente per l'implementazione)
 
 - **Strutture ricettive — implementate il 26/08/2026** (vedi sezioni dedicate sopra): hub + 8 pagine, arricchimento contatti da OpenStreetMap lo stesso giorno, poi scraping incrementale turismofvg.it per gli Agriturismi (sempre 26/08/2026, vedi "Agriturismi — scraping incrementale turismofvg.it" sopra per i dettagli — DevTools fornito dall'utente, stesso metodo già servito per Tennis/Sci/Autobus). **Prossimo passo su questo modulo**: estendere lo scraping turismofvg.it alle altre 7 categorie (B&B, Affittacamere, Campeggi, Alberghi Diffusi, Sociali, Marina, Rifugi) — richiede prima di verificare che URL/etichette HTML siano gli stessi osservati per Agriturismi (non garantito), idealmente con un altro campione reale fornito dall'utente per categoria prima di aggiungerla a `TURISMOFVG_CATEGORIE`.

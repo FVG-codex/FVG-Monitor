@@ -40,14 +40,27 @@ const jetbrainsMono = JetBrains_Mono({
 // app/[locale]/ per ospitare il routing di next-intl (vedi
 // i18n/routing.ts, middleware.ts). Il contenuto effettivo di QUESTO
 // layout non cambia rispetto a prima a parte: lang dinamico invece di
-// "it" fisso, generateStaticParams per pre-generare /it (invisibile,
-// senza prefisso) e /en, e il wrapper NextIntlClientProvider che rende
-// disponibili le traduzioni (messages/it.json, messages/en.json) ai
-// componenti client (TopHeader, Footer, MenuHamburger, ecc. — vedi
-// quei file per l'uso di useTranslations()).
-export function generateStaticParams() {
-  return routing.locales.map((locale) => ({ locale }));
-}
+// "it" fisso, e il wrapper NextIntlClientProvider che rende disponibili
+// le traduzioni (messages/it.json, messages/en.json) ai componenti
+// client (TopHeader, Footer, MenuHamburger, ecc. — vedi quei file per
+// l'uso di useTranslations()).
+//
+// Fix reale (03/10/2026, log di build Vercel reale incollato
+// dall'utente): la prima versione aveva anche `generateStaticParams()`
+// per pre-generare /it e /en come pagine statiche al momento della
+// build — next-intl lo consiglia quando l'app è renderizzabile
+// staticamente. Ma qui ogni pagina del sito legge dati live da Supabase
+// ad ogni richiesta (meteo, allerte, viabilità, ecc.): non è mai stata
+// un'app a rendering statico, nemmeno prima di questa modifica. In
+// `next build` su Vercel questo ha fatto fallire il prerendering di
+// TUTTE le pagine (errore generico, solo un digest esadecimale senza
+// messaggio — tipico di un errore inghiottito durante il prerendering
+// statico di React in produzione) — mai riprodotto da questa sessione
+// in `next dev`, che renderizza sempre dinamicamente e quindi non
+// esercita questo percorso. Rimosso `generateStaticParams`: il
+// segmento [locale] torna a essere renderizzato dinamicamente per ogni
+// richiesta, stesso comportamento di `next dev` e coerente con come
+// questo sito ha sempre funzionato.
 
 export async function generateMetadata({
   params,
