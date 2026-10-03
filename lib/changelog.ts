@@ -22,6 +22,13 @@ export type VoceChangelog = {
 export const CHANGELOG: VoceChangelog[] = [
   {
     data: "03/10/2026",
+    titolo: "Colonnine elettriche: spostata da Trasporti a Viabilità",
+    dettagli: [
+      "Il riquadro di accesso alla mappa delle colonnine elettriche ora si trova nella sezione Viabilità invece che in Trasporti. La pagina della mappa resta la stessa (/colonnine-elettriche), cambia solo da dove la raggiungi.",
+    ],
+  },
+  {
+    data: "03/10/2026",
     titolo: "Nuova pagina: Colonnine elettriche",
     dettagli: [
       "Nuova pagina /colonnine-elettriche (raggiungibile da Trasporti), con la mappa di tutte le colonnine di ricarica per veicoli elettrici censite in Friuli Venezia Giulia (fonte: OpenChargeMap, registro comunitario). Un pulsante usa la tua posizione, oppure puoi cercare manualmente un comune o un indirizzo, per vedere solo le colonnine entro un raggio scelto (10/30/50/100 km), ordinate per distanza.",

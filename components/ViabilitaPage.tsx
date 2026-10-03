@@ -9,6 +9,7 @@ import { Footer } from "@/components/Footer";
 import { ViabilitaPanel } from "@/components/ViabilitaPanel";
 import { ConfiniSection } from "@/components/ConfiniSection";
 import { WebcamCard, type Webcam } from "@/components/WebcamCard";
+import { ColonninePanel } from "@/components/ColonninePanel";
 
 type WebcamData = { webcam: Webcam[]; aggiornato_al: string };
 
@@ -66,6 +67,13 @@ export function ViabilitaPage() {
             linkHref="https://www.mimit.gov.it/it/prezzo-medio-carburanti/regioni"
           >
             <CarburantiPanel />
+          </Panel>
+
+          {/* Colonnine elettriche (03/10/2026, spostata qui da Trasporti su
+              richiesta dell'utente lo stesso giorno) — pagina dedicata
+              (/colonnine-elettriche), qui solo un riassunto con link. */}
+          <Panel title="Colonnine elettriche" span={3}>
+            <ColonninePanel />
           </Panel>
         </div>
 

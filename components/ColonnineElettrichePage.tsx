@@ -17,10 +17,12 @@ import {
 // 02/10/2026) — vedi il commento "COLONNINE ELETTRICHE" in
 // scripts/ingest-light.mjs per le fonti valutate e i limiti noti del
 // dato (OpenChargeMap, comunitario, date di verifica non recenti nel
-// campione testato). Pagina dedicata raggiungibile da Trasporti
-// (decisione utente), con selettore di posizione sia automatico
-// (geolocalizzazione del browser) sia manuale (ricerca testuale,
-// entrambi richiesti dall'utente).
+// campione testato). Pagina dedicata (decisione utente) con selettore
+// di posizione sia automatico (geolocalizzazione del browser) sia
+// manuale (ricerca testuale, entrambi richiesti dall'utente).
+// Raggiungibile da Viabilità (spostata lì da Trasporti il 03/10/2026,
+// stesso giorno della prima consegna, su richiesta esplicita
+// dell'utente dopo aver visto la pagina in produzione).
 
 const ColonnineElettricheMap = dynamic(
   () => import("@/components/ColonnineElettricheMap").then((m) => m.ColonnineElettricheMap),
@@ -142,8 +144,8 @@ export function ColonnineElettrichePage() {
       <div className="isobar" />
 
       <main id="contenuto-principale" className="max-w-[1180px] mx-auto px-5 py-6">
-        <a href="/trasporti" className="text-cool-ink text-xs font-mono hover:underline">
-          ← Trasporti
+        <a href="/viabilita" className="text-cool-ink text-xs font-mono hover:underline">
+          ← Viabilità
         </a>
         <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1 mt-1">Colonnine elettriche</h1>
         <p className="text-ink-faint text-xs font-mono mb-3">

@@ -87,8 +87,8 @@ componente React che legge da Supabase con lo stesso nome.
 | **Radar meteo** | API monitoraggio PC FVG, gruppo `radar` | Solo il radar di Fossalon (id 1) è attivo — Lussari e Mosaico risultano spenti (`status: "X"`). 4 prodotti selezionabili da tab, ciascuno con una breve spiegazione in pagina: `SRTLBM_1` (pioggia, mm), `SSI` (severità temporale), `HMC` (classificazione idrometeore — pioggia/neve/grandine), `LBM_V` (velocità Doppler, m/s) — tutti recuperati in un'unica chiamata (`/radars/1/products` restituisce già tutti i prodotti disponibili insieme). Le immagini sono **trasparenti fuori dalle zone colorate** (nessuna base geografica) — sovrapposte a una vera mappa (Leaflet + tile OpenStreetMap) usando l'`extent` fornito dall'API stessa (`RadarMeteoMap.tsx`, caricato dinamicamente lato client — Leaflet richiede il DOM del browser) |
 | **Terremoti** — pagina dedicata `/terremoti` | INGV (FDSN Event Web Service, standard internazionale, gratuito) | L'API PC FVG ha uno schema dati "Earthquake" predisposto ma **nessun endpoint GET pubblicato** per interrogarlo — usiamo quindi la fonte ufficiale italiana per la sismologia. Filtrato per area geografica FVG (bounding box), ultimi 30 giorni. Mappa Leaflet con marker colorati per magnitudo (`TerremotiMap.tsx`) + elenco cronologico |
 | **Viabilità** — pagina dedicata `/viabilita` (nel menù ad amburger) + pannello homepage | InfoViaggiando (eventi, feed WFS non dichiarato pubblico — stessa cautela di ANSA) + OSMER (webcam A4/A23/A28/SR354) | La pagina dedicata combina il pannello eventi (`ViabilitaPanel`, stesso dato del pannello homepage), il prezzo carburanti e le webcam autostradali filtrate dallo stesso snapshot `webcam:osmer` usato da `/webcam` |
+| **Colonnine elettriche** — pagina dedicata `/colonnine-elettriche` (riassunto su `/viabilita`) | OpenChargeMap (registro comunitario, richiede una chiave API gratuita) | Mappa di tutte le colonnine di ricarica EV censite in FVG, con selettore di posizione (geolocalizzazione browser o ricerca manuale via Nominatim/OpenStreetMap) e filtro per raggio (10/30/50/100 km). Dato comunitario non garantito aggiornato — ogni colonnina mostra la propria data di verifica, vedi nota "Colonnine elettriche" sotto per i dettagli e i limiti noti |
 | **Trasporti** — pagina dedicata `/trasporti` (nel menù ad amburger) | Trieste Airport (voli) + ViaggiaTreno (treni, vedi nota "Ferrovie" sotto) + TPL FVG (autobus, vedi nota "Autobus" sotto) | Pagina distinta da Viabilità (quella resta sul traffico stradale). Contiene il pannello voli (stesso `VoliPanel`/dato `voli:trieste-airport` della homepage), il pannello treni (`TreniPanel.tsx`, fetch lato client verso una Route Handler nostra che interroga ViaggiaTreno lato server) e il pannello autobus (`AutobusPanel.tsx`, fetch **diretto dal browser** verso TPL FVG, niente proxy — vedi nota "Autobus" per il perché) |
-| **Colonnine elettriche** — pagina dedicata `/colonnine-elettriche` (riassunto su `/trasporti`) | OpenChargeMap (registro comunitario, richiede una chiave API gratuita) | Mappa di tutte le colonnine di ricarica EV censite in FVG, con selettore di posizione (geolocalizzazione browser o ricerca manuale via Nominatim/OpenStreetMap) e filtro per raggio (10/30/50/100 km). Dato comunitario non garantito aggiornato — ogni colonnina mostra la propria data di verifica, vedi nota "Colonnine elettriche" sotto per i dettagli e i limiti noti |
 | **Prezzo carburanti** (benzina, gasolio, GPL) — homepage + pagina `/viabilita` | CSV ufficiale MIMIT (`MediaRegionaleStradale.csv`, pubblicato ogni mattina alle 8:00) | `CarburantiPanel.tsx`, un solo valore per l'intera regione per ciascun carburante (non per provincia — è così che il ministero lo pubblica, il dato regionale FVG non è scorporato per provincia). Benzina e gasolio self-service, GPL servito (unica modalità rilevante in Italia per ciascuno) — snapshot unico `carburanti` (`{ carburanti: { benzina, gasolio, gpl } }`). Il CSV include anche il metano (servito), non ingerito perché non richiesto — estendibile in futuro aggiungendo una voce a `CARBURANTI_TIPI`. Formato CSV non standard (riga "Aggiornamento" prima dell'intestazione, `;` come separatore) — parsing manuale in `ingest-light.mjs`, nessuna libreria CSV necessaria |
 | **Eventi** | Scraping HTML turismofvg.it | Pagina server-rendered, no browser headless — fragile per natura (classi CSS specifiche) |
 | **TGR** | — | Nessun feed trovato, link statico alla sezione ufficiale |
@@ -5147,8 +5147,15 @@ noto; cerchio del raggio scelto intorno alla posizione) ·
 `components/ColonnineElettrichePage.tsx` (pagina dedicata `/colonnine-elettriche`,
 mappa + elenco testuale affiancati, stesso pattern di
 `TerremotiPage.tsx`) · `components/ColonninePanel.tsx` (riassunto con
-conteggio totale + link, integrato in `TrasportiPage.tsx` — hub scelto
-perché tematicamente più vicino a "mobilità" rispetto ad Ambiente).
+conteggio totale + link, integrato in `ViabilitaPage.tsx` — vedi nota
+subito sotto sull'hub).
+
+**Hub di partenza**: inizialmente collegata da Trasporti (scelta di
+questa sessione, non chiesta esplicitamente), **spostata a Viabilità lo
+stesso giorno su richiesta diretta dell'utente** dopo aver visto la
+pagina in produzione — `ColonninePanel.tsx` è lo stesso componente,
+solo importato da `ViabilitaPage.tsx` invece che da `TrasportiPage.tsx`,
+e il link "←" nella pagina dedicata punta a `/viabilita`.
 
 Serve una variabile d'ambiente facoltativa, `OPENCHARGEMAP_API_KEY`
 (GitHub Secret, vedi `.env.example` per i dettagli) — se manca, solo

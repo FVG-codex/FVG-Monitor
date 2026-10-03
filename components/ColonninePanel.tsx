@@ -5,10 +5,12 @@ import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import type { ColonnineElettricheData } from "@/lib/colonnineElettriche";
 
-// Riassunto per l'hub Trasporti — la mappa completa (con selettore di
-// posizione e raggio) vive nella pagina dedicata /colonnine-elettriche
-// (decisione utente, 02/10/2026). Vedi quella pagina e il commento
-// "COLONNINE ELETTRICHE" in scripts/ingest-light.mjs per i dettagli.
+// Riassunto per l'hub Viabilità (spostato qui da Trasporti il
+// 03/10/2026, stesso giorno, su richiesta dell'utente) — la mappa
+// completa (con selettore di posizione e raggio) vive nella pagina
+// dedicata /colonnine-elettriche (decisione utente, 02/10/2026). Vedi
+// quella pagina e il commento "COLONNINE ELETTRICHE" in
+// scripts/ingest-light.mjs per i dettagli.
 export function ColonninePanel() {
   const [dati, setDati] = useState<ColonnineElettricheData | null>(null);
   const [stato, setStato] = useState<"loading" | "ready" | "error">("loading");
