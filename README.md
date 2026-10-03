@@ -5173,14 +5173,26 @@ confermati funzionanti, zero errori console (a parte i consueti blocchi
 di rete di questo sandbox verso font Google e tile OpenStreetMap).
 Pagina di prova rimossa prima della consegna, non fa parte del sito.
 
+**Fix reale trovato dopo la consegna (03/10/2026, stesso giorno)**:
+l'utente aveva impostato `OPENCHARGEMAP_API_KEY` come GitHub Secret,
+ma il modulo continuava a saltarsi con l'avviso "manca
+OPENCHARGEMAP_API_KEY nell'ambiente" — scoperto grazie al log reale
+dell'esecuzione incollato dall'utente, non da un'ipotesi. Causa: un
+secret salvato su GitHub non diventa automaticamente una variabile
+d'ambiente per uno step del workflow — va dichiarato esplicitamente nel
+blocco `env:` del file YAML, e quello nuovo non c'era (a differenza di
+`SUPABASE_URL`/`SUPABASE_SERVICE_ROLE_KEY`, già presenti). Corretto in
+`.github/workflows/ingest-light.yml`.
+
 **Non ancora verificato**: un'esecuzione reale di
-`ingestColonnineElettriche()` da GitHub Actions (richiede che l'utente
-imposti `OPENCHARGEMAP_API_KEY` come GitHub Secret — non ancora fatto
-al momento della consegna); se la risoluzione delle etichette leggibili
-via `/v3/referencedata` funziona come previsto; se `maxresults=2000`
-è sufficiente per l'intero dataset FVG; geolocalizzazione e ricerca
-manuale su un browser reale dell'utente (incluso il prompt di permesso
-del browser, che questa sessione non può testare).
+`ingestColonnineElettriche()` da GitHub Actions con la chiave
+effettivamente ricevuta (il fix sopra non è stato ancora confermato da
+un'esecuzione reale al momento di questa nota); se la risoluzione delle
+etichette leggibili via `/v3/referencedata` funziona come previsto; se
+`maxresults=2000` è sufficiente per l'intero dataset FVG;
+geolocalizzazione e ricerca manuale su un browser reale dell'utente
+(incluso il prompt di permesso del browser, che questa sessione non può
+testare).
 
 ## Idee future (annotate, non richieste esplicitamente per l'implementazione)
 

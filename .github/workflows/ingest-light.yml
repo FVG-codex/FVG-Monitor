@@ -56,4 +56,12 @@ jobs:
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          # Aggiunta il 03/10/2026 per il modulo "Colonnine elettriche"
+          # (ingestColonnineElettriche() in scripts/ingest-light.mjs).
+          # Un secret esistere nel repository non basta: va mappato qui
+          # esplicitamente perché lo step lo veda come variabile
+          # d'ambiente — bug reale, trovato perché l'utente ha incollato
+          # il log reale dell'esecuzione invece di limitarsi a
+          # confermare che il secret era impostato.
+          OPENCHARGEMAP_API_KEY: ${{ secrets.OPENCHARGEMAP_API_KEY }}
         run: npm run ingest:light

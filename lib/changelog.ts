@@ -22,6 +22,13 @@ export type VoceChangelog = {
 export const CHANGELOG: VoceChangelog[] = [
   {
     data: "03/10/2026",
+    titolo: "Fix — Colonnine elettriche non si popolava nonostante la chiave impostata",
+    dettagli: [
+      "Il workflow di ingestione non passava la chiave OpenChargeMap allo script, anche se il secret esisteva nel repository — ogni variabile d'ambiente va dichiarata esplicitamente nel file del workflow, non basta che il secret sia salvato su GitHub. Corretto: ora il modulo riceve la chiave e può aggiornare i dati.",
+    ],
+  },
+  {
+    data: "03/10/2026",
     titolo: "Colonnine elettriche: spostata da Trasporti a Viabilità",
     dettagli: [
       "Il riquadro di accesso alla mappa delle colonnine elettriche ora si trova nella sezione Viabilità invece che in Trasporti. La pagina della mappa resta la stessa (/colonnine-elettriche), cambia solo da dove la raggiungi.",
