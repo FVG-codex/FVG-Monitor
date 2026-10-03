@@ -5374,6 +5374,55 @@ causa, stesso fix, confermati su una build di produzione reale. Dopo il
 fix, ri-verificato anche con `next dev` (homepage e pagine di contenuto
 in entrambe le lingue, tutte 200).
 
+### Fix reale #2 — la build restava rotta per una parte delle pagine (03/10/2026, stesso giorno, dopo il fix sopra)
+
+L'utente ha incollato un **secondo** log reale di build Vercel, su un
+commit successivo a quello del fix sopra: la build falliva di nuovo in
+"Generating static pages" con lo stesso tipo di errore a digest
+(`80808467`, `3135806488`), ma su un numero di pagine più piccolo e
+diverso da quello del primo log (54 invece di 156) — segno che il primo
+fix aveva funzionato solo in parte, non che fosse sbagliato.
+
+**Causa**: rimuovere `generateStaticParams()` evita che Next.js tenti
+di pre-generare le combinazioni lingua × percorso in anticipo, ma da
+solo **non** rende automaticamente dinamica ogni pagina sotto
+`[locale]`. Senza quella funzione, Next.js decide la staticità di
+ciascuna pagina individualmente, in base a cosa quella pagina usa
+(funzioni esplicitamente dinamiche come `cookies()`/`headers()`,
+opzioni di `fetch`, ecc.) — e le pagine di questo sito leggono dati
+tramite il client Supabase, che a Next.js non segnala in modo esplicito
+"questa pagina è dinamica". Risultato: alcune pagine venivano comunque
+scelte per un tentativo di pre-generazione statica in build, che
+falliva con lo stesso errore a digest del primo log.
+
+Verificato leggendo direttamente il codice sorgente installato di
+Next.js (`node_modules/next/dist/build/utils.js`, funzioni
+`collectGenerateParams` e dentro `isPageStatic`): la configurazione di
+route segment `dynamic` (lo stesso meccanismo già usato in questo
+progetto per le API, es. `app/api/treni/[tipo]/[stazione]/route.ts`)
+viene raccolta attraversando l'albero delle rotte dal layout più esterno
+verso le pagine figlie, e il primo valore trovato per `dynamic` **non
+viene più sovrascritto** da quelli trovati più in profondità — quindi un
+`export const dynamic = "force-dynamic"` dichiarato nel layout si
+applica automaticamente a ogni pagina sotto di esso, senza doverlo
+ripetere in ciascuna. Non una deduzione da un blog: letto direttamente
+nel codice che Next.js esegue durante `next build`.
+
+**Fix**: aggiunta `export const dynamic = "force-dynamic";` in
+`app/[locale]/layout.tsx`. Ora **ogni** pagina sotto `[locale]` è
+esplicitamente dinamica, senza eccezioni e senza bisogno di dichiararlo
+pagina per pagina — coerente con la natura reale del sito (dati live a
+ogni richiesta, mai una build statica).
+
+**Verificato**: stessa tecnica del fix precedente — copia temporanea
+del progetto con i font Google disattivati solo lì, `next build`
+eseguito su quella copia. Risultato: `✓ Compiled successfully`,
+`Generating static pages (3/3)` (solo la pagina 404 e le due shell
+interne, non le pagine di contenuto), e **tutte** le ~50 pagine di
+contenuto (homepage inclusa) elencate come `ƒ (Dynamic)` — nessun
+tentativo di generazione statica residuo. Copia di prova eliminata
+subito dopo la verifica.
+
 ## Idee future (annotate, non richieste esplicitamente per l'implementazione)
 
 - **Strutture ricettive — implementate il 26/08/2026** (vedi sezioni dedicate sopra): hub + 8 pagine, arricchimento contatti da OpenStreetMap lo stesso giorno, poi scraping incrementale turismofvg.it per gli Agriturismi (sempre 26/08/2026, vedi "Agriturismi — scraping incrementale turismofvg.it" sopra per i dettagli — DevTools fornito dall'utente, stesso metodo già servito per Tennis/Sci/Autobus). **Prossimo passo su questo modulo**: estendere lo scraping turismofvg.it alle altre 7 categorie (B&B, Affittacamere, Campeggi, Alberghi Diffusi, Sociali, Marina, Rifugi) — richiede prima di verificare che URL/etichette HTML siano gli stessi osservati per Agriturismi (non garantito), idealmente con un altro campione reale fornito dall'utente per categoria prima di aggiungerla a `TURISMOFVG_CATEGORIE`.

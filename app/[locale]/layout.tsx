@@ -45,7 +45,7 @@ const jetbrainsMono = JetBrains_Mono({
 // client (TopHeader, Footer, MenuHamburger, ecc. — vedi quei file per
 // l'uso di useTranslations()).
 //
-// Fix reale (03/10/2026, log di build Vercel reale incollato
+// Fix reale #1 (03/10/2026, log di build Vercel reale incollato
 // dall'utente): la prima versione aveva anche `generateStaticParams()`
 // per pre-generare /it e /en come pagine statiche al momento della
 // build — next-intl lo consiglia quando l'app è renderizzabile
@@ -57,10 +57,32 @@ const jetbrainsMono = JetBrains_Mono({
 // messaggio — tipico di un errore inghiottito durante il prerendering
 // statico di React in produzione) — mai riprodotto da questa sessione
 // in `next dev`, che renderizza sempre dinamicamente e quindi non
-// esercita questo percorso. Rimosso `generateStaticParams`: il
-// segmento [locale] torna a essere renderizzato dinamicamente per ogni
-// richiesta, stesso comportamento di `next dev` e coerente con come
-// questo sito ha sempre funzionato.
+// esercita questo percorso. Rimosso `generateStaticParams`.
+//
+// Fix reale #2 (03/10/2026, stesso giorno, secondo log di build Vercel
+// incollato dall'utente, commit successivo): rimuovere
+// `generateStaticParams` non bastava — restava un numero minore ma
+// ancora consistente di pagine che falliva con lo stesso errore a
+// digest durante "Generating static pages". Causa: senza
+// `generateStaticParams`, Next.js NON rende automaticamente dinamico
+// ogni percorso sotto [locale] — decide staticità pagina per pagina in
+// base a cosa quella pagina usa (funzioni dinamiche come cookies()/
+// headers(), opzioni di fetch, ecc.), quindi tentava comunque di
+// pre-renderizzare in build quelle pagine che non davano a Next nessun
+// segnale esplicito di dinamicità. Verificato leggendo direttamente il
+// codice sorgente installato di Next.js
+// (node_modules/next/dist/build/utils.js, funzioni
+// collectGenerateParams/isPageStatic): la configurazione di route
+// segment `dynamic` dichiarata in un layout viene raccolta per PRIMA
+// nell'attraversamento dell'albero (dal layout radice verso le pagine
+// figlie) e poi "congelata" — la riduzione imposta il valore alla prima
+// occorrenza trovata e non lo sovrascrive più, quindi `dynamic =
+// "force-dynamic"` messo qui nel layout si applica a OGNI pagina sotto
+// [locale], senza eccezioni e senza doverlo ripetere in ciascun
+// page.tsx. Stesso meccanismo già usato in app/api/*/route.ts in questo
+// progetto (vedi ad es. app/api/treni/[tipo]/[stazione]/route.ts), solo
+// applicato qui al livello del layout invece che per singola route.
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({
   params,

@@ -22,6 +22,13 @@ export type VoceChangelog = {
 export const CHANGELOG: VoceChangelog[] = [
   {
     data: "03/10/2026",
+    titolo: "Fix — la build di produzione falliva ancora su Vercel (seconda parte)",
+    dettagli: [
+      "Il primo fix della stessa giornata (vedi voce sotto) non bastava: un numero più piccolo ma ancora consistente di pagine continuava a far fallire la build (secondo log reale fornito dall'utente). Causa: mancava un'indicazione esplicita, a livello dell'intero sito, che dicesse a Next.js di generare TUTTE le pagine al momento della visita e mai in anticipo durante la build — ora c'è, verificata ricreando la build in isolamento prima di consegnarla. Nessun impatto visibile per chi usa il sito.",
+    ],
+  },
+  {
+    data: "03/10/2026",
     titolo: "Fix — la build di produzione falliva su Vercel dopo l'aggiunta del multilingua",
     dettagli: [
       "Il giorno stesso della consegna della Fase 1 multilingua, la build su Vercel falliva su ogni pagina del sito (log reale fornito dall'utente). Causa: una funzione aggiunta per velocizzare la generazione delle pagine in inglese/italiano, che però non va d'accordo con un sito come questo dove ogni pagina mostra dati in tempo reale — rimossa, le pagine tornano a essere generate al momento della visita come sono sempre state. Nessun impatto visibile per chi usa il sito, solo la build torna a funzionare.",
