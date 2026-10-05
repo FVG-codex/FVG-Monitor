@@ -72,6 +72,28 @@ export function VeterinariPage() {
     return Array.from(conteggio.entries()).sort((a, b) => a[0].localeCompare(b[0], "it"));
   }, [tuttaLaProvincia]);
 
+  // Centro/zoom della mappa: se è selezionato un comune, centra sul
+  // baricentro delle strutture di quel comune (ignorando il filtro di
+  // ricerca testuale, così il centro resta stabile mentre si digita) e
+  // avvicina lo zoom; altrimenti centro fisso della provincia come prima.
+  // Se il comune selezionato non ha nessuna struttura con coordinate note
+  // (lat/lon nulli), si ricade sul centro di provincia.
+  const centroMappa = useMemo<[number, number]>(() => {
+    if (comuneSel) {
+      const delComune = tuttaLaProvincia.filter(
+        (v): v is typeof v & { lat: number; lon: number } =>
+          v.comune === comuneSel && v.lat !== null && v.lon !== null
+      );
+      if (delComune.length > 0) {
+        const lat = delComune.reduce((somma, v) => somma + v.lat, 0) / delComune.length;
+        const lon = delComune.reduce((somma, v) => somma + v.lon, 0) / delComune.length;
+        return [lat, lon];
+      }
+    }
+    return CENTRO_PROVINCIA[tab];
+  }, [tab, comuneSel, tuttaLaProvincia]);
+  const zoomMappa = comuneSel ? 13 : 11;
+
   const elenco = useMemo(() => {
     let lista = tuttaLaProvincia;
     if (comuneSel) lista = lista.filter((v) => v.comune === comuneSel);
@@ -292,7 +314,7 @@ export function VeterinariPage() {
                   style={{ height: 460 }}
                   className="rounded overflow-hidden"
                 >
-                  <VeterinariMap voci={elenco} centro={CENTRO_PROVINCIA[tab]} adesso={adesso} />
+                  <VeterinariMap voci={elenco} centro={centroMappa} zoom={zoomMappa} adesso={adesso} />
                 </div>
               </Panel>
             </div>

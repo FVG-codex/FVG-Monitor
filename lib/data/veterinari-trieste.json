@@ -1271,35 +1271,71 @@
       "comune": "Trieste",
       "latitudine": 45.6244932,
       "longitudine": 13.8070077,
-      "telefono": "040 810834",
+      "telefono": "040 810834; 338 4214883",
       "telefono_emergenze": "",
-      "email": "",
-      "sito_ufficiale": "",
+      "email": "furiogherlanz@hotmail.it",
+      "sito_ufficiale": "https://www.gherlanzveterinario.com/",
       "orari": {
-        "lunedi": null,
-        "martedi": null,
-        "mercoledi": null,
-        "giovedi": null,
-        "venerdi": null,
-        "sabato": null,
-        "domenica": null
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "16:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          }
+        ],
+        "domenica": []
       },
       "su_appuntamento": null,
       "specie": "Da verificare",
       "servizi": "Da verificare",
-      "gestione_emergenze": "pronto_intervento_da_confermare",
+      "gestione_emergenze": "non_dichiarata",
       "orari_emergenze": "",
       "emergenze_su_appuntamento": null,
       "emergenze_solo_clienti": null,
       "ricovero_notturno": null,
       "presenza_veterinario_notturno": null,
-      "fonte_principale": "Google Maps e directory",
-      "fonte_orari": "",
-      "fonte_emergenze": "",
-      "orari_verificati": false,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": "https://www.gherlanzveterinario.com/contatti",
+      "fonte_emergenze": "https://www.gherlanzveterinario.com/contatti",
+      "orari_verificati": true,
       "emergenze_verificate": false,
-      "note": "Google Maps classifica la sede come assistenza veterinaria di pronto intervento; modalità non verificate.",
-      "data_verifica": "2026-09-11"
+      "note": "Cross-check 05/10/2026: Google Maps classificava la sede come pronto intervento, ma il sito ufficiale non dichiara alcun servizio di emergenza/pronto soccorso — gestione_emergenze riportata a non_dichiarata salvo conferma diretta. Orari compilati dal sito ufficiale (sezione contatti).",
+      "data_verifica": "2026-10-05",
+      "esistenza_verificata": true,
+      "stato_verifica": "orari_confermati_emergenze_non_dichiarate"
     },
     {
       "id": "TS-VET-021",

@@ -22,6 +22,14 @@ export type VoceChangelog = {
 export const CHANGELOG: VoceChangelog[] = [
   {
     data: "05/10/2026",
+    titolo: "Veterinari & Emergenze — correzioni dati da controllo incrociato e mappa che si centra sul comune",
+    dettagli: [
+      "Corretti 5 record (Gorizia, Pordenone, Udine, Trieste) dopo un controllo incrociato con fonti esterne: un'identità errata, telefoni/email/siti mancanti, orari sbagliati o incompleti, una gestione delle emergenze dichiarata in modo non accurato. Altri casi segnalati dal controllo (possibili cessazioni, incongruenze non chiarite, record senza recapito affidabile) non sono stati toccati: richiedono una verifica telefonica che non può essere fatta da qui.",
+      "Selezionando una provincia o un comune dal menù, la mappa ora si centra davvero lì (prima restava ferma sul centro della provincia anche cambiando comune, per una limitazione della libreria delle mappe).",
+    ],
+  },
+  {
+    data: "05/10/2026",
     titolo: "Fix — due moduli meteo potevano fallire per un singolo intoppo di rete passeggero",
     dettagli: [
       "\"Pazzi per il meteo\" (Telegram e previsioni temporalesche) sono andati in errore in un'esecuzione reale per un problema di rete transitorio nel salvataggio su database — non un problema dei dati, che venivano letti correttamente dalla fonte. Ora, come già per il recupero dei dati dalle fonti esterne, un singolo intoppo non fa più fallire il modulo: viene ritentato automaticamente prima di arrendersi.",

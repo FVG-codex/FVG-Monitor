@@ -129,7 +129,7 @@
       "provincia": "UD",
       "latitudine": 46.0571272,
       "longitudine": 13.2261162,
-      "telefono": "",
+      "telefono": "0432 530486; 0432 232956",
       "telefono_emergenze": "",
       "email": "scpveterinarie@gmail.com",
       "sito_ufficiale": "https://www.gruppoanimalia.it/cliniche/ambulatorio-veterinario-schiavi-colautti-padovani/",
@@ -167,7 +167,7 @@
         "sabato": [
           {
             "apre": "09:00",
-            "chiude": "12:00"
+            "chiude": "12:30"
           }
         ],
         "domenica": []
@@ -175,7 +175,7 @@
       "su_appuntamento": null,
       "specie": "Animali da compagnia",
       "servizi": "Medicina veterinaria",
-      "gestione_emergenze": "non_dichiarata",
+      "gestione_emergenze": "reperibilita_telefonica",
       "orari_emergenze": "",
       "emergenze_su_appuntamento": null,
       "emergenze_solo_clienti": null,
@@ -184,16 +184,16 @@
       "apertura_24h": false,
       "temporaneamente_chiuso": false,
       "fonte_principale": "Sito ufficiale",
-      "fonte_orari": "https://www.gruppoanimalia.it/cliniche/ambulatorio-veterinario-schiavi-colautti-padovani/",
-      "fonte_orari_controllo": "",
-      "fonte_emergenze": "",
-      "data_verifica": "2026-09-15",
+      "fonte_orari": "https://ambulatorioveterinarioschiavi.com/index.php/contacts/",
+      "fonte_orari_controllo": "https://www.gruppoanimalia.it/cliniche/ambulatorio-veterinario-schiavi-colautti-padovani/",
+      "fonte_emergenze": "https://ambulatorioveterinarioschiavi.com/index.php/contacts/",
+      "data_verifica": "2026-10-05",
       "orari_verificati": true,
       "livello_verifica_orari": "ufficiale",
       "emergenze_verificate": false,
-      "note": "",
+      "note": "Cross-check 05/10/2026: aggiunti i telefoni mancanti. Sabato corretto a 09:00–12:30 (il sito indicava erroneamente 12:00). Il sito ufficiale dichiara assistenza notturna/festiva in collaborazione con altri colleghi: classificata come reperibilità telefonica, non come pronto soccorso H24 fisico.",
       "esistenza_verificata": true,
-      "stato_verifica": "orari_confermati_emergenze_non_dichiarate"
+      "stato_verifica": "orari_confermati_emergenze_reperibilita"
     },
     {
       "id": "UD-VET-003",
@@ -1000,9 +1000,9 @@
       "provincia": "UD",
       "latitudine": 45.8396143,
       "longitudine": 13.3305433,
-      "telefono": "",
+      "telefono": "389 9827824; 0431 371488",
       "telefono_emergenze": "",
-      "email": "",
+      "email": "elenabarthvet@libero.it",
       "sito_ufficiale": "",
       "orari": {
         "lunedi": [
@@ -1072,12 +1072,13 @@
       "fonte_principale": "Directory/anagrafe di settore",
       "fonte_orari": "https://www.caniincasa.it/veterinari/",
       "fonte_orari_controllo": "",
+      "fonte_contatti": "https://www.tuttiaffari.com/surgery-veterinarian-dr-elena-barth-389-982-7824",
       "fonte_emergenze": "",
-      "data_verifica": "2026-09-15",
+      "data_verifica": "2026-10-05",
       "orari_verificati": false,
       "livello_verifica_orari": "una_fonte_corrente",
       "emergenze_verificate": false,
-      "note": "Orario pubblicato da una sola fonte secondaria corrente: conferma telefonica consigliata.",
+      "note": "Orario pubblicato da una sola fonte secondaria corrente: conferma telefonica consigliata. Cross-check 05/10/2026: aggiunti telefono ed email da fonte secondaria; orari lasciati invariati e mantenuti come da confermare, poiché le fonti pubbliche non concordano perfettamente.",
       "esistenza_verificata": true,
       "stato_verifica": "una_fonte_da_confermare"
     },

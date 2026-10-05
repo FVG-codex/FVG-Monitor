@@ -1231,10 +1231,10 @@
       "indirizzo": "Via Santissima Trinità, 73",
       "cap": "33070",
       "comune": "Brugnera",
-      "telefono": "",
+      "telefono": "0434 613132",
       "telefono_emergenze": "",
-      "email": "",
-      "sito_ufficiale": "",
+      "email": "lauramed@libero.it",
+      "sito_ufficiale": "https://landing.lauramed.it/",
       "orari": {
         "lunedi": [
           {
@@ -1242,18 +1242,14 @@
             "chiude": "12:00"
           },
           {
-            "apre": "15:00",
-            "chiude": "18:30"
+            "apre": "16:00",
+            "chiude": "19:00"
           }
         ],
         "martedi": [
           {
             "apre": "10:00",
             "chiude": "12:00"
-          },
-          {
-            "apre": "15:00",
-            "chiude": "18:30"
           }
         ],
         "mercoledi": [
@@ -1262,8 +1258,8 @@
             "chiude": "12:00"
           },
           {
-            "apre": "15:00",
-            "chiude": "18:30"
+            "apre": "16:00",
+            "chiude": "19:00"
           }
         ],
         "giovedi": [
@@ -1278,11 +1274,16 @@
             "chiude": "12:00"
           },
           {
-            "apre": "15:00",
-            "chiude": "18:30"
+            "apre": "16:00",
+            "chiude": "19:00"
           }
         ],
-        "sabato": [],
+        "sabato": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          }
+        ],
         "domenica": []
       },
       "su_appuntamento": null,
@@ -1290,19 +1291,19 @@
       "servizi": "Medicina veterinaria",
       "gestione_emergenze": "non_dichiarata",
       "orari_emergenze": "",
-      "fonte_principale": "Directory/anagrafe di settore",
-      "fonte_orari": "https://altraopinione.org/veterinario/brugnera/ambulatorio-veterinario-dott-s/",
-      "fonte_emergenze": "https://altraopinione.org/veterinario/brugnera/ambulatorio-veterinario-dott-s/",
-      "orari_verificati": false,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": "https://landing.lauramed.it/",
+      "fonte_emergenze": "https://landing.lauramed.it/",
+      "orari_verificati": true,
       "emergenze_verificate": false,
       "esistenza_verificata": true,
-      "note": "Una sola fonte corrente pubblica l’orario; conferma telefonica consigliata.",
-      "data_verifica": "2026-09-13",
-      "livello_verifica_orari": "una_fonte_corrente",
-      "fonte_orari_controllo": "https://altraopinione.org/veterinario/brugnera/ambulatorio-veterinario-dott-s/",
+      "note": "Cross-check 05/10/2026: aggiunti telefono, email e sito ufficiale. Orari corretti su sito ufficiale (lun/mer/ven 10:00–12:00 e 16:00–19:00; mar/gio solo 10:00–12:00; sabato 09:00–12:00). Una fonte secondaria (oraridiapertura24.it) riporta il sabato come 10:00–13:00: conflitto non risolto, conferma telefonica consigliata.",
+      "data_verifica": "2026-10-05",
+      "livello_verifica_orari": "ufficiale_con_conflitto_secondario",
+      "fonte_orari_controllo": "https://www.oraridiapertura24.it/filiale/Brugnera-Ambulatorio%2520Veterinario%2520Dott.ssa%2520Laura%2520Zanette-4212419U.html",
       "latitudine": 45.9002292,
       "longitudine": 12.5343889,
-      "stato_verifica": "una_fonte_da_confermare"
+      "stato_verifica": "orari_confermati_con_conflitto_secondario"
     },
     {
       "id": "PN-VET-018",
