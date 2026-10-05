@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { supabase } from "@/lib/supabase";
 import { Panel } from "@/components/Panel";
 import { TopHeader } from "@/components/TopHeader";
@@ -50,6 +51,10 @@ export function BasketPage() {
   const [dati, setDati] = useState<BasketData | null>(null);
   const [stato, setStato] = useState<"loading" | "ready" | "error">("loading");
   const [competizione, setCompetizione] = useState(COMPETIZIONI[0].slug);
+  const t = useTranslations("basket");
+  const tSport = useTranslations("sport");
+  const tNav = useTranslations("nav");
+  const tChrome = useTranslations("chrome");
 
   useEffect(() => {
     let attivo = true;
@@ -83,14 +88,12 @@ export function BasketPage() {
 
       <main id="contenuto-principale" className="max-w-[1180px] mx-auto px-5 py-6">
         <Link href="/sport" className="text-cool-ink text-xs font-mono hover:underline">
-          ← Sport
+          ← {tNav("sport")}
         </Link>
         <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1 mt-1">
-          {stato === "ready" && dati ? `${dati.campionato} — ${dati.girone}` : "Risultati basket"}
+          {stato === "ready" && dati ? `${dati.campionato} — ${dati.girone}` : t("titoloFallback")}
         </h1>
-        <p className="text-ink-faint text-xs font-mono mb-4">
-          Campionati regionali FIP FVG — fonte: Federazione Italiana Pallacanestro
-        </p>
+        <p className="text-ink-faint text-xs font-mono mb-4">{t("descrizione")}</p>
 
         <div className="flex gap-1.5 flex-wrap mb-6">
           {COMPETIZIONI.map((c) => (
@@ -107,16 +110,16 @@ export function BasketPage() {
           ))}
         </div>
 
-        {stato === "loading" && <p className="text-ink-faint text-sm font-mono">Caricamento…</p>}
+        {stato === "loading" && <p className="text-ink-faint text-sm font-mono">{tChrome("caricamento")}</p>}
         {stato === "error" && (
-          <p className="text-ink-faint text-sm font-mono">Dati non disponibili al momento.</p>
+          <p className="text-ink-faint text-sm font-mono">{tChrome("datiNonDisponibili")}</p>
         )}
 
         {stato === "ready" && dati && (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-line border border-line">
-            <Panel title={`${dati.campionato} — Calendario`}>
+            <Panel title={`${dati.campionato} — ${tSport("calendario")}`}>
               {dati.partite.length === 0 ? (
-                <p className="text-ink-faint text-sm font-mono">Nessuna partita in programma.</p>
+                <p className="text-ink-faint text-sm font-mono">{tSport("nessunaPartita")}</p>
               ) : (
                 dati.partite.map((p, i) => (
                   <div key={i} className={`py-3 ${i > 0 ? "border-t border-line" : ""}`}>
@@ -135,19 +138,19 @@ export function BasketPage() {
               )}
             </Panel>
 
-            <Panel title={`${dati.campionato} — Classifica`}>
+            <Panel title={`${dati.campionato} — ${tSport("classifica")}`}>
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
                   <thead>
                     <tr className="border-b border-line font-mono text-[10px] text-ink-faint uppercase">
                       <th className="text-left py-2 pr-2">#</th>
-                      <th className="text-left py-2">Squadra</th>
-                      <th className="text-right py-2 px-2">Pt</th>
-                      <th className="text-right py-2 px-2">G</th>
-                      <th className="text-right py-2 px-2">V</th>
-                      <th className="text-right py-2 px-2">P</th>
-                      <th className="text-right py-2 px-2">PF</th>
-                      <th className="text-right py-2 pl-2">PS</th>
+                      <th className="text-left py-2">{tSport("colSquadra")}</th>
+                      <th className="text-right py-2 px-2">{tSport("colPt")}</th>
+                      <th className="text-right py-2 px-2">{tSport("colG")}</th>
+                      <th className="text-right py-2 px-2">{tSport("colV")}</th>
+                      <th className="text-right py-2 px-2">{tSport("colP")}</th>
+                      <th className="text-right py-2 px-2">{tSport("colPF")}</th>
+                      <th className="text-right py-2 pl-2">{tSport("colPS")}</th>
                     </tr>
                   </thead>
                   <tbody>

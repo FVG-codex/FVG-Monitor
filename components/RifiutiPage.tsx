@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import { useLocale, useTranslations } from "next-intl";
 import { TopHeader } from "@/components/TopHeader";
 import { Footer } from "@/components/Footer";
 import { Panel } from "@/components/Panel";
@@ -11,12 +12,11 @@ import { PROVINCE, PROVINCE_LIST, type ProvinciaSlug } from "@/lib/province";
 import {
   type SnapshotRifiuti,
   type ComuneRifiuti,
+  type TipoRifiuto,
   type SostaVeicoloMobile,
-  etichettaTipo,
   COLORE_TIPO,
   GIORNI_SETTIMANA_BREVE,
   PROVINCE_RIFIUTI_ATTIVE,
-  formattaDataRifiuti,
   prossimeRaccolte,
   comuniPerProvincia,
   provinceConDati,
@@ -61,6 +61,15 @@ function oggiIsoLocale(): string {
   return new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Rome" }).format(new Date());
 }
 
+function formattaDataLocale(dataIso: string, locale: string): string {
+  const d = new Date(`${dataIso}T12:00:00Z`);
+  return d.toLocaleDateString(locale === "en" ? "en-GB" : "it-IT", {
+    weekday: "short",
+    day: "numeric",
+    month: "short",
+  });
+}
+
 // Raggruppa le soste di un veicolo mobile (es. VASCO) per il testo
 // libero `giorni` — la fonte (v. VASCO_MONFALCONE in
 // scripts/ingest-light.mjs) le elenca già una dopo l'altra per turno
@@ -81,6 +90,15 @@ export function RifiutiPage() {
   const [provincia, setProvincia] = useState<ProvinciaSlug>("gorizia");
   const [comuneSlug, setComuneSlug] = useState<string>("");
   const [areaIndice, setAreaIndice] = useState(0);
+  const t = useTranslations("rifiuti");
+  const tServizi = useTranslations("servizi");
+  const tChrome = useTranslations("chrome");
+  const locale = useLocale();
+
+  function tipoLabel(tipo: TipoRifiuto, gestore?: string): string {
+    const chiave = tipo === "plastic_metals" && gestore === "NET S.p.A." ? "plastic_metals_net" : tipo;
+    return t(`tipi.${chiave}`);
+  }
 
   useEffect(() => {
     let attivo = true;
@@ -141,15 +159,12 @@ export function RifiutiPage() {
 
       <main id="contenuto-principale" className="max-w-[1180px] mx-auto px-5 py-6">
         <Link href="/servizi" className="text-cool-ink text-xs font-mono hover:underline">
-          ← Servizi
+          ← {tServizi("titolo")}
         </Link>
         <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1 mt-1">
-          Raccolta differenziata
+          {tServizi("sezioni.rifiuti.nome")}
         </h1>
-        <p className="text-ink-faint text-xs font-mono mb-4">
-          Calendario porta a porta, centro di raccolta e campane del vetro, divisi per provincia. Copre solo i
-          comuni serviti dai gestori già integrati, non tutta la regione — vedi sotto per la provincia selezionata.
-        </p>
+        <p className="text-ink-faint text-xs font-mono mb-4">{t("descrizione")}</p>
 
         <div className="flex gap-1.5 flex-wrap mb-4">
           {PROVINCE_LIST.map((p) => (
@@ -166,14 +181,14 @@ export function RifiutiPage() {
           ))}
         </div>
 
-        {stato === "loading" && <p className="text-ink-faint text-sm font-mono">Caricamento…</p>}
+        {stato === "loading" && <p className="text-ink-faint text-sm font-mono">{tChrome("caricamento")}</p>}
         {stato === "error" && (
-          <p className="text-ink-faint text-sm font-mono">Dati raccolta rifiuti non disponibili al momento.</p>
+          <p className="text-ink-faint text-sm font-mono">{t("nonDisponibili")}</p>
         )}
 
         {stato === "ready" && dati && !provinceAttive.includes(provincia) && (
           <p className="text-ink-faint text-sm font-mono">
-            Raccolta differenziata per la provincia di {PROVINCE[provincia].nome} in arrivo in una prossima fase.
+            {t("inArrivoProvincia", { provincia: PROVINCE[provincia].nome })}
           </p>
         )}
 
@@ -181,7 +196,7 @@ export function RifiutiPage() {
           <>
             <div className="flex items-center gap-2 flex-wrap mb-3">
               <label htmlFor="rifiuti-comune" className="text-ink-faint text-xs font-mono uppercase tracking-wide">
-                Comune
+                {t("comuneLabel")}
               </label>
               <select
                 id="rifiuti-comune"
@@ -198,18 +213,24 @@ export function RifiutiPage() {
                   </option>
                 ))}
               </select>
-              {comune && <span className="text-ink-faint text-[10px] font-mono">Gestore: {comune.gestore}</span>}
+              {comune && (
+                <span className="text-ink-faint text-[10px] font-mono">
+                  {t("gestoreEtichetta", { gestore: comune.gestore })}
+                </span>
+              )}
             </div>
 
             {comune && comune.stale && (
               <p className="text-allerta-arancione-ink text-[10px] font-mono uppercase mb-3">
-                Dato non aggiornato dall&apos;ultima verifica (errore di rete alla fonte)
+                {t("datoNonAggiornato")}
               </p>
             )}
 
             {comune && comune.aree.length > 1 && (
               <div className="flex items-center gap-1.5 flex-wrap mb-4">
-                <span className="text-ink-faint text-xs font-mono uppercase tracking-wide mr-1">Area</span>
+                <span className="text-ink-faint text-xs font-mono uppercase tracking-wide mr-1">
+                  {t("areaLabel")}
+                </span>
                 {comune.aree.map((a, i) => (
                   <button
                     key={`${a.area ?? "?"}-${i}`}
@@ -219,7 +240,7 @@ export function RifiutiPage() {
                       areaIndice === i ? "bg-cool text-on-accent" : "border border-line text-ink-dim hover:text-ink"
                     }`}
                   >
-                    {a.area ? `Area ${a.area}` : "n/d"}
+                    {a.area ? t("areaNumero", { numero: a.area }) : t("nd")}
                   </button>
                 ))}
               </div>
@@ -230,10 +251,10 @@ export function RifiutiPage() {
                 <Panel
                   title={
                     comune.gestore === "AcegasApsAmga"
-                      ? "Calendario porta a porta"
+                      ? t("calendarioPortaPorta")
                       : comune.raccolta_stradale
-                        ? "Raccolta stradale"
-                        : "Prossime raccolte"
+                        ? t("raccoltaStradale")
+                        : t("prossimeRaccolte")
                   }
                 >
                   {comune.gestore === "AcegasApsAmga" ? (
@@ -248,26 +269,24 @@ export function RifiutiPage() {
                               className="inline-block w-2.5 h-2.5 rounded-full flex-shrink-0"
                               style={{ backgroundColor: COLORE_TIPO[m.tipo] }}
                             />
-                            {etichettaTipo(m.tipo, comune.gestore)}
+                            {tipoLabel(m.tipo, comune.gestore)}
                             <span className="text-ink-faint text-xs">({m.colore})</span>
                           </span>
                         ))}
                       </div>
                       <div className="text-xs space-y-1">
                         <div>
-                          <span className="text-ink-faint uppercase tracking-wide mr-1.5">Estate</span>
+                          <span className="text-ink-faint uppercase tracking-wide mr-1.5">{t("estate")}</span>
                           {comune.raccolta_stradale.frequenza_estate}
                         </div>
                         <div>
-                          <span className="text-ink-faint uppercase tracking-wide mr-1.5">Inverno</span>
+                          <span className="text-ink-faint uppercase tracking-wide mr-1.5">{t("inverno")}</span>
                           {comune.raccolta_stradale.frequenza_inverno}
                         </div>
                       </div>
                     </div>
                   ) : prossime.length === 0 ? (
-                    <p className="text-ink-faint text-sm font-mono">
-                      Nessun dato di calendario disponibile per quest&apos;area al momento.
-                    </p>
+                    <p className="text-ink-faint text-sm font-mono">{t("nessunDatoCalendario")}</p>
                   ) : (
                     prossime.map((g, i) => (
                       <div
@@ -275,16 +294,16 @@ export function RifiutiPage() {
                         className={`flex items-center gap-3 py-2.5 ${i > 0 ? "border-t border-line" : ""}`}
                       >
                         <div className="font-mono text-ink-dim text-xs w-24 flex-shrink-0 uppercase">
-                          {g.data === oggiIso ? "Oggi" : formattaDataRifiuti(g.data)}
+                          {g.data === oggiIso ? t("oggi") : formattaDataLocale(g.data, locale)}
                         </div>
                         <div className="flex items-center gap-3 flex-wrap">
-                          {g.tipi.map((t) => (
-                            <span key={t} className="flex items-center gap-1.5 text-sm">
+                          {g.tipi.map((tipo) => (
+                            <span key={tipo} className="flex items-center gap-1.5 text-sm">
                               <span
                                 className="inline-block w-2.5 h-2.5 rounded-full flex-shrink-0"
-                                style={{ backgroundColor: COLORE_TIPO[t] }}
+                                style={{ backgroundColor: COLORE_TIPO[tipo] }}
                               />
-                              {etichettaTipo(t, comune.gestore)}
+                              {tipoLabel(tipo, comune.gestore)}
                             </span>
                           ))}
                         </div>
@@ -296,8 +315,8 @@ export function RifiutiPage() {
                 <Panel
                   title={
                     comune.stazioni_ecologiche && comune.stazioni_ecologiche.length > 0
-                      ? "Stazioni ecologiche"
-                      : "Centro di raccolta e vetro"
+                      ? t("stazioniEcologiche")
+                      : t("centroRaccoltaEVetro")
                   }
                 >
                   {comune.stazioni_ecologiche && comune.stazioni_ecologiche.length > 0 ? (
@@ -315,11 +334,15 @@ export function RifiutiPage() {
                           )}
                           {s.orari.length > 0 && (
                             <div className="text-ink-dim text-xs mb-2">
-                              {s.orari.map((o, oi) => (
-                                <span key={oi} className="mr-2 whitespace-nowrap">
-                                  {GIORNI_SETTIMANA_BREVE[o.giorno] ?? o.giorno} {o.orarioInizio}–{o.orarioFine}
-                                </span>
-                              ))}
+                              {s.orari.map((o, oi) => {
+                                const giornoBreve = GIORNI_SETTIMANA_BREVE[o.giorno];
+                                return (
+                                  <span key={oi} className="mr-2 whitespace-nowrap">
+                                    {giornoBreve ? t(`giorniBrevi.${giornoBreve}`) : o.giorno} {o.orarioInizio}–
+                                    {o.orarioFine}
+                                  </span>
+                                );
+                              })}
                             </div>
                           )}
                           {s.materiali.length > 0 && (
@@ -342,7 +365,7 @@ export function RifiutiPage() {
                       {comune.centro_raccolta ? (
                         <div className="mb-4">
                           <div className="font-cond font-semibold text-sm uppercase tracking-wide mb-1">
-                            Conferimenti ingombranti e verde
+                            {t("conferimentiIngombranti")}
                           </div>
                           {comune.centro_raccolta.indirizzo && (
                             <div className="text-ink text-sm mb-1">{comune.centro_raccolta.indirizzo}</div>
@@ -364,15 +387,13 @@ export function RifiutiPage() {
                           )}
                         </div>
                       ) : (
-                        <p className="text-ink-faint text-sm font-mono mb-4">
-                          Info centro di raccolta non disponibili per questo comune.
-                        </p>
+                        <p className="text-ink-faint text-sm font-mono mb-4">{t("infoCentroNonDisponibili")}</p>
                       )}
 
                       {comune.campane_vetro.length > 0 && (
                         <div>
                           <div className="font-cond font-semibold text-sm uppercase tracking-wide mb-1">
-                            Campane del vetro
+                            {t("campaneDelVetro")}
                           </div>
                           <ul className="text-ink-dim text-xs space-y-1 list-disc list-inside">
                             {comune.campane_vetro.map((c) => (
@@ -386,7 +407,7 @@ export function RifiutiPage() {
                 </Panel>
 
                 {comune.nota && (
-                  <Panel title="Da sapere" span={2}>
+                  <Panel title={t("daSapere")} span={2}>
                     <p className="text-ink-dim text-xs whitespace-pre-line">{comune.nota}</p>
                   </Panel>
                 )}
@@ -402,7 +423,7 @@ export function RifiutiPage() {
                               className="inline-block w-2.5 h-2.5 rounded-full flex-shrink-0"
                               style={{ backgroundColor: COLORE_TIPO[m] }}
                             />
-                            {etichettaTipo(m, comune.gestore)}
+                            {tipoLabel(m, comune.gestore)}
                           </span>
                         ))}
                       </div>
@@ -429,9 +450,9 @@ export function RifiutiPage() {
             )}
 
             <p className="text-ink-faint text-[10px] font-mono mt-6 border-t border-line pt-3">
-              Aggiornato al {new Date(dati.aggiornato_al).toLocaleString("it-IT")} — il calendario ufficiale del
-              gestore ha sempre la precedenza su questa pagina: verificare in caso di dubbio, specie in prossimità
-              di festività.
+              {t("aggiornatoAl", {
+                data: new Date(dati.aggiornato_al).toLocaleString(locale === "en" ? "en-GB" : "it-IT"),
+              })}
             </p>
           </>
         )}

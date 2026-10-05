@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import dynamic from "next/dynamic";
+import { useTranslations } from "next-intl";
 import { TopHeader } from "@/components/TopHeader";
 import { Footer } from "@/components/Footer";
 import { Panel } from "@/components/Panel";
@@ -13,14 +14,14 @@ const AviazioneMap = dynamic(() => import("@/components/AviazioneMap").then((m) 
   loading: () => <p className="text-ink-faint text-sm font-mono">Caricamento mappa…</p>,
 });
 
-const FILTRI: { chiave: CategoriaAviostruttura | "tutte"; etichetta: string }[] = [
-  { chiave: "tutte", etichetta: "Tutte" },
-  { chiave: "aeroporto-civile", etichetta: "Aeroporti civili" },
-  { chiave: "aeroporto-militare", etichetta: "Aeroporti militari" },
-  { chiave: "aviosuperficie", etichetta: "Aviosuperfici" },
-  { chiave: "campo-volo", etichetta: "Campi volo" },
-  { chiave: "elisuperficie", etichetta: "Elisuperfici" },
-  { chiave: "pista-dismessa", etichetta: "Piste dismesse" },
+const FILTRI: (CategoriaAviostruttura | "tutte")[] = [
+  "tutte",
+  "aeroporto-civile",
+  "aeroporto-militare",
+  "aviosuperficie",
+  "campo-volo",
+  "elisuperficie",
+  "pista-dismessa",
 ];
 
 function contaPerCategoria(cat: CategoriaAviostruttura | "tutte"): number {
@@ -29,6 +30,9 @@ function contaPerCategoria(cat: CategoriaAviostruttura | "tutte"): number {
 
 export function AviazionePage() {
   const [filtro, setFiltro] = useState<CategoriaAviostruttura | "tutte">("tutte");
+  const t = useTranslations("aviazione");
+  const tNav = useTranslations("nav");
+  const tChrome = useTranslations("chrome");
 
   const strutture = (filtro === "tutte" ? AVIOSTRUTTURE : AVIOSTRUTTURE.filter((s) => s.categoria === filtro))
     .slice()
@@ -40,32 +44,28 @@ export function AviazionePage() {
       <div className="isobar" />
 
       <main id="contenuto-principale" className="max-w-[1180px] mx-auto px-5 py-6">
-        <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1">Aviazione</h1>
+        <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1">{tNav("aviazione")}</h1>
         <p className="text-ink-faint text-xs font-mono mb-4">
-          Aeroporti, aviosuperfici, campi volo ed elisuperfici del Friuli Venezia Giulia ({AVIOSTRUTTURE.length}{" "}
-          strutture) — fonti: WebAAI (webaai.it) per l&apos;anagrafica, QNH Fly (qnhfly.com) per orientamento,
-          lunghezza e pavimentazione delle piste dove disponibili. Elenco statico, aggiornato periodicamente:
-          alcuni dati (contatti, orari, frequenze, carte di avvicinamento) restano dietro un abbonamento a
-          pagamento e non sono inclusi qui.
+          {t("descrizione", { count: AVIOSTRUTTURE.length })}
         </p>
 
         <div className="flex gap-1.5 flex-wrap mb-6">
-          {FILTRI.map((f) => (
+          {FILTRI.map((chiave) => (
             <button
-              key={f.chiave}
-              onClick={() => setFiltro(f.chiave)}
-              aria-pressed={filtro === f.chiave}
+              key={chiave}
+              onClick={() => setFiltro(chiave)}
+              aria-pressed={filtro === chiave}
               className={`px-3 py-1.5 rounded text-xs font-cond font-semibold uppercase tracking-wide transition-colors ${
-                filtro === f.chiave ? "bg-cool text-on-accent" : "border border-line text-ink-dim hover:text-ink"
+                filtro === chiave ? "bg-cool text-on-accent" : "border border-line text-ink-dim hover:text-ink"
               }`}
             >
-              {f.etichetta} ({contaPerCategoria(f.chiave)})
+              {t(`filtri.${chiave}`)} ({contaPerCategoria(chiave)})
             </button>
           ))}
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-line border border-line">
-          <Panel title="Mappa">
+          <Panel title={tChrome("mappa")}>
             {/* role="region" + aria-label (stesso pattern di TerremotiPage.tsx,
                 Fase 4 — Accessibilità): la mappa Leaflet non è navigabile in
                 modo significativo con uno screen reader — gli stessi dati
@@ -73,7 +73,7 @@ export function AviazionePage() {
                 pannello "Elenco" qui accanto. */}
             <div
               role="region"
-              aria-label="Mappa delle aviostrutture in Friuli Venezia Giulia — elenco testuale equivalente nel pannello a fianco"
+              aria-label={t("mappaAriaLabel")}
               style={{ height: 460 }}
               className="rounded overflow-hidden"
             >
@@ -81,9 +81,9 @@ export function AviazionePage() {
             </div>
           </Panel>
 
-          <Panel title={`Elenco (${strutture.length})`}>
+          <Panel title={t("elenco", { count: strutture.length })}>
             {strutture.length === 0 ? (
-              <p className="text-ink-faint text-sm font-mono">Nessuna struttura trovata per questo filtro.</p>
+              <p className="text-ink-faint text-sm font-mono">{t("nessunaStruttura")}</p>
             ) : (
               <div className="max-h-[460px] overflow-y-auto flex flex-col">
                 {strutture.map((s, i) => (
@@ -126,7 +126,7 @@ export function AviazionePage() {
                           rel="noopener noreferrer"
                           className="font-mono text-[10px] text-cool-ink hover:underline inline-block"
                         >
-                          Scheda →<span className="sr-only"> (si apre in una nuova scheda)</span>
+                          {t("schedaLink")}<span className="sr-only"> {tChrome("apreNuovaScheda")}</span>
                         </a>
                       )}
                       {s.fonteDatiPista && s.fonteDatiPista !== s.urlFonte && (
@@ -136,7 +136,7 @@ export function AviazionePage() {
                           rel="noopener noreferrer"
                           className="font-mono text-[10px] text-cool-ink hover:underline inline-block"
                         >
-                          Dati pista (qnhfly.com) →<span className="sr-only"> (si apre in una nuova scheda)</span>
+                          {t("datiPistaLink")}<span className="sr-only"> {tChrome("apreNuovaScheda")}</span>
                         </a>
                       )}
                     </div>

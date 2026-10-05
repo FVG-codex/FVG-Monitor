@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 import { supabase } from "@/lib/supabase";
 import { TopHeader } from "@/components/TopHeader";
 import { Footer } from "@/components/Footer";
@@ -34,6 +35,10 @@ export function WebcamPage() {
   const [dati, setDati] = useState<WebcamData | null>(null);
   const [stato, setStato] = useState<"loading" | "ready" | "error">("loading");
   const [filtro, setFiltro] = useState<ProvinciaSlug | "tutte">("tutte");
+  const t = useTranslations("webcam");
+  const tNav = useTranslations("nav");
+  const tFvgInImmagini = useTranslations("fvgInImmagini");
+  const tChrome = useTranslations("chrome");
 
   useEffect(() => {
     let attivo = true;
@@ -72,13 +77,12 @@ export function WebcamPage() {
 
       <main id="contenuto-principale" className="max-w-[1180px] mx-auto px-5 py-6">
         <a href="/fvg-in-immagini" className="text-cool-ink text-xs font-mono hover:underline">
-          ← FVG in immagini
+          ← {tNav("immagini")}
         </a>
-        <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1 mt-1">Webcam regionali</h1>
-        <p className="text-ink-faint text-xs font-mono mb-4">
-          Immagini fornite da OSMER ARPA FVG (CC BY-SA 3.0) — la validità dei dati non è garantita da ARPA FVG,
-          che aggrega webcam gestite da terzi. Clicca su una webcam per aprire la fonte originale
-        </p>
+        <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1 mt-1">
+          {tFvgInImmagini("sezioni.webcam.nome")}
+        </h1>
+        <p className="text-ink-faint text-xs font-mono mb-4">{t("descrizione")}</p>
 
         <div className="flex gap-1.5 flex-wrap mb-6">
           <button
@@ -88,7 +92,7 @@ export function WebcamPage() {
               filtro === "tutte" ? "bg-cool text-on-accent" : "border border-line text-ink-dim hover:text-ink"
             }`}
           >
-            Tutta la regione
+            {tChrome("allRegion")}
           </button>
           {PROVINCE_LIST.map((p) => (
             <button
@@ -104,9 +108,9 @@ export function WebcamPage() {
           ))}
         </div>
 
-        {stato === "loading" && <p className="text-ink-faint text-sm font-mono">Caricamento…</p>}
+        {stato === "loading" && <p className="text-ink-faint text-sm font-mono">{tChrome("caricamento")}</p>}
         {stato === "error" && (
-          <p className="text-ink-faint text-sm font-mono">Dati non disponibili al momento.</p>
+          <p className="text-ink-faint text-sm font-mono">{tChrome("datiNonDisponibili")}</p>
         )}
 
         {stato === "ready" && (
@@ -117,11 +121,11 @@ export function WebcamPage() {
           </div>
         )}
 
-        <h2 className="font-cond font-bold text-xl uppercase tracking-wide mt-10 mb-1">Panorami 360°</h2>
-        <p className="text-ink-faint text-xs font-mono mb-4">Fonte: Turismo FVG (Panomax / Feratel)</p>
+        <h2 className="font-cond font-bold text-xl uppercase tracking-wide mt-10 mb-1">{t("panorami360")}</h2>
+        <p className="text-ink-faint text-xs font-mono mb-4">{t("fontePanorami")}</p>
 
         {panoramiFiltrati.length === 0 ? (
-          <p className="text-ink-faint text-sm font-mono">Nessun panorama disponibile per questa provincia.</p>
+          <p className="text-ink-faint text-sm font-mono">{t("nessunPanorama")}</p>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {panoramiFiltrati.map((p) => (

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 import { TopHeader } from "@/components/TopHeader";
 import { Footer } from "@/components/Footer";
 
@@ -17,9 +18,8 @@ import { Footer } from "@/components/Footer";
 // vedi lib/prontosoccorso.ts.
 const SEZIONI = [
   {
-    nome: "Pronto Soccorso",
+    key: "prontoSoccorso",
     href: "/pronto-soccorso",
-    descrizione: "Pazienti in attesa e in trattamento per codice di triage, in tempo reale, per tutte le sedi",
     icona: (
       <svg viewBox="0 0 48 48" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.5">
         <path d="M24 8l14 6v10c0 10-6 17-14 16-8-1-14-8-14-16V14z" strokeLinecap="round" strokeLinejoin="round" />
@@ -28,9 +28,8 @@ const SEZIONI = [
     ),
   },
   {
-    nome: "Farmacie",
+    key: "farmacie",
     href: "/farmacie",
-    descrizione: "Tutte le farmacie e le farmacie di turno, per provincia e comune",
     icona: (
       <svg viewBox="0 0 48 48" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.5">
         <rect x="8" y="8" width="32" height="32" rx="3" />
@@ -39,9 +38,8 @@ const SEZIONI = [
     ),
   },
   {
-    nome: "Cliniche & centri medici",
+    key: "cliniche",
     href: "/cliniche",
-    descrizione: "In arrivo",
     icona: (
       <svg viewBox="0 0 48 48" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.5">
         <path d="M24 8v14M17 15h14" strokeLinecap="round" />
@@ -50,9 +48,8 @@ const SEZIONI = [
     ),
   },
   {
-    nome: "Veterinari & Emergenze",
+    key: "veterinari",
     href: "/veterinari",
-    descrizione: "Cliniche e ambulatori veterinari, con le eventuali emergenze in evidenza",
     icona: (
       <svg viewBox="0 0 48 48" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.5">
         <path
@@ -65,9 +62,8 @@ const SEZIONI = [
     ),
   },
   {
-    nome: "Dentisti & Odontoiatri",
+    key: "dentisti",
     href: "/dentisti",
-    descrizione: "In arrivo",
     icona: (
       <svg viewBox="0 0 48 48" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.5">
         <path
@@ -80,17 +76,18 @@ const SEZIONI = [
   },
 ];
 
-export function SanitaPage() {
+export async function SanitaPage() {
+  const t = await getTranslations("sanita");
+  const tNav = await getTranslations("nav");
+  const tChrome = await getTranslations("chrome");
   return (
     <>
       <TopHeader />
       <div className="isobar" />
 
       <main id="contenuto-principale" className="max-w-[1180px] mx-auto px-5 py-6">
-        <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1">Sanità</h1>
-        <p className="text-ink-faint text-xs font-mono mb-6">
-          Farmacie, cliniche, veterinari e dentisti del Friuli Venezia Giulia
-        </p>
+        <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1">{tNav("sanita")}</h1>
+        <p className="text-ink-faint text-xs font-mono mb-6">{t("descrizione")}</p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {SEZIONI.map((s) => (
@@ -101,8 +98,12 @@ export function SanitaPage() {
             >
               <span className="text-cool-ink">{s.icona}</span>
               <div>
-                <div className="font-cond font-bold text-lg uppercase tracking-wide">{s.nome}</div>
-                <div className="text-ink-faint text-xs mt-1">{s.descrizione}</div>
+                <div className="font-cond font-bold text-lg uppercase tracking-wide">
+                  {t(`sezioni.${s.key}.nome`)}
+                </div>
+                <div className="text-ink-faint text-xs mt-1">
+                  {s.key === "cliniche" || s.key === "dentisti" ? tChrome("inArrivo") : t(`sezioni.${s.key}.descrizione`)}
+                </div>
               </div>
             </Link>
           ))}

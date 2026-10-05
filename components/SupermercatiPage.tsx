@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import dynamic from "next/dynamic";
+import { useTranslations } from "next-intl";
 import { TopHeader } from "@/components/TopHeader";
 import { Footer } from "@/components/Footer";
 import { Panel } from "@/components/Panel";
@@ -43,6 +44,11 @@ export function SupermercatiPage() {
   const [comuneSel, setComuneSel] = useState<string | null>(null);
   const [ricerca, setRicerca] = useState("");
   const [adesso, setAdesso] = useState(() => adessoEuropeRome());
+  const t = useTranslations("supermercati");
+  const tNav = useTranslations("nav");
+  const tCommercio = useTranslations("commercio");
+  const tEventi = useTranslations("eventi");
+  const tChrome = useTranslations("chrome");
 
   useEffect(() => {
     const id = setInterval(() => setAdesso(adessoEuropeRome()), 30 * 1000);
@@ -101,15 +107,12 @@ export function SupermercatiPage() {
 
       <main id="contenuto-principale" className="max-w-[1180px] mx-auto px-5 py-6">
         <a href="/commercio" className="text-cool-ink text-xs font-mono hover:underline">
-          ← Commercio
+          ← {tNav("commercio")}
         </a>
-        <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1 mt-1">Supermercati</h1>
-        <p className="text-ink-faint text-xs font-mono mb-4">
-          Supermercati, ipermercati e discount del Friuli Venezia Giulia (minimarket e botteghe esclusi) — dato
-          raccolto e verificato manualmente (Google Maps e siti ufficiali delle insegne), non un registro
-          ufficiale della Regione. Gli orari indicati sono quelli ordinari settimanali: festività e aperture
-          straordinarie non sono incluse.
-        </p>
+        <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1 mt-1">
+          {tCommercio("categorie.supermercati.nome")}
+        </h1>
+        <p className="text-ink-faint text-xs font-mono mb-4">{t("descrizione")}</p>
 
         <div className="flex gap-1.5 flex-wrap mb-3">
           {PROVINCE_LIST.map((p) => (
@@ -134,7 +137,7 @@ export function SupermercatiPage() {
               categoria === "tutte" ? "bg-cool text-on-accent" : "border border-line text-ink-dim hover:text-ink"
             }`}
           >
-            Tutte le categorie
+            {tEventi("tutteLeCategorie")}
           </button>
           {CATEGORIE_SUPERMERCATO.map((c) => (
             <button
@@ -145,7 +148,7 @@ export function SupermercatiPage() {
                 categoria === c ? "bg-cool text-on-accent" : "border border-line text-ink-dim hover:text-ink"
               }`}
             >
-              {c}
+              {t(`categorie.${c}`)}
             </button>
           ))}
         </div>
@@ -159,7 +162,7 @@ export function SupermercatiPage() {
                 comuneSel === null ? "bg-cool text-on-accent" : "border border-line text-ink-dim hover:text-ink"
               }`}
             >
-              Tutti i comuni ({baseProvincia.length})
+              {tChrome("tuttiIComuni", { count: baseProvincia.length })}
             </button>
             {comuni.map(([c, n]) => (
               <button
@@ -177,21 +180,25 @@ export function SupermercatiPage() {
         )}
 
         <label className="block mb-4">
-          <span className="sr-only">Cerca per nome, insegna o comune</span>
+          <span className="sr-only">{t("cercaLabel")}</span>
           <input
             type="search"
             value={ricerca}
             onChange={(e) => setRicerca(e.target.value)}
-            placeholder="Cerca per nome, insegna o comune…"
+            placeholder={t("cercaPlaceholder")}
             className="w-full max-w-sm px-3 py-1.5 rounded text-sm bg-panel border border-line text-ink placeholder:text-ink-faint focus:outline-none focus:border-cool"
           />
         </label>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-line border border-line">
-          <Panel title={`Elenco (${elenco.length})`}>
+          <Panel title={tChrome("elenco", { count: elenco.length })}>
             {elenco.length === 0 ? (
               <p className="text-ink-faint text-sm font-mono">
-                Nessun punto vendita trovato{comuneSel ? ` a ${comuneSel}` : ` in provincia di ${nomeProvincia}`}.
+                {t("nessunPuntoVendita", {
+                  luogo: comuneSel
+                    ? tChrome("aComune", { luogo: comuneSel })
+                    : tChrome("inProvinciaDi", { provincia: nomeProvincia }),
+                })}
               </p>
             ) : (
               <div className="max-h-[460px] overflow-y-auto flex flex-col">
@@ -201,21 +208,21 @@ export function SupermercatiPage() {
                       <span className="text-sm font-semibold truncate">{v.nome}</span>
                       {v.temporaneamenteChiuso ? (
                         <span className="font-mono text-[10px] text-allerta-rossa-ink uppercase shrink-0">
-                          Chiuso temporaneamente
+                          {t("chiusoTemporaneamente")}
                         </span>
                       ) : (
                         <StatoApertoBadge stato={statoAperturaSupermercato(v, adesso)} />
                       )}
                     </div>
                     <div className="text-ink-dim text-xs mt-0.5">
-                      {v.categoria} · {v.insegna}
+                      {t(`categorie.${v.categoria}`)} · {v.insegna}
                     </div>
                     <div className="text-ink-dim text-xs mt-0.5">
                       {v.indirizzo}, {v.comune}
                     </div>
                     {v.telefono && (
                       <a href={`tel:${v.telefono.replace(/\s+/g, "")}`} className="text-ink-faint text-xs mt-0.5 block hover:text-cool-ink">
-                        Tel. {v.telefono}
+                        {tChrome("telEtichetta", { telefono: v.telefono })}
                       </a>
                     )}
                     {v.sito && (
@@ -225,14 +232,14 @@ export function SupermercatiPage() {
                         rel="noopener noreferrer"
                         className="font-mono text-[10px] text-cool-ink hover:underline inline-block mt-0.5"
                       >
-                        Sito →<span className="sr-only"> (si apre in una nuova scheda)</span>
+                        {tChrome("sitoLink")}<span className="sr-only"> {tChrome("apreNuovaScheda")}</span>
                       </a>
                     )}
                     {!v.temporaneamenteChiuso && (
                       <div className="font-mono text-[10px] text-ink-dim mt-1">
-                        Oggi: {formattaFasceGiorno(v.orari[giorno])}
+                        {t("oggiOrari", { orari: formattaFasceGiorno(v.orari[giorno]) })}
                         {v.orariNonVerificati && (
-                          <span className="text-ink-faint normal-case"> (orario non confermato)</span>
+                          <span className="text-ink-faint normal-case">{t("orarioNonConfermato")}</span>
                         )}
                       </div>
                     )}
@@ -242,10 +249,14 @@ export function SupermercatiPage() {
             )}
           </Panel>
 
-          <Panel title="Mappa">
+          <Panel title={tChrome("mappa")}>
             <div
               role="region"
-              aria-label={`Mappa dei supermercati${comuneSel ? ` a ${comuneSel}` : ` in provincia di ${nomeProvincia}`} — elenco testuale equivalente nel pannello a fianco`}
+              aria-label={t("mappaAriaLabel", {
+                luogo: comuneSel
+                  ? tChrome("aComune", { luogo: comuneSel })
+                  : tChrome("inProvinciaDi", { provincia: nomeProvincia }),
+              })}
               style={{ height: 460 }}
               className="rounded overflow-hidden"
             >

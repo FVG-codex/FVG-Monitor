@@ -2,24 +2,27 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import { useLocale, useTranslations } from "next-intl";
 import { TopHeader } from "@/components/TopHeader";
 import { Footer } from "@/components/Footer";
 import { Panel } from "@/components/Panel";
 import { supabase } from "@/lib/supabase";
 import { PROVINCE_LIST, type ProvinciaSlug } from "@/lib/province";
 import {
-  TIPI_STRUTTURA,
   PROVINCIA_ABBR,
   type TipoStrutturaSlug,
   type SnapshotStruttureRicettive,
 } from "@/lib/struttureRicettive";
 
 export function StrutturaTipoPage({ tipo }: { tipo: TipoStrutturaSlug }) {
-  const info = TIPI_STRUTTURA[tipo];
   const [dati, setDati] = useState<SnapshotStruttureRicettive | null>(null);
   const [stato, setStato] = useState<"loading" | "ready" | "error">("loading");
   const [provincia, setProvincia] = useState<ProvinciaSlug | "tutte">("tutte");
   const [ricerca, setRicerca] = useState("");
+  const t = useTranslations("struttureRicettive");
+  const tTurismo = useTranslations("turismo");
+  const tChrome = useTranslations("chrome");
+  const locale = useLocale();
 
   useEffect(() => {
     let attivo = true;
@@ -65,18 +68,15 @@ export function StrutturaTipoPage({ tipo }: { tipo: TipoStrutturaSlug }) {
 
       <main id="contenuto-principale" className="max-w-[1180px] mx-auto px-5 py-6">
         <Link href="/strutture-ricettive" className="text-cool-ink text-xs font-mono hover:underline">
-          ← Strutture ricettive
+          ← {tTurismo("sezioni.struttureRicettive.nome")}
         </Link>
-        <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1 mt-1">{info.nome}</h1>
+        <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1 mt-1">{t(`tipi.${tipo}.nome`)}</h1>
         <p className="text-ink-faint text-xs font-mono mb-4">
-          {info.descrizione} — fonte: Regione Autonoma FVG (dati.friuliveneziagiulia.it), che pubblica solo
-          denominazione, comune, email e sito quando disponibili. Indirizzo e telefono, quando mostrati, vengono da
-          un abbinamento nome+comune con turismofvg.it o OpenStreetMap (fonte indicata accanto al dato) — non sempre
-          disponibili, non un dato ufficiale della Regione.
+          {t("descrizioneDettaglio", { descrizione: t(`tipi.${tipo}.descrizioneCompleta`) })}
         </p>
 
-        {stato === "loading" && <p className="text-ink-faint text-sm font-mono">Caricamento…</p>}
-        {stato === "error" && <p className="text-ink-faint text-sm font-mono">Dati non disponibili al momento.</p>}
+        {stato === "loading" && <p className="text-ink-faint text-sm font-mono">{tChrome("caricamento")}</p>}
+        {stato === "error" && <p className="text-ink-faint text-sm font-mono">{tChrome("datiNonDisponibili")}</p>}
 
         {stato === "ready" && dati && datiTipo && (
           <>
@@ -88,7 +88,7 @@ export function StrutturaTipoPage({ tipo }: { tipo: TipoStrutturaSlug }) {
                   provincia === "tutte" ? "bg-cool text-on-accent" : "border border-line text-ink-dim hover:text-ink"
                 }`}
               >
-                Tutte ({datiTipo.totale})
+                {t("tutte", { count: datiTipo.totale })}
               </button>
               {PROVINCE_LIST.map((p) => (
                 <button
@@ -105,20 +105,20 @@ export function StrutturaTipoPage({ tipo }: { tipo: TipoStrutturaSlug }) {
             </div>
 
             <label className="block mb-4">
-              <span className="sr-only">Cerca per nome o comune</span>
+              <span className="sr-only">{t("cercaLabel")}</span>
               <input
                 type="search"
                 value={ricerca}
                 onChange={(e) => setRicerca(e.target.value)}
-                placeholder="Cerca per nome o comune…"
+                placeholder={t("cercaPlaceholder")}
                 className="w-full max-w-sm px-3 py-1.5 rounded text-sm bg-panel border border-line text-ink placeholder:text-ink-faint focus:outline-none focus:border-cool"
               />
             </label>
 
             <div className="grid grid-cols-1 gap-px bg-line border border-line">
-              <Panel title={`Elenco (${elenco.length})`}>
+              <Panel title={t("elenco", { count: elenco.length })}>
                 {elenco.length === 0 ? (
-                  <p className="text-ink-faint text-sm font-mono">Nessuna struttura trovata.</p>
+                  <p className="text-ink-faint text-sm font-mono">{t("nessunaStruttura")}</p>
                 ) : (
                   <div className="max-h-[600px] overflow-y-auto flex flex-col">
                     {elenco.map((v, i) => (
@@ -158,7 +158,7 @@ export function StrutturaTipoPage({ tipo }: { tipo: TipoStrutturaSlug }) {
                                 rel="noopener noreferrer"
                                 className="font-mono text-[10px] text-cool-ink hover:underline inline-block"
                               >
-                                Sito →<span className="sr-only"> (si apre in una nuova scheda)</span>
+                                {t("sitoLink")}<span className="sr-only"> {tChrome("apreNuovaScheda")}</span>
                               </a>
                             )}
                             {(v.email || v.contatti?.email) && (
@@ -173,7 +173,7 @@ export function StrutturaTipoPage({ tipo }: { tipo: TipoStrutturaSlug }) {
                         )}
                         {(v.contatti?.titolare || v.contatti?.cin) && (
                           <div className="text-ink-faint text-[10px] font-mono mt-1">
-                            {v.contatti.titolare && <span>Titolare: {v.contatti.titolare}</span>}
+                            {v.contatti.titolare && <span>{t("titolare", { nome: v.contatti.titolare })}</span>}
                             {v.contatti.titolare && v.contatti.cin && <span className="mx-1.5">·</span>}
                             {v.contatti.cin && <span>CIN: {v.contatti.cin}</span>}
                           </div>
@@ -186,11 +186,12 @@ export function StrutturaTipoPage({ tipo }: { tipo: TipoStrutturaSlug }) {
             </div>
 
             <p className="text-ink-faint text-[10px] font-mono mt-3">
-              Dati aggiornati al{" "}
-              {new Date(dati.aggiornato_al).toLocaleDateString("it-IT", {
-                day: "numeric",
-                month: "long",
-                year: "numeric",
+              {t("aggiornatoAl", {
+                data: new Date(dati.aggiornato_al).toLocaleDateString(locale === "en" ? "en-GB" : "it-IT", {
+                  day: "numeric",
+                  month: "long",
+                  year: "numeric",
+                }),
               })}
             </p>
           </>

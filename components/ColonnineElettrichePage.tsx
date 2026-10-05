@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import dynamic from "next/dynamic";
+import { useLocale, useTranslations } from "next-intl";
 import { supabase } from "@/lib/supabase";
 import { TopHeader } from "@/components/TopHeader";
 import { Footer } from "@/components/Footer";
@@ -32,8 +33,13 @@ const ColonnineElettricheMap = dynamic(
 const CENTRO_FVG: [number, number] = [46.1, 13.1];
 const RAGGI_KM = [10, 30, 50, 100] as const;
 
-function formattaData(iso: string): string {
-  return new Date(iso).toLocaleString("it-IT", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
+function formattaData(iso: string, locale: string): string {
+  return new Date(iso).toLocaleString(locale === "en" ? "en-GB" : "it-IT", {
+    day: "numeric",
+    month: "short",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
 }
 
 export function ColonnineElettrichePage() {
@@ -48,6 +54,11 @@ export function ColonnineElettrichePage() {
   const [testoRicerca, setTestoRicerca] = useState("");
   const [risultatiRicerca, setRisultatiRicerca] = useState<RisultatoLocalita[]>([]);
   const [cercandoLocalita, setCercandoLocalita] = useState(false);
+  const t = useTranslations("colonnineElettriche");
+  const tNav = useTranslations("nav");
+  const tViabilita = useTranslations("viabilita");
+  const tChrome = useTranslations("chrome");
+  const locale = useLocale();
 
   useEffect(() => {
     let attivo = true;
@@ -97,7 +108,7 @@ export function ColonnineElettrichePage() {
   function usaLaMiaPosizione() {
     setErroreGeo(null);
     if (!navigator.geolocation) {
-      setErroreGeo("Il tuo browser non supporta la geolocalizzazione.");
+      setErroreGeo(t("erroreBrowserNonSupportato"));
       return;
     }
     setCercandoGeo(true);
@@ -109,8 +120,8 @@ export function ColonnineElettrichePage() {
       (err) => {
         setErroreGeo(
           err.code === err.PERMISSION_DENIED
-            ? "Permesso di geolocalizzazione negato — puoi cercare una località manualmente qui sotto."
-            : "Non è stato possibile ottenere la tua posizione — puoi cercare una località manualmente qui sotto."
+            ? t("errorePermessoNegato")
+            : t("erroreGenerico")
         );
         setCercandoGeo(false);
       },
@@ -145,14 +156,12 @@ export function ColonnineElettrichePage() {
 
       <main id="contenuto-principale" className="max-w-[1180px] mx-auto px-5 py-6">
         <a href="/viabilita" className="text-cool-ink text-xs font-mono hover:underline">
-          ← Viabilità
+          ← {tNav("viabilita")}
         </a>
-        <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1 mt-1">Colonnine elettriche</h1>
-        <p className="text-ink-faint text-xs font-mono mb-3">
-          Colonnine di ricarica per veicoli elettrici in Friuli Venezia Giulia — fonte: OpenChargeMap, registro
-          comunitario. Il dato può essere incompleto per le installazioni più recenti: controlla la data di
-          verifica di ciascuna colonnina.
-        </p>
+        <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1 mt-1">
+          {tViabilita("colonnineElettriche")}
+        </h1>
+        <p className="text-ink-faint text-xs font-mono mb-3">{t("descrizione")}</p>
 
         <div className="flex flex-wrap items-center gap-2 mb-5 border border-line rounded p-3 bg-panel">
           <button
@@ -160,7 +169,7 @@ export function ColonnineElettrichePage() {
             disabled={cercandoGeo}
             className="px-3 py-1.5 rounded text-xs font-cond font-semibold uppercase tracking-wide bg-cool text-on-accent hover:opacity-90 transition-opacity disabled:opacity-60"
           >
-            {cercandoGeo ? "Localizzazione…" : "📍 Usa la mia posizione"}
+            {cercandoGeo ? t("localizzazione") : t("usaPosizione")}
           </button>
 
           <div className="relative">
@@ -168,12 +177,12 @@ export function ColonnineElettrichePage() {
               type="text"
               value={testoRicerca}
               onChange={(e) => setTestoRicerca(e.target.value)}
-              placeholder="…oppure cerca un comune o un indirizzo"
+              placeholder={t("cercaPlaceholder")}
               className="px-2.5 py-1.5 rounded text-sm border border-line bg-bg w-56"
             />
             {(risultatiRicerca.length > 0 || cercandoLocalita) && (
               <div className="absolute z-10 top-full left-0 mt-1 w-72 max-h-56 overflow-y-auto border border-line rounded bg-panel shadow-lg">
-                {cercandoLocalita && <div className="px-2.5 py-1.5 text-xs text-ink-faint font-mono">Cerco…</div>}
+                {cercandoLocalita && <div className="px-2.5 py-1.5 text-xs text-ink-faint font-mono">{t("cercando")}</div>}
                 {risultatiRicerca.map((r, i) => (
                   <button
                     key={i}
@@ -188,7 +197,7 @@ export function ColonnineElettrichePage() {
           </div>
 
           <div className="flex gap-1 items-center ml-auto">
-            <span className="text-[11px] font-mono text-ink-faint mr-1">Raggio:</span>
+            <span className="text-[11px] font-mono text-ink-faint mr-1">{t("raggioLabel")}</span>
             {RAGGI_KM.map((km) => (
               <button
                 key={km}
@@ -206,15 +215,15 @@ export function ColonnineElettrichePage() {
 
         {erroreGeo && <p className="text-allerta-arancione-ink text-xs font-mono mb-4">{erroreGeo}</p>}
 
-        {stato === "loading" && <p className="text-ink-faint text-sm font-mono">Caricamento…</p>}
-        {stato === "error" && <p className="text-ink-faint text-sm font-mono">Dati non disponibili al momento.</p>}
+        {stato === "loading" && <p className="text-ink-faint text-sm font-mono">{tChrome("caricamento")}</p>}
+        {stato === "error" && <p className="text-ink-faint text-sm font-mono">{tChrome("datiNonDisponibili")}</p>}
 
         {stato === "ready" && dati && (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-line border border-line">
-            <Panel title="Mappa">
+            <Panel title={tChrome("mappa")}>
               <div
                 role="region"
-                aria-label="Mappa delle colonnine di ricarica in Friuli Venezia Giulia — elenco testuale equivalente nel pannello a fianco"
+                aria-label={t("mappaAriaLabel")}
                 style={{ height: 460 }}
                 className="rounded overflow-hidden"
               >
@@ -230,24 +239,21 @@ export function ColonnineElettrichePage() {
             <Panel
               title={
                 posizione
-                  ? `Entro ${raggioKm} km dalla posizione scelta (${colonnineVicine.length})`
-                  : `Tutte le colonnine in FVG (${colonnineVicine.length})`
+                  ? t("entroRaggio", { km: raggioKm, count: colonnineVicine.length })
+                  : t("tutteLeColonnine", { count: colonnineVicine.length })
               }
             >
               {!posizione && (
-                <p className="text-ink-dim text-xs mb-3">
-                  Usa la tua posizione o cerca una località per vedere solo le colonnine più vicine, ordinate per
-                  distanza.
-                </p>
+                <p className="text-ink-dim text-xs mb-3">{t("suggerimentoPosizione")}</p>
               )}
               {colonnineVicine.length === 0 ? (
-                <p className="text-ink-faint text-sm font-mono">Nessuna colonnina trovata in quest'area.</p>
+                <p className="text-ink-faint text-sm font-mono">{t("nessunaColonnina")}</p>
               ) : (
                 <div className="max-h-[460px] overflow-y-auto">
                   {colonnineVicine.map((c, i) => (
                     <div key={c.uuid} className={`py-2.5 text-sm ${i > 0 ? "border-t border-line" : ""}`}>
                       <div className="flex items-baseline justify-between gap-2">
-                        <span className="font-cond font-bold">{c.nome ?? "Colonnina"}</span>
+                        <span className="font-cond font-bold">{c.nome ?? t("colonninaFallback")}</span>
                         {c.distanzaKm !== null && (
                           <span className="font-mono text-[11px] text-ink-faint flex-shrink-0">
                             {c.distanzaKm.toFixed(1)} km
@@ -260,10 +266,15 @@ export function ColonnineElettrichePage() {
                       <div className="font-mono text-[10px] text-ink-faint mt-0.5">
                         {c.prese.length > 0
                           ? c.prese
-                              .map((p) => `${p.tipo ?? "presa"}${p.potenzaKw ? ` ${p.potenzaKw}kW` : ""} ×${p.quantita}`)
+                              .map(
+                                (p) =>
+                                  `${p.tipo ?? t("presaFallback")}${p.potenzaKw ? ` ${p.potenzaKw}kW` : ""} ×${p.quantita}`
+                              )
                               .join(" · ")
-                          : "Dettaglio prese non disponibile"}
-                        {c.verificatoIl ? ` · verificato ${new Date(c.verificatoIl).toLocaleDateString("it-IT")}` : ""}
+                          : t("dettaglioPreseNonDisponibile")}
+                        {c.verificatoIl
+                          ? t("verificato", { data: new Date(c.verificatoIl).toLocaleDateString(locale === "en" ? "en-GB" : "it-IT") })
+                          : ""}
                       </div>
                     </div>
                   ))}
@@ -275,7 +286,7 @@ export function ColonnineElettrichePage() {
 
         {stato === "ready" && dati && (
           <p className="text-ink-faint text-[10px] font-mono mt-3">
-            Aggiornato al {formattaData(dati.aggiornato_al)} · {dati.fonte}
+            {t("aggiornatoAl", { data: formattaData(dati.aggiornato_al, locale), fonte: dati.fonte })}
           </p>
         )}
       </main>

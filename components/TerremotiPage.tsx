@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
+import { useLocale, useTranslations } from "next-intl";
 import { supabase } from "@/lib/supabase";
 import { TopHeader } from "@/components/TopHeader";
 import { Footer } from "@/components/Footer";
@@ -25,8 +26,8 @@ type Evento = {
 
 type TerremotiData = { eventi: Evento[]; aggiornato_al: string };
 
-function formattaData(iso: string): string {
-  return new Date(iso).toLocaleString("it-IT", {
+function formattaData(iso: string, locale: string): string {
+  return new Date(iso).toLocaleString(locale === "en" ? "en-GB" : "it-IT", {
     day: "numeric",
     month: "short",
     hour: "2-digit",
@@ -37,6 +38,11 @@ function formattaData(iso: string): string {
 export function TerremotiPage() {
   const [dati, setDati] = useState<TerremotiData | null>(null);
   const [stato, setStato] = useState<"loading" | "ready" | "error">("loading");
+  const t = useTranslations("terremoti");
+  const tNav = useTranslations("nav");
+  const tAmbiente = useTranslations("ambiente");
+  const tChrome = useTranslations("chrome");
+  const locale = useLocale();
 
   useEffect(() => {
     let attivo = true;
@@ -73,20 +79,19 @@ export function TerremotiPage() {
 
       <main id="contenuto-principale" className="max-w-[1180px] mx-auto px-5 py-6">
         <a href="/ambiente" className="text-cool-ink text-xs font-mono hover:underline">
-          ← Ambiente
+          ← {tNav("ambiente")}
         </a>
-        <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1 mt-1">Terremoti</h1>
-        <p className="text-ink-faint text-xs font-mono mb-6">
-          Eventi sismici in FVG e zone limitrofe, ultimi 30 giorni — fonte: INGV (Istituto Nazionale di Geofisica
-          e Vulcanologia)
-        </p>
+        <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1 mt-1">
+          {tAmbiente("sezioni.terremoti.nome")}
+        </h1>
+        <p className="text-ink-faint text-xs font-mono mb-6">{t("descrizione")}</p>
 
-        {stato === "loading" && <p className="text-ink-faint text-sm font-mono">Caricamento…</p>}
-        {stato === "error" && <p className="text-ink-faint text-sm font-mono">Dati non disponibili al momento.</p>}
+        {stato === "loading" && <p className="text-ink-faint text-sm font-mono">{tChrome("caricamento")}</p>}
+        {stato === "error" && <p className="text-ink-faint text-sm font-mono">{tChrome("datiNonDisponibili")}</p>}
 
         {stato === "ready" && dati && (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-line border border-line">
-            <Panel title="Mappa">
+            <Panel title={tChrome("mappa")}>
               {/* role="region" + aria-label (Fase 4 — Accessibilità,
                   24/08/2026): la mappa Leaflet dietro questo div non è
                   navigabile in modo significativo con uno screen reader —
@@ -96,7 +101,7 @@ export function TerremotiPage() {
                   anonima. */}
               <div
                 role="region"
-                aria-label="Mappa dei terremoti in Friuli Venezia Giulia — elenco testuale equivalente nel pannello a fianco"
+                aria-label={t("mappaAriaLabel")}
                 style={{ height: 420 }}
                 className="rounded overflow-hidden"
               >
@@ -104,20 +109,20 @@ export function TerremotiPage() {
               </div>
             </Panel>
 
-            <Panel title={`Elenco eventi (${eventiOrdinati.length})`}>
+            <Panel title={t("elencoEventi", { count: eventiOrdinati.length })}>
               {eventiOrdinati.length === 0 ? (
-                <p className="text-ink-faint text-sm font-mono">Nessun evento negli ultimi 30 giorni.</p>
+                <p className="text-ink-faint text-sm font-mono">{t("nessunEvento")}</p>
               ) : (
                 <div className="max-h-[420px] overflow-y-auto">
                   {eventiOrdinati.map((e, i) => (
                     <div key={e.id} className={`py-2.5 ${i > 0 ? "border-t border-line" : ""}`}>
                       <div className="flex items-baseline justify-between text-sm">
                         <span className="font-cond font-bold text-lg">M{e.magnitudo.toFixed(1)}</span>
-                        <span className="font-mono text-[10px] text-ink-faint">{formattaData(e.data)}</span>
+                        <span className="font-mono text-[10px] text-ink-faint">{formattaData(e.data, locale)}</span>
                       </div>
                       <div className="text-ink-dim text-sm">{e.luogo}</div>
                       <div className="font-mono text-[10px] text-ink-faint">
-                        Profondità {e.profonditaKm.toFixed(1)} km
+                        {t("profondita", { km: e.profonditaKm.toFixed(1) })}
                       </div>
                     </div>
                   ))}

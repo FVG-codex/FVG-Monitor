@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useLocale, useTranslations } from "next-intl";
 import { supabase } from "@/lib/supabase";
 import { Panel } from "@/components/Panel";
 import { TopHeader } from "@/components/TopHeader";
@@ -64,9 +65,14 @@ type RisultatiSciData = {
   aggiornato_al: string;
 };
 
-function formattaData(iso: string): string {
+function formattaData(iso: string, locale: string): string {
   const d = new Date(iso);
-  return d.toLocaleDateString("it-IT", { weekday: "short", day: "numeric", month: "short", year: "numeric" });
+  return d.toLocaleDateString(locale === "en" ? "en-GB" : "it-IT", {
+    weekday: "short",
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  });
 }
 
 // Nomi atleta arrivano dalla fonte sia TUTTO MAIUSCOLO che Title Case,
@@ -91,6 +97,11 @@ export function SciPage() {
 
   const [competizioneEspansa, setCompetizioneEspansa] = useState<string | null>(null);
   const [garaEspansa, setGaraEspansa] = useState<string | null>(null);
+  const t = useTranslations("sci");
+  const tNav = useTranslations("nav");
+  const tAviazione = useTranslations("aviazione");
+  const tChrome = useTranslations("chrome");
+  const locale = useLocale();
 
   useEffect(() => {
     let attivo = true;
@@ -143,16 +154,12 @@ export function SciPage() {
 
       <main id="contenuto-principale" className="max-w-[1180px] mx-auto px-5 py-6">
         <Link href="/sport" className="text-cool-ink text-xs font-mono hover:underline">
-          ← Sport
+          ← {tNav("sport")}
         </Link>
-        <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1 mt-1">
-          Sci — Calendario gare FVG
-        </h1>
+        <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1 mt-1">{t("titolo")}</h1>
         <p className="text-ink-faint text-xs font-mono mb-4">
-          {dati ? `Stagione ${dati.stagione}` : "Calendario gare"} — sport invernali FISI in Friuli Venezia
-          Giulia (fondo, salto, combinata nordica, biathlon e altre discipline) — fonte: FISI (Federazione
-          Italiana Sport Invernali), Comitato FVG. Calendario, non classifica: qui non c&apos;è un campionato
-          a punti, ogni riga è una gara singola. Le gare già svolte si possono aprire per vedere i risultati.
+          {dati ? t("stagione", { stagione: dati.stagione }) : t("calendarioGare")}
+          {t("descrizione")}
         </p>
 
         {dati && dati.discipline.length > 0 && (
@@ -164,7 +171,7 @@ export function SciPage() {
                 disciplina === "tutte" ? "bg-cool text-on-accent" : "border border-line text-ink-dim hover:text-ink"
               }`}
             >
-              Tutte
+              {tAviazione("filtri.tutte")}
             </button>
             {dati.discipline.map((d) => (
               <button
@@ -181,16 +188,16 @@ export function SciPage() {
           </div>
         )}
 
-        {stato === "loading" && <p className="text-ink-faint text-sm font-mono">Caricamento…</p>}
+        {stato === "loading" && <p className="text-ink-faint text-sm font-mono">{tChrome("caricamento")}</p>}
         {stato === "error" && (
-          <p className="text-ink-faint text-sm font-mono">Dati non disponibili al momento.</p>
+          <p className="text-ink-faint text-sm font-mono">{tChrome("datiNonDisponibili")}</p>
         )}
 
         {stato === "ready" && dati && (
           <div className="grid grid-cols-1 gap-px bg-line border border-line">
-            <Panel title={`Gare in calendario${disciplina !== "tutte" ? ` — ${disciplina}` : ""}`}>
+            <Panel title={`${t("gareInCalendario")}${disciplina !== "tutte" ? ` — ${disciplina}` : ""}`}>
               {gareFiltrate.length === 0 ? (
-                <p className="text-ink-faint text-sm font-mono">Nessuna gara trovata per questo filtro.</p>
+                <p className="text-ink-faint text-sm font-mono">{t("nessunaGara")}</p>
               ) : (
                 <>
                   {gareFiltrate.map((g, i) => {
@@ -209,7 +216,7 @@ export function SciPage() {
                         >
                           <div className="flex items-center justify-between gap-2 mb-1">
                             <div className="font-mono text-[10px] text-ink-faint uppercase">
-                              {g.data ? formattaData(g.data) : "Data da definire"} · {g.comune}
+                              {g.data ? formattaData(g.data, locale) : t("dataDaDefinire")} · {g.comune}
                               {g.provincia ? ` (${g.provincia})` : ""}
                             </div>
                             <div
@@ -217,7 +224,7 @@ export function SciPage() {
                                 g.svolta ? "text-ink-dim border border-line" : "text-cool-ink"
                               }`}
                             >
-                              {g.stato}
+                              {g.svolta ? t("stato.svolta") : t("stato.inProgramma")}
                               {g.svolta ? (espansa ? " ▲" : " ▼") : ""}
                             </div>
                           </div>
@@ -231,12 +238,9 @@ export function SciPage() {
                         {espansa && (
                           <div className="mt-3 ml-2 pl-3 border-l-2 border-line">
                             {!risultatiCaricati ? (
-                              <p className="text-ink-faint text-xs font-mono">Caricamento risultati…</p>
+                              <p className="text-ink-faint text-xs font-mono">{t("caricamentoRisultati")}</p>
                             ) : !competizioneRisultati ? (
-                              <p className="text-ink-faint text-xs font-mono">
-                                Risultati non ancora disponibili — vengono recuperati gradualmente dopo lo
-                                svolgimento della gara, riprova più tardi.
-                              </p>
+                              <p className="text-ink-faint text-xs font-mono">{t("risultatiNonDisponibili")}</p>
                             ) : (
                               <div className="flex flex-col gap-1.5">
                                 {competizioneRisultati.gare.map((gara) => {
@@ -253,7 +257,7 @@ export function SciPage() {
                                           {gara.tipoGara} <span className="text-ink-faint">— {gara.categoria}</span>
                                         </span>
                                         <span className="font-mono text-[9px] text-ink-faint shrink-0">
-                                          {gara.risultati.length} risultati {garaAperta ? "▲" : "▼"}
+                                          {t("risultatiCount", { count: gara.risultati.length })} {garaAperta ? "▲" : "▼"}
                                         </span>
                                       </button>
 
@@ -261,18 +265,18 @@ export function SciPage() {
                                         <div className="overflow-x-auto mb-2">
                                           {gara.risultati.length === 0 ? (
                                             <p className="text-ink-faint text-[11px] font-mono py-1">
-                                              Nessun risultato disponibile per questa gara.
+                                              {t("nessunRisultatoGara")}
                                             </p>
                                           ) : (
                                             <table className="w-full text-xs">
                                               <thead>
                                                 <tr className="border-b border-line font-mono text-[9px] text-ink-faint uppercase">
-                                                  <th className="text-left py-1 pr-2">Pos.</th>
-                                                  <th className="text-left py-1 pr-2">Atleta</th>
-                                                  <th className="text-left py-1 px-2">Anno</th>
-                                                  <th className="text-left py-1 px-2">Società</th>
-                                                  <th className="text-right py-1 px-2">Tempo</th>
-                                                  <th className="text-right py-1 pl-2">Punti</th>
+                                                  <th className="text-left py-1 pr-2">{t("colPos")}</th>
+                                                  <th className="text-left py-1 pr-2">{t("colAtleta")}</th>
+                                                  <th className="text-left py-1 px-2">{t("colAnno")}</th>
+                                                  <th className="text-left py-1 px-2">{t("colSocieta")}</th>
+                                                  <th className="text-right py-1 px-2">{t("colTempo")}</th>
+                                                  <th className="text-right py-1 pl-2">{t("colPunti")}</th>
                                                 </tr>
                                               </thead>
                                               <tbody>
@@ -308,12 +312,14 @@ export function SciPage() {
                     );
                   })}
                   <p className="text-ink-faint text-[10px] font-mono mt-3">
-                    {gareFiltrate.length} gare · dati aggiornati al{" "}
-                    {new Date(dati.aggiornato_al).toLocaleString("it-IT", {
-                      day: "numeric",
-                      month: "short",
-                      hour: "2-digit",
-                      minute: "2-digit",
+                    {t("gareAggiornateAl", {
+                      count: gareFiltrate.length,
+                      data: new Date(dati.aggiornato_al).toLocaleString(locale === "en" ? "en-GB" : "it-IT", {
+                        day: "numeric",
+                        month: "short",
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      }),
                     })}
                   </p>
                 </>

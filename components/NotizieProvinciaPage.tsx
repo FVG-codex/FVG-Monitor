@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 import { supabase } from "@/lib/supabase";
 import { Panel } from "@/components/Panel";
 import { TopHeader } from "@/components/TopHeader";
@@ -18,13 +19,13 @@ import { PROVINCE_NOTIZIE_ATTIVE, type SnapshotNotizieProvincia } from "@/lib/no
 // prima del dato reale.
 type SchedaNotizie = ProvinciaSlug | "sport";
 
-function tempoRelativo(dataStr: string): string {
+function tempoRelativo(dataStr: string, t: ReturnType<typeof useTranslations>): string {
   const diffMs = Date.now() - new Date(dataStr).getTime();
   const minuti = Math.floor(diffMs / 60000);
-  if (minuti < 60) return `${minuti} min fa`;
+  if (minuti < 60) return t("minFa", { n: minuti });
   const ore = Math.floor(minuti / 60);
-  if (ore < 24) return `${ore} h fa`;
-  return `${Math.floor(ore / 24)} g fa`;
+  if (ore < 24) return t("oreFa", { n: ore });
+  return t("giorniFa", { n: Math.floor(ore / 24) });
 }
 
 /**
@@ -41,6 +42,9 @@ export function NotizieProvinciaPage() {
   const [scheda, setScheda] = useState<SchedaNotizie>("trieste");
   const [dati, setDati] = useState<SnapshotNotizieProvincia | null>(null);
   const [stato, setStato] = useState<"loading" | "ready" | "error">("loading");
+  const t = useTranslations("notizieProvincia");
+  const tNav = useTranslations("nav");
+  const tChrome = useTranslations("chrome");
 
   const provincia = scheda === "sport" ? null : scheda;
   const attiva = provincia !== null && PROVINCE_NOTIZIE_ATTIVE.includes(provincia);
@@ -79,10 +83,8 @@ export function NotizieProvinciaPage() {
       <div className="isobar" />
 
       <main id="contenuto-principale" className="max-w-[1180px] mx-auto px-5 py-6">
-        <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1">Notizie</h1>
-        <p className="text-ink-faint text-xs font-mono mb-4">
-          Notizie locali per provincia, da fonti diverse dall&apos;ANSA regionale già in homepage
-        </p>
+        <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1">{tNav("notizie")}</h1>
+        <p className="text-ink-faint text-xs font-mono mb-4">{t("descrizione")}</p>
 
         <div className="flex gap-1.5 flex-wrap mb-6">
           {PROVINCE_LIST.map((p) => (
@@ -108,24 +110,22 @@ export function NotizieProvinciaPage() {
                 : "border border-line text-ink-dim hover:text-ink"
             }`}
           >
-            Sport
+            {tNav("sport")}
           </button>
         </div>
 
         <div className="grid grid-cols-1 gap-px bg-line border border-line">
-          <Panel title={`Notizie · ${titoloScheda}`}>
+          <Panel title={t("panelTitle", { scheda: titoloScheda })}>
             {scheda === "sport" ? (
-              <p className="text-ink-faint text-sm font-mono">
-                Notizie sportive regionali in arrivo in una prossima fase.
-              </p>
+              <p className="text-ink-faint text-sm font-mono">{t("sportInArrivo")}</p>
             ) : !attiva ? (
               <p className="text-ink-faint text-sm font-mono">
-                Notizie per {titoloScheda} in arrivo in una prossima fase.
+                {t("provinciaInArrivo", { scheda: titoloScheda })}
               </p>
             ) : stato === "loading" ? (
-              <p className="text-ink-faint text-sm font-mono">Caricamento notizie…</p>
+              <p className="text-ink-faint text-sm font-mono">{t("caricamentoNotizie")}</p>
             ) : stato === "error" || !dati || dati.items.length === 0 ? (
-              <p className="text-ink-faint text-sm font-mono">Notizie non disponibili al momento.</p>
+              <p className="text-ink-faint text-sm font-mono">{t("notizieNonDisponibili")}</p>
             ) : (
               <div>
                 {dati.items.map((n, i) => (
@@ -133,18 +133,18 @@ export function NotizieProvinciaPage() {
                     <a href={n.link} target="_blank" rel="noopener noreferrer" className="block">
                       <div className="text-ink text-[15px] leading-snug mb-1.5 hover:text-cool-ink transition-colors">
                         {n.titolo}
-                        <span className="sr-only"> (si apre in una nuova scheda)</span>
+                        <span className="sr-only"> {tChrome("apreNuovaScheda")}</span>
                       </div>
                     </a>
                     <div className="flex gap-2 items-center font-mono text-[10px] text-ink-faint uppercase tracking-wide">
                       <span className="text-warm">{n.fonte}</span>
-                      <span>· {tempoRelativo(n.data)}</span>
+                      <span>· {tempoRelativo(n.data, t)}</span>
                     </div>
                   </div>
                 ))}
                 {dati.fonti.length > 0 && (
                   <p className="text-ink-faint text-[10px] font-mono mt-3 pt-3 border-t border-line">
-                    Fonti:{" "}
+                    {t("fonti")}{" "}
                     {dati.fonti.map((f, i) => (
                       <span key={f.fonte_url}>
                         {i > 0 && " · "}
@@ -155,7 +155,7 @@ export function NotizieProvinciaPage() {
                           className="text-cool-ink"
                         >
                           {f.fonte}
-                          <span className="sr-only"> (si apre in una nuova scheda)</span>
+                          <span className="sr-only"> {tChrome("apreNuovaScheda")}</span>
                         </a>
                       </span>
                     ))}

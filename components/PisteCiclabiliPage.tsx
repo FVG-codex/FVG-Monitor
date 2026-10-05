@@ -2,6 +2,7 @@
 
 import { useMemo, useState, useEffect } from "react";
 import dynamic from "next/dynamic";
+import { useTranslations } from "next-intl";
 import { TopHeader } from "@/components/TopHeader";
 import { Footer } from "@/components/Footer";
 import { Panel } from "@/components/Panel";
@@ -17,7 +18,6 @@ import {
   raggruppaCiclovie2020,
   formattaLunghezza,
   formattaDurata,
-  etichettaPartenzaArrivo,
 } from "@/lib/pisteCiclabili";
 
 const PisteCiclabiliMap = dynamic(() => import("@/components/PisteCiclabiliMap").then((m) => m.PisteCiclabiliMap), {
@@ -49,25 +49,24 @@ function etichettaBreveTurismoFvg(p: PercorsoTurismoFvgBike): string {
 // elenco e chiave di selezione cambiano.
 function BoxSerieTurismoFvg({
   fonte,
-  etichetta,
   percorsi,
   disponibile,
   percorsoSelezionato,
   setPercorsoSelezionato,
 }: {
   fonte: "r" | "p" | "c" | "m";
-  etichetta: string;
   percorsi: PercorsoTurismoFvgBike[];
   disponibile: boolean;
   percorsoSelezionato: string | null;
   setPercorsoSelezionato: (chiave: string | null) => void;
 }) {
+  const t = useTranslations("pisteCiclabili");
   return (
-    <Panel title={`${etichetta} (${percorsi.length})`}>
+    <Panel title={`${t(`serie.${fonte}`)} (${percorsi.length})`}>
       {!disponibile ? (
-        <p className="text-ink-faint text-sm font-mono">Dati non ancora disponibili.</p>
+        <p className="text-ink-faint text-sm font-mono">{t("datiNonAncoraDisponibili")}</p>
       ) : percorsi.length === 0 ? (
-        <p className="text-ink-faint text-sm font-mono">Nessun percorso trovato.</p>
+        <p className="text-ink-faint text-sm font-mono">{t("nessunPercorsoTrovato")}</p>
       ) : (
         <div className="max-h-[320px] overflow-y-auto flex flex-col">
           {percorsi.map((p, i) => {
@@ -77,7 +76,7 @@ function BoxSerieTurismoFvg({
               p.anello && p.partenza
                 ? p.partenza.nome
                 : p.partenza && p.arrivo
-                  ? `Da ${p.partenza.nome} a ${p.arrivo.nome}`
+                  ? t("daA", { da: p.partenza.nome, a: p.arrivo.nome })
                   : null;
             return (
               <button
@@ -112,7 +111,7 @@ function BoxSerieTurismoFvg({
                     rel="noopener noreferrer"
                     className="font-mono text-[10px] text-cool-ink hover:underline mt-1 inline-block"
                   >
-                    Scarica GPX ↗
+                    {t("scaricaGpx")}
                   </a>
                 )}
               </button>
@@ -137,6 +136,10 @@ export function PisteCiclabiliPage() {
   // TracciatoMappa in PisteCiclabiliMap.tsx), passata alla mappa per
   // zoom+evidenziazione.
   const [percorsoSelezionato, setPercorsoSelezionato] = useState<string | null>(null);
+  const t = useTranslations("pisteCiclabili");
+  const tNav = useTranslations("nav");
+  const tTurismo = useTranslations("turismo");
+  const tChrome = useTranslations("chrome");
 
   useEffect(() => {
     let attivo = true;
@@ -262,41 +265,35 @@ export function PisteCiclabiliPage() {
 
       <main id="contenuto-principale" className="max-w-[1180px] mx-auto px-5 py-6">
         <a href="/turismo" className="text-cool-ink text-xs font-mono hover:underline">
-          ← Turismo
+          ← {tNav("turismo")}
         </a>
-        <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1 mt-1">Piste Ciclabili</h1>
+        <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1 mt-1">
+          {tTurismo("sezioni.pisteCiclabili.nome")}
+        </h1>
         <p className="text-ink-faint text-xs font-mono mb-2">
-          {totalePercorsi > 0 ? `${totalePercorsi} percorsi` : "Percorsi"} ciclabili in Friuli Venezia Giulia — 6
-          fonti indipendenti: le 4 serie con codice di turismofvg.it (Anelli, Percorsi lineari, Ciclovie a tappe,
-          Mountain bike), la Regione Autonoma FVG (dati.friuliveneziagiulia.it) e il dataset storico Ciclovie 2020.
+          {totalePercorsi > 0 ? t("percorsiCount", { count: totalePercorsi }) : t("percorsiFallback")}
+          {t("descrizione1")}
         </p>
         <p className="text-ink-faint text-xs font-mono mb-4">
-          <strong className="text-ink-dim">Fonti indipendenti, mai unite fra loro</strong> — ogni fonte ha il proprio
-          riquadro qui sotto e il proprio colore sulla mappa. I percorsi turismofvg.it (codice tra parentesi, es.
-          &quot;R001&quot;) sono itinerari turistici ufficiali con tracciato completo e dati tecnici (lunghezza,
-          dislivelli, difficoltà, durata) letti dalla scheda di ciascun percorso, più un link diretto per scaricare
-          il GPX. I dati Regione FVG hanno invece <strong className="text-ink-dim">copertura parziale</strong> (solo
-          tracciati trasmessi dai Comuni in una specifica procedura urbanistica, non un censimento completo —
-          es. l&apos;area di Trieste non è coperta) e possono essere divisi in più tratti, con comune di
-          partenza/arrivo e provincia calcolati dalle coordinate quando possibile. Ciclovie 2020 è invece un{" "}
-          <strong className="text-ink-dim">dato storico, fermo al gennaio 2020</strong> (copertura regionale
-          completa, Trieste inclusa) — mostrato come layer di contesto, non come stato attuale della rete.
+          {t.rich("descrizione2", {
+            strong: (chunks) => <strong className="text-ink-dim">{chunks}</strong>,
+          })}
         </p>
 
-        {stato === "loading" && <p className="text-ink-faint text-sm font-mono">Caricamento percorsi…</p>}
+        {stato === "loading" && <p className="text-ink-faint text-sm font-mono">{t("caricamentoPercorsi")}</p>}
         {stato === "error" && (
-          <p className="text-ink-faint text-sm font-mono">Dati piste ciclabili non disponibili al momento.</p>
+          <p className="text-ink-faint text-sm font-mono">{t("nonDisponibili")}</p>
         )}
 
         {stato === "ready" && dati && (
           <>
             <label className="block mb-4">
-              <span className="sr-only">Cerca per nome o codice del percorso</span>
+              <span className="sr-only">{t("cercaLabel")}</span>
               <input
                 type="search"
                 value={ricerca}
                 onChange={(e) => setRicerca(e.target.value)}
-                placeholder="Cerca per nome o codice del percorso…"
+                placeholder={t("cercaPlaceholder")}
                 className="w-full max-w-sm px-3 py-1.5 rounded text-sm bg-panel border border-line text-ink placeholder:text-ink-faint focus:outline-none focus:border-cool"
               />
             </label>
@@ -306,7 +303,6 @@ export function PisteCiclabiliPage() {
                 <BoxSerieTurismoFvg
                   key={s.chiave}
                   fonte={s.chiave}
-                  etichetta={s.etichetta}
                   percorsi={percorsiSerieFiltrati[s.chiave]}
                   disponibile={datiSerie[s.chiave] !== undefined}
                   percorsoSelezionato={percorsoSelezionato}
@@ -317,14 +313,23 @@ export function PisteCiclabiliPage() {
               {/* Regione FVG — riquadro a sé, in fondo (fonte più datata e
                   con copertura parziale, mostrata per ultima rispetto alle
                   4 serie turismofvg.it, come richiesto dall'utente). */}
-              <Panel title={`Regione FVG (${percorsiRegioneFiltrati.length})`} span={2}>
+              <Panel title={t("regioneFvg", { count: percorsiRegioneFiltrati.length })} span={2}>
                 {percorsiRegioneFiltrati.length === 0 ? (
-                  <p className="text-ink-faint text-sm font-mono">Nessun percorso trovato.</p>
+                  <p className="text-ink-faint text-sm font-mono">{t("nessunPercorsoTrovato")}</p>
                 ) : (
                   <div className="max-h-[320px] overflow-y-auto flex flex-col">
                     {percorsiRegioneFiltrati.map((p, i) => {
                       const chiave = `regione:${p.nome}`;
-                      const etichetta = etichettaPartenzaArrivo(p);
+                      const { comunePartenza: da, comuneArrivo: a } = p;
+                      const etichetta = da && a
+                        ? da === a
+                          ? da
+                          : t("daA", { da, a })
+                        : da
+                          ? t("daComune", { da })
+                          : a
+                            ? t("finoAComune", { a })
+                            : null;
                       const selezionato = percorsoSelezionato === chiave;
                       return (
                         <button
@@ -351,9 +356,9 @@ export function PisteCiclabiliPage() {
                           )}
                           <div className="font-mono text-[10px] text-ink-dim mt-1">
                             {p.lunghezzaTotaleM !== null
-                              ? `${formattaLunghezza(p.lunghezzaTotaleM)}${p.lunghezzaParziale ? " (parziale)" : ""}`
-                              : "Lunghezza non disponibile"}
-                            {p.segmenti.length > 1 ? ` · ${p.segmenti.length} tratti` : ""}
+                              ? `${formattaLunghezza(p.lunghezzaTotaleM)}${p.lunghezzaParziale ? t("parziale") : ""}`
+                              : t("lunghezzaNonDisponibile")}
+                            {p.segmenti.length > 1 ? ` · ${t("tratti", { count: p.segmenti.length })}` : ""}
                           </div>
                         </button>
                       );
@@ -365,11 +370,11 @@ export function PisteCiclabiliPage() {
               {/* Ciclovie 2020 — terza fonte, aggiunta il 28/08/2026, dato
                   storico fermo al 2020 (vedi disclaimer sopra) — riquadro a
                   sé come Regione, subito prima della Mappa. */}
-              <Panel title={`Ciclovie 2020 · storico (${percorsiCiclovie2020Filtrati.length})`} span={2}>
+              <Panel title={t("ciclovie2020Storico", { count: percorsiCiclovie2020Filtrati.length })} span={2}>
                 {!datiCiclovie2020 ? (
-                  <p className="text-ink-faint text-sm font-mono">Dati non ancora disponibili.</p>
+                  <p className="text-ink-faint text-sm font-mono">{t("datiNonAncoraDisponibili")}</p>
                 ) : percorsiCiclovie2020Filtrati.length === 0 ? (
-                  <p className="text-ink-faint text-sm font-mono">Nessun percorso trovato.</p>
+                  <p className="text-ink-faint text-sm font-mono">{t("nessunPercorsoTrovato")}</p>
                 ) : (
                   <div className="max-h-[320px] overflow-y-auto flex flex-col">
                     {percorsiCiclovie2020Filtrati.map((p, i) => {
@@ -401,11 +406,13 @@ export function PisteCiclabiliPage() {
                               ? p.lunghezzaPerStato
                                   .map((ls) => `${formattaLunghezza(ls.metri)} ${ls.stato}`)
                                   .join(" · ")
-                              : "Lunghezza non disponibile"}
-                            {p.lunghezzaParziale ? " (parziale)" : ""}
+                              : t("lunghezzaNonDisponibile")}
+                            {p.lunghezzaParziale ? t("parziale") : ""}
                           </div>
                           {p.segmenti.length > 1 && (
-                            <div className="font-mono text-[10px] text-ink-dim mt-1">{p.segmenti.length} tratti</div>
+                            <div className="font-mono text-[10px] text-ink-dim mt-1">
+                              {t("tratti", { count: p.segmenti.length })}
+                            </div>
                           )}
                         </button>
                       );
@@ -414,18 +421,18 @@ export function PisteCiclabiliPage() {
                 )}
               </Panel>
 
-              <Panel title="Mappa" span={2}>
+              <Panel title={tChrome("mappa")} span={2}>
                 {percorsoSelezionato && (
                   <button
                     onClick={() => setPercorsoSelezionato(null)}
                     className="font-mono text-[10px] text-cool-ink hover:underline mb-2 inline-block"
                   >
-                    ← Mostra tutta la mappa
+                    {t("mostraTuttaMappa")}
                   </button>
                 )}
                 <div
                   role="region"
-                  aria-label="Mappa dei percorsi ciclabili in Friuli Venezia Giulia — elenco testuale equivalente nei riquadri qui sopra. Cliccare un percorso nell'elenco per evidenziarlo qui."
+                  aria-label={t("mappaAriaLabel")}
                   style={{ height: percorsoSelezionato ? 434 : 460 }}
                   className="rounded overflow-hidden"
                 >

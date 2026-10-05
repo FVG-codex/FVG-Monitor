@@ -22,6 +22,13 @@ export type VoceChangelog = {
 export const CHANGELOG: VoceChangelog[] = [
   {
     data: "05/10/2026",
+    titolo: "Multilingua — tradotto in inglese il testo fisso di tutte le pagine del sito (35 pagine)",
+    dettagli: [
+      "Completata la traduzione in inglese di titoli, descrizioni, etichette dei pannelli e messaggi fissi di tutte le pagine del sito (Trasporti, Economia, Registro modifiche, Commercio, Servizi, FVG in immagini, pagine provincia, Turismo, Dati ambientali, Ambiente, Sanità, Viabilità, Terremoti, Webcam, Meteo, Aviazione, Tennis, Notizie per provincia, Basket, Eventi, Neve & Impianti, Strutture ricettive (hub + le 8 pagine per tipologia), Maree, Baseball & Softball, Calcio, Supermercati, Pronto Soccorso, Farmacie (tutte + di turno), Colonnine elettriche, Veterinari & Emergenze, Sci, Piste ciclabili, Raccolta rifiuti e le pagine \"in arrivo\"), incluso l'indicatore \"Aperta ora\"/\"Chiusa ora\" condiviso da Farmacie, Supermercati e Veterinari. I dati che arrivano dalle fonti esterne (bollettini, notizie, orari, risultati sportivi, calendari di raccolta rifiuti, ecc.) restano in italiano anche nella versione inglese, come deciso insieme all'utente — tradurli è un lavoro separato, più impegnativo (richiede un'integrazione con un servizio di traduzione automatica), non ancora programmato. Lo stesso criterio (solo testo fisso delle pagine) verrà applicato anche alle future traduzioni in altre lingue (tedesco, sloveno, croato).",
+    ],
+  },
+  {
+    data: "05/10/2026",
     titolo: "Veterinari & Emergenze — correzioni dati da controllo incrociato e mappa che si centra sul comune",
     dettagli: [
       "Corretti 5 record (Gorizia, Pordenone, Udine, Trieste) dopo un controllo incrociato con fonti esterne: un'identità errata, telefoni/email/siti mancanti, orari sbagliati o incompleti, una gestione delle emergenze dichiarata in modo non accurato. Altri casi segnalati dal controllo (possibili cessazioni, incongruenze non chiarite, record senza recapito affidabile) non sono stati toccati: richiedono una verifica telefonica che non può essere fatta da qui.",

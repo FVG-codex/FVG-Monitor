@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import dynamic from "next/dynamic";
+import { useTranslations } from "next-intl";
 import { TopHeader } from "@/components/TopHeader";
 import { Footer } from "@/components/Footer";
 import { Panel } from "@/components/Panel";
@@ -46,6 +47,10 @@ export function ProntoSoccorsoPage() {
   const [provinciaSel, setProvinciaSel] = useState<ProvinciaSlug | null>(null);
   const [ricerca, setRicerca] = useState("");
   const [adesso, setAdesso] = useState(() => Date.now());
+  const t = useTranslations("prontoSoccorso");
+  const tNav = useTranslations("nav");
+  const tSanita = useTranslations("sanita");
+  const tChrome = useTranslations("chrome");
 
   useEffect(() => {
     let attivo = true;
@@ -107,25 +112,22 @@ export function ProntoSoccorsoPage() {
 
       <main id="contenuto-principale" className="max-w-[1180px] mx-auto px-5 py-6">
         <a href="/sanita" className="text-cool-ink text-xs font-mono hover:underline">
-          ← Sanità
+          ← {tNav("sanita")}
         </a>
-        <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1 mt-1">Pronto Soccorso</h1>
-        <p className="text-ink-faint text-xs font-mono mb-1">
-          Pazienti in attesa e in trattamento per codice di triage, in tempo reale, per tutte le sedi di pronto
-          soccorso e i punti di primo intervento del Friuli Venezia Giulia — fonte: Servizio Sanitario Regionale
-          FVG, aggiornata ogni 15 minuti. Il numero di telefono, quando indicato, è stato verificato manualmente su
-          fonte ufficiale (non pubblicato dalla fonte dati) — in un'emergenza reale chiamare sempre il 118.
-        </p>
+        <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1 mt-1">
+          {tSanita("sezioni.prontoSoccorso.nome")}
+        </h1>
+        <p className="text-ink-faint text-xs font-mono mb-1">{t("descrizione")}</p>
         {dati && (
           <p className={`text-xs font-mono mb-4 ${obsoleto ? "text-allerta-arancione-ink" : "text-ink-faint"}`}>
-            Aggiornato alle {formattaOraAggiornamento(dati.dataAggiornamento)}
-            {obsoleto && " — dato non aggiornato da oltre 30 minuti, potrebbe non riflettere la situazione attuale"}
+            {t("aggiornatoAlle", { ora: formattaOraAggiornamento(dati.dataAggiornamento) })}
+            {obsoleto && t("datoObsoleto")}
           </p>
         )}
 
-        {stato === "loading" && <p className="text-ink-faint text-sm font-mono">Caricamento…</p>}
+        {stato === "loading" && <p className="text-ink-faint text-sm font-mono">{tChrome("caricamento")}</p>}
         {stato === "error" && (
-          <p className="text-ink-faint text-sm font-mono">Dati pronto soccorso non disponibili al momento.</p>
+          <p className="text-ink-faint text-sm font-mono">{t("nonDisponibili")}</p>
         )}
 
         {stato === "ready" && dati && (
@@ -138,7 +140,7 @@ export function ProntoSoccorsoPage() {
                   provinciaSel === null ? "bg-cool text-on-accent" : "border border-line text-ink-dim hover:text-ink"
                 }`}
               >
-                Tutte le sedi ({dipartimenti.length})
+                {t("tutteLeSedi", { count: dipartimenti.length })}
               </button>
               {PROVINCE_LIST.map((p) => (
                 <button
@@ -155,21 +157,23 @@ export function ProntoSoccorsoPage() {
             </div>
 
             <label className="block mb-4">
-              <span className="sr-only">Cerca per nome o comune</span>
+              <span className="sr-only">{tChrome("cercaNomeComuneLabel")}</span>
               <input
                 type="search"
                 value={ricerca}
                 onChange={(e) => setRicerca(e.target.value)}
-                placeholder="Cerca per nome o comune…"
+                placeholder={tChrome("cercaNomeComunePlaceholder")}
                 className="w-full max-w-sm px-3 py-1.5 rounded text-sm bg-panel border border-line text-ink placeholder:text-ink-faint focus:outline-none focus:border-cool"
               />
             </label>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-line border border-line">
-              <Panel title={`Elenco (${elenco.length})`}>
+              <Panel title={tChrome("elenco", { count: elenco.length })}>
                 {elenco.length === 0 ? (
                   <p className="text-ink-faint text-sm font-mono">
-                    Nessuna sede trovata{nomeProvincia ? ` in provincia di ${nomeProvincia}` : ""}.
+                    {t("nessunaSede", {
+                      luogo: nomeProvincia ? tChrome("inProvinciaDi", { provincia: nomeProvincia }) : "",
+                    })}
                   </p>
                 ) : (
                   <div className="max-h-[600px] overflow-y-auto flex flex-col">
@@ -195,7 +199,7 @@ export function ProntoSoccorsoPage() {
                               </a>
                             ) : (
                               <span className="text-ink-faint text-[10px] font-mono uppercase">
-                                Telefono non disponibile
+                                {t("telefonoNonDisponibile")}
                               </span>
                             )}
                             {indicazioni && (
@@ -205,7 +209,7 @@ export function ProntoSoccorsoPage() {
                                 rel="noopener noreferrer"
                                 className="font-mono text-[10px] text-cool-ink hover:underline"
                               >
-                                Indicazioni →<span className="sr-only"> (si apre in una nuova scheda)</span>
+                                {t("indicazioniLink")}<span className="sr-only"> {tChrome("apreNuovaScheda")}</span>
                               </a>
                             )}
                           </div>
@@ -213,11 +217,11 @@ export function ProntoSoccorsoPage() {
                           <div className="flex gap-4 mt-2 text-sm">
                             <span>
                               <strong className="text-base">{inAttesa}</strong>{" "}
-                              <span className="text-ink-faint text-[10px] font-mono uppercase">in attesa</span>
+                              <span className="text-ink-faint text-[10px] font-mono uppercase">{t("inAttesa")}</span>
                             </span>
                             <span>
                               <strong className="text-base">{inTrattamento}</strong>{" "}
-                              <span className="text-ink-faint text-[10px] font-mono uppercase">in trattamento</span>
+                              <span className="text-ink-faint text-[10px] font-mono uppercase">{t("inTrattamento")}</span>
                             </span>
                           </div>
 
@@ -230,10 +234,10 @@ export function ProntoSoccorsoPage() {
                               >
                                 <div className="font-cond font-bold uppercase tracking-wide">{c.descrizione}</div>
                                 <div>
-                                  {c.situazionePazienti.numeroPazientiInAttesa} att. ·{" "}
-                                  {c.situazionePazienti.numeroPazientiInVisita} tratt.
+                                  {c.situazionePazienti.numeroPazientiInAttesa} {t("abbrAttesa")} ·{" "}
+                                  {c.situazionePazienti.numeroPazientiInVisita} {t("abbrTrattamento")}
                                 </div>
-                                <div>attesa media {c.situazionePazienti.mediaAttesa}</div>
+                                <div>{t("attesaMedia", { valore: c.situazionePazienti.mediaAttesa })}</div>
                               </div>
                             ))}
                           </div>
@@ -244,10 +248,14 @@ export function ProntoSoccorsoPage() {
                 )}
               </Panel>
 
-              <Panel title="Mappa">
+              <Panel title={tChrome("mappa")}>
                 <div
                   role="region"
-                  aria-label={`Mappa dei pronto soccorso${nomeProvincia ? ` in provincia di ${nomeProvincia}` : " del Friuli Venezia Giulia"} — elenco testuale equivalente nel pannello a fianco`}
+                  aria-label={t("mappaAriaLabel", {
+                    luogo: nomeProvincia
+                      ? tChrome("inProvinciaDi", { provincia: nomeProvincia })
+                      : t("delFriuliVeneziaGiulia"),
+                  })}
                   style={{ height: 600 }}
                   className="rounded overflow-hidden"
                 >

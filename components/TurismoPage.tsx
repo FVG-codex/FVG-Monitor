@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 import { TopHeader } from "@/components/TopHeader";
 import { Footer } from "@/components/Footer";
 
@@ -14,9 +15,8 @@ import { Footer } from "@/components/Footer";
 // Prossimi — vedi components/EventiPage.tsx e lib/eventi.ts.
 const SEZIONI = [
   {
-    nome: "Neve & Impianti",
+    key: "neveImpianti",
     href: "/neve-impianti",
-    descrizione: "Stato impianti, piste e condizioni meteo dei 7 poli sciistici della regione",
     icona: (
       <svg viewBox="0 0 48 48" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.5">
         <path d="M24 6v36M24 6l-6 6M24 6l6 6M24 42l-6-6M24 42l6-6" strokeLinecap="round" strokeLinejoin="round" />
@@ -25,9 +25,8 @@ const SEZIONI = [
     ),
   },
   {
-    nome: "Strutture ricettive",
+    key: "struttureRicettive",
     href: "/strutture-ricettive",
-    descrizione: "Hotel, B&B, agriturismi e altre strutture ricettive per tipologia",
     icona: (
       <svg viewBox="0 0 48 48" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.5">
         <path d="M6 40V16l18-10 18 10v24" strokeLinecap="round" strokeLinejoin="round" />
@@ -36,9 +35,8 @@ const SEZIONI = [
     ),
   },
   {
-    nome: "Piste ciclabili",
+    key: "pisteCiclabili",
     href: "/piste-ciclabili",
-    descrizione: "Percorsi ciclabili regionali, anelli, ciclovie a tappe e mountain bike",
     icona: (
       <svg viewBox="0 0 48 48" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.5">
         <circle cx="12" cy="34" r="7" />
@@ -48,9 +46,8 @@ const SEZIONI = [
     ),
   },
   {
-    nome: "Eventi",
+    key: "eventi",
     href: "/eventi",
-    descrizione: "Sagre, mostre, concerti e manifestazioni nei prossimi 14 giorni in tutta la regione",
     icona: (
       <svg viewBox="0 0 48 48" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.5">
         <rect x="7" y="10" width="34" height="31" rx="2" />
@@ -61,17 +58,17 @@ const SEZIONI = [
   },
 ];
 
-export function TurismoPage() {
+export async function TurismoPage() {
+  const t = await getTranslations("turismo");
+  const tNav = await getTranslations("nav");
   return (
     <>
       <TopHeader />
       <div className="isobar" />
 
       <main id="contenuto-principale" className="max-w-[1180px] mx-auto px-5 py-6">
-        <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1">Turismo</h1>
-        <p className="text-ink-faint text-xs font-mono mb-6">
-          Neve e impianti, strutture ricettive, percorsi ciclabili ed eventi del Friuli Venezia Giulia
-        </p>
+        <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1">{tNav("turismo")}</h1>
+        <p className="text-ink-faint text-xs font-mono mb-6">{t("descrizione")}</p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {SEZIONI.map((s) => (
@@ -82,8 +79,10 @@ export function TurismoPage() {
             >
               <span className="text-cool-ink">{s.icona}</span>
               <div>
-                <div className="font-cond font-bold text-lg uppercase tracking-wide">{s.nome}</div>
-                <div className="text-ink-faint text-xs mt-1">{s.descrizione}</div>
+                <div className="font-cond font-bold text-lg uppercase tracking-wide">
+                  {t(`sezioni.${s.key}.nome`)}
+                </div>
+                <div className="text-ink-faint text-xs mt-1">{t(`sezioni.${s.key}.descrizione`)}</div>
               </div>
             </Link>
           ))}

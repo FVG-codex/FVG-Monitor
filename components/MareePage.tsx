@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useLocale, useTranslations } from "next-intl";
 import { supabase } from "@/lib/supabase";
 import { TopHeader } from "@/components/TopHeader";
 import { Footer } from "@/components/Footer";
@@ -47,28 +48,36 @@ type MareePrevisteData = {
   serieOggi?: PuntoSerie[];
 };
 
-function formattaOra(iso: string): string {
-  return new Date(iso).toLocaleTimeString("it-IT", {
+function formattaOra(iso: string, locale: string): string {
+  return new Date(iso).toLocaleTimeString(locale === "en" ? "en-GB" : "it-IT", {
     hour: "2-digit",
     minute: "2-digit",
     timeZone: "Europe/Rome",
   });
 }
 
-function formattaData(iso: string): string {
-  return new Date(`${iso}T12:00:00Z`).toLocaleDateString("it-IT", {
+function formattaData(iso: string, locale: string): string {
+  return new Date(`${iso}T12:00:00Z`).toLocaleDateString(locale === "en" ? "en-GB" : "it-IT", {
     weekday: "short",
     day: "numeric",
     month: "short",
   });
 }
 
-function RigaPicco({ p }: { p: { ora: string; altezza_m: number; tipo: "alta" | "bassa" } }) {
+function RigaPicco({
+  p,
+  locale,
+  t,
+}: {
+  p: { ora: string; altezza_m: number; tipo: "alta" | "bassa" };
+  locale: string;
+  t: ReturnType<typeof useTranslations>;
+}) {
   return (
     <li className="flex items-baseline gap-2 text-sm">
-      <span className="font-mono text-ink-faint w-11 shrink-0">{formattaOra(p.ora)}</span>
+      <span className="font-mono text-ink-faint w-11 shrink-0">{formattaOra(p.ora, locale)}</span>
       <span className={`flex-1 ${p.tipo === "alta" ? "text-cool-ink" : "text-ink-dim"}`}>
-        {p.tipo === "alta" ? "Alta" : "Bassa"}
+        {p.tipo === "alta" ? t("alta") : t("bassa")}
       </span>
       <span className="font-mono font-bold">
         {p.altezza_m > 0 ? "+" : ""}
@@ -82,6 +91,11 @@ export function MareePage() {
   const [osservate, setOsservate] = useState<Partial<Record<string, MareeOsservateData>>>({});
   const [previste, setPreviste] = useState<Partial<Record<string, MareePrevisteData>>>({});
   const [stato, setStato] = useState<"loading" | "ready" | "error">("loading");
+  const t = useTranslations("maree");
+  const tNav = useTranslations("nav");
+  const tAmbiente = useTranslations("ambiente");
+  const tChrome = useTranslations("chrome");
+  const locale = useLocale();
 
   useEffect(() => {
     let attivo = true;
@@ -128,20 +142,19 @@ export function MareePage() {
 
       <main id="contenuto-principale" className="max-w-[1180px] mx-auto px-5 py-6">
         <a href="/ambiente" className="text-cool-ink text-xs font-mono hover:underline">
-          ← Ambiente
+          ← {tNav("ambiente")}
         </a>
-        <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1 mt-1">Maree</h1>
-        <p className="text-ink-faint text-xs font-mono mb-6">
-          Alta e bassa marea a Trieste, Grado e Lignano — picchi osservati oggi (fonte: Protezione Civile FVG) e
-          previsione dei prossimi giorni (fonte: tide-forecast.com, non ufficiale)
-        </p>
+        <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1 mt-1">
+          {tAmbiente("sezioni.maree.nome")}
+        </h1>
+        <p className="text-ink-faint text-xs font-mono mb-6">{t("descrizione")}</p>
 
-        {stato === "loading" && <p className="text-ink-faint text-sm font-mono">Caricamento…</p>}
-        {stato === "error" && <p className="text-ink-faint text-sm font-mono">Dati non disponibili al momento.</p>}
+        {stato === "loading" && <p className="text-ink-faint text-sm font-mono">{tChrome("caricamento")}</p>}
+        {stato === "error" && <p className="text-ink-faint text-sm font-mono">{t("nonDisponibili")}</p>}
 
         {stato !== "loading" && (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-line border border-line">
-            <Panel title="Andamento di oggi" span={3}>
+            <Panel title={t("andamentoOggi")} span={3}>
               <MareeGraficoOggi osservate={osservate} previste={previste} />
             </Panel>
 
@@ -152,48 +165,48 @@ export function MareePage() {
                 <Panel key={s.slug} title={s.nome}>
                   <div className="mb-4">
                     <div className="font-mono text-[10px] uppercase tracking-wide text-ink-faint mb-2">
-                      Oggi (osservato)
+                      {t("oggiOsservato")}
                     </div>
                     {oss && oss.picchi.length > 0 ? (
                       <ul className="space-y-1">
                         {oss.picchi.map((p, i) => (
-                          <RigaPicco key={i} p={p} />
+                          <RigaPicco key={i} p={p} locale={locale} t={t} />
                         ))}
                       </ul>
                     ) : (
-                      <p className="font-mono text-xs text-ink-faint">n.d.</p>
+                      <p className="font-mono text-xs text-ink-faint">{t("nd")}</p>
                     )}
                   </div>
 
                   <div>
                     <div className="font-mono text-[10px] uppercase tracking-wide text-ink-faint mb-2">
-                      Prossimi giorni (previsione)
+                      {t("prossimiGiorni")}
                     </div>
                     {prev && prev.giorni.length > 0 ? (
                       <div className="max-h-[280px] overflow-y-auto space-y-2.5 pr-1">
                         {prev.giorni.slice(0, 7).map((g) => (
                           <div key={g.data}>
                             <div className="font-mono text-[10px] text-ink-faint capitalize mb-1">
-                              {formattaData(g.data)}
+                              {formattaData(g.data, locale)}
                             </div>
                             <ul className="space-y-0.5">
                               {g.picchi.map((p, i) => (
-                                <RigaPicco key={i} p={p} />
+                                <RigaPicco key={i} p={p} locale={locale} t={t} />
                               ))}
                             </ul>
                           </div>
                         ))}
                       </div>
                     ) : (
-                      <p className="font-mono text-xs text-ink-faint">n.d.</p>
+                      <p className="font-mono text-xs text-ink-faint">{t("nd")}</p>
                     )}
                   </div>
 
                   {(oss || prev) && (
                     <div className="mt-3 pt-2 border-t border-line font-mono text-[9px] text-ink-faint">
-                      {oss && `Osservato agg. ${formattaOra(oss.aggiornato_al)}`}
+                      {oss && t("osservatoAgg", { ora: formattaOra(oss.aggiornato_al, locale) })}
                       {oss && prev && " · "}
-                      {prev && "Previsione: tide-forecast.com"}
+                      {prev && t("previsioneFonte")}
                     </div>
                   )}
                 </Panel>

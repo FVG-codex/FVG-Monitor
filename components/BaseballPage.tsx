@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useLocale, useTranslations } from "next-intl";
 import { supabase } from "@/lib/supabase";
 import { Panel } from "@/components/Panel";
 import { TopHeader } from "@/components/TopHeader";
@@ -47,13 +48,13 @@ const COMPETIZIONI = [
   { slug: "serie-a2-softball-2026", label: "Serie A2 Softball" },
 ];
 
-function formattaData(iso: string): string {
+function formattaData(iso: string, locale: string): string {
   const d = new Date(iso);
   // Fuso fissato esplicitamente a Europe/Rome (come altrove nel progetto,
   // es. lib/farmacie.ts, lib/supermercati.ts) invece di affidarsi al fuso
   // del dispositivo di chi legge, per evitare che una partita risulti
   // sul giorno sbagliato.
-  return d.toLocaleDateString("it-IT", {
+  return d.toLocaleDateString(locale === "en" ? "en-GB" : "it-IT", {
     weekday: "short",
     day: "numeric",
     month: "short",
@@ -75,6 +76,11 @@ export function BaseballPage() {
   const [dati, setDati] = useState<BaseballData | null>(null);
   const [stato, setStato] = useState<"loading" | "ready" | "error">("loading");
   const [competizione, setCompetizione] = useState(COMPETIZIONI[0].slug);
+  const t = useTranslations("baseball");
+  const tSport = useTranslations("sport");
+  const tNav = useTranslations("nav");
+  const tChrome = useTranslations("chrome");
+  const locale = useLocale();
 
   useEffect(() => {
     let attivo = true;
@@ -110,14 +116,12 @@ export function BaseballPage() {
 
       <main id="contenuto-principale" className="max-w-[1180px] mx-auto px-5 py-6">
         <Link href="/sport" className="text-cool-ink text-xs font-mono hover:underline">
-          ← Sport
+          ← {tNav("sport")}
         </Link>
         <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1 mt-1">
-          {stato === "ready" && dati ? dati.campionato : "Baseball & Softball"}
+          {stato === "ready" && dati ? dati.campionato : t("titoloFallback")}
         </h1>
-        <p className="text-ink-faint text-xs font-mono mb-4">
-          Baseball e softball FVG — squadre in evidenza — fonte: live.baseballfvg.it
-        </p>
+        <p className="text-ink-faint text-xs font-mono mb-4">{t("descrizione")}</p>
 
         <div className="flex gap-1.5 flex-wrap mb-6">
           {COMPETIZIONI.map((c) => (
@@ -134,21 +138,21 @@ export function BaseballPage() {
           ))}
         </div>
 
-        {stato === "loading" && <p className="text-ink-faint text-sm font-mono">Caricamento…</p>}
+        {stato === "loading" && <p className="text-ink-faint text-sm font-mono">{tChrome("caricamento")}</p>}
         {stato === "error" && (
-          <p className="text-ink-faint text-sm font-mono">Dati non disponibili al momento.</p>
+          <p className="text-ink-faint text-sm font-mono">{tChrome("datiNonDisponibili")}</p>
         )}
 
         {stato === "ready" && dati && (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-line border border-line">
-            <Panel title={`${dati.campionato} — Ultimi risultati`}>
+            <Panel title={`${dati.campionato} — ${t("ultimiRisultati")}`}>
               {dati.partite.length === 0 ? (
-                <p className="text-ink-faint text-sm font-mono">Nessuna partita disponibile.</p>
+                <p className="text-ink-faint text-sm font-mono">{t("nessunaPartita")}</p>
               ) : (
                 dati.partite.map((p, i) => (
                   <div key={i} className={`py-3 ${i > 0 ? "border-t border-line" : ""}`}>
                     <div className="font-mono text-[10px] text-ink-faint mb-1.5 uppercase">
-                      {formattaData(p.data)} · {p.luogo}
+                      {formattaData(p.data, locale)} · {p.luogo}
                     </div>
                     <div className="flex items-center justify-between text-sm">
                       <span className={`flex-1 ${p.casaFvg ? "text-cool-ink font-semibold" : ""}`}>{p.casa}</span>
@@ -164,7 +168,7 @@ export function BaseballPage() {
               )}
             </Panel>
 
-            <Panel title={`${dati.campionato} — Classifica`}>
+            <Panel title={`${dati.campionato} — ${tSport("classifica")}`}>
               {Array.from(gironi.entries()).map(([nomeGirone, righe]) => (
                 <div key={nomeGirone} className="mb-4 last:mb-0">
                   <div className="font-cond font-semibold text-xs uppercase tracking-wide text-ink-faint mb-2">
@@ -175,11 +179,11 @@ export function BaseballPage() {
                       <thead>
                         <tr className="border-b border-line font-mono text-[10px] text-ink-faint uppercase">
                           <th className="text-left py-2 pr-2">#</th>
-                          <th className="text-left py-2">Squadra</th>
-                          <th className="text-right py-2 px-2">V</th>
-                          <th className="text-right py-2 px-2">P</th>
-                          <th className="text-right py-2 px-2">%</th>
-                          <th className="text-right py-2 pl-2">GB</th>
+                          <th className="text-left py-2">{tSport("colSquadra")}</th>
+                          <th className="text-right py-2 px-2">{tSport("colV")}</th>
+                          <th className="text-right py-2 px-2">{tSport("colP")}</th>
+                          <th className="text-right py-2 px-2">{t("colPercentuale")}</th>
+                          <th className="text-right py-2 pl-2">{t("colGB")}</th>
                         </tr>
                       </thead>
                       <tbody>

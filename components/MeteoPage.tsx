@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { Panel } from "@/components/Panel";
 import { TopHeader } from "@/components/TopHeader";
 import { Footer } from "@/components/Footer";
@@ -18,6 +19,11 @@ import { PROVINCE, PROVINCE_LIST, type ProvinciaSlug } from "@/lib/province";
 export function MeteoPage() {
   const [filtro, setFiltro] = useState<ProvinciaSlug | "tutte">("tutte");
   const provincia = filtro !== "tutte" ? PROVINCE[filtro] : null;
+  const t = useTranslations("meteo");
+  const tNav = useTranslations("nav");
+  const tHome = useTranslations("home");
+  const tChrome = useTranslations("chrome");
+  const tProvincia = useTranslations("provincia");
 
   return (
     <>
@@ -25,10 +31,8 @@ export function MeteoPage() {
       <div className="isobar" />
 
       <main id="contenuto-principale" className="max-w-[1180px] mx-auto px-5 py-6">
-        <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1">Meteo</h1>
-        <p className="text-ink-faint text-xs font-mono mb-4">
-          Bollettino, temperatura live, vento e pioggia — fonte: OSMER ARPA FVG, Protezione Civile FVG
-        </p>
+        <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1">{tNav("meteo")}</h1>
+        <p className="text-ink-faint text-xs font-mono mb-4">{t("descrizione")}</p>
 
         <div className="flex gap-1.5 flex-wrap mb-6">
           <button
@@ -38,7 +42,7 @@ export function MeteoPage() {
               filtro === "tutte" ? "bg-cool text-on-accent" : "border border-line text-ink-dim hover:text-ink"
             }`}
           >
-            Tutta la regione
+            {tChrome("allRegion")}
           </button>
           {PROVINCE_LIST.map((p) => (
             <button
@@ -56,12 +60,12 @@ export function MeteoPage() {
 
         {filtro === "tutte" ? (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-line border border-line">
-            <Panel title="Meteo · Le 4 province" linkLabel="OSMER ARPA FVG →" linkHref="https://www.meteo.fvg.it">
+            <Panel title={tHome("panels.meteo")} linkLabel="OSMER ARPA FVG →" linkHref="https://www.meteo.fvg.it">
               <MeteoOverview />
             </Panel>
 
             <Panel
-              title="Radar meteo"
+              title={t("radarMeteo")}
               linkLabel="Protezione Civile FVG →"
               linkHref="https://monitor.protezionecivile.fvg.it"
             >
@@ -70,14 +74,14 @@ export function MeteoPage() {
 
             <Panel
               title="Pazzi per il meteo · Telegram"
-              linkLabel="Canale Telegram →"
+              linkLabel={t("canaleTelegramLink")}
               linkHref="https://t.me/pazziperilmeteo"
             >
               <PazziTelegramPanel />
             </Panel>
 
             <Panel
-              title="Previsioni temporalesche"
+              title={t("previsioniTemporalesche")}
               linkLabel="Pazzi per il meteo Goriziano →"
               linkHref="https://pazziperilmeteo.fvg.it/category/previsioni-temporalesche/"
             >
@@ -85,7 +89,7 @@ export function MeteoPage() {
             </Panel>
 
             <Panel
-              title="Bora · Vento e Pioggia"
+              title={tHome("ambiente.bora")}
               linkLabel="Protezione Civile FVG →"
               linkHref="https://monitor.protezionecivile.fvg.it"
             >
@@ -94,18 +98,18 @@ export function MeteoPage() {
               <PioggiaPanel compatto />
             </Panel>
 
-            <Panel title="Sole e luna">
+            <Panel title={tHome("panels.soleLuna")}>
               <SoleLunaPanel />
             </Panel>
           </div>
         ) : (
           provincia && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-line border border-line">
-              <Panel title="Bollettino" linkLabel="OSMER ARPA FVG →" linkHref="https://www.meteo.fvg.it">
+              <Panel title={t("bollettino")} linkLabel="OSMER ARPA FVG →" linkHref="https://www.meteo.fvg.it">
                 <MeteoDettaglio provincia={filtro as ProvinciaSlug} />
               </Panel>
 
-              <Panel title={`Condizioni live — ${provincia.nome}`}>
+              <Panel title={tProvincia("condizioniLive", { provincia: provincia.nome })}>
                 <TemperaturaBadge provincia={filtro as ProvinciaSlug} size="lg" />
                 <div className="mt-3">
                   <MeteoWidgetSlot slug={filtro as ProvinciaSlug} cittaNome={provincia.nome} />
@@ -113,7 +117,7 @@ export function MeteoPage() {
               </Panel>
 
               <Panel
-                title="Vento"
+                title={tProvincia("vento")}
                 linkLabel="Protezione Civile FVG →"
                 linkHref="https://monitor.protezionecivile.fvg.it"
               >
@@ -121,14 +125,14 @@ export function MeteoPage() {
               </Panel>
 
               <Panel
-                title="Pioggia"
+                title={tProvincia("pioggia")}
                 linkLabel="Protezione Civile FVG →"
                 linkHref="https://monitor.protezionecivile.fvg.it"
               >
                 <PioggiaPanel provincia={filtro as ProvinciaSlug} />
               </Panel>
 
-              <Panel title="Sole e luna" span={2}>
+              <Panel title={tHome("panels.soleLuna")} span={2}>
                 <SoleLunaPanel />
               </Panel>
             </div>

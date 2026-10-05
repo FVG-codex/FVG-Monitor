@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import dynamic from "next/dynamic";
+import { useTranslations } from "next-intl";
 import { TopHeader } from "@/components/TopHeader";
 import { Footer } from "@/components/Footer";
 import { Panel } from "@/components/Panel";
@@ -51,6 +52,11 @@ export function VeterinariPage() {
   const [comuneSel, setComuneSel] = useState<string | null>(null);
   const [ricerca, setRicerca] = useState("");
   const [adesso, setAdesso] = useState(() => adessoEuropeRome());
+  const t = useTranslations("veterinari");
+  const tNav = useTranslations("nav");
+  const tSanita = useTranslations("sanita");
+  const tChrome = useTranslations("chrome");
+  const tSupermercati = useTranslations("supermercati");
 
   useEffect(() => {
     const id = setInterval(() => setAdesso(adessoEuropeRome()), 30 * 1000);
@@ -119,14 +125,12 @@ export function VeterinariPage() {
 
       <main id="contenuto-principale" className="max-w-[1180px] mx-auto px-5 py-6">
         <a href="/sanita" className="text-cool-ink text-xs font-mono hover:underline">
-          ← Sanità
+          ← {tNav("sanita")}
         </a>
-        <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1 mt-1">Veterinari & Emergenze</h1>
-        <p className="text-ink-faint text-xs font-mono mb-4">
-          Strutture veterinarie del Friuli Venezia Giulia — dato raccolto e verificato manualmente (siti ufficiali
-          e directory di settore), non un albo professionale ufficiale. In caso di emergenza, verificare sempre
-          telefonicamente la disponibilità reale prima di presentarsi in struttura.
-        </p>
+        <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1 mt-1">
+          {tSanita("sezioni.veterinari.nome")}
+        </h1>
+        <p className="text-ink-faint text-xs font-mono mb-4">{t("descrizione")}</p>
 
         <div className="flex gap-1.5 flex-wrap mb-4">
           {PROVINCE_LIST.map((p) => (
@@ -139,16 +143,16 @@ export function VeterinariPage() {
               }`}
             >
               {p.nome}
-              {PROVINCE_VETERINARI_ATTIVE.includes(p.slug) ? ` (${VETERINARI_PER_PROVINCIA[p.slug].length})` : " · in arrivo"}
+              {PROVINCE_VETERINARI_ATTIVE.includes(p.slug)
+                ? ` (${VETERINARI_PER_PROVINCIA[p.slug].length})`
+                : ` · ${tChrome("inArrivo")}`}
             </button>
           ))}
         </div>
 
         {!attiva ? (
           <div className="border border-line rounded p-5 bg-panel">
-            <p className="text-ink-faint text-sm font-mono">
-              Dati veterinari per {nomeProvincia} in arrivo in una prossima fase.
-            </p>
+            <p className="text-ink-faint text-sm font-mono">{t("datiInArrivo", { provincia: nomeProvincia })}</p>
           </div>
         ) : (
           <>
@@ -157,30 +161,24 @@ export function VeterinariPage() {
                 senza dover prima azzerare un filtro. */}
             <div className="border-2 border-allerta-rossa rounded p-4 mb-6 bg-panel">
               <h2 className="font-cond font-bold text-lg uppercase tracking-wide text-allerta-rossa-ink mb-1">
-                Emergenze · {nomeProvincia}
+                {t("emergenzeTitolo", { provincia: nomeProvincia })}
               </h2>
               {emergenze.length === 0 ? (
-                <p className="text-ink-dim text-sm">
-                  Nessuna struttura di {nomeProvincia} dichiara una gestione delle emergenze in questo elenco. In
-                  caso di urgenza, contattare telefonicamente la struttura più vicina durante l&apos;orario di
-                  apertura.
-                </p>
+                <p className="text-ink-dim text-sm">{t("nessunaEmergenza", { provincia: nomeProvincia })}</p>
               ) : (
                 <>
-                  <p className="text-ink-faint text-xs font-mono mb-3">
-                    Strutture con una gestione delle emergenze dichiarata, dalla più pronta alla meno certa —
-                    verificare comunque per telefono prima di un accesso urgente.
-                  </p>
+                  <p className="text-ink-faint text-xs font-mono mb-3">{t("emergenzeDescrizione")}</p>
                   <div className="flex flex-col gap-3">
                     {emergenze.map((v) => {
                       const livello = LIVELLO_EMERGENZA[v.gestioneEmergenze];
+                      const etichettaLivello = t(`livelloEmergenza.${v.gestioneEmergenze}`);
                       const telefonoMostrato = v.telefonoEmergenze ?? v.telefono;
                       return (
                         <div key={v.id} className="border-t border-line pt-3 first:border-t-0 first:pt-0">
                           <div className="flex items-baseline justify-between gap-2 flex-wrap">
                             <span className="text-sm font-semibold">{v.nome}</span>
                             <span className={`px-2 py-0.5 rounded text-[10px] font-cond font-bold uppercase tracking-wide ${livello.classeBadge}`}>
-                              {livello.etichetta}
+                              {etichettaLivello}
                             </span>
                           </div>
                           <div className="text-ink-dim text-xs mt-0.5">
@@ -197,7 +195,7 @@ export function VeterinariPage() {
                           {v.orariEmergenze && <div className="text-ink-dim text-xs mt-1">{v.orariEmergenze}</div>}
                           {!v.emergenzeVerificate && (
                             <div className="text-ink-faint text-[10px] font-mono uppercase mt-1">
-                              Dichiarazione non verificata direttamente — confermare per telefono
+                              {t("dichiarazioneNonVerificata")}
                             </div>
                           )}
                         </div>
@@ -217,7 +215,7 @@ export function VeterinariPage() {
                     comuneSel === null ? "bg-cool text-on-accent" : "border border-line text-ink-dim hover:text-ink"
                   }`}
                 >
-                  Tutti i comuni ({tuttaLaProvincia.length})
+                  {tChrome("tuttiIComuni", { count: tuttaLaProvincia.length })}
                 </button>
                 {comuni.map(([c, n]) => (
                   <button
@@ -235,21 +233,25 @@ export function VeterinariPage() {
             )}
 
             <label className="block mb-4">
-              <span className="sr-only">Cerca per nome, comune o tipo di struttura</span>
+              <span className="sr-only">{t("cercaLabel")}</span>
               <input
                 type="search"
                 value={ricerca}
                 onChange={(e) => setRicerca(e.target.value)}
-                placeholder="Cerca per nome, comune o tipo di struttura…"
+                placeholder={t("cercaPlaceholder")}
                 className="w-full max-w-sm px-3 py-1.5 rounded text-sm bg-panel border border-line text-ink placeholder:text-ink-faint focus:outline-none focus:border-cool"
               />
             </label>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-line border border-line">
-              <Panel title={`Elenco (${elenco.length})`}>
+              <Panel title={tChrome("elenco", { count: elenco.length })}>
                 {elenco.length === 0 ? (
                   <p className="text-ink-faint text-sm font-mono">
-                    Nessuna struttura trovata{comuneSel ? ` a ${comuneSel}` : ` in provincia di ${nomeProvincia}`}.
+                    {t("nessunaStrutturaTrovata", {
+                      luogo: comuneSel
+                        ? tChrome("aComune", { luogo: comuneSel })
+                        : tChrome("inProvinciaDi", { provincia: nomeProvincia }),
+                    })}
                   </p>
                 ) : (
                   <div className="max-h-[460px] overflow-y-auto flex flex-col">
@@ -261,7 +263,7 @@ export function VeterinariPage() {
                             <span className="text-sm font-semibold truncate">{v.nome}</span>
                             {v.temporaneamenteChiuso ? (
                               <span className="font-mono text-[10px] text-allerta-rossa-ink uppercase shrink-0">
-                                Chiuso temporaneamente
+                                {tSupermercati("chiusoTemporaneamente")}
                               </span>
                             ) : (
                               <StatoApertoBadge stato={statoAperturaVeterinario(v, adesso)} />
@@ -278,7 +280,7 @@ export function VeterinariPage() {
                               href={`tel:${telHref(v.telefono)}`}
                               className="text-ink-faint text-xs mt-0.5 block hover:text-cool-ink"
                             >
-                              Tel. {v.telefono}
+                              {tChrome("telEtichetta", { telefono: v.telefono })}
                             </a>
                           )}
                           {v.sito && (
@@ -288,17 +290,19 @@ export function VeterinariPage() {
                               rel="noopener noreferrer"
                               className="font-mono text-[10px] text-cool-ink hover:underline inline-block mt-0.5"
                             >
-                              Sito →<span className="sr-only"> (si apre in una nuova scheda)</span>
+                              {tChrome("sitoLink")}<span className="sr-only"> {tChrome("apreNuovaScheda")}</span>
                             </a>
                           )}
                           {!v.temporaneamenteChiuso && (
                             <div className="font-mono text-[10px] text-ink-dim mt-1">
-                              Oggi: {formattaFasceGiornoVet(v.orari[giorno])}
-                              {v.suAppuntamento && <span className="text-ink-faint normal-case"> · su appuntamento</span>}
+                              {tSupermercati("oggiOrari", { orari: formattaFasceGiornoVet(v.orari[giorno]) })}
+                              {v.suAppuntamento && (
+                                <span className="text-ink-faint normal-case"> · {t("suAppuntamento")}</span>
+                              )}
                             </div>
                           )}
                           <div className={`inline-block mt-1 px-1.5 py-0.5 rounded text-[9px] font-cond font-bold uppercase tracking-wide ${livello.classeBadge}`}>
-                            {livello.etichetta}
+                            {t(`livelloEmergenza.${v.gestioneEmergenze}`)}
                           </div>
                         </div>
                       );
@@ -307,10 +311,14 @@ export function VeterinariPage() {
                 )}
               </Panel>
 
-              <Panel title="Mappa">
+              <Panel title={tChrome("mappa")}>
                 <div
                   role="region"
-                  aria-label={`Mappa dei veterinari${comuneSel ? ` a ${comuneSel}` : ` in provincia di ${nomeProvincia}`} — elenco testuale equivalente nel pannello a fianco`}
+                  aria-label={t("mappaAriaLabel", {
+                    luogo: comuneSel
+                      ? tChrome("aComune", { luogo: comuneSel })
+                      : tChrome("inProvinciaDi", { provincia: nomeProvincia }),
+                  })}
                   style={{ height: 460 }}
                   className="rounded overflow-hidden"
                 >

@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { AllertaWidgetSlot } from "@/components/AllertaWidgetSlot";
 import { FiumePanel } from "@/components/FiumePanel";
 import { MeteoDettaglio } from "@/components/MeteoPanel";
@@ -15,6 +16,8 @@ import { PROVINCE, type ProvinciaSlug } from "@/lib/province";
 
 export function ProvinciaPage({ slug }: { slug: ProvinciaSlug }) {
   const provincia = PROVINCE[slug];
+  const t = useTranslations("provincia");
+  const tNav = useTranslations("nav");
 
   return (
     <>
@@ -30,11 +33,11 @@ export function ProvinciaPage({ slug }: { slug: ProvinciaSlug }) {
             pannello "Condizioni live"). */}
         <h1 className="sr-only">{provincia.nome} — FVG Monitor</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-line border border-line">
-          <Panel title="Meteo" linkLabel="OSMER ARPA FVG →" linkHref="https://www.meteo.fvg.it">
+          <Panel title={tNav("meteo")} linkLabel="OSMER ARPA FVG →" linkHref="https://www.meteo.fvg.it">
             <MeteoDettaglio provincia={slug} />
           </Panel>
 
-          <Panel title={`Condizioni live — ${provincia.nome}`}>
+          <Panel title={t("condizioniLive", { provincia: provincia.nome })}>
             <TemperaturaBadge provincia={slug} size="lg" />
             <div className="mt-3">
               <MeteoWidgetSlot slug={slug} cittaNome={provincia.nome} />
@@ -42,7 +45,7 @@ export function ProvinciaPage({ slug }: { slug: ProvinciaSlug }) {
           </Panel>
 
           <Panel
-            title="Vento"
+            title={t("vento")}
             linkLabel="Protezione Civile FVG →"
             linkHref="https://monitor.protezionecivile.fvg.it"
           >
@@ -50,7 +53,7 @@ export function ProvinciaPage({ slug }: { slug: ProvinciaSlug }) {
           </Panel>
 
           <Panel
-            title="Pioggia"
+            title={t("pioggia")}
             linkLabel="Protezione Civile FVG →"
             linkHref="https://monitor.protezionecivile.fvg.it"
           >
@@ -58,7 +61,7 @@ export function ProvinciaPage({ slug }: { slug: ProvinciaSlug }) {
           </Panel>
 
           <Panel
-            title="Livello fiume"
+            title={t("livelloFiume")}
             linkLabel="Protezione Civile FVG →"
             linkHref="https://monitor.protezionecivile.fvg.it"
           >
@@ -66,12 +69,12 @@ export function ProvinciaPage({ slug }: { slug: ProvinciaSlug }) {
           </Panel>
 
           <Panel
-            title="Allerta Protezione Civile"
-            linkLabel="Storico →"
+            title={t("allertaProtezioneCivile")}
+            linkLabel={t("storicoLink")}
             linkHref="https://www.protezionecivile.fvg.it/it/allerte-tutte"
           >
             <div className="flex items-center gap-2 mb-3">
-              <span className="text-sm text-ink-dim">Zona di allertamento:</span>
+              <span className="text-sm text-ink-dim">{t("zonaAllertamento")}</span>
               <ZonaAllertamentoLive provincia={slug} />
             </div>
             <AllertaWidgetSlot slug={slug} cittaNome={provincia.nome} />
@@ -79,8 +82,7 @@ export function ProvinciaPage({ slug }: { slug: ProvinciaSlug }) {
         </div>
 
         <p className="text-ink-faint text-xs font-mono mt-6">
-          Altri moduli specifici per {provincia.nome} (viabilità, notizie locali) arrivano
-          nelle fasi successive del piano.
+          {t("altriModuli", { provincia: provincia.nome })}
         </p>
       </main>
 

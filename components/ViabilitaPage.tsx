@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 import { supabase } from "@/lib/supabase";
 import { CarburantiPanel } from "@/components/CarburantiPanel";
 import { Panel } from "@/components/Panel";
@@ -18,6 +19,10 @@ const ZONE_AUTOSTRADE = new Set(["A4", "A23", "A28", "SR354"]);
 export function ViabilitaPage() {
   const [dati, setDati] = useState<WebcamData | null>(null);
   const [stato, setStato] = useState<"loading" | "ready" | "error">("loading");
+  const t = useTranslations("viabilita");
+  const tNav = useTranslations("nav");
+  const tHome = useTranslations("home");
+  const tChrome = useTranslations("chrome");
 
   useEffect(() => {
     let attivo = true;
@@ -51,18 +56,16 @@ export function ViabilitaPage() {
       <div className="isobar" />
 
       <main id="contenuto-principale" className="max-w-[1180px] mx-auto px-5 py-6">
-        <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1">Viabilità</h1>
-        <p className="text-ink-faint text-xs font-mono mb-6">
-          Eventi di traffico e webcam autostradali — fonte: InfoViaggiando, OSMER ARPA FVG
-        </p>
+        <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1">{tNav("viabilita")}</h1>
+        <p className="text-ink-faint text-xs font-mono mb-6">{t("descrizione")}</p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-line border border-line mb-8">
-          <Panel title="Eventi in corso" linkLabel="InfoViaggiando →" linkHref="https://infoviaggiando.it" span={2}>
+          <Panel title={t("eventiInCorso")} linkLabel="InfoViaggiando →" linkHref="https://infoviaggiando.it" span={2}>
             <ViabilitaPanel />
           </Panel>
 
           <Panel
-            title="Carburanti"
+            title={tHome("panels.carburanti")}
             linkLabel="MIMIT →"
             linkHref="https://www.mimit.gov.it/it/prezzo-medio-carburanti/regioni"
           >
@@ -72,22 +75,20 @@ export function ViabilitaPage() {
           {/* Colonnine elettriche (03/10/2026, spostata qui da Trasporti su
               richiesta dell'utente lo stesso giorno) — pagina dedicata
               (/colonnine-elettriche), qui solo un riassunto con link. */}
-          <Panel title="Colonnine elettriche" span={3}>
+          <Panel title={t("colonnineElettriche")} span={3}>
             <ColonninePanel />
           </Panel>
         </div>
 
-        <h2 className="font-cond font-bold text-xl uppercase tracking-wide mb-1">Webcam autostradali</h2>
-        <p className="text-ink-faint text-xs font-mono mb-4">
-          A4, A23, A28, SR354 — fonte: OSMER ARPA FVG (CC BY-SA 3.0). Clicca per aprire la fonte originale
-        </p>
+        <h2 className="font-cond font-bold text-xl uppercase tracking-wide mb-1">{t("webcamAutostradali")}</h2>
+        <p className="text-ink-faint text-xs font-mono mb-4">{t("webcamAutostradaliDescrizione")}</p>
 
-        {stato === "loading" && <p className="text-ink-faint text-sm font-mono">Caricamento…</p>}
+        {stato === "loading" && <p className="text-ink-faint text-sm font-mono">{tChrome("caricamento")}</p>}
         {stato === "error" && (
-          <p className="text-ink-faint text-sm font-mono">Dati non disponibili al momento.</p>
+          <p className="text-ink-faint text-sm font-mono">{tChrome("datiNonDisponibili")}</p>
         )}
         {stato === "ready" && webcamAutostrade.length === 0 && (
-          <p className="text-ink-faint text-sm font-mono">Nessuna webcam autostradale disponibile.</p>
+          <p className="text-ink-faint text-sm font-mono">{t("nessunaWebcamAutostradale")}</p>
         )}
 
         {stato === "ready" && webcamAutostrade.length > 0 && (
@@ -98,14 +99,8 @@ export function ViabilitaPage() {
           </div>
         )}
 
-        <h2 className="font-cond font-bold text-xl uppercase tracking-wide mb-1 mt-8">Confini</h2>
-        <p className="text-ink-faint text-xs font-mono mb-4">
-          15 valichi/direttrici verso Slovenia e Austria — dati anagrafici (comune, strada, tipologia). Eventi di
-          traffico in tempo reale: lato italiano per i 2 valichi autostradali (A23 Tarvisio, A34 Sant&apos;Andrea/
-          Vrtojba); lato sloveno (sperimentale, fonte Promet.si) per Fernetti, Rabuiese/Škofije, Sant&apos;Andrea/
-          Vrtojba e Pesek/Kozina. Per gli altri 9 valichi nessuna fonte pubblica verificabile è stata trovata finora
-          (ASFINAG e ANAS non raggiungibili da questa sessione — vedi lib/confini.ts).
-        </p>
+        <h2 className="font-cond font-bold text-xl uppercase tracking-wide mb-1 mt-8">{t("confini")}</h2>
+        <p className="text-ink-faint text-xs font-mono mb-4">{t("confiniDescrizione")}</p>
         <ConfiniSection />
       </main>
 

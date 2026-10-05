@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 import { TopHeader } from "@/components/TopHeader";
 import { Footer } from "@/components/Footer";
 import { Panel } from "@/components/Panel";
@@ -48,6 +49,10 @@ const LIVE_VUOTO: DatiLiveComprensorio = {
 export function NeveImpiantiPage() {
   const [snapshot, setSnapshot] = useState<SnapshotNeveImpianti | null>(null);
   const [stato, setStato] = useState<"loading" | "ready" | "error">("loading");
+  const t = useTranslations("neveImpianti");
+  const tNav = useTranslations("nav");
+  const tTurismo = useTranslations("turismo");
+  const tChrome = useTranslations("chrome");
 
   useEffect(() => {
     let attivo = true;
@@ -76,18 +81,16 @@ export function NeveImpiantiPage() {
 
       <main id="contenuto-principale" className="max-w-[1180px] mx-auto px-5 py-6">
         <a href="/turismo" className="text-cool-ink text-xs font-mono hover:underline">
-          ← Turismo
+          ← {tNav("turismo")}
         </a>
-        <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1 mt-1">Neve &amp; Impianti</h1>
-        <p className="text-ink-faint text-xs font-mono mb-4">
-          Stato impianti, piste e condizioni meteo dei 7 poli sciistici del Friuli Venezia Giulia — fonte: TurismoFVG,
-          aggiornata ogni 15 minuti in stagione invernale. Il programma di apertura impianti è indicativo e può
-          variare senza preavviso per motivi meteo/operativi: verificare sempre con il gestore prima di partire.
-        </p>
+        <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1 mt-1">
+          {tTurismo("sezioni.neveImpianti.nome")}
+        </h1>
+        <p className="text-ink-faint text-xs font-mono mb-4">{t("descrizione")}</p>
 
-        {stato === "loading" && <p className="text-ink-faint text-sm font-mono">Caricamento…</p>}
+        {stato === "loading" && <p className="text-ink-faint text-sm font-mono">{tChrome("caricamento")}</p>}
         {stato === "error" && (
-          <p className="text-ink-faint text-sm font-mono">Dati Neve &amp; Impianti non disponibili al momento.</p>
+          <p className="text-ink-faint text-sm font-mono">{t("nonDisponibili")}</p>
         )}
 
         {stato === "ready" && (
@@ -104,7 +107,7 @@ export function NeveImpiantiPage() {
                     </span>
                     {live.stale && (
                       <span className="text-[10px] font-mono uppercase text-allerta-arancione-ink">
-                        dato non aggiornato dall&apos;ultima verifica
+                        {t("datoNonAggiornato")}
                       </span>
                     )}
                   </div>
@@ -124,37 +127,39 @@ export function NeveImpiantiPage() {
                       <div className="text-base font-semibold">
                         {live.temperaturaC !== null ? `${live.temperaturaC}°C` : "---"}
                       </div>
-                      <div className="text-ink-faint text-[10px] font-mono uppercase">temperatura</div>
+                      <div className="text-ink-faint text-[10px] font-mono uppercase">{t("temperatura")}</div>
                     </div>
                     <div>
                       <div className="text-base font-semibold">{formattaNeve(live)}</div>
-                      <div className="text-ink-faint text-[10px] font-mono uppercase">neve in pista</div>
+                      <div className="text-ink-faint text-[10px] font-mono uppercase">{t("neveInPista")}</div>
                     </div>
                     <div>
                       <div className="text-base font-semibold">
                         {formattaConteggio(live.impiantiAperti, live.impiantiTotali ?? c.impiantiCount)}
                       </div>
-                      <div className="text-ink-faint text-[10px] font-mono uppercase">impianti aperti</div>
+                      <div className="text-ink-faint text-[10px] font-mono uppercase">{t("impiantiAperti")}</div>
                     </div>
                     <div>
                       <div className="text-base font-semibold">
-                        {live.pisteApertePct !== null ? `${live.pisteApertePct}%` : "n/d"}
+                        {live.pisteApertePct !== null ? `${live.pisteApertePct}%` : t("nd")}
                       </div>
-                      <div className="text-ink-faint text-[10px] font-mono uppercase">piste aperte</div>
+                      <div className="text-ink-faint text-[10px] font-mono uppercase">{t("pisteAperte")}</div>
                     </div>
                     <div>
                       <div className="text-base font-semibold">
                         {formattaConteggio(live.tappetiAperti, live.tappetiTotali ?? c.tappetiCount)}
                       </div>
-                      <div className="text-ink-faint text-[10px] font-mono uppercase">tappeti aperti</div>
+                      <div className="text-ink-faint text-[10px] font-mono uppercase">{t("tappetiAperti")}</div>
                     </div>
                     <div>
                       <div className="text-base font-semibold">{formattaConteggio(live.fondoAperto, live.fondoTotale)}</div>
-                      <div className="text-ink-faint text-[10px] font-mono uppercase">fondo aperto</div>
+                      <div className="text-ink-faint text-[10px] font-mono uppercase">{t("fondoAperto")}</div>
                     </div>
                   </div>
 
-                  {live.orari && <div className="text-ink-dim text-xs mb-2">Orari impianti: {live.orari}</div>}
+                  {live.orari && (
+                    <div className="text-ink-dim text-xs mb-2">{t("orariImpianti", { orari: live.orari })}</div>
+                  )}
 
                   <div className="flex items-center gap-3 flex-wrap">
                     <a
@@ -163,7 +168,7 @@ export function NeveImpiantiPage() {
                       rel="noopener noreferrer"
                       className="font-mono text-[10px] text-cool-ink hover:underline"
                     >
-                      Pagina ufficiale →<span className="sr-only"> (si apre in una nuova scheda)</span>
+                      {t("paginaUfficialeLink")}<span className="sr-only"> {tChrome("apreNuovaScheda")}</span>
                     </a>
                     <a
                       href={c.paginaWebcam}
@@ -171,14 +176,14 @@ export function NeveImpiantiPage() {
                       rel="noopener noreferrer"
                       className="font-mono text-[10px] text-cool-ink hover:underline"
                     >
-                      Webcam →<span className="sr-only"> (si apre in una nuova scheda)</span>
+                      {t("webcamLink")}<span className="sr-only"> {tChrome("apreNuovaScheda")}</span>
                     </a>
                   </div>
 
                   <div className="text-ink-faint text-[10px] font-mono mt-2">
-                    Ultimo dato: {formattaOra(live.osservatoIl)}
+                    {t("ultimoDato", { ora: formattaOra(live.osservatoIl) })}
                     {live.controllatoIl && live.controllatoIl !== live.osservatoIl
-                      ? ` · ultimo tentativo: ${formattaOra(live.controllatoIl)}`
+                      ? t("ultimoTentativo", { ora: formattaOra(live.controllatoIl) })
                       : ""}
                   </div>
                 </Panel>

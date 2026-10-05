@@ -1,5 +1,8 @@
+import { getTranslations } from "next-intl/server";
 import { InArrivoPage } from "@/components/InArrivoPage";
 
-export default function Page() {
-  return <InArrivoPage titolo="Galleria fotografica" backHref="/fvg-in-immagini" backLabel="FVG in immagini" />;
+export default async function Page() {
+  const tNav = await getTranslations("nav");
+  const tPages = await getTranslations("inArrivoPages");
+  return <InArrivoPage titolo={tPages("galleria")} backHref="/fvg-in-immagini" backLabel={tNav("immagini")} />;
 }

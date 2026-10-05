@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 import { TopHeader } from "@/components/TopHeader";
 import { Footer } from "@/components/Footer";
 
@@ -14,9 +15,8 @@ import { Footer } from "@/components/Footer";
 // in homepage — vedi MareePage.tsx.
 const SEZIONI = [
   {
-    nome: "Dati ambientali",
+    key: "datiAmbientali",
     href: "/dati-ambientali",
-    descrizione: "Vento, pioggia, aria, pollini, mare, fiumi e balneazione, per provincia",
     icona: (
       <svg viewBox="0 0 48 48" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.5">
         <path
@@ -28,9 +28,8 @@ const SEZIONI = [
     ),
   },
   {
-    nome: "Terremoti",
+    key: "terremoti",
     href: "/terremoti",
-    descrizione: "Eventi sismici in FVG e zone limitrofe, ultimi 30 giorni",
     icona: (
       <svg viewBox="0 0 48 48" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.5">
         <path
@@ -46,9 +45,8 @@ const SEZIONI = [
     // Maree (02/10/2026, richiesto dall'utente il 13/09/2026) — vedi
     // MareePage.tsx e i commenti in scripts/ingest-light.mjs (sezione
     // "MAREE") per fonti dati e dettagli.
-    nome: "Maree",
+    key: "maree",
     href: "/maree",
-    descrizione: "Alta e bassa marea osservata e prevista a Trieste, Grado e Lignano",
     icona: (
       <svg viewBox="0 0 48 48" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.5">
         <path
@@ -65,9 +63,8 @@ const SEZIONI = [
     ),
   },
   {
-    nome: "Servizi",
+    key: "servizi",
     href: "/servizi",
-    descrizione: "Servizi comunali e di pubblica utilità — si parte con la raccolta differenziata",
     icona: (
       <svg viewBox="0 0 48 48" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.5">
         <path d="M14 12h20l-2 28a2 2 0 0 1-2 2H18a2 2 0 0 1-2-2L14 12z" strokeLinecap="round" strokeLinejoin="round" />
@@ -78,17 +75,17 @@ const SEZIONI = [
   },
 ];
 
-export function AmbientePage() {
+export async function AmbientePage() {
+  const t = await getTranslations("ambiente");
+  const tNav = await getTranslations("nav");
   return (
     <>
       <TopHeader />
       <div className="isobar" />
 
       <main id="contenuto-principale" className="max-w-[1180px] mx-auto px-5 py-6">
-        <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1">Ambiente</h1>
-        <p className="text-ink-faint text-xs font-mono mb-6">
-          Dati ambientali per provincia, terremoti, maree e servizi comunali in Friuli Venezia Giulia
-        </p>
+        <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1">{tNav("ambiente")}</h1>
+        <p className="text-ink-faint text-xs font-mono mb-6">{t("descrizione")}</p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {SEZIONI.map((s) => (
@@ -99,8 +96,10 @@ export function AmbientePage() {
             >
               <span className="text-cool-ink">{s.icona}</span>
               <div>
-                <div className="font-cond font-bold text-lg uppercase tracking-wide">{s.nome}</div>
-                <div className="text-ink-faint text-xs mt-1">{s.descrizione}</div>
+                <div className="font-cond font-bold text-lg uppercase tracking-wide">
+                  {t(`sezioni.${s.key}.nome`)}
+                </div>
+                <div className="text-ink-faint text-xs mt-1">{t(`sezioni.${s.key}.descrizione`)}</div>
               </div>
             </Link>
           ))}

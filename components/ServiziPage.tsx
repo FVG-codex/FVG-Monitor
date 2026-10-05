@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 import { TopHeader } from "@/components/TopHeader";
 import { Footer } from "@/components/Footer";
 
@@ -8,11 +9,13 @@ import { Footer } from "@/components/Footer";
 // vedi RifiutiPage.tsx/lib/rifiuti.ts), pensata per accoglierne altre in
 // futuro (altri servizi comunali/utility) senza dover riorganizzare di
 // nuovo il menù.
+//
+// Multilingua — testo fisso (05/10/2026): nome/descrizione delle
+// SEZIONI spostati sotto messages (`servizi.sezioni.<key>`).
 const SEZIONI = [
   {
-    nome: "Raccolta differenziata",
+    key: "rifiuti",
     href: "/rifiuti",
-    descrizione: "Calendario porta a porta, centro di raccolta e campane del vetro per 28 comuni (Isontino/Carso)",
     icona: (
       <svg viewBox="0 0 48 48" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.5">
         <path d="M14 12h20l-2 28a2 2 0 0 1-2 2H18a2 2 0 0 1-2-2L14 12z" strokeLinecap="round" strokeLinejoin="round" />
@@ -23,7 +26,9 @@ const SEZIONI = [
   },
 ];
 
-export function ServiziPage() {
+export async function ServiziPage() {
+  const t = await getTranslations("servizi");
+  const tNav = await getTranslations("nav");
   return (
     <>
       <TopHeader />
@@ -31,12 +36,10 @@ export function ServiziPage() {
 
       <main id="contenuto-principale" className="max-w-[1180px] mx-auto px-5 py-6">
         <Link href="/ambiente" className="text-cool-ink text-xs font-mono hover:underline">
-          ← Ambiente
+          ← {tNav("ambiente")}
         </Link>
-        <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1 mt-1">Servizi</h1>
-        <p className="text-ink-faint text-xs font-mono mb-6">
-          Servizi comunali e di pubblica utilità in Friuli Venezia Giulia
-        </p>
+        <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1 mt-1">{t("titolo")}</h1>
+        <p className="text-ink-faint text-xs font-mono mb-6">{t("descrizione")}</p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {SEZIONI.map((s) => (
@@ -47,8 +50,10 @@ export function ServiziPage() {
             >
               <span className="text-cool-ink">{s.icona}</span>
               <div>
-                <div className="font-cond font-bold text-lg uppercase tracking-wide">{s.nome}</div>
-                <div className="text-ink-faint text-xs mt-1">{s.descrizione}</div>
+                <div className="font-cond font-bold text-lg uppercase tracking-wide">
+                  {t(`sezioni.${s.key}.nome`)}
+                </div>
+                <div className="text-ink-faint text-xs mt-1">{t(`sezioni.${s.key}.descrizione`)}</div>
               </div>
             </Link>
           ))}

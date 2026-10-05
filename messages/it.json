@@ -9,7 +9,22 @@
     "menuExtraSections": "Sezioni extra",
     "themeToDark": "Passa al tema scuro",
     "themeToLight": "Passa al tema chiaro",
-    "languageSwitcher": "Cambia lingua"
+    "languageSwitcher": "Cambia lingua",
+    "inArrivo": "In arrivo",
+    "caricamento": "Caricamento…",
+    "datiNonDisponibili": "Dati non disponibili al momento.",
+    "mappa": "Mappa",
+    "apreNuovaScheda": "(si apre in una nuova scheda)",
+    "apertaOra": "Aperta ora",
+    "chiusaOra": "Chiusa ora",
+    "elenco": "Elenco ({count})",
+    "tuttiIComuni": "Tutti i comuni ({count})",
+    "cercaNomeComuneLabel": "Cerca per nome o comune",
+    "cercaNomeComunePlaceholder": "Cerca per nome o comune…",
+    "aComune": " a {luogo}",
+    "inProvinciaDi": " in provincia di {provincia}",
+    "telEtichetta": "Tel. {telefono}",
+    "sitoLink": "Sito →"
   },
   "nav": {
     "meteo": "Meteo",
@@ -27,6 +42,411 @@
   },
   "footer": {
     "changelog": "Registro modifiche →"
+  },
+  "inArrivo": {
+    "messaggio": "Sezione in arrivo in una prossima fase, non appena saranno disponibili dati verificati."
+  },
+  "inArrivoPages": {
+    "galleria": "Galleria fotografica",
+    "cliniche": "Cliniche & centri medici",
+    "dentisti": "Dentisti & Odontoiatri"
+  },
+  "trasporti": {
+    "descrizione": "Voli, treni e autobus in tempo reale — fonte: Trieste Airport, ViaggiaTreno (Trenitalia/RFI), TPL FVG",
+    "voliLink": "Tutti i voli →",
+    "treni": "Treni",
+    "autobus": "Autobus"
+  },
+  "economia": {
+    "descrizione": "Indicatori economici del Friuli Venezia Giulia — fonte: ISTAT (Istituto Nazionale di Statistica), dati trimestrali",
+    "disoccupazione": "Disoccupazione",
+    "istatLink": "ISTAT — Esplora dati →"
+  },
+  "changelogPage": {
+    "titolo": "Registro modifiche",
+    "descrizione": "Cronologia di ciò che è stato aggiunto o corretto su FVG Monitor, più recente in cima. Le voci precedenti al 22/08/2026 non hanno una data esatta registrata.",
+    "voci": "{count} voci"
+  },
+  "commercio": {
+    "descrizione": "Attività commerciali del Friuli Venezia Giulia",
+    "categorie": {
+      "supermercati": {
+        "nome": "Supermercati",
+        "descrizione": "Supermercati, ipermercati e discount delle 4 province — indirizzi, orari e mappa"
+      }
+    }
+  },
+  "servizi": {
+    "titolo": "Servizi",
+    "descrizione": "Servizi comunali e di pubblica utilità in Friuli Venezia Giulia",
+    "sezioni": {
+      "rifiuti": {
+        "nome": "Raccolta differenziata",
+        "descrizione": "Calendario porta a porta, centro di raccolta e campane del vetro per 28 comuni (Isontino/Carso)"
+      }
+    }
+  },
+  "fvgInImmagini": {
+    "descrizione": "Webcam regionali e, in arrivo, una galleria fotografica del Friuli Venezia Giulia",
+    "sezioni": {
+      "webcam": {
+        "nome": "Webcam regionali",
+        "descrizione": "Immagini dalle webcam OSMER ARPA FVG, per provincia"
+      },
+      "galleria": {
+        "nome": "Galleria fotografica"
+      }
+    }
+  },
+  "provincia": {
+    "condizioniLive": "Condizioni live — {provincia}",
+    "vento": "Vento",
+    "pioggia": "Pioggia",
+    "livelloFiume": "Livello fiume",
+    "allertaProtezioneCivile": "Allerta Protezione Civile",
+    "storicoLink": "Storico →",
+    "zonaAllertamento": "Zona di allertamento:",
+    "altriModuli": "Altri moduli specifici per {provincia} (viabilità, notizie locali) arrivano nelle fasi successive del piano."
+  },
+  "turismo": {
+    "descrizione": "Neve e impianti, strutture ricettive, percorsi ciclabili ed eventi del Friuli Venezia Giulia",
+    "sezioni": {
+      "neveImpianti": {
+        "nome": "Neve & Impianti",
+        "descrizione": "Stato impianti, piste e condizioni meteo dei 7 poli sciistici della regione"
+      },
+      "struttureRicettive": {
+        "nome": "Strutture ricettive",
+        "descrizione": "Hotel, B&B, agriturismi e altre strutture ricettive per tipologia"
+      },
+      "pisteCiclabili": {
+        "nome": "Piste ciclabili",
+        "descrizione": "Percorsi ciclabili regionali, anelli, ciclovie a tappe e mountain bike"
+      },
+      "eventi": {
+        "nome": "Eventi",
+        "descrizione": "Sagre, mostre, concerti e manifestazioni nei prossimi 14 giorni in tutta la regione"
+      }
+    }
+  },
+  "datiAmbientali": {
+    "titolo": "Dati ambientali",
+    "descrizione": "Vento, pioggia, aria, pollini, mare, fiumi e balneazione, per provincia — fonte: Protezione Civile FVG, ARPA FVG",
+    "fiume": "Fiume"
+  },
+  "ambiente": {
+    "descrizione": "Dati ambientali per provincia, terremoti, maree e servizi comunali in Friuli Venezia Giulia",
+    "sezioni": {
+      "datiAmbientali": {
+        "nome": "Dati ambientali",
+        "descrizione": "Vento, pioggia, aria, pollini, mare, fiumi e balneazione, per provincia"
+      },
+      "terremoti": {
+        "nome": "Terremoti",
+        "descrizione": "Eventi sismici in FVG e zone limitrofe, ultimi 30 giorni"
+      },
+      "maree": {
+        "nome": "Maree",
+        "descrizione": "Alta e bassa marea osservata e prevista a Trieste, Grado e Lignano"
+      },
+      "servizi": {
+        "nome": "Servizi",
+        "descrizione": "Servizi comunali e di pubblica utilità — si parte con la raccolta differenziata"
+      }
+    }
+  },
+  "sanita": {
+    "descrizione": "Farmacie, cliniche, veterinari e dentisti del Friuli Venezia Giulia",
+    "sezioni": {
+      "prontoSoccorso": {
+        "nome": "Pronto Soccorso",
+        "descrizione": "Pazienti in attesa e in trattamento per codice di triage, in tempo reale, per tutte le sedi"
+      },
+      "farmacie": {
+        "nome": "Farmacie",
+        "descrizione": "Tutte le farmacie e le farmacie di turno, per provincia e comune"
+      },
+      "cliniche": {
+        "nome": "Cliniche & centri medici"
+      },
+      "veterinari": {
+        "nome": "Veterinari & Emergenze",
+        "descrizione": "Cliniche e ambulatori veterinari, con le eventuali emergenze in evidenza"
+      },
+      "dentisti": {
+        "nome": "Dentisti & Odontoiatri"
+      }
+    }
+  },
+  "viabilita": {
+    "descrizione": "Eventi di traffico e webcam autostradali — fonte: InfoViaggiando, OSMER ARPA FVG",
+    "eventiInCorso": "Eventi in corso",
+    "colonnineElettriche": "Colonnine elettriche",
+    "webcamAutostradali": "Webcam autostradali",
+    "webcamAutostradaliDescrizione": "A4, A23, A28, SR354 — fonte: OSMER ARPA FVG (CC BY-SA 3.0). Clicca per aprire la fonte originale",
+    "nessunaWebcamAutostradale": "Nessuna webcam autostradale disponibile.",
+    "confini": "Confini",
+    "confiniDescrizione": "15 valichi/direttrici verso Slovenia e Austria — dati anagrafici (comune, strada, tipologia). Eventi di traffico in tempo reale: lato italiano per i 2 valichi autostradali (A23 Tarvisio, A34 Sant'Andrea/Vrtojba); lato sloveno (sperimentale, fonte Promet.si) per Fernetti, Rabuiese/Škofije, Sant'Andrea/Vrtojba e Pesek/Kozina. Per gli altri 9 valichi nessuna fonte pubblica verificabile è stata trovata finora (ASFINAG e ANAS non raggiungibili da questa sessione — vedi lib/confini.ts)."
+  },
+  "terremoti": {
+    "descrizione": "Eventi sismici in FVG e zone limitrofe, ultimi 30 giorni — fonte: INGV (Istituto Nazionale di Geofisica e Vulcanologia)",
+    "mappaAriaLabel": "Mappa dei terremoti in Friuli Venezia Giulia — elenco testuale equivalente nel pannello a fianco",
+    "elencoEventi": "Elenco eventi ({count})",
+    "nessunEvento": "Nessun evento negli ultimi 30 giorni.",
+    "profondita": "Profondità {km} km"
+  },
+  "webcam": {
+    "descrizione": "Immagini fornite da OSMER ARPA FVG (CC BY-SA 3.0) — la validità dei dati non è garantita da ARPA FVG, che aggrega webcam gestite da terzi. Clicca su una webcam per aprire la fonte originale",
+    "panorami360": "Panorami 360°",
+    "fontePanorami": "Fonte: Turismo FVG (Panomax / Feratel)",
+    "nessunPanorama": "Nessun panorama disponibile per questa provincia."
+  },
+  "meteo": {
+    "descrizione": "Bollettino, temperatura live, vento e pioggia — fonte: OSMER ARPA FVG, Protezione Civile FVG",
+    "radarMeteo": "Radar meteo",
+    "canaleTelegramLink": "Canale Telegram →",
+    "previsioniTemporalesche": "Previsioni temporalesche",
+    "bollettino": "Bollettino"
+  },
+  "aviazione": {
+    "descrizione": "Aeroporti, aviosuperfici, campi volo ed elisuperfici del Friuli Venezia Giulia ({count} strutture) — fonti: WebAAI (webaai.it) per l'anagrafica, QNH Fly (qnhfly.com) per orientamento, lunghezza e pavimentazione delle piste dove disponibili. Elenco statico, aggiornato periodicamente: alcuni dati (contatti, orari, frequenze, carte di avvicinamento) restano dietro un abbonamento a pagamento e non sono inclusi qui.",
+    "filtri": {
+      "tutte": "Tutte",
+      "aeroporto-civile": "Aeroporti civili",
+      "aeroporto-militare": "Aeroporti militari",
+      "aviosuperficie": "Aviosuperfici",
+      "campo-volo": "Campi volo",
+      "elisuperficie": "Elisuperfici",
+      "pista-dismessa": "Piste dismesse"
+    },
+    "mappaAriaLabel": "Mappa delle aviostrutture in Friuli Venezia Giulia — elenco testuale equivalente nel pannello a fianco",
+    "elenco": "Elenco ({count})",
+    "nessunaStruttura": "Nessuna struttura trovata per questo filtro.",
+    "schedaLink": "Scheda →",
+    "datiPistaLink": "Dati pista (qnhfly.com) →"
+  },
+  "tennis": {
+    "titolo": "Tennis — Classifica Assoluti FVG",
+    "descrizione": "Migliori tesserati FVG in categoria Assoluti, divisi per 2ª/3ª/4ª categoria di classifica e per genere — fonte: FITP (Federazione Italiana Tennis e Padel)",
+    "nessunGiocatore": "Nessun giocatore trovato per questa categoria.",
+    "colGiocatore": "Giocatore",
+    "colComune": "Comune",
+    "colGrado": "Grado",
+    "colVP": "V-P",
+    "riepilogo": "{count} tesserati FVG in questa categoria — ordinati per grado (sub-livello più basso = migliore) · dati aggiornati al {data}"
+  },
+  "notizieProvincia": {
+    "descrizione": "Notizie locali per provincia, da fonti diverse dall'ANSA regionale già in homepage",
+    "panelTitle": "Notizie · {scheda}",
+    "sportInArrivo": "Notizie sportive regionali in arrivo in una prossima fase.",
+    "provinciaInArrivo": "Notizie per {scheda} in arrivo in una prossima fase.",
+    "caricamentoNotizie": "Caricamento notizie…",
+    "notizieNonDisponibili": "Notizie non disponibili al momento.",
+    "fonti": "Fonti:",
+    "minFa": "{n} min fa",
+    "oreFa": "{n} h fa",
+    "giorniFa": "{n} g fa"
+  },
+  "basket": {
+    "titoloFallback": "Risultati basket",
+    "descrizione": "Campionati regionali FIP FVG — fonte: Federazione Italiana Pallacanestro"
+  },
+  "sport": {
+    "calendario": "Calendario",
+    "classifica": "Classifica",
+    "nessunaPartita": "Nessuna partita in programma.",
+    "colSquadra": "Squadra",
+    "colPt": "Pt",
+    "colG": "G",
+    "colV": "V",
+    "colP": "P",
+    "colPF": "PF",
+    "colPS": "PS",
+    "colN": "N",
+    "colDR": "DR"
+  },
+  "eventi": {
+    "descrizione": "Eventi, sagre, mostre e manifestazioni in Friuli Venezia Giulia nei prossimi 14 giorni — fonte: Turismo FVG (PromoTurismoFVG)",
+    "finestraSuffisso": " · finestra {da} → {a}",
+    "tab": {
+      "oggi": "Oggi",
+      "domani": "Domani",
+      "weekend": "Weekend",
+      "prossimi": "Prossimi 14 giorni"
+    },
+    "tutteLeCategorie": "Tutte le categorie",
+    "nonDisponibili": "Eventi non disponibili al momento.",
+    "nessunEvento": "Nessun evento trovato per questo periodo/categoria.",
+    "aggiornato": "Aggiornato al {data} · gli orari e le sedi possono variare: verificare sempre con l'organizzatore prima di partecipare."
+  },
+  "neveImpianti": {
+    "descrizione": "Stato impianti, piste e condizioni meteo dei 7 poli sciistici del Friuli Venezia Giulia — fonte: TurismoFVG, aggiornata ogni 15 minuti in stagione invernale. Il programma di apertura impianti è indicativo e può variare senza preavviso per motivi meteo/operativi: verificare sempre con il gestore prima di partire.",
+    "nonDisponibili": "Dati Neve & Impianti non disponibili al momento.",
+    "datoNonAggiornato": "dato non aggiornato dall'ultima verifica",
+    "temperatura": "temperatura",
+    "neveInPista": "neve in pista",
+    "impiantiAperti": "impianti aperti",
+    "pisteAperte": "piste aperte",
+    "tappetiAperti": "tappeti aperti",
+    "fondoAperto": "fondo aperto",
+    "orariImpianti": "Orari impianti: {orari}",
+    "paginaUfficialeLink": "Pagina ufficiale →",
+    "webcamLink": "Webcam →",
+    "ultimoDato": "Ultimo dato: {ora}",
+    "ultimoTentativo": " · ultimo tentativo: {ora}",
+    "nd": "n/d"
+  },
+  "struttureRicettive": {
+    "descrizioneHub": "Registri regionali delle strutture ricettive del Friuli Venezia Giulia, certificate dai Comuni e dalla Direzione centrale attività produttive — fonte: Regione Autonoma FVG (dati.friuliveneziagiulia.it)",
+    "descrizioneDettaglio": "{descrizione} — fonte: Regione Autonoma FVG (dati.friuliveneziagiulia.it), che pubblica solo denominazione, comune, email e sito quando disponibili. Indirizzo e telefono, quando mostrati, vengono da un abbinamento nome+comune con turismofvg.it o OpenStreetMap (fonte indicata accanto al dato) — non sempre disponibili, non un dato ufficiale della Regione.",
+    "cercaLabel": "Cerca per nome o comune",
+    "cercaPlaceholder": "Cerca per nome o comune…",
+    "elenco": "Elenco ({count})",
+    "nessunaStruttura": "Nessuna struttura trovata.",
+    "sitoLink": "Sito →",
+    "titolare": "Titolare: {nome}",
+    "aggiornatoAl": "Dati aggiornati al {data}",
+    "tutte": "Tutte ({count})",
+    "tipi": {
+      "bb": {
+        "nome": "Bed & Breakfast",
+        "descrizioneBreve": "Camere in case private certificate dai Comuni",
+        "descrizioneCompleta": "Bed & Breakfast certificati dai Comuni e dalla Direzione centrale attività produttive"
+      },
+      "affittacamere": {
+        "nome": "Affittacamere",
+        "descrizioneBreve": "Camere in affitto certificate dai Comuni",
+        "descrizioneCompleta": "Strutture di tipologia Affitta Camere certificate dai Comuni"
+      },
+      "campeggi": {
+        "nome": "Campeggi e Villaggi Turistici",
+        "descrizioneBreve": "Campeggi e villaggi certificati dai Comuni",
+        "descrizioneCompleta": "Campeggi e Villaggi Turistici certificati dai Comuni"
+      },
+      "agriturismi": {
+        "nome": "Alloggi Agrituristici",
+        "descrizioneBreve": "Agriturismi certificati dai Comuni",
+        "descrizioneCompleta": "Alloggi Agrituristici certificati dai Comuni"
+      },
+      "alberghi-diffusi": {
+        "nome": "Alberghi Diffusi",
+        "descrizioneBreve": "Ospitalità diffusa nei borghi, certificata dai Comuni",
+        "descrizioneCompleta": "Alberghi Diffusi certificati dai Comuni"
+      },
+      "sociali": {
+        "nome": "Strutture Ricettive a carattere Sociale",
+        "descrizioneBreve": "Ostelli, foresterie e simili, certificati dai Comuni",
+        "descrizioneCompleta": "Alberghi/ostelli per la gioventù, foresterie e simili, certificati dai Comuni"
+      },
+      "marina": {
+        "nome": "Dry Marina e Marina Resort",
+        "descrizioneBreve": "Rimessaggio e marina resort certificati dai Comuni",
+        "descrizioneCompleta": "Dry Marina e Marina Resort certificati dai Comuni"
+      },
+      "rifugi": {
+        "nome": "Rifugi Alpini Escursionistici",
+        "descrizioneBreve": "Rifugi in montagna certificati dai Comuni",
+        "descrizioneCompleta": "Rifugi Alpini Escursionistici certificati dai Comuni"
+      }
+    }
+  },
+  "maree": {
+    "descrizione": "Alta e bassa marea a Trieste, Grado e Lignano — picchi osservati oggi (fonte: Protezione Civile FVG) e previsione dei prossimi giorni (fonte: tide-forecast.com, non ufficiale)",
+    "nonDisponibili": "Dati non disponibili al momento.",
+    "andamentoOggi": "Andamento di oggi",
+    "oggiOsservato": "Oggi (osservato)",
+    "prossimiGiorni": "Prossimi giorni (previsione)",
+    "nd": "n.d.",
+    "alta": "Alta",
+    "bassa": "Bassa",
+    "osservatoAgg": "Osservato agg. {ora}",
+    "previsioneFonte": "Previsione: tide-forecast.com"
+  },
+  "baseball": {
+    "titoloFallback": "Baseball & Softball",
+    "descrizione": "Baseball e softball FVG — squadre in evidenza — fonte: live.baseballfvg.it",
+    "ultimiRisultati": "Ultimi risultati",
+    "nessunaPartita": "Nessuna partita disponibile.",
+    "colPercentuale": "%",
+    "colGB": "GB"
+  },
+  "calcio": {
+    "titoloFallback": "Risultati calcistici",
+    "descrizione": "Campionati dilettantistici regionali FVG — fonte: LND Comitato Regionale FVG",
+    "vistaArchivio": " — stai vedendo l'archivio della stagione {stagione}",
+    "archivio": "archivio",
+    "giornata": "Giornata {numero}",
+    "andata": "andata",
+    "ritorno": "ritorno",
+    "stagioneLabel": "Stagione"
+  },
+  "supermercati": {
+    "descrizione": "Supermercati, ipermercati e discount del Friuli Venezia Giulia (minimarket e botteghe esclusi) — dato raccolto e verificato manualmente (Google Maps e siti ufficiali delle insegne), non un registro ufficiale della Regione. Gli orari indicati sono quelli ordinari settimanali: festività e aperture straordinarie non sono incluse.",
+    "categorie": {
+      "Supermercato": "Supermercato",
+      "Ipermercato": "Ipermercato",
+      "Discount": "Discount"
+    },
+    "cercaLabel": "Cerca per nome, insegna o comune",
+    "cercaPlaceholder": "Cerca per nome, insegna o comune…",
+    "nessunPuntoVendita": "Nessun punto vendita trovato{luogo}.",
+    "chiusoTemporaneamente": "Chiuso temporaneamente",
+    "oggiOrari": "Oggi: {orari}",
+    "orarioNonConfermato": " (orario non confermato)",
+    "mappaAriaLabel": "Mappa dei supermercati{luogo} — elenco testuale equivalente nel pannello a fianco"
+  },
+  "prontoSoccorso": {
+    "descrizione": "Pazienti in attesa e in trattamento per codice di triage, in tempo reale, per tutte le sedi di pronto soccorso e i punti di primo intervento del Friuli Venezia Giulia — fonte: Servizio Sanitario Regionale FVG, aggiornata ogni 15 minuti. Il numero di telefono, quando indicato, è stato verificato manualmente su fonte ufficiale (non pubblicato dalla fonte dati) — in un'emergenza reale chiamare sempre il 118.",
+    "nonDisponibili": "Dati pronto soccorso non disponibili al momento.",
+    "aggiornatoAlle": "Aggiornato alle {ora}",
+    "datoObsoleto": " — dato non aggiornato da oltre 30 minuti, potrebbe non riflettere la situazione attuale",
+    "tutteLeSedi": "Tutte le sedi ({count})",
+    "nessunaSede": "Nessuna sede trovata{luogo}.",
+    "telefonoNonDisponibile": "Telefono non disponibile",
+    "indicazioniLink": "Indicazioni →",
+    "inAttesa": "in attesa",
+    "inTrattamento": "in trattamento",
+    "abbrAttesa": "att.",
+    "abbrTrattamento": "tratt.",
+    "attesaMedia": "attesa media {valore}",
+    "mappaAriaLabel": "Mappa dei pronto soccorso{luogo} — elenco testuale equivalente nel pannello a fianco",
+    "delFriuliVeneziaGiulia": " del Friuli Venezia Giulia"
+  },
+  "farmacie": {
+    "titoloTurno": "Farmacie di turno",
+    "titoloTutte": "Tutte le farmacie",
+    "descrizioneTurno": "Farmacie con apertura straordinaria (turno) oggi",
+    "descrizioneTutte": "Elenco completo delle farmacie",
+    "paragrafoBase": "{descrizione}{data} in Friuli Venezia Giulia — fonte: Regione Autonoma FVG (dati.friuliveneziagiulia.it), aggiornato ogni giorno alle 01:00.",
+    "noteTurno": " Non include l'orario ordinario delle farmacie, solo le aperture straordinarie di oggi.",
+    "noteTutte": " Gli orari mostrati sono quelli di oggi (normali ed eventuali turni straordinari) — la fonte non pubblica un orario settimanale fisso, solo un aggiornamento giornaliero.",
+    "caricamentoFarmacie": "Caricamento farmacie…",
+    "nonDisponibili": "Dati farmacie non disponibili al momento.",
+    "nessunaDiTurno": "Nessuna farmacia di turno oggi{luogo}.",
+    "nessunaTrovata": "Nessuna farmacia trovata{luogo}.",
+    "orarioNonDisponibile": "Orario non disponibile",
+    "mappaAriaLabel": "Mappa delle farmacie{luogo} — elenco testuale equivalente nel pannello a fianco"
+  },
+  "colonnineElettriche": {
+    "descrizione": "Colonnine di ricarica per veicoli elettrici in Friuli Venezia Giulia — fonte: OpenChargeMap, registro comunitario. Il dato può essere incompleto per le installazioni più recenti: controlla la data di verifica di ciascuna colonnina.",
+    "localizzazione": "Localizzazione…",
+    "usaPosizione": "📍 Usa la mia posizione",
+    "cercaPlaceholder": "…oppure cerca un comune o un indirizzo",
+    "cercando": "Cerco…",
+    "raggioLabel": "Raggio:",
+    "erroreBrowserNonSupportato": "Il tuo browser non supporta la geolocalizzazione.",
+    "errorePermessoNegato": "Permesso di geolocalizzazione negato — puoi cercare una località manualmente qui sotto.",
+    "erroreGenerico": "Non è stato possibile ottenere la tua posizione — puoi cercare una località manualmente qui sotto.",
+    "mappaAriaLabel": "Mappa delle colonnine di ricarica in Friuli Venezia Giulia — elenco testuale equivalente nel pannello a fianco",
+    "entroRaggio": "Entro {km} km dalla posizione scelta ({count})",
+    "tutteLeColonnine": "Tutte le colonnine in FVG ({count})",
+    "suggerimentoPosizione": "Usa la tua posizione o cerca una località per vedere solo le colonnine più vicine, ordinate per distanza.",
+    "nessunaColonnina": "Nessuna colonnina trovata in quest'area.",
+    "colonninaFallback": "Colonnina",
+    "presaFallback": "presa",
+    "dettaglioPreseNonDisponibile": "Dettaglio prese non disponibile",
+    "verificato": " · verificato {data}",
+    "aggiornatoAl": "Aggiornato al {data} · {fonte}"
   },
   "home": {
     "title": "FVG Monitor — dati in tempo reale per il Friuli Venezia Giulia",
@@ -66,5 +486,140 @@
       "balneazioneLink": "ARPA FVG →"
     },
     "fonti": "Fonti: OSMER ARPA FVG · ANSA FVG · Protezione Civile FVG (CC BY 4.0) · InfoViaggiando · Turismo FVG · RAI TGR FVG · Trieste Airport"
+  },
+  "veterinari": {
+    "descrizione": "Strutture veterinarie del Friuli Venezia Giulia — dato raccolto e verificato manualmente (siti ufficiali e directory di settore), non un albo professionale ufficiale. In caso di emergenza, verificare sempre telefonicamente la disponibilità reale prima di presentarsi in struttura.",
+    "datiInArrivo": "Dati veterinari per {provincia} in arrivo in una prossima fase.",
+    "emergenzeTitolo": "Emergenze · {provincia}",
+    "nessunaEmergenza": "Nessuna struttura di {provincia} dichiara una gestione delle emergenze in questo elenco. In caso di urgenza, contattare telefonicamente la struttura più vicina durante l'orario di apertura.",
+    "emergenzeDescrizione": "Strutture con una gestione delle emergenze dichiarata, dalla più pronta alla meno certa — verificare comunque per telefono prima di un accesso urgente.",
+    "dichiarazioneNonVerificata": "Dichiarazione non verificata direttamente — confermare per telefono",
+    "cercaLabel": "Cerca per nome, comune o tipo di struttura",
+    "cercaPlaceholder": "Cerca per nome, comune o tipo di struttura…",
+    "nessunaStrutturaTrovata": "Nessuna struttura trovata{luogo}.",
+    "mappaAriaLabel": "Mappa dei veterinari{luogo} — elenco testuale equivalente nel pannello a fianco",
+    "livelloEmergenza": {
+      "pronto_soccorso_24h": "Pronto soccorso 24h",
+      "pronto_soccorso_diurno": "Pronto soccorso diurno",
+      "guardia_medica_veterinaria": "Guardia medica veterinaria",
+      "reperibilita_telefonica": "Reperibilità telefonica",
+      "urgenze_in_orario": "Urgenze in orario di apertura",
+      "pronto_intervento_da_confermare": "Pronto intervento (da confermare)",
+      "sanita_pubblica_veterinaria": "Sanità pubblica veterinaria (su appuntamento)",
+      "nessuna_dichiarata": "Nessuna gestione emergenze dichiarata",
+      "non_dichiarata": "Gestione emergenze non dichiarata"
+    },
+    "suAppuntamento": "su appuntamento"
+  },
+  "sci": {
+    "titolo": "Sci — Calendario gare FVG",
+    "stagione": "Stagione {stagione}",
+    "calendarioGare": "Calendario gare",
+    "descrizione": " — sport invernali FISI in Friuli Venezia Giulia (fondo, salto, combinata nordica, biathlon e altre discipline) — fonte: FISI (Federazione Italiana Sport Invernali), Comitato FVG. Calendario, non classifica: qui non c'è un campionato a punti, ogni riga è una gara singola. Le gare già svolte si possono aprire per vedere i risultati.",
+    "gareInCalendario": "Gare in calendario",
+    "nessunaGara": "Nessuna gara trovata per questo filtro.",
+    "dataDaDefinire": "Data da definire",
+    "stato": {
+      "svolta": "Svolta",
+      "inProgramma": "In programma"
+    },
+    "caricamentoRisultati": "Caricamento risultati…",
+    "risultatiNonDisponibili": "Risultati non ancora disponibili — vengono recuperati gradualmente dopo lo svolgimento della gara, riprova più tardi.",
+    "risultatiCount": "{count} risultati",
+    "nessunRisultatoGara": "Nessun risultato disponibile per questa gara.",
+    "colPos": "Pos.",
+    "colAtleta": "Atleta",
+    "colAnno": "Anno",
+    "colSocieta": "Società",
+    "colTempo": "Tempo",
+    "colPunti": "Punti",
+    "gareAggiornateAl": "{count} gare · dati aggiornati al {data}"
+  },
+  "pisteCiclabili": {
+    "percorsiCount": "{count} percorsi",
+    "percorsiFallback": "Percorsi",
+    "descrizione1": " ciclabili in Friuli Venezia Giulia — 6 fonti indipendenti: le 4 serie con codice di turismofvg.it (Anelli, Percorsi lineari, Ciclovie a tappe, Mountain bike), la Regione Autonoma FVG (dati.friuliveneziagiulia.it) e il dataset storico Ciclovie 2020.",
+    "descrizione2": "<strong>Fonti indipendenti, mai unite fra loro</strong> — ogni fonte ha il proprio riquadro qui sotto e il proprio colore sulla mappa. I percorsi turismofvg.it (codice tra parentesi, es. \"R001\") sono itinerari turistici ufficiali con tracciato completo e dati tecnici (lunghezza, dislivelli, difficoltà, durata) letti dalla scheda di ciascun percorso, più un link diretto per scaricare il GPX. I dati Regione FVG hanno invece <strong>copertura parziale</strong> (solo tracciati trasmessi dai Comuni in una specifica procedura urbanistica, non un censimento completo — es. l'area di Trieste non è coperta) e possono essere divisi in più tratti, con comune di partenza/arrivo e provincia calcolati dalle coordinate quando possibile. Ciclovie 2020 è invece un <strong>dato storico, fermo al gennaio 2020</strong> (copertura regionale completa, Trieste inclusa) — mostrato come layer di contesto, non come stato attuale della rete.",
+    "caricamentoPercorsi": "Caricamento percorsi…",
+    "nonDisponibili": "Dati piste ciclabili non disponibili al momento.",
+    "cercaLabel": "Cerca per nome o codice del percorso",
+    "cercaPlaceholder": "Cerca per nome o codice del percorso…",
+    "datiNonAncoraDisponibili": "Dati non ancora disponibili.",
+    "nessunPercorsoTrovato": "Nessun percorso trovato.",
+    "daA": "Da {da} a {a}",
+    "daComune": "Da {da}",
+    "finoAComune": "Fino a {a}",
+    "scaricaGpx": "Scarica GPX ↗",
+    "regioneFvg": "Regione FVG ({count})",
+    "ciclovie2020Storico": "Ciclovie 2020 · storico ({count})",
+    "indicativo": " (indicativo)",
+    "lunghezzaNonDisponibile": "Lunghezza non disponibile",
+    "parziale": " (parziale)",
+    "tratti": "{count} tratti",
+    "mostraTuttaMappa": "← Mostra tutta la mappa",
+    "mappaAriaLabel": "Mappa dei percorsi ciclabili in Friuli Venezia Giulia — elenco testuale equivalente nei riquadri qui sopra. Cliccare un percorso nell'elenco per evidenziarlo qui.",
+    "serie": {
+      "r": "Anelli",
+      "p": "Percorsi lineari",
+      "c": "Ciclovie a tappe",
+      "m": "Mountain bike"
+    }
+  },
+  "rifiuti": {
+    "descrizione": "Calendario porta a porta, centro di raccolta e campane del vetro, divisi per provincia. Copre solo i comuni serviti dai gestori già integrati, non tutta la regione — vedi sotto per la provincia selezionata.",
+    "nonDisponibili": "Dati raccolta rifiuti non disponibili al momento.",
+    "inArrivoProvincia": "Raccolta differenziata per la provincia di {provincia} in arrivo in una prossima fase.",
+    "comuneLabel": "Comune",
+    "gestoreEtichetta": "Gestore: {gestore}",
+    "datoNonAggiornato": "Dato non aggiornato dall'ultima verifica (errore di rete alla fonte)",
+    "areaLabel": "Area",
+    "areaNumero": "Area {numero}",
+    "nd": "n/d",
+    "calendarioPortaPorta": "Calendario porta a porta",
+    "raccoltaStradale": "Raccolta stradale",
+    "prossimeRaccolte": "Prossime raccolte",
+    "stazioniEcologiche": "Stazioni ecologiche",
+    "centroRaccoltaEVetro": "Centro di raccolta e vetro",
+    "daSapere": "Da sapere",
+    "estate": "Estate",
+    "inverno": "Inverno",
+    "nessunDatoCalendario": "Nessun dato di calendario disponibile per quest'area al momento.",
+    "oggi": "Oggi",
+    "conferimentiIngombranti": "Conferimenti ingombranti e verde",
+    "infoCentroNonDisponibili": "Info centro di raccolta non disponibili per questo comune.",
+    "campaneDelVetro": "Campane del vetro",
+    "aggiornatoAl": "Aggiornato al {data} — il calendario ufficiale del gestore ha sempre la precedenza su questa pagina: verificare in caso di dubbio, specie in prossimità di festività.",
+    "tipi": {
+      "paper": "Carta e cartone",
+      "organic": "Organico umido",
+      "plastic_metals": "Plastica e lattine",
+      "residual": "Secco residuo",
+      "glass": "Vetro",
+      "plastic_metals_net": "Plastica"
+    },
+    "giorniBrevi": {
+      "Lun": "Lun",
+      "Mar": "Mar",
+      "Mer": "Mer",
+      "Gio": "Gio",
+      "Ven": "Ven",
+      "Sab": "Sab",
+      "Dom": "Dom"
+    },
+    "triesteDescrizione": "Calendario per via e numero civico — ricerca dal vivo (non è uno snapshot aggiornato una volta al giorno come il resto di questa pagina).",
+    "cercaViaLabel": "Cerca una via di Trieste",
+    "cercaViaPlaceholder": "Cerca una via (es. Via del Coroneo)…",
+    "caricoElencoVie": "Carico l'elenco vie di Trieste…",
+    "elencoVieNonDisponibile": "Elenco vie non disponibile al momento — riprovare più tardi.",
+    "nessunaViaTrovata": "Nessuna via trovata.",
+    "cambiaIndirizzo": "Cambia indirizzo",
+    "caricoCivici": "Carico i civici…",
+    "civiciNonDisponibili": "Civici non disponibili al momento.",
+    "civicoLabel": "Civico",
+    "scegliPlaceholder": "Scegli…",
+    "caricoCalendario": "Carico il calendario…",
+    "calendarioNonDisponibile": "Calendario non disponibile al momento.",
+    "nessunaRaccoltaIndirizzo": "Nessuna raccolta a calendario nei prossimi giorni per questo indirizzo.",
+    "esposizioneOrario": " — esposizione {orario}"
   }
 }

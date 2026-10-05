@@ -1,5 +1,8 @@
+import { getTranslations } from "next-intl/server";
 import { InArrivoPage } from "@/components/InArrivoPage";
 
-export default function Page() {
-  return <InArrivoPage titolo="Cliniche & centri medici" backHref="/sanita" backLabel="Sanità" />;
+export default async function Page() {
+  const tNav = await getTranslations("nav");
+  const tPages = await getTranslations("inArrivoPages");
+  return <InArrivoPage titolo={tPages("cliniche")} backHref="/sanita" backLabel={tNav("sanita")} />;
 }

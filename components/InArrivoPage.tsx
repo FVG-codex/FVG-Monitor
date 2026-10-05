@@ -1,3 +1,4 @@
+import { getTranslations } from "next-intl/server";
 import { TopHeader } from "@/components/TopHeader";
 import { Footer } from "@/components/Footer";
 import { Panel } from "@/components/Panel";
@@ -7,7 +8,14 @@ import { Panel } from "@/components/Panel";
 // codice) per poter essere riusato anche fuori da Sanità, es. la
 // Galleria fotografica sotto "FVG in immagini". Stesso messaggio,
 // breadcrumb e link "indietro" ora passati come prop.
-export function InArrivoPage({
+//
+// Multilingua — testo fisso (05/10/2026): titolo/backLabel restano prop
+// (tradotti dalla pagina chiamante con i18n/routing già tradotto, es.
+// nav.sanita/nav.immagini), ma il messaggio fisso è identico su tutte
+// le pagine "in arrivo" quindi tradotto qui direttamente via
+// `getTranslations` — componente async (Server Component), nessun
+// bisogno di "use client" perché non ha stato né interattività.
+export async function InArrivoPage({
   titolo,
   backHref,
   backLabel,
@@ -16,6 +24,7 @@ export function InArrivoPage({
   backHref: string;
   backLabel: string;
 }) {
+  const t = await getTranslations("inArrivo");
   return (
     <>
       <TopHeader />
@@ -29,9 +38,7 @@ export function InArrivoPage({
 
         <div className="grid grid-cols-1 gap-px bg-line border border-line mt-4">
           <Panel title={titolo}>
-            <p className="text-ink-faint text-sm font-mono">
-              Sezione in arrivo in una prossima fase, non appena saranno disponibili dati verificati.
-            </p>
+            <p className="text-ink-faint text-sm font-mono">{t("messaggio")}</p>
           </Panel>
         </div>
       </main>

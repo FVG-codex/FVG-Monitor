@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 import { TopHeader } from "@/components/TopHeader";
 import { Footer } from "@/components/Footer";
 
@@ -6,11 +7,14 @@ import { Footer } from "@/components/Footer";
 // nessun fetch dati qui (i conteggi live sono sulla pagina di ciascun
 // tipo). Icone in stile lineare coerente con quelle già in uso (viewBox
 // 48x48, stroke currentColor, strokeWidth 1.5).
+// `slug` corrisponde alle chiavi di TIPI_STRUTTURA in lib/struttureRicettive.ts
+// e alla chiave usata per il testo tradotto in struttureRicettive.tipi.<slug>
+// (messages/it.json / en.json) — vedi anche StrutturaTipoPage.tsx, che
+// usa lo stesso namespace per la pagina di dettaglio di ciascun tipo.
 const TIPI = [
   {
-    nome: "Bed & Breakfast",
+    slug: "bb",
     href: "/bed-and-breakfast",
-    descrizione: "Camere in case private certificate dai Comuni",
     icona: (
       <svg viewBox="0 0 48 48" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.5">
         <path d="M6 40V16M6 28h36v12M18 28v-6a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v6" strokeLinecap="round" strokeLinejoin="round" />
@@ -20,9 +24,8 @@ const TIPI = [
     ),
   },
   {
-    nome: "Affittacamere",
+    slug: "affittacamere",
     href: "/affittacamere",
-    descrizione: "Camere in affitto certificate dai Comuni",
     icona: (
       <svg viewBox="0 0 48 48" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.5">
         <rect x="10" y="8" width="28" height="34" rx="1.5" />
@@ -32,9 +35,8 @@ const TIPI = [
     ),
   },
   {
-    nome: "Campeggi e Villaggi Turistici",
+    slug: "campeggi",
     href: "/campeggi",
-    descrizione: "Campeggi e villaggi certificati dai Comuni",
     icona: (
       <svg viewBox="0 0 48 48" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.5">
         <path d="M24 8L8 40h32L24 8z" strokeLinecap="round" strokeLinejoin="round" />
@@ -43,9 +45,8 @@ const TIPI = [
     ),
   },
   {
-    nome: "Alloggi Agrituristici",
+    slug: "agriturismi",
     href: "/agriturismi",
-    descrizione: "Agriturismi certificati dai Comuni",
     icona: (
       <svg viewBox="0 0 48 48" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.5">
         <path d="M8 22L24 8l16 14" strokeLinecap="round" strokeLinejoin="round" />
@@ -56,9 +57,8 @@ const TIPI = [
     ),
   },
   {
-    nome: "Alberghi Diffusi",
+    slug: "alberghi-diffusi",
     href: "/alberghi-diffusi",
-    descrizione: "Ospitalità diffusa nei borghi, certificata dai Comuni",
     icona: (
       <svg viewBox="0 0 48 48" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.5">
         <path d="M4 40h10V26L9 22 4 26v14zM14 40V18l8-6 8 6v22M18 40V30h8v10" strokeLinecap="round" strokeLinejoin="round" />
@@ -67,9 +67,8 @@ const TIPI = [
     ),
   },
   {
-    nome: "Strutture Ricettive a carattere Sociale",
+    slug: "sociali",
     href: "/strutture-sociali",
-    descrizione: "Ostelli, foresterie e simili, certificati dai Comuni",
     icona: (
       <svg viewBox="0 0 48 48" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.5">
         <circle cx="16" cy="14" r="5" />
@@ -79,9 +78,8 @@ const TIPI = [
     ),
   },
   {
-    nome: "Dry Marina e Marina Resort",
+    slug: "marina",
     href: "/marina",
-    descrizione: "Rimessaggio e marina resort certificati dai Comuni",
     icona: (
       <svg viewBox="0 0 48 48" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.5">
         <path d="M24 6v30M18 12h12" strokeLinecap="round" />
@@ -91,9 +89,8 @@ const TIPI = [
     ),
   },
   {
-    nome: "Rifugi Alpini Escursionistici",
+    slug: "rifugi",
     href: "/rifugi",
-    descrizione: "Rifugi in montagna certificati dai Comuni",
     icona: (
       <svg viewBox="0 0 48 48" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.5">
         <path d="M4 38L16 14l6 10 4-6 18 20z" strokeLinecap="round" strokeLinejoin="round" />
@@ -103,7 +100,11 @@ const TIPI = [
   },
 ];
 
-export default function StruttureRicettiveHubPage() {
+export default async function StruttureRicettiveHubPage() {
+  const t = await getTranslations("struttureRicettive");
+  const tNav = await getTranslations("nav");
+  const tTurismo = await getTranslations("turismo");
+
   return (
     <>
       <TopHeader />
@@ -111,25 +112,26 @@ export default function StruttureRicettiveHubPage() {
 
       <main id="contenuto-principale" className="max-w-[1180px] mx-auto px-5 py-6">
         <a href="/turismo" className="text-cool-ink text-xs font-mono hover:underline">
-          ← Turismo
+          ← {tNav("turismo")}
         </a>
-        <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1 mt-1">Strutture ricettive</h1>
-        <p className="text-ink-faint text-xs font-mono mb-6">
-          Registri regionali delle strutture ricettive del Friuli Venezia Giulia, certificate dai Comuni e dalla
-          Direzione centrale attività produttive — fonte: Regione Autonoma FVG (dati.friuliveneziagiulia.it)
-        </p>
+        <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1 mt-1">
+          {tTurismo("sezioni.struttureRicettive.nome")}
+        </h1>
+        <p className="text-ink-faint text-xs font-mono mb-6">{t("descrizioneHub")}</p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-          {TIPI.map((t) => (
+          {TIPI.map((tipo) => (
             <Link
-              key={t.href}
-              href={t.href}
+              key={tipo.href}
+              href={tipo.href}
               className="border border-line rounded p-5 bg-panel hover:border-cool transition-colors flex flex-col gap-3"
             >
-              <span className="text-cool-ink">{t.icona}</span>
+              <span className="text-cool-ink">{tipo.icona}</span>
               <div>
-                <div className="font-cond font-bold text-lg uppercase tracking-wide">{t.nome}</div>
-                <div className="text-ink-faint text-xs mt-1">{t.descrizione}</div>
+                <div className="font-cond font-bold text-lg uppercase tracking-wide">
+                  {t(`tipi.${tipo.slug}.nome`)}
+                </div>
+                <div className="text-ink-faint text-xs mt-1">{t(`tipi.${tipo.slug}.descrizioneBreve`)}</div>
               </div>
             </Link>
           ))}

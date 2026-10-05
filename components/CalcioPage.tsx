@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useLocale, useTranslations } from "next-intl";
 import { supabase } from "@/lib/supabase";
 import { Panel } from "@/components/Panel";
 import { TopHeader } from "@/components/TopHeader";
@@ -45,13 +46,17 @@ type CalcioData = {
 
 // Deve corrispondere a CALCIO_STAGIONI in scripts/ingest-light.mjs — [0] = corrente/default, [1] = archivio
 const STAGIONI = [
-  { valore: "2026", label: "2026/27" },
-  { valore: "2025", label: "2025/26 (archivio)" },
+  { valore: "2026", anno: "2026/27" },
+  { valore: "2025", anno: "2025/26" },
 ] as const;
 
-function formattaData(iso: string): string {
+function formattaData(iso: string, locale: string): string {
   const d = new Date(iso);
-  return d.toLocaleDateString("it-IT", { weekday: "short", day: "numeric", month: "short" });
+  return d.toLocaleDateString(locale === "en" ? "en-GB" : "it-IT", {
+    weekday: "short",
+    day: "numeric",
+    month: "short",
+  });
 }
 
 function nomeSquadra(s: string): string {
@@ -84,6 +89,11 @@ export function CalcioPage() {
   const [stato, setStato] = useState<"loading" | "ready" | "error">("loading");
   const [competizione, setCompetizione] = useState(COMPETIZIONI[0].slug);
   const [stagione, setStagione] = useState<(typeof STAGIONI)[number]["valore"]>(STAGIONI[0].valore);
+  const t = useTranslations("calcio");
+  const tSport = useTranslations("sport");
+  const tNav = useTranslations("nav");
+  const tChrome = useTranslations("chrome");
+  const locale = useLocale();
 
   useEffect(() => {
     let attivo = true;
@@ -117,14 +127,15 @@ export function CalcioPage() {
 
       <main id="contenuto-principale" className="max-w-[1180px] mx-auto px-5 py-6">
         <Link href="/sport" className="text-cool-ink text-xs font-mono hover:underline">
-          ← Sport
+          ← {tNav("sport")}
         </Link>
         <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1 mt-1">
-          {stato === "ready" && dati ? `${dati.campionato} — ${dati.girone}` : "Risultati calcistici"}
+          {stato === "ready" && dati ? `${dati.campionato} — ${dati.girone}` : t("titoloFallback")}
         </h1>
         <p className="text-ink-faint text-xs font-mono mb-4">
-          Campionati dilettantistici regionali FVG — fonte: LND Comitato Regionale FVG
-          {stagione !== STAGIONI[0].valore && ` — stai vedendo l'archivio della stagione ${STAGIONI.find((s) => s.valore === stagione)?.label}`}
+          {t("descrizione")}
+          {stagione !== STAGIONI[0].valore &&
+            t("vistaArchivio", { stagione: STAGIONI.find((s) => s.valore === stagione)?.anno ?? "" })}
         </p>
 
         <div className="flex gap-1.5 flex-wrap mb-6">
@@ -142,26 +153,27 @@ export function CalcioPage() {
           ))}
         </div>
 
-        {stato === "loading" && <p className="text-ink-faint text-sm font-mono">Caricamento…</p>}
+        {stato === "loading" && <p className="text-ink-faint text-sm font-mono">{tChrome("caricamento")}</p>}
         {stato === "error" && (
-          <p className="text-ink-faint text-sm font-mono">Dati non disponibili al momento.</p>
+          <p className="text-ink-faint text-sm font-mono">{tChrome("datiNonDisponibili")}</p>
         )}
 
         {stato === "ready" && dati && (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-line border border-line">
-            <Panel title={`${dati.campionato} — Calendario`}>
+            <Panel title={`${dati.campionato} — ${tSport("calendario")}`}>
               {dati.giornata_corrente && (
                 <div className="font-cond font-semibold text-xs uppercase tracking-wide text-ink-faint mb-3">
-                  Giornata {dati.giornata_corrente.number} · {dati.giornata_corrente.leg === "first" ? "andata" : "ritorno"}
+                  {t("giornata", { numero: dati.giornata_corrente.number })} ·{" "}
+                  {dati.giornata_corrente.leg === "first" ? t("andata") : t("ritorno")}
                 </div>
               )}
               {dati.partite.length === 0 ? (
-                <p className="text-ink-faint text-sm font-mono">Nessuna partita in programma.</p>
+                <p className="text-ink-faint text-sm font-mono">{tSport("nessunaPartita")}</p>
               ) : (
                 dati.partite.map((p, i) => (
                   <div key={i} className={`py-3 ${i > 0 ? "border-t border-line" : ""}`}>
                     <div className="font-mono text-[10px] text-ink-faint mb-1.5 uppercase">
-                      {formattaData(p.data)} · {p.ora.slice(0, 5)} · {p.campo}
+                      {formattaData(p.data, locale)} · {p.ora.slice(0, 5)} · {p.campo}
                     </div>
                     <div className="flex items-center justify-between text-sm">
                       <span className="flex-1">{nomeSquadra(p.casa)}</span>
@@ -175,19 +187,19 @@ export function CalcioPage() {
               )}
             </Panel>
 
-            <Panel title={`${dati.campionato} — Classifica`}>
+            <Panel title={`${dati.campionato} — ${tSport("classifica")}`}>
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
                   <thead>
                     <tr className="border-b border-line font-mono text-[10px] text-ink-faint uppercase">
                       <th className="text-left py-2 pr-2">#</th>
-                      <th className="text-left py-2">Squadra</th>
-                      <th className="text-right py-2 px-2">Pt</th>
-                      <th className="text-right py-2 px-2">G</th>
-                      <th className="text-right py-2 px-2">V</th>
-                      <th className="text-right py-2 px-2">N</th>
-                      <th className="text-right py-2 px-2">P</th>
-                      <th className="text-right py-2 pl-2">DR</th>
+                      <th className="text-left py-2">{tSport("colSquadra")}</th>
+                      <th className="text-right py-2 px-2">{tSport("colPt")}</th>
+                      <th className="text-right py-2 px-2">{tSport("colG")}</th>
+                      <th className="text-right py-2 px-2">{tSport("colV")}</th>
+                      <th className="text-right py-2 px-2">{tSport("colN")}</th>
+                      <th className="text-right py-2 px-2">{tSport("colP")}</th>
+                      <th className="text-right py-2 pl-2">{tSport("colDR")}</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -214,7 +226,7 @@ export function CalcioPage() {
         )}
 
         <div className="mt-8 pt-4 border-t border-line flex items-center gap-1.5 flex-wrap">
-          <span className="text-ink-faint text-xs font-mono uppercase tracking-wide mr-1">Stagione</span>
+          <span className="text-ink-faint text-xs font-mono uppercase tracking-wide mr-1">{t("stagioneLabel")}</span>
           {STAGIONI.map((s) => (
             <button
               key={s.valore}
@@ -224,7 +236,8 @@ export function CalcioPage() {
                 stagione === s.valore ? "bg-cool text-on-accent" : "border border-line text-ink-dim hover:text-ink"
               }`}
             >
-              {s.label}
+              {s.anno}
+              {s.valore !== STAGIONI[0].valore ? ` (${t("archivio")})` : ""}
             </button>
           ))}
         </div>

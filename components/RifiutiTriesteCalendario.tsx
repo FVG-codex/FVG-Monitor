@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { formattaDataRifiuti } from "@/lib/rifiuti";
+import { useLocale, useTranslations } from "next-intl";
 
 // Ricerca indirizzo dal vivo per il calendario porta a porta di Trieste
 // (AcegasApsAmga/Il Rifiutologo) — 18/09/2026. A differenza del resto
@@ -33,7 +33,18 @@ function oggiIsoLocale(): string {
   return new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Rome" }).format(new Date());
 }
 
+function formattaDataLocale(dataIso: string, locale: string): string {
+  const d = new Date(`${dataIso}T12:00:00Z`);
+  return d.toLocaleDateString(locale === "en" ? "en-GB" : "it-IT", {
+    weekday: "short",
+    day: "numeric",
+    month: "short",
+  });
+}
+
 export function RifiutiTriesteCalendario() {
+  const t = useTranslations("rifiuti");
+  const locale = useLocale();
   const [elenco, setElenco] = useState<Indirizzo[] | null>(null);
   const [elencoStato, setElencoStato] = useState<"idle" | "loading" | "error">("idle");
   const [testoRicerca, setTestoRicerca] = useState("");
@@ -135,21 +146,18 @@ export function RifiutiTriesteCalendario() {
 
   return (
     <div>
-      <p className="text-ink-faint text-xs font-mono mb-3">
-        Calendario per via e numero civico — ricerca dal vivo (non è uno snapshot aggiornato una volta al giorno
-        come il resto di questa pagina).
-      </p>
+      <p className="text-ink-faint text-xs font-mono mb-3">{t("triesteDescrizione")}</p>
 
       {!indirizzo && (
         <div ref={boxRef} className="relative mb-2">
           <label htmlFor="trieste-via" className="sr-only">
-            Cerca una via di Trieste
+            {t("cercaViaLabel")}
           </label>
           <input
             id="trieste-via"
             type="text"
             autoComplete="off"
-            placeholder="Cerca una via (es. Via del Coroneo)…"
+            placeholder={t("cercaViaPlaceholder")}
             value={testoRicerca}
             onFocus={() => {
               caricaElenco();
@@ -163,12 +171,10 @@ export function RifiutiTriesteCalendario() {
           />
 
           {elencoStato === "loading" && (
-            <p className="text-ink-faint text-[10px] font-mono mt-1">Carico l&apos;elenco vie di Trieste…</p>
+            <p className="text-ink-faint text-[10px] font-mono mt-1">{t("caricoElencoVie")}</p>
           )}
           {elencoStato === "error" && (
-            <p className="text-allerta-rossa-ink text-[10px] font-mono mt-1">
-              Elenco vie non disponibile al momento — riprovare più tardi.
-            </p>
+            <p className="text-allerta-rossa-ink text-[10px] font-mono mt-1">{t("elencoVieNonDisponibile")}</p>
           )}
 
           {suggerimentiAperti && suggerimenti.length > 0 && (
@@ -187,7 +193,7 @@ export function RifiutiTriesteCalendario() {
             </ul>
           )}
           {suggerimentiAperti && elenco && testoRicerca.trim().length >= 2 && suggerimenti.length === 0 && (
-            <p className="text-ink-faint text-[10px] font-mono mt-1">Nessuna via trovata.</p>
+            <p className="text-ink-faint text-[10px] font-mono mt-1">{t("nessunaViaTrovata")}</p>
           )}
         </div>
       )}
@@ -201,19 +207,19 @@ export function RifiutiTriesteCalendario() {
               onClick={cambiaIndirizzo}
               className="text-cool-ink text-[10px] font-mono uppercase hover:underline"
             >
-              Cambia indirizzo
+              {t("cambiaIndirizzo")}
             </button>
           </div>
 
-          {civiciStato === "loading" && <p className="text-ink-faint text-xs font-mono">Carico i civici…</p>}
+          {civiciStato === "loading" && <p className="text-ink-faint text-xs font-mono">{t("caricoCivici")}</p>}
           {civiciStato === "error" && (
-            <p className="text-allerta-rossa-ink text-xs font-mono">Civici non disponibili al momento.</p>
+            <p className="text-allerta-rossa-ink text-xs font-mono">{t("civiciNonDisponibili")}</p>
           )}
 
           {civici && civici.length > 1 && (
             <div className="flex items-center gap-2 flex-wrap mb-2">
               <label htmlFor="trieste-civico" className="text-ink-faint text-xs font-mono uppercase tracking-wide">
-                Civico
+                {t("civicoLabel")}
               </label>
               <select
                 id="trieste-civico"
@@ -225,7 +231,7 @@ export function RifiutiTriesteCalendario() {
                 className="border border-line rounded px-2 py-1.5 text-sm font-mono bg-panel text-ink"
               >
                 <option value="" disabled>
-                  Scegli…
+                  {t("scegliPlaceholder")}
                 </option>
                 {civici.map((c) => (
                   <option key={c.id} value={c.id}>
@@ -236,21 +242,21 @@ export function RifiutiTriesteCalendario() {
             </div>
           )}
 
-          {calendarioStato === "loading" && <p className="text-ink-faint text-sm font-mono">Carico il calendario…</p>}
+          {calendarioStato === "loading" && <p className="text-ink-faint text-sm font-mono">{t("caricoCalendario")}</p>}
           {calendarioStato === "error" && (
-            <p className="text-allerta-rossa-ink text-sm font-mono">Calendario non disponibile al momento.</p>
+            <p className="text-allerta-rossa-ink text-sm font-mono">{t("calendarioNonDisponibile")}</p>
           )}
 
           {calendario && (
             <div>
               {calendario.nota && <p className="text-ink-dim text-xs font-mono mb-2">{calendario.nota}</p>}
               {calendario.giorni.length === 0 ? (
-                <p className="text-ink-faint text-sm font-mono">Nessuna raccolta a calendario nei prossimi giorni per questo indirizzo.</p>
+                <p className="text-ink-faint text-sm font-mono">{t("nessunaRaccoltaIndirizzo")}</p>
               ) : (
                 calendario.giorni.map((g, i) => (
                   <div key={g.data} className={`flex items-start gap-3 py-2 ${i > 0 ? "border-t border-line" : ""}`}>
                     <div className="font-mono text-ink-dim text-xs w-24 flex-shrink-0 uppercase pt-0.5">
-                      {g.data === oggiIso ? "Oggi" : formattaDataRifiuti(g.data)}
+                      {g.data === oggiIso ? t("oggi") : formattaDataLocale(g.data, locale)}
                     </div>
                     <div className="flex-1 space-y-1">
                       {g.conferimenti.map((c, ci) => (
@@ -261,7 +267,9 @@ export function RifiutiTriesteCalendario() {
                           />
                           <span>
                             {c.descrizione}
-                            {c.orario && <span className="text-ink-faint text-xs"> — esposizione {c.orario}</span>}
+                            {c.orario && (
+                              <span className="text-ink-faint text-xs">{t("esposizioneOrario", { orario: c.orario })}</span>
+                            )}
                             {c.note && <span className="block text-ink-faint text-xs">{c.note}</span>}
                           </span>
                         </div>

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 import { TopHeader } from "@/components/TopHeader";
 import { Footer } from "@/components/Footer";
 
@@ -13,9 +14,8 @@ import { Footer } from "@/components/Footer";
 // in Sanità.
 const SEZIONI = [
   {
-    nome: "Webcam regionali",
+    key: "webcam",
     href: "/webcam",
-    descrizione: "Immagini dalle webcam OSMER ARPA FVG, per provincia",
     icona: (
       <svg viewBox="0 0 48 48" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.5">
         <rect x="6" y="14" width="36" height="24" rx="3" />
@@ -25,9 +25,8 @@ const SEZIONI = [
     ),
   },
   {
-    nome: "Galleria fotografica",
+    key: "galleria",
     href: "/galleria",
-    descrizione: "In arrivo",
     icona: (
       <svg viewBox="0 0 48 48" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.5">
         <rect x="6" y="8" width="36" height="32" rx="3" />
@@ -38,17 +37,18 @@ const SEZIONI = [
   },
 ];
 
-export function FvgInImmaginiPage() {
+export async function FvgInImmaginiPage() {
+  const t = await getTranslations("fvgInImmagini");
+  const tNav = await getTranslations("nav");
+  const tChrome = await getTranslations("chrome");
   return (
     <>
       <TopHeader />
       <div className="isobar" />
 
       <main id="contenuto-principale" className="max-w-[1180px] mx-auto px-5 py-6">
-        <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1">FVG in immagini</h1>
-        <p className="text-ink-faint text-xs font-mono mb-6">
-          Webcam regionali e, in arrivo, una galleria fotografica del Friuli Venezia Giulia
-        </p>
+        <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1">{tNav("immagini")}</h1>
+        <p className="text-ink-faint text-xs font-mono mb-6">{t("descrizione")}</p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {SEZIONI.map((s) => (
@@ -59,8 +59,12 @@ export function FvgInImmaginiPage() {
             >
               <span className="text-cool-ink">{s.icona}</span>
               <div>
-                <div className="font-cond font-bold text-lg uppercase tracking-wide">{s.nome}</div>
-                <div className="text-ink-faint text-xs mt-1">{s.descrizione}</div>
+                <div className="font-cond font-bold text-lg uppercase tracking-wide">
+                  {t(`sezioni.${s.key}.nome`)}
+                </div>
+                <div className="text-ink-faint text-xs mt-1">
+                  {s.key === "galleria" ? tChrome("inArrivo") : t(`sezioni.${s.key}.descrizione`)}
+                </div>
               </div>
             </Link>
           ))}

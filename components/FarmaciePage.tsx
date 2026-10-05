@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import dynamic from "next/dynamic";
+import { useLocale, useTranslations } from "next-intl";
 import { TopHeader } from "@/components/TopHeader";
 import { Footer } from "@/components/Footer";
 import { Panel } from "@/components/Panel";
@@ -15,11 +16,16 @@ const FarmacieMap = dynamic(() => import("@/components/FarmacieMap").then((m) =>
   loading: () => <p className="text-ink-faint text-sm font-mono">Caricamento mappa…</p>,
 });
 
-function formattaData(iso: string): string {
+function formattaData(iso: string, locale: string): string {
   // iso è "YYYY-MM-DD" (data pura, senza ora) — new Date() la interpreta
   // come UTC mezzanotte, corretto per una data senza componente oraria.
   const d = new Date(iso);
-  return d.toLocaleDateString("it-IT", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
+  return d.toLocaleDateString(locale === "en" ? "en-GB" : "it-IT", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC",
+  });
 }
 
 // Un solo componente per entrambe le pagine (/farmacie-tutte e
@@ -39,6 +45,9 @@ export function FarmaciePage({ soloTurno }: { soloTurno: boolean }) {
   // è specifico della provincia.
   const [comuneSel, setComuneSel] = useState<string | null>(null);
   const [ricerca, setRicerca] = useState("");
+  const t = useTranslations("farmacie");
+  const tChrome = useTranslations("chrome");
+  const locale = useLocale();
 
   function selezionaProvincia(p: ProvinciaSlug) {
     setTab(p);
@@ -126,10 +135,8 @@ export function FarmaciePage({ soloTurno }: { soloTurno: boolean }) {
     pordenone: [45.96, 12.66],
   };
 
-  const titolo = soloTurno ? "Farmacie di turno" : "Tutte le farmacie";
-  const descrizione = soloTurno
-    ? "Farmacie con apertura straordinaria (turno) oggi"
-    : "Elenco completo delle farmacie";
+  const titolo = soloTurno ? t("titoloTurno") : t("titoloTutte");
+  const descrizione = soloTurno ? t("descrizioneTurno") : t("descrizioneTutte");
 
   return (
     <>
@@ -139,16 +146,15 @@ export function FarmaciePage({ soloTurno }: { soloTurno: boolean }) {
       <main id="contenuto-principale" className="max-w-[1180px] mx-auto px-5 py-6">
         <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1">{titolo}</h1>
         <p className="text-ink-faint text-xs font-mono mb-4">
-          {descrizione}
-          {dati ? ` — ${formattaData(dati.data)}` : ""} in Friuli Venezia Giulia — fonte: Regione Autonoma FVG
-          (dati.friuliveneziagiulia.it), aggiornato ogni giorno alle 01:00.{" "}
-          {soloTurno
-            ? "Non include l'orario ordinario delle farmacie, solo le aperture straordinarie di oggi."
-            : "Gli orari mostrati sono quelli di oggi (normali ed eventuali turni straordinari) — la fonte non pubblica un orario settimanale fisso, solo un aggiornamento giornaliero."}
+          {t("paragrafoBase", {
+            descrizione,
+            data: dati ? ` — ${formattaData(dati.data, locale)}` : "",
+          })}
+          {soloTurno ? t("noteTurno") : t("noteTutte")}
         </p>
 
-        {stato === "loading" && <p className="text-ink-faint text-sm font-mono">Caricamento farmacie…</p>}
-        {stato === "error" && <p className="text-ink-faint text-sm font-mono">Dati farmacie non disponibili al momento.</p>}
+        {stato === "loading" && <p className="text-ink-faint text-sm font-mono">{t("caricamentoFarmacie")}</p>}
+        {stato === "error" && <p className="text-ink-faint text-sm font-mono">{t("nonDisponibili")}</p>}
 
         {stato === "ready" && dati && (
           <>
@@ -176,7 +182,7 @@ export function FarmaciePage({ soloTurno }: { soloTurno: boolean }) {
                     comuneSel === null ? "bg-cool text-on-accent" : "border border-line text-ink-dim hover:text-ink"
                   }`}
                 >
-                  Tutti i comuni ({baseProvincia.length})
+                  {tChrome("tuttiIComuni", { count: baseProvincia.length })}
                 </button>
                 {comuni.map(([c, n]) => (
                   <button
@@ -194,12 +200,12 @@ export function FarmaciePage({ soloTurno }: { soloTurno: boolean }) {
             )}
 
             <label className="block mb-4">
-              <span className="sr-only">Cerca per nome o comune</span>
+              <span className="sr-only">{tChrome("cercaNomeComuneLabel")}</span>
               <input
                 type="search"
                 value={ricerca}
                 onChange={(e) => setRicerca(e.target.value)}
-                placeholder="Cerca per nome o comune…"
+                placeholder={tChrome("cercaNomeComunePlaceholder")}
                 className="w-full max-w-sm px-3 py-1.5 rounded text-sm bg-panel border border-line text-ink placeholder:text-ink-faint focus:outline-none focus:border-cool"
               />
             </label>
@@ -215,12 +221,17 @@ export function FarmaciePage({ soloTurno }: { soloTurno: boolean }) {
                 più immediato). Su schermi larghi (lg:grid-cols-2)
                 l'unico effetto è Elenco a sinistra, Mappa a destra. */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-line border border-line">
-              <Panel title={`Elenco (${farmacie.length})`}>
+              <Panel title={tChrome("elenco", { count: farmacie.length })}>
                 {farmacie.length === 0 ? (
                   <p className="text-ink-faint text-sm font-mono">
-                    {soloTurno
-                      ? `Nessuna farmacia di turno oggi${comuneSel ? ` a ${comuneSel}` : ` in provincia di ${nomeProvincia}`}.`
-                      : `Nessuna farmacia trovata${comuneSel ? ` a ${comuneSel}` : ` in provincia di ${nomeProvincia}`}.`}
+                    {(() => {
+                      const luogo = comuneSel
+                        ? tChrome("aComune", { luogo: comuneSel })
+                        : tChrome("inProvinciaDi", { provincia: nomeProvincia });
+                      return soloTurno
+                        ? t("nessunaDiTurno", { luogo })
+                        : t("nessunaTrovata", { luogo });
+                    })()}
                   </p>
                 ) : (
                   <div className="max-h-[460px] overflow-y-auto flex flex-col">
@@ -235,10 +246,14 @@ export function FarmaciePage({ soloTurno }: { soloTurno: boolean }) {
                           {f.indirizzo && f.comune ? ", " : ""}
                           {f.comune}
                         </div>
-                        {f.telefono && <div className="text-ink-faint text-xs mt-0.5">Tel. {f.telefono}</div>}
+                        {f.telefono && (
+                          <div className="text-ink-faint text-xs mt-0.5">
+                            {tChrome("telEtichetta", { telefono: f.telefono })}
+                          </div>
+                        )}
                         <div className="font-mono text-[10px] text-ink-dim mt-1">
                           {f.orariOggi.length === 0 ? (
-                            <div>Orario non disponibile</div>
+                            <div>{t("orarioNonDisponibile")}</div>
                           ) : (
                             f.orariOggi.map((o, oi) => <div key={oi}>{formattaFascia(o)}</div>)
                           )}
@@ -249,10 +264,14 @@ export function FarmaciePage({ soloTurno }: { soloTurno: boolean }) {
                 )}
               </Panel>
 
-              <Panel title="Mappa">
+              <Panel title={tChrome("mappa")}>
                 <div
                   role="region"
-                  aria-label={`Mappa delle farmacie${comuneSel ? ` a ${comuneSel}` : ` in provincia di ${nomeProvincia}`} — elenco testuale equivalente nel pannello a fianco`}
+                  aria-label={t("mappaAriaLabel", {
+                    luogo: comuneSel
+                      ? tChrome("aComune", { luogo: comuneSel })
+                      : tChrome("inProvinciaDi", { provincia: nomeProvincia }),
+                  })}
                   style={{ height: 460 }}
                   className="rounded overflow-hidden"
                 >

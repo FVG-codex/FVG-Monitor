@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { AriaQualitaPanel } from "@/components/AriaQualitaPanel";
 import { BalneazionePanel } from "@/components/BalneazionePanel";
 import { FiumePanel } from "@/components/FiumePanel";
@@ -23,6 +24,9 @@ import { PROVINCE_LIST, type ProvinciaSlug } from "@/lib/province";
 // supportavano `provincia` (stesso pattern di ProvinciaPage.tsx).
 export function DatiAmbientaliPage() {
   const [provincia, setProvincia] = useState<ProvinciaSlug>("trieste");
+  const t = useTranslations("datiAmbientali");
+  const tNav = useTranslations("nav");
+  const tHome = useTranslations("home");
 
   return (
     <>
@@ -31,13 +35,10 @@ export function DatiAmbientaliPage() {
 
       <main id="contenuto-principale" className="max-w-[1180px] mx-auto px-5 py-6">
         <a href="/ambiente" className="text-cool-ink text-xs font-mono hover:underline">
-          ← Ambiente
+          ← {tNav("ambiente")}
         </a>
-        <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1 mt-1">Dati ambientali</h1>
-        <p className="text-ink-faint text-xs font-mono mb-4">
-          Vento, pioggia, aria, pollini, mare, fiumi e balneazione, per provincia — fonte: Protezione Civile FVG,
-          ARPA FVG
-        </p>
+        <h1 className="font-cond font-bold text-2xl uppercase tracking-wide mb-1 mt-1">{t("titolo")}</h1>
+        <p className="text-ink-faint text-xs font-mono mb-4">{t("descrizione")}</p>
 
         <div className="flex gap-1.5 flex-wrap mb-6">
           {PROVINCE_LIST.map((p) => (
@@ -58,7 +59,7 @@ export function DatiAmbientaliPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-line border border-line">
           <Panel
-            title="Bora · Vento e Pioggia"
+            title={tHome("ambiente.bora")}
             linkLabel="Protezione Civile FVG →"
             linkHref="https://monitor.protezionecivile.fvg.it"
           >
@@ -67,27 +68,27 @@ export function DatiAmbientaliPage() {
             <PioggiaPanel provincia={provincia} compatto />
           </Panel>
 
-          <Panel title="Qualità dell'aria" linkLabel="ARPA FVG →" linkHref="https://www.arpa.fvg.it">
+          <Panel title={tHome("ambiente.aria")} linkLabel="ARPA FVG →" linkHref="https://www.arpa.fvg.it">
             <AriaQualitaPanel provincia={provincia} />
           </Panel>
 
-          <Panel title="Pollini" linkLabel="ARPA FVG →" linkHref="https://www.arpa.fvg.it/temi/temi/pollini/">
+          <Panel title={tHome("ambiente.pollini")} linkLabel="ARPA FVG →" linkHref="https://www.arpa.fvg.it/temi/temi/pollini/">
             <PolliniPanel provincia={provincia} />
           </Panel>
 
           <Panel
-            title="Livelli mare e fiumi"
+            title={tHome("ambiente.livelli")}
             linkLabel="Protezione Civile FVG →"
             linkHref="https://monitor.protezionecivile.fvg.it"
           >
-            <p className="font-mono text-[10px] uppercase text-ink-faint mb-1.5">Mare</p>
+            <p className="font-mono text-[10px] uppercase text-ink-faint mb-1.5">{tHome("ambiente.mare")}</p>
             <MarePanel provincia={provincia} />
-            <p className="font-mono text-[10px] uppercase text-ink-faint mb-1.5 mt-4">Fiume</p>
+            <p className="font-mono text-[10px] uppercase text-ink-faint mb-1.5 mt-4">{t("fiume")}</p>
             <FiumePanel provincia={provincia} />
           </Panel>
 
           <Panel
-            title="Qualità acque di balneazione"
+            title={tHome("ambiente.balneazione")}
             linkLabel="ARPA FVG →"
             linkHref="https://www.arpa.fvg.it"
             span={2}
