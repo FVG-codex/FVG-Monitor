@@ -21,6 +21,20 @@ export type VoceChangelog = {
 
 export const CHANGELOG: VoceChangelog[] = [
   {
+    data: "05/10/2026",
+    titolo: "Fix — due moduli meteo potevano fallire per un singolo intoppo di rete passeggero",
+    dettagli: [
+      "\"Pazzi per il meteo\" (Telegram e previsioni temporalesche) sono andati in errore in un'esecuzione reale per un problema di rete transitorio nel salvataggio su database — non un problema dei dati, che venivano letti correttamente dalla fonte. Ora, come già per il recupero dei dati dalle fonti esterne, un singolo intoppo non fa più fallire il modulo: viene ritentato automaticamente prima di arrendersi.",
+    ],
+  },
+  {
+    data: "03/10/2026",
+    titolo: "Fix — la causa reale della build Vercel rotta: vecchie cartelle mai cancellate dal repository",
+    dettagli: [
+      "I due fix precedenti dello stesso giorno (vedi voci sotto) non bastavano perché affrontavano un problema vero ma secondario. La causa reale: la cartella app/ sul repository conteneva ancora, fianco a fianco, sia le vecchie pagine di prima del multilingua sia le nuove dentro app/[locale]/ — mai rimosse. Risolto cancellando le vecchie cartelle dal repository (non un file consegnato da questa sessione: un comando git da eseguire sul repository). Nessun impatto visibile per chi usa il sito, solo la build torna a funzionare davvero.",
+    ],
+  },
+  {
     data: "03/10/2026",
     titolo: "Fix — la build di produzione falliva ancora su Vercel (seconda parte)",
     dettagli: [

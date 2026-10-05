@@ -126,11 +126,37 @@ function testo(v) {
 // stesso problema da capo.
 const STORICO_ATTIVO = false;
 
+// Bug reale trovato il 05/10/2026 (log di ingestion fornito dall'utente):
+// "meteo-pazzi-telegram" e "meteo-pazzi-previsioni" sono falliti con
+// "TypeError: fetch failed" dentro upsertSnapshot, non nel recupero della
+// fonte esterna (quello era andato a buon fine, come per gli altri ~45
+// moduli nella stessa esecuzione). Il commento sopra (riga ~34) dice che
+// il retry di rete è "usato per tutte le chiamate di rete dello script" —
+// ma non era vero: fetchConRetry copre solo le fetch verso le fonti
+// esterne, mentre la scrittura su Supabase (questa funzione, usata da
+// OGNI modulo) chiamava il client una sola volta e si arrendeva al primo
+// errore di rete transitorio. Corretto applicando lo stesso schema di
+// retry già usato sopra, invece di lasciare questo l'unico punto di rete
+// del progetto senza tolleranza ai guasti. L'upsert è idempotente (stessa
+// `id`), quindi ripetere la stessa scrittura in caso di errore è sempre
+// sicuro.
+async function upsertConRetry(tabella, payload, tentativi = 3) {
+  let ultimoErrore;
+  for (let i = 0; i < tentativi; i++) {
+    const { error } = await supabase.from(tabella).upsert(payload);
+    if (!error) return;
+    ultimoErrore = error;
+    if (i < tentativi - 1) await new Promise((r) => setTimeout(r, 1000 * (i + 1)));
+  }
+  throw ultimoErrore;
+}
+
 async function upsertSnapshot(id, module, zone, data) {
-  const { error } = await supabase
-    .from("snapshots")
-    .upsert({ id, module, zone, data, updated_at: new Date().toISOString() });
-  if (error) throw new Error(`Upsert fallito per ${id}: ${error.message}`);
+  try {
+    await upsertConRetry("snapshots", { id, module, zone, data, updated_at: new Date().toISOString() });
+  } catch (error) {
+    throw new Error(`Upsert fallito per ${id}: ${error.message}`);
+  }
 
   if (!STORICO_ATTIVO) return;
 

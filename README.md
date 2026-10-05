@@ -2895,6 +2895,43 @@ reale, eliminata subito dopo lo screenshot insieme alla cache `.next` che
 la conteneva — mai parte della consegna). **Non ancora confermato
 dall'utente in produzione** per entrambe le modifiche.
 
+### Fix reale — fallimento intermittente in produzione per un intoppo di rete (05/10/2026)
+
+L'utente ha incollato un log reale di ingestion in cui entrambi i moduli
+("meteo-pazzi-telegram" e "meteo-pazzi-previsioni") sono falliti con
+`TypeError: fetch failed` — non nel recupero dei dati dalla fonte
+esterna (andato a buon fine, come per gli altri ~45 moduli nella stessa
+esecuzione), ma dentro `upsertSnapshot()`, al momento di scrivere il
+risultato su Supabase.
+
+**Causa**: il commento in cima a `scripts/ingest-light.mjs` dice che il
+retry di rete (`fetchConRetry`, 3 tentativi con pausa crescente) è
+"usato per tutte le chiamate di rete dello script" — non era vero.
+`fetchConRetry` copre solo le richieste verso le fonti esterne;
+`upsertSnapshot()`, usata da OGNI modulo per scrivere su Supabase,
+chiamava il client del database una sola volta e si arrendeva al primo
+errore di rete transitorio. Era l'unico punto di rete del progetto
+senza alcuna tolleranza ai guasti — e per puro caso è toccato proprio a
+questi due moduli (appena aggiunti, prima esecuzione reale) incontrare
+quell'intoppo passeggero, non un problema nei dati che leggono.
+
+**Fix**: estratta la logica di retry in `upsertConRetry()`, stesso
+schema di `fetchConRetry` (3 tentativi, pausa crescente), e
+`upsertSnapshot()` ora la usa per la scrittura su `snapshots`. L'upsert
+è idempotente (stessa `id`), quindi ripetere la stessa scrittura in
+caso di errore è sempre sicuro — nessun rischio di duplicati.
+Beneficia automaticamente ogni modulo del progetto, non solo questi
+due, visto che tutti passano per la stessa funzione.
+
+**Verificato**: `node --check scripts/ingest-light.mjs` pulito. Non
+possibile riprodurre l'errore di rete originale (era un intoppo
+transitorio lato GitHub Actions/Supabase, non riproducibile a comando);
+il fix rende il prossimo intoppo dello stesso tipo non fatale, senza
+cambiare alcun comportamento quando la rete funziona normalmente.
+**Da confermare dall'utente**: che la prossima esecuzione reale non
+mostri più questi due moduli tra quelli falliti (né, auspicabilmente,
+qualunque altro modulo che incontri lo stesso tipo di intoppo).
+
 ## Economia — prima sezione, disoccupazione trimestrale FVG (10/09/2026)
 
 L'utente ha chiesto cosa si potrebbe implementare sul fronte economia,
@@ -5422,6 +5459,59 @@ interne, non le pagine di contenuto), e **tutte** le ~50 pagine di
 contenuto (homepage inclusa) elencate come `ƒ (Dynamic)` — nessun
 tentativo di generazione statica residuo. Copia di prova eliminata
 subito dopo la verifica.
+
+**Ma la build su Vercel continuava a fallire comunque, identica — vedi
+"Fix reale #3" sotto: il vero problema non era qui.**
+
+### Fix reale #3 — la causa vera: vecchie cartelle `app/` mai cancellate dal repository (03/10/2026, stesso giorno, dopo due fix che non bastavano)
+
+L'utente ha rifatto il deploy col fix #2 applicato (confermato: il file
+su GitHub conteneva davvero `export const dynamic = "force-dynamic"`,
+verificato leggendo direttamente il repository) — build identica a
+prima, stessi due digest, stesse ~50 pagine. Il fix #2 era corretto ma
+irrilevante: il vero problema non era dentro `app/[locale]/`.
+
+**Causa**: quando questa sessione ha ristrutturato `app/` in
+`app/[locale]/` per il multilingua, lo ha fatto pulito **nella propria
+copia locale di lavoro** — ma ha sempre consegnato il risultato come
+tarball, e un tarball aggiunge/sovrascrive file, non cancella mai
+quelli che non contiene. Il repository reale dell'utente non aveva
+mai, in nessuna consegna precedente, rimosso le vecchie 50 cartelle
+pre-multilingua (`app/affittacamere/`, `app/calcio/`, ... `app/webcam/`)
+né il vecchio `app/layout.tsx`/`app/page.tsx` — coesistevano, invisibili
+a questa sessione, fianco a fianco con `app/[locale]/...`. Ogni fix
+precedente lavorava solo dentro `app/[locale]/`, quindi non aveva
+alcun effetto su quelle vecchie pagine duplicate.
+
+Perché falliva: i componenti condivisi (header, footer, menu — vedi
+Fase 1 multilingua sopra) usano `useTranslations()`/`useLocale()` di
+next-intl, disponibili solo dentro `NextIntlClientProvider` — fornito
+dal nuovo `app/[locale]/layout.tsx`, ma non dal vecchio `app/layout.tsx`,
+mai toccato. Quando Vercel tentava di generare le vecchie pagine
+duplicate (che usano ancora il vecchio layout), quei componenti
+andavano in crash in modo generico — stesso errore, stessi due digest,
+su ogni pagina, perché è lo stesso bug strutturale ovunque, non un bug
+per singola pagina.
+
+**Perché non l'ho visto prima**: questa sessione lavora sempre nella
+propria copia locale del progetto, mai nel repository reale
+dell'utente — e lì le vecchie cartelle non sono mai esistite (la
+ristrutturazione è stata fatta pulita, con spostamento vero). Solo
+leggendo direttamente il contenuto del repository GitHub reale
+(`FVG-codex/FVG-Monitor`) è emerso che conteneva ancora tutte le
+vecchie cartelle.
+
+**Fix**: nessun file da consegnare questa volta — un comando `git rm`
+sul repository per cancellare le vecchie cartelle duplicate (elenco
+completo dato all'utente in chat), poi commit e push.
+
+**Lezione operativa per questa sessione**: una consegna a tarball non
+sostituisce mai un progetto, lo somma. Quando una ristrutturazione
+sposta o rinomina file/cartelle, cancellarli dal lato del progetto
+consegnato in questa sessione non basta — vanno cancellati anche sul
+repository reale dell'utente, esplicitamente, con un comando dedicato
+(`git rm`), altrimenti restano lì invisibili a questa sessione e
+continuano a convivere con la versione nuova.
 
 ## Idee future (annotate, non richieste esplicitamente per l'implementazione)
 
