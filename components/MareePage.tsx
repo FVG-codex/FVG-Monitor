@@ -7,6 +7,7 @@ import { TopHeader } from "@/components/TopHeader";
 import { Footer } from "@/components/Footer";
 import { Panel } from "@/components/Panel";
 import { MareeGraficoOggi } from "@/components/MareeGraficoOggi";
+import { intlLocale } from "@/lib/intlLocale";
 
 // Pagina "Maree" (02/10/2026, richiesto dall'utente il 13/09/2026) — vedi
 // i commenti sopra ingestMareeOsservate()/ingestMareePreviste() in
@@ -49,7 +50,7 @@ type MareePrevisteData = {
 };
 
 function formattaOra(iso: string, locale: string): string {
-  return new Date(iso).toLocaleTimeString(locale === "en" ? "en-GB" : "it-IT", {
+  return new Date(iso).toLocaleTimeString(intlLocale(locale), {
     hour: "2-digit",
     minute: "2-digit",
     timeZone: "Europe/Rome",
@@ -57,7 +58,7 @@ function formattaOra(iso: string, locale: string): string {
 }
 
 function formattaData(iso: string, locale: string): string {
-  return new Date(`${iso}T12:00:00Z`).toLocaleDateString(locale === "en" ? "en-GB" : "it-IT", {
+  return new Date(`${iso}T12:00:00Z`).toLocaleDateString(intlLocale(locale), {
     weekday: "short",
     day: "numeric",
     month: "short",

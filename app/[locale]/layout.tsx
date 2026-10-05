@@ -91,12 +91,15 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "home" });
+  const DESCRIZIONI: Record<string, string> = {
+    en: "Weather, alerts, traffic, transport and news for Friuli Venezia Giulia in a single page.",
+    de: "Wetter, Warnungen, Verkehr, Transport und Nachrichten für Friuli Venezia Giulia auf einer einzigen Seite.",
+  };
   return {
     title: "FVG Monitor",
     description:
-      locale === "en"
-        ? "Weather, alerts, traffic, transport and news for Friuli Venezia Giulia in a single page."
-        : "Meteo, allerte, viabilità, trasporti e notizie del Friuli Venezia Giulia in un'unica pagina.",
+      DESCRIZIONI[locale] ??
+      "Meteo, allerte, viabilità, trasporti e notizie del Friuli Venezia Giulia in un'unica pagina.",
   };
 }
 

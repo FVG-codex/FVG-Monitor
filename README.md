@@ -5513,6 +5513,80 @@ repository reale dell'utente, esplicitamente, con un comando dedicato
 (`git rm`), altrimenti restano lì invisibili a questa sessione e
 continuano a convivere con la versione nuova.
 
+## Multilingua — Fase 2: tedesco (05/10/2026)
+
+Dopo aver completato (stessa sessione, tappe 4-7, dettagli completi in
+`claude/fvgmonitor-stato.md`) la traduzione in inglese del testo fisso
+di tutte le 35 pagine di contenuto, l'utente ha chiesto di procedere
+con il tedesco, applicando "lo stesso criterio" già concordato in
+precedenza (vedi sopra): solo testo fisso dell'interfaccia, dati da
+fonti esterne sempre in italiano, uguale per ogni lingua futura.
+
+**Cosa cambia aggiungendo una terza lingua**: `i18n/routing.ts` ora
+dichiara `locales: ["it", "en", "de"]` (prima solo `["it", "en"]`);
+`components/LanguageSwitcher.tsx` ha un terzo pulsante "DE". Creato
+`messages/de.json`, stessa identica struttura a chiavi di
+`messages/it.json`/`messages/en.json` (40 namespace, 459 stringhe
+foglia — verificato con un confronto Python albero-per-albero: zero
+chiavi mancanti o in più, stesso set esatto di placeholder ICU
+`{count}`/`{luogo}`/`{provincia}`/ecc. per ogni chiave, nessuna
+discrepanza).
+
+**Criterio per nomi propri/istituzioni** (lo stesso già in vigore per
+l'inglese, ora verificato anche sistematicamente con uno script che
+confronta `it.json` ed `en.json` chiave per chiave per isolare i valori
+lasciati identici in entrambe le lingue): nomi di marchi/istituzioni
+("Trieste Airport", "OSMER ARPA FVG", "Protezione Civile FVG", "ISTAT",
+"InfoViaggiando", "MIMIT", "TGR FVG", "Affittacamere", "Alberghi
+Diffusi", "Bed & Breakfast") restano identici anche in tedesco. Il nome
+della regione **"Friuli Venezia Giulia" resta non tradotto anche in
+tedesco** (non "Friaul-Julisch Venetien", l'esonimo tedesco pur
+corretto): scelta deliberata per coerenza con i nomi di comune/provincia
+(Trieste, Gorizia, Udine, Pordenone), che arrivano da `lib/province.ts`
+e da altri file `lib/*.ts` non legati al locale — quei nomi restano
+sempre in italiano in qualunque lingua dell'interfaccia, quindi usare
+l'esonimo tedesco solo per il nome della regione avrebbe reso il testo
+incoerente ("Provinz Trieste" accanto a "Friaul-Julisch Venetien").
+Stessa logica andrà applicata a sloveno/croato quando arriveranno.
+
+**Nuovo file condiviso — `lib/intlLocale.ts`**: con tre lingue il
+ternario `locale === "en" ? "en-GB" : "it-IT"`, ripetuto finora in una
+quindicina di punti del codice (ogni pagina con una data formattata in
+modo locale-aware), non basta più. Centralizzata in un'unica funzione
+`intlLocale(locale)` che mappa `it`→`it-IT`, `en`→`en-GB`, `de`→`de-DE`
+(con fallback a `it-IT`): aggiornati tutti i 14 file che usavano quel
+ternario (`TopHeader.tsx` e le pagine di contenuto con una data/ora
+formattata — Terremoti, Tennis, Baseball, Calcio, Maree, Farmacie,
+Eventi, Sci, Colonnine elettriche, Rifiuti + calendario Trieste,
+StrutturaTipoPage) per usare la funzione condivisa invece del ternario
+a due rami. Aggiungere sloveno/croato in futuro significherà aggiungere
+una riga a questa mappa, non toccare di nuovo ogni componente.
+
+Trovato e corretto nello stesso giro un ternario binario equivalente
+ma indipendente, in `app/[locale]/layout.tsx` (`generateMetadata`):
+la `description` dei metadati usava `locale === "en" ? ... : ...`
+(niente per il tedesco, sarebbe ricaduto sull'italiano) — sostituito
+con una mappa `Record<string, string>` con fallback all'italiano.
+
+**Verificato**: `tsc --noEmit` pulito; validità JSON dei tre file
+messages; confronto automatico di struttura chiavi e placeholder ICU
+fra `en.json` e `de.json` (zero differenze); una `next build` reale
+completata con successo in una copia temporanea (stesso escamotage
+font-Google-disattivati già in uso in questo progetto); un `next dev`
+reale con richieste HTTP dirette su un campione ampio di pagine (home,
+Veterinari, Sci, Piste ciclabili, Rifiuti, Sanità, Viabilità, Turismo,
+Meteo, Farmacie, Calcio, Eventi, Terremoti, Maree, Colonnine elettriche)
+in tutte e tre le lingue — tutte 200, log del dev server pulito;
+verificato nell'HTML grezzo che il selettore di lingua marchi "DE" come
+`aria-current` sulle pagine tedesche, che il namespace `chrome` tedesco
+sia effettivamente quello incorporato nella pagina, e che il rendering
+di `t.rich()` con i tag `<strong>` (già introdotto per l'inglese in
+Piste Ciclabili) funzioni identico in tedesco. **Da confermare
+dall'utente dopo il prossimo deploy**: che le pagine mostrino il
+tedesco corretto in produzione con dati reali (stesso limite di sempre:
+questo sandbox non raggiunge Google Fonts/Supabase per una verifica
+end-to-end identica a produzione).
+
 ## Idee future (annotate, non richieste esplicitamente per l'implementazione)
 
 - **Strutture ricettive — implementate il 26/08/2026** (vedi sezioni dedicate sopra): hub + 8 pagine, arricchimento contatti da OpenStreetMap lo stesso giorno, poi scraping incrementale turismofvg.it per gli Agriturismi (sempre 26/08/2026, vedi "Agriturismi — scraping incrementale turismofvg.it" sopra per i dettagli — DevTools fornito dall'utente, stesso metodo già servito per Tennis/Sci/Autobus). **Prossimo passo su questo modulo**: estendere lo scraping turismofvg.it alle altre 7 categorie (B&B, Affittacamere, Campeggi, Alberghi Diffusi, Sociali, Marina, Rifugi) — richiede prima di verificare che URL/etichette HTML siano gli stessi osservati per Agriturismi (non garantito), idealmente con un altro campione reale fornito dall'utente per categoria prima di aggiungerla a `TURISMOFVG_CATEGORIE`.

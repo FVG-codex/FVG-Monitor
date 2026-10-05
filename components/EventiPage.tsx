@@ -7,6 +7,7 @@ import { TopHeader } from "@/components/TopHeader";
 import { Footer } from "@/components/Footer";
 import { supabase } from "@/lib/supabase";
 import { type Evento, type EventiSnapshot, formattaDataEvento, categorieUniche } from "@/lib/eventi";
+import { intlLocale } from "@/lib/intlLocale";
 
 // Turismo → Eventi, pagina dedicata (17/09/2026, richiesto dall'utente:
 // "Voglio creare una pagina dedicata solamente agli eventi"). Legge
@@ -183,7 +184,7 @@ export function EventiPage() {
             )}
             <p className="text-ink-faint text-[10px] font-mono mt-6 border-t border-line pt-3">
               {t("aggiornato", {
-                data: new Date(dati.aggiornato_al).toLocaleString(locale === "en" ? "en-GB" : "it-IT"),
+                data: new Date(dati.aggiornato_al).toLocaleString(intlLocale(locale)),
               })}
             </p>
           </>

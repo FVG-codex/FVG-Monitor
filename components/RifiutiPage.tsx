@@ -9,6 +9,7 @@ import { Panel } from "@/components/Panel";
 import { RifiutiTriesteCalendario } from "@/components/RifiutiTriesteCalendario";
 import { supabase } from "@/lib/supabase";
 import { PROVINCE, PROVINCE_LIST, type ProvinciaSlug } from "@/lib/province";
+import { intlLocale } from "@/lib/intlLocale";
 import {
   type SnapshotRifiuti,
   type ComuneRifiuti,
@@ -63,7 +64,7 @@ function oggiIsoLocale(): string {
 
 function formattaDataLocale(dataIso: string, locale: string): string {
   const d = new Date(`${dataIso}T12:00:00Z`);
-  return d.toLocaleDateString(locale === "en" ? "en-GB" : "it-IT", {
+  return d.toLocaleDateString(intlLocale(locale), {
     weekday: "short",
     day: "numeric",
     month: "short",
@@ -451,7 +452,7 @@ export function RifiutiPage() {
 
             <p className="text-ink-faint text-[10px] font-mono mt-6 border-t border-line pt-3">
               {t("aggiornatoAl", {
-                data: new Date(dati.aggiornato_al).toLocaleString(locale === "en" ? "en-GB" : "it-IT"),
+                data: new Date(dati.aggiornato_al).toLocaleString(intlLocale(locale)),
               })}
             </p>
           </>

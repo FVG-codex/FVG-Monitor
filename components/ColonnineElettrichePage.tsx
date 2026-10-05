@@ -7,6 +7,7 @@ import { supabase } from "@/lib/supabase";
 import { TopHeader } from "@/components/TopHeader";
 import { Footer } from "@/components/Footer";
 import { Panel } from "@/components/Panel";
+import { intlLocale } from "@/lib/intlLocale";
 import {
   cercaLocalita,
   distanzaKm,
@@ -34,7 +35,7 @@ const CENTRO_FVG: [number, number] = [46.1, 13.1];
 const RAGGI_KM = [10, 30, 50, 100] as const;
 
 function formattaData(iso: string, locale: string): string {
-  return new Date(iso).toLocaleString(locale === "en" ? "en-GB" : "it-IT", {
+  return new Date(iso).toLocaleString(intlLocale(locale), {
     day: "numeric",
     month: "short",
     hour: "2-digit",
@@ -273,7 +274,7 @@ export function ColonnineElettrichePage() {
                               .join(" · ")
                           : t("dettaglioPreseNonDisponibile")}
                         {c.verificatoIl
-                          ? t("verificato", { data: new Date(c.verificatoIl).toLocaleDateString(locale === "en" ? "en-GB" : "it-IT") })
+                          ? t("verificato", { data: new Date(c.verificatoIl).toLocaleDateString(intlLocale(locale)) })
                           : ""}
                       </div>
                     </div>

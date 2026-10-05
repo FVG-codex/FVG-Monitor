@@ -10,6 +10,7 @@ import { supabase } from "@/lib/supabase";
 import { PROVINCE_LIST, type ProvinciaSlug } from "@/lib/province";
 import { type SnapshotFarmacie, diTurnoOggi, formattaFascia, statoApertura, adessoEuropeRome } from "@/lib/farmacie";
 import { StatoApertoBadge } from "@/components/StatoApertoBadge";
+import { intlLocale } from "@/lib/intlLocale";
 
 const FarmacieMap = dynamic(() => import("@/components/FarmacieMap").then((m) => m.FarmacieMap), {
   ssr: false,
@@ -20,7 +21,7 @@ function formattaData(iso: string, locale: string): string {
   // iso è "YYYY-MM-DD" (data pura, senza ora) — new Date() la interpreta
   // come UTC mezzanotte, corretto per una data senza componente oraria.
   const d = new Date(iso);
-  return d.toLocaleDateString(locale === "en" ? "en-GB" : "it-IT", {
+  return d.toLocaleDateString(intlLocale(locale), {
     day: "numeric",
     month: "long",
     year: "numeric",

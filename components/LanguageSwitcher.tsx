@@ -20,6 +20,7 @@ import { routing } from "@/i18n/routing";
 const LINGUE: { locale: (typeof routing.locales)[number]; etichetta: string }[] = [
   { locale: "it", etichetta: "IT" },
   { locale: "en", etichetta: "EN" },
+  { locale: "de", etichetta: "DE" },
 ];
 
 export function LanguageSwitcher() {

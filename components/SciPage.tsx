@@ -7,6 +7,7 @@ import { supabase } from "@/lib/supabase";
 import { Panel } from "@/components/Panel";
 import { TopHeader } from "@/components/TopHeader";
 import { Footer } from "@/components/Footer";
+import { intlLocale } from "@/lib/intlLocale";
 
 type GaraSci = {
   id: string | null;
@@ -67,7 +68,7 @@ type RisultatiSciData = {
 
 function formattaData(iso: string, locale: string): string {
   const d = new Date(iso);
-  return d.toLocaleDateString(locale === "en" ? "en-GB" : "it-IT", {
+  return d.toLocaleDateString(intlLocale(locale), {
     weekday: "short",
     day: "numeric",
     month: "short",
@@ -314,7 +315,7 @@ export function SciPage() {
                   <p className="text-ink-faint text-[10px] font-mono mt-3">
                     {t("gareAggiornateAl", {
                       count: gareFiltrate.length,
-                      data: new Date(dati.aggiornato_al).toLocaleString(locale === "en" ? "en-GB" : "it-IT", {
+                      data: new Date(dati.aggiornato_al).toLocaleString(intlLocale(locale), {
                         day: "numeric",
                         month: "short",
                         hour: "2-digit",

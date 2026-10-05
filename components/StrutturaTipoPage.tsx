@@ -8,6 +8,7 @@ import { Footer } from "@/components/Footer";
 import { Panel } from "@/components/Panel";
 import { supabase } from "@/lib/supabase";
 import { PROVINCE_LIST, type ProvinciaSlug } from "@/lib/province";
+import { intlLocale } from "@/lib/intlLocale";
 import {
   PROVINCIA_ABBR,
   type TipoStrutturaSlug,
@@ -187,7 +188,7 @@ export function StrutturaTipoPage({ tipo }: { tipo: TipoStrutturaSlug }) {
 
             <p className="text-ink-faint text-[10px] font-mono mt-3">
               {t("aggiornatoAl", {
-                data: new Date(dati.aggiornato_al).toLocaleDateString(locale === "en" ? "en-GB" : "it-IT", {
+                data: new Date(dati.aggiornato_al).toLocaleDateString(intlLocale(locale), {
                   day: "numeric",
                   month: "long",
                   year: "numeric",

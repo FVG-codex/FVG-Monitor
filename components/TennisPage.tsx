@@ -7,6 +7,7 @@ import { supabase } from "@/lib/supabase";
 import { Panel } from "@/components/Panel";
 import { TopHeader } from "@/components/TopHeader";
 import { Footer } from "@/components/Footer";
+import { intlLocale } from "@/lib/intlLocale";
 
 type GiocatoreTennis = {
   nome: string;
@@ -41,7 +42,7 @@ function nomeCompleto(g: GiocatoreTennis): string {
 }
 
 function formattaData(iso: string, locale: string): string {
-  return new Date(iso).toLocaleString(locale === "en" ? "en-GB" : "it-IT", {
+  return new Date(iso).toLocaleString(intlLocale(locale), {
     day: "numeric",
     month: "short",
     hour: "2-digit",

@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { intlLocale } from "@/lib/intlLocale";
 
 // Ricerca indirizzo dal vivo per il calendario porta a porta di Trieste
 // (AcegasApsAmga/Il Rifiutologo) — 18/09/2026. A differenza del resto
@@ -35,7 +36,7 @@ function oggiIsoLocale(): string {
 
 function formattaDataLocale(dataIso: string, locale: string): string {
   const d = new Date(`${dataIso}T12:00:00Z`);
-  return d.toLocaleDateString(locale === "en" ? "en-GB" : "it-IT", {
+  return d.toLocaleDateString(intlLocale(locale), {
     weekday: "short",
     day: "numeric",
     month: "short",

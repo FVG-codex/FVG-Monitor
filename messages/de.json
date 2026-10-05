@@ -1,0 +1,625 @@
+{
+ "chrome": {
+  "siteName": "FVG Monitor",
+  "skipLink": "Zum Hauptinhalt springen",
+  "provinceNav": "Navigation nach Provinz",
+  "allRegion": "Ganze Region",
+  "menuOpen": "Menü öffnen",
+  "menuClose": "Menü schließen",
+  "menuExtraSections": "Weitere Bereiche",
+  "themeToDark": "Zum dunklen Thema wechseln",
+  "themeToLight": "Zum hellen Thema wechseln",
+  "languageSwitcher": "Sprache ändern",
+  "inArrivo": "Demnächst verfügbar",
+  "caricamento": "Wird geladen…",
+  "datiNonDisponibili": "Daten derzeit nicht verfügbar.",
+  "mappa": "Karte",
+  "apreNuovaScheda": "(öffnet in einem neuen Tab)",
+  "apertaOra": "Jetzt geöffnet",
+  "chiusaOra": "Jetzt geschlossen",
+  "elenco": "Liste ({count})",
+  "tuttiIComuni": "Alle Gemeinden ({count})",
+  "cercaNomeComuneLabel": "Suche nach Name oder Gemeinde",
+  "cercaNomeComunePlaceholder": "Suche nach Name oder Gemeinde…",
+  "aComune": " in {luogo}",
+  "inProvinciaDi": " in der Provinz {provincia}",
+  "telEtichetta": "Tel. {telefono}",
+  "sitoLink": "Website →"
+ },
+ "nav": {
+  "meteo": "Wetter",
+  "notizie": "Nachrichten",
+  "ambiente": "Umwelt",
+  "sport": "Sport",
+  "immagini": "FVG in Bildern",
+  "viabilita": "Verkehr & Straßen",
+  "trasporti": "Transport",
+  "aviazione": "Luftfahrt",
+  "sanita": "Gesundheitswesen",
+  "turismo": "Tourismus",
+  "economia": "Wirtschaft",
+  "commercio": "Einzelhandel"
+ },
+ "footer": {
+  "changelog": "Änderungsprotokoll →"
+ },
+ "inArrivo": {
+  "messaggio": "Dieser Bereich kommt in einer späteren Phase, sobald verifizierte Daten verfügbar sind."
+ },
+ "inArrivoPages": {
+  "galleria": "Fotogalerie",
+  "cliniche": "Kliniken & Ärztezentren",
+  "dentisti": "Zahnärzte & Zahnarztpraxen"
+ },
+ "trasporti": {
+  "descrizione": "Flüge, Züge und Busse in Echtzeit — Quelle: Trieste Airport, ViaggiaTreno (Trenitalia/RFI), TPL FVG",
+  "voliLink": "Alle Flüge →",
+  "treni": "Züge",
+  "autobus": "Busse"
+ },
+ "economia": {
+  "descrizione": "Wirtschaftsindikatoren für Friuli Venezia Giulia — Quelle: ISTAT (Istituto Nazionale di Statistica), vierteljährliche Daten",
+  "disoccupazione": "Arbeitslosigkeit",
+  "istatLink": "ISTAT — Daten erkunden →"
+ },
+ "changelogPage": {
+  "titolo": "Änderungsprotokoll",
+  "descrizione": "Verlauf der Ergänzungen und Korrekturen an FVG Monitor, neueste zuerst. Einträge vor dem 22.08.2026 haben kein genau erfasstes Datum.",
+  "voci": "{count} Einträge"
+ },
+ "commercio": {
+  "descrizione": "Einzelhandelsbetriebe in Friuli Venezia Giulia",
+  "categorie": {
+   "supermercati": {
+    "nome": "Supermärkte",
+    "descrizione": "Supermärkte, Hypermärkte und Discounter in den 4 Provinzen — Adressen, Öffnungszeiten und Karte"
+   }
+  }
+ },
+ "servizi": {
+  "titolo": "Dienste",
+  "descrizione": "Kommunale und öffentliche Versorgungsdienste in Friuli Venezia Giulia",
+  "sezioni": {
+   "rifiuti": {
+    "nome": "Mülltrennung",
+    "descrizione": "Abholkalender, Wertstoffhof und Glascontainer für 28 Gemeinden (Isontino/Carso)"
+   }
+  }
+ },
+ "fvgInImmagini": {
+  "descrizione": "Regionale Webcams und, in Kürze, eine Fotogalerie von Friuli Venezia Giulia",
+  "sezioni": {
+   "webcam": {
+    "nome": "Regionale Webcams",
+    "descrizione": "Bilder der OSMER-ARPA-FVG-Webcams, nach Provinz"
+   },
+   "galleria": {
+    "nome": "Fotogalerie"
+   }
+  }
+ },
+ "provincia": {
+  "condizioniLive": "Live-Bedingungen — {provincia}",
+  "vento": "Wind",
+  "pioggia": "Regen",
+  "livelloFiume": "Flusspegel",
+  "allertaProtezioneCivile": "Zivilschutz-Warnung",
+  "storicoLink": "Verlauf →",
+  "zonaAllertamento": "Warnzone:",
+  "altriModuli": "Weitere Module speziell für {provincia} (Verkehr, lokale Nachrichten) folgen in späteren Phasen des Projekts."
+ },
+ "turismo": {
+  "descrizione": "Schnee und Skilifte, Unterkünfte, Radwege und Veranstaltungen in Friuli Venezia Giulia",
+  "sezioni": {
+   "neveImpianti": {
+    "nome": "Schnee & Skilifte",
+    "descrizione": "Status der Lifte, Pisten und Wetterbedingungen der 7 Skigebiete der Region"
+   },
+   "struttureRicettive": {
+    "nome": "Unterkünfte",
+    "descrizione": "Hotels, B&Bs, Ferienhöfe und andere Unterkünfte nach Typ"
+   },
+   "pisteCiclabili": {
+    "nome": "Radwege",
+    "descrizione": "Regionale Radwege, Rundwege, mehrtägige Radwege und Mountainbike-Strecken"
+   },
+   "eventi": {
+    "nome": "Veranstaltungen",
+    "descrizione": "Feste, Ausstellungen, Konzerte und Veranstaltungen in den nächsten 14 Tagen in der gesamten Region"
+   }
+  }
+ },
+ "datiAmbientali": {
+  "titolo": "Umweltdaten",
+  "descrizione": "Wind, Regen, Luft, Pollen, Meer, Flüsse und Badewasser, nach Provinz — Quelle: Protezione Civile FVG, ARPA FVG",
+  "fiume": "Fluss"
+ },
+ "ambiente": {
+  "descrizione": "Umweltdaten nach Provinz, Erdbeben, Gezeiten und kommunale Dienste in Friuli Venezia Giulia",
+  "sezioni": {
+   "datiAmbientali": {
+    "nome": "Umweltdaten",
+    "descrizione": "Wind, Regen, Luft, Pollen, Meer, Flüsse und Badewasser, nach Provinz"
+   },
+   "terremoti": {
+    "nome": "Erdbeben",
+    "descrizione": "Seismische Ereignisse in FVG und angrenzenden Gebieten, letzte 30 Tage"
+   },
+   "maree": {
+    "nome": "Gezeiten",
+    "descrizione": "Beobachtete und vorhergesagte Flut und Ebbe in Trieste, Grado und Lignano"
+   },
+   "servizi": {
+    "nome": "Dienste",
+    "descrizione": "Kommunale und öffentliche Versorgungsdienste — beginnend mit der Mülltrennung"
+   }
+  }
+ },
+ "sanita": {
+  "descrizione": "Apotheken, Kliniken, Tierärzte und Zahnärzte in Friuli Venezia Giulia",
+  "sezioni": {
+   "prontoSoccorso": {
+    "nome": "Notaufnahme",
+    "descrizione": "Wartende und in Behandlung befindliche Patienten nach Triage-Code, in Echtzeit, für alle Standorte"
+   },
+   "farmacie": {
+    "nome": "Apotheken",
+    "descrizione": "Alle Apotheken und Bereitschaftsapotheken, nach Provinz und Gemeinde"
+   },
+   "cliniche": {
+    "nome": "Kliniken & Ärztezentren"
+   },
+   "veterinari": {
+    "nome": "Tierärzte & Notfälle",
+    "descrizione": "Tierkliniken und -praxen, mit hervorgehobenen etwaigen Notfalldiensten"
+   },
+   "dentisti": {
+    "nome": "Zahnärzte & Zahnarztpraxen"
+   }
+  }
+ },
+ "viabilita": {
+  "descrizione": "Verkehrsereignisse und Autobahn-Webcams — Quelle: InfoViaggiando, OSMER ARPA FVG",
+  "eventiInCorso": "Laufende Ereignisse",
+  "colonnineElettriche": "Ladestationen für Elektrofahrzeuge",
+  "webcamAutostradali": "Autobahn-Webcams",
+  "webcamAutostradaliDescrizione": "A4, A23, A28, SR354 — Quelle: OSMER ARPA FVG (CC BY-SA 3.0). Zum Öffnen der Originalquelle klicken",
+  "nessunaWebcamAutostradale": "Keine Autobahn-Webcam verfügbar.",
+  "confini": "Grenzen",
+  "confiniDescrizione": "15 Grenzübergänge/Routen nach Slowenien und Österreich — Referenzdaten (Gemeinde, Straße, Typ). Verkehrsereignisse in Echtzeit: italienische Seite für die 2 Autobahnübergänge (A23 Tarvisio, A34 Sant'Andrea/Vrtojba); slowenische Seite (experimentell, Quelle Promet.si) für Fernetti, Rabuiese/Škofije, Sant'Andrea/Vrtojba und Pesek/Kozina. Für die anderen 9 Übergänge wurde bisher keine überprüfbare öffentliche Quelle gefunden (ASFINAG und ANAS von dieser Sitzung aus nicht erreichbar — siehe lib/confini.ts)."
+ },
+ "terremoti": {
+  "descrizione": "Seismische Ereignisse in FVG und angrenzenden Gebieten, letzte 30 Tage — Quelle: INGV (Istituto Nazionale di Geofisica e Vulcanologia)",
+  "mappaAriaLabel": "Karte der Erdbeben in Friuli Venezia Giulia — entsprechende Textliste im Feld daneben",
+  "elencoEventi": "Ereignisliste ({count})",
+  "nessunEvento": "Keine Ereignisse in den letzten 30 Tagen.",
+  "profondita": "Tiefe {km} km"
+ },
+ "webcam": {
+  "descrizione": "Bilder bereitgestellt von OSMER ARPA FVG (CC BY-SA 3.0) — die Datengenauigkeit wird von ARPA FVG nicht garantiert, da Webcams Dritter zusammengeführt werden. Auf eine Webcam klicken, um die Originalquelle zu öffnen",
+  "panorami360": "360°-Panoramen",
+  "fontePanorami": "Quelle: Turismo FVG (Panomax / Feratel)",
+  "nessunPanorama": "Kein Panorama für diese Provinz verfügbar."
+ },
+ "meteo": {
+  "descrizione": "Bulletin, Live-Temperatur, Wind und Regen — Quelle: OSMER ARPA FVG, Protezione Civile FVG",
+  "radarMeteo": "Wetterradar",
+  "canaleTelegramLink": "Telegram-Kanal →",
+  "previsioniTemporalesche": "Gewittervorhersagen",
+  "bollettino": "Bulletin"
+ },
+ "aviazione": {
+  "descrizione": "Flughäfen, Landebahnen, Flugplätze und Hubschrauberlandeplätze in Friuli Venezia Giulia ({count} Einrichtungen) — Quellen: WebAAI (webaai.it) für Registerdaten, QNH Fly (qnhfly.com) für Landebahnrichtung, -länge und -oberfläche, soweit verfügbar. Statische Liste, regelmäßig aktualisiert: einige Daten (Kontakte, Öffnungszeiten, Frequenzen, Anflugkarten) sind kostenpflichtig und hier nicht enthalten.",
+  "filtri": {
+   "tutte": "Alle",
+   "aeroporto-civile": "Zivilflughäfen",
+   "aeroporto-militare": "Militärflughäfen",
+   "aviosuperficie": "Landebahnen",
+   "campo-volo": "Flugplätze",
+   "elisuperficie": "Hubschrauberlandeplätze",
+   "pista-dismessa": "Stillgelegte Landebahnen"
+  },
+  "mappaAriaLabel": "Karte der Luftfahrteinrichtungen in Friuli Venezia Giulia — entsprechende Textliste im Feld daneben",
+  "elenco": "Liste ({count})",
+  "nessunaStruttura": "Keine Einrichtung für diesen Filter gefunden.",
+  "schedaLink": "Details →",
+  "datiPistaLink": "Landebahndaten (qnhfly.com) →"
+ },
+ "tennis": {
+  "titolo": "Tennis — FVG-Gesamtrangliste",
+  "descrizione": "Top-Spieler mit FVG-Mitgliedschaft in der Kategorie Gesamtrangliste, unterteilt nach 2./3./4. Rangklasse und Geschlecht — Quelle: FITP (Federazione Italiana Tennis e Padel)",
+  "nessunGiocatore": "Kein Spieler für diese Kategorie gefunden.",
+  "colGiocatore": "Spieler",
+  "colComune": "Gemeinde",
+  "colGrado": "Rang",
+  "colVP": "S-N",
+  "riepilogo": "{count} FVG-gemeldete Spieler in dieser Kategorie — sortiert nach Rang (niedrigere Unterstufe = besser) · Daten aktualisiert am {data}"
+ },
+ "notizieProvincia": {
+  "descrizione": "Lokale Nachrichten nach Provinz, aus anderen Quellen als dem regionalen ANSA-Feed, der bereits auf der Startseite verfügbar ist",
+  "panelTitle": "Nachrichten · {scheda}",
+  "sportInArrivo": "Regionale Sportnachrichten folgen in einer späteren Phase.",
+  "provinciaInArrivo": "Nachrichten für {scheda} folgen in einer späteren Phase.",
+  "caricamentoNotizie": "Nachrichten werden geladen…",
+  "notizieNonDisponibili": "Nachrichten derzeit nicht verfügbar.",
+  "fonti": "Quellen:",
+  "minFa": "vor {n} Min.",
+  "oreFa": "vor {n} Std.",
+  "giorniFa": "vor {n} Tg."
+ },
+ "basket": {
+  "titoloFallback": "Basketball-Ergebnisse",
+  "descrizione": "Regionale Meisterschaften FIP FVG — Quelle: Federazione Italiana Pallacanestro"
+ },
+ "sport": {
+  "calendario": "Spielplan",
+  "classifica": "Tabelle",
+  "nessunaPartita": "Keine Spiele geplant.",
+  "colSquadra": "Mannschaft",
+  "colPt": "Pkt",
+  "colG": "Sp",
+  "colV": "S",
+  "colP": "N",
+  "colPF": "PF",
+  "colPS": "PG",
+  "colN": "U",
+  "colDR": "Diff"
+ },
+ "eventi": {
+  "descrizione": "Veranstaltungen, Feste, Ausstellungen und Shows in Friuli Venezia Giulia in den nächsten 14 Tagen — Quelle: Turismo FVG (PromoTurismoFVG)",
+  "finestraSuffisso": " · Zeitraum {da} → {a}",
+  "tab": {
+   "oggi": "Heute",
+   "domani": "Morgen",
+   "weekend": "Wochenende",
+   "prossimi": "Nächste 14 Tage"
+  },
+  "tutteLeCategorie": "Alle Kategorien",
+  "nonDisponibili": "Veranstaltungen derzeit nicht verfügbar.",
+  "nessunEvento": "Keine Veranstaltung für diesen Zeitraum/diese Kategorie gefunden.",
+  "aggiornato": "Aktualisiert am {data} · Zeiten und Orte können variieren: vor dem Besuch immer beim Veranstalter nachfragen."
+ },
+ "neveImpianti": {
+  "descrizione": "Status der Lifte, Pisten und Wetterbedingungen in den 7 Skigebieten von Friuli Venezia Giulia — Quelle: TurismoFVG, alle 15 Minuten während der Wintersaison aktualisiert. Die Liftöffnungszeiten sind indikativ und können sich ohne Vorankündigung aus Wetter- oder Betriebsgründen ändern: vor der Abfahrt immer beim Betreiber nachfragen.",
+  "nonDisponibili": "Daten zu Schnee & Liften derzeit nicht verfügbar.",
+  "datoNonAggiornato": "Daten seit der letzten Prüfung nicht aktualisiert",
+  "temperatura": "Temperatur",
+  "neveInPista": "Schnee auf der Piste",
+  "impiantiAperti": "Lifte geöffnet",
+  "pisteAperte": "Pisten geöffnet",
+  "tappetiAperti": "Förderbänder geöffnet",
+  "fondoAperto": "Langlaufloipe geöffnet",
+  "orariImpianti": "Liftzeiten: {orari}",
+  "paginaUfficialeLink": "Offizielle Seite →",
+  "webcamLink": "Webcam →",
+  "ultimoDato": "Letzte Aktualisierung: {ora}",
+  "ultimoTentativo": " · letzter Versuch: {ora}",
+  "nd": "k.A."
+ },
+ "struttureRicettive": {
+  "descrizioneHub": "Regionale Register der Beherbergungsbetriebe in Friuli Venezia Giulia, zertifiziert von den Gemeinden und von der Direzione centrale attività produttive — Quelle: Regione Autonoma FVG (dati.friuliveneziagiulia.it)",
+  "descrizioneDettaglio": "{descrizione} — Quelle: Regione Autonoma FVG (dati.friuliveneziagiulia.it), die nur Name, Gemeinde, E-Mail und Website veröffentlicht, soweit verfügbar. Adresse und Telefonnummer, wenn angezeigt, stammen aus einem Abgleich von Name und Gemeinde mit turismofvg.it oder OpenStreetMap (Quelle neben den Daten angegeben) — nicht immer verfügbar, kein offizieller Datensatz der Region.",
+  "cercaLabel": "Suche nach Name oder Gemeinde",
+  "cercaPlaceholder": "Suche nach Name oder Gemeinde…",
+  "elenco": "Liste ({count})",
+  "nessunaStruttura": "Keine Einrichtung gefunden.",
+  "sitoLink": "Website →",
+  "titolare": "Inhaber: {nome}",
+  "aggiornatoAl": "Daten aktualisiert am {data}",
+  "tutte": "Alle ({count})",
+  "tipi": {
+   "bb": {
+    "nome": "Bed & Breakfast",
+    "descrizioneBreve": "Zimmer in Privathäusern, von den Gemeinden zertifiziert",
+    "descrizioneCompleta": "Bed & Breakfasts, zertifiziert von den Gemeinden und von der Direzione centrale attività produttive"
+   },
+   "affittacamere": {
+    "nome": "Affittacamere",
+    "descrizioneBreve": "Vermietete Zimmer, von den Gemeinden zertifiziert",
+    "descrizioneCompleta": "Affittacamere (vermietete Zimmer), zertifiziert von den Gemeinden"
+   },
+   "campeggi": {
+    "nome": "Campingplätze und Feriendörfer",
+    "descrizioneBreve": "Campingplätze und Feriendörfer, von den Gemeinden zertifiziert",
+    "descrizioneCompleta": "Campingplätze und Feriendörfer, zertifiziert von den Gemeinden"
+   },
+   "agriturismi": {
+    "nome": "Ferienhöfe",
+    "descrizioneBreve": "Ferienhöfe, von den Gemeinden zertifiziert",
+    "descrizioneCompleta": "Ferienhöfe, zertifiziert von den Gemeinden"
+   },
+   "alberghi-diffusi": {
+    "nome": "Alberghi Diffusi",
+    "descrizioneBreve": "Verstreute Gastfreundschaft in Dörfern, von den Gemeinden zertifiziert",
+    "descrizioneCompleta": "Alberghi Diffusi (verstreute Hotels), zertifiziert von den Gemeinden"
+   },
+   "sociali": {
+    "nome": "Soziale Beherbergungseinrichtungen",
+    "descrizioneBreve": "Jugendherbergen, Gästehäuser und Ähnliches, von den Gemeinden zertifiziert",
+    "descrizioneCompleta": "Jugendhotels/-herbergen, Gästehäuser und Ähnliches, zertifiziert von den Gemeinden"
+   },
+   "marina": {
+    "nome": "Trockenmarina und Marina Resort",
+    "descrizioneBreve": "Trockenliegeplätze und Marina Resorts, von den Gemeinden zertifiziert",
+    "descrizioneCompleta": "Trockenmarina- und Marina-Resort-Einrichtungen, zertifiziert von den Gemeinden"
+   },
+   "rifugi": {
+    "nome": "Alpine Schutzhütten",
+    "descrizioneBreve": "Berghütten, von den Gemeinden zertifiziert",
+    "descrizioneCompleta": "Alpine Schutzhütten, zertifiziert von den Gemeinden"
+   }
+  }
+ },
+ "maree": {
+  "descrizione": "Flut und Ebbe in Trieste, Grado und Lignano — heute beobachtete Höchst- und Tiefstwerte (Quelle: Protezione Civile FVG) und Vorhersage für die kommenden Tage (Quelle: tide-forecast.com, inoffiziell)",
+  "nonDisponibili": "Daten derzeit nicht verfügbar.",
+  "andamentoOggi": "Heutiger Verlauf",
+  "oggiOsservato": "Heute (beobachtet)",
+  "prossimiGiorni": "Kommende Tage (Vorhersage)",
+  "nd": "k.A.",
+  "alta": "Flut",
+  "bassa": "Ebbe",
+  "osservatoAgg": "Beobachtet, aktualisiert {ora}",
+  "previsioneFonte": "Vorhersage: tide-forecast.com"
+ },
+ "baseball": {
+  "titoloFallback": "Baseball & Softball",
+  "descrizione": "FVG Baseball und Softball — ausgewählte Mannschaften — Quelle: live.baseballfvg.it",
+  "ultimiRisultati": "Letzte Ergebnisse",
+  "nessunaPartita": "Kein Spiel verfügbar.",
+  "colPercentuale": "%",
+  "colGB": "GB"
+ },
+ "calcio": {
+  "titoloFallback": "Fußballergebnisse",
+  "descrizione": "Regionale Amateurmeisterschaften FVG — Quelle: LND Comitato Regionale FVG",
+  "vistaArchivio": " — Sie sehen das Archiv der Saison {stagione}",
+  "archivio": "Archiv",
+  "giornata": "Spieltag {numero}",
+  "andata": "Hinspiel",
+  "ritorno": "Rückspiel",
+  "stagioneLabel": "Saison"
+ },
+ "supermercati": {
+  "descrizione": "Supermärkte, Hypermärkte und Discounter in Friuli Venezia Giulia (Minimärkte und kleine Lebensmittelgeschäfte ausgeschlossen) — Daten erhoben und manuell verifiziert (Google Maps und offizielle Websites der Ketten), kein offizielles Register der Region. Die angezeigten Öffnungszeiten sind die regulären wöchentlichen Zeiten: Feiertage und Sonderöffnungen sind nicht enthalten.",
+  "categorie": {
+   "Supermercato": "Supermarkt",
+   "Ipermercato": "Hypermarkt",
+   "Discount": "Discounter"
+  },
+  "cercaLabel": "Suche nach Name, Kette oder Gemeinde",
+  "cercaPlaceholder": "Suche nach Name, Kette oder Gemeinde…",
+  "nessunPuntoVendita": "Keine Filiale gefunden{luogo}.",
+  "chiusoTemporaneamente": "Vorübergehend geschlossen",
+  "oggiOrari": "Heute: {orari}",
+  "orarioNonConfermato": " (Öffnungszeiten nicht bestätigt)",
+  "mappaAriaLabel": "Karte der Supermärkte{luogo} — entsprechende Textliste im Feld daneben"
+ },
+ "prontoSoccorso": {
+  "descrizione": "Wartende und in Behandlung befindliche Patienten nach Triage-Code, in Echtzeit, für alle Notaufnahmen und Erste-Hilfe-Stellen in Friuli Venezia Giulia — Quelle: Servizio Sanitario Regionale FVG, alle 15 Minuten aktualisiert. Die Telefonnummer, falls angezeigt, wurde manuell anhand einer offiziellen Quelle verifiziert (nicht von der Datenquelle veröffentlicht) — im echten Notfall immer 118 anrufen.",
+  "nonDisponibili": "Daten zur Notaufnahme derzeit nicht verfügbar.",
+  "aggiornatoAlle": "Aktualisiert um {ora}",
+  "datoObsoleto": " — Daten seit über 30 Minuten nicht aktualisiert, spiegeln möglicherweise nicht die aktuelle Situation wider",
+  "tutteLeSedi": "Alle Standorte ({count})",
+  "nessunaSede": "Kein Standort gefunden{luogo}.",
+  "telefonoNonDisponibile": "Telefonnummer nicht verfügbar",
+  "indicazioniLink": "Wegbeschreibung →",
+  "inAttesa": "wartend",
+  "inTrattamento": "in Behandlung",
+  "abbrAttesa": "Wart.",
+  "abbrTrattamento": "Behandl.",
+  "attesaMedia": "durchschnittliche Wartezeit {valore}",
+  "mappaAriaLabel": "Karte der Notaufnahmen{luogo} — entsprechende Textliste im Feld daneben",
+  "delFriuliVeneziaGiulia": " von Friuli Venezia Giulia"
+ },
+ "farmacie": {
+  "titoloTurno": "Bereitschaftsapotheken",
+  "titoloTutte": "Alle Apotheken",
+  "descrizioneTurno": "Apotheken mit heutiger Sonderöffnung (Bereitschaftsdienst)",
+  "descrizioneTutte": "Vollständige Liste der Apotheken",
+  "paragrafoBase": "{descrizione}{data} in Friuli Venezia Giulia — Quelle: Regione Autonoma FVG (dati.friuliveneziagiulia.it), täglich um 01:00 Uhr aktualisiert.",
+  "noteTurno": " Enthält nicht die regulären Öffnungszeiten der Apotheken, nur die heutigen Sonderöffnungen.",
+  "noteTutte": " Die angezeigten Öffnungszeiten sind die heutigen (reguläre und etwaige Sonderöffnungszeiten) — die Quelle veröffentlicht keinen festen Wochenplan, nur eine tägliche Aktualisierung.",
+  "caricamentoFarmacie": "Apotheken werden geladen…",
+  "nonDisponibili": "Apothekendaten derzeit nicht verfügbar.",
+  "nessunaDiTurno": "Keine Bereitschaftsapotheke heute{luogo}.",
+  "nessunaTrovata": "Keine Apotheke gefunden{luogo}.",
+  "orarioNonDisponibile": "Öffnungszeiten nicht verfügbar",
+  "mappaAriaLabel": "Karte der Apotheken{luogo} — entsprechende Textliste im Feld daneben"
+ },
+ "colonnineElettriche": {
+  "descrizione": "Ladestationen für Elektrofahrzeuge in Friuli Venezia Giulia — Quelle: OpenChargeMap, ein Gemeinschaftsregister. Die Daten können für die neuesten Installationen unvollständig sein: das Verifizierungsdatum jeder Station prüfen.",
+  "localizzazione": "Standort wird ermittelt…",
+  "usaPosizione": "📍 Meinen Standort verwenden",
+  "cercaPlaceholder": "…oder nach einer Gemeinde oder Adresse suchen",
+  "cercando": "Wird gesucht…",
+  "raggioLabel": "Radius:",
+  "erroreBrowserNonSupportato": "Ihr Browser unterstützt keine Standortbestimmung.",
+  "errorePermessoNegato": "Standortfreigabe verweigert — Sie können unten manuell nach einem Ort suchen.",
+  "erroreGenerico": "Ihr Standort konnte nicht ermittelt werden — Sie können unten manuell nach einem Ort suchen.",
+  "mappaAriaLabel": "Karte der Ladestationen in Friuli Venezia Giulia — entsprechende Textliste im Feld daneben",
+  "entroRaggio": "Innerhalb von {km} km des gewählten Standorts ({count})",
+  "tutteLeColonnine": "Alle Ladestationen in FVG ({count})",
+  "suggerimentoPosizione": "Verwenden Sie Ihren Standort oder suchen Sie nach einem Ort, um nur die nächstgelegenen Ladestationen nach Entfernung sortiert zu sehen.",
+  "nessunaColonnina": "Keine Ladestation in diesem Bereich gefunden.",
+  "colonninaFallback": "Ladestation",
+  "presaFallback": "Steckdose",
+  "dettaglioPreseNonDisponibile": "Details zu den Steckdosen nicht verfügbar",
+  "verificato": " · verifiziert {data}",
+  "aggiornatoAl": "Aktualisiert am {data} · {fonte}"
+ },
+ "home": {
+  "title": "FVG Monitor — Echtzeitdaten für Friuli Venezia Giulia",
+  "panels": {
+   "meteo": "Wetter · Die 4 Provinzen",
+   "meteoLink": "OSMER ARPA FVG →",
+   "allerte": "Warnungen · Zonen",
+   "allerteLink": "Verlauf →",
+   "allerteDettaglio": "Details und offizielles Widget nach Provinz:",
+   "notizie": "Lokale Nachrichten",
+   "notizieLink": "Alle →",
+   "soleLuna": "Sonne & Mond",
+   "viabilita": "Verkehr & Straßen",
+   "viabilitaLink": "InfoViaggiando →",
+   "carburanti": "Kraftstoffpreise",
+   "carburantiLink": "MIMIT →",
+   "voli": "Trieste Airport",
+   "voliLink": "Alle Flüge →",
+   "tgr": "TGR FVG",
+   "eventi": "Veranstaltungen in der Region",
+   "eventiLink": "Alle →"
+  },
+  "ambiente": {
+   "title": "Umwelt",
+   "description": "Wind, Regen, Luft, Pollen, Meer, Flüsse und Badewasser — Quelle: Protezione Civile FVG, ARPA FVG",
+   "bora": "Bora · Wind und Regen",
+   "boraLink": "Protezione Civile FVG →",
+   "aria": "Luftqualität",
+   "ariaLink": "ARPA FVG →",
+   "pollini": "Pollen",
+   "polliniLink": "ARPA FVG →",
+   "livelli": "Meeres- und Flusspegel",
+   "livelliLink": "Protezione Civile FVG →",
+   "mare": "Meer",
+   "fiumi": "Flüsse",
+   "balneazione": "Badewasserqualität",
+   "balneazioneLink": "ARPA FVG →"
+  },
+  "fonti": "Quellen: OSMER ARPA FVG · ANSA FVG · Protezione Civile FVG (CC BY 4.0) · InfoViaggiando · Turismo FVG · RAI TGR FVG · Trieste Airport"
+ },
+ "veterinari": {
+  "descrizione": "Tierärztliche Einrichtungen in Friuli Venezia Giulia — Daten erhoben und manuell verifiziert (offizielle Websites und Branchenverzeichnisse), kein offizielles Berufsregister. Im Notfall immer vorher telefonisch die tatsächliche Verfügbarkeit bestätigen, bevor man zur Einrichtung geht.",
+  "datiInArrivo": "Tierärztliche Daten für {provincia} folgen in einer späteren Phase.",
+  "emergenzeTitolo": "Notfälle · {provincia}",
+  "nessunaEmergenza": "Keine Einrichtung in {provincia} gibt in dieser Liste eine Notfallversorgung an. Im dringenden Fall die nächstgelegene Einrichtung während der Öffnungszeiten telefonisch kontaktieren.",
+  "emergenzeDescrizione": "Einrichtungen mit angegebener Notfallversorgung, von am bereitesten bis am wenigsten sicher — vor einem dringenden Besuch trotzdem telefonisch nachfragen.",
+  "dichiarazioneNonVerificata": "Angabe nicht direkt verifiziert — telefonisch bestätigen",
+  "cercaLabel": "Suche nach Name, Gemeinde oder Einrichtungstyp",
+  "cercaPlaceholder": "Suche nach Name, Gemeinde oder Einrichtungstyp…",
+  "nessunaStrutturaTrovata": "Keine Einrichtung gefunden{luogo}.",
+  "mappaAriaLabel": "Karte der tierärztlichen Einrichtungen{luogo} — entsprechende Textliste im Feld daneben",
+  "livelloEmergenza": {
+   "pronto_soccorso_24h": "24-Stunden-Notdienst",
+   "pronto_soccorso_diurno": "Tagesnotdienst",
+   "guardia_medica_veterinaria": "Tierärztlicher Bereitschaftsdienst",
+   "reperibilita_telefonica": "Telefonische Erreichbarkeit",
+   "urgenze_in_orario": "Notfälle während der Öffnungszeiten",
+   "pronto_intervento_da_confermare": "Soforteinsatz (noch zu bestätigen)",
+   "sanita_pubblica_veterinaria": "Öffentlicher Veterinärdienst (nach Vereinbarung)",
+   "nessuna_dichiarata": "Keine Notfallversorgung angegeben",
+   "non_dichiarata": "Notfallversorgung nicht angegeben"
+  },
+  "suAppuntamento": "nach Vereinbarung"
+ },
+ "sci": {
+  "titolo": "Ski — FVG-Rennkalender",
+  "stagione": "Saison {stagione}",
+  "calendarioGare": "Rennkalender",
+  "descrizione": " — FISI-Wintersportveranstaltungen in Friuli Venezia Giulia (Langlauf, Skisprung, Nordische Kombination, Biathlon und weitere Disziplinen) — Quelle: FISI (Italienischer Wintersportverband), Komitee FVG. Ein Kalender, keine Tabelle: hier gibt es keine Punktemeisterschaft, jede Zeile ist ein einzelnes Rennen. Bereits stattgefundene Rennen können geöffnet werden, um die Ergebnisse zu sehen.",
+  "gareInCalendario": "Rennen im Kalender",
+  "nessunaGara": "Kein Rennen für diesen Filter gefunden.",
+  "dataDaDefinire": "Datum noch zu bestätigen",
+  "stato": {
+   "svolta": "Stattgefunden",
+   "inProgramma": "Geplant"
+  },
+  "caricamentoRisultati": "Ergebnisse werden geladen…",
+  "risultatiNonDisponibili": "Ergebnisse noch nicht verfügbar — sie werden nach dem Rennen schrittweise abgerufen, später erneut versuchen.",
+  "risultatiCount": "{count} Ergebnisse",
+  "nessunRisultatoGara": "Keine Ergebnisse für dieses Rennen verfügbar.",
+  "colPos": "Pos.",
+  "colAtleta": "Athlet",
+  "colAnno": "Jahr",
+  "colSocieta": "Verein",
+  "colTempo": "Zeit",
+  "colPunti": "Punkte",
+  "gareAggiornateAl": "{count} Rennen · Daten aktualisiert {data}"
+ },
+ "pisteCiclabili": {
+  "percorsiCount": "{count} Strecken",
+  "percorsiFallback": "Strecken",
+  "descrizione1": " in Friuli Venezia Giulia — 6 unabhängige Quellen: die 4 codierten turismofvg.it-Serien (Rundwege, Lineare Strecken, Mehrtägige Radwege, Mountainbike), die Autonome Region FVG (dati.friuliveneziagiulia.it) und der historische Datensatz Ciclovie 2020.",
+  "descrizione2": "<strong>Unabhängige Quellen, nie miteinander vermischt</strong> — jede Quelle hat ihr eigenes Feld unten und ihre eigene Farbe auf der Karte. Die turismofvg.it-Strecken (Code in Klammern, z. B. \"R001\") sind offizielle touristische Routen mit vollständigem Track und technischen Daten (Länge, Höhenunterschied, Schwierigkeit, Dauer), die von der jeweiligen Streckenseite gelesen werden, plus ein direkter Link zum Herunterladen der GPX-Datei. Die Daten der Region FVG hingegen haben eine <strong>teilweise Abdeckung</strong> (nur von den Gemeinden im Rahmen eines bestimmten Planungsverfahrens übermittelte Strecken, keine vollständige Erhebung — zum Beispiel ist das Gebiet von Trieste nicht abgedeckt) und können in mehrere Abschnitte unterteilt sein, mit Start-/Zielgemeinde und Provinz, die, wenn möglich, aus den Koordinaten berechnet werden. Ciclovie 2020 ist hingegen ein <strong>historischer Datensatz, eingefroren auf Januar 2020</strong> (vollständige regionale Abdeckung, einschließlich Trieste) — dargestellt als Kontextebene, nicht als aktueller Zustand des Netzes.",
+  "caricamentoPercorsi": "Strecken werden geladen…",
+  "nonDisponibili": "Daten zu Radwegen derzeit nicht verfügbar.",
+  "cercaLabel": "Suche nach Streckenname oder Code",
+  "cercaPlaceholder": "Suche nach Streckenname oder Code…",
+  "datiNonAncoraDisponibili": "Daten noch nicht verfügbar.",
+  "nessunPercorsoTrovato": "Keine Strecke gefunden.",
+  "daA": "Von {da} nach {a}",
+  "daComune": "Von {da}",
+  "finoAComune": "Bis {a}",
+  "scaricaGpx": "GPX herunterladen ↗",
+  "regioneFvg": "Region FVG ({count})",
+  "ciclovie2020Storico": "Ciclovie 2020 · historisch ({count})",
+  "indicativo": " (ungefähr)",
+  "lunghezzaNonDisponibile": "Länge nicht verfügbar",
+  "parziale": " (teilweise)",
+  "tratti": "{count} Abschnitte",
+  "mostraTuttaMappa": "← Ganze Karte anzeigen",
+  "mappaAriaLabel": "Karte der Radwege in Friuli Venezia Giulia — entsprechende Textliste in den Feldern oben. Auf eine Strecke in der Liste klicken, um sie hier hervorzuheben.",
+  "serie": {
+   "r": "Rundwege",
+   "p": "Lineare Strecken",
+   "c": "Mehrtägige Radwege",
+   "m": "Mountainbike"
+  }
+ },
+ "rifiuti": {
+  "descrizione": "Abholkalender, Wertstoffhof und Glascontainer, nach Provinz. Deckt nur die Gemeinden ab, die von den bereits integrierten Betreibern bedient werden, nicht die ganze Region — siehe unten für die ausgewählte Provinz.",
+  "nonDisponibili": "Daten zur Mülltrennung derzeit nicht verfügbar.",
+  "inArrivoProvincia": "Die Mülltrennung für die Provinz {provincia} folgt in einer späteren Phase.",
+  "comuneLabel": "Gemeinde",
+  "gestoreEtichetta": "Betreiber: {gestore}",
+  "datoNonAggiornato": "Daten seit der letzten Prüfung nicht aktualisiert (Netzwerkfehler an der Quelle)",
+  "areaLabel": "Bereich",
+  "areaNumero": "Bereich {numero}",
+  "nd": "k.A.",
+  "calendarioPortaPorta": "Haustürabholung-Kalender",
+  "raccoltaStradale": "Straßensammlung",
+  "prossimeRaccolte": "Nächste Abholungen",
+  "stazioniEcologiche": "Wertstoffhöfe",
+  "centroRaccoltaEVetro": "Wertstoffhof und Glas",
+  "daSapere": "Gut zu wissen",
+  "estate": "Sommer",
+  "inverno": "Winter",
+  "nessunDatoCalendario": "Derzeit keine Kalenderdaten für diesen Bereich verfügbar.",
+  "oggi": "Heute",
+  "conferimentiIngombranti": "Sperrmüll- und Grünabfallannahme",
+  "infoCentroNonDisponibili": "Informationen zum Wertstoffhof für diese Gemeinde nicht verfügbar.",
+  "campaneDelVetro": "Glascontainer",
+  "aggiornatoAl": "Aktualisiert {data} — der offizielle Kalender des Betreibers hat immer Vorrang vor dieser Seite: im Zweifelsfall prüfen, besonders in der Nähe von Feiertagen.",
+  "tipi": {
+   "paper": "Papier und Pappe",
+   "organic": "Feuchter Bioabfall",
+   "plastic_metals": "Kunststoff und Dosen",
+   "residual": "Restmüll",
+   "glass": "Glas",
+   "plastic_metals_net": "Kunststoff"
+  },
+  "giorniBrevi": {
+   "Lun": "Mo",
+   "Mar": "Di",
+   "Mer": "Mi",
+   "Gio": "Do",
+   "Ven": "Fr",
+   "Sab": "Sa",
+   "Dom": "So"
+  },
+  "triesteDescrizione": "Kalender nach Straße und Hausnummer — Live-Abfrage (kein einmal täglich aktualisierter Snapshot wie der Rest dieser Seite).",
+  "cercaViaLabel": "Suche nach einer Straße in Trieste",
+  "cercaViaPlaceholder": "Suche nach einer Straße (z. B. Via del Coroneo)…",
+  "caricoElencoVie": "Liste der Straßen von Trieste wird geladen…",
+  "elencoVieNonDisponibile": "Straßenliste derzeit nicht verfügbar — später erneut versuchen.",
+  "nessunaViaTrovata": "Keine Straße gefunden.",
+  "cambiaIndirizzo": "Adresse ändern",
+  "caricoCivici": "Hausnummern werden geladen…",
+  "civiciNonDisponibili": "Hausnummern derzeit nicht verfügbar.",
+  "civicoLabel": "Hausnummer",
+  "scegliPlaceholder": "Auswählen…",
+  "caricoCalendario": "Kalender wird geladen…",
+  "calendarioNonDisponibile": "Kalender derzeit nicht verfügbar.",
+  "nessunaRaccoltaIndirizzo": "Keine Abholung im Kalender für die kommenden Tage für diese Adresse.",
+  "esposizioneOrario": " — bereitstellen {orario}"
+ }
+}

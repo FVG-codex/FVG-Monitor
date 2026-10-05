@@ -7,6 +7,7 @@ import { MenuHamburger } from "@/components/MenuHamburger";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { PROVINCE_LIST } from "@/lib/province";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { intlLocale } from "@/lib/intlLocale";
 
 export function TopHeader({ paginaAttiva }: { paginaAttiva?: "regione" | string }) {
   const t = useTranslations("chrome");
@@ -20,7 +21,7 @@ export function TopHeader({ paginaAttiva }: { paginaAttiva?: "regione" | string 
       const pad = (n: number) => String(n).padStart(2, "0");
       setOra(`${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`);
       setData(
-        now.toLocaleDateString(locale === "en" ? "en-GB" : "it-IT", {
+        now.toLocaleDateString(intlLocale(locale), {
           day: "numeric",
           month: "long",
           year: "numeric",

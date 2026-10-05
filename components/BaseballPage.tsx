@@ -7,6 +7,7 @@ import { supabase } from "@/lib/supabase";
 import { Panel } from "@/components/Panel";
 import { TopHeader } from "@/components/TopHeader";
 import { Footer } from "@/components/Footer";
+import { intlLocale } from "@/lib/intlLocale";
 
 type Partita = {
   casa: string;
@@ -54,7 +55,7 @@ function formattaData(iso: string, locale: string): string {
   // es. lib/farmacie.ts, lib/supermercati.ts) invece di affidarsi al fuso
   // del dispositivo di chi legge, per evitare che una partita risulti
   // sul giorno sbagliato.
-  return d.toLocaleDateString(locale === "en" ? "en-GB" : "it-IT", {
+  return d.toLocaleDateString(intlLocale(locale), {
     weekday: "short",
     day: "numeric",
     month: "short",

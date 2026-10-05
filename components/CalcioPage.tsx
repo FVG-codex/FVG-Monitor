@@ -7,6 +7,7 @@ import { supabase } from "@/lib/supabase";
 import { Panel } from "@/components/Panel";
 import { TopHeader } from "@/components/TopHeader";
 import { Footer } from "@/components/Footer";
+import { intlLocale } from "@/lib/intlLocale";
 
 type Partita = {
   casa: string;
@@ -52,7 +53,7 @@ const STAGIONI = [
 
 function formattaData(iso: string, locale: string): string {
   const d = new Date(iso);
-  return d.toLocaleDateString(locale === "en" ? "en-GB" : "it-IT", {
+  return d.toLocaleDateString(intlLocale(locale), {
     weekday: "short",
     day: "numeric",
     month: "short",

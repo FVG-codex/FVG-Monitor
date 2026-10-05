@@ -7,6 +7,7 @@ import { supabase } from "@/lib/supabase";
 import { TopHeader } from "@/components/TopHeader";
 import { Footer } from "@/components/Footer";
 import { Panel } from "@/components/Panel";
+import { intlLocale } from "@/lib/intlLocale";
 
 const TerremotiMap = dynamic(() => import("@/components/TerremotiMap").then((m) => m.TerremotiMap), {
   ssr: false,
@@ -27,7 +28,7 @@ type Evento = {
 type TerremotiData = { eventi: Evento[]; aggiornato_al: string };
 
 function formattaData(iso: string, locale: string): string {
-  return new Date(iso).toLocaleString(locale === "en" ? "en-GB" : "it-IT", {
+  return new Date(iso).toLocaleString(intlLocale(locale), {
     day: "numeric",
     month: "short",
     hour: "2-digit",

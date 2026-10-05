@@ -5,9 +5,10 @@ import { defineRouting } from "next-intl/routing";
 // - si traduce solo l'interfaccia (header, menu, footer, guscio
 //   homepage), non i dati provenienti da fonti esterne (notizie,
 //   eventi, bollettini restano in italiano anche nelle altre lingue);
-// - si parte dall'inglese; tedesco/sloveno/croato seguiranno uno alla
-//   volta (vedi nota 29/09/2026 in lib/changelog.ts e nel doc di
-//   progetto);
+// - si parte dall'inglese; tedesco/sloveno/croato seguono uno alla
+//   volta (tedesco aggiunto il 05/10/2026, stesso criterio: solo testo
+//   fisso delle pagine — vedi nota 29/09/2026 in lib/changelog.ts e nel
+//   doc di progetto);
 // - gli URL italiani restano SENZA prefisso (es. /maree), le altre
 //   lingue hanno il prefisso (es. /en/maree) — `localePrefix:
 //   "as-needed"` fa esattamente questo: nessun prefisso per la
@@ -17,7 +18,7 @@ import { defineRouting } from "next-intl/routing";
 //   `LocalePrefix` accetta sia la stringa breve "as-needed" sia la
 //   forma verbosa {mode:"as-needed"} — qui usiamo la stringa breve.
 export const routing = defineRouting({
-  locales: ["it", "en"],
+  locales: ["it", "en", "de"],
   defaultLocale: "it",
   localePrefix: "as-needed",
 });
