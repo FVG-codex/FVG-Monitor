@@ -22,6 +22,13 @@ export type VoceChangelog = {
 export const CHANGELOG: VoceChangelog[] = [
   {
     data: "06/10/2026",
+    titolo: "Multilingua — aggiunto lo sloveno come quarta lingua del sito",
+    dettagli: [
+      "Dopo italiano, inglese e tedesco, il sito è ora disponibile anche in sloveno: stesso identico testo fisso già tradotto per le altre lingue (titoli, descrizioni, etichette dei pannelli, messaggi) tradotto anche in sloveno per tutte le pagine, selezionabile dal nuovo pulsante \"SL\" nel selettore di lingua in alto. Come per le altre lingue, i dati che arrivano dalle fonti esterne (bollettini, notizie, orari, risultati sportivi, calendari di raccolta rifiuti, ecc.) restano in italiano anche nella versione slovena. I nomi di comuni e provincia (Trieste, Udine, Gorizia, Pordenone) e il nome della regione (\"Friuli Venezia Giulia\") restano scritti come in italiano anche in sloveno — nonostante esistano esonimi sloveni storici (Trst, Videm, Gorica) — per coerenza con i dati reali (nomi di stazioni, indirizzi, bollettini) che sono generati da componenti non consapevoli della lingua e restano sempre in italiano: usare un esonimo solo nel testo fisso avrebbe creato un'incoerenza visibile nello stesso paragrafo. Prossima ed ultima lingua prevista dal piano originale: il croato.",
+    ],
+  },
+  {
+    data: "06/10/2026",
     titolo: "Tradotti i rimanenti moduli mappa e pannelli di pagina (Autobus, Treni, Aviazione, Farmacie, Fiumi, Maree, Pazzi per il meteo, Piste ciclabili, Pronto soccorso, Radar, Supermercati, Temperatura, Terremoti, Veterinari, Colonnine, Confini, Economia, Allerte)",
     dettagli: [
       "Completata la pulizia del debito tecnico di traduzione rimasto dopo la homepage: anche i popup delle mappe (autobus, treni, aviazione, farmacie, supermercati, terremoti, veterinari, piste ciclabili, pronto soccorso) e i pannelli di pagina rimasti in italiano fisso (livello fiume, grafico marea di oggi, previsioni e aggiornamenti di \"Pazzi per il meteo\", radar meteo, badge temperatura, sintesi colonnine elettriche in homepage, sezione Confini della pagina Viabilità, disoccupazione in Economia, avviso allerta Protezione Civile) sono ora tradotti in inglese e tedesco. Corretto anche un piccolo bug di formato data/ora e numeri (fisso all'italiano invece di seguire la lingua scelta) nel grafico marea e nel pannello disoccupazione. I dati reali — nomi di fermate/stazioni/strutture, indirizzi, orari, numeri di telefono, testo dei bollettini e degli eventi di traffico — restano in italiano in ogni lingua, come tutti i dati da fonti esterne o calcolati dal sito stesso.",

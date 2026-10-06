@@ -21,6 +21,7 @@ const LINGUE: { locale: (typeof routing.locales)[number]; etichetta: string }[] 
   { locale: "it", etichetta: "IT" },
   { locale: "en", etichetta: "EN" },
   { locale: "de", etichetta: "DE" },
+  { locale: "sl", etichetta: "SL" },
 ];
 
 export function LanguageSwitcher() {

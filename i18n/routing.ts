@@ -18,7 +18,7 @@ import { defineRouting } from "next-intl/routing";
 //   `LocalePrefix` accetta sia la stringa breve "as-needed" sia la
 //   forma verbosa {mode:"as-needed"} — qui usiamo la stringa breve.
 export const routing = defineRouting({
-  locales: ["it", "en", "de"],
+  locales: ["it", "en", "de", "sl"],
   defaultLocale: "it",
   localePrefix: "as-needed",
 });

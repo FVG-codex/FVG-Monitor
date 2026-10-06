@@ -94,6 +94,7 @@ export async function generateMetadata({
   const DESCRIZIONI: Record<string, string> = {
     en: "Weather, alerts, traffic, transport and news for Friuli Venezia Giulia in a single page.",
     de: "Wetter, Warnungen, Verkehr, Transport und Nachrichten für Friuli Venezia Giulia auf einer einzigen Seite.",
+    sl: "Vreme, opozorila, prometne razmere, javni prevoz in novice za Friuli Venezia Giulia na eni strani.",
   };
   return {
     title: "FVG Monitor",
