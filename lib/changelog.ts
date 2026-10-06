@@ -22,6 +22,13 @@ export type VoceChangelog = {
 export const CHANGELOG: VoceChangelog[] = [
   {
     data: "06/10/2026",
+    titolo: "Viabilità — nuovo box \"Lavori in corso\" (cantieri stradali di FVG Strade)",
+    dettagli: [
+      "Nella pagina Viabilità è apparso un nuovo box che mostra i cantieri stradali segnalati da FVG Strade SpA (senso unico alternato, chiusure, limitazioni di velocità) attivi nella giornata corrente, ricavati dalla pagina pubblica fvgstrade.it/infolavori. Ogni scheda mostra il titolo e il testo integrale dell'avviso originale (con le date e gli orari esatti della limitazione) e un link diretto all'articolo di FVG Strade. Il filtro \"attivi oggi\" è calcolato automaticamente leggendo le date scritte nel testo di ciascun avviso (il sito di FVG Strade non pubblica un campo data separato): un piccolo numero di avvisi che coprono un singolo giorno lavorativo all'interno di un periodo più ampio (es. \"un giorno lavorativo tra il 8/10 e il 12/11\") vengono mostrati per l'intero periodo, perché il giorno esatto non è altrimenti deducibile — il testo integrale dell'avviso lo chiarisce comunque. Titolo e testo dei cantieri restano in italiano in ogni lingua del sito, come tutti i dati da fonti esterne; solo le etichette del box sono tradotte in inglese, tedesco e sloveno.",
+    ],
+  },
+  {
+    data: "06/10/2026",
     titolo: "Multilingua — aggiunto lo sloveno come quarta lingua del sito",
     dettagli: [
       "Dopo italiano, inglese e tedesco, il sito è ora disponibile anche in sloveno: stesso identico testo fisso già tradotto per le altre lingue (titoli, descrizioni, etichette dei pannelli, messaggi) tradotto anche in sloveno per tutte le pagine, selezionabile dal nuovo pulsante \"SL\" nel selettore di lingua in alto. Come per le altre lingue, i dati che arrivano dalle fonti esterne (bollettini, notizie, orari, risultati sportivi, calendari di raccolta rifiuti, ecc.) restano in italiano anche nella versione slovena. I nomi di comuni e provincia (Trieste, Udine, Gorizia, Pordenone) e il nome della regione (\"Friuli Venezia Giulia\") restano scritti come in italiano anche in sloveno — nonostante esistano esonimi sloveni storici (Trst, Videm, Gorica) — per coerenza con i dati reali (nomi di stazioni, indirizzi, bollettini) che sono generati da componenti non consapevoli della lingua e restano sempre in italiano: usare un esonimo solo nel testo fisso avrebbe creato un'incoerenza visibile nello stesso paragrafo. Prossima ed ultima lingua prevista dal piano originale: il croato.",

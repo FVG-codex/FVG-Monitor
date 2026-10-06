@@ -11,6 +11,7 @@ import { ViabilitaPanel } from "@/components/ViabilitaPanel";
 import { ConfiniSection } from "@/components/ConfiniSection";
 import { WebcamCard, type Webcam } from "@/components/WebcamCard";
 import { ColonninePanel } from "@/components/ColonninePanel";
+import { InfolavoriPanel } from "@/components/InfolavoriPanel";
 
 type WebcamData = { webcam: Webcam[]; aggiornato_al: string };
 
@@ -77,6 +78,19 @@ export function ViabilitaPage() {
               (/colonnine-elettriche), qui solo un riassunto con link. */}
           <Panel title={t("colonnineElettriche")} span={3}>
             <ColonninePanel />
+          </Panel>
+
+          {/* Info lavori (06/10/2026, richiesta dell'utente): cantieri
+              segnalati da FVG Strade SpA attivi nella giornata odierna
+              — vedi InfolavoriPanel.tsx e ingestInfolavori() in
+              scripts/ingest-light.mjs per la logica di filtro. */}
+          <Panel
+            title={t("infolavori")}
+            linkLabel="FVG Strade →"
+            linkHref="https://www.fvgstrade.it/infolavori"
+            span={3}
+          >
+            <InfolavoriPanel />
           </Panel>
         </div>
 

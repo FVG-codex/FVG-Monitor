@@ -1305,6 +1305,188 @@ async function ingestViabilita() {
 }
 
 // ---------------------------------------------------------------------
+// VIABILITÀ — Info lavori stradali in corso, fvgstrade.it/infolavori
+// (06/10/2026, richiesta dell'utente: un box nella sezione Viabilità
+// con le info lavori sulla giornata corrente, a partire da questa
+// pagina).
+//
+// FVG Strade SpA (la società regionale che gestisce la rete stradale
+// di interesse regionale) pubblica qui un elenco di avvisi cantiere
+// (senso unico alternato, chiusure, limitazioni di velocità, ecc.),
+// più recenti per primi, paginato lato server via
+// `?PagerStartIndex=N` — verificato navigando la pagina reale con un
+// browser (non solo WebFetch, che qui restituisce solo il guscio
+// della pagina: il contenuto effettivo è iniettato lato server in un
+// blocco `.c-newsItems` che WebFetch non legge per intero). N
+// incrementa di 9 (9 schede per pagina, confermato leggendo
+// l'`outerHTML` reale di `.c-newsItem` e il link "Successivi").
+// Nessuna API/feed strutturato trovato per questi dati (verificata
+// una ricerca sui portali open data regionali il 06/10/2026) — solo
+// questa pagina HTML.
+//
+// Markup reale di una scheda (verificato il 06/10/2026, vedi
+// `infolavoriFetchPagina` sotto):
+//   <div class="c-newsItem clickableBlock">
+//     <div class="c-newsItem__texts">
+//       <div class="c-newsItem__date">05 ottobre 2026</div>
+//       <div class="c-newsItem__title">SR 356 "DI CIVIDALE" – TORREANO</div>
+//       <div class="c-newsItem__abstract">FVG Strade Spa informa che
+//         <strong><u>dal 08/10/2026 al 12/11/2026,</u></strong> ...</div>
+//       <a href="/it/30874/..." class="...c-newsItem__link">Vai all'articolo</a>
+//     </div>
+//   </div>
+//
+// Il testo dell'avviso NON ha campi data/ora strutturati separati —
+// solo prosa italiana libera con le date dentro, in forme diverse
+// (verificate leggendo le 9 schede reali della prima pagina il
+// 06/10/2026):
+//   "dal DD/MM/YYYY al DD/MM/YYYY[, ...]"                    (il caso più comune)
+//   "fino al DD/MM/YYYY[...]" / "fino al giorno DD/MM/YYYY"  (nessun inizio: lavoro già in corso)
+//   "dalle ore HH:MM di <giorno> DD/MM/YYYY alle ore HH:MM di <giorno> DD/MM/YYYY"
+//   "dal DD/MM/YYYY e fino all'attuazione della fase successiva" (nessuna fine: a tempo indeterminato)
+//
+// Strategia di `infolavoriParseFinestra` sotto: si estraggono TUTTE le
+// date in formato DD/MM/YYYY nell'ordine in cui compaiono nel testo
+// (già ridotto a testo piano, tag HTML già rimossi da cheerio). Con 2+
+// date trovate, le prime due sono inizio/fine. Con 1 sola data, si
+// guarda il contesto (le 3 parole precedenti): se contiene "fino" è
+// una data di FINE senza inizio noto (lavoro già in corso); altrimenti
+// è una data di INIZIO senza fine nota (lavoro a tempo indeterminato).
+// Con 0 date trovate, la scheda non è classificabile e viene scartata
+// dal box "oggi" (loggato, per capire se in futuro serve ampliare i
+// pattern). Verificato a mano (script Node a parte, poi scartato)
+// contro le 9 schede reali della prima pagina: tutte e 9 producono la
+// finestra attesa, inclusi i 2 casi limite "fino al" e "...fase
+// successiva" senza una delle due date.
+//
+// Limite noto, dichiarato: una manciata di avvisi descrivono un
+// singolo giorno lavorativo DENTRO una finestra più ampia ("per un
+// giorno lavorativo" entro "dal... al...", es. la scheda di Torreano
+// sopra) — non è possibile sapere quale giorno esatto senza un'altra
+// fonte, quindi l'intera finestra viene considerata "potenzialmente
+// oggi". Il testo integrale della scheda (sempre mostrato per intero
+// nel box, mai riassunto) chiarisce comunque al lettore la natura "un
+// giorno lavorativo" del singolo avviso.
+//
+// Come per tutti gli altri dati esterni del sito, titolo e testo
+// restano in italiano in ogni lingua (nessuna traduzione automatica
+// disponibile) — solo le etichette fisse del box (titolo pannello,
+// "nessun cantiere", stato di caricamento/errore) sono tradotte.
+// ---------------------------------------------------------------------
+
+const INFOLAVORI_URL = "https://www.fvgstrade.it/infolavori";
+// Tetto di sicurezza: ~9 schede/pagina, cadenza di pubblicazione
+// osservata di 1-2 avvisi/giorno il 06/10/2026 → 8 pagine (~72 schede,
+// ~un mese di pubblicazioni) è abbondante anche per i cantieri
+// pluri-mensili osservati (il parsing guarda le date dentro il testo,
+// non la data di pubblicazione: un cantiere pubblicato più indietro di
+// quanto copra questo tetto verrebbe perso, ma non è stato osservato
+// alcun caso simile nel campione reale controllato).
+const INFOLAVORI_MAX_PAGINE = 8;
+
+function infolavoriUrlAssoluto(href) {
+  if (!href) return null;
+  return href.startsWith("http") ? href : `https://www.fvgstrade.it${href}`;
+}
+
+// Estrae tutte le date DD/MM/YYYY nel testo piano (tag HTML già
+// rimossi da cheerio) e decide inizio/fine — vedi il commento estesso
+// sopra per la logica e la verifica contro dati reali.
+function infolavoriParseFinestra(testoPiano) {
+  const regexData = /\b(\d{1,2})\/(\d{1,2})\/(\d{4})\b/g;
+  const trovate = [];
+  let m;
+  while ((m = regexData.exec(testoPiano)) !== null) {
+    const contesto = testoPiano
+      .slice(0, m.index)
+      .trim()
+      .split(/\s+/)
+      .slice(-3)
+      .join(" ")
+      .toLowerCase();
+    trovate.push({ contesto, data: `${m[3]}-${m[2].padStart(2, "0")}-${m[1].padStart(2, "0")}` });
+  }
+  if (trovate.length === 0) return null;
+  if (trovate.length === 1) {
+    const { contesto, data } = trovate[0];
+    if (contesto.includes("fino")) return { inizio: null, fine: data };
+    return { inizio: data, fine: null };
+  }
+  return { inizio: trovate[0].data, fine: trovate[1].data };
+}
+
+async function infolavoriFetchPagina(startIndex) {
+  const url = startIndex === 0 ? INFOLAVORI_URL : `${INFOLAVORI_URL}?PagerStartIndex=${startIndex}`;
+  const res = await fetchConRetry(url, {
+    headers: { "User-Agent": "Mozilla/5.0 (compatible; FVGMonitorBot/1.0)" },
+  });
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  const $ = cheerio.load(await res.text());
+  return $(".c-newsItems .c-newsItem")
+    .toArray()
+    .map((el) => {
+      const $el = $(el);
+      const dataPubblicazione = $el.find(".c-newsItem__date").first().text().trim();
+      const titolo = $el.find(".c-newsItem__title").first().text().trim();
+      // replace(/\s+/g, " "): normalizza spazi multipli e "&nbsp;" (che
+      // cheerio decodifica in un vero U+00A0, incluso in \s di JS) dopo
+      // che <br> e tag di evidenziazione sono stati appiattiti da .text().
+      const testo = $el.find(".c-newsItem__abstract").first().text().trim().replace(/\s+/g, " ");
+      const link = infolavoriUrlAssoluto($el.find(".c-newsItem__link").first().attr("href"));
+      return { dataPubblicazione, titolo, testo, link };
+    })
+    .filter((v) => v.titolo && v.testo);
+}
+
+async function ingestInfolavori() {
+  const oggiIso = oggiEuropeRome();
+  const tutte = [];
+  for (let pagina = 0; pagina < INFOLAVORI_MAX_PAGINE; pagina++) {
+    let schede;
+    try {
+      schede = await infolavoriFetchPagina(pagina * 9);
+    } catch (err) {
+      if (pagina === 0) throw err;
+      break; // pagina successiva non raggiungibile: ci fermiamo con quanto raccolto finora
+    }
+    if (schede.length === 0) break; // fine della lista
+    tutte.push(...schede);
+    if (schede.length < 9) break; // ultima pagina (meno di una pagina piena)
+  }
+
+  let nonAnalizzabili = 0;
+  const attivi = [];
+  for (const scheda of tutte) {
+    const finestra = infolavoriParseFinestra(scheda.testo);
+    if (!finestra) {
+      nonAnalizzabili++;
+      continue;
+    }
+    const inCorso =
+      (finestra.inizio === null || finestra.inizio <= oggiIso) &&
+      (finestra.fine === null || finestra.fine >= oggiIso);
+    if (inCorso) {
+      attivi.push({ ...scheda, periodo: finestra });
+    }
+  }
+
+  if (nonAnalizzabili > 0) {
+    console.warn(
+      `Infolavori: ${nonAnalizzabili}/${tutte.length} schede senza una data riconoscibile nel testo — escluse dal box "oggi".`
+    );
+  }
+
+  await upsertSnapshot("viabilita:infolavori", "viabilita", null, {
+    attivi,
+    totaleSchede: tutte.length,
+    aggiornato_al: new Date().toISOString(),
+  });
+  console.log(
+    `Infolavori aggiornati: ${attivi.length}/${tutte.length} cantieri attivi oggi (${oggiIso})`
+  );
+}
+
+// ---------------------------------------------------------------------
 
 // ---------------------------------------------------------------------
 // VIABILITÀ — Confini, lato sloveno: Promet.si "coreTileVector"
@@ -12976,6 +13158,7 @@ async function main() {
     ["notizie", ingestNotizie()],
     ["vento", ingestVento()],
     ["viabilita", ingestViabilita()],
+    ["infolavori", ingestInfolavori()],
     ["confini-prometsi", ingestConfiniPrometsi()],
     ["carburanti", ingestCarburanti()],
     ["eventi", ingestEventi()],

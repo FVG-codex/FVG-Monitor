@@ -196,7 +196,10 @@
     "confiniDescrizione": "15 border crossings/routes to Slovenia and Austria — reference data (municipality, road, type). Real-time traffic events: Italian side for the 2 motorway crossings (A23 Tarvisio, A34 Sant'Andrea/Vrtojba); Slovenian side (experimental, source Promet.si) for Fernetti, Rabuiese/Škofije, Sant'Andrea/Vrtojba and Pesek/Kozina. For the other 9 crossings no verifiable public source has been found so far (ASFINAG and ANAS not reachable from this session — see lib/confini.ts).",
     "caricamento": "Loading traffic data…",
     "nonDisponibili": "Traffic data not available right now.",
-    "nessunEvento": "No significant events on the FVG motorway network right now."
+    "nessunEvento": "No significant events on the FVG motorway network right now.",
+    "infolavori": "Roadworks",
+    "nessunCantiere": "No roadworks reported for today.",
+    "infolavoriLink": "Go to article →"
   },
   "terremoti": {
     "descrizione": "Seismic events in FVG and neighbouring areas, last 30 days — source: INGV (Istituto Nazionale di Geofisica e Vulcanologia)",

@@ -196,7 +196,10 @@
     "confiniDescrizione": "15 Grenzübergänge/Routen nach Slowenien und Österreich — Referenzdaten (Gemeinde, Straße, Typ). Verkehrsereignisse in Echtzeit: italienische Seite für die 2 Autobahnübergänge (A23 Tarvisio, A34 Sant'Andrea/Vrtojba); slowenische Seite (experimentell, Quelle Promet.si) für Fernetti, Rabuiese/Škofije, Sant'Andrea/Vrtojba und Pesek/Kozina. Für die anderen 9 Übergänge wurde bisher keine überprüfbare öffentliche Quelle gefunden (ASFINAG und ANAS von dieser Sitzung aus nicht erreichbar — siehe lib/confini.ts).",
     "caricamento": "Verkehrsdaten werden geladen…",
     "nonDisponibili": "Verkehrsdaten derzeit nicht verfügbar.",
-    "nessunEvento": "Derzeit keine nennenswerten Ereignisse auf dem Autobahnnetz des FVG."
+    "nessunEvento": "Derzeit keine nennenswerten Ereignisse auf dem Autobahnnetz des FVG.",
+    "infolavori": "Baustellen",
+    "nessunCantiere": "Keine Baustellen für heute gemeldet.",
+    "infolavoriLink": "Zum Artikel →"
   },
   "terremoti": {
     "descrizione": "Seismische Ereignisse in FVG und angrenzenden Gebieten, letzte 30 Tage — Quelle: INGV (Istituto Nazionale di Geofisica e Vulcanologia)",

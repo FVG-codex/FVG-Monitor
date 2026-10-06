@@ -196,7 +196,10 @@
     "confiniDescrizione": "15 mejnih prehodov/poti v Slovenijo in Avstrijo — referenčni podatki (občina, cesta, tip). Prometni dogodki v realnem času: italijanska stran za 2 avtocestna prehoda (A23 Tarvisio, A34 Sant'Andrea/Vrtojba); slovenska stran (poskusno, vir Promet.si) za Fernetti, Rabuiese/Škofije, Sant'Andrea/Vrtojba in Pesek/Kozina. Za drugih 9 prehodov doslej ni bil najden preverljiv javni vir (ASFINAG in ANAS iz te seje nista dosegljiva — glej lib/confini.ts).",
     "caricamento": "Nalaganje podatkov o prometu…",
     "nonDisponibili": "Podatki o prometu trenutno niso na voljo.",
-    "nessunEvento": "Trenutno ni pomembnejših dogodkov na avtocestnem omrežju FVG."
+    "nessunEvento": "Trenutno ni pomembnejših dogodkov na avtocestnem omrežju FVG.",
+    "infolavori": "Dela na cesti",
+    "nessunCantiere": "Za danes ni prijavljenih del na cesti.",
+    "infolavoriLink": "Na članek →"
   },
   "terremoti": {
     "descrizione": "Seizmični dogodki v FVG in sosednjih območjih, zadnjih 30 dni — vir: INGV (Istituto Nazionale di Geofisica e Vulcanologia)",

@@ -196,7 +196,10 @@
     "confiniDescrizione": "15 valichi/direttrici verso Slovenia e Austria — dati anagrafici (comune, strada, tipologia). Eventi di traffico in tempo reale: lato italiano per i 2 valichi autostradali (A23 Tarvisio, A34 Sant'Andrea/Vrtojba); lato sloveno (sperimentale, fonte Promet.si) per Fernetti, Rabuiese/Škofije, Sant'Andrea/Vrtojba e Pesek/Kozina. Per gli altri 9 valichi nessuna fonte pubblica verificabile è stata trovata finora (ASFINAG e ANAS non raggiungibili da questa sessione — vedi lib/confini.ts).",
     "caricamento": "Caricamento viabilità…",
     "nonDisponibili": "Dati viabilità non disponibili al momento.",
-    "nessunEvento": "Nessun evento di rilievo sulla rete autostradale del FVG al momento."
+    "nessunEvento": "Nessun evento di rilievo sulla rete autostradale del FVG al momento.",
+    "infolavori": "Lavori in corso",
+    "nessunCantiere": "Nessun cantiere segnalato per oggi.",
+    "infolavoriLink": "Vai all'articolo →"
   },
   "terremoti": {
     "descrizione": "Eventi sismici in FVG e zone limitrofe, ultimi 30 giorni — fonte: INGV (Istituto Nazionale di Geofisica e Vulcanologia)",
