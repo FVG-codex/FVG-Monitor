@@ -12,6 +12,7 @@ const INTL_LOCALE: Record<string, string> = {
   en: "en-GB",
   de: "de-DE",
   sl: "sl-SI",
+  hr: "hr-HR",
 };
 
 export function intlLocale(locale: string): string {

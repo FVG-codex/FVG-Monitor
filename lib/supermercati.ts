@@ -1,12 +1,13 @@
 import type { ProvinciaSlug } from "@/lib/province";
 import { adessoEuropeRome, type StatoApertura } from "@/lib/farmacie";
+import { giornoSettimana } from "@/lib/orario";
 
 import datiGorizia from "@/lib/data/supermercati-gorizia.json";
 import datiPordenone from "@/lib/data/supermercati-pordenone.json";
 import datiTrieste from "@/lib/data/supermercati-trieste.json";
 import datiUdine from "@/lib/data/supermercati-udine.json";
 
-export { adessoEuropeRome };
+export { adessoEuropeRome, giornoSettimana };
 
 // Commercio — Supermercati (10/09/2026). Prima categoria della nuova
 // sezione "Commercio" del menù (altre attività commerciali verranno
@@ -152,28 +153,17 @@ export const SUPERMERCATI_TUTTI: VoceSupermercato[] = [
 
 export const CATEGORIE_SUPERMERCATO: CategoriaSupermercato[] = ["Supermercato", "Ipermercato", "Discount"];
 
-// Giorno della settimana (chiave di OrariSettimana) a partire da "adesso"
-// nel formato "YYYY-MM-DDTHH:MM" prodotto da adessoEuropeRome() — stessa
-// funzione già usata per le farmacie (fuso Europe/Rome, non quello del
-// browser di chi visita). Si usa solo la parte data, interpretata come
-// UTC mezzanotte: per un giorno di calendario già corretto (Europe/Rome)
-// questo dà lo stesso giorno della settimana ovunque si trovi il
-// visitatore, evitando un secondo cambio di fuso indesiderato.
-const GIORNI: (keyof OrariSettimana)[] = [
-  "domenica",
-  "lunedi",
-  "martedi",
-  "mercoledi",
-  "giovedi",
-  "venerdi",
-  "sabato",
-];
-
-export function giornoSettimana(adesso: string): keyof OrariSettimana {
-  const dataPura = adesso.slice(0, 10);
-  const indice = new Date(`${dataPura}T00:00:00Z`).getUTCDay();
-  return GIORNI[indice];
-}
+// Fase 4 — Performance (06/10/2026): giornoSettimana() viveva qui, ma è
+// una funzione pura senza alcuna dipendenza dal dataset Supermercati —
+// spostata in lib/orario.ts (nessun import di dati statici) perché
+// lib/veterinari.ts la importava da QUESTO file solo per questa singola
+// funzione, finendo però per bundlare nel proprio client anche i 4 JSON
+// Supermercati (611 KB, mai usati da /veterinari) insieme a essa: un
+// bundler non può scartare il resto di un modulo importato anche quando
+// l'export usato è innocuo. Vedi il commento esteso in lib/orario.ts.
+// Ri-esportata qui (vedi import in cima al file + export riga 10) per
+// non rompere chi già importa `giornoSettimana` da "@/lib/supermercati"
+// (SupermercatiMap.tsx, SupermercatiPage.tsx).
 
 // "Aperta ora"/"Chiusa ora" — a differenza delle farmacie (orari
 // puntuali di UNA giornata, ISO con data), qui gli orari sono

@@ -22,6 +22,20 @@ export type VoceChangelog = {
 export const CHANGELOG: VoceChangelog[] = [
   {
     data: "06/10/2026",
+    titolo: "Multilingua — aggiunto il croato come quinta ed ultima lingua del sito",
+    dettagli: [
+      "Dopo italiano, inglese, tedesco e sloveno, il sito è ora disponibile anche in croato: stesso identico testo fisso già tradotto per le altre lingue, selezionabile dal nuovo pulsante \"HR\" nel selettore di lingua in alto. Come per le altre lingue, i dati che arrivano dalle fonti esterne (bollettini, notizie, orari, risultati sportivi, calendari di raccolta rifiuti, ecc.) restano in italiano anche nella versione croata, e i nomi di comuni e provincia (Trieste, Udine, Gorizia, Pordenone) e il nome della regione (\"Friuli Venezia Giulia\") restano scritti come in italiano anche in croato, per lo stesso motivo già applicato allo sloveno. Con questa si completano tutte le lingue previste dal piano originale.",
+    ],
+  },
+  {
+    data: "06/10/2026",
+    titolo: "Fase 4 (rifinitura) — performance: la pagina Veterinari scarica ~27 KB in meno",
+    dettagli: [
+      "Terza e ultima area di \"Fase 4\" (dopo Responsive e Accessibilità): un controllo del peso delle pagine ha trovato che la sezione Veterinari & Emergenze scaricava, oltre ai propri dati, anche l'intero elenco Supermercati di tutte e 4 le province (mai usato in quella pagina) per via di un collegamento interno tra due file di libreria. Corretto: la pagina Veterinari ora scarica solo i propri dati. Nessun cambiamento visibile per chi usa il sito, solo un caricamento più leggero di quella pagina.",
+    ],
+  },
+  {
+    data: "06/10/2026",
     titolo: "Viabilità — nuovo box \"Lavori in corso\" (cantieri stradali di FVG Strade)",
     dettagli: [
       "Nella pagina Viabilità è apparso un nuovo box che mostra i cantieri stradali segnalati da FVG Strade SpA (senso unico alternato, chiusure, limitazioni di velocità) attivi nella giornata corrente, ricavati dalla pagina pubblica fvgstrade.it/infolavori. Ogni scheda mostra il titolo e il testo integrale dell'avviso originale (con le date e gli orari esatti della limitazione) e un link diretto all'articolo di FVG Strade. Il filtro \"attivi oggi\" è calcolato automaticamente leggendo le date scritte nel testo di ciascun avviso (il sito di FVG Strade non pubblica un campo data separato): un piccolo numero di avvisi che coprono un singolo giorno lavorativo all'interno di un periodo più ampio (es. \"un giorno lavorativo tra il 8/10 e il 12/11\") vengono mostrati per l'intero periodo, perché il giorno esatto non è altrimenti deducibile — il testo integrale dell'avviso lo chiarisce comunque. Titolo e testo dei cantieri restano in italiano in ogni lingua del sito, come tutti i dati da fonti esterne; solo le etichette del box sono tradotte in inglese, tedesco e sloveno.",

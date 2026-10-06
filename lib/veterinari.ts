@@ -1,6 +1,7 @@
 import type { ProvinciaSlug } from "@/lib/province";
-import { adessoEuropeRome, giornoSettimana, type FasciaOrariaSettimanale } from "@/lib/supermercati";
-import type { StatoApertura } from "@/lib/farmacie";
+import { adessoEuropeRome, type StatoApertura } from "@/lib/farmacie";
+import { giornoSettimana } from "@/lib/orario";
+import type { FasciaOrariaSettimanale } from "@/lib/supermercati";
 
 import datiTrieste from "@/lib/data/veterinari-trieste.json";
 import datiGorizia from "@/lib/data/veterinari-gorizia.json";
@@ -10,6 +11,24 @@ import datiUdine from "@/lib/data/veterinari-udine.json";
 export { adessoEuropeRome, giornoSettimana };
 export type { FasciaOrariaSettimanale };
 
+// Fase 4 — Performance (06/10/2026): `giornoSettimana` veniva prima
+// importata da "@/lib/supermercati" (dove era definita) invece che da
+// "@/lib/orario" come sopra — stessa funzione, stesso comportamento,
+// ma quell'import trascinava nel bundle client di /veterinari anche
+// SUPERMERCATI_PER_PROVINCIA (i 4 JSON Supermercati, ~30 KB gzip),
+// mai usato da questa pagina: un bundler non scarta il resto di un
+// modulo importato solo perché l'export richiesto è innocuo, se il
+// modulo ha codice con effetti a livello di modulo (qui, il
+// `.map(normalizza)` sui JSON). Misurato con `next build`: la rotta
+// /veterinari passa da 166 kB a 139 kB di "First Load JS" con questo
+// solo cambio (vedi nota più estesa in lib/orario.ts). `adessoEuropeRome`
+// era già importata da "@/lib/farmacie" tramite "@/lib/supermercati"
+// (che la re-esporta) — ora importata direttamente da "@/lib/farmacie",
+// un hop in meno, stesso motivo. `FasciaOrariaSettimanale` resta
+// importato da "@/lib/supermercati" ma come `import type`: erased a
+// compile time da TypeScript, zero costo a runtime, quindi non
+// reintroduce la stessa dipendenza.
+//
 // Sanità → Veterinari & Emergenze (11/09/2026, esteso a Gorizia il
 // 13/09/2026). Seconda sezione della nuova voce di menù "Sanità"
 // (Farmacie + Cliniche & centri medici + Veterinari & Emergenze +

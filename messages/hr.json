@@ -1,0 +1,886 @@
+{
+  "chrome": {
+    "siteName": "FVG Monitor",
+    "skipLink": "Prijeđi na glavni sadržaj",
+    "provinceNav": "Navigacija po pokrajinama",
+    "allRegion": "Cijela regija",
+    "menuOpen": "Otvorite izbornik",
+    "menuClose": "Zatvorite izbornik",
+    "menuExtraSections": "Dodatni dijelovi",
+    "themeToDark": "Prijeđi na tamnu temu",
+    "themeToLight": "Prebaci na svijetlu temu",
+    "languageSwitcher": "Promjena jezika",
+    "inArrivo": "Uskoro",
+    "caricamento": "Učitavanje…",
+    "datiNonDisponibili": "Podaci trenutno nisu dostupni.",
+    "mappa": "Karta",
+    "apreNuovaScheda": "(otvara se u novoj kartici)",
+    "apertaOra": "Sada otvoreno",
+    "chiusaOra": "Sada zatvoreno",
+    "elenco": "Popis ({count})",
+    "tuttiIComuni": "Sve općine ({count})",
+    "cercaNomeComuneLabel": "Traži po imenu ili općini",
+    "cercaNomeComunePlaceholder": "Traži po imenu ili općini…",
+    "aComune": "do {luogo}",
+    "inProvinciaDi": "u provinciji {provincia}",
+    "telEtichetta": "Tel. {telefono}",
+    "sitoLink": "Web-stranica →",
+    "nd": "n. d.",
+    "fonteProtezioneCivile": "Izvor: Protezione Civile FVG (CC BY 4.0)",
+    "binario": "kolosijek {binario}"
+  },
+  "nav": {
+    "meteo": "Vrijeme",
+    "notizie": "Vijesti",
+    "ambiente": "Okoliš",
+    "sport": "Sport",
+    "immagini": "FVG na slikama",
+    "viabilita": "Promet",
+    "trasporti": "Transport",
+    "aviazione": "Zrakoplovstvo",
+    "sanita": "Zdravstvo",
+    "turismo": "Turizam",
+    "economia": "Gospodarstvo",
+    "commercio": "Trgovina"
+  },
+  "footer": {
+    "changelog": "Dnevnik promjena →"
+  },
+  "inArrivo": {
+    "messaggio": "Odjeljak dolazi u sljedećoj fazi, kako provjereni podaci postanu dostupni."
+  },
+  "inArrivoPages": {
+    "galleria": "Galerija fotografija",
+    "cliniche": "Klinike i medicinski centri",
+    "dentisti": "Stomatolozi i odontolozi"
+  },
+  "trasporti": {
+    "descrizione": "Letovi, vlakovi i autobusi u stvarnom vremenu — izvor: Trieste Airport, ViaggiaTreno (Trenitalia/RFI), TPL FVG",
+    "voliLink": "Svi letovi →",
+    "treni": "Vlakovi",
+    "autobus": "Autobusi"
+  },
+  "economia": {
+    "descrizione": "Gospodarski pokazatelji Friuli Venezia Giulia — izvor: ISTAT (Istituto Nazionale di Statistica), tromjesečni podaci",
+    "disoccupazione": "Nezaposlenost",
+    "istatLink": "ISTAT — Istraživač podataka →",
+    "etichettaTrimestre": "{trim}° obrub. {anno}",
+    "tassoDisoccupazioneSottotitolo": "Stopa nezaposlenosti, {trimestre} — Friuli Venezia Giulia, 15-74 godine",
+    "ultimiTrimestri": "Najnovije četvrtine",
+    "puntiTrimestrePrecedente": "bodovi u odnosu na prethodni kvartal."
+  },
+  "changelogPage": {
+    "titolo": "Dnevnik promjena",
+    "descrizione": "Povijest onoga što je dodano ili popravljeno na FVG Monitor, najnovije na vrhu. Upisi prije 22. 8. 2026. nemaju zabilježen točan datum.",
+    "voci": "{count} stavki"
+  },
+  "commercio": {
+    "descrizione": "Komercijalne aktivnosti Friuli Venezia Giulia",
+    "categorie": {
+      "supermercati": {
+        "nome": "Supermarketi",
+        "descrizione": "Supermarketi, hipermarketi i diskonti u 4 pokrajine — adrese, radno vrijeme i karta"
+      }
+    }
+  },
+  "servizi": {
+    "titolo": "Usluge",
+    "descrizione": "Komunalne i javne usluge u Friuli Venezia Giulia",
+    "sezioni": {
+      "rifiuti": {
+        "nome": "Odvojeno prikupljanje otpada",
+        "descrizione": "Kalendar od vrata do vrata, sabirni centar i staklena zvona za 28 općina (Isontino/Carso)"
+      }
+    }
+  },
+  "fvgInImmagini": {
+    "descrizione": "Regionalne web kamere i, uskoro, galerija fotografija Friuli Venezia Giulia",
+    "sezioni": {
+      "webcam": {
+        "nome": "Regionalne web kamere",
+        "descrizione": "Slike s web kamera OSMER ARPA FVG, po pokrajini"
+      },
+      "galleria": {
+        "nome": "Galerija fotografija"
+      }
+    }
+  },
+  "provincia": {
+    "condizioniLive": "Uvjeti uživo — {provincia}",
+    "vento": "Vjetar",
+    "pioggia": "Kiša",
+    "livelloFiume": "Razina rijeke",
+    "allertaProtezioneCivile": "Upozorenje civilne zaštite",
+    "storicoLink": "Povijest →",
+    "zonaAllertamento": "Zona upozorenja:",
+    "altriModuli": "Ostali moduli specifični za {provincia} (promet, lokalne vijesti) stižu u kasnijim fazama plana."
+  },
+  "turismo": {
+    "descrizione": "Snijeg i objekti, smještajni kapaciteti, biciklističke rute i događaji Friuli Venezia Giulia",
+    "sezioni": {
+      "neveImpianti": {
+        "nome": "Snijeg i objekti",
+        "descrizione": "Status objekata, staza i vremenski uvjeti 7 skijališta u regiji"
+      },
+      "struttureRicettive": {
+        "nome": "Smještajni kapaciteti",
+        "descrizione": "Hoteli, pansioni, seoska domaćinstva i drugi smještajni objekti prema vrsti"
+      },
+      "pisteCiclabili": {
+        "nome": "Biciklističke staze",
+        "descrizione": "Regionalne biciklističke rute, prstenovi, etapne biciklističke rute i brdski bicikli"
+      },
+      "eventi": {
+        "nome": "Događaji",
+        "descrizione": "Festivali, izložbe, koncerti i događanja u sljedećih 14 dana diljem regije"
+      }
+    }
+  },
+  "datiAmbientali": {
+    "titolo": "Podaci o okolišu",
+    "descrizione": "Vjetar, kiša, zrak, pelud, more, rijeke i kupanje, po pokrajini — izvor: Protezione Civile FVG, ARPA FVG",
+    "fiume": "Rijeka"
+  },
+  "ambiente": {
+    "descrizione": "Podaci o okolišu po pokrajini, potresi, plima i komunalne usluge u Friuli Venezia Giulia",
+    "sezioni": {
+      "datiAmbientali": {
+        "nome": "Podaci o okolišu",
+        "descrizione": "Vjetar, kiša, zrak, pelud, more, rijeke i kupanje, po pokrajinama"
+      },
+      "terremoti": {
+        "nome": "Potresi",
+        "descrizione": "Seizmički događaji u FVG i okolnim područjima, zadnjih 30 dana"
+      },
+      "maree": {
+        "nome": "Plima i oseka",
+        "descrizione": "Promatrane i prognozirane plime i oseke na Trieste, Grado i Lignano"
+      },
+      "servizi": {
+        "nome": "Usluge",
+        "descrizione": "Komunalne i komunalne djelatnosti - počevši od odvojenog prikupljanja otpada"
+      }
+    }
+  },
+  "sanita": {
+    "descrizione": "Ljekarne, klinike, veterinari i zubari u Friuli Venezia Giulia",
+    "sezioni": {
+      "prontoSoccorso": {
+        "nome": "Prva pomoć",
+        "descrizione": "Pacijenti koji čekaju i liječe se trijažnim kodom, u stvarnom vremenu, za sve lokacije"
+      },
+      "farmacie": {
+        "nome": "Ljekarne",
+        "descrizione": "Sve ljekarne i dežurne ljekarne, po pokrajinama i općinama"
+      },
+      "cliniche": {
+        "nome": "Klinike i medicinski centri"
+      },
+      "veterinari": {
+        "nome": "Veterinari i hitna pomoć",
+        "descrizione": "Veterinarske klinike i ordinacije, s istaknutim svim hitnim slučajevima"
+      },
+      "dentisti": {
+        "nome": "Stomatolozi i odontolozi"
+      }
+    }
+  },
+  "viabilita": {
+    "descrizione": "Događaji u prometu i web kamere na autocesti — izvor: InfoViaggiando, OSMER ARPA FVG",
+    "eventiInCorso": "Događaji u tijeku",
+    "colonnineElettriche": "Punjači za električna vozila",
+    "webcamAutostradali": "Web kamere za autoceste",
+    "webcamAutostradaliDescrizione": "A4, A23, A28, SR354 — izvor: OSMER ARPA FVG (CC BY-SA 3.0). Kliknite za otvaranje izvora",
+    "nessunaWebcamAutostradale": "Web kamera na autocesti nije dostupna.",
+    "confini": "Granice",
+    "confiniDescrizione": "15 prijelaza/smjerova prema Sloveniji i Austriji — osnovni podaci (općina, cesta, vrsta). Prometni događaji u stvarnom vremenu: talijanska strana za 2 autocestovna prijelaza (A23 Tarvisio, A34 Sant'Andrea/Vrtojba); slovenska strana (eksperimentalno, izvor Promet.si) za Fernetti, Rabuiese/Škofije, Sant'Andrea/Vrtojba i Pesek/Kozina. Za ostalih 9 prijelaza dosad nije pronađen provjerljiv javni izvor (ASFINAG i ANAS nisu dostupni iz ove sesije — vidi lib/confini.ts).",
+    "caricamento": "Učitavanje prometa…",
+    "nonDisponibili": "Podaci o prometu trenutno nisu dostupni.",
+    "nessunEvento": "Trenutačno nema značajnijih događaja na mreži autocesta FVG.",
+    "infolavori": "Radovi na cesti",
+    "nessunCantiere": "Za danas nisu prijavljeni radovi na cesti.",
+    "infolavoriLink": "Idi na članak →"
+  },
+  "terremoti": {
+    "descrizione": "Seizmički događaji u FVG-u i okolnim područjima, posljednjih 30 dana — izvor: INGV (Istituto Nazionale di Geofisica e Vulcanologia)",
+    "mappaAriaLabel": "Karta potresa u Friuli Venezia Giulia — ekvivalentni tekstualni popis na susjednoj ploči",
+    "elencoEventi": "Popis događaja ({count})",
+    "nessunEvento": "Nema događaja u zadnjih 30 dana.",
+    "profondita": "Dubina {km} km",
+    "profonditaEtichetta": "Dubina: {km} km"
+  },
+  "webcam": {
+    "descrizione": "Slike pruža OSMER ARPA FVG (CC BY-SA 3.0) — valjanost podataka ne jamči ARPA FVG, koji objedinjuje web-kamere kojima upravljaju treće strane. Kliknite na web kameru da biste otvorili izvorni izvor",
+    "panorami360": "Panorame od 360°",
+    "fontePanorami": "Izvor: Turismo FVG (Panomax / Feratel)",
+    "nessunPanorama": "Nema dostupne panorame za ovu pokrajinu."
+  },
+  "meteo": {
+    "descrizione": "Bilten, temperatura uživo, vjetar i kiša — izvor: OSMER ARPA FVG, Protezione Civile FVG",
+    "radarMeteo": "Vremenski radar",
+    "canaleTelegramLink": "Telegram kanal →",
+    "previsioniTemporalesche": "Prognoza oluje",
+    "bollettino": "bilten",
+    "caricamentoPrevisioni": "Učitavanje prognoza…",
+    "previsioniNonDisponibili": "Prognoze trenutno nisu dostupne — pokušajte ponovno kasnije.",
+    "previsioniNonDisponibiliDettaglio": "Prognoze trenutno nisu dostupne — OSMER bilten se ažurira otprilike jednom dnevno, pokušajte ponovno kasnije.",
+    "aggiornamentoOggiLabel": "Današnje ažuriranje —",
+    "aggiornamentoBadge": "ažuriranje",
+    "dettagli": "Detalji",
+    "bollettinoDiDomani": "Sutrašnji bilten ({data}) — izvor:",
+    "giorno": {
+      "OGGI": "Danas",
+      "DOMANI": "Sutra",
+      "DOPODOMANI": "Prekosutra"
+    },
+    "ieri": "Jučer",
+    "bollettinoEmesso": "Bilten izdan {data} — izvor:"
+  },
+  "aviazione": {
+    "descrizione": "Zračne luke, uzletišta, uzletišta i heliodromi Friuli Venezia Giulia (strukture {count}) — izvori: WebAAI (webaai.it) za registar, QNH Fly (qnhfly.com) za orijentaciju, duljinu i popločavanje pista gdje je dostupno. Statički popis, povremeno ažuriran: neki podaci (kontakti, vremena, učestalosti, dijagrami prilaza) ostaju iza plaćene pretplate i nisu ovdje uključeni.",
+    "filtri": {
+      "tutte": "Sve",
+      "aeroporto-civile": "Civilne zračne luke",
+      "aeroporto-militare": "Vojne zračne luke",
+      "aviosuperficie": "Zračne luke",
+      "campo-volo": "Zračne luke",
+      "elisuperficie": "Heliodrom",
+      "pista-dismessa": "Napuštene piste"
+    },
+    "mappaAriaLabel": "Karta aerodroma u Friuli Venezia Giulia — ekvivalentni tekstualni popis u susjednoj ploči",
+    "elenco": "Popis  ({count})",
+    "nessunaStruttura": "Nisu pronađene strukture za ovaj filtar.",
+    "schedaLink": "Kartica →",
+    "datiPistaLink": "Podaci o pisti (qnhfly.com) →",
+    "icaoEtichetta": "ICAO: {codice}",
+    "pistaEtichetta": "Staza {orientamento}"
+  },
+  "tennis": {
+    "titolo": "Tenis — FVG ukupni poredak",
+    "descrizione": "Najbolji članovi FVG-a u apsolutnoj kategoriji, podijeljeni prema 2./3./4. kategoriji poretka i spolu — izvor: FITP (Federazione Italiana Tennis e Padel)",
+    "nessunGiocatore": "Nije pronađen nijedan igrač za ovu kategoriju.",
+    "colGiocatore": "Igrač",
+    "colComune": "Uobičajeno",
+    "colGrado": "Grado",
+    "colVP": "V-P",
+    "riepilogo": "{count} FVG članovi u ovoj kategoriji — poredani po rangu (najniža podrazina = najbolji) · podaci ažurirani na {data}"
+  },
+  "notizieProvincia": {
+    "descrizione": "Lokalne vijesti po pokrajinama, iz izvora koji nisu regionalna ANSA već su na početnoj stranici",
+    "panelTitle": "Novosti · {scheda}",
+    "sportInArrivo": "Regionalne sportske vijesti stižu u sljedećoj fazi.",
+    "provinciaInArrivo": "Novosti za {scheda} dolaze u sljedećoj fazi.",
+    "caricamentoNotizie": "Učitavanje vijesti…",
+    "notizieNonDisponibili": "Vijesti trenutno nisu dostupne.",
+    "fonti": "Izvori:",
+    "minFa": "prije {n} min",
+    "oreFa": "prije {n} h",
+    "giorniFa": "prije {n} d"
+  },
+  "basket": {
+    "titoloFallback": "Košarkaški rezultati",
+    "descrizione": "Regionalna prvenstva FIP FVG — izvor: Federazione Italiana Pallacanestro"
+  },
+  "sport": {
+    "calendario": "Kalendar",
+    "classifica": "Poredak",
+    "nessunaPartita": "Nema zakazanih utakmica.",
+    "colSquadra": "Tim",
+    "colPt": "Pt",
+    "colG": "G",
+    "colV": "V",
+    "colP": "P",
+    "colPF": "PF",
+    "colPS": "PS",
+    "colN": "br",
+    "colDR": "DR"
+  },
+  "eventi": {
+    "descrizione": "Događaji, festivali, izložbe i demonstracije u Friuli Venezia Giulia u sljedećih 14 dana — izvor: Turismo FVG (PromoTurismoFVG)",
+    "finestraSuffisso": "· prozor {da} → {a}",
+    "tab": {
+      "oggi": "Danas",
+      "domani": "Sutra",
+      "weekend": "Vikend",
+      "prossimi": "Sljedećih 14 dana"
+    },
+    "tutteLeCategorie": "Sve kategorije",
+    "nonDisponibili": "Događaji trenutno nisu dostupni.",
+    "nessunEvento": "Nema pronađenih događaja za ovo razdoblje/kategoriju.",
+    "aggiornato": "Ažurirano na {data} · vremena i lokacije mogu varirati: uvijek provjerite s organizatorom prije sudjelovanja.",
+    "caricamento": "Učitavanje događaja…",
+    "tuttiGliEventi": "Svi događaji →"
+  },
+  "neveImpianti": {
+    "descrizione": "Status objekata, staza i vremenski uvjeti 7 skijaških centara Friuli Venezia Giulia — izvor: TurismoFVG, ažurirano svakih 15 minuta u zimskoj sezoni. Program otvaranja dizala je indikativan i može se promijeniti bez prethodne najave zbog vremenskih/radnih razloga: uvijek provjerite s upraviteljem prije odlaska.",
+    "nonDisponibili": "Podaci o snijegu i visini trenutno nisu dostupni.",
+    "datoNonAggiornato": "podaci nisu ažurirani od zadnje provjere",
+    "temperatura": "temperatura",
+    "neveInPista": "snijeg na stazi",
+    "impiantiAperti": "otvoreni sustavi",
+    "pisteAperte": "padine otvorene",
+    "tappetiAperti": "otvoreni tepisi",
+    "fondoAperto": "otvoreno dno",
+    "orariImpianti": "Vrijeme proizvodnje: {orari}",
+    "paginaUfficialeLink": "Službena stranica →",
+    "webcamLink": "Web kamera →",
+    "ultimoDato": "Zadnji podaci: {ora}",
+    "ultimoTentativo": "posljednji pokušaj: {ora}",
+    "nd": "n/a"
+  },
+  "struttureRicettive": {
+    "descrizioneHub": "Regionalni registri smještajnih objekata u Friuli Venezia Giulia, koje ovjeravaju općine i Direzione centrale attività produttive — izvor: Regione Autonoma FVG (dati.friuliveneziagiulia.it)",
+    "descrizioneDettaglio": "{descrizione} — izvor: Regione Autonoma FVG (dati.friuliveneziagiulia.it), koja objavljuje samo naziv, općinu, e-poštu i web-stranicu kada su dostupni. Adresa i telefon, kada su prikazani, dolaze iz povezivanja naziva i općine s turismofvg.it ili OpenStreetMap (izvor je naveden uz podatak) — nisu uvijek dostupni i nisu službeni podaci Regije.",
+    "cercaLabel": "Traži po imenu ili općini",
+    "cercaPlaceholder": "Traži po imenu ili općini…",
+    "elenco": "Popis  ({count})",
+    "nessunaStruttura": "Nema pronađenih svojstava.",
+    "sitoLink": "Stranica →",
+    "titolare": "Vlasnik: {nome}",
+    "aggiornatoAl": "Podaci ažurirani na {data}",
+    "tutte": "Sve ({count})",
+    "tipi": {
+      "bb": {
+        "nome": "Noćenje s doručkom",
+        "descrizioneBreve": "Sobe u privatnim kućama certificirane od strane općina",
+        "descrizioneCompleta": "Smještaj s doručkom certificiran od strane općina i središnjeg upravljanja proizvodnim aktivnostima"
+      },
+      "affittacamere": {
+        "nome": "Pansioni",
+        "descrizioneBreve": "Sobe za iznajmljivanje certificirane od strane općina",
+        "descrizioneCompleta": "Strukture tipa rent-a-room certificirane od strane općina"
+      },
+      "campeggi": {
+        "nome": "Kampovi i turistička naselja",
+        "descrizioneBreve": "Kampovi i sela certificirana od strane općina",
+        "descrizioneCompleta": "Kampovi i turistička naselja s certifikatom općina"
+      },
+      "agriturismi": {
+        "nome": "Agroturistički smještaj",
+        "descrizioneBreve": "Seoske kuće certificirane od strane općina",
+        "descrizioneCompleta": "Agroturistički smještaj certificiran od strane općina"
+      },
+      "alberghi-diffusi": {
+        "nome": "Rašireni hoteli",
+        "descrizioneBreve": "Ugostiteljstvo rašireno u selima, certificirano od strane općina",
+        "descrizioneCompleta": "Rasprostranjeni hoteli certificirani od strane općina"
+      },
+      "sociali": {
+        "nome": "Objekti društvenog smještaja",
+        "descrizioneBreve": "Hosteli, pansioni i slično, certificirani od strane općina",
+        "descrizioneCompleta": "Hoteli/hosteli za mlade, pansioni i slično, certificirani od strane općina"
+      },
+      "marina": {
+        "nome": "Dry Marina i Marina Resort",
+        "descrizioneBreve": "Garaža i marina certificirana od strane općina",
+        "descrizioneCompleta": "Suha marina i Marina Resort s certifikatom općina"
+      },
+      "rifugi": {
+        "nome": "Alpine Hiking Refuges",
+        "descrizioneBreve": "Planinska skloništa certificirana od strane općina",
+        "descrizioneCompleta": "Skloništa za alpsko planinarenje certificirana od strane općina"
+      }
+    }
+  },
+  "maree": {
+    "descrizione": "Visoka i niska plima na Trieste, Grado i Lignano — vrhovi opaženi danas (izvor: Protezione Civile FVG) i prognoza za sljedećih nekoliko dana (izvor: tide-forecast.com, neslužbeno)",
+    "nonDisponibili": "Podaci trenutno nisu dostupni.",
+    "andamentoOggi": "Današnji trend",
+    "oggiOsservato": "Danas (primjećeno)",
+    "prossimiGiorni": "Sljedećih dana (prognoza)",
+    "nd": "n.a.",
+    "alta": "Visoko",
+    "bassa": "Nizak",
+    "osservatoAgg": "Promatrano ažuriranje. {ora}",
+    "previsioneFonte": "Prognoza: tide-forecast.com",
+    "graficoNonDisponibile": "Grafikon trenutno nije dostupan.",
+    "andamentoAriaLabel": "Trend razine mora danas na Trieste, Grado i Lignano — numeričke vrijednosti na pločama ispod",
+    "legendaTrattoOsservatoPrevisione": "puna linija = promatrano · isprekidana = prognoza"
+  },
+  "baseball": {
+    "titoloFallback": "Bejzbol i softbol",
+    "descrizione": "FVG baseball i softball — istaknuti timovi — izvor: live.baseballfvg.it",
+    "ultimiRisultati": "Najnoviji rezultati",
+    "nessunaPartita": "Nema dostupnih rezultata.",
+    "colPercentuale": "%",
+    "colGB": "GB"
+  },
+  "calcio": {
+    "titoloFallback": "Nogometni rezultati",
+    "descrizione": "Regionalna amaterska prvenstva FVG — izvor: LND Regionalni odbor FVG",
+    "vistaArchivio": "— gledate arhivu sezone {stagione}",
+    "archivio": "arhiva",
+    "giornata": "Dan {numero}",
+    "andata": "nestao",
+    "ritorno": "povratak",
+    "stagioneLabel": "Sezona"
+  },
+  "supermercati": {
+    "descrizione": "Supermarketi, hipermarketi i diskonti u Friuli Venezia Giulia (minimarketi i male trgovine nisu uključeni) — podaci su prikupljeni i ručno provjereni (Google Maps i službene web-stranice trgovačkih lanaca) te nisu službeni registar Regije. Navedena su redovna tjedna radna vremena; blagdani i izvanredna otvaranja nisu uključeni.",
+    "categorie": {
+      "Supermercato": "Supermarket",
+      "Ipermercato": "Hipermarket",
+      "Discount": "Popust"
+    },
+    "cercaLabel": "Traži po imenu, znaku ili općini",
+    "cercaPlaceholder": "Traži po imenu, znaku ili općini…",
+    "nessunPuntoVendita": "Nisu pronađene trgovine{luogo}.",
+    "chiusoTemporaneamente": "Privremeno zatvoreno",
+    "oggiOrari": "Danas: {orari}",
+    "orarioNonConfermato": "(nepotvrđeno vrijeme)",
+    "mappaAriaLabel": "Karta supermarketa{luogo} — ekvivalentni tekstualni popis u susjednoj ploči"
+  },
+  "prontoSoccorso": {
+    "descrizione": "Pacijenti na čekanju i u obradi prema trijažnoj oznaci, u stvarnom vremenu, za sve hitne prijeme i punktove prve pomoći u Friuli Venezia Giulia — izvor: Servizio Sanitario Regionale FVG, ažurira se svakih 15 minuta. Telefonski broj, kada je naveden, ručno je provjeren u službenom izvoru (izvor podataka ga ne objavljuje) — u hitnom slučaju uvijek nazovite 118.",
+    "nonDisponibili": "Podaci hitne pomoći trenutno nisu dostupni.",
+    "aggiornatoAlle": "Ažurirano na {ora}",
+    "datoObsoleto": "— podaci nisu ažurirani dulje od 30 minuta, možda neće odražavati trenutnu situaciju",
+    "tutteLeSedi": "Sve lokacije ({count})",
+    "nessunaSede": "Nisu pronađene lokacije{luogo}.",
+    "telefonoNonDisponibile": "Telefon nije dostupan",
+    "indicazioniLink": "Upute →",
+    "inAttesa": "čeka",
+    "inTrattamento": "u liječenju",
+    "abbrAttesa": "aktivan.",
+    "abbrTrattamento": "po dogovoru.",
+    "attesaMedia": "srednje čekanje {valore}",
+    "mappaAriaLabel": "Karta hitne pomoći{luogo} — ekvivalentni tekstualni popis na susjednoj ploči",
+    "delFriuliVeneziaGiulia": "od Friuli Venezia Giulia",
+    "telPrefisso": "Tel."
+  },
+  "farmacie": {
+    "titoloTurno": "Dežurne ljekarne",
+    "titoloTutte": "Sve ljekarne",
+    "descrizioneTurno": "Ljekarne s izvanrednim radnim vremenom (smjena) danas",
+    "descrizioneTutte": "Kompletan popis ljekarni",
+    "paragrafoBase": "{descrizione}{data} u Friuli Venezia Giulia — izvor: Regione Autonoma FVG (dati.friuliveneziagiulia.it), ažurirano svakog dana u 01:00.",
+    "noteTurno": "Ne uključuje uobičajeno radno vrijeme ljekarne, samo današnja izvanredna otvaranja.",
+    "noteTutte": "Prikazana vremena su današnja vremena (normalne i sve izvanredne smjene) — izvor ne objavljuje fiksni tjedni raspored, samo dnevno ažuriranje.",
+    "caricamentoFarmacie": "Učitavanje ljekarni…",
+    "nonDisponibili": "Podaci o ljekarni trenutno nisu dostupni.",
+    "nessunaDiTurno": "Danas nema dežurne ljekarne{luogo}.",
+    "nessunaTrovata": "Ljekarna nije pronađena{luogo}.",
+    "orarioNonDisponibile": "Vremena nisu dostupna",
+    "mappaAriaLabel": "Karta ljekarne{luogo} — ekvivalentni tekstualni popis u susjednoj ploči"
+  },
+  "colonnineElettriche": {
+    "descrizione": "Punionice za električna vozila u Friuli Venezia Giulia — izvor: OpenChargeMap, registar zajednice. Podaci mogu biti nepotpuni za novije instalacije: provjerite datum provjere svakog stupca.",
+    "localizzazione": "Lokacija…",
+    "usaPosizione": "📍 Koristi moju lokaciju",
+    "cercaPlaceholder": "…ili potražite općinu ili adresu",
+    "cercando": "Tražim...",
+    "raggioLabel": "Radijus:",
+    "erroreBrowserNonSupportato": "Vaš preglednik ne podržava geolociranje.",
+    "errorePermessoNegato": "Dopuštenje za geolociranje odbijeno — lokaciju možete pretražiti ručno ispod.",
+    "erroreGenerico": "Nismo mogli saznati vašu lokaciju — možete ručno potražiti lokaciju ispod.",
+    "mappaAriaLabel": "Karta stanica za punjenje u Friuli Venezia Giulia — ekvivalentni tekstualni popis na susjednoj ploči",
+    "entroRaggio": "Unutar {km} km od odabrane lokacije ({count})",
+    "tutteLeColonnine": "Sve stanice za punjenje u FVG ({count})",
+    "suggerimentoPosizione": "Upotrijebite svoju lokaciju ili potražite lokaciju kako biste vidjeli samo najbliže stanice za punjenje, poredane prema udaljenosti.",
+    "nessunaColonnina": "U ovom području nisu pronađene stanice za punjenje.",
+    "colonninaFallback": "Stupac",
+    "presaFallback": "utičnica",
+    "dettaglioPreseNonDisponibile": "Detalji o utičnici nisu dostupni",
+    "verificato": "· potvrđeno {data}",
+    "aggiornatoAl": "Ažurirano na {data} · {fonte}",
+    "laTuaPosizione": "Vaša lokacija",
+    "presaFallbackMappa": "Utičnica",
+    "potenzaNonDisponibile": "snaga n.a.",
+    "operatoreLabel": "Operator :",
+    "costoLabel": "Cijena:",
+    "statoLabel": "Status:",
+    "verificatoIlMappa": "Potvrđeno na {data} (OpenChargeMap)",
+    "dataVerificaNonDisponibileMappa": "Datum verifikacije nije dostupan (OpenChargeMap)",
+    "panelDescrizione": "<strong>{totale}</strong> punjača za električna vozila evidentiranih u Friuli Venezia Giulia (izvor: OpenChargeMap, podaci zajednice — pojedinosti i datumi provjere nalaze se na posebnoj stranici).",
+    "vediMappa": "Pogledajte kartu i tražite u svojoj blizini →"
+  },
+  "home": {
+    "title": "FVG Monitor — podaci u stvarnom vremenu za Friuli Venezia Giulia",
+    "panels": {
+      "meteo": "Vrijeme · 4 pokrajine",
+      "meteoLink": "OSMER ARPA FVG →",
+      "allerte": "Upozorenja · Zone",
+      "allerteLink": "Povijest →",
+      "allerteDettaglio": "Detalji i službeni widget po pokrajinama:",
+      "notizie": "Lokalne vijesti",
+      "notizieLink": "Sve →",
+      "soleLuna": "Sunce i mjesec",
+      "viabilita": "Promet",
+      "viabilitaLink": "InfoViaggiando →",
+      "carburanti": "Goriva",
+      "carburantiLink": "MIMIT →",
+      "voli": "Trieste Airport",
+      "voliLink": "Svi letovi →",
+      "tgr": "TGR FVG",
+      "eventi": "Događanja u regiji",
+      "eventiLink": "Sve →"
+    },
+    "ambiente": {
+      "title": "Okoliš",
+      "description": "Vjetar, kiša, zrak, pelud, more, rijeke i kupanje — izvor: Protezione Civile FVG, ARPA FVG",
+      "bora": "Bura · Vjetar i kiša",
+      "boraLink": "Protezione Civile FVG →",
+      "aria": "Kvaliteta zraka",
+      "ariaLink": "ARPA FVG →",
+      "pollini": "Pelud",
+      "polliniLink": "ARPA FVG →",
+      "livelli": "Razine mora i rijeka",
+      "livelliLink": "Protezione Civile FVG →",
+      "mare": "More",
+      "fiumi": "Rijeke",
+      "balneazione": "Kvaliteta vode za kupanje",
+      "balneazioneLink": "ARPA FVG →"
+    },
+    "fonti": "Izvori: OSMER ARPA FVG · ANSA FVG · Protezione Civile FVG (CC BY 4.0) · InfoViaggiando · Turismo FVG · RAI TGR FVG · Trieste Airport",
+    "tgrCta": "Gledajte najnovije vijesti"
+  },
+  "veterinari": {
+    "descrizione": "Veterinarski objekti u Friuli Venezia Giulia — podaci prikupljeni i provjereni ručno (službene stranice i imenici sektora), a ne službeni stručni registar. U hitnim slučajevima uvijek provjerite stvarnu dostupnost telefonom prije nego što se pojavite u ustanovi.",
+    "datiInArrivo": "Veterinarski podaci za {provincia} dolaze u sljedećoj fazi.",
+    "emergenzeTitolo": "Hitni slučajevi · {provincia}",
+    "nessunaEmergenza": "Nema {provincia} objekata koji proglašavaju hitno upravljanje na ovom popisu. U hitnim slučajevima kontaktirajte najbližu ustanovu telefonom u radno vrijeme.",
+    "emergenzeDescrizione": "Objekti s proglašenim hitnim upravljanjem, od najspremnijih do najmanje sigurnih — u svakom slučaju provjerite telefonom prije hitnog pristupa.",
+    "dichiarazioneNonVerificata": "Izjava nije izravno potvrđena — potvrdite telefonom",
+    "cercaLabel": "Pretraživanje po nazivu, općini ili vrsti objekta",
+    "cercaPlaceholder": "Traži po nazivu, općini ili vrsti objekta…",
+    "nessunaStrutturaTrovata": "Nema pronađenih svojstava{luogo}.",
+    "mappaAriaLabel": "Veterinarska karta{luogo} — ekvivalentni tekstualni popis u susjednoj ploči",
+    "livelloEmergenza": {
+      "pronto_soccorso_24h": "24-satna hitna pomoć",
+      "pronto_soccorso_diurno": "Dnevna prva pomoć",
+      "guardia_medica_veterinaria": "Hitna veterinarska medicinska pomoć",
+      "reperibilita_telefonica": "Dostupnost telefona",
+      "urgenze_in_orario": "Hitni slučajevi tijekom radnog vremena",
+      "pronto_intervento_da_confermare": "Hitna služba (treba potvrditi)",
+      "sanita_pubblica_veterinaria": "Veterinarsko javno zdravstvo (po dogovoru)",
+      "nessuna_dichiarata": "Nije proglašeno upravljanje izvanrednim situacijama",
+      "non_dichiarata": "Upravljanje hitnim slučajevima nije proglašeno"
+    },
+    "suAppuntamento": "po dogovoru",
+    "oggiLabel": "Danas:",
+    "emergenzeLabel": "Hitni slučajevi:",
+    "telEmergenzeEtichetta": "Telefon za hitne slučajeve: {telefono}"
+  },
+  "sci": {
+    "titolo": "Skijanje — FVG kalendar natjecanja",
+    "stagione": "Sezona {stagione}",
+    "calendarioGare": "Kalendar utrka",
+    "descrizione": " — zimski sportovi FISI u Friuli Venezia Giulia (skijaško trčanje, skokovi, nordijska kombinacija, biatlon i druge discipline) — izvor: FISI (Federazione Italiana Sport Invernali), Comitato FVG. Kalendar, ne poredak: nema prvenstva na bodove, svaki redak predstavlja jednu utrku. Završene utrke mogu se otvoriti radi pregleda rezultata.",
+    "gareInCalendario": "Utrke u kalendaru",
+    "nessunaGara": "Nisu pronađena natjecanja za ovaj filtar.",
+    "dataDaDefinire": "Datum koji će se definirati",
+    "stato": {
+      "svolta": "Proboj",
+      "inProgramma": "Planirano"
+    },
+    "caricamentoRisultati": "Učitavanje rezultata…",
+    "risultatiNonDisponibili": "Rezultati još nisu dostupni — postupno se vraćaju nakon što se utrka održi, pokušajte ponovno kasnije.",
+    "risultatiCount": "{count} rezultati",
+    "nessunRisultatoGara": "Nema dostupnih rezultata za ovu utrku.",
+    "colPos": "Poz.",
+    "colAtleta": "Sportaš",
+    "colAnno": "Godina",
+    "colSocieta": "Tvrtka",
+    "colTempo": "Vrijeme",
+    "colPunti": "Bodovi",
+    "gareAggiornateAl": "{count} podaci o utrkama ažurirani na {data}"
+  },
+  "pisteCiclabili": {
+    "percorsiCount": "{count} rute",
+    "percorsiFallback": "Rute",
+    "descrizione1": "biciklističke staze u Friuli Venezia Giulia — 6 neovisnih izvora: 4 serije s kodom tourismfvg.it (krugovi, linearne rute, etape biciklističkih ruta, brdski bicikl), autonomna regija FVG (dati.friuliveneziagiulia.it) i povijesni skup podataka Ciclovie 2020.",
+    "descrizione2": "<strong>Neovisni izvori, nikada međusobno spojeni</strong> — svaki izvor ima svoj okvir u nastavku i svoju boju na karti. Rute s turismofvg.it (šifra u zagradama, npr. \"R001\") službeni su turistički itinerari s potpunom trasom i tehničkim podacima (duljina, visinska razlika, težina, trajanje) preuzetima sa stranice svake rute, uz izravnu poveznicu za preuzimanje GPX-a. Podaci Regione FVG imaju <strong>djelomičnu pokrivenost</strong> (samo trase koje su općine dostavile u određenom urbanističkom postupku, a ne potpuni popis — primjerice, područje Trieste nije obuhvaćeno) i mogu biti podijeljeni u više dionica; početna/završna općina i pokrajina izračunavaju se iz koordinata kada je to moguće. Ciclovie 2020 su pak <strong>povijesni podaci, zaustavljeni u siječnju 2020.</strong> (potpuna regionalna pokrivenost, uključujući Trieste) — prikazani kao kontekstni sloj, a ne kao trenutačno stanje mreže.",
+    "caricamentoPercorsi": "Učitavanje ruta…",
+    "nonDisponibili": "Podaci o biciklističkoj stazi trenutno nisu dostupni.",
+    "cercaLabel": "Pretraživanje po nazivu staze ili kodu",
+    "cercaPlaceholder": "Traži po nazivu staze ili kodu…",
+    "datiNonAncoraDisponibili": "Podaci još nisu dostupni.",
+    "nessunPercorsoTrovato": "Nisu pronađene staze.",
+    "daA": "{da} do {a}",
+    "daComune": "Od {da}",
+    "finoAComune": "do {a}",
+    "scaricaGpx": "Preuzmite GPX ↗",
+    "regioneFvg": "FVG regija ({count})",
+    "ciclovie2020Storico": "Ciclovie 2020 povijesni ({count})",
+    "indicativo": "(indikativno)",
+    "lunghezzaNonDisponibile": "Dužina nije dostupna",
+    "parziale": "(djelomično)",
+    "tratti": "{count} osobine",
+    "mostraTuttaMappa": "← Prikaži cijelu kartu",
+    "mappaAriaLabel": "Karta biciklističke rute u Friuli Venezia Giulia — ekvivalentni tekstualni popis u okvirima iznad. Kliknite lokaciju na popisu da je ovdje označite.",
+    "serie": {
+      "r": "Prstenje",
+      "p": "Linearne staze",
+      "c": "Biciklističke rute u etapama",
+      "m": "Brdski bicikl"
+    },
+    "fonteMappa": {
+      "regione": "Regija FVG",
+      "ciclovie2020": "Ciclovie 2020. (povijesni)"
+    },
+    "fonteTurismoFvg": "TurismoFVG · {serie}",
+    "fontePopup": "Izvor: {fonte}"
+  },
+  "rifiuti": {
+    "descrizione": "Kalendar od vrata do vrata, sabirni centar i staklena zvona, podijeljeni po pokrajinama. Pokriva samo općine koje opslužuju već integrirani operateri, a ne cijelu regiju — pogledajte dolje za odabranu pokrajinu.",
+    "nonDisponibili": "Podaci o prikupljanju otpada trenutno nisu dostupni.",
+    "inArrivoProvincia": "Odvojeno prikupljanje otpada za provinciju {provincia} stiže u sljedećoj fazi.",
+    "comuneLabel": "Uobičajeno",
+    "gestoreEtichetta": "Upravitelj: {gestore}",
+    "datoNonAggiornato": "Podaci nisu ažurirani od zadnje provjere (mrežna greška na izvoru)",
+    "areaLabel": "Područje",
+    "areaNumero": "Područje {numero}",
+    "nd": "n/a",
+    "calendarioPortaPorta": "Kalendar od vrata do vrata",
+    "raccoltaStradale": "Kolekcija uz cestu",
+    "prossimeRaccolte": "Nadolazeće kolekcije",
+    "stazioniEcologiche": "Ekološke postaje",
+    "centroRaccoltaEVetro": "Sabirni i stakleni centar",
+    "daSapere": "Vrijedi znati",
+    "estate": "Ljeto",
+    "inverno": "Zima",
+    "nessunDatoCalendario": "Trenutno nema dostupnih kalendarskih podataka za ovo područje.",
+    "oggi": "Danas",
+    "conferimentiIngombranti": "Glomazni i zeleni otpad",
+    "infoCentroNonDisponibili": "Podaci o sabirnom centru nisu dostupni za ovu općinu.",
+    "campaneDelVetro": "Staklena zvona",
+    "aggiornatoAl": "Ažurirano na {data} — službeni kalendar operatera uvijek ima prednost na ovoj stranici: provjerite u slučaju sumnje, posebno blizu praznika.",
+    "tipi": {
+      "paper": "Papir i karton",
+      "organic": "Mokri organski",
+      "plastic_metals": "Plastika i limenke",
+      "residual": "Preostala suhoća",
+      "glass": "Staklo",
+      "plastic_metals_net": "Plastika"
+    },
+    "giorniBrevi": {
+      "Lun": "Pon",
+      "Mar": "uto",
+      "Mer": "sri",
+      "Gio": "čet",
+      "Ven": "Pet",
+      "Sab": "sub",
+      "Dom": "ned"
+    },
+    "triesteDescrizione": "Kalendar ulica i kućnih brojeva — pretraživanje uživo (nije snimka koja se ažurira jednom dnevno kao ostatak ove stranice).",
+    "cercaViaLabel": "Potražite ulicu Trieste",
+    "cercaViaPlaceholder": "Potražite ulicu (npr. Via del Coroneo)…",
+    "caricoElencoVie": "Učitavanje popisa ulica Trieste…",
+    "elencoVieNonDisponibile": "Popis ulica trenutno nije dostupan — pokušajte ponovno kasnije.",
+    "nessunaViaTrovata": "Nisu pronađene rute.",
+    "cambiaIndirizzo": "Promjena adrese",
+    "caricoCivici": "Učitavam kućne brojeve...",
+    "civiciNonDisponibili": "Civics trenutno nije dostupan.",
+    "civicoLabel": "Civic",
+    "scegliPlaceholder": "Odaberite…",
+    "caricoCalendario": "Učitavanje kalendara…",
+    "calendarioNonDisponibile": "Kalendar  trenutno nije dostupan.",
+    "nessunaRaccoltaIndirizzo": "Nema planiranog preuzimanja u sljedećih nekoliko dana za ovu adresu.",
+    "esposizioneOrario": "— izloženost {orario}"
+  },
+  "qualitaAria": {
+    "caricamento": "Učitavanje kvalitete zraka…",
+    "datiNonDisponibili": "Podaci o kvaliteti zraka trenutno nisu dostupni.",
+    "datiInquinanteNonDisponibili": "{inquinante} podaci trenutno nisu dostupni.",
+    "datoNonDisponibileStazione": "Podaci nisu dostupni za ovu postaju.",
+    "oltreSoglia": "Izvan praga",
+    "captionTab": "{label}, {noteTipo} od {data} — prag {soglia} µg/m³ izvor: ARPA FVG",
+    "inquinanti": {
+      "pm10": {
+        "label": "PM10",
+        "noteTipo": "dnevni prosjek"
+      },
+      "pm25": {
+        "label": "PM2.5",
+        "noteTipo": "dnevni prosjek · 24-satna SZO smjernica (Italija ima samo godišnje ograničenje)"
+      },
+      "ozono": {
+        "label": "Ozon",
+        "noteTipo": "pokretni prosjek 8h max"
+      },
+      "no2": {
+        "label": "NO2",
+        "noteTipo": "prosječno po satu maks"
+      }
+    }
+  },
+  "fiumi": {
+    "caricamento": "Učitavanje razine rijeka…",
+    "datiNonDisponibili": "Podaci o razini rijeke trenutno nisu dostupni."
+  },
+  "mare": {
+    "caricamento": "Učitavanje razine mora…",
+    "datiNonDisponibili": "Podaci o razini mora trenutno nisu dostupni.",
+    "nessunoSboccoMare": "Provincija Pordenone nema izlaz na more — nema referentne postaje."
+  },
+  "allerte": {
+    "caricamento": "Učitavanje upozorenja…",
+    "datiNonDisponibili": "Podaci upozorenja trenutno nisu dostupni.",
+    "livelli": {
+      "verde": "Zelena",
+      "gialla": "Žuta",
+      "arancione": "Narančasta",
+      "rossa": "Crvena"
+    },
+    "zonaTitle": "Zona upozorenja {zone}",
+    "badgeLabel": "Upozorenje {livello}",
+    "dettagliUfficiali": "Službeni detalji →",
+    "nessunaAllertaAttiva": "Trenutačno nema aktivnih upozorenja.",
+    "widgetNonCollegato": "Službeni Protezione Civile FVG widget za {citta} još nije povezan — pogledajte PROČITAJ ME, odjeljak Korak 1, kako biste ga zatražili i zalijepili ovdje."
+  },
+  "carburanti": {
+    "caricamento": "Učitavanje cijena goriva…",
+    "nonDisponibili": "Podaci o cijeni goriva trenutno nisu dostupni.",
+    "tipi": {
+      "benzina": "Benzin",
+      "gasolio": "Dizel",
+      "gpl": "LPG"
+    },
+    "mediaRegionale": "FVG regionalni prosjek",
+    "fonte": "Izvor: MIMIT — Opservatorij cijena goriva (ažurirano svako jutro u 8:00)"
+  },
+  "vento": {
+    "caricamento": "Učitavanje podataka o vjetru…",
+    "nonDisponibili": "Podaci o vjetru trenutno nisu dostupni za ovu postaju.",
+    "daStazione": "IZ {direzione} · POSTAJA {stazione}",
+    "rafficaMax": "maksimalni udar {raffica} km/h"
+  },
+  "pioggia": {
+    "caricamento": "Učitavanje podataka o kiši…",
+    "nonDisponibili": "Podaci o kiši trenutno nisu dostupni za ovu postaju.",
+    "ultimaOra": "Zadnji sat",
+    "ultime24h": "Zadnja 24h",
+    "stazione": "Stanica {stazione}"
+  },
+  "pollini": {
+    "caricamento": "Učitavanje peludi…",
+    "nonDisponibili": "Podaci o peludu trenutno nisu dostupni.",
+    "nessunaStazione": "Nema stanica aerobiološke mreže aktivnih u provinciji {provincia}.",
+    "nessunPolline": "Ovaj tjedan nije otkriven značajniji polen.",
+    "settimana": "Tjedan {da}–{a}",
+    "aggiornatoAl": "Ažurirano na {data}",
+    "unitaFonte": "· dnevni prosjek granula/m³ · izvor: ARPA FVG, POLLnet mreža"
+  },
+  "balneazione": {
+    "caricamento": "Učitavanje kvalitete vode…",
+    "nonDisponibili": "Podaci o kvaliteti vode trenutno nisu dostupni.",
+    "nessunPunto": "Nisu pronađene točke praćenja u provinciji {provincia}.",
+    "favorevoli": "Za",
+    "sfavorevoli": "Nepovoljno",
+    "puntiMonitorati": "Bodovi koji se prate",
+    "ultimoPrelievo": "Posljednje uzorkovanje po točki, rezultat jednog uzorka",
+    "fonte": "Izvor: ARPA FVG · Zakonska uredba 116/2008 pragovi (indikativno, ne zamjenjuje nijednu općinsku uredbu)"
+  },
+  "voli": {
+    "caricamento": "Učitavanje letova…",
+    "nonDisponibili": "Podaci o letu trenutno nisu dostupni.",
+    "partenze": "Polasci",
+    "arrivi": "Dolasci",
+    "nessunVolo": "Nema planiranih letova.",
+    "ritardo": "ret.",
+    "ultimoAggiornamento": "Najnovije ažuriranje {testo} izvor: Trieste Airport"
+  },
+  "soleLuna": {
+    "calcoloInCorso": "Izračunavanje…",
+    "calcoloNonDisponibile": "Astronomski izračun za danas nije dostupan.",
+    "albeggio": "Zora",
+    "alba": "Zora",
+    "tramonto": "Zalazak sunca",
+    "crepuscolo": "Sumrak",
+    "illuminata": "{pct}% osvijetljen",
+    "sorge": "Raste:",
+    "tramonta": "Setovi:",
+    "nonOggi": "ne danas",
+    "noteSorgeTramontaMancante": "Mjesec izlazi ~50 minuta kasnije svaki dan: događa se da jedan kalendarski dan ne vidi jedan od ta dva.",
+    "riferimento": "Referenca: Udine (regionalni centar) — lokalni astronomski izračun, bez vanjskih izvora",
+    "faseLuna": {
+      "nuova": "Mladi mjesec",
+      "primoQuarto": "Prva četvrtina",
+      "piena": "Pun mjesec",
+      "ultimoQuarto": "Zadnja četvrtina",
+      "crescente": "Rastući mjesec",
+      "gibbosaCrescente": "polumjesec",
+      "gibbosaCalante": "Opadajući gibbous",
+      "calante": "Mjesec u opadanju"
+    }
+  },
+  "autobus": {
+    "filtroTutti": "Sve",
+    "caricamento": "Učitavanje autobusa…",
+    "nonDisponibili": "Podaci o autobusu trenutno nisu dostupni (neslužbeni izvor, možda je privremeno nedostupan).",
+    "nessunPassaggio": "Nema planiranih vožnji u skorije vrijeme.",
+    "versoLuogo": "do {luogo}",
+    "daLuogo": "od {luogo}",
+    "tempoReale": "u stvarnom vremenu",
+    "programmato": "programiran",
+    "fermataFallback": "Stani",
+    "footerBlocco": "Blokiraj {nome} ({n} zaustavlja) · ažurira vaš preglednik svake minute · izvor: TPL FVG (neslužbeni API)",
+    "fermateLabel": "Zaustavlja:"
+  },
+  "treni": {
+    "caricamento": "Učitavanje vlakova…",
+    "nonDisponibili": "Podaci o vlaku trenutno nisu dostupni (neslužbeni izvor, možda je privremeno nedostupan).",
+    "nessunTreno": "Uskoro nema vlakova.",
+    "footerStazione": "{nome} postaja · ažurira vaš preglednik svake minute · izvor: ViaggiaTreno (Trenitalia/RFI, neslužbeni API)"
+  },
+  "fiume": {
+    "caricamento": "Učitavanje razine rijeke…",
+    "nonDisponibili": "Podaci o razini rijeke trenutno nisu dostupni."
+  },
+  "pazzi": {
+    "leggiCompleta": "Pročitajte cijelu prognozu na PMG →",
+    "caricamentoAggiornamenti": "Učitavanje ažuriranja…",
+    "aggiornamentiNonDisponibili": "Ažuriranja trenutno nisu dostupna."
+  },
+  "radar": {
+    "caricamentoMappa": "Učitavanje karte…",
+    "caricamento": "Učitavanje radara…",
+    "nonDisponibili": "Radarski podaci trenutno nisu dostupni.",
+    "prodotti": {
+      "srtlbm_1": "Kiša",
+      "ssi": "Ozbiljnost",
+      "hmc": "Hidrometeori",
+      "lbm_v": "Doppler vjetra"
+    },
+    "spiegazioni": {
+      "srtlbm_1": "Trenutačni intenzitet kiše — što je boja intenzivnija (prema crvenoj/ljubičastoj), to su padavine jače.",
+      "ssi": "Indeks jačine oluje, umjeren do vrlo jak — dizajniran za brzo očitavanje.",
+      "hmc": "Vrsta otkrivene oborine: slaba/umjerena/jaka kiša, tuča, suhi ili mokri snijeg, ledeni kristali.",
+      "lbm_v": "Brzina vjetra na visini koju je detektirao radar — korisno za prepoznavanje rotacije u olujnim ćelijama (više tehničkih podataka)."
+    },
+    "datiProdottoNonDisponibili": "Podaci \"{prodotto}\" trenutno nisu dostupni.",
+    "ariaLabel": "Vremenski radar — {prodotto}",
+    "aggiornatoFonte": "Ažurirano {data} · izvor: Protezione Civile FVG (CC BY 4.0)",
+    "dettaglioMappa": "Fossalon radar ažuriran {data} izvor: Protezione Civile FVG (CC BY 4.0) karta: © OpenStreetMap"
+  },
+  "temperaturaBadge": {
+    "oraLabel": "sada"
+  },
+  "confini": {
+    "latoItaliano": "Talijanska strana",
+    "latoSloveno": "slovenska strana",
+    "datiNonAggiornatiSuffix": "· podaci nisu ažurirani",
+    "nessunaFonteLive": "Nema potvrđenih izvora uživo za ovaj prijelaz",
+    "datiSloveniNonDisponibili": "Slovenski podaci trenutno nisu dostupni",
+    "nessunEventoAutostrada": "Nema tekućih događaja na {strade}",
+    "nessunEventoValico": "Nema prijavljenih događaja na {codice}",
+    "codaM": "(rep ~{m} m)",
+    "paese": {
+      "SI": "Slovenija",
+      "AT": "Austrija"
+    },
+    "modalita": {
+      "motorway": "Autocesta",
+      "expressway": "Autocesta",
+      "road": "Cesta",
+      "mountain_road": "Planinska cesta",
+      "mountain_pass": "Planinski prijevoj",
+      "urban": "Urbani prijelaz"
+    },
+    "classe": {
+      "primary": "Glavni režiser",
+      "secondary": "Sekundarni redatelj",
+      "minor": "Manji prolaz"
+    }
+  }
+}
