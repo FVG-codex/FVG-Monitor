@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 import { HtmlEmbed } from "@/components/HtmlEmbed";
 import type { ProvinciaSlug } from "@/lib/province";
 
@@ -24,6 +25,7 @@ const SNIPPET_PER_CITTA: Record<ProvinciaSlug, string | null> = {
 };
 
 export function AllertaWidgetSlot({ slug, cittaNome }: { slug: ProvinciaSlug; cittaNome: string }) {
+  const t = useTranslations("allerte");
   const snippet = SNIPPET_PER_CITTA[slug];
   const [nessunaAllerta, setNessunaAllerta] = useState(false);
 
@@ -44,8 +46,7 @@ export function AllertaWidgetSlot({ slug, cittaNome }: { slug: ProvinciaSlug; ci
   if (!snippet) {
     return (
       <div className="border border-line rounded p-3 text-xs font-mono text-ink-faint">
-        Widget ufficiale Protezione Civile FVG per {cittaNome} non ancora collegato — vedi
-        README, sezione Fase 1, per richiederlo e incollarlo qui.
+        {t("widgetNonCollegato", { citta: cittaNome })}
       </div>
     );
   }
@@ -54,7 +55,7 @@ export function AllertaWidgetSlot({ slug, cittaNome }: { slug: ProvinciaSlug; ci
     <div>
       <HtmlEmbed html={snippet} />
       {nessunaAllerta && (
-        <p className="text-ink-faint text-sm font-mono">Nessuna allerta attiva al momento.</p>
+        <p className="text-ink-faint text-sm font-mono">{t("nessunaAllertaAttiva")}</p>
       )}
     </div>
   );

@@ -1,18 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useLocale, useTranslations } from "next-intl";
 import { supabase } from "@/lib/supabase";
+import { intlLocale } from "@/lib/intlLocale";
 
 type Trimestre = { periodo: string; valore: number };
 type EconomiaDisoccupazioneData = { trimestri: Trimestre[]; fonte: string; aggiornato_al: string };
 
-function etichettaTrimestre(periodo: string): string {
-  const [anno, trim] = periodo.split("-Q");
-  return `${trim}° trim. ${anno}`;
-}
-
-function formattaPercentuale(v: number): string {
-  return v.toLocaleString("it-IT", { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + "%";
+function formattaPercentuale(v: number, locale: string): string {
+  return v.toLocaleString(intlLocale(locale), { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + "%";
 }
 
 // Pannello "Disoccupazione FVG" — prima sezione Economia del sito
@@ -27,6 +24,19 @@ function formattaPercentuale(v: number): string {
 export function EconomiaDisoccupazionePanel() {
   const [dati, setDati] = useState<EconomiaDisoccupazioneData | null>(null);
   const [stato, setStato] = useState<"loading" | "ready" | "error">("loading");
+  const t = useTranslations("economia");
+  const tChrome = useTranslations("chrome");
+  const locale = useLocale();
+
+  // Multilingua (06/10/2026): replica localmente — invece di una
+  // funzione separata — la formattazione "{trim}° trim. {anno}" come
+  // chiamata a t("etichettaTrimestre", {...}), stesso principio già
+  // usato altrove nel progetto per non lasciare testo italiano fisso
+  // fuori da messages/*.json.
+  function etichettaTrimestre(periodo: string): string {
+    const [anno, trim] = periodo.split("-Q");
+    return t("etichettaTrimestre", { trim, anno });
+  }
 
   useEffect(() => {
     let attivo = true;
@@ -58,10 +68,10 @@ export function EconomiaDisoccupazionePanel() {
   }, []);
 
   if (stato === "loading") {
-    return <p className="text-ink-faint text-sm font-mono">Caricamento…</p>;
+    return <p className="text-ink-faint text-sm font-mono">{tChrome("caricamento")}</p>;
   }
   if (stato === "error" || !dati || dati.trimestri.length === 0) {
-    return <p className="text-ink-faint text-sm font-mono">Dati non disponibili al momento.</p>;
+    return <p className="text-ink-faint text-sm font-mono">{tChrome("datiNonDisponibili")}</p>;
   }
 
   const trimestri = dati.trimestri;
@@ -70,43 +80,44 @@ export function EconomiaDisoccupazionePanel() {
   const delta = precedente ? ultimo.valore - precedente.valore : null;
 
   const storico = trimestri.slice(-8).reverse();
-  const massimo = Math.max(...storico.map((t) => t.valore));
+  const massimo = Math.max(...storico.map((trim) => trim.valore));
 
   return (
     <div>
       <div className="flex items-baseline gap-3 mb-1">
-        <span className="font-cond font-bold text-4xl">{formattaPercentuale(ultimo.valore)}</span>
+        <span className="font-cond font-bold text-4xl">{formattaPercentuale(ultimo.valore, locale)}</span>
         {delta !== null && (
           <span
             className={`font-mono text-xs ${
               delta > 0 ? "text-allerta-rossa-ink" : delta < 0 ? "text-allerta-verde-ink" : "text-ink-faint"
             }`}
           >
-            {delta > 0 ? "▲" : delta < 0 ? "▼" : "="} {Math.abs(delta).toLocaleString("it-IT", { minimumFractionDigits: 1, maximumFractionDigits: 1 })}{" "}
-            punti sul trimestre prec.
+            {delta > 0 ? "▲" : delta < 0 ? "▼" : "="}{" "}
+            {Math.abs(delta).toLocaleString(intlLocale(locale), { minimumFractionDigits: 1, maximumFractionDigits: 1 })}{" "}
+            {t("puntiTrimestrePrecedente")}
           </span>
         )}
       </div>
       <p className="text-ink-faint text-xs font-mono mb-4">
-        Tasso di disoccupazione, {etichettaTrimestre(ultimo.periodo)} — Friuli Venezia Giulia, 15-74 anni
+        {t("tassoDisoccupazioneSottotitolo", { trimestre: etichettaTrimestre(ultimo.periodo) })}
       </p>
 
       <p className="font-cond font-semibold text-[11px] tracking-[0.09em] uppercase text-ink-dim mb-2">
-        Ultimi trimestri
+        {t("ultimiTrimestri")}
       </p>
       <div>
-        {storico.map((t, i) => (
-          <div key={t.periodo} className={`flex items-center gap-2 py-1.5 ${i > 0 ? "border-t border-line" : ""}`}>
+        {storico.map((trim, i) => (
+          <div key={trim.periodo} className={`flex items-center gap-2 py-1.5 ${i > 0 ? "border-t border-line" : ""}`}>
             <span className="font-mono text-[11px] text-ink-faint w-24 flex-shrink-0">
-              {etichettaTrimestre(t.periodo)}
+              {etichettaTrimestre(trim.periodo)}
             </span>
             <div className="flex-1 bg-panel-alt rounded-sm h-2 overflow-hidden">
               <div
                 className="h-full bg-cool"
-                style={{ width: `${massimo > 0 ? (t.valore / massimo) * 100 : 0}%` }}
+                style={{ width: `${massimo > 0 ? (trim.valore / massimo) * 100 : 0}%` }}
               />
             </div>
-            <span className="font-mono text-xs w-12 text-right flex-shrink-0">{formattaPercentuale(t.valore)}</span>
+            <span className="font-mono text-xs w-12 text-right flex-shrink-0">{formattaPercentuale(trim.valore, locale)}</span>
           </div>
         ))}
       </div>

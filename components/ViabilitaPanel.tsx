@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 import { supabase } from "@/lib/supabase";
 
 type Evento = {
@@ -26,6 +27,7 @@ function coloreEvento(testo: string): "ok" | "warn" | "bad" {
 export function ViabilitaPanel() {
   const [dati, setDati] = useState<ViabilitaData | null>(null);
   const [stato, setStato] = useState<"loading" | "ready" | "error">("loading");
+  const t = useTranslations("viabilita");
 
   useEffect(() => {
     let attivo = true;
@@ -52,15 +54,15 @@ export function ViabilitaPanel() {
   }, []);
 
   if (stato === "loading") {
-    return <p className="text-ink-faint text-sm font-mono">Caricamento viabilità…</p>;
+    return <p className="text-ink-faint text-sm font-mono">{t("caricamento")}</p>;
   }
   if (stato === "error" || !dati) {
-    return <p className="text-ink-faint text-sm font-mono">Dati viabilità non disponibili al momento.</p>;
+    return <p className="text-ink-faint text-sm font-mono">{t("nonDisponibili")}</p>;
   }
   if (dati.eventi.length === 0) {
     return (
       <p className="text-ink-dim text-sm">
-        Nessun evento di rilievo sulla rete autostradale del FVG al momento.
+        {t("nessunEvento")}
       </p>
     );
   }

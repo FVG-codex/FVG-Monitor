@@ -1,12 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 import { ZoneChip } from "@/components/ZoneChip";
 import type { ProvinciaSlug } from "@/lib/province";
 import { fetchAllertaProvincia, ISTATCODE_PROVINCIA } from "@/lib/allerte";
 
 export function ZonaAllertamentoLive({ provincia }: { provincia: ProvinciaSlug }) {
   const [zona, setZona] = useState<"A" | "B" | "C" | "D" | null>(null);
+  const tChrome = useTranslations("chrome");
 
   useEffect(() => {
     let attivo = true;
@@ -26,6 +28,6 @@ export function ZonaAllertamentoLive({ provincia }: { provincia: ProvinciaSlug }
     };
   }, [provincia]);
 
-  if (!zona) return <span className="text-ink-faint text-xs font-mono">n.d.</span>;
+  if (!zona) return <span className="text-ink-faint text-xs font-mono">{tChrome("nd")}</span>;
   return <ZoneChip zone={zona} size="md" />;
 }

@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useLocale, useTranslations } from "next-intl";
 import { supabase } from "@/lib/supabase";
 import { PROVINCE_LIST, type ProvinciaSlug } from "@/lib/province";
+import { intlLocale } from "@/lib/intlLocale";
 
 type Polline = { famiglia: string | null; genere: string; media: number };
 type StazionePollini = { stazione: string; pollini: Polline[] };
@@ -13,9 +15,9 @@ type SnapshotPollini = {
   per_provincia: Partial<Record<ProvinciaSlug, StazionePollini[]>>;
 };
 
-function formattaData(iso: string): string {
+function formattaData(iso: string, locale: string): string {
   const d = new Date(iso);
-  return d.toLocaleDateString("it-IT", { day: "numeric", month: "short" });
+  return d.toLocaleDateString(intlLocale(locale), { day: "numeric", month: "short" });
 }
 
 // provincia opzionale (11/09/2026, per la nuova pagina "Dati ambientali"
@@ -28,6 +30,8 @@ export function PolliniPanel({ provincia: provinciaProp }: { provincia?: Provinc
   const [stato, setStato] = useState<"loading" | "ready" | "error">("loading");
   const [tabInterno, setTabInterno] = useState<ProvinciaSlug>("trieste");
   const tab = provinciaProp ?? tabInterno;
+  const t = useTranslations("pollini");
+  const locale = useLocale();
 
   useEffect(() => {
     let attivo = true;
@@ -50,10 +54,10 @@ export function PolliniPanel({ provincia: provinciaProp }: { provincia?: Provinc
   }, []);
 
   if (stato === "loading") {
-    return <p className="text-ink-faint text-sm font-mono">Caricamento pollini…</p>;
+    return <p className="text-ink-faint text-sm font-mono">{t("caricamento")}</p>;
   }
   if (stato === "error" || !dati) {
-    return <p className="text-ink-faint text-sm font-mono">Dati pollini non disponibili al momento.</p>;
+    return <p className="text-ink-faint text-sm font-mono">{t("nonDisponibili")}</p>;
   }
 
   const stazioni = dati.per_provincia[tab];
@@ -80,7 +84,7 @@ export function PolliniPanel({ provincia: provinciaProp }: { provincia?: Provinc
 
       {!stazioni || stazioni.length === 0 ? (
         <p className="text-ink-faint text-sm font-mono">
-          Nessuna stazione della rete aerobiologica attiva in provincia di {nomeProvincia}.
+          {t("nessunaStazione", { provincia: nomeProvincia })}
         </p>
       ) : (
         <div className="space-y-3">
@@ -88,7 +92,7 @@ export function PolliniPanel({ provincia: provinciaProp }: { provincia?: Provinc
             <div key={s.stazione}>
               <div className="font-mono text-[10px] text-ink-faint uppercase mb-1">{s.stazione}</div>
               {s.pollini.length === 0 ? (
-                <p className="text-ink-faint text-xs font-mono">Nessun polline significativo rilevato questa settimana.</p>
+                <p className="text-ink-faint text-xs font-mono">{t("nessunPolline")}</p>
               ) : (
                 <div className="flex flex-wrap gap-1.5">
                   {s.pollini.map((pol) => (
@@ -105,8 +109,10 @@ export function PolliniPanel({ provincia: provinciaProp }: { provincia?: Provinc
       )}
 
       <p className="text-ink-faint text-[10px] font-mono mt-3 pt-3 border-t border-line">
-        {dati.dal ? `Settimana ${formattaData(dati.dal)}–${formattaData(dati.al)}` : `Aggiornato al ${formattaData(dati.al)}`}
-        {" "}· media giornaliera granuli/m³ · fonte: ARPA FVG, rete POLLnet
+        {dati.dal
+          ? t("settimana", { da: formattaData(dati.dal, locale), a: formattaData(dati.al, locale) })
+          : t("aggiornatoAl", { data: formattaData(dati.al, locale) })}
+        {t("unitaFonte")}
       </p>
     </div>
   );

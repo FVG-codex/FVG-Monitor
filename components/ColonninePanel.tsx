@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { supabase } from "@/lib/supabase";
 import type { ColonnineElettricheData } from "@/lib/colonnineElettriche";
 
@@ -14,6 +15,8 @@ import type { ColonnineElettricheData } from "@/lib/colonnineElettriche";
 export function ColonninePanel() {
   const [dati, setDati] = useState<ColonnineElettricheData | null>(null);
   const [stato, setStato] = useState<"loading" | "ready" | "error">("loading");
+  const t = useTranslations("colonnineElettriche");
+  const tChrome = useTranslations("chrome");
 
   useEffect(() => {
     let attivo = true;
@@ -41,17 +44,18 @@ export function ColonninePanel() {
 
   return (
     <div>
-      {stato === "loading" && <p className="text-ink-faint text-sm font-mono">Caricamento…</p>}
-      {stato === "error" && <p className="text-ink-faint text-sm font-mono">Dati non disponibili al momento.</p>}
+      {stato === "loading" && <p className="text-ink-faint text-sm font-mono">{tChrome("caricamento")}</p>}
+      {stato === "error" && <p className="text-ink-faint text-sm font-mono">{tChrome("datiNonDisponibili")}</p>}
       {stato === "ready" && dati && (
         <p className="text-ink-dim text-sm">
-          <span className="font-cond font-bold text-2xl text-ink">{dati.totale}</span> colonnine di ricarica
-          elettrica censite in Friuli Venezia Giulia (fonte: OpenChargeMap, dato comunitario — vedi la pagina
-          dedicata per i dettagli e le date di verifica).
+          {t.rich("panelDescrizione", {
+            totale: dati.totale,
+            strong: (chunks) => <span className="font-cond font-bold text-2xl text-ink">{chunks}</span>,
+          })}
         </p>
       )}
       <Link href="/colonnine-elettriche" className="inline-block mt-3 font-mono text-[11px] text-cool-ink hover:underline">
-        Vedi la mappa e cerca vicino a te →
+        {t("vediMappa")}
       </Link>
     </div>
   );

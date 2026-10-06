@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 import { supabase } from "@/lib/supabase";
 
 type VocePrevisione = {
@@ -12,13 +13,18 @@ type VocePrevisione = {
 };
 type PazziPrevisioniData = { fonte: string; fonte_url: string; items: VocePrevisione[] };
 
-function tempoRelativo(dataStr: string): string {
+// Multilingua (06/10/2026): stessa logica di tempoRelativo() in
+// NotiziePanel.tsx (prima della sua conversione) — restituisce una
+// chiave stabile + il numero invece del testo italiano diretto, tradotta
+// sotto riusando le chiavi esistenti notizieProvincia.minFa/oreFa/giorniFa
+// (stesso identico testo, nessuna nuova chiave necessaria).
+function tempoRelativoChiave(dataStr: string): { chiave: "minFa" | "oreFa" | "giorniFa"; n: number } {
   const diffMs = Date.now() - new Date(dataStr).getTime();
   const minuti = Math.floor(diffMs / 60000);
-  if (minuti < 60) return `${minuti} min fa`;
+  if (minuti < 60) return { chiave: "minFa", n: minuti };
   const ore = Math.floor(minuti / 60);
-  if (ore < 24) return `${ore} h fa`;
-  return `${Math.floor(ore / 24)} g fa`;
+  if (ore < 24) return { chiave: "oreFa", n: ore };
+  return { chiave: "giorniFa", n: Math.floor(ore / 24) };
 }
 
 // Pannello "Previsioni temporalesche" — sessione 09/09/2026. Fonte: feed
@@ -30,6 +36,10 @@ function tempoRelativo(dataStr: string): string {
 export function PazziPrevisioniPanel() {
   const [dati, setDati] = useState<PazziPrevisioniData | null>(null);
   const [stato, setStato] = useState<"loading" | "ready" | "error">("loading");
+  const t = useTranslations("meteo");
+  const tNotizie = useTranslations("notizieProvincia");
+  const tPazzi = useTranslations("pazzi");
+  const tChrome = useTranslations("chrome");
 
   useEffect(() => {
     let attivo = true;
@@ -56,40 +66,43 @@ export function PazziPrevisioniPanel() {
   }, []);
 
   if (stato === "loading") {
-    return <p className="text-ink-faint text-sm font-mono">Caricamento previsioni…</p>;
+    return <p className="text-ink-faint text-sm font-mono">{t("caricamentoPrevisioni")}</p>;
   }
   if (stato === "error" || !dati || dati.items.length === 0) {
-    return <p className="text-ink-faint text-sm font-mono">Previsioni non disponibili al momento.</p>;
+    return <p className="text-ink-faint text-sm font-mono">{t("previsioniNonDisponibili")}</p>;
   }
 
   return (
     <div>
-      {dati.items.slice(0, 4).map((v, i) => (
-        <div key={v.link} className={`py-3 ${i > 0 ? "border-t border-line" : ""}`}>
-          <a href={v.link} target="_blank" rel="noopener noreferrer" className="block">
-            <div className="text-ink text-[15px] leading-snug mb-1.5 hover:text-cool-ink transition-colors">
-              {v.titolo}
-              <span className="sr-only"> (si apre in una nuova scheda)</span>
-            </div>
-          </a>
-          {v.estratto && <p className="text-ink-dim text-[13px] leading-snug mb-1.5">{v.estratto}</p>}
-          <div className="flex flex-wrap gap-x-2 gap-y-1 items-center justify-between font-mono text-[10px] text-ink-faint uppercase tracking-wide">
-            <span className="flex gap-2 items-center">
-              {v.autore && <span className="text-warm">{v.autore}</span>}
-              <span>· {tempoRelativo(v.data)}</span>
-            </span>
-            <a
-              href={v.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-ink-faint hover:text-cool-ink transition-colors normal-case tracking-normal"
-            >
-              Leggi la previsione completa su PMG →
-              <span className="sr-only"> (si apre in una nuova scheda)</span>
+      {dati.items.slice(0, 4).map((v, i) => {
+        const rel = tempoRelativoChiave(v.data);
+        return (
+          <div key={v.link} className={`py-3 ${i > 0 ? "border-t border-line" : ""}`}>
+            <a href={v.link} target="_blank" rel="noopener noreferrer" className="block">
+              <div className="text-ink text-[15px] leading-snug mb-1.5 hover:text-cool-ink transition-colors">
+                {v.titolo}
+                <span className="sr-only"> {tChrome("apreNuovaScheda")}</span>
+              </div>
             </a>
+            {v.estratto && <p className="text-ink-dim text-[13px] leading-snug mb-1.5">{v.estratto}</p>}
+            <div className="flex flex-wrap gap-x-2 gap-y-1 items-center justify-between font-mono text-[10px] text-ink-faint uppercase tracking-wide">
+              <span className="flex gap-2 items-center">
+                {v.autore && <span className="text-warm">{v.autore}</span>}
+                <span>· {tNotizie(rel.chiave, { n: rel.n })}</span>
+              </span>
+              <a
+                href={v.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-ink-faint hover:text-cool-ink transition-colors normal-case tracking-normal"
+              >
+                {tPazzi("leggiCompleta")}
+                <span className="sr-only"> {tChrome("apreNuovaScheda")}</span>
+              </a>
+            </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 }

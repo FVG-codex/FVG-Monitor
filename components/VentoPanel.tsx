@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 import { supabase } from "@/lib/supabase";
 import type { ProvinciaSlug } from "@/lib/province";
 
@@ -34,6 +35,8 @@ export function VentoPanel({
 }) {
   const [dati, setDati] = useState<VentoData | null>(null);
   const [stato, setStato] = useState<"loading" | "ready" | "error">("loading");
+  const t = useTranslations("vento");
+  const tChrome = useTranslations("chrome");
 
   useEffect(() => {
     let attivo = true;
@@ -61,12 +64,12 @@ export function VentoPanel({
   }, [provincia]);
 
   if (stato === "loading") {
-    return <p className="text-ink-faint text-sm font-mono">Caricamento dati vento…</p>;
+    return <p className="text-ink-faint text-sm font-mono">{t("caricamento")}</p>;
   }
   if (stato === "error" || !dati || dati.velocita_kmh === null) {
     return (
       <p className="text-ink-faint text-sm font-mono">
-        Dati vento non disponibili per questa stazione al momento.
+        {t("nonDisponibili")}
       </p>
     );
   }
@@ -78,18 +81,18 @@ export function VentoPanel({
         <span className="text-ink-dim text-sm">km/h</span>
       </div>
       <div className="font-mono text-xs text-cool-ink mb-4">
-        DA {puntoCardinale(dati.direzione_gradi)} · STAZIONE {dati.stazione.toUpperCase()}
+        {t("daStazione", { direzione: puntoCardinale(dati.direzione_gradi), stazione: dati.stazione.toUpperCase() })}
       </div>
       <div className="flex justify-between font-mono text-[11px] text-ink-faint border-t border-line pt-3">
         <span>
-          raffica max {dati.raffica_kmh ?? "—"} km/h
+          {t("rafficaMax", { raffica: dati.raffica_kmh ?? "—" })}
           {dati.direzione_raffica_gradi !== null && ` (${puntoCardinale(dati.direzione_raffica_gradi)})`}
         </span>
         <span>{dati.aggiornato_al}</span>
       </div>
       {!compatto && (
         <p className="text-ink-faint text-[10px] font-mono mt-2">
-          Fonte: Protezione Civile FVG (CC BY 4.0)
+          {tChrome("fonteProtezioneCivile")}
         </p>
       )}
     </div>

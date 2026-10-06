@@ -1,10 +1,19 @@
+import { getTranslations } from "next-intl/server";
+
 /**
  * Nessun feed/RSS pubblico trovato per il TGR FVG (verificato più
  * volte durante la mappatura fonti) — a differenza degli altri
  * moduli, qui non c'è ingestione automatica: un link diretto alla
  * sezione ufficiale, come deciso nel piano di lavoro (Fase 3).
+ *
+ * Multilingua (05/10/2026): nessuno stato/interattività, quindi resta
+ * un Server Component — diventato `async` solo per usare
+ * `getTranslations` (stesso pattern di `SkipLink()` in
+ * app/[locale]/layout.tsx), non serve `"use client"`.
  */
-export function TgrCard() {
+export async function TgrCard() {
+  const t = await getTranslations("home");
+  const tChrome = await getTranslations("chrome");
   return (
     <a
       href="https://www.rainews.it/tgr/fvg"
@@ -24,10 +33,10 @@ export function TgrCard() {
       </div>
       <div>
         <div className="font-cond font-semibold text-[15px] group-hover:text-cool-ink transition-colors">
-          Guarda l&apos;ultimo notiziario
+          {t("tgrCta")}
         </div>
         <div className="text-ink-faint text-xs font-mono mt-1">
-          TGR Rai Friuli Venezia Giulia →<span className="sr-only"> (si apre in una nuova scheda)</span>
+          TGR Rai Friuli Venezia Giulia →<span className="sr-only"> {tChrome("apreNuovaScheda")}</span>
         </div>
       </div>
     </a>

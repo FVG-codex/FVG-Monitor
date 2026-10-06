@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 import { supabase } from "@/lib/supabase";
 
 type Volo = { volo: string; luogo: string; previsto: string; effettivo: string; note: string };
@@ -10,6 +11,7 @@ export function VoliPanel() {
   const [dati, setDati] = useState<VoliData | null>(null);
   const [stato, setStato] = useState<"loading" | "ready" | "error">("loading");
   const [tab, setTab] = useState<"partenze" | "arrivi">("partenze");
+  const t = useTranslations("voli");
 
   useEffect(() => {
     let attivo = true;
@@ -36,10 +38,10 @@ export function VoliPanel() {
   }, []);
 
   if (stato === "loading") {
-    return <p className="text-ink-faint text-sm font-mono">Caricamento voli…</p>;
+    return <p className="text-ink-faint text-sm font-mono">{t("caricamento")}</p>;
   }
   if (stato === "error" || !dati) {
-    return <p className="text-ink-faint text-sm font-mono">Dati voli non disponibili al momento.</p>;
+    return <p className="text-ink-faint text-sm font-mono">{t("nonDisponibili")}</p>;
   }
 
   const voli = dati[tab];
@@ -47,22 +49,22 @@ export function VoliPanel() {
   return (
     <div>
       <div className="flex gap-1 mb-3">
-        {(["partenze", "arrivi"] as const).map((t) => (
+        {(["partenze", "arrivi"] as const).map((chiave) => (
           <button
-            key={t}
-            onClick={() => setTab(t)}
-            aria-pressed={tab === t}
+            key={chiave}
+            onClick={() => setTab(chiave)}
+            aria-pressed={tab === chiave}
             className={`px-2.5 py-1 rounded text-xs font-cond font-semibold uppercase tracking-wide transition-colors ${
-              tab === t ? "bg-cool text-on-accent" : "border border-line text-ink-dim hover:text-ink"
+              tab === chiave ? "bg-cool text-on-accent" : "border border-line text-ink-dim hover:text-ink"
             }`}
           >
-            {t === "partenze" ? "Partenze" : "Arrivi"}
+            {t(chiave)}
           </button>
         ))}
       </div>
 
       {voli.length === 0 ? (
-        <p className="text-ink-faint text-sm font-mono">Nessun volo in programma.</p>
+        <p className="text-ink-faint text-sm font-mono">{t("nessunVolo")}</p>
       ) : (
         <div>
           {voli.slice(0, 6).map((v, i) => {
@@ -78,7 +80,7 @@ export function VoliPanel() {
                       prima il ritardo era indicato SOLO dal colore
                       dell'orario — invisibile a chi non percepisce quel
                       colore (es. daltonici, schermo in scala di grigi). */}
-                  {ritardo && <span className="ml-1 lowercase">rit.</span>}
+                  {ritardo && <span className="ml-1 lowercase">{t("ritardo")}</span>}
                 </span>
                 {v.note && (
                   <span className="text-cool-ink text-[10px] font-mono flex-shrink-0 hidden sm:inline">{v.note}</span>
@@ -90,7 +92,7 @@ export function VoliPanel() {
       )}
 
       <p className="text-ink-faint text-[10px] font-mono mt-3 border-t border-line pt-2">
-        Ultimo aggiornamento {dati.aggiornato_al_testo || "—"} · fonte: Trieste Airport
+        {t("ultimoAggiornamento", { testo: dati.aggiornato_al_testo || "—" })}
       </p>
     </div>
   );

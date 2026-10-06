@@ -21,6 +21,34 @@ export type VoceChangelog = {
 
 export const CHANGELOG: VoceChangelog[] = [
   {
+    data: "06/10/2026",
+    titolo: "Tradotti i rimanenti moduli mappa e pannelli di pagina (Autobus, Treni, Aviazione, Farmacie, Fiumi, Maree, Pazzi per il meteo, Piste ciclabili, Pronto soccorso, Radar, Supermercati, Temperatura, Terremoti, Veterinari, Colonnine, Confini, Economia, Allerte)",
+    dettagli: [
+      "Completata la pulizia del debito tecnico di traduzione rimasto dopo la homepage: anche i popup delle mappe (autobus, treni, aviazione, farmacie, supermercati, terremoti, veterinari, piste ciclabili, pronto soccorso) e i pannelli di pagina rimasti in italiano fisso (livello fiume, grafico marea di oggi, previsioni e aggiornamenti di \"Pazzi per il meteo\", radar meteo, badge temperatura, sintesi colonnine elettriche in homepage, sezione Confini della pagina Viabilità, disoccupazione in Economia, avviso allerta Protezione Civile) sono ora tradotti in inglese e tedesco. Corretto anche un piccolo bug di formato data/ora e numeri (fisso all'italiano invece di seguire la lingua scelta) nel grafico marea e nel pannello disoccupazione. I dati reali — nomi di fermate/stazioni/strutture, indirizzi, orari, numeri di telefono, testo dei bollettini e degli eventi di traffico — restano in italiano in ogni lingua, come tutti i dati da fonti esterne o calcolati dal sito stesso.",
+    ],
+  },
+  {
+    data: "05/10/2026",
+    titolo: "Homepage — tradotti tutti i restanti pannelli (banner allerta, carburanti, eventi, notizie, sole e luna, vento, pioggia, pollini, balneazione, viabilità, voli, TGR)",
+    dettagli: [
+      "Completata la pulizia dei pannelli di homepage iniziata col Meteo e proseguita con Qualità aria/Fiumi/Mare/Allerte (vedi voci sotto): anche il banner delle allerte in cima alla pagina, e i pannelli carburanti, eventi, notizie, sole e luna, vento, pioggia, pollini, balneazione, viabilità, voli e il collegamento al TGR sono ora tradotti in inglese e tedesco (etichette, stati di caricamento/errore, intestazioni). Il pannello voli è condiviso con la pagina Trasporti, quindi è tradotto anche lì. I dati veri e propri (bollettini, orari, testo degli eventi di traffico, nomi di stazioni/punti di monitoraggio) restano in italiano in ogni lingua, come tutti i dati da fonti esterne.",
+    ],
+  },
+  {
+    data: "05/10/2026",
+    titolo: "Homepage — tradotti anche i pannelli Qualità aria, Fiumi, Mare e Allerte",
+    dettagli: [
+      "Proseguendo la pulizia iniziata col pannello Meteo (vedi voce sotto): anche i pannelli di homepage/pagina provincia per qualità dell'aria, livello dei fiumi, livello del mare e zone di allerta della Protezione Civile sono ora tradotti in inglese e tedesco (etichette, stati di caricamento/errore, \"Oltre soglia\", i nomi dei livelli di allerta Verde/Gialla/Arancione/Rossa). I valori numerici e i dati delle stazioni restano quelli reali, non tradotti. Nella mappa delle colonnine elettriche, anche le etichette del popup (Operatore, Costo, Stato, verifica dati) sono ora tradotte.",
+    ],
+  },
+  {
+    data: "05/10/2026",
+    titolo: "Meteo — tradotto anche il pannello riassuntivo in homepage (e il dettaglio provincia)",
+    dettagli: [
+      "Il pannello meteo dell'homepage e il riquadro dettagliato di ogni pagina provincia non erano mai stati tradotti (sono un componente condiviso, non una delle pagine già tradotte): ora etichette, stati di caricamento/errore, \"Dettagli\", \"Oggi\"/\"Domani\"/\"Dopodomani\", \"Ieri\", \"Aggiornamento\" sono tradotti in inglese e tedesco come il resto del sito. Il testo del bollettino OSMER stesso (es. \"poco nuvoloso\", le previsioni per zona) resta in italiano in ogni lingua, come tutti i dati da fonti esterne.",
+    ],
+  },
+  {
     data: "05/10/2026",
     titolo: "Multilingua — aggiunto il tedesco come terza lingua del sito",
     dettagli: [

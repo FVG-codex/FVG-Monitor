@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 import { supabase } from "@/lib/supabase";
 import type { ProvinciaSlug } from "@/lib/province";
 
@@ -14,6 +15,9 @@ type FiumeData = {
 export function FiumePanel({ provincia }: { provincia: ProvinciaSlug }) {
   const [dati, setDati] = useState<FiumeData | null>(null);
   const [stato, setStato] = useState<"loading" | "ready" | "error">("loading");
+  const t = useTranslations("fiume");
+  const tPioggia = useTranslations("pioggia");
+  const tChrome = useTranslations("chrome");
 
   useEffect(() => {
     let attivo = true;
@@ -44,10 +48,10 @@ export function FiumePanel({ provincia }: { provincia: ProvinciaSlug }) {
   }, [provincia]);
 
   if (stato === "loading") {
-    return <p className="text-ink-faint text-sm font-mono">Caricamento livello fiume…</p>;
+    return <p className="text-ink-faint text-sm font-mono">{t("caricamento")}</p>;
   }
   if (stato === "error" || !dati) {
-    return <p className="text-ink-faint text-sm font-mono">Dati livello fiume non disponibili al momento.</p>;
+    return <p className="text-ink-faint text-sm font-mono">{t("nonDisponibili")}</p>;
   }
 
   return (
@@ -58,11 +62,11 @@ export function FiumePanel({ provincia }: { provincia: ProvinciaSlug }) {
       </div>
       <div className="font-mono text-xs text-cool-ink mt-1 mb-3">{dati.fiume.toUpperCase()}</div>
       <div className="flex justify-between font-mono text-[11px] text-ink-faint border-t border-line pt-3">
-        <span>Stazione {dati.stazione}</span>
+        <span>{tPioggia("stazione", { stazione: dati.stazione })}</span>
         <span>{dati.aggiornato_al}</span>
       </div>
       <p className="text-ink-faint text-[10px] font-mono mt-2">
-        Fonte: Protezione Civile FVG (CC BY 4.0)
+        {tChrome("fonteProtezioneCivile")}
       </p>
     </div>
   );

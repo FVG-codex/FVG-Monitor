@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 import { supabase } from "@/lib/supabase";
 import { TemperaturaBadge } from "@/components/TemperaturaBadge";
 import { ZoneChip } from "@/components/ZoneChip";
@@ -49,6 +50,18 @@ type MeteoData = {
  * dall'utente (06/09/2026): ☀️ sereno, 🌤️ poco nuvoloso, ⛅ variabile/
  * nuvoloso, 🌦️ molto nuvoloso/coperto. Un testo non riconosciuto non
  * mostra alcuna icona (`undefined`) invece di sceglierne una a caso.
+ *
+ * Multilingua (05/10/2026): questa funzione resta volutamente sulle
+ * parole italiane sopra, in ogni lingua — non sono testo di interfaccia
+ * ma un riconoscimento di parole chiave contro `c.cielo`, che è testo
+ * del bollettino OSMER e quindi resta sempre in italiano (dato esterno,
+ * stessa convenzione di tutto il resto del sito). È stato invece
+ * tradotto in questa stessa modifica tutto il testo fisso attorno a
+ * questa funzione (etichette, stati di caricamento/errore, "Dettagli",
+ * "Oggi"/"Domani"/"Dopodomani", ecc. — vedi `MeteoOverview`/
+ * `MeteoDettaglio` sotto), mai toccato nelle tappe precedenti perché
+ * questo è un componente condiviso (homepage + pagina provincia + pagina
+ * Meteo), non una delle "pagine" contate in quel lavoro.
  */
 export function iconaCielo(cielo: string | null | undefined): string | undefined {
   if (!cielo) return undefined;
@@ -97,14 +110,16 @@ function useMeteoData() {
  */
 export function MeteoOverview() {
   const { dati, stato } = useMeteoData();
+  const t = useTranslations("meteo");
+  const tChrome = useTranslations("chrome");
 
   if (stato === "loading") {
-    return <p className="text-ink-faint text-sm font-mono">Caricamento previsioni…</p>;
+    return <p className="text-ink-faint text-sm font-mono">{t("caricamentoPrevisioni")}</p>;
   }
   if (stato === "error" || !dati) {
     return (
       <p className="text-ink-faint text-sm font-mono">
-        Previsioni non disponibili al momento — riprova più tardi.
+        {t("previsioniNonDisponibili")}
       </p>
     );
   }
@@ -117,7 +132,7 @@ export function MeteoOverview() {
       <p className="font-serif italic text-ink-dim text-sm mb-4">{dati.situazione_generale}</p>
       {oggi?.aggiornamento && oggi.regione_testo && (
         <p className="text-sm text-ink-dim bg-panel-alt rounded px-2.5 py-2 mb-4">
-          <span className="font-cond font-semibold text-cool-ink">🔄 Aggiornamento di oggi — </span>
+          <span className="font-cond font-semibold text-cool-ink">🔄 {t("aggiornamentoOggiLabel")}</span>
           {oggi.regione_testo.replace(/^aggiornamento\s*:\s*/i, "")}
         </p>
       )}
@@ -170,7 +185,7 @@ export function MeteoOverview() {
                     )}
                   </>
                 ) : (
-                  <span className="text-ink-faint flex-1 min-w-0 font-mono text-xs">n.d.</span>
+                  <span className="text-ink-faint flex-1 min-w-0 font-mono text-xs">{tChrome("nd")}</span>
                 )}
                 <TemperaturaBadge provincia={p.slug} />
                 {/* "Dettagli" testuale nascosto sotto sm (l'intera riga è
@@ -179,7 +194,7 @@ export function MeteoOverview() {
                     valore) — stessa convenzione già in uso in
                     AutobusPanel.tsx/TreniPanel.tsx/VoliPanel.tsx. */}
                 <span className="text-cool-ink text-xs font-mono flex-shrink-0 whitespace-nowrap">
-                  <span className="hidden sm:inline">Dettagli </span>→
+                  <span className="hidden sm:inline">{t("dettagli")} </span>→
                 </span>
               </a>
             );
@@ -187,9 +202,9 @@ export function MeteoOverview() {
         </div>
       )}
       <p className="text-ink-faint text-xs font-mono border-t border-line pt-3 mt-3">
-        Bollettino di domani ({domani?.data_validita ?? "—"}) — fonte:{" "}
+        {t("bollettinoDiDomani", { data: domani?.data_validita ?? "—" })}{" "}
         <a href="https://www.meteo.fvg.it" target="_blank" rel="noopener noreferrer" className="text-cool-ink">
-          OSMER ARPA FVG<span className="sr-only"> (si apre in una nuova scheda)</span>
+          OSMER ARPA FVG<span className="sr-only"> {tChrome("apreNuovaScheda")}</span>
         </a>
       </p>
     </div>
@@ -202,15 +217,16 @@ export function MeteoOverview() {
  */
 export function MeteoDettaglio({ provincia }: { provincia: ProvinciaSlug }) {
   const { dati, stato } = useMeteoData();
+  const t = useTranslations("meteo");
+  const tChrome = useTranslations("chrome");
 
   if (stato === "loading") {
-    return <p className="text-ink-faint text-sm font-mono">Caricamento previsioni…</p>;
+    return <p className="text-ink-faint text-sm font-mono">{t("caricamentoPrevisioni")}</p>;
   }
   if (stato === "error" || !dati) {
     return (
       <p className="text-ink-faint text-sm font-mono">
-        Previsioni non disponibili al momento — il bollettino OSMER viene aggiornato circa una
-        volta al giorno, riprova più tardi.
+        {t("previsioniNonDisponibiliDettaglio")}
       </p>
     );
   }
@@ -226,7 +242,7 @@ export function MeteoDettaglio({ provincia }: { provincia: ProvinciaSlug }) {
         {dati.scadenze.map((s) => {
           const c = s.per_citta[provincia];
           if (!c) return null;
-          const etichetta = s.giorno === "OGGI" ? "Oggi" : s.giorno === "DOMANI" ? "Domani" : "Dopodomani";
+          const etichetta = t(`giorno.${s.giorno}`);
           return (
             <div key={s.giorno} className="border-t border-line pt-3">
               <div className="font-cond font-semibold text-xs uppercase tracking-wide text-ink-faint mb-1.5 flex items-center gap-2">
@@ -235,7 +251,7 @@ export function MeteoDettaglio({ provincia }: { provincia: ProvinciaSlug }) {
                 </span>
                 {s.aggiornamento && (
                   <span className="normal-case tracking-normal text-cool-ink bg-panel-alt rounded px-1.5 py-0.5">
-                    🔄 Aggiornamento
+                    🔄 {t("aggiornamentoBadge")}
                   </span>
                 )}
               </div>
@@ -259,14 +275,14 @@ export function MeteoDettaglio({ provincia }: { provincia: ProvinciaSlug }) {
 
       {ieri && (ieri.tmin || ieri.tmax) && (
         <div className="border-t border-line pt-3 mt-4 text-xs font-mono text-ink-faint">
-          Ieri ({dati.osservazioni_data}): min {ieri.tmin ?? "n.d."} · max {ieri.tmax ?? "n.d."}
+          {t("ieri")} ({dati.osservazioni_data}): min {ieri.tmin ?? tChrome("nd")} · max {ieri.tmax ?? tChrome("nd")}
         </div>
       )}
 
       <p className="text-ink-faint text-xs font-mono border-t border-line pt-3 mt-4">
-        Bollettino emesso il {dati.bollettino_emesso} — fonte:{" "}
+        {t("bollettinoEmesso", { data: dati.bollettino_emesso })}{" "}
         <a href="https://www.meteo.fvg.it" target="_blank" rel="noopener noreferrer" className="text-cool-ink">
-          OSMER ARPA FVG<span className="sr-only"> (si apre in una nuova scheda)</span>
+          OSMER ARPA FVG<span className="sr-only"> {tChrome("apreNuovaScheda")}</span>
         </a>
       </p>
     </div>

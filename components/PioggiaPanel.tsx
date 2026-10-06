@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 import { supabase } from "@/lib/supabase";
 import type { ProvinciaSlug } from "@/lib/province";
 
@@ -23,6 +24,8 @@ export function PioggiaPanel({
 }) {
   const [dati, setDati] = useState<PioggiaData | null>(null);
   const [stato, setStato] = useState<"loading" | "ready" | "error">("loading");
+  const t = useTranslations("pioggia");
+  const tChrome = useTranslations("chrome");
 
   useEffect(() => {
     let attivo = true;
@@ -57,12 +60,12 @@ export function PioggiaPanel({
   }, [provincia]);
 
   if (stato === "loading") {
-    return <p className="text-ink-faint text-sm font-mono">Caricamento dati pioggia…</p>;
+    return <p className="text-ink-faint text-sm font-mono">{t("caricamento")}</p>;
   }
   if (stato === "error" || !dati || (dati.pioggia_1h_mm === null && dati.pioggia_24h_mm === null)) {
     return (
       <p className="text-ink-faint text-sm font-mono">
-        Dati pioggia non disponibili per questa stazione al momento.
+        {t("nonDisponibili")}
       </p>
     );
   }
@@ -75,23 +78,23 @@ export function PioggiaPanel({
             {dati.pioggia_1h_mm ?? "—"}
             <span className="text-ink-dim text-sm ml-1">mm</span>
           </div>
-          <div className="font-mono text-[10px] text-ink-faint uppercase mt-1">Ultima ora</div>
+          <div className="font-mono text-[10px] text-ink-faint uppercase mt-1">{t("ultimaOra")}</div>
         </div>
         <div>
           <div className="font-cond font-bold text-[36px] leading-[0.9]">
             {dati.pioggia_24h_mm ?? "—"}
             <span className="text-ink-dim text-sm ml-1">mm</span>
           </div>
-          <div className="font-mono text-[10px] text-ink-faint uppercase mt-1">Ultime 24h</div>
+          <div className="font-mono text-[10px] text-ink-faint uppercase mt-1">{t("ultime24h")}</div>
         </div>
       </div>
       <div className="flex justify-between font-mono text-[11px] text-ink-faint border-t border-line pt-3 mt-3">
-        <span>Stazione {dati.stazione}</span>
+        <span>{t("stazione", { stazione: dati.stazione })}</span>
         <span>{dati.aggiornato_al}</span>
       </div>
       {!compatto && (
         <p className="text-ink-faint text-[10px] font-mono mt-2">
-          Fonte: Protezione Civile FVG (CC BY 4.0)
+          {tChrome("fonteProtezioneCivile")}
         </p>
       )}
     </div>

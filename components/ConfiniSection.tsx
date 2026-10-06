@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { VALICHI, NOME_PAESE, ETICHETTA_MODALITA, ETICHETTA_CLASSE } from "@/lib/confini";
+import { useTranslations } from "next-intl";
+import { VALICHI } from "@/lib/confini";
 import { supabase } from "@/lib/supabase";
 
 type Evento = {
@@ -50,6 +51,8 @@ type ConfiniPrometsiData = { generatoIl: string; perValico: Record<string, Valic
 export function ConfiniSection() {
   const [dati, setDati] = useState<ViabilitaData | null>(null);
   const [datiPrometsi, setDatiPrometsi] = useState<ConfiniPrometsiData | null>(null);
+  const t = useTranslations("confini");
+  const tChrome = useTranslations("chrome");
 
   useEffect(() => {
     let attivo = true;
@@ -84,7 +87,7 @@ export function ConfiniSection() {
           <div key={v.id} className="border border-line rounded p-4 bg-panel">
             <div className="flex items-baseline justify-between gap-2 flex-wrap">
               <span className="text-sm font-semibold">{v.nome}</span>
-              <span className="text-ink-faint text-[10px] font-mono uppercase">{NOME_PAESE[v.paese]}</span>
+              <span className="text-ink-faint text-[10px] font-mono uppercase">{t(`paese.${v.paese}`)}</span>
             </div>
             <div className="text-ink-dim text-xs mt-0.5">→ {v.nomeStraniero}</div>
 
@@ -92,7 +95,7 @@ export function ConfiniSection() {
               {v.comuneIt} ({v.stradaIt}) ↔ {v.comuneStraniero} ({v.stradaStraniera})
             </div>
             <div className="text-ink-faint text-[10px] font-mono uppercase mt-0.5">
-              {ETICHETTA_MODALITA[v.modalita]} · {ETICHETTA_CLASSE[v.classe]}
+              {t(`modalita.${v.modalita}`)} · {t(`classe.${v.classe}`)}
             </div>
 
             {v.note && <div className="text-ink-dim text-xs mt-2">{v.note}</div>}
@@ -100,14 +103,14 @@ export function ConfiniSection() {
             {!haFonteLive && (
               <div className="mt-3 pt-2 border-t border-line">
                 <div className="text-ink-faint text-[10px] font-mono uppercase">
-                  Nessuna fonte live verificata per questo valico
+                  {t("nessunaFonteLive")}
                 </div>
               </div>
             )}
 
             {v.autostradeCollegate.length > 0 && (
               <div className="mt-3 pt-2 border-t border-line">
-                <div className="text-ink-faint text-[9px] font-mono uppercase mb-1">Lato italiano</div>
+                <div className="text-ink-faint text-[9px] font-mono uppercase mb-1">{t("latoItaliano")}</div>
                 {eventiIt.length > 0 ? (
                   <div className="flex flex-col gap-1.5">
                     {eventiIt.map((e, i) => (
@@ -118,7 +121,7 @@ export function ConfiniSection() {
                   </div>
                 ) : (
                   <div className="text-ink-faint text-[10px] font-mono uppercase">
-                    Nessun evento in corso su {v.autostradeCollegate.join("/")}
+                    {t("nessunEventoAutostrada", { strade: v.autostradeCollegate.join("/") })}
                   </div>
                 )}
               </div>
@@ -127,13 +130,13 @@ export function ConfiniSection() {
             {v.codiceStradaPromet && (
               <div className="mt-3 pt-2 border-t border-line">
                 <div className="text-ink-faint text-[9px] font-mono uppercase mb-1">
-                  Lato sloveno {datiSi?.stale && "· dati non aggiornati"}
+                  {t("latoSloveno")} {datiSi?.stale && t("datiNonAggiornatiSuffix")}
                 </div>
                 {!datiPrometsi ? (
-                  <div className="text-ink-faint text-[10px] font-mono uppercase">Caricamento…</div>
+                  <div className="text-ink-faint text-[10px] font-mono uppercase">{tChrome("caricamento")}</div>
                 ) : !datiSi || datiSi.errore ? (
                   <div className="text-ink-faint text-[10px] font-mono uppercase">
-                    Dati sloveni non disponibili al momento
+                    {t("datiSloveniNonDisponibili")}
                   </div>
                 ) : datiSi.eventi.length > 0 ? (
                   <div className="flex flex-col gap-1.5">
@@ -141,13 +144,13 @@ export function ConfiniSection() {
                       <div key={i} className="text-xs text-ink-dim">
                         <span className="font-cond font-semibold">{v.codiceStradaPromet}</span>{" "}
                         {e.descrizione ?? e.titolo}
-                        {e.zastoj && e.codaM ? ` (coda ~${e.codaM} m)` : ""}
+                        {e.zastoj && e.codaM ? t("codaM", { m: e.codaM }) : ""}
                       </div>
                     ))}
                   </div>
                 ) : (
                   <div className="text-ink-faint text-[10px] font-mono uppercase">
-                    Nessun evento segnalato su {v.codiceStradaPromet}
+                    {t("nessunEventoValico", { codice: v.codiceStradaPromet })}
                   </div>
                 )}
               </div>

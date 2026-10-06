@@ -2,13 +2,24 @@
 
 import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
+import { useTranslations } from "next-intl";
 import { supabase } from "@/lib/supabase";
+
+// Multilingua (06/10/2026): piccolo componente dedicato invece di una
+// arrow function inline, perché il fallback di `loading` di next/dynamic
+// è comunque reso dentro l'albero React (quindi dentro
+// NextIntlClientProvider) — può usare useTranslations() come qualsiasi
+// altro componente client.
+function CaricamentoMappaRadar() {
+  const t = useTranslations("radar");
+  return <p className="text-ink-faint text-sm font-mono">{t("caricamentoMappa")}</p>;
+}
 
 // Leaflet richiede il DOM del browser (window/document) — niente
 // rendering lato server, va caricato dinamicamente solo lato client
 const RadarMeteoMap = dynamic(() => import("@/components/RadarMeteoMap").then((m) => m.RadarMeteoMap), {
   ssr: false,
-  loading: () => <p className="text-ink-faint text-sm font-mono">Caricamento mappa…</p>,
+  loading: () => <CaricamentoMappaRadar />,
 });
 
 type ProdottoRadar = {
@@ -19,37 +30,22 @@ type ProdottoRadar = {
 
 type RadarData = Partial<Record<"srtlbm_1" | "ssi" | "hmc" | "lbm_v", ProdottoRadar>>;
 
+// Multilingua (06/10/2026): label e spiegazione non sono più testo
+// italiano fisso nell'array ma chiavi (t("prodotti.<chiave>")/
+// t("spiegazioni.<chiave>")) — solo `unita` resta qui (simbolo di unità
+// di misura, identico in ogni lingua, non va tradotto).
 const PRODOTTI = [
-  {
-    chiave: "srtlbm_1" as const,
-    label: "Pioggia",
-    unita: "mm",
-    spiegazione: "Intensità della pioggia in corso — più il colore è intenso (verso il rosso/viola), più forte è la precipitazione.",
-  },
-  {
-    chiave: "ssi" as const,
-    label: "Severità",
-    unita: null,
-    spiegazione: "Indice sintetico di severità del temporale (Storm Severity Index), da moderato a molto forte — pensato per una lettura rapida.",
-  },
-  {
-    chiave: "hmc" as const,
-    label: "Idrometeore",
-    unita: null,
-    spiegazione: "Tipo di precipitazione rilevata: pioggia leggera/moderata/forte, grandine, neve secca o bagnata, cristalli di ghiaccio.",
-  },
-  {
-    chiave: "lbm_v" as const,
-    label: "Vento Doppler",
-    unita: "m/s",
-    spiegazione: "Velocità del vento in quota rilevata dal radar — utile per individuare rotazione nelle celle temporalesche (dato più tecnico).",
-  },
+  { chiave: "srtlbm_1" as const, unita: "mm" },
+  { chiave: "ssi" as const, unita: null },
+  { chiave: "hmc" as const, unita: null },
+  { chiave: "lbm_v" as const, unita: "m/s" },
 ];
 
 export function RadarMeteoPanel() {
   const [dati, setDati] = useState<RadarData | null>(null);
   const [stato, setStato] = useState<"loading" | "ready" | "error">("loading");
   const [prodotto, setProdotto] = useState<(typeof PRODOTTI)[number]["chiave"]>("srtlbm_1");
+  const t = useTranslations("radar");
 
   useEffect(() => {
     let attivo = true;
@@ -76,13 +72,14 @@ export function RadarMeteoPanel() {
   }, []);
 
   if (stato === "loading") {
-    return <p className="text-ink-faint text-sm font-mono">Caricamento radar…</p>;
+    return <p className="text-ink-faint text-sm font-mono">{t("caricamento")}</p>;
   }
   if (stato === "error" || !dati) {
-    return <p className="text-ink-faint text-sm font-mono">Dati radar non disponibili al momento.</p>;
+    return <p className="text-ink-faint text-sm font-mono">{t("nonDisponibili")}</p>;
   }
 
   const attivo = PRODOTTI.find((p) => p.chiave === prodotto)!;
+  const etichettaAttivo = t(`prodotti.${attivo.chiave}`);
   const corrente = dati[prodotto];
 
   return (
@@ -97,21 +94,21 @@ export function RadarMeteoPanel() {
               prodotto === p.chiave ? "bg-cool text-on-accent" : "border border-line text-ink-dim hover:text-ink"
             }`}
           >
-            {p.label}
+            {t(`prodotti.${p.chiave}`)}
           </button>
         ))}
       </div>
 
-      <p className="text-ink-dim text-xs mb-3">{attivo.spiegazione}</p>
+      <p className="text-ink-dim text-xs mb-3">{t(`spiegazioni.${attivo.chiave}`)}</p>
 
       {!corrente ? (
-        <p className="text-ink-faint text-sm font-mono">Dati "{attivo.label}" non disponibili al momento.</p>
+        <p className="text-ink-faint text-sm font-mono">{t("datiProdottoNonDisponibili", { prodotto: etichettaAttivo })}</p>
       ) : !corrente.extent ? (
         <div>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={corrente.immagine} alt={`Radar meteo — ${attivo.label}`} className="max-w-full rounded" />
+          <img src={corrente.immagine} alt={t("ariaLabel", { prodotto: etichettaAttivo })} className="max-w-full rounded" />
           <p className="text-ink-faint text-[10px] font-mono mt-2">
-            Aggiornato {corrente.aggiornato_al} · fonte: Protezione Civile FVG (CC BY 4.0)
+            {t("aggiornatoFonte", { data: corrente.aggiornato_al })}
           </p>
         </div>
       ) : (
@@ -130,16 +127,15 @@ export function RadarMeteoPanel() {
                   di eventi discreti) — limite noto, documentato nel README. */}
               <div
                 role="region"
-                aria-label={`Radar meteo — ${attivo.label}`}
+                aria-label={t("ariaLabel", { prodotto: etichettaAttivo })}
                 className="rounded overflow-hidden"
                 style={{ height: 320 }}
               >
                 <RadarMeteoMap immagine={corrente.immagine} bounds={bounds} centro={centro} />
               </div>
               <p className="text-ink-faint text-[10px] font-mono mt-2">
-                {attivo.label}
-                {attivo.unita ? ` (${attivo.unita})` : ""} · radar Fossalon · aggiornato {corrente.aggiornato_al} ·
-                fonte: Protezione Civile FVG (CC BY 4.0) · mappa: © OpenStreetMap
+                {etichettaAttivo}
+                {attivo.unita ? ` (${attivo.unita})` : ""} · {t("dettaglioMappa", { data: corrente.aggiornato_al })}
               </p>
             </div>
           );

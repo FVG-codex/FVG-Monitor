@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 import { fetchPassaggiBlocco, urlRealtimeFermata, BLOCCHI_AUTOBUS, type PassaggioAutobus } from "@/lib/autobus";
 
 const FILTRI = ["tutti", "partenze", "arrivi"] as const;
@@ -11,6 +12,9 @@ export function AutobusPanel() {
   const [filtro, setFiltro] = useState<Filtro>("tutti");
   const [passaggi, setPassaggi] = useState<PassaggioAutobus[] | null>(null);
   const [stato, setStato] = useState<"loading" | "ready" | "error">("loading");
+  const t = useTranslations("autobus");
+  const tVoli = useTranslations("voli");
+  const tChrome = useTranslations("chrome");
 
   useEffect(() => {
     let attivo = true;
@@ -64,28 +68,26 @@ export function AutobusPanel() {
       </div>
 
       <div className="flex gap-1 mb-3">
-        {FILTRI.map((t) => (
+        {FILTRI.map((chiave) => (
           <button
-            key={t}
-            onClick={() => setFiltro(t)}
-            aria-pressed={filtro === t}
+            key={chiave}
+            onClick={() => setFiltro(chiave)}
+            aria-pressed={filtro === chiave}
             className={`px-2.5 py-1 rounded text-xs font-cond font-semibold uppercase tracking-wide transition-colors ${
-              filtro === t ? "bg-cool text-on-accent" : "border border-line text-ink-dim hover:text-ink"
+              filtro === chiave ? "bg-cool text-on-accent" : "border border-line text-ink-dim hover:text-ink"
             }`}
           >
-            {t === "tutti" ? "Tutti" : t === "partenze" ? "Partenze" : "Arrivi"}
+            {chiave === "tutti" ? t("filtroTutti") : chiave === "partenze" ? tVoli("partenze") : tVoli("arrivi")}
           </button>
         ))}
       </div>
 
-      {stato === "loading" && <p className="text-ink-faint text-sm font-mono">Caricamento autobus…</p>}
+      {stato === "loading" && <p className="text-ink-faint text-sm font-mono">{t("caricamento")}</p>}
       {stato === "error" && (
-        <p className="text-ink-faint text-sm font-mono">
-          Dati autobus non disponibili al momento (fonte non ufficiale, può essere temporaneamente irraggiungibile).
-        </p>
+        <p className="text-ink-faint text-sm font-mono">{t("nonDisponibili")}</p>
       )}
       {stato === "ready" && passaggiFiltrati && passaggiFiltrati.length === 0 && (
-        <p className="text-ink-dim text-sm">Nessun passaggio in programma a breve.</p>
+        <p className="text-ink-dim text-sm">{t("nessunPassaggio")}</p>
       )}
 
       {stato === "ready" && passaggiFiltrati && passaggiFiltrati.length > 0 && (
@@ -98,19 +100,20 @@ export function AutobusPanel() {
                     davvero dentro un flex item — vedi stessa nota in
                     TreniPanel.tsx */}
                 <span className="text-ink flex-1 min-w-0 truncate">
-                  {p.tipo === "partenza" ? "per " : "da "}
-                  {p.luogo ?? "—"}
+                  {p.tipo === "partenza" ? t("versoLuogo", { luogo: p.luogo ?? "—" }) : t("daLuogo", { luogo: p.luogo ?? "—" })}
                 </span>
                 <span className="font-mono text-xs text-ink-dim flex-shrink-0">{p.orario ?? "—"}</span>
                 {p.binario && (
-                  <span className="font-mono text-[10px] text-ink-faint flex-shrink-0 hidden sm:inline">bin. {p.binario}</span>
+                  <span className="font-mono text-[10px] text-ink-faint flex-shrink-0 hidden sm:inline">
+                    {tChrome("binario", { binario: p.binario })}
+                  </span>
                 )}
                 <span
                   className={`font-mono text-[10px] flex-shrink-0 w-28 text-right ${
                     p.inTempoReale ? "text-allerta-verde-ink" : "text-ink-faint"
                   }`}
                 >
-                  {p.inTempoReale ? "in tempo reale" : "programmato"}
+                  {p.inTempoReale ? t("tempoReale") : t("programmato")}
                 </span>
               </div>
               {/* Fermata fisica di origine: più fermate del blocco possono
@@ -126,8 +129,8 @@ export function AutobusPanel() {
                 rel="noopener noreferrer"
                 className="font-mono text-[10px] text-ink-faint hover:text-cool-ink mt-0.5 pl-[68px] truncate block"
               >
-                {p.fermataNome || "Fermata"} · {p.fermataCodice}
-                <span className="sr-only"> (si apre in una nuova scheda)</span>
+                {p.fermataNome || t("fermataFallback")} · {p.fermataCodice}
+                <span className="sr-only"> {tChrome("apreNuovaScheda")}</span>
               </a>
             </div>
           ))}
@@ -135,7 +138,7 @@ export function AutobusPanel() {
       )}
 
       <p className="text-ink-faint text-[10px] font-mono mt-3 border-t border-line pt-2">
-        Blocco {blocco.nome} ({blocco.fermate.length} fermate) · aggiornato dal tuo browser ogni minuto · fonte: TPL FVG (API non ufficiale)
+        {t("footerBlocco", { nome: blocco.nome, n: blocco.fermate.length })}
       </p>
 
       {/* Elenco di TUTTE le fermate del blocco con link alla pagina in
@@ -143,7 +146,7 @@ export function AutobusPanel() {
           visibile sopra (09/09/2026, richiesta esplicita dell'utente:
           "per ogni nome e sigla si generasse un link"). */}
       <p className="text-ink-faint text-[10px] font-mono mt-1.5 flex flex-wrap gap-x-1.5 gap-y-1">
-        <span>Fermate:</span>
+        <span>{t("fermateLabel")}</span>
         {blocco.fermate.map((f, i) => (
           <span key={f.stopCode}>
             <a
@@ -153,7 +156,7 @@ export function AutobusPanel() {
               className="hover:text-cool-ink hover:underline"
             >
               {f.nome || f.stopCode}
-              <span className="sr-only"> (si apre in una nuova scheda)</span>
+              <span className="sr-only"> {tChrome("apreNuovaScheda")}</span>
             </a>
             {i < blocco.fermate.length - 1 && " ·"}
           </span>

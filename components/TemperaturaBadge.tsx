@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 import { supabase } from "@/lib/supabase";
 import type { ProvinciaSlug } from "@/lib/province";
 
@@ -12,6 +13,7 @@ export function TemperaturaBadge({
   size?: "sm" | "lg";
 }) {
   const [temp, setTemp] = useState<number | null>(null);
+  const t = useTranslations("temperaturaBadge");
 
   useEffect(() => {
     let attivo = true;
@@ -44,7 +46,7 @@ export function TemperaturaBadge({
     return (
       <div className="font-cond font-bold text-[32px] leading-none flex items-center gap-2">
         {temp}
-        <span className="text-ink-dim text-base">°C ora</span>
+        <span className="text-ink-dim text-base">°C {t("oraLabel")}</span>
       </div>
     );
   }

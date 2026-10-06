@@ -1,8 +1,10 @@
 "use client";
 
 import { MapContainer, TileLayer, CircleMarker, Circle, Popup } from "react-leaflet";
+import { useLocale, useTranslations } from "next-intl";
 import "leaflet/dist/leaflet.css";
 import type { Colonnina } from "@/lib/colonnineElettriche";
+import { intlLocale } from "@/lib/intlLocale";
 
 // Colori riusati dalla palette esistente del sito (tailwind.config.ts,
 // già verificata per il contrasto in Fase 4 — Accessibilità) invece di
@@ -27,6 +29,8 @@ export function ColonnineElettricheMap({
   posizione: [number, number] | null;
   raggioKm: number;
 }) {
+  const t = useTranslations("colonnineElettriche");
+  const locale = useLocale();
   return (
     <MapContainer center={centro} zoom={9} style={{ height: "100%", width: "100%" }} scrollWheelZoom={false}>
       <TileLayer
@@ -46,7 +50,7 @@ export function ColonnineElettricheMap({
             radius={8}
             pathOptions={{ color: "#fff", fillColor: COLORE_POSIZIONE, fillOpacity: 1, weight: 2 }}
           >
-            <Popup>La tua posizione</Popup>
+            <Popup>{t("laTuaPosizione")}</Popup>
           </CircleMarker>
         </>
       )}
@@ -59,20 +63,20 @@ export function ColonnineElettricheMap({
           pathOptions={{ color: coloreStato(c.operativo), fillColor: coloreStato(c.operativo), fillOpacity: 0.7 }}
         >
           <Popup>
-            <strong>{c.nome ?? "Colonnina"}</strong>
+            <strong>{c.nome ?? t("colonninaFallback")}</strong>
             <br />
             {[c.indirizzo, c.comune].filter(Boolean).join(", ")}
             {c.operatore && (
               <>
                 <br />
-                Operatore: {c.operatore}
+                {t("operatoreLabel")} {c.operatore}
               </>
             )}
             {c.prese.length > 0 && (
               <div style={{ marginTop: 4 }}>
                 {c.prese.map((p, i) => (
                   <div key={i}>
-                    {p.tipo ?? "Presa"} · {p.potenzaKw ? `${p.potenzaKw} kW` : "potenza n.d."} · ×{p.quantita}
+                    {p.tipo ?? t("presaFallbackMappa")} · {p.potenzaKw ? `${p.potenzaKw} kW` : t("potenzaNonDisponibile")} · ×{p.quantita}
                   </div>
                 ))}
               </div>
@@ -80,20 +84,20 @@ export function ColonnineElettricheMap({
             {c.costo && (
               <>
                 <br />
-                Costo: {c.costo}
+                {t("costoLabel")} {c.costo}
               </>
             )}
             {c.stato && (
               <>
                 <br />
-                Stato: {c.stato}
+                {t("statoLabel")} {c.stato}
               </>
             )}
             <br />
             <span style={{ fontSize: "11px", opacity: 0.75 }}>
               {c.verificatoIl
-                ? `Verificato il ${new Date(c.verificatoIl).toLocaleDateString("it-IT")} (OpenChargeMap)`
-                : "Data di verifica non disponibile (OpenChargeMap)"}
+                ? t("verificatoIlMappa", { data: new Date(c.verificatoIl).toLocaleDateString(intlLocale(locale)) })
+                : t("dataVerificaNonDisponibileMappa")}
             </span>
           </Popup>
         </CircleMarker>

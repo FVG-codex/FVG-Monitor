@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { MapContainer, TileLayer, CircleMarker, Popup, useMap } from "react-leaflet";
+import { useTranslations } from "next-intl";
 import "leaflet/dist/leaflet.css";
 import {
   type VoceVeterinario,
@@ -41,6 +42,8 @@ export function VeterinariMap({
   zoom?: number;
   adesso: string;
 }) {
+  const t = useTranslations("veterinari");
+  const tChrome = useTranslations("chrome");
   const conCoordinate = voci.filter(
     (v): v is VoceVeterinario & { lat: number; lon: number } => v.lat !== null && v.lon !== null
   );
@@ -75,17 +78,17 @@ export function VeterinariMap({
               {v.telefono && (
                 <>
                   <br />
-                  Tel. {v.telefono}
+                  {tChrome("telEtichetta", { telefono: v.telefono })}
                 </>
               )}
               <br />
-              Oggi: {formattaFasceGiornoVet(v.orari[giorno])}
+              {t("oggiLabel")} {formattaFasceGiornoVet(v.orari[giorno])}
               <br />
-              <strong>Emergenze:</strong> {livello.etichetta}
+              <strong>{t("emergenzeLabel")}</strong> {t(`livelloEmergenza.${v.gestioneEmergenze}`)}
               {v.telefonoEmergenze && (
                 <>
                   <br />
-                  Tel. emergenze: {v.telefonoEmergenze}
+                  {t("telEmergenzeEtichetta", { telefono: v.telefonoEmergenze })}
                 </>
               )}
             </Popup>

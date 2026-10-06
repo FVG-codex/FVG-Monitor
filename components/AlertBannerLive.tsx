@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 import { fetchTutteLeAllerte, type AllertaSingola } from "@/lib/allerte";
 
 const LIVELLO_STYLES: Record<string, string> = {
@@ -13,6 +14,8 @@ const LIVELLO_STYLES: Record<string, string> = {
 
 export function AlertBannerLive() {
   const [banner, setBanner] = useState<AllertaSingola | null>(null);
+  const t = useTranslations("allerte");
+  const tChrome = useTranslations("chrome");
 
   useEffect(() => {
     let attivo = true;
@@ -48,11 +51,11 @@ export function AlertBannerLive() {
       <span
         className={`px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wide flex-shrink-0 ${LIVELLO_STYLES[banner.livelloNome] ?? LIVELLO_STYLES.gialla}`}
       >
-        Allerta {banner.livelloNome}
+        {t("badgeLabel", { livello: t(`livelli.${banner.livelloNome}`) })}
       </span>
       <span className="text-ink-dim min-w-0">{banner.messaggio}</span>
       <a href={banner.link} target="_blank" rel="noopener noreferrer" className="ml-auto text-cool-ink text-sm flex-shrink-0 whitespace-nowrap">
-        Dettagli ufficiali →<span className="sr-only"> (si apre in una nuova scheda)</span>
+        {t("dettagliUfficiali")}<span className="sr-only"> {tChrome("apreNuovaScheda")}</span>
       </a>
     </div>
   );

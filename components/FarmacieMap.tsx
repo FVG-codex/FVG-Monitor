@@ -1,6 +1,7 @@
 "use client";
 
 import { MapContainer, TileLayer, CircleMarker, Popup } from "react-leaflet";
+import { useTranslations } from "next-intl";
 import "leaflet/dist/leaflet.css";
 import { type VoceFarmacia, formattaFascia, statoApertura } from "@/lib/farmacie";
 import { StatoApertoBadge } from "@/components/StatoApertoBadge";
@@ -14,6 +15,7 @@ export function FarmacieMap({
   centro: [number, number];
   adesso: string;
 }) {
+  const tChrome = useTranslations("chrome");
   const conCoordinate = farmacie.filter(
     (f): f is VoceFarmacia & { lat: number; lon: number } => f.lat !== null && f.lon !== null
   );
@@ -41,7 +43,7 @@ export function FarmacieMap({
             {f.telefono && (
               <>
                 <br />
-                Tel. {f.telefono}
+                {tChrome("telEtichetta", { telefono: f.telefono })}
               </>
             )}
             {f.orariOggi.map((o, oi) => (

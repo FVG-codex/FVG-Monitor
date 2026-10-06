@@ -1,6 +1,7 @@
 "use client";
 
 import { MapContainer, TileLayer, CircleMarker, Popup } from "react-leaflet";
+import { useTranslations } from "next-intl";
 import "leaflet/dist/leaflet.css";
 import type { Aviostruttura, CategoriaAviostruttura } from "@/lib/aviostrutture";
 
@@ -18,6 +19,7 @@ const COLORE_CATEGORIA: Record<CategoriaAviostruttura, string> = {
 };
 
 export function AviazioneMap({ strutture, centro }: { strutture: Aviostruttura[]; centro: [number, number] }) {
+  const t = useTranslations("aviazione");
   const conCoordinate = strutture.filter((s): s is Aviostruttura & { lat: number; lon: number } => s.lat !== null && s.lon !== null);
 
   return (
@@ -46,13 +48,13 @@ export function AviazioneMap({ strutture, centro }: { strutture: Aviostruttura[]
             {s.icao && (
               <>
                 <br />
-                ICAO: {s.icao}
+                {t("icaoEtichetta", { codice: s.icao })}
               </>
             )}
             {s.pisteDettaglio &&
               s.pisteDettaglio.map((p, pi) => (
                 <div key={pi}>
-                  Pista {p.orientamento}
+                  {t("pistaEtichetta", { orientamento: p.orientamento })}
                   {p.lunghezzaM !== null ? ` · ${p.lunghezzaM} m` : ""}
                   {p.pavimentazione ? ` · ${p.pavimentazione}` : ""}
                 </div>

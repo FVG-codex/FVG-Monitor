@@ -1,6 +1,7 @@
 "use client";
 
 import { MapContainer, TileLayer, CircleMarker, Popup } from "react-leaflet";
+import { useTranslations } from "next-intl";
 import "leaflet/dist/leaflet.css";
 import {
   type VoceSupermercato,
@@ -19,6 +20,7 @@ export function SupermercatiMap({
   centro: [number, number];
   adesso: string;
 }) {
+  const tChrome = useTranslations("chrome");
   // Udine (10/09/2026): tutte le voci hanno lat/lon null nel dato
   // fornito dall'utente — su quella provincia la mappa resta vuota,
   // l'elenco testuale a fianco è l'unica vista disponibile. Non un bug.
@@ -47,7 +49,7 @@ export function SupermercatiMap({
             {v.telefono && (
               <>
                 <br />
-                Tel. {v.telefono}
+                {tChrome("telEtichetta", { telefono: v.telefono })}
               </>
             )}
             <br />

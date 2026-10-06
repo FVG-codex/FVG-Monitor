@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 import { supabase } from "@/lib/supabase";
 import type { ProvinciaSlug } from "@/lib/province";
 
@@ -26,6 +27,8 @@ const LOCALITA_PER_PROVINCIA: Partial<Record<ProvinciaSlug, (typeof LOCALITA)[nu
 export function MarePanel({ provincia }: { provincia?: ProvinciaSlug } = {}) {
   const [datiPerLocalita, setDatiPerLocalita] = useState<Partial<Record<string, MareData>>>({});
   const [stato, setStato] = useState<"loading" | "ready" | "error">("loading");
+  const t = useTranslations("mare");
+  const tChrome = useTranslations("chrome");
 
   useEffect(() => {
     let attivo = true;
@@ -54,10 +57,10 @@ export function MarePanel({ provincia }: { provincia?: ProvinciaSlug } = {}) {
   }, []);
 
   if (stato === "loading") {
-    return <p className="text-ink-faint text-sm font-mono">Caricamento livello mare…</p>;
+    return <p className="text-ink-faint text-sm font-mono">{t("caricamento")}</p>;
   }
   if (stato === "error" || Object.keys(datiPerLocalita).length === 0) {
-    return <p className="text-ink-faint text-sm font-mono">Dati livello mare non disponibili al momento.</p>;
+    return <p className="text-ink-faint text-sm font-mono">{t("datiNonDisponibili")}</p>;
   }
 
   if (provincia) {
@@ -65,7 +68,7 @@ export function MarePanel({ provincia }: { provincia?: ProvinciaSlug } = {}) {
     if (!localita) {
       return (
         <p className="text-ink-faint text-sm font-mono">
-          La provincia di Pordenone non ha sbocco sul mare — nessuna stazione di riferimento.
+          {t("nessunoSboccoMare")}
         </p>
       );
     }
@@ -82,7 +85,7 @@ export function MarePanel({ provincia }: { provincia?: ProvinciaSlug } = {}) {
             <span className="text-ink-dim text-sm">m IGM42</span>
           </div>
         ) : (
-          <p className="font-mono text-sm text-ink-faint">n.d.</p>
+          <p className="font-mono text-sm text-ink-faint">{tChrome("nd")}</p>
         )}
       </div>
     );
@@ -104,7 +107,7 @@ export function MarePanel({ provincia }: { provincia?: ProvinciaSlug } = {}) {
                 <div className="font-mono text-[9px] text-ink-faint">m IGM42</div>
               </>
             ) : (
-              <div className="font-mono text-xs text-ink-faint">n.d.</div>
+              <div className="font-mono text-xs text-ink-faint">{tChrome("nd")}</div>
             )}
           </div>
         );

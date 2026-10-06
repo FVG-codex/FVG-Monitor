@@ -24,7 +24,10 @@
     "aComune": " a {luogo}",
     "inProvinciaDi": " in provincia di {provincia}",
     "telEtichetta": "Tel. {telefono}",
-    "sitoLink": "Sito →"
+    "sitoLink": "Sito →",
+    "nd": "n.d.",
+    "fonteProtezioneCivile": "Fonte: Protezione Civile FVG (CC BY 4.0)",
+    "binario": "bin. {binario}"
   },
   "nav": {
     "meteo": "Meteo",
@@ -60,7 +63,11 @@
   "economia": {
     "descrizione": "Indicatori economici del Friuli Venezia Giulia — fonte: ISTAT (Istituto Nazionale di Statistica), dati trimestrali",
     "disoccupazione": "Disoccupazione",
-    "istatLink": "ISTAT — Esplora dati →"
+    "istatLink": "ISTAT — Esplora dati →",
+    "etichettaTrimestre": "{trim}° trim. {anno}",
+    "tassoDisoccupazioneSottotitolo": "Tasso di disoccupazione, {trimestre} — Friuli Venezia Giulia, 15-74 anni",
+    "ultimiTrimestri": "Ultimi trimestri",
+    "puntiTrimestrePrecedente": "punti sul trimestre prec."
   },
   "changelogPage": {
     "titolo": "Registro modifiche",
@@ -186,14 +193,18 @@
     "webcamAutostradaliDescrizione": "A4, A23, A28, SR354 — fonte: OSMER ARPA FVG (CC BY-SA 3.0). Clicca per aprire la fonte originale",
     "nessunaWebcamAutostradale": "Nessuna webcam autostradale disponibile.",
     "confini": "Confini",
-    "confiniDescrizione": "15 valichi/direttrici verso Slovenia e Austria — dati anagrafici (comune, strada, tipologia). Eventi di traffico in tempo reale: lato italiano per i 2 valichi autostradali (A23 Tarvisio, A34 Sant'Andrea/Vrtojba); lato sloveno (sperimentale, fonte Promet.si) per Fernetti, Rabuiese/Škofije, Sant'Andrea/Vrtojba e Pesek/Kozina. Per gli altri 9 valichi nessuna fonte pubblica verificabile è stata trovata finora (ASFINAG e ANAS non raggiungibili da questa sessione — vedi lib/confini.ts)."
+    "confiniDescrizione": "15 valichi/direttrici verso Slovenia e Austria — dati anagrafici (comune, strada, tipologia). Eventi di traffico in tempo reale: lato italiano per i 2 valichi autostradali (A23 Tarvisio, A34 Sant'Andrea/Vrtojba); lato sloveno (sperimentale, fonte Promet.si) per Fernetti, Rabuiese/Škofije, Sant'Andrea/Vrtojba e Pesek/Kozina. Per gli altri 9 valichi nessuna fonte pubblica verificabile è stata trovata finora (ASFINAG e ANAS non raggiungibili da questa sessione — vedi lib/confini.ts).",
+    "caricamento": "Caricamento viabilità…",
+    "nonDisponibili": "Dati viabilità non disponibili al momento.",
+    "nessunEvento": "Nessun evento di rilievo sulla rete autostradale del FVG al momento."
   },
   "terremoti": {
     "descrizione": "Eventi sismici in FVG e zone limitrofe, ultimi 30 giorni — fonte: INGV (Istituto Nazionale di Geofisica e Vulcanologia)",
     "mappaAriaLabel": "Mappa dei terremoti in Friuli Venezia Giulia — elenco testuale equivalente nel pannello a fianco",
     "elencoEventi": "Elenco eventi ({count})",
     "nessunEvento": "Nessun evento negli ultimi 30 giorni.",
-    "profondita": "Profondità {km} km"
+    "profondita": "Profondità {km} km",
+    "profonditaEtichetta": "Profondità: {km} km"
   },
   "webcam": {
     "descrizione": "Immagini fornite da OSMER ARPA FVG (CC BY-SA 3.0) — la validità dei dati non è garantita da ARPA FVG, che aggrega webcam gestite da terzi. Clicca su una webcam per aprire la fonte originale",
@@ -206,7 +217,21 @@
     "radarMeteo": "Radar meteo",
     "canaleTelegramLink": "Canale Telegram →",
     "previsioniTemporalesche": "Previsioni temporalesche",
-    "bollettino": "Bollettino"
+    "bollettino": "Bollettino",
+    "caricamentoPrevisioni": "Caricamento previsioni…",
+    "previsioniNonDisponibili": "Previsioni non disponibili al momento — riprova più tardi.",
+    "previsioniNonDisponibiliDettaglio": "Previsioni non disponibili al momento — il bollettino OSMER viene aggiornato circa una volta al giorno, riprova più tardi.",
+    "aggiornamentoOggiLabel": "Aggiornamento di oggi — ",
+    "aggiornamentoBadge": "Aggiornamento",
+    "dettagli": "Dettagli",
+    "bollettinoDiDomani": "Bollettino di domani ({data}) — fonte:",
+    "giorno": {
+      "OGGI": "Oggi",
+      "DOMANI": "Domani",
+      "DOPODOMANI": "Dopodomani"
+    },
+    "ieri": "Ieri",
+    "bollettinoEmesso": "Bollettino emesso il {data} — fonte:"
   },
   "aviazione": {
     "descrizione": "Aeroporti, aviosuperfici, campi volo ed elisuperfici del Friuli Venezia Giulia ({count} strutture) — fonti: WebAAI (webaai.it) per l'anagrafica, QNH Fly (qnhfly.com) per orientamento, lunghezza e pavimentazione delle piste dove disponibili. Elenco statico, aggiornato periodicamente: alcuni dati (contatti, orari, frequenze, carte di avvicinamento) restano dietro un abbonamento a pagamento e non sono inclusi qui.",
@@ -223,7 +248,9 @@
     "elenco": "Elenco ({count})",
     "nessunaStruttura": "Nessuna struttura trovata per questo filtro.",
     "schedaLink": "Scheda →",
-    "datiPistaLink": "Dati pista (qnhfly.com) →"
+    "datiPistaLink": "Dati pista (qnhfly.com) →",
+    "icaoEtichetta": "ICAO: {codice}",
+    "pistaEtichetta": "Pista {orientamento}"
   },
   "tennis": {
     "titolo": "Tennis — Classifica Assoluti FVG",
@@ -277,7 +304,9 @@
     "tutteLeCategorie": "Tutte le categorie",
     "nonDisponibili": "Eventi non disponibili al momento.",
     "nessunEvento": "Nessun evento trovato per questo periodo/categoria.",
-    "aggiornato": "Aggiornato al {data} · gli orari e le sedi possono variare: verificare sempre con l'organizzatore prima di partecipare."
+    "aggiornato": "Aggiornato al {data} · gli orari e le sedi possono variare: verificare sempre con l'organizzatore prima di partecipare.",
+    "caricamento": "Caricamento eventi…",
+    "tuttiGliEventi": "Tutti gli eventi →"
   },
   "neveImpianti": {
     "descrizione": "Stato impianti, piste e condizioni meteo dei 7 poli sciistici del Friuli Venezia Giulia — fonte: TurismoFVG, aggiornata ogni 15 minuti in stagione invernale. Il programma di apertura impianti è indicativo e può variare senza preavviso per motivi meteo/operativi: verificare sempre con il gestore prima di partire.",
@@ -360,7 +389,10 @@
     "alta": "Alta",
     "bassa": "Bassa",
     "osservatoAgg": "Osservato agg. {ora}",
-    "previsioneFonte": "Previsione: tide-forecast.com"
+    "previsioneFonte": "Previsione: tide-forecast.com",
+    "graficoNonDisponibile": "Grafico non disponibile al momento.",
+    "andamentoAriaLabel": "Andamento del livello del mare oggi a Trieste, Grado e Lignano — valori numerici nei pannelli sotto",
+    "legendaTrattoOsservatoPrevisione": "tratto continuo = osservato · tratteggiato = previsione"
   },
   "baseball": {
     "titoloFallback": "Baseball & Softball",
@@ -410,7 +442,8 @@
     "abbrTrattamento": "tratt.",
     "attesaMedia": "attesa media {valore}",
     "mappaAriaLabel": "Mappa dei pronto soccorso{luogo} — elenco testuale equivalente nel pannello a fianco",
-    "delFriuliVeneziaGiulia": " del Friuli Venezia Giulia"
+    "delFriuliVeneziaGiulia": " del Friuli Venezia Giulia",
+    "telPrefisso": "Tel."
   },
   "farmacie": {
     "titoloTurno": "Farmacie di turno",
@@ -446,7 +479,17 @@
     "presaFallback": "presa",
     "dettaglioPreseNonDisponibile": "Dettaglio prese non disponibile",
     "verificato": " · verificato {data}",
-    "aggiornatoAl": "Aggiornato al {data} · {fonte}"
+    "aggiornatoAl": "Aggiornato al {data} · {fonte}",
+    "laTuaPosizione": "La tua posizione",
+    "presaFallbackMappa": "Presa",
+    "potenzaNonDisponibile": "potenza n.d.",
+    "operatoreLabel": "Operatore:",
+    "costoLabel": "Costo:",
+    "statoLabel": "Stato:",
+    "verificatoIlMappa": "Verificato il {data} (OpenChargeMap)",
+    "dataVerificaNonDisponibileMappa": "Data di verifica non disponibile (OpenChargeMap)",
+    "panelDescrizione": "<strong>{totale}</strong> colonnine di ricarica elettrica censite in Friuli Venezia Giulia (fonte: OpenChargeMap, dato comunitario — vedi la pagina dedicata per i dettagli e le date di verifica).",
+    "vediMappa": "Vedi la mappa e cerca vicino a te →"
   },
   "home": {
     "title": "FVG Monitor — dati in tempo reale per il Friuli Venezia Giulia",
@@ -485,7 +528,8 @@
       "balneazione": "Qualità acque di balneazione",
       "balneazioneLink": "ARPA FVG →"
     },
-    "fonti": "Fonti: OSMER ARPA FVG · ANSA FVG · Protezione Civile FVG (CC BY 4.0) · InfoViaggiando · Turismo FVG · RAI TGR FVG · Trieste Airport"
+    "fonti": "Fonti: OSMER ARPA FVG · ANSA FVG · Protezione Civile FVG (CC BY 4.0) · InfoViaggiando · Turismo FVG · RAI TGR FVG · Trieste Airport",
+    "tgrCta": "Guarda l'ultimo notiziario"
   },
   "veterinari": {
     "descrizione": "Strutture veterinarie del Friuli Venezia Giulia — dato raccolto e verificato manualmente (siti ufficiali e directory di settore), non un albo professionale ufficiale. In caso di emergenza, verificare sempre telefonicamente la disponibilità reale prima di presentarsi in struttura.",
@@ -509,7 +553,10 @@
       "nessuna_dichiarata": "Nessuna gestione emergenze dichiarata",
       "non_dichiarata": "Gestione emergenze non dichiarata"
     },
-    "suAppuntamento": "su appuntamento"
+    "suAppuntamento": "su appuntamento",
+    "oggiLabel": "Oggi:",
+    "emergenzeLabel": "Emergenze:",
+    "telEmergenzeEtichetta": "Tel. emergenze: {telefono}"
   },
   "sci": {
     "titolo": "Sci — Calendario gare FVG",
@@ -563,7 +610,13 @@
       "p": "Percorsi lineari",
       "c": "Ciclovie a tappe",
       "m": "Mountain bike"
-    }
+    },
+    "fonteMappa": {
+      "regione": "Regione FVG",
+      "ciclovie2020": "Ciclovie 2020 (storico)"
+    },
+    "fonteTurismoFvg": "TurismoFVG · {serie}",
+    "fontePopup": "Fonte: {fonte}"
   },
   "rifiuti": {
     "descrizione": "Calendario porta a porta, centro di raccolta e campane del vetro, divisi per provincia. Copre solo i comuni serviti dai gestori già integrati, non tutta la regione — vedi sotto per la provincia selezionata.",
@@ -621,5 +674,210 @@
     "calendarioNonDisponibile": "Calendario non disponibile al momento.",
     "nessunaRaccoltaIndirizzo": "Nessuna raccolta a calendario nei prossimi giorni per questo indirizzo.",
     "esposizioneOrario": " — esposizione {orario}"
+  },
+  "qualitaAria": {
+    "caricamento": "Caricamento qualità aria…",
+    "datiNonDisponibili": "Dati qualità aria non disponibili al momento.",
+    "datiInquinanteNonDisponibili": "Dati {inquinante} non disponibili al momento.",
+    "datoNonDisponibileStazione": "Dato non disponibile per questa stazione.",
+    "oltreSoglia": "Oltre soglia",
+    "captionTab": "{label}, {noteTipo} del {data} — soglia {soglia} µg/m³ · fonte: ARPA FVG",
+    "inquinanti": {
+      "pm10": {
+        "label": "PM10",
+        "noteTipo": "media giornaliera"
+      },
+      "pm25": {
+        "label": "PM2.5",
+        "noteTipo": "media giornaliera · linea guida OMS 24h (l'Italia ha solo limite annuale)"
+      },
+      "ozono": {
+        "label": "Ozono",
+        "noteTipo": "media mobile 8h max"
+      },
+      "no2": {
+        "label": "NO2",
+        "noteTipo": "media oraria max"
+      }
+    }
+  },
+  "fiumi": {
+    "caricamento": "Caricamento livelli fiumi…",
+    "datiNonDisponibili": "Dati livelli fiumi non disponibili al momento."
+  },
+  "mare": {
+    "caricamento": "Caricamento livello mare…",
+    "datiNonDisponibili": "Dati livello mare non disponibili al momento.",
+    "nessunoSboccoMare": "La provincia di Pordenone non ha sbocco sul mare — nessuna stazione di riferimento."
+  },
+  "allerte": {
+    "caricamento": "Caricamento allerte…",
+    "datiNonDisponibili": "Dati allerte non disponibili al momento.",
+    "livelli": {
+      "verde": "Verde",
+      "gialla": "Gialla",
+      "arancione": "Arancione",
+      "rossa": "Rossa"
+    },
+    "zonaTitle": "Zona di allerta {zone}",
+    "badgeLabel": "Allerta {livello}",
+    "dettagliUfficiali": "Dettagli ufficiali →",
+    "nessunaAllertaAttiva": "Nessuna allerta attiva al momento.",
+    "widgetNonCollegato": "Widget ufficiale Protezione Civile FVG per {citta} non ancora collegato — vedi README, sezione Fase 1, per richiederlo e incollarlo qui."
+  },
+  "carburanti": {
+    "caricamento": "Caricamento prezzi carburante…",
+    "nonDisponibili": "Dati prezzi carburante non disponibili al momento.",
+    "tipi": {
+      "benzina": "Benzina",
+      "gasolio": "Gasolio",
+      "gpl": "GPL"
+    },
+    "mediaRegionale": "Media regionale FVG",
+    "fonte": "Fonte: MIMIT — Osservatorio Prezzi Carburanti (aggiornato ogni mattina alle 8:00)"
+  },
+  "vento": {
+    "caricamento": "Caricamento dati vento…",
+    "nonDisponibili": "Dati vento non disponibili per questa stazione al momento.",
+    "daStazione": "DA {direzione} · STAZIONE {stazione}",
+    "rafficaMax": "raffica max {raffica} km/h"
+  },
+  "pioggia": {
+    "caricamento": "Caricamento dati pioggia…",
+    "nonDisponibili": "Dati pioggia non disponibili per questa stazione al momento.",
+    "ultimaOra": "Ultima ora",
+    "ultime24h": "Ultime 24h",
+    "stazione": "Stazione {stazione}"
+  },
+  "pollini": {
+    "caricamento": "Caricamento pollini…",
+    "nonDisponibili": "Dati pollini non disponibili al momento.",
+    "nessunaStazione": "Nessuna stazione della rete aerobiologica attiva in provincia di {provincia}.",
+    "nessunPolline": "Nessun polline significativo rilevato questa settimana.",
+    "settimana": "Settimana {da}–{a}",
+    "aggiornatoAl": "Aggiornato al {data}",
+    "unitaFonte": " · media giornaliera granuli/m³ · fonte: ARPA FVG, rete POLLnet"
+  },
+  "balneazione": {
+    "caricamento": "Caricamento qualità acque…",
+    "nonDisponibili": "Dati qualità acque non disponibili al momento.",
+    "nessunPunto": "Nessun punto di monitoraggio trovato in provincia di {provincia}.",
+    "favorevoli": "Favorevoli",
+    "sfavorevoli": "Sfavorevoli",
+    "puntiMonitorati": "Punti monitorati",
+    "ultimoPrelievo": "Ultimo prelievo per punto, esito singolo campione",
+    "fonte": "Fonte: ARPA FVG · soglie D.Lgs 116/2008 (indicativo, non sostituisce eventuali ordinanze comunali)"
+  },
+  "voli": {
+    "caricamento": "Caricamento voli…",
+    "nonDisponibili": "Dati voli non disponibili al momento.",
+    "partenze": "Partenze",
+    "arrivi": "Arrivi",
+    "nessunVolo": "Nessun volo in programma.",
+    "ritardo": "rit.",
+    "ultimoAggiornamento": "Ultimo aggiornamento {testo} · fonte: Trieste Airport"
+  },
+  "soleLuna": {
+    "calcoloInCorso": "Calcolo in corso…",
+    "calcoloNonDisponibile": "Calcolo astronomico non disponibile per la data odierna.",
+    "albeggio": "Albeggio",
+    "alba": "Alba",
+    "tramonto": "Tramonto",
+    "crepuscolo": "Crepuscolo",
+    "illuminata": "{pct}% illuminata",
+    "sorge": "Sorge:",
+    "tramonta": "Tramonta:",
+    "nonOggi": "non oggi",
+    "noteSorgeTramontaMancante": "La Luna sorge ~50 minuti più tardi ogni giorno: capita che un giorno di calendario non ne veda uno dei due.",
+    "riferimento": "Riferimento: Udine (centro regione) — calcolo astronomico locale, nessuna fonte esterna",
+    "faseLuna": {
+      "nuova": "Luna nuova",
+      "primoQuarto": "Primo quarto",
+      "piena": "Luna piena",
+      "ultimoQuarto": "Ultimo quarto",
+      "crescente": "Luna crescente",
+      "gibbosaCrescente": "Gibbosa crescente",
+      "gibbosaCalante": "Gibbosa calante",
+      "calante": "Luna calante"
+    }
+  },
+  "autobus": {
+    "filtroTutti": "Tutti",
+    "caricamento": "Caricamento autobus…",
+    "nonDisponibili": "Dati autobus non disponibili al momento (fonte non ufficiale, può essere temporaneamente irraggiungibile).",
+    "nessunPassaggio": "Nessun passaggio in programma a breve.",
+    "versoLuogo": "per {luogo}",
+    "daLuogo": "da {luogo}",
+    "tempoReale": "in tempo reale",
+    "programmato": "programmato",
+    "fermataFallback": "Fermata",
+    "footerBlocco": "Blocco {nome} ({n} fermate) · aggiornato dal tuo browser ogni minuto · fonte: TPL FVG (API non ufficiale)",
+    "fermateLabel": "Fermate:"
+  },
+  "treni": {
+    "caricamento": "Caricamento treni…",
+    "nonDisponibili": "Dati treni non disponibili al momento (fonte non ufficiale, può essere temporaneamente irraggiungibile).",
+    "nessunTreno": "Nessun treno in programma a breve.",
+    "footerStazione": "Stazione {nome} · aggiornato dal tuo browser ogni minuto · fonte: ViaggiaTreno (Trenitalia/RFI, API non ufficiale)"
+  },
+  "fiume": {
+    "caricamento": "Caricamento livello fiume…",
+    "nonDisponibili": "Dati livello fiume non disponibili al momento."
+  },
+  "pazzi": {
+    "leggiCompleta": "Leggi la previsione completa su PMG →",
+    "caricamentoAggiornamenti": "Caricamento aggiornamenti…",
+    "aggiornamentiNonDisponibili": "Aggiornamenti non disponibili al momento."
+  },
+  "radar": {
+    "caricamentoMappa": "Caricamento mappa…",
+    "caricamento": "Caricamento radar…",
+    "nonDisponibili": "Dati radar non disponibili al momento.",
+    "prodotti": {
+      "srtlbm_1": "Pioggia",
+      "ssi": "Severità",
+      "hmc": "Idrometeore",
+      "lbm_v": "Vento Doppler"
+    },
+    "spiegazioni": {
+      "srtlbm_1": "Intensità della pioggia in corso — più il colore è intenso (verso il rosso/viola), più forte è la precipitazione.",
+      "ssi": "Indice sintetico di severità del temporale (Storm Severity Index), da moderato a molto forte — pensato per una lettura rapida.",
+      "hmc": "Tipo di precipitazione rilevata: pioggia leggera/moderata/forte, grandine, neve secca o bagnata, cristalli di ghiaccio.",
+      "lbm_v": "Velocità del vento in quota rilevata dal radar — utile per individuare rotazione nelle celle temporalesche (dato più tecnico)."
+    },
+    "datiProdottoNonDisponibili": "Dati \"{prodotto}\" non disponibili al momento.",
+    "ariaLabel": "Radar meteo — {prodotto}",
+    "aggiornatoFonte": "Aggiornato {data} · fonte: Protezione Civile FVG (CC BY 4.0)",
+    "dettaglioMappa": "radar Fossalon · aggiornato {data} · fonte: Protezione Civile FVG (CC BY 4.0) · mappa: © OpenStreetMap"
+  },
+  "temperaturaBadge": {
+    "oraLabel": "ora"
+  },
+  "confini": {
+    "latoItaliano": "Lato italiano",
+    "latoSloveno": "Lato sloveno",
+    "datiNonAggiornatiSuffix": "· dati non aggiornati",
+    "nessunaFonteLive": "Nessuna fonte live verificata per questo valico",
+    "datiSloveniNonDisponibili": "Dati sloveni non disponibili al momento",
+    "nessunEventoAutostrada": "Nessun evento in corso su {strade}",
+    "nessunEventoValico": "Nessun evento segnalato su {codice}",
+    "codaM": " (coda ~{m} m)",
+    "paese": {
+      "SI": "Slovenia",
+      "AT": "Austria"
+    },
+    "modalita": {
+      "motorway": "Autostrada",
+      "expressway": "Superstrada",
+      "road": "Strada",
+      "mountain_road": "Strada di montagna",
+      "mountain_pass": "Passo di montagna",
+      "urban": "Valico urbano"
+    },
+    "classe": {
+      "primary": "Direttrice principale",
+      "secondary": "Direttrice secondaria",
+      "minor": "Valico minore"
+    }
   }
 }

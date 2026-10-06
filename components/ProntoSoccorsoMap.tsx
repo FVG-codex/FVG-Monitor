@@ -1,6 +1,7 @@
 "use client";
 
 import { MapContainer, TileLayer, CircleMarker, Popup } from "react-leaflet";
+import { useTranslations } from "next-intl";
 import "leaflet/dist/leaflet.css";
 import {
   type DipartimentoPS,
@@ -25,6 +26,7 @@ export function ProntoSoccorsoMap({
   dipartimenti: DipartimentoPS[];
   centro: [number, number];
 }) {
+  const t = useTranslations("prontoSoccorso");
   const conCoordinate = dipartimenti.filter(
     (d): d is DipartimentoPS & { lat: number; lon: number } => d.lat !== null && d.lon !== null
   );
@@ -62,12 +64,12 @@ export function ProntoSoccorsoMap({
               {telefono && (
                 <>
                   <br />
-                  Tel. <a href={`tel:${telHref(telefono)}`}>{telefono}</a>
+                  {t("telPrefisso")} <a href={`tel:${telHref(telefono)}`}>{telefono}</a>
                 </>
               )}
               <br />
               <strong>
-                {inAttesa} in attesa · {inTrattamento} in trattamento
+                {inAttesa} {t("inAttesa")} · {inTrattamento} {t("inTrattamento")}
               </strong>
               <div style={{ marginTop: 4 }}>
                 {d.codiciColore.map((c) => (
@@ -84,14 +86,14 @@ export function ProntoSoccorsoMap({
                     >
                       {c.descrizione}
                     </span>
-                    {c.situazionePazienti.numeroPazientiInAttesa} in attesa · {c.situazionePazienti.numeroPazientiInVisita} in
-                    trattamento · attesa media {c.situazionePazienti.mediaAttesa}
+                    {c.situazionePazienti.numeroPazientiInAttesa} {t("inAttesa")} · {c.situazionePazienti.numeroPazientiInVisita}{" "}
+                    {t("inTrattamento")} · {t("attesaMedia", { valore: c.situazionePazienti.mediaAttesa })}
                   </div>
                 ))}
               </div>
               {indicazioni && (
                 <a href={indicazioni} target="_blank" rel="noopener noreferrer">
-                  Indicazioni →
+                  {t("indicazioniLink")}
                 </a>
               )}
             </Popup>

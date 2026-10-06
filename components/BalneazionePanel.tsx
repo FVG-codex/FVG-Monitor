@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useLocale, useTranslations } from "next-intl";
 import { supabase } from "@/lib/supabase";
 import { PROVINCE_LIST, type ProvinciaSlug } from "@/lib/province";
+import { intlLocale } from "@/lib/intlLocale";
 
 type PuntoSfavorevole = { nome: string; enterococchi: number | null; ecoli: number | null; data: string };
 
@@ -19,9 +21,9 @@ type SnapshotBalneazione = {
   per_provincia: Partial<Record<ProvinciaSlug, BalneazioneProvincia>>;
 };
 
-function formattaData(iso: string): string {
+function formattaData(iso: string, locale: string): string {
   const d = new Date(iso);
-  return d.toLocaleDateString("it-IT", { day: "numeric", month: "short" });
+  return d.toLocaleDateString(intlLocale(locale), { day: "numeric", month: "short" });
 }
 
 // provincia opzionale (11/09/2026, per la nuova pagina "Dati ambientali"
@@ -33,6 +35,8 @@ export function BalneazionePanel({ provincia: provinciaProp }: { provincia?: Pro
   const [stato, setStato] = useState<"loading" | "ready" | "error">("loading");
   const [tabInterno, setTabInterno] = useState<ProvinciaSlug>("trieste");
   const tab = provinciaProp ?? tabInterno;
+  const t = useTranslations("balneazione");
+  const locale = useLocale();
 
   useEffect(() => {
     let attivo = true;
@@ -55,10 +59,10 @@ export function BalneazionePanel({ provincia: provinciaProp }: { provincia?: Pro
   }, []);
 
   if (stato === "loading") {
-    return <p className="text-ink-faint text-sm font-mono">Caricamento qualità acque…</p>;
+    return <p className="text-ink-faint text-sm font-mono">{t("caricamento")}</p>;
   }
   if (stato === "error" || !dati) {
-    return <p className="text-ink-faint text-sm font-mono">Dati qualità acque non disponibili al momento.</p>;
+    return <p className="text-ink-faint text-sm font-mono">{t("nonDisponibili")}</p>;
   }
 
   const provincia = dati.per_provincia[tab];
@@ -85,7 +89,7 @@ export function BalneazionePanel({ provincia: provinciaProp }: { provincia?: Pro
 
       {!provincia ? (
         <p className="text-ink-faint text-sm font-mono">
-          Nessun punto di monitoraggio trovato in provincia di {nomeProvincia}.
+          {t("nessunPunto", { provincia: nomeProvincia })}
         </p>
       ) : (
         <>
@@ -94,7 +98,7 @@ export function BalneazionePanel({ provincia: provinciaProp }: { provincia?: Pro
               <div className="font-cond font-bold text-[36px] leading-[0.9] text-allerta-verde-ink">
                 {provincia.favorevoli}
               </div>
-              <div className="font-mono text-[10px] text-ink-faint uppercase mt-1">Favorevoli</div>
+              <div className="font-mono text-[10px] text-ink-faint uppercase mt-1">{t("favorevoli")}</div>
             </div>
             <div>
               <div
@@ -104,11 +108,11 @@ export function BalneazionePanel({ provincia: provinciaProp }: { provincia?: Pro
               >
                 {provincia.sfavorevoli}
               </div>
-              <div className="font-mono text-[10px] text-ink-faint uppercase mt-1">Sfavorevoli</div>
+              <div className="font-mono text-[10px] text-ink-faint uppercase mt-1">{t("sfavorevoli")}</div>
             </div>
             <div>
               <div className="font-cond font-bold text-[36px] leading-[0.9] text-ink-dim">{provincia.totale}</div>
-              <div className="font-mono text-[10px] text-ink-faint uppercase mt-1">Punti monitorati</div>
+              <div className="font-mono text-[10px] text-ink-faint uppercase mt-1">{t("puntiMonitorati")}</div>
             </div>
           </div>
 
@@ -122,18 +126,18 @@ export function BalneazionePanel({ provincia: provinciaProp }: { provincia?: Pro
                       distingue stati diversi tramite colore. */}
                   <span aria-hidden="true" className="w-2 h-2 rounded-full bg-allerta-rossa flex-shrink-0" />
                   <span className="text-ink-dim flex-1 min-w-0 truncate">{pt.nome}</span>
-                  <span className="font-mono text-[10px] text-ink-faint">{formattaData(pt.data)}</span>
+                  <span className="font-mono text-[10px] text-ink-faint">{formattaData(pt.data, locale)}</span>
                 </div>
               ))}
             </div>
           )}
 
           <div className="flex justify-between font-mono text-[11px] text-ink-faint border-t border-line pt-3">
-            <span>Ultimo prelievo per punto, esito singolo campione</span>
-            <span>{formattaData(provincia.aggiornato_al)}</span>
+            <span>{t("ultimoPrelievo")}</span>
+            <span>{formattaData(provincia.aggiornato_al, locale)}</span>
           </div>
           <p className="text-ink-faint text-[10px] font-mono mt-2">
-            Fonte: ARPA FVG · soglie D.Lgs 116/2008 (indicativo, non sostituisce eventuali ordinanze comunali)
+            {t("fonte")}
           </p>
         </>
       )}

@@ -1,12 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 import { supabase } from "@/lib/supabase";
 import type { Evento, EventiSnapshot } from "@/lib/eventi";
 
 export function EventiPanel() {
   const [dati, setDati] = useState<EventiSnapshot | null>(null);
   const [stato, setStato] = useState<"loading" | "ready" | "error">("loading");
+  const t = useTranslations("eventi");
+  const tChrome = useTranslations("chrome");
 
   useEffect(() => {
     let attivo = true;
@@ -33,13 +36,13 @@ export function EventiPanel() {
   }, []);
 
   if (stato === "loading") {
-    return <p className="text-ink-faint text-sm font-mono">Caricamento eventi…</p>;
+    return <p className="text-ink-faint text-sm font-mono">{t("caricamento")}</p>;
   }
 
   const prossimi: Evento[] = dati?.prossimi ?? [];
 
   if (stato === "error" || !dati || prossimi.length === 0) {
-    return <p className="text-ink-faint text-sm font-mono">Eventi non disponibili al momento.</p>;
+    return <p className="text-ink-faint text-sm font-mono">{t("nonDisponibili")}</p>;
   }
 
   return (
@@ -59,14 +62,14 @@ export function EventiPanel() {
           <div className="min-w-0">
             <div className="text-ink text-sm leading-snug">
               {e.titolo}
-              <span className="sr-only"> (si apre in una nuova scheda)</span>
+              <span className="sr-only"> {tChrome("apreNuovaScheda")}</span>
             </div>
             {e.luogo && <div className="text-ink-faint text-xs font-mono mt-0.5">{e.luogo}</div>}
           </div>
         </a>
       ))}
       <a href="/eventi" className="block text-cool-ink text-[10px] font-mono mt-3 border-t border-line pt-2 hover:underline">
-        Tutti gli eventi →
+        {t("tuttiGliEventi")}
       </a>
     </div>
   );

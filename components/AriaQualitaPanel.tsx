@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useLocale, useTranslations } from "next-intl";
 import { supabase } from "@/lib/supabase";
 import { PROVINCE_LIST, type ProvinciaSlug } from "@/lib/province";
+import { intlLocale } from "@/lib/intlLocale";
 
 type DatoProvincia = {
   stazione: string;
@@ -18,24 +20,27 @@ type SnapshotInquinante = {
 
 type Inquinante = {
   key: string;
-  label: string;
   snapshotId: string;
   campoValore: string;
   campoSuperamento: string;
   campoSoglia: string;
-  noteTipo: string; // es. "media giornaliera", "media oraria max"
 };
 
+// `label`/`noteTipo` (05/10/2026): tradotti, non più qui — vedi
+// `qualitaAria.inquinanti.<key>.label`/`.noteTipo` in messages/*.json,
+// recuperati sotto con `t(\`inquinanti.${i.key}.label\`)` (stesso
+// schema già usato per `CommercioPage.tsx`/`SanitaPage.tsx`: l'array a
+// livello di modulo perde i campi testo a favore di una `key` stabile).
 const INQUINANTI: Inquinante[] = [
-  { key: "pm10", label: "PM10", snapshotId: "aria:pm10", campoValore: "media_giornaliera", campoSuperamento: "superamento", campoSoglia: "soglia_ugm3", noteTipo: "media giornaliera" },
-  { key: "pm25", label: "PM2.5", snapshotId: "aria:pm25", campoValore: "media_giornaliera", campoSuperamento: "superamento_oms", campoSoglia: "soglia_oms_ugm3", noteTipo: "media giornaliera · linea guida OMS 24h (l'Italia ha solo limite annuale)" },
-  { key: "ozono", label: "Ozono", snapshotId: "aria:ozono", campoValore: "media_mobile_8h_max", campoSuperamento: "superamento", campoSoglia: "soglia_ugm3", noteTipo: "media mobile 8h max" },
-  { key: "no2", label: "NO2", snapshotId: "aria:no2", campoValore: "media_oraria_max", campoSuperamento: "superamento", campoSoglia: "soglia_ugm3", noteTipo: "media oraria max" },
+  { key: "pm10", snapshotId: "aria:pm10", campoValore: "media_giornaliera", campoSuperamento: "superamento", campoSoglia: "soglia_ugm3" },
+  { key: "pm25", snapshotId: "aria:pm25", campoValore: "media_giornaliera", campoSuperamento: "superamento_oms", campoSoglia: "soglia_oms_ugm3" },
+  { key: "ozono", snapshotId: "aria:ozono", campoValore: "media_mobile_8h_max", campoSuperamento: "superamento", campoSoglia: "soglia_ugm3" },
+  { key: "no2", snapshotId: "aria:no2", campoValore: "media_oraria_max", campoSuperamento: "superamento", campoSoglia: "soglia_ugm3" },
 ];
 
-function formattaData(iso: string): string {
+function formattaData(iso: string, locale: string): string {
   const d = new Date(iso);
-  return d.toLocaleDateString("it-IT", { day: "numeric", month: "short" });
+  return d.toLocaleDateString(intlLocale(locale), { day: "numeric", month: "short" });
 }
 
 // provincia opzionale (11/09/2026, per la nuova pagina "Dati ambientali"
@@ -47,6 +52,9 @@ export function AriaQualitaPanel({ provincia }: { provincia?: ProvinciaSlug } = 
   const [datiPerInquinante, setDatiPerInquinante] = useState<Partial<Record<string, SnapshotInquinante>>>({});
   const [stato, setStato] = useState<"loading" | "ready" | "error">("loading");
   const [tab, setTab] = useState<string>("pm10");
+  const t = useTranslations("qualitaAria");
+  const tChrome = useTranslations("chrome");
+  const locale = useLocale();
 
   useEffect(() => {
     let attivo = true;
@@ -75,13 +83,14 @@ export function AriaQualitaPanel({ provincia }: { provincia?: ProvinciaSlug } = 
   }, []);
 
   if (stato === "loading") {
-    return <p className="text-ink-faint text-sm font-mono">Caricamento qualità aria…</p>;
+    return <p className="text-ink-faint text-sm font-mono">{t("caricamento")}</p>;
   }
   if (stato === "error") {
-    return <p className="text-ink-faint text-sm font-mono">Dati qualità aria non disponibili al momento.</p>;
+    return <p className="text-ink-faint text-sm font-mono">{t("datiNonDisponibili")}</p>;
   }
 
   const attivo = INQUINANTI.find((i) => i.key === tab)!;
+  const attivoLabel = t(`inquinanti.${attivo.key}.label`);
   const dati = datiPerInquinante[tab];
 
   return (
@@ -96,13 +105,13 @@ export function AriaQualitaPanel({ provincia }: { provincia?: ProvinciaSlug } = 
               tab === i.key ? "bg-cool text-on-accent" : "border border-line text-ink-dim hover:text-ink"
             }`}
           >
-            {i.label}
+            {t(`inquinanti.${i.key}.label`)}
           </button>
         ))}
       </div>
 
       {!dati ? (
-        <p className="text-ink-faint text-sm font-mono">Dati {attivo.label} non disponibili al momento.</p>
+        <p className="text-ink-faint text-sm font-mono">{t("datiInquinanteNonDisponibili", { inquinante: attivoLabel })}</p>
       ) : provincia ? (
         (() => {
           const d = dati.per_provincia[provincia];
@@ -123,15 +132,19 @@ export function AriaQualitaPanel({ provincia }: { provincia?: ProvinciaSlug } = 
                     <span className="text-ink-dim text-sm">µg/m³</span>
                   </div>
                   {superamento && (
-                    <div className="font-mono text-[10px] text-allerta-rossa-ink uppercase mt-1">Oltre soglia</div>
+                    <div className="font-mono text-[10px] text-allerta-rossa-ink uppercase mt-1">{t("oltreSoglia")}</div>
                   )}
                 </div>
               ) : (
-                <p className="text-ink-faint text-sm font-mono mb-3">Dato non disponibile per questa stazione.</p>
+                <p className="text-ink-faint text-sm font-mono mb-3">{t("datoNonDisponibileStazione")}</p>
               )}
               <p className="text-ink-faint text-[10px] font-mono">
-                {attivo.label}, {attivo.noteTipo} del {formattaData(dati.data_misura)} — soglia{" "}
-                {dati[attivo.campoSoglia] as number} µg/m³ · fonte: ARPA FVG
+                {t("captionTab", {
+                  label: attivoLabel,
+                  noteTipo: t(`inquinanti.${attivo.key}.noteTipo`),
+                  data: formattaData(dati.data_misura, locale),
+                  soglia: dati[attivo.campoSoglia] as number,
+                })}
               </p>
             </>
           );
@@ -159,19 +172,23 @@ export function AriaQualitaPanel({ provincia }: { provincia?: ProvinciaSlug } = 
                       {/* Testo, non solo colore — vedi stessa nota in
                           No2Panel.tsx (WCAG 1.4.1). */}
                       {superamento && (
-                        <div className="font-mono text-[8px] text-allerta-rossa-ink uppercase mt-0.5">Oltre soglia</div>
+                        <div className="font-mono text-[8px] text-allerta-rossa-ink uppercase mt-0.5">{t("oltreSoglia")}</div>
                       )}
                     </>
                   ) : (
-                    <div className="font-mono text-xs text-ink-faint">n.d.</div>
+                    <div className="font-mono text-xs text-ink-faint">{tChrome("nd")}</div>
                   )}
                 </div>
               );
             })}
           </div>
           <p className="text-ink-faint text-[10px] font-mono">
-            {attivo.label}, {attivo.noteTipo} del {formattaData(dati.data_misura)} — soglia{" "}
-            {dati[attivo.campoSoglia] as number} µg/m³ · fonte: ARPA FVG
+            {t("captionTab", {
+              label: attivoLabel,
+              noteTipo: t(`inquinanti.${attivo.key}.noteTipo`),
+              data: formattaData(dati.data_misura, locale),
+              soglia: dati[attivo.campoSoglia] as number,
+            })}
           </p>
         </>
       )}

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { MapContainer, TileLayer, Polyline, Popup } from "react-leaflet";
+import { useTranslations } from "next-intl";
 import type { Map as LeafletMap } from "leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
@@ -30,16 +31,6 @@ const COLORE_CICLOVIE_2020 = "#92AAA8"; // ink-faint — layer storico/di contes
 // tutte le fonti così il percorso selezionato risalta comunque.
 const COLORE_EVIDENZIATO = "#C1382E"; // allerta.rossa
 
-// Etichetta fonte per il popup di un tracciato.
-const ETICHETTA_FONTE: Record<TracciatoMappa["fonte"], string> = {
-  regione: "Regione FVG",
-  r: "TurismoFVG · Anelli",
-  p: "TurismoFVG · Percorsi lineari",
-  c: "TurismoFVG · Ciclovie a tappe",
-  m: "TurismoFVG · Mountain bike",
-  ciclovie2020: "Ciclovie 2020 (storico)",
-};
-
 // Un "tracciato" sulla mappa, indipendente dalla fonte — vedi
 // PisteCiclabiliPage.tsx per come viene costruito a partire dai
 // segmenti Regione e dai percorsi delle 4 serie turismofvg.it. `chiave`
@@ -65,6 +56,19 @@ export function PisteCiclabiliMap({
   evidenziato: string | null;
 }) {
   const mapRef = useRef<LeafletMap | null>(null);
+  const t = useTranslations("pisteCiclabili");
+
+  // Multilingua (06/10/2026): l'etichetta fonte per il popup non è più
+  // un dizionario italiano fisso (ex ETICHETTA_FONTE sopra) ma composta
+  // da chiavi di traduzione — "regione"/"ciclovie2020" riusano
+  // t("fonteMappa.<chiave>"), le 4 serie turismofvg.it riusano il
+  // template t("fonteTurismoFvg") combinato con le etichette t("serie.<f>")
+  // già esistenti (stesso identico testo italiano di PisteCiclabiliPage.tsx).
+  function etichettaFonte(fonte: TracciatoMappa["fonte"]): string {
+    if (fonte === "regione") return t("fonteMappa.regione");
+    if (fonte === "ciclovie2020") return t("fonteMappa.ciclovie2020");
+    return t("fonteTurismoFvg", { serie: t(`serie.${fonte}`) });
+  }
 
   // Zoom automatico sul percorso selezionato: calcola i punti estremi di
   // tutte le sue linee e adatta la vista con fitBounds — coerente con
@@ -95,17 +99,17 @@ export function PisteCiclabiliMap({
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
       />
-      {tracciati.map((t, ti) => {
-        const isEvidenziato = t.chiave === evidenziato;
+      {tracciati.map((tracciato, ti) => {
+        const isEvidenziato = tracciato.chiave === evidenziato;
         const colore =
-          t.fonte === "regione"
+          tracciato.fonte === "regione"
             ? COLORE_REGIONE
-            : t.fonte === "ciclovie2020"
+            : tracciato.fonte === "ciclovie2020"
               ? COLORE_CICLOVIE_2020
-              : COLORE_SERIE[t.fonte];
-        return t.linee.map((linea, li) => (
+              : COLORE_SERIE[tracciato.fonte];
+        return tracciato.linee.map((linea, li) => (
           <Polyline
-            key={`${t.chiave}-${ti}-${li}`}
+            key={`${tracciato.chiave}-${ti}-${li}`}
             positions={linea}
             pathOptions={{
               color: isEvidenziato ? COLORE_EVIDENZIATO : colore,
@@ -114,13 +118,13 @@ export function PisteCiclabiliMap({
             }}
           >
             <Popup>
-              <strong>{t.nome}</strong>
+              <strong>{tracciato.nome}</strong>
               <br />
-              Fonte: {ETICHETTA_FONTE[t.fonte]}
-              {t.extra && (
+              {t("fontePopup", { fonte: etichettaFonte(tracciato.fonte) })}
+              {tracciato.extra && (
                 <>
                   <br />
-                  {t.extra}
+                  {tracciato.extra}
                 </>
               )}
             </Popup>

@@ -1,7 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useLocale, useTranslations } from "next-intl";
 import { supabase } from "@/lib/supabase";
+import { intlLocale } from "@/lib/intlLocale";
 
 type PrezzoCarburante = { prezzo_medio_eur_litro: number; erogazione: "self" | "servito" };
 
@@ -10,20 +12,22 @@ type CarburantiData = {
   aggiornato_al: string | null;
 };
 
-const CARBURANTI_LABEL: { chiave: "benzina" | "gasolio" | "gpl"; label: string }[] = [
-  { chiave: "benzina", label: "Benzina" },
-  { chiave: "gasolio", label: "Gasolio" },
-  { chiave: "gpl", label: "GPL" },
-];
+// 05/10/2026: la label perde il testo diretto a favore della `chiave`
+// stabile, tradotta sotto con `t(\`tipi.${c.chiave}\`)` — stesso schema
+// già usato altrove nel progetto per un array a livello di modulo
+// (es. CommercioPage.tsx/SanitaPage.tsx).
+const CARBURANTI_CHIAVI: ("benzina" | "gasolio" | "gpl")[] = ["benzina", "gasolio", "gpl"];
 
-function formattaData(iso: string): string {
+function formattaData(iso: string, locale: string): string {
   const d = new Date(iso);
-  return d.toLocaleDateString("it-IT", { day: "numeric", month: "short", year: "numeric" });
+  return d.toLocaleDateString(intlLocale(locale), { day: "numeric", month: "short", year: "numeric" });
 }
 
 export function CarburantiPanel() {
   const [dati, setDati] = useState<CarburantiData | null>(null);
   const [stato, setStato] = useState<"loading" | "ready" | "error">("loading");
+  const t = useTranslations("carburanti");
+  const locale = useLocale();
 
   useEffect(() => {
     let attivo = true;
@@ -50,38 +54,38 @@ export function CarburantiPanel() {
   }, []);
 
   if (stato === "loading") {
-    return <p className="text-ink-faint text-sm font-mono">Caricamento prezzi carburante…</p>;
+    return <p className="text-ink-faint text-sm font-mono">{t("caricamento")}</p>;
   }
   if (stato === "error" || !dati) {
-    return <p className="text-ink-faint text-sm font-mono">Dati prezzi carburante non disponibili al momento.</p>;
+    return <p className="text-ink-faint text-sm font-mono">{t("nonDisponibili")}</p>;
   }
 
-  const disponibili = CARBURANTI_LABEL.filter((c) => dati.carburanti[c.chiave]);
+  const disponibili = CARBURANTI_CHIAVI.filter((chiave) => dati.carburanti[chiave]);
 
   return (
     <div>
       <div className="flex gap-6 mb-1 flex-wrap">
-        {disponibili.map((c) => {
-          const p = dati.carburanti[c.chiave]!;
+        {disponibili.map((chiave) => {
+          const p = dati.carburanti[chiave]!;
           return (
-            <div key={c.chiave}>
+            <div key={chiave}>
               <div className="font-cond font-bold text-[36px] leading-[0.9]">
                 {p.prezzo_medio_eur_litro.toFixed(3)}
                 <span className="text-ink-dim text-sm ml-1">€/l</span>
               </div>
               <div className="font-mono text-[10px] text-ink-faint uppercase mt-1">
-                {c.label} · {p.erogazione}
+                {t(`tipi.${chiave}`)} · {p.erogazione}
               </div>
             </div>
           );
         })}
       </div>
       <div className="flex justify-between font-mono text-[11px] text-ink-faint border-t border-line pt-3 mt-3">
-        <span>Media regionale FVG</span>
-        <span>{dati.aggiornato_al ? formattaData(dati.aggiornato_al) : "—"}</span>
+        <span>{t("mediaRegionale")}</span>
+        <span>{dati.aggiornato_al ? formattaData(dati.aggiornato_al, locale) : "—"}</span>
       </div>
       <p className="text-ink-faint text-[10px] font-mono mt-2">
-        Fonte: MIMIT — Osservatorio Prezzi Carburanti (aggiornato ogni mattina alle 8:00)
+        {t("fonte")}
       </p>
     </div>
   );

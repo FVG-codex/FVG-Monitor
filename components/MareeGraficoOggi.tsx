@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { useLocale, useTranslations } from "next-intl";
+import { intlLocale } from "@/lib/intlLocale";
 
 // Grafico "Andamento di oggi" (02/10/2026) — un unico grafico con le 3
 // stazioni sovrapposte (decisione utente), tratto continuo = osservato
@@ -64,8 +66,11 @@ function interpola(punti: Punto[], t: number): number | null {
   return null;
 }
 
-function formattaOraAsse(t: number): string {
-  return new Date(t).toLocaleTimeString("it-IT", { hour: "2-digit", minute: "2-digit", timeZone: "Europe/Rome" });
+// Multilingua (06/10/2026): locale passato da intlLocale(), non più fisso
+// a "it-IT" — stesso bug ricorrente già corretto altrove nel progetto
+// (CarburantiPanel/PolliniPanel/BalneazionePanel/SoleLunaPanel).
+function formattaOraAsse(t: number, locale: string): string {
+  return new Date(t).toLocaleTimeString(intlLocale(locale), { hour: "2-digit", minute: "2-digit", timeZone: "Europe/Rome" });
 }
 
 // Passo "carino" per le linee guida orizzontali (altezza in metri),
@@ -86,6 +91,8 @@ export function MareeGraficoOggi({
   previste: Partial<Record<string, DatiPrevisti>>;
 }) {
   const [hoverX, setHoverX] = useState<number | null>(null);
+  const t = useTranslations("maree");
+  const locale = useLocale();
 
   // "adesso" letto con Date.now() DIRETTAMENTE nel render (invece che in
   // questo stato) avrebbe causato un mismatch di idratazione: il render
@@ -141,7 +148,7 @@ export function MareeGraficoOggi({
   }, [datiPerStazione, haDati, xMin, xMax]);
 
   if (!haDati || serieComplete.every((s) => s.continuo.length === 0 && s.tratteggiato.length === 0)) {
-    return <p className="font-mono text-xs text-ink-faint">Grafico non disponibile al momento.</p>;
+    return <p className="font-mono text-xs text-ink-faint">{t("graficoNonDisponibile")}</p>;
   }
 
   const tuttiIValori = serieComplete.flatMap((s) => [...s.continuo, ...s.tratteggiato].map((p) => p.v));
@@ -183,7 +190,7 @@ export function MareeGraficoOggi({
     <div>
       <div
         role="img"
-        aria-label="Andamento del livello del mare oggi a Trieste, Grado e Lignano — valori numerici nei pannelli sotto"
+        aria-label={t("andamentoAriaLabel")}
         className="relative"
       >
         <svg
@@ -219,7 +226,7 @@ export function MareeGraficoOggi({
             <g key={t}>
               <line x1={x(t)} x2={x(t)} y1={MARGINE.top} y2={ALTEZZA - MARGINE.bottom} className="stroke-line" strokeWidth={1} opacity={0.5} />
               <text x={x(t)} y={ALTEZZA - MARGINE.bottom + 14} textAnchor="middle" className="fill-ink-faint text-[9px] font-mono">
-                {formattaOraAsse(t)}
+                {formattaOraAsse(t, locale)}
               </text>
             </g>
           ))}
@@ -267,7 +274,7 @@ export function MareeGraficoOggi({
               transform: "translateX(-50%)",
             }}
           >
-            <div className="text-ink-faint mb-0.5">{formattaOraAsse(tHover)}</div>
+            <div className="text-ink-faint mb-0.5">{formattaOraAsse(tHover, locale)}</div>
             {serieComplete.map((s) => {
               const tutti = [...s.continuo, ...s.tratteggiato];
               const valore = interpola(tutti, tHover);
@@ -295,7 +302,7 @@ export function MareeGraficoOggi({
             {s.nome}
           </div>
         ))}
-        <div className="font-mono text-[10px] text-ink-faint ml-auto">tratto continuo = osservato · tratteggiato = previsione</div>
+        <div className="font-mono text-[10px] text-ink-faint ml-auto">{t("legendaTrattoOsservatoPrevisione")}</div>
       </div>
     </div>
   );

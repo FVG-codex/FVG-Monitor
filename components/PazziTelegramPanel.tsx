@@ -1,18 +1,21 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 import { supabase } from "@/lib/supabase";
 
 type MessaggioTelegram = { id: string; testo: string; data: string | null; link: string };
 type PazziTelegramData = { fonte: string; fonte_url: string; messaggi: MessaggioTelegram[] };
 
-function tempoRelativo(dataStr: string): string {
+// Multilingua (06/10/2026): stesso pattern di PazziPrevisioniPanel.tsx —
+// chiave stabile + numero, tradotta riusando notizieProvincia.minFa/oreFa/giorniFa.
+function tempoRelativoChiave(dataStr: string): { chiave: "minFa" | "oreFa" | "giorniFa"; n: number } {
   const diffMs = Date.now() - new Date(dataStr).getTime();
   const minuti = Math.floor(diffMs / 60000);
-  if (minuti < 60) return `${minuti} min fa`;
+  if (minuti < 60) return { chiave: "minFa", n: minuti };
   const ore = Math.floor(minuti / 60);
-  if (ore < 24) return `${ore} h fa`;
-  return `${Math.floor(ore / 24)} g fa`;
+  if (ore < 24) return { chiave: "oreFa", n: ore };
+  return { chiave: "giorniFa", n: Math.floor(ore / 24) };
 }
 
 // Pannello "Pazzi per il meteo" (canale Telegram) — sessione 09/09/2026.
@@ -25,6 +28,9 @@ function tempoRelativo(dataStr: string): string {
 export function PazziTelegramPanel() {
   const [dati, setDati] = useState<PazziTelegramData | null>(null);
   const [stato, setStato] = useState<"loading" | "ready" | "error">("loading");
+  const tPazzi = useTranslations("pazzi");
+  const tNotizie = useTranslations("notizieProvincia");
+  const tChrome = useTranslations("chrome");
 
   useEffect(() => {
     let attivo = true;
@@ -51,30 +57,33 @@ export function PazziTelegramPanel() {
   }, []);
 
   if (stato === "loading") {
-    return <p className="text-ink-faint text-sm font-mono">Caricamento aggiornamenti…</p>;
+    return <p className="text-ink-faint text-sm font-mono">{tPazzi("caricamentoAggiornamenti")}</p>;
   }
   if (stato === "error" || !dati || dati.messaggi.length === 0) {
-    return <p className="text-ink-faint text-sm font-mono">Aggiornamenti non disponibili al momento.</p>;
+    return <p className="text-ink-faint text-sm font-mono">{tPazzi("aggiornamentiNonDisponibili")}</p>;
   }
 
   return (
     <div>
-      {dati.messaggi.slice(0, 5).map((m, i) => (
-        <div key={m.id} className={`py-3 ${i > 0 ? "border-t border-line" : ""}`}>
-          <a href={m.link} target="_blank" rel="noopener noreferrer" className="block">
-            <div className="text-ink text-[15px] leading-snug mb-1.5 hover:text-cool-ink transition-colors whitespace-pre-line">
-              {m.testo}
-              <span className="sr-only"> (si apre in una nuova scheda)</span>
-            </div>
-          </a>
-          {m.data && (
-            <div className="flex gap-2 items-center font-mono text-[10px] text-ink-faint uppercase tracking-wide">
-              <span className="text-warm">Telegram</span>
-              <span>· {tempoRelativo(m.data)}</span>
-            </div>
-          )}
-        </div>
-      ))}
+      {dati.messaggi.slice(0, 5).map((m, i) => {
+        const rel = m.data ? tempoRelativoChiave(m.data) : null;
+        return (
+          <div key={m.id} className={`py-3 ${i > 0 ? "border-t border-line" : ""}`}>
+            <a href={m.link} target="_blank" rel="noopener noreferrer" className="block">
+              <div className="text-ink text-[15px] leading-snug mb-1.5 hover:text-cool-ink transition-colors whitespace-pre-line">
+                {m.testo}
+                <span className="sr-only"> {tChrome("apreNuovaScheda")}</span>
+              </div>
+            </a>
+            {rel && (
+              <div className="flex gap-2 items-center font-mono text-[10px] text-ink-faint uppercase tracking-wide">
+                <span className="text-warm">Telegram</span>
+                <span>· {tNotizie(rel.chiave, { n: rel.n })}</span>
+              </div>
+            )}
+          </div>
+        );
+      })}
     </div>
   );
 }

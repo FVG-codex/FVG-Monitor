@@ -1,7 +1,9 @@
 "use client";
 
 import { MapContainer, TileLayer, CircleMarker, Popup } from "react-leaflet";
+import { useLocale, useTranslations } from "next-intl";
 import "leaflet/dist/leaflet.css";
+import { intlLocale } from "@/lib/intlLocale";
 
 type Evento = {
   id: number;
@@ -21,6 +23,8 @@ function coloreMagnitudo(mag: number): string {
 }
 
 export function TerremotiMap({ eventi, centro }: { eventi: Evento[]; centro: [number, number] }) {
+  const t = useTranslations("terremoti");
+  const locale = useLocale();
   return (
     <MapContainer center={centro} zoom={8} style={{ height: "100%", width: "100%" }} scrollWheelZoom={false}>
       <TileLayer
@@ -37,9 +41,9 @@ export function TerremotiMap({ eventi, centro }: { eventi: Evento[]; centro: [nu
           <Popup>
             <strong>M{e.magnitudo.toFixed(1)}</strong> — {e.luogo}
             <br />
-            {new Date(e.data).toLocaleString("it-IT")}
+            {new Date(e.data).toLocaleString(intlLocale(locale))}
             <br />
-            Profondità: {e.profonditaKm.toFixed(1)} km
+            {t("profonditaEtichetta", { km: e.profonditaKm.toFixed(1) })}
           </Popup>
         </CircleMarker>
       ))}

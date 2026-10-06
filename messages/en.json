@@ -24,7 +24,10 @@
     "aComune": " in {luogo}",
     "inProvinciaDi": " in the province of {provincia}",
     "telEtichetta": "Tel. {telefono}",
-    "sitoLink": "Website →"
+    "sitoLink": "Website →",
+    "nd": "n/a",
+    "fonteProtezioneCivile": "Source: Protezione Civile FVG (CC BY 4.0)",
+    "binario": "platform {binario}"
   },
   "nav": {
     "meteo": "Weather",
@@ -60,7 +63,11 @@
   "economia": {
     "descrizione": "Economic indicators for Friuli Venezia Giulia — source: ISTAT (Istituto Nazionale di Statistica), quarterly data",
     "disoccupazione": "Unemployment",
-    "istatLink": "ISTAT — Explore data →"
+    "istatLink": "ISTAT — Explore data →",
+    "etichettaTrimestre": "Q{trim} {anno}",
+    "tassoDisoccupazioneSottotitolo": "Unemployment rate, {trimestre} — Friuli Venezia Giulia, ages 15-74",
+    "ultimiTrimestri": "Latest quarters",
+    "puntiTrimestrePrecedente": "points vs. previous quarter"
   },
   "changelogPage": {
     "titolo": "Changelog",
@@ -186,14 +193,18 @@
     "webcamAutostradaliDescrizione": "A4, A23, A28, SR354 — source: OSMER ARPA FVG (CC BY-SA 3.0). Click to open the original source",
     "nessunaWebcamAutostradale": "No motorway webcam available.",
     "confini": "Borders",
-    "confiniDescrizione": "15 border crossings/routes to Slovenia and Austria — reference data (municipality, road, type). Real-time traffic events: Italian side for the 2 motorway crossings (A23 Tarvisio, A34 Sant'Andrea/Vrtojba); Slovenian side (experimental, source Promet.si) for Fernetti, Rabuiese/Škofije, Sant'Andrea/Vrtojba and Pesek/Kozina. For the other 9 crossings no verifiable public source has been found so far (ASFINAG and ANAS not reachable from this session — see lib/confini.ts)."
+    "confiniDescrizione": "15 border crossings/routes to Slovenia and Austria — reference data (municipality, road, type). Real-time traffic events: Italian side for the 2 motorway crossings (A23 Tarvisio, A34 Sant'Andrea/Vrtojba); Slovenian side (experimental, source Promet.si) for Fernetti, Rabuiese/Škofije, Sant'Andrea/Vrtojba and Pesek/Kozina. For the other 9 crossings no verifiable public source has been found so far (ASFINAG and ANAS not reachable from this session — see lib/confini.ts).",
+    "caricamento": "Loading traffic data…",
+    "nonDisponibili": "Traffic data not available right now.",
+    "nessunEvento": "No significant events on the FVG motorway network right now."
   },
   "terremoti": {
     "descrizione": "Seismic events in FVG and neighbouring areas, last 30 days — source: INGV (Istituto Nazionale di Geofisica e Vulcanologia)",
     "mappaAriaLabel": "Map of earthquakes in Friuli Venezia Giulia — equivalent text listing in the panel alongside",
     "elencoEventi": "Event list ({count})",
     "nessunEvento": "No events in the last 30 days.",
-    "profondita": "Depth {km} km"
+    "profondita": "Depth {km} km",
+    "profonditaEtichetta": "Depth: {km} km"
   },
   "webcam": {
     "descrizione": "Images provided by OSMER ARPA FVG (CC BY-SA 3.0) — data accuracy is not guaranteed by ARPA FVG, which aggregates webcams run by third parties. Click a webcam to open the original source",
@@ -206,7 +217,21 @@
     "radarMeteo": "Weather radar",
     "canaleTelegramLink": "Telegram Channel →",
     "previsioniTemporalesche": "Thunderstorm forecasts",
-    "bollettino": "Bulletin"
+    "bollettino": "Bulletin",
+    "caricamentoPrevisioni": "Loading forecasts…",
+    "previsioniNonDisponibili": "Forecasts not available right now — try again later.",
+    "previsioniNonDisponibiliDettaglio": "Forecasts not available right now — the OSMER bulletin is updated about once a day, try again later.",
+    "aggiornamentoOggiLabel": "Today's update — ",
+    "aggiornamentoBadge": "Update",
+    "dettagli": "Details",
+    "bollettinoDiDomani": "Tomorrow's bulletin ({data}) — source:",
+    "giorno": {
+      "OGGI": "Today",
+      "DOMANI": "Tomorrow",
+      "DOPODOMANI": "Day after tomorrow"
+    },
+    "ieri": "Yesterday",
+    "bollettinoEmesso": "Bulletin issued on {data} — source:"
   },
   "aviazione": {
     "descrizione": "Airports, airstrips, airfields and helipads in Friuli Venezia Giulia ({count} facilities) — sources: WebAAI (webaai.it) for registry data, QNH Fly (qnhfly.com) for runway heading, length and surface where available. Static list, updated periodically: some data (contacts, hours, frequencies, approach charts) remain behind a paid subscription and are not included here.",
@@ -223,7 +248,9 @@
     "elenco": "List ({count})",
     "nessunaStruttura": "No facility found for this filter.",
     "schedaLink": "Details →",
-    "datiPistaLink": "Runway data (qnhfly.com) →"
+    "datiPistaLink": "Runway data (qnhfly.com) →",
+    "icaoEtichetta": "ICAO: {codice}",
+    "pistaEtichetta": "Runway {orientamento}"
   },
   "tennis": {
     "titolo": "Tennis — FVG Absolute Rankings",
@@ -277,7 +304,9 @@
     "tutteLeCategorie": "All categories",
     "nonDisponibili": "Events not available right now.",
     "nessunEvento": "No event found for this period/category.",
-    "aggiornato": "Updated on {data} · times and venues may vary: always check with the organiser before attending."
+    "aggiornato": "Updated on {data} · times and venues may vary: always check with the organiser before attending.",
+    "caricamento": "Loading events…",
+    "tuttiGliEventi": "All events →"
   },
   "neveImpianti": {
     "descrizione": "Status of lifts, slopes and weather conditions at the 7 ski resorts of Friuli Venezia Giulia — source: TurismoFVG, updated every 15 minutes during the winter season. The lift opening schedule is indicative and may change without notice for weather/operational reasons: always check with the operator before setting off.",
@@ -360,7 +389,10 @@
     "alta": "High",
     "bassa": "Low",
     "osservatoAgg": "Observed, updated {ora}",
-    "previsioneFonte": "Forecast: tide-forecast.com"
+    "previsioneFonte": "Forecast: tide-forecast.com",
+    "graficoNonDisponibile": "Chart not available right now.",
+    "andamentoAriaLabel": "Today's sea level trend in Trieste, Grado and Lignano — numeric values in the panels below",
+    "legendaTrattoOsservatoPrevisione": "solid line = observed · dashed line = forecast"
   },
   "baseball": {
     "titoloFallback": "Baseball & Softball",
@@ -410,7 +442,8 @@
     "abbrTrattamento": "treat.",
     "attesaMedia": "average wait {valore}",
     "mappaAriaLabel": "Map of emergency departments{luogo} — equivalent text listing in the panel alongside",
-    "delFriuliVeneziaGiulia": " of Friuli Venezia Giulia"
+    "delFriuliVeneziaGiulia": " of Friuli Venezia Giulia",
+    "telPrefisso": "Tel."
   },
   "farmacie": {
     "titoloTurno": "Pharmacies on duty",
@@ -446,7 +479,17 @@
     "presaFallback": "socket",
     "dettaglioPreseNonDisponibile": "Socket details not available",
     "verificato": " · verified {data}",
-    "aggiornatoAl": "Updated on {data} · {fonte}"
+    "aggiornatoAl": "Updated on {data} · {fonte}",
+    "laTuaPosizione": "Your location",
+    "presaFallbackMappa": "Socket",
+    "potenzaNonDisponibile": "power n/a",
+    "operatoreLabel": "Operator:",
+    "costoLabel": "Cost:",
+    "statoLabel": "Status:",
+    "verificatoIlMappa": "Verified on {data} (OpenChargeMap)",
+    "dataVerificaNonDisponibileMappa": "Verification date not available (OpenChargeMap)",
+    "panelDescrizione": "<strong>{totale}</strong> electric vehicle charging points recorded in Friuli Venezia Giulia (source: OpenChargeMap, community data — see the dedicated page for details and verification dates).",
+    "vediMappa": "See the map and search near you →"
   },
   "home": {
     "title": "FVG Monitor — real-time data for Friuli Venezia Giulia",
@@ -485,7 +528,8 @@
       "balneazione": "Bathing water quality",
       "balneazioneLink": "ARPA FVG →"
     },
-    "fonti": "Sources: OSMER ARPA FVG · ANSA FVG · Protezione Civile FVG (CC BY 4.0) · InfoViaggiando · Turismo FVG · RAI TGR FVG · Trieste Airport"
+    "fonti": "Sources: OSMER ARPA FVG · ANSA FVG · Protezione Civile FVG (CC BY 4.0) · InfoViaggiando · Turismo FVG · RAI TGR FVG · Trieste Airport",
+    "tgrCta": "Watch the latest newscast"
   },
   "veterinari": {
     "descrizione": "Veterinary facilities in Friuli Venezia Giulia — data collected and manually verified (official websites and industry directories), not an official professional register. In an emergency, always call ahead to confirm real availability before going to the facility.",
@@ -509,7 +553,10 @@
       "nessuna_dichiarata": "No emergency care declared",
       "non_dichiarata": "Emergency care not declared"
     },
-    "suAppuntamento": "by appointment"
+    "suAppuntamento": "by appointment",
+    "oggiLabel": "Today:",
+    "emergenzeLabel": "Emergencies:",
+    "telEmergenzeEtichetta": "Emergency tel.: {telefono}"
   },
   "sci": {
     "titolo": "Ski — FVG Race Calendar",
@@ -563,7 +610,13 @@
       "p": "Linear routes",
       "c": "Multi-day cycleways",
       "m": "Mountain biking"
-    }
+    },
+    "fonteMappa": {
+      "regione": "Region FVG",
+      "ciclovie2020": "Ciclovie 2020 (historic)"
+    },
+    "fonteTurismoFvg": "TurismoFVG · {serie}",
+    "fontePopup": "Source: {fonte}"
   },
   "rifiuti": {
     "descrizione": "Door-to-door calendar, collection centre and glass bins, by province. Covers only the municipalities served by the managers already integrated, not the whole region — see below for the selected province.",
@@ -621,5 +674,210 @@
     "calendarioNonDisponibile": "Calendar not available right now.",
     "nessunaRaccoltaIndirizzo": "No collection on the calendar in the coming days for this address.",
     "esposizioneOrario": " — put out {orario}"
+  },
+  "qualitaAria": {
+    "caricamento": "Loading air quality…",
+    "datiNonDisponibili": "Air quality data not available right now.",
+    "datiInquinanteNonDisponibili": "Data for {inquinante} not available right now.",
+    "datoNonDisponibileStazione": "Data not available for this station.",
+    "oltreSoglia": "Above threshold",
+    "captionTab": "{label}, {noteTipo} on {data} — threshold {soglia} µg/m³ · source: ARPA FVG",
+    "inquinanti": {
+      "pm10": {
+        "label": "PM10",
+        "noteTipo": "daily average"
+      },
+      "pm25": {
+        "label": "PM2.5",
+        "noteTipo": "daily average · WHO 24h guideline (Italy only sets an annual limit)"
+      },
+      "ozono": {
+        "label": "Ozone",
+        "noteTipo": "max 8h moving average"
+      },
+      "no2": {
+        "label": "NO2",
+        "noteTipo": "max hourly average"
+      }
+    }
+  },
+  "fiumi": {
+    "caricamento": "Loading river levels…",
+    "datiNonDisponibili": "River level data not available right now."
+  },
+  "mare": {
+    "caricamento": "Loading sea level…",
+    "datiNonDisponibili": "Sea level data not available right now.",
+    "nessunoSboccoMare": "The province of Pordenone has no coastline — no reference station."
+  },
+  "allerte": {
+    "caricamento": "Loading alerts…",
+    "datiNonDisponibili": "Alert data not available right now.",
+    "livelli": {
+      "verde": "Green",
+      "gialla": "Yellow",
+      "arancione": "Orange",
+      "rossa": "Red"
+    },
+    "zonaTitle": "Alert zone {zone}",
+    "badgeLabel": "{livello} Alert",
+    "dettagliUfficiali": "Official details →",
+    "nessunaAllertaAttiva": "No active alert right now.",
+    "widgetNonCollegato": "Official Protezione Civile FVG widget for {citta} not yet connected — see the README, Phase 1 section, to request it and add it here."
+  },
+  "carburanti": {
+    "caricamento": "Loading fuel prices…",
+    "nonDisponibili": "Fuel price data not available right now.",
+    "tipi": {
+      "benzina": "Petrol",
+      "gasolio": "Diesel",
+      "gpl": "LPG"
+    },
+    "mediaRegionale": "FVG regional average",
+    "fonte": "Source: MIMIT — Fuel Price Observatory (updated every morning at 8:00)"
+  },
+  "vento": {
+    "caricamento": "Loading wind data…",
+    "nonDisponibili": "Wind data not available for this station right now.",
+    "daStazione": "FROM {direzione} · STATION {stazione}",
+    "rafficaMax": "max gust {raffica} km/h"
+  },
+  "pioggia": {
+    "caricamento": "Loading rain data…",
+    "nonDisponibili": "Rain data not available for this station right now.",
+    "ultimaOra": "Last hour",
+    "ultime24h": "Last 24h",
+    "stazione": "Station {stazione}"
+  },
+  "pollini": {
+    "caricamento": "Loading pollen…",
+    "nonDisponibili": "Pollen data not available right now.",
+    "nessunaStazione": "No aerobiological network station active in the province of {provincia}.",
+    "nessunPolline": "No significant pollen detected this week.",
+    "settimana": "Week {da}–{a}",
+    "aggiornatoAl": "Updated as of {data}",
+    "unitaFonte": " · daily average grains/m³ · source: ARPA FVG, POLLnet network"
+  },
+  "balneazione": {
+    "caricamento": "Loading water quality…",
+    "nonDisponibili": "Water quality data not available right now.",
+    "nessunPunto": "No monitoring point found in the province of {provincia}.",
+    "favorevoli": "Favourable",
+    "sfavorevoli": "Unfavourable",
+    "puntiMonitorati": "Points monitored",
+    "ultimoPrelievo": "Latest sample per point, single-sample result",
+    "fonte": "Source: ARPA FVG · thresholds under Italian Legislative Decree 116/2008 (indicative, does not replace any municipal ordinance)"
+  },
+  "voli": {
+    "caricamento": "Loading flights…",
+    "nonDisponibili": "Flight data not available right now.",
+    "partenze": "Departures",
+    "arrivi": "Arrivals",
+    "nessunVolo": "No flights scheduled.",
+    "ritardo": "del.",
+    "ultimoAggiornamento": "Last updated {testo} · source: Trieste Airport"
+  },
+  "soleLuna": {
+    "calcoloInCorso": "Calculating…",
+    "calcoloNonDisponibile": "Astronomical calculation not available for today's date.",
+    "albeggio": "Dawn",
+    "alba": "Sunrise",
+    "tramonto": "Sunset",
+    "crepuscolo": "Dusk",
+    "illuminata": "{pct}% illuminated",
+    "sorge": "Rises:",
+    "tramonta": "Sets:",
+    "nonOggi": "not today",
+    "noteSorgeTramontaMancante": "The Moon rises ~50 minutes later each day: some calendar days end up without one of the two events.",
+    "riferimento": "Reference: Udine (regional centre) — local astronomical calculation, no external source",
+    "faseLuna": {
+      "nuova": "New moon",
+      "primoQuarto": "First quarter",
+      "piena": "Full moon",
+      "ultimoQuarto": "Last quarter",
+      "crescente": "Waxing crescent",
+      "gibbosaCrescente": "Waxing gibbous",
+      "gibbosaCalante": "Waning gibbous",
+      "calante": "Waning crescent"
+    }
+  },
+  "autobus": {
+    "filtroTutti": "All",
+    "caricamento": "Loading buses…",
+    "nonDisponibili": "Bus data not available right now (unofficial source, may be temporarily unreachable).",
+    "nessunPassaggio": "No departures scheduled soon.",
+    "versoLuogo": "to {luogo}",
+    "daLuogo": "from {luogo}",
+    "tempoReale": "real time",
+    "programmato": "scheduled",
+    "fermataFallback": "Stop",
+    "footerBlocco": "{nome} group ({n} stops) · updated by your browser every minute · source: TPL FVG (unofficial API)",
+    "fermateLabel": "Stops:"
+  },
+  "treni": {
+    "caricamento": "Loading trains…",
+    "nonDisponibili": "Train data not available right now (unofficial source, may be temporarily unreachable).",
+    "nessunTreno": "No trains scheduled soon.",
+    "footerStazione": "{nome} station · updated by your browser every minute · source: ViaggiaTreno (Trenitalia/RFI, unofficial API)"
+  },
+  "fiume": {
+    "caricamento": "Loading river level…",
+    "nonDisponibili": "River level data not available right now."
+  },
+  "pazzi": {
+    "leggiCompleta": "Read the full forecast on PMG →",
+    "caricamentoAggiornamenti": "Loading updates…",
+    "aggiornamentiNonDisponibili": "Updates not available right now."
+  },
+  "radar": {
+    "caricamentoMappa": "Loading map…",
+    "caricamento": "Loading radar…",
+    "nonDisponibili": "Radar data not available right now.",
+    "prodotti": {
+      "srtlbm_1": "Rain",
+      "ssi": "Severity",
+      "hmc": "Hydrometeors",
+      "lbm_v": "Doppler wind"
+    },
+    "spiegazioni": {
+      "srtlbm_1": "Current rain intensity — the more intense the colour (towards red/purple), the heavier the precipitation.",
+      "ssi": "Synthetic storm severity index (Storm Severity Index), from moderate to very strong — designed for a quick read.",
+      "hmc": "Type of precipitation detected: light/moderate/heavy rain, hail, dry or wet snow, ice crystals.",
+      "lbm_v": "Upper-level wind speed detected by radar — useful for spotting rotation within storm cells (a more technical reading)."
+    },
+    "datiProdottoNonDisponibili": "\"{prodotto}\" data not available right now.",
+    "ariaLabel": "Weather radar — {prodotto}",
+    "aggiornatoFonte": "Updated {data} · source: Protezione Civile FVG (CC BY 4.0)",
+    "dettaglioMappa": "Fossalon radar · updated {data} · source: Protezione Civile FVG (CC BY 4.0) · map: © OpenStreetMap"
+  },
+  "temperaturaBadge": {
+    "oraLabel": "now"
+  },
+  "confini": {
+    "latoItaliano": "Italian side",
+    "latoSloveno": "Slovenian side",
+    "datiNonAggiornatiSuffix": "· data not up to date",
+    "nessunaFonteLive": "No live source verified for this crossing",
+    "datiSloveniNonDisponibili": "Slovenian data not available right now",
+    "nessunEventoAutostrada": "No events in progress on {strade}",
+    "nessunEventoValico": "No events reported on {codice}",
+    "codaM": " (queue ~{m} m)",
+    "paese": {
+      "SI": "Slovenia",
+      "AT": "Austria"
+    },
+    "modalita": {
+      "motorway": "Motorway",
+      "expressway": "Expressway",
+      "road": "Road",
+      "mountain_road": "Mountain road",
+      "mountain_pass": "Mountain pass",
+      "urban": "Urban crossing"
+    },
+    "classe": {
+      "primary": "Main route",
+      "secondary": "Secondary route",
+      "minor": "Minor crossing"
+    }
   }
 }

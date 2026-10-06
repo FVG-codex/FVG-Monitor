@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 import { supabase } from "@/lib/supabase";
 import { PROVINCE_LIST, type ProvinciaSlug } from "@/lib/province";
 
@@ -9,6 +10,8 @@ type FiumeData = { stazione: string; fiume: string; aggiornato_al: string; livel
 export function FiumeOverview() {
   const [datiPerProvincia, setDatiPerProvincia] = useState<Partial<Record<ProvinciaSlug, FiumeData>>>({});
   const [stato, setStato] = useState<"loading" | "ready" | "error">("loading");
+  const t = useTranslations("fiumi");
+  const tChrome = useTranslations("chrome");
 
   useEffect(() => {
     let attivo = true;
@@ -38,10 +41,10 @@ export function FiumeOverview() {
   }, []);
 
   if (stato === "loading") {
-    return <p className="text-ink-faint text-sm font-mono">Caricamento livelli fiumi…</p>;
+    return <p className="text-ink-faint text-sm font-mono">{t("caricamento")}</p>;
   }
   if (stato === "error" || Object.keys(datiPerProvincia).length === 0) {
-    return <p className="text-ink-faint text-sm font-mono">Dati livelli fiumi non disponibili al momento.</p>;
+    return <p className="text-ink-faint text-sm font-mono">{t("datiNonDisponibili")}</p>;
   }
 
   return (
@@ -57,7 +60,7 @@ export function FiumeOverview() {
                 <div className="font-mono text-[9px] text-ink-faint">m · {d.fiume}</div>
               </>
             ) : (
-              <div className="font-mono text-xs text-ink-faint">n.d.</div>
+              <div className="font-mono text-xs text-ink-faint">{tChrome("nd")}</div>
             )}
           </div>
         );

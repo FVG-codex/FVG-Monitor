@@ -1,3 +1,7 @@
+"use client";
+
+import { useTranslations } from "next-intl";
+
 type Zone = "A" | "B" | "C" | "D";
 
 const ZONE_STYLES: Record<Zone, string> = {
@@ -22,11 +26,12 @@ export function ZoneChip({
   zone: Zone;
   size?: "sm" | "md";
 }) {
+  const t = useTranslations("allerte");
   const dim = size === "sm" ? "w-[18px] h-[18px] text-[10px]" : "w-[22px] h-[22px] text-xs";
   return (
     <span
       className={`inline-flex items-center justify-center rounded font-mono font-medium ${dim} ${ZONE_STYLES[zone]}`}
-      title={`Zona di allerta ${zone}`}
+      title={t("zonaTitle", { zone })}
     >
       {zone}
     </span>
