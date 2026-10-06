@@ -233,6 +233,15 @@
       "DOMANI": "Jutri",
       "DOPODOMANI": "Pojutrišnjem"
     },
+    "cielo": {
+      "sereno": "jasno",
+      "pocoNuvoloso": "pretežno jasno",
+      "moltoNuvoloso": "pretežno oblačno",
+      "coperto": "popolnoma oblačno",
+      "nubiSparse": "razpršena oblačnost",
+      "variabile": "spremenljivo oblačno",
+      "nuvoloso": "oblačno"
+    },
     "ieri": "Včeraj",
     "bollettinoEmesso": "Bilten izdan {data} — vir:"
   },

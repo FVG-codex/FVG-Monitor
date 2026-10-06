@@ -233,6 +233,15 @@
       "DOMANI": "Morgen",
       "DOPODOMANI": "Übermorgen"
     },
+    "cielo": {
+      "sereno": "klar",
+      "pocoNuvoloso": "leicht bewölkt",
+      "moltoNuvoloso": "stark bewölkt",
+      "coperto": "bedeckt",
+      "nubiSparse": "aufgelockerte Bewölkung",
+      "variabile": "wechselnd bewölkt",
+      "nuvoloso": "bewölkt"
+    },
     "ieri": "Gestern",
     "bollettinoEmesso": "Bulletin veröffentlicht am {data} — Quelle:"
   },

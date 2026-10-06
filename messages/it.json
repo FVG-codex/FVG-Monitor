@@ -233,6 +233,15 @@
       "DOMANI": "Domani",
       "DOPODOMANI": "Dopodomani"
     },
+    "cielo": {
+      "sereno": "sereno",
+      "pocoNuvoloso": "poco nuvoloso",
+      "moltoNuvoloso": "molto nuvoloso",
+      "coperto": "coperto",
+      "nubiSparse": "nubi sparse",
+      "variabile": "variabile",
+      "nuvoloso": "nuvoloso"
+    },
     "ieri": "Ieri",
     "bollettinoEmesso": "Bollettino emesso il {data} — fonte:"
   },

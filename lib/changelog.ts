@@ -22,6 +22,13 @@ export type VoceChangelog = {
 export const CHANGELOG: VoceChangelog[] = [
   {
     data: "06/10/2026",
+    titolo: "Meteo — tradotta anche la descrizione del cielo (\"sereno\", \"variabile\", ecc.)",
+    dettagli: [
+      "Nel box meteo (homepage e pagina di ogni provincia), la descrizione della copertura del cielo per domani/dopodomani (\"sereno\", \"poco nuvoloso\", \"variabile\", \"nuvoloso\", \"molto nuvoloso\", \"coperto\", \"nubi sparse\") è ora tradotta in inglese, tedesco, sloveno e croato invece di restare sempre in italiano. Un'eventuale descrizione diversa dalle 7 previste (mai osservata finora nel bollettino OSMER) continua a comparire in italiano invece di sparire.",
+    ],
+  },
+  {
+    data: "06/10/2026",
     titolo: "Multilingua — aggiunto il croato come quinta ed ultima lingua del sito",
     dettagli: [
       "Dopo italiano, inglese, tedesco e sloveno, il sito è ora disponibile anche in croato: stesso identico testo fisso già tradotto per le altre lingue, selezionabile dal nuovo pulsante \"HR\" nel selettore di lingua in alto. Come per le altre lingue, i dati che arrivano dalle fonti esterne (bollettini, notizie, orari, risultati sportivi, calendari di raccolta rifiuti, ecc.) restano in italiano anche nella versione croata, e i nomi di comuni e provincia (Trieste, Udine, Gorizia, Pordenone) e il nome della regione (\"Friuli Venezia Giulia\") restano scritti come in italiano anche in croato, per lo stesso motivo già applicato allo sloveno. Con questa si completano tutte le lingue previste dal piano originale.",

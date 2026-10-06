@@ -233,6 +233,15 @@
       "DOMANI": "Tomorrow",
       "DOPODOMANI": "Day after tomorrow"
     },
+    "cielo": {
+      "sereno": "clear",
+      "pocoNuvoloso": "mostly clear",
+      "moltoNuvoloso": "mostly cloudy",
+      "coperto": "overcast",
+      "nubiSparse": "scattered clouds",
+      "variabile": "variable cloud",
+      "nuvoloso": "cloudy"
+    },
     "ieri": "Yesterday",
     "bollettinoEmesso": "Bulletin issued on {data} — source:"
   },

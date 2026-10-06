@@ -73,6 +73,41 @@ export function iconaCielo(cielo: string | null | undefined): string | undefined
   return undefined;
 }
 
+/**
+ * Chiave di traduzione (namespace "meteo", sotto-chiave "cielo.*") per
+ * il testo mostrato in pagina al posto del valore grezzo `c.cielo` —
+ * stesso identico vocabolario/ordine di `iconaCielo()` sopra (i termini
+ * più specifici, es. "poco nuvoloso", vanno controllati prima di quelli
+ * generici che li contengono come sottostringa, es. "nuvoloso").
+ *
+ * Multilingua (06/10/2026, su richiesta esplicita dell'utente dopo aver
+ * notato "variabile"/"poco nuvoloso" non tradotti su pagina inglese):
+ * a differenza del resto del bollettino OSMER (testo libero, lasciato
+ * sempre in italiano in ogni lingua per fedeltà alla fonte — stessa
+ * convenzione di tutto il sito per i dati esterni), il campo `cielo` fa
+ * eccezione perché usa in pratica un piccolo vocabolario quasi chiuso
+ * (verificato su più bollettini reali, vedi commento su `iconaCielo()`
+ * sopra) — stessa situazione già gestita altrove nel sito con una
+ * chiave enum al posto del valore grezzo (es. `commercio.categorie.*`
+ * per Supermercati, `veterinari.livelloEmergenza.*`). Ritorna `null`
+ * per un testo non riconosciuto (variante mai vista nel campione): il
+ * chiamante usa in quel caso il valore originale `c.cielo` come
+ * fallback (resta in italiano), invece di mostrare una chiave di
+ * traduzione mancante o un testo vuoto.
+ */
+export function chiaveCielo(cielo: string | null | undefined): string | null {
+  if (!cielo) return null;
+  const testo = cielo.toLowerCase();
+  if (testo.includes("sereno")) return "cielo.sereno";
+  if (testo.includes("poco nuvoloso")) return "cielo.pocoNuvoloso";
+  if (testo.includes("molto nuvoloso")) return "cielo.moltoNuvoloso";
+  if (testo.includes("coperto")) return "cielo.coperto";
+  if (testo.includes("nubi sparse")) return "cielo.nubiSparse";
+  if (testo.includes("variabile")) return "cielo.variabile";
+  if (testo.includes("nuvoloso")) return "cielo.nuvoloso";
+  return null;
+}
+
 function useMeteoData() {
   const [dati, setDati] = useState<MeteoData | null>(null);
   const [stato, setStato] = useState<"loading" | "ready" | "error">("loading");
@@ -141,6 +176,8 @@ export function MeteoOverview() {
           {PROVINCE_LIST.map((p, i) => {
             const c = domani.per_citta[p.slug];
             const icona = c ? iconaCielo(c.cielo) : undefined;
+            const chiaveCieloRiga = c ? chiaveCielo(c.cielo) : null;
+            const testoCielo = chiaveCieloRiga ? t(chiaveCieloRiga) : c?.cielo;
             return (
               <a
                 key={p.slug}
@@ -176,7 +213,7 @@ export function MeteoOverview() {
                           {icona}
                         </span>
                       )}
-                      <span className="min-w-0 truncate">{c.cielo}</span>
+                      <span className="min-w-0 truncate">{testoCielo}</span>
                     </span>
                     {c.tmin && c.tmax && (
                       <span className="font-mono text-ink-faint text-xs flex-shrink-0 whitespace-nowrap">
@@ -243,6 +280,8 @@ export function MeteoDettaglio({ provincia }: { provincia: ProvinciaSlug }) {
           const c = s.per_citta[provincia];
           if (!c) return null;
           const etichetta = t(`giorno.${s.giorno}`);
+          const chiaveCieloGiorno = chiaveCielo(c.cielo);
+          const testoCielo = chiaveCieloGiorno ? t(chiaveCieloGiorno) : c.cielo;
           return (
             <div key={s.giorno} className="border-t border-line pt-3">
               <div className="font-cond font-semibold text-xs uppercase tracking-wide text-ink-faint mb-1.5 flex items-center gap-2">
@@ -257,7 +296,7 @@ export function MeteoDettaglio({ provincia }: { provincia: ProvinciaSlug }) {
               </div>
               {(c.cielo || c.pioggia || c.temporale || (c.tmin && c.tmax)) && (
                 <div className="text-sm text-ink-dim">
-                  {c.cielo}
+                  {testoCielo}
                   {c.pioggia && `, ${c.pioggia}`}
                   {c.temporale && `, ${c.temporale}`}
                   {c.tmin && c.tmax && (
