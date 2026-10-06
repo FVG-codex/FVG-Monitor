@@ -181,7 +181,8 @@
         "descrizione": "Veterinarske klinike in ambulante, z izpostavljenimi morebitnimi nujnimi storitvami"
       },
       "dentisti": {
-        "nome": "Zobozdravniki in zobne ordinacije"
+        "nome": "Zobozdravniki in zobne ordinacije",
+        "descrizione": "Seznam zobozdravstvenih ordinacij v Furlaniji-Julijski krajini (prvotni popis, še v fazi preverjanja)."
       }
     }
   },
@@ -569,6 +570,20 @@
     "oggiLabel": "Danes:",
     "emergenzeLabel": "Nujni primeri:",
     "telEmergenzeEtichetta": "Tel. za nujne primere: {telefono}"
+  },
+  "dentisti": {
+    "descrizione": "Zobozdravstvene ordinacije v Furlaniji-Julijski krajini — prvotni popis, ki je še v fazi preverjanja (uradne spletne strani in panožni imeniki), ne gre za uradni poklicni register. Pred obiskom ordinacije vedno telefonsko preverite delovni čas in razpoložljivost.",
+    "datiInArrivo": "Zobozdravstveni podatki za {provincia} bodo na voljo v prihodnji fazi.",
+    "cercaLabel": "Iskanje po imenu, občini ali vrsti objekta",
+    "cercaPlaceholder": "Iskanje po imenu, občini ali vrsti objekta…",
+    "nessunaStrutturaTrovata": "Ni bil najden noben objekt{luogo}.",
+    "mappaAriaLabel": "Zemljevid zobozdravstvenih ordinacij{luogo} — enakovreden besedilni seznam v sosednji plošči",
+    "suAppuntamento": "po dogovoru",
+    "oggiLabel": "Danes:",
+    "orarioNonPubblicato": "Delovni čas ni objavljen",
+    "chiuso": "Zaprto",
+    "convenzionatoAsugi": "Pogodbenik ASUGI",
+    "nessunaCoordinata": "Koordinate za ta popis še niso na voljo: dodane bodo z preverjenimi podatki."
   },
   "sci": {
     "titolo": "Smučanje — tekmovalni koledar FVG",

@@ -181,7 +181,8 @@
         "descrizione": "Tierkliniken und -praxen, mit hervorgehobenen etwaigen Notfalldiensten"
       },
       "dentisti": {
-        "nome": "Zahnärzte & Zahnarztpraxen"
+        "nome": "Zahnärzte & Zahnarztpraxen",
+        "descrizione": "Verzeichnis der Zahnarztpraxen in Friuli Venezia Giulia (erste Erhebung, noch in Verifizierung)."
       }
     }
   },
@@ -569,6 +570,20 @@
     "oggiLabel": "Heute:",
     "emergenzeLabel": "Notfälle:",
     "telEmergenzeEtichetta": "Notfall-Tel.: {telefono}"
+  },
+  "dentisti": {
+    "descrizione": "Zahnarztpraxen in Friuli Venezia Giulia — eine erste Erhebung, die noch verifiziert wird (offizielle Websites und Branchenverzeichnisse), kein offizielles Berufsregister. Vor dem Besuch einer Praxis immer vorher telefonisch Öffnungszeiten und Verfügbarkeit bestätigen.",
+    "datiInArrivo": "Zahnärztliche Daten für {provincia} folgen in einer späteren Phase.",
+    "cercaLabel": "Suche nach Name, Gemeinde oder Einrichtungstyp",
+    "cercaPlaceholder": "Suche nach Name, Gemeinde oder Einrichtungstyp…",
+    "nessunaStrutturaTrovata": "Keine Einrichtung gefunden{luogo}.",
+    "mappaAriaLabel": "Karte der Zahnarztpraxen{luogo} — entsprechende Textliste im Feld daneben",
+    "suAppuntamento": "nach Vereinbarung",
+    "oggiLabel": "Heute:",
+    "orarioNonPubblicato": "Öffnungszeiten nicht veröffentlicht",
+    "chiuso": "Geschlossen",
+    "convenzionatoAsugi": "ASUGI-Vertragspartner",
+    "nessunaCoordinata": "Die Koordinaten dieser Erhebung sind noch nicht verfügbar: sie werden mit den verifizierten Daten hinzugefügt."
   },
   "sci": {
     "titolo": "Ski — FVG-Rennkalender",

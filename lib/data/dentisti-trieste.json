@@ -1,0 +1,2881 @@
+{
+  "schema_version": "1.1",
+  "generated_at": "2026-10-06",
+  "timezone": "Europe/Rome",
+  "scope": "Studi dentistici e odontoiatrici della provincia di Trieste; esclusi laboratori odontotecnici (non erogano cure) e centri estetici dentali senza odontoiatra abilitato",
+  "note_schema": "Censimento ampliato: i record provenienti da siti ufficiali e ASUGI sono utilizzabili; quelli contrassegnati come candidati richiedono verifica prima della pubblicazione. Le emergenze odontoiatriche restano gestite in un riquadro separato.",
+  "audit": {
+    "record_esclusi": [
+      {
+        "nome": "Dott. Giovanni Silvestri – Via Giacinto Gallina 2",
+        "motivo": "Professionista segnalato nella stessa sede dello Studio Fortunati; non creato un secondo record di struttura.",
+        "fonte": "Odontino",
+        "data_verifica": "2026-10-06"
+      },
+      {
+        "nome": "Studio Dentistico Massari-Sornig – Via Revoltella 2",
+        "motivo": "Duplicato della sede Sornig Revoltella già censita.",
+        "fonte": "Odontino",
+        "data_verifica": "2026-10-06"
+      },
+      {
+        "nome": "Studio Dentistico – Via Marco Polo 41",
+        "motivo": "Scheda generica duplicata rispetto a G&P Gherbassi.",
+        "fonte": "Odontino",
+        "data_verifica": "2026-10-06"
+      },
+      {
+        "nome": "Dott. Roberto Pietro Stefani – Via San Nicolò 22",
+        "motivo": "Indirizzo secondario in conflitto con il sito ufficiale, che riporta Via delle Mura 2; mantenuta la fonte ufficiale.",
+        "fonte": "Dentisti Italia / sito ufficiale",
+        "data_verifica": "2026-10-06"
+      }
+    ],
+    "verifiche_residue": [
+      {
+        "id": "TS-DEN-001",
+        "nome": "Studio Dentistico Spadaro",
+        "motivo": "coordinate mancanti",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-002",
+        "nome": "Studio Dentistico Dott. Paolo Bidinat",
+        "motivo": "orari non verificati; coordinate mancanti",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-003",
+        "nome": "Studio Dentistico Cociani",
+        "motivo": "coordinate mancanti",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-004",
+        "nome": "Studio Dentistico R.P. Stefani",
+        "motivo": "orari non verificati; coordinate mancanti",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-005",
+        "nome": "Studio Dentistico Veljak",
+        "motivo": "coordinate mancanti",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-006",
+        "nome": "Studi Odontoiatrici Sornig – sede Galatti",
+        "motivo": "orari non verificati; coordinate mancanti",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-007",
+        "nome": "Studi Odontoiatrici Sornig – sede Revoltella",
+        "motivo": "orari non verificati; coordinate mancanti",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-008",
+        "nome": "Medicenter Trieste",
+        "motivo": "coordinate mancanti",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-009",
+        "nome": "Studio Dentistico Dott. Gabriele Fortunati",
+        "motivo": "orari non verificati; coordinate mancanti",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-010",
+        "nome": "Studio Dentistico Associato Furlani",
+        "motivo": "coordinate mancanti",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-011",
+        "nome": "Studio Dentistico Tattoni",
+        "motivo": "coordinate mancanti",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-012",
+        "nome": "Studio Kravos & Guadagno",
+        "motivo": "coordinate mancanti",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-013",
+        "nome": "Studio Dentistico Stener – Trieste",
+        "motivo": "coordinate mancanti",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-014",
+        "nome": "Studio Dentistico Stener – Muggia",
+        "motivo": "coordinate mancanti",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-015",
+        "nome": "Studio Dentistico Dott.ssa Ekanga Laure",
+        "motivo": "orari non verificati; coordinate mancanti; esistenza e dati da confermare",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-016",
+        "nome": "Studio Dentistico Corrado – Dott.ssa Francesca Corrado",
+        "motivo": "orari non verificati; coordinate mancanti; esistenza e dati da confermare",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-017",
+        "nome": "Studio Dentistico Del Ben – Dental Clinique",
+        "motivo": "orari non verificati; coordinate mancanti; esistenza e dati da confermare",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-018",
+        "nome": "Studio Odontoiatrico Dr. Fischer Srl",
+        "motivo": "orari non verificati; coordinate mancanti; esistenza e dati da confermare",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-019",
+        "nome": "Studio Dentistico Dott.ssa Martina Caneva",
+        "motivo": "orari non verificati; coordinate mancanti; esistenza e dati da confermare",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-020",
+        "nome": "Studio Dentistico Novel & Praseli",
+        "motivo": "orari non verificati; coordinate mancanti; esistenza e dati da confermare",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-021",
+        "nome": "Studio Albrigo – De Biasi",
+        "motivo": "orari non verificati; coordinate mancanti; esistenza e dati da confermare",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-022",
+        "nome": "Serenissima Cliniche Dentali – Trieste",
+        "motivo": "orari non verificati; coordinate mancanti; esistenza e dati da confermare",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-023",
+        "nome": "Studio Dentistico Dott.ssa Claudia Busecchian",
+        "motivo": "orari non verificati; coordinate mancanti; esistenza e dati da confermare",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-024",
+        "nome": "Dental Domus – Dottori Gotti & Franco",
+        "motivo": "orari non verificati; coordinate mancanti; esistenza e dati da confermare",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-025",
+        "nome": "Studio Dentistico Dott. Mauro Zerial",
+        "motivo": "orari non verificati; coordinate mancanti; esistenza e dati da confermare",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-026",
+        "nome": "Studio Dentistico Dennis Ventrice",
+        "motivo": "orari non verificati; coordinate mancanti; esistenza e dati da confermare",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-027",
+        "nome": "Studio Dentistico Dott.ssa Bruna Argenti – Dental Wellness Art",
+        "motivo": "orari non verificati; coordinate mancanti; esistenza e dati da confermare",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-028",
+        "nome": "Studio Dentistico Dott. Stefano Deponte",
+        "motivo": "orari non verificati; coordinate mancanti; esistenza e dati da confermare",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-029",
+        "nome": "Studio Dentistico Dott. Gaetano Castronovo",
+        "motivo": "orari non verificati; coordinate mancanti; esistenza e dati da confermare",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-030",
+        "nome": "Studio Dentistico Vasselli",
+        "motivo": "orari non verificati; coordinate mancanti; esistenza e dati da confermare",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-031",
+        "nome": "Studio Semez",
+        "motivo": "orari non verificati; coordinate mancanti; esistenza e dati da confermare",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-032",
+        "nome": "ArcuDent – Studio Dentistico",
+        "motivo": "orari non verificati; coordinate mancanti; esistenza e dati da confermare",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-033",
+        "nome": "Studio Dentistico Dott. Luca Paoloni",
+        "motivo": "orari non verificati; coordinate mancanti; esistenza e dati da confermare",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-034",
+        "nome": "Studio Odontoiatrico Dott.ssa Francesca Pes",
+        "motivo": "orari non verificati; coordinate mancanti; esistenza e dati da confermare",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-035",
+        "nome": "Studio Dentistico Bampi e Associati",
+        "motivo": "orari non verificati; coordinate mancanti; esistenza e dati da confermare",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-036",
+        "nome": "Studio Dentistico Dott.ssa Cristina Cucich",
+        "motivo": "orari non verificati; coordinate mancanti; esistenza e dati da confermare",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-037",
+        "nome": "Studio Dentistico Dott. Mariano Giorgi",
+        "motivo": "orari non verificati; coordinate mancanti; esistenza e dati da confermare",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-038",
+        "nome": "Studio Dentistico Dott. Giliano Sever",
+        "motivo": "orari non verificati; coordinate mancanti; esistenza e dati da confermare",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-039",
+        "nome": "Studio Dentistico Antonione – Dott. Michele Sustersich",
+        "motivo": "orari non verificati; coordinate mancanti; esistenza e dati da confermare",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-040",
+        "nome": "Studio Dentistico Associato Altin – Harei",
+        "motivo": "orari non verificati; coordinate mancanti; esistenza e dati da confermare",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-041",
+        "nome": "StudioCati – Studio Dentistico Carrafiello Tinti",
+        "motivo": "orari non verificati; coordinate mancanti; esistenza e dati da confermare",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-042",
+        "nome": "Studio Dentistico Dott.ssa Daniela Rigoni",
+        "motivo": "orari non verificati; coordinate mancanti; esistenza e dati da confermare",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-043",
+        "nome": "G&P Gherbassi Studio Dentistico",
+        "motivo": "orari non verificati; coordinate mancanti; esistenza e dati da confermare",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-044",
+        "nome": "Dental Wellness Center",
+        "motivo": "orari non verificati; coordinate mancanti; esistenza e dati da confermare",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-045",
+        "nome": "Studio Dentistico Lamia Srl",
+        "motivo": "orari non verificati; coordinate mancanti; esistenza e dati da confermare",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-046",
+        "nome": "Studio Dentistico Dott. Fabrizio De Marco",
+        "motivo": "orari non verificati; coordinate mancanti; esistenza e dati da confermare",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-047",
+        "nome": "Centro Dentale MB",
+        "motivo": "orari non verificati; coordinate mancanti; esistenza e dati da confermare",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-048",
+        "nome": "DentalPro Trieste",
+        "motivo": "orari non verificati; coordinate mancanti; esistenza e dati da confermare",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-049",
+        "nome": "Studio Dentistico Dott. Fabio Linda de Walderstein",
+        "motivo": "orari non verificati; coordinate mancanti; esistenza e dati da confermare",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-050",
+        "nome": "Studio Dentistico Dott. Diego Paschina",
+        "motivo": "orari non verificati; coordinate mancanti; esistenza e dati da confermare",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-051",
+        "nome": "Studio Dentistico Associato Dott. A. Ferro e Dott. L. Romano",
+        "motivo": "orari non verificati; coordinate mancanti; esistenza e dati da confermare",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-052",
+        "nome": "Studio Dentistico Dott.ssa Gabriella Clarich Maurel",
+        "motivo": "orari non verificati; coordinate mancanti; esistenza e dati da confermare",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-053",
+        "nome": "Studio Dentistico Dott. Enrico Ferluga",
+        "motivo": "orari non verificati; coordinate mancanti; esistenza e dati da confermare",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-054",
+        "nome": "Studio Dentistico Dott. Denis Giugovaz",
+        "motivo": "orari non verificati; coordinate mancanti; esistenza e dati da confermare",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-055",
+        "nome": "Studio Dentistico Dott. Antonio Pastorelli",
+        "motivo": "orari non verificati; coordinate mancanti; esistenza e dati da confermare",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-056",
+        "nome": "Studio Dentistico Dott.ssa Giulia Torrisi",
+        "motivo": "orari non verificati; coordinate mancanti; esistenza e dati da confermare",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-057",
+        "nome": "Studio Dentistico Dott. Fabio Salvini",
+        "motivo": "orari non verificati; coordinate mancanti; esistenza e dati da confermare",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-058",
+        "nome": "Studio Odontoiatrico Dott.ssa Nicoletta Kratter",
+        "motivo": "orari non verificati; coordinate mancanti; esistenza e dati da confermare",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-059",
+        "nome": "Studio Dentistico Dott.ssa Luisa Marsi",
+        "motivo": "orari non verificati; coordinate mancanti; esistenza e dati da confermare",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-060",
+        "nome": "Studio Dentistico Dott. Mauro Giorgi",
+        "motivo": "orari non verificati; coordinate mancanti; esistenza e dati da confermare",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-061",
+        "nome": "Studio Dentistico Dott. Paolo Bidinat – Aurisina",
+        "motivo": "orari non verificati; coordinate mancanti; esistenza e dati da confermare",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-062",
+        "nome": "Studio Odontoiatrico Associato Rossi e Ferlan",
+        "motivo": "orari non verificati; coordinate mancanti; esistenza e dati da confermare",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-063",
+        "nome": "Studio Dentistico Dott. Vasja Jarc",
+        "motivo": "orari non verificati; coordinate mancanti; esistenza e dati da confermare",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-064",
+        "nome": "Studio Dentistico Dott. Umari",
+        "motivo": "orari non verificati; coordinate mancanti; esistenza e dati da confermare",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-065",
+        "nome": "Dental Clinic Sistiana",
+        "motivo": "orari non verificati; coordinate mancanti; esistenza e dati da confermare",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-066",
+        "nome": "Studio Dentistico Grison Postogna",
+        "motivo": "orari non verificati; coordinate mancanti; esistenza e dati da confermare",
+        "esito": "verifica aperta"
+      },
+      {
+        "id": "TS-DEN-067",
+        "nome": "ASUGI – Ambulatori di Odontostomatologia, Ospedale Maggiore",
+        "motivo": "coordinate mancanti",
+        "esito": "verifica aperta"
+      }
+    ],
+    "copertura_comuni": {
+      "Trieste": {
+        "record": 60,
+        "stato": "ampia ricognizione; verifica puntuale in corso"
+      },
+      "Muggia": {
+        "record": 2,
+        "stato": "ricognizione iniziale"
+      },
+      "Duino-Aurisina": {
+        "record": 5,
+        "stato": "ricognizione iniziale; diverse fonti storiche"
+      },
+      "San Dorligo della Valle-Dolina": {
+        "record": 0,
+        "stato": "nessuna struttura individuata nelle fonti consultate; controllo cartografico ancora necessario"
+      },
+      "Sgonico": {
+        "record": 0,
+        "stato": "nessuna struttura individuata nelle fonti consultate; controllo cartografico ancora necessario"
+      },
+      "Monrupino": {
+        "record": 0,
+        "stato": "nessuna struttura individuata nelle fonti consultate; controllo cartografico ancora necessario"
+      }
+    }
+  },
+  "records": [
+    {
+      "id": "TS-DEN-001",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Spadaro",
+      "tipo_struttura": "Studio dentistico singolo",
+      "indirizzo": "Via San Maurizio, 4",
+      "cap": "34129",
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "040 371290",
+      "email": "ambulatorio@tin.it",
+      "sito_ufficiale": "https://studiodentisticotrieste.com/contatti/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "15:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "15:00"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "servizi": "Odontoiatria generale",
+      "convenzionato_asugi": null,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": "https://studiodentisticotrieste.com/contatti/",
+      "orari_verificati": true,
+      "note": "Orari pubblicati sul sito ufficiale. Responsabile/direttore sanitario pubblicato: Dott. Andrea Spadaro. Convenzionamento ASUGI non ancora verificato.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-002",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Dott. Paolo Bidinat",
+      "tipo_struttura": "Studio dentistico singolo",
+      "indirizzo": "Via Francesco Domenico Guerrazzi, 6",
+      "cap": "34131",
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "040 200873; 347 9274091",
+      "email": "info@studiodentisticobidinattrieste.it",
+      "sito_ufficiale": "https://studiodentisticobidinattrieste.it/",
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": true,
+      "servizi": "Chirurgia orale; implantologia; parodontologia; protesi; ortodonzia; igiene; conservativa; endodonzia",
+      "convenzionato_asugi": null,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": "https://studiodentisticobidinattrieste.it/",
+      "orari_verificati": false,
+      "note": "Il sito ufficiale indica ricevimento su appuntamento ma non pubblica fasce settimanali. Responsabile/direttore sanitario pubblicato: Dott. Paolo Bidinat. Convenzionamento ASUGI non ancora verificato.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-003",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Cociani",
+      "tipo_struttura": "Studio dentistico singolo",
+      "indirizzo": "Via Marco Tullio Cicerone, 11",
+      "cap": "34133",
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "040 369245",
+      "email": "studiocociani@gmail.com",
+      "sito_ufficiale": "https://www.studiodentisticocociani.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "17:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "10:00",
+            "chiude": "18:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "17:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "17:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "servizi": "Ortodonzia; implantologia; odontoiatria per adulti e bambini",
+      "convenzionato_asugi": null,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": "https://www.studiodentisticocociani.it/",
+      "orari_verificati": true,
+      "note": "Orari e contatti pubblicati sul sito ufficiale. Responsabile/direttore sanitario pubblicato: Dott. Sandro Cociani; Dott.ssa Cristina Cociani. Convenzionamento ASUGI non ancora verificato.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-004",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico R.P. Stefani",
+      "tipo_struttura": "Studio dentistico singolo",
+      "indirizzo": "Via delle Mura, 2",
+      "cap": "34121",
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "040 765452",
+      "email": "studiodentisticorps@gmail.com",
+      "sito_ufficiale": "https://www.studiodentisticorps.it/orari",
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": true,
+      "servizi": "Odontoiatria generale e tecnologie diagnostiche",
+      "convenzionato_asugi": null,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": "https://www.studiodentisticorps.it/orari",
+      "orari_verificati": false,
+      "note": "Sede e contatti ufficiali verificati; le fasce orarie non risultano leggibili nella pagina indicizzata. Responsabile/direttore sanitario pubblicato: Dott. Roberto Pietro Stefani. Convenzionamento ASUGI non ancora verificato.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-005",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Veljak",
+      "tipo_struttura": "Studio dentistico singolo",
+      "indirizzo": "Via dei Giuliani, 20",
+      "cap": "34137",
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "040 638568",
+      "email": "info@studioveljak.com",
+      "sito_ufficiale": "https://studioveljak.com/contatti/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "18:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "18:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:30"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "servizi": "Odontoiatria generale",
+      "convenzionato_asugi": null,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": "https://studioveljak.com/contatti/",
+      "orari_verificati": true,
+      "note": "Il sito raggruppa mercoledì-venerdì nella fascia 08:30-13:30. Convenzionamento ASUGI non ancora verificato.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-006",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studi Odontoiatrici Sornig – sede Galatti",
+      "tipo_struttura": "Centro odontoiatrico",
+      "indirizzo": "Via Galatti, 16",
+      "cap": "34132",
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "040 772249; 377 3980622",
+      "email": "info@studiosornig.it",
+      "sito_ufficiale": "https://www.studiosornig.it/dove-siamo/lo-studio-di-trieste",
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": true,
+      "servizi": "Odontoiatria multidisciplinare",
+      "convenzionato_asugi": null,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": "https://www.studiosornig.it/dove-siamo/lo-studio-di-trieste",
+      "orari_verificati": false,
+      "note": "Sede, direttore sanitario e autorizzazione verificati sul sito ufficiale; orari da verificare. Responsabile/direttore sanitario pubblicato: Dott. Stefan Marjanovic. Iscrizione dichiarata: Odontoiatri Trieste n. 553. Autorizzazione sanitaria dichiarata: 0060688P del 07/07/2026. Convenzionamento ASUGI non ancora verificato.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-007",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studi Odontoiatrici Sornig – sede Revoltella",
+      "tipo_struttura": "Centro odontoiatrico",
+      "indirizzo": "Via Revoltella, 2",
+      "cap": "34138",
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "040 393572; 328 8131810",
+      "email": "revoltella@studiosornig.it",
+      "sito_ufficiale": "https://www.studiosornig.it/dove-siamo/lo-studio-di-trieste",
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": true,
+      "servizi": "Odontoiatria multidisciplinare",
+      "convenzionato_asugi": null,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": "https://www.studiosornig.it/dove-siamo/lo-studio-di-trieste",
+      "orari_verificati": false,
+      "note": "Seconda sede distinta; orari da verificare. Responsabile/direttore sanitario pubblicato: Dott. Stefan Marjanovic. Iscrizione dichiarata: Odontoiatri Trieste n. 553. Autorizzazione sanitaria dichiarata: 0060094P del 07/07/2026. Convenzionamento ASUGI non ancora verificato.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-008",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Medicenter Trieste",
+      "tipo_struttura": "Centro odontoiatrico",
+      "indirizzo": "Via del Coroneo, 21",
+      "cap": "34133",
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "040 43535; 352 0303534",
+      "email": "info@medicentercliniche.it",
+      "sito_ufficiale": "https://medicentercliniche.it/trieste/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "18:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "18:30"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "servizi": "Implantologia; ortodonzia; igiene; pedodonzia; chirurgia orale; protesi; endodonzia",
+      "convenzionato_asugi": null,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": "https://medicentercliniche.it/trieste/",
+      "orari_verificati": true,
+      "note": "Il sito dichiara gestione rapida delle urgenze, senza copertura H24. Responsabile/direttore sanitario pubblicato: Dott. Michele Quinto. Iscrizione dichiarata: Albo GO n. 00057. Autorizzazione sanitaria dichiarata: Aut. san. n. 22863 del 03/05/2017. Le informazioni sulle urgenze sono escluse dal record secondo lo schema e devono essere gestite nel riquadro dedicato. Convenzionamento ASUGI non ancora verificato.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-009",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Dott. Gabriele Fortunati",
+      "tipo_struttura": "Studio dentistico singolo",
+      "indirizzo": "Via Giacinto Gallina, 2",
+      "cap": "34122",
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "040 365723",
+      "email": "dott.fortunatigabriele@yahoo.it",
+      "sito_ufficiale": "https://www.studiofortunati.com/",
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": true,
+      "servizi": "Odontoiatria generale",
+      "convenzionato_asugi": null,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": "https://www.studiofortunati.com/",
+      "orari_verificati": false,
+      "note": "Sede e contatti verificati sul sito ufficiale; orari non pubblicati nella pagina indicizzata. Responsabile/direttore sanitario pubblicato: Dott. Gabriele Fortunati. Convenzionamento ASUGI non ancora verificato.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-010",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Associato Furlani",
+      "tipo_struttura": "Studio dentistico associato",
+      "indirizzo": "Piazza San Giovanni, 3",
+      "cap": "34122",
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "040 636603",
+      "email": "studiogfurlani@gmail.com",
+      "sito_ufficiale": "https://www.studiodentisticofurlani.com/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "18:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "12:30",
+            "chiude": "17:00"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "servizi": "Ortodonzia; implantologia; parodontologia; protesi; conservativa; pedodonzia; endodonzia",
+      "convenzionato_asugi": null,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": "https://www.studiodentisticofurlani.com/",
+      "orari_verificati": true,
+      "note": "Il venerdì estivo è 09:00-13:30; nel campo standard è riportato l’orario del resto dell’anno. Responsabile/direttore sanitario pubblicato: Dottori Furlani. Convenzionamento ASUGI non ancora verificato.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-011",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Tattoni",
+      "tipo_struttura": "Studio dentistico singolo",
+      "indirizzo": "Via Raffineria, 1",
+      "cap": "34138",
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "040 364618",
+      "email": "truli69@alice.it",
+      "sito_ufficiale": "https://www.studiodentisticotattoni.com/contatti",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "18:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "18:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "18:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "18:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "18:00"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "servizi": "Odontoiatria generale; implantologia; protesi; visite domiciliari per casi particolari",
+      "convenzionato_asugi": null,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": "https://www.studiodentisticotattoni.com/contatti",
+      "orari_verificati": true,
+      "note": "Il sito ufficiale dichiara esplicitamente il numero per urgenze attivo 24 ore su 24. Responsabile/direttore sanitario pubblicato: Dott. Paolo Tattoni. Le informazioni sulle urgenze sono escluse dal record secondo lo schema e devono essere gestite nel riquadro dedicato. Convenzionamento ASUGI non ancora verificato.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-012",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Kravos & Guadagno",
+      "tipo_struttura": "Centro odontoiatrico",
+      "indirizzo": "Via San Nicolò, 19",
+      "cap": "34121",
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "040 660040; 350 0473899",
+      "email": "segreteria@kravosguadagno.it",
+      "sito_ufficiale": "https://www.kravosguadagno.it/contatti",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "18:00"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "servizi": "Odontoiatria multidisciplinare; implantologia; protesi; medicina estetica",
+      "convenzionato_asugi": null,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": "https://www.kravosguadagno.it/contatti",
+      "orari_verificati": true,
+      "note": "Sono pubblicati due contatti per urgenze, ma non è dichiarata una copertura H24. Responsabile/direttore sanitario pubblicato: Dott. Francesco Guadagno. Iscrizione dichiarata: Odontoiatri Trieste n. 407. Autorizzazione sanitaria dichiarata: Prot. DP 24/P-666/T-GEN-IV-1-D-6 del 03/10/2024. Le informazioni sulle urgenze sono escluse dal record secondo lo schema e devono essere gestite nel riquadro dedicato. Convenzionamento ASUGI non ancora verificato.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-013",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Stener – Trieste",
+      "tipo_struttura": "Studio dentistico singolo",
+      "indirizzo": "Largo Mioni, 9",
+      "cap": null,
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "040 768320",
+      "email": "studiostener@spin.it",
+      "sito_ufficiale": "https://www.stenermarcodentista.it/contatti/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "15:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "14:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "14:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "servizi": "Implantoprotesi; laser; ortodonzia; pedodonzia; chirurgia orale; igiene",
+      "convenzionato_asugi": null,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": "https://www.stenermarcodentista.it/contatti/",
+      "orari_verificati": true,
+      "note": "CAP da verificare prima della pubblicazione. Responsabile/direttore sanitario pubblicato: Dott. Marco Stener. Convenzionamento ASUGI non ancora verificato.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-014",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Stener – Muggia",
+      "tipo_struttura": "Studio dentistico singolo",
+      "indirizzo": "Via San Giovanni, 1",
+      "cap": "34015",
+      "comune": "Muggia",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "040 271191",
+      "email": "studiostener@spin.it",
+      "sito_ufficiale": "https://www.stenermarcodentista.it/contatti/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "15:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "15:00",
+            "chiude": "18:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "servizi": "Implantoprotesi; laser; ortodonzia; pedodonzia; chirurgia orale; igiene",
+      "convenzionato_asugi": null,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": "https://www.stenermarcodentista.it/contatti/",
+      "orari_verificati": true,
+      "note": "Orari e contatti pubblicati sul sito ufficiale. Responsabile/direttore sanitario pubblicato: Dott. Marco Stener. Convenzionamento ASUGI non ancora verificato.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-015",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Dott.ssa Ekanga Laure",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Via del Coroneo, 30",
+      "cap": null,
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": null,
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "servizi": null,
+      "convenzionato_asugi": null,
+      "fonte_principale": "Odontino / directory odontoiatriche",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Candidato da verificare prima della pubblicazione. Esistenza, denominazione, recapiti, orari e responsabile sanitario da confermare.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-016",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Corrado – Dott.ssa Francesca Corrado",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Via Valdirivo, 31",
+      "cap": null,
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": null,
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "servizi": null,
+      "convenzionato_asugi": null,
+      "fonte_principale": "Odontino / directory odontoiatriche",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Candidato da verificare prima della pubblicazione. Esistenza, denominazione, recapiti, orari e responsabile sanitario da confermare.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-017",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Del Ben – Dental Clinique",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Via Matteo Renato Imbriani, 6",
+      "cap": null,
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": null,
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "servizi": null,
+      "convenzionato_asugi": null,
+      "fonte_principale": "Odontino / directory odontoiatriche",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Candidato da verificare prima della pubblicazione. Esistenza, denominazione, recapiti, orari e responsabile sanitario da confermare.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-018",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Odontoiatrico Dr. Fischer Srl",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Piazza dell’Ospitale, 2",
+      "cap": null,
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": null,
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "servizi": null,
+      "convenzionato_asugi": null,
+      "fonte_principale": "Odontino / directory odontoiatriche",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Candidato da verificare prima della pubblicazione. Esistenza, denominazione, recapiti, orari e responsabile sanitario da confermare.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-019",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Dott.ssa Martina Caneva",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Via di Donota, 3",
+      "cap": null,
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": null,
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "servizi": null,
+      "convenzionato_asugi": null,
+      "fonte_principale": "Odontino / directory odontoiatriche",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Candidato da verificare prima della pubblicazione. Esistenza, denominazione, recapiti, orari e responsabile sanitario da confermare.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-020",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Novel & Praseli",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Via Galileo Galilei, 26",
+      "cap": null,
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": null,
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "servizi": null,
+      "convenzionato_asugi": null,
+      "fonte_principale": "Odontino / directory odontoiatriche",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Candidato da verificare prima della pubblicazione. Esistenza, denominazione, recapiti, orari e responsabile sanitario da confermare.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-021",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Albrigo – De Biasi",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Via di Torre Bianca, 8",
+      "cap": null,
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": null,
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "servizi": null,
+      "convenzionato_asugi": null,
+      "fonte_principale": "Odontino / directory odontoiatriche",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Candidato da verificare prima della pubblicazione. Esistenza, denominazione, recapiti, orari e responsabile sanitario da confermare.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-022",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Serenissima Cliniche Dentali – Trieste",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Via San Nicolò, 12",
+      "cap": null,
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": null,
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "servizi": null,
+      "convenzionato_asugi": null,
+      "fonte_principale": "Odontino / directory odontoiatriche",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Candidato da verificare prima della pubblicazione. Esistenza, denominazione, recapiti, orari e responsabile sanitario da confermare.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-023",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Dott.ssa Claudia Busecchian",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Via Trenta Ottobre, 4",
+      "cap": null,
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": null,
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "servizi": null,
+      "convenzionato_asugi": null,
+      "fonte_principale": "Odontino / directory odontoiatriche",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Candidato da verificare prima della pubblicazione. Esistenza, denominazione, recapiti, orari e responsabile sanitario da confermare.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-024",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Dental Domus – Dottori Gotti & Franco",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Via Cesare Battisti, 1",
+      "cap": null,
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": null,
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "servizi": null,
+      "convenzionato_asugi": null,
+      "fonte_principale": "Odontino / directory odontoiatriche",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Candidato da verificare prima della pubblicazione. Esistenza, denominazione, recapiti, orari e responsabile sanitario da confermare.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-025",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Dott. Mauro Zerial",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Via del Molino a Vento, 84",
+      "cap": null,
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": null,
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "servizi": null,
+      "convenzionato_asugi": null,
+      "fonte_principale": "Odontino / directory odontoiatriche",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Candidato da verificare prima della pubblicazione. Esistenza, denominazione, recapiti, orari e responsabile sanitario da confermare.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-026",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Dennis Ventrice",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Via Antonio Baiamonti, 64/2",
+      "cap": null,
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": null,
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "servizi": null,
+      "convenzionato_asugi": null,
+      "fonte_principale": "Odontino / directory odontoiatriche",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Candidato da verificare prima della pubblicazione. Esistenza, denominazione, recapiti, orari e responsabile sanitario da confermare.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-027",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Dott.ssa Bruna Argenti – Dental Wellness Art",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Via Casimiro Donadoni, 27",
+      "cap": null,
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": null,
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "servizi": null,
+      "convenzionato_asugi": null,
+      "fonte_principale": "Odontino / directory odontoiatriche",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Candidato da verificare prima della pubblicazione. Esistenza, denominazione, recapiti, orari e responsabile sanitario da confermare.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-028",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Dott. Stefano Deponte",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Via della Ginnastica, 32",
+      "cap": null,
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": null,
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "servizi": null,
+      "convenzionato_asugi": null,
+      "fonte_principale": "Odontino / directory odontoiatriche",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Candidato da verificare prima della pubblicazione. Esistenza, denominazione, recapiti, orari e responsabile sanitario da confermare.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-029",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Dott. Gaetano Castronovo",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Via San Nicolò, 22",
+      "cap": null,
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": null,
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "servizi": null,
+      "convenzionato_asugi": null,
+      "fonte_principale": "Odontino / directory odontoiatriche",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Candidato da verificare prima della pubblicazione. Esistenza, denominazione, recapiti, orari e responsabile sanitario da confermare.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-030",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Vasselli",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Via San Nicolò, 21",
+      "cap": null,
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": null,
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "servizi": null,
+      "convenzionato_asugi": null,
+      "fonte_principale": "Odontino / directory odontoiatriche",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Candidato da verificare prima della pubblicazione. Esistenza, denominazione, recapiti, orari e responsabile sanitario da confermare.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-031",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Semez",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Corso Italia, 2",
+      "cap": null,
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": null,
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "servizi": null,
+      "convenzionato_asugi": null,
+      "fonte_principale": "Odontino / directory odontoiatriche",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Candidato da verificare prima della pubblicazione. Esistenza, denominazione, recapiti, orari e responsabile sanitario da confermare.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-032",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "ArcuDent – Studio Dentistico",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Piazza dell’Ospitale, 2",
+      "cap": null,
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": null,
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "servizi": null,
+      "convenzionato_asugi": null,
+      "fonte_principale": "Odontino / directory odontoiatriche",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Candidato da verificare prima della pubblicazione. Esistenza, denominazione, recapiti, orari e responsabile sanitario da confermare.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-033",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Dott. Luca Paoloni",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Via Guido Zanetti, 1",
+      "cap": null,
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": null,
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "servizi": null,
+      "convenzionato_asugi": null,
+      "fonte_principale": "Odontino / directory odontoiatriche",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Candidato da verificare prima della pubblicazione. Esistenza, denominazione, recapiti, orari e responsabile sanitario da confermare.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-034",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Odontoiatrico Dott.ssa Francesca Pes",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Via Guglielmo Marconi, 8",
+      "cap": null,
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": null,
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "servizi": null,
+      "convenzionato_asugi": null,
+      "fonte_principale": "Odontino / directory odontoiatriche",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Candidato da verificare prima della pubblicazione. Esistenza, denominazione, recapiti, orari e responsabile sanitario da confermare.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-035",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Bampi e Associati",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Via Ireneo della Croce, 9",
+      "cap": null,
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": null,
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "servizi": null,
+      "convenzionato_asugi": null,
+      "fonte_principale": "Odontino / directory odontoiatriche",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Candidato da verificare prima della pubblicazione. Esistenza, denominazione, recapiti, orari e responsabile sanitario da confermare.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-036",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Dott.ssa Cristina Cucich",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Via Italo Svevo, 38",
+      "cap": null,
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": null,
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "servizi": null,
+      "convenzionato_asugi": null,
+      "fonte_principale": "Odontino / directory odontoiatriche",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Candidato da verificare prima della pubblicazione. Esistenza, denominazione, recapiti, orari e responsabile sanitario da confermare.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-037",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Dott. Mariano Giorgi",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Via San Francesco d’Assisi, 12",
+      "cap": null,
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": null,
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "servizi": null,
+      "convenzionato_asugi": null,
+      "fonte_principale": "Odontino / directory odontoiatriche",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Candidato da verificare prima della pubblicazione. Esistenza, denominazione, recapiti, orari e responsabile sanitario da confermare.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-038",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Dott. Giliano Sever",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Via Fabio Filzi, 15",
+      "cap": null,
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": null,
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "servizi": null,
+      "convenzionato_asugi": null,
+      "fonte_principale": "Odontino / directory odontoiatriche",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Candidato da verificare prima della pubblicazione. Esistenza, denominazione, recapiti, orari e responsabile sanitario da confermare.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-039",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Antonione – Dott. Michele Sustersich",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Piazzale Antonio Rosmini, 8",
+      "cap": null,
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": null,
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "servizi": null,
+      "convenzionato_asugi": null,
+      "fonte_principale": "Odontino / directory odontoiatriche",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Candidato da verificare prima della pubblicazione. Esistenza, denominazione, recapiti, orari e responsabile sanitario da confermare.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-040",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Associato Altin – Harei",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Via delle Settefontane, 67",
+      "cap": null,
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": null,
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "servizi": null,
+      "convenzionato_asugi": null,
+      "fonte_principale": "Odontino / directory odontoiatriche",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Candidato da verificare prima della pubblicazione. Esistenza, denominazione, recapiti, orari e responsabile sanitario da confermare.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-041",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "StudioCati – Studio Dentistico Carrafiello Tinti",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Via Santa Caterina da Siena, 1",
+      "cap": null,
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": null,
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "servizi": null,
+      "convenzionato_asugi": null,
+      "fonte_principale": "Odontino / directory odontoiatriche",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Candidato da verificare prima della pubblicazione. Esistenza, denominazione, recapiti, orari e responsabile sanitario da confermare.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-042",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Dott.ssa Daniela Rigoni",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Via Fabio Severo, 55",
+      "cap": null,
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": null,
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "servizi": null,
+      "convenzionato_asugi": null,
+      "fonte_principale": "Odontino / directory odontoiatriche",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Candidato da verificare prima della pubblicazione. Esistenza, denominazione, recapiti, orari e responsabile sanitario da confermare.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-043",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "G&P Gherbassi Studio Dentistico",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Via Marco Polo, 41",
+      "cap": null,
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": null,
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "servizi": null,
+      "convenzionato_asugi": null,
+      "fonte_principale": "Odontino / directory odontoiatriche",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Candidato da verificare prima della pubblicazione. Esistenza, denominazione, recapiti, orari e responsabile sanitario da confermare.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-044",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Dental Wellness Center",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Via Erta di Sant’Anna, 12",
+      "cap": null,
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": null,
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "servizi": null,
+      "convenzionato_asugi": null,
+      "fonte_principale": "Odontino / directory odontoiatriche",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Candidato da verificare prima della pubblicazione. Esistenza, denominazione, recapiti, orari e responsabile sanitario da confermare.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-045",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Lamia Srl",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Piazza Carlo Alberto, 4",
+      "cap": null,
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": null,
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "servizi": null,
+      "convenzionato_asugi": null,
+      "fonte_principale": "Odontino / directory odontoiatriche",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Candidato da verificare prima della pubblicazione. Esistenza, denominazione, recapiti, orari e responsabile sanitario da confermare.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-046",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Dott. Fabrizio De Marco",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Piazza della Borsa, 4",
+      "cap": null,
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": null,
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "servizi": null,
+      "convenzionato_asugi": null,
+      "fonte_principale": "Odontino / directory odontoiatriche",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Candidato da verificare prima della pubblicazione. Esistenza, denominazione, recapiti, orari e responsabile sanitario da confermare.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-047",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Centro Dentale MB",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Via del Ronco, 3",
+      "cap": null,
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": null,
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "servizi": null,
+      "convenzionato_asugi": null,
+      "fonte_principale": "Odontino / directory odontoiatriche",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Candidato da verificare prima della pubblicazione. Esistenza, denominazione, recapiti, orari e responsabile sanitario da confermare.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-048",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "DentalPro Trieste",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Via Matteo Renato Imbriani, 7",
+      "cap": null,
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": null,
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "servizi": null,
+      "convenzionato_asugi": null,
+      "fonte_principale": "Odontino / directory odontoiatriche",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Candidato da verificare prima della pubblicazione. Esistenza, denominazione, recapiti, orari e responsabile sanitario da confermare.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-049",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Dott. Fabio Linda de Walderstein",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Via Giulia, 1",
+      "cap": null,
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": null,
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "servizi": null,
+      "convenzionato_asugi": null,
+      "fonte_principale": "Odontino / directory odontoiatriche",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Candidato da verificare prima della pubblicazione. Esistenza, denominazione, recapiti, orari e responsabile sanitario da confermare.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-050",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Dott. Diego Paschina",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Via San Lazzaro, 2",
+      "cap": null,
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": null,
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "servizi": null,
+      "convenzionato_asugi": null,
+      "fonte_principale": "Odontino / directory odontoiatriche",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Candidato da verificare prima della pubblicazione. Esistenza, denominazione, recapiti, orari e responsabile sanitario da confermare.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-051",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Associato Dott. A. Ferro e Dott. L. Romano",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Viale Raffaello Sanzio, 17",
+      "cap": null,
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": null,
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "servizi": null,
+      "convenzionato_asugi": null,
+      "fonte_principale": "Odontino / directory odontoiatriche",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Candidato da verificare prima della pubblicazione. Esistenza, denominazione, recapiti, orari e responsabile sanitario da confermare.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-052",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Dott.ssa Gabriella Clarich Maurel",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Via della Bellavista, 13/2",
+      "cap": null,
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": null,
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "servizi": null,
+      "convenzionato_asugi": null,
+      "fonte_principale": "Odontino / directory odontoiatriche",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Candidato da verificare prima della pubblicazione. Esistenza, denominazione, recapiti, orari e responsabile sanitario da confermare.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-053",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Dott. Enrico Ferluga",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Via San Zenone, 17",
+      "cap": null,
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": null,
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "servizi": null,
+      "convenzionato_asugi": null,
+      "fonte_principale": "Odontino / directory odontoiatriche",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Candidato da verificare prima della pubblicazione. Esistenza, denominazione, recapiti, orari e responsabile sanitario da confermare.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-054",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Dott. Denis Giugovaz",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Viale XX Settembre, 78",
+      "cap": null,
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": null,
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "servizi": null,
+      "convenzionato_asugi": null,
+      "fonte_principale": "Odontino / directory odontoiatriche",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Candidato da verificare prima della pubblicazione. Esistenza, denominazione, recapiti, orari e responsabile sanitario da confermare.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-055",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Dott. Antonio Pastorelli",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Largo Barriera Vecchia, 14",
+      "cap": null,
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": null,
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "servizi": null,
+      "convenzionato_asugi": null,
+      "fonte_principale": "Odontino / directory odontoiatriche",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Candidato da verificare prima della pubblicazione. Esistenza, denominazione, recapiti, orari e responsabile sanitario da confermare.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-056",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Dott.ssa Giulia Torrisi",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Via San Giacomo in Monte, 24",
+      "cap": null,
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": null,
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "servizi": null,
+      "convenzionato_asugi": null,
+      "fonte_principale": "Odontino / directory odontoiatriche",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Candidato da verificare prima della pubblicazione. Esistenza, denominazione, recapiti, orari e responsabile sanitario da confermare.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-057",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Dott. Fabio Salvini",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Via Fabio Filzi, 8",
+      "cap": null,
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": null,
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "servizi": null,
+      "convenzionato_asugi": null,
+      "fonte_principale": "Odontino / directory odontoiatriche",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Candidato da verificare prima della pubblicazione. Esistenza, denominazione, recapiti, orari e responsabile sanitario da confermare.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-058",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Odontoiatrico Dott.ssa Nicoletta Kratter",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Via Francesco Crispi, 5",
+      "cap": null,
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": null,
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "servizi": null,
+      "convenzionato_asugi": null,
+      "fonte_principale": "Odontino / directory odontoiatriche",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Candidato da verificare prima della pubblicazione. Esistenza, denominazione, recapiti, orari e responsabile sanitario da confermare.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-059",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Dott.ssa Luisa Marsi",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Via Marco Polo, 9",
+      "cap": null,
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": null,
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "servizi": null,
+      "convenzionato_asugi": null,
+      "fonte_principale": "Odontino / directory odontoiatriche",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Candidato da verificare prima della pubblicazione. Esistenza, denominazione, recapiti, orari e responsabile sanitario da confermare.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-060",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Dott. Mauro Giorgi",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Via Milano, 17",
+      "cap": null,
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": null,
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "servizi": null,
+      "convenzionato_asugi": null,
+      "fonte_principale": "Odontino / directory odontoiatriche",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Candidato da verificare prima della pubblicazione. Esistenza, denominazione, recapiti, orari e responsabile sanitario da confermare.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-061",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Dott. Paolo Bidinat – Aurisina",
+      "tipo_struttura": "Studio dentistico singolo",
+      "indirizzo": "Frazione Aurisina, 144",
+      "cap": null,
+      "comune": "Duino-Aurisina",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": null,
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "servizi": null,
+      "convenzionato_asugi": null,
+      "fonte_principale": "Guida comunale / directory odontoiatriche",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Candidato da verificare prima della pubblicazione. Fonte secondaria corrente; possibile seconda sede del professionista già censito a Trieste.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-062",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Odontoiatrico Associato Rossi e Ferlan",
+      "tipo_struttura": "Studio dentistico associato",
+      "indirizzo": "Aurisina, 96",
+      "cap": "34011",
+      "comune": "Duino-Aurisina",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": null,
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "servizi": null,
+      "convenzionato_asugi": null,
+      "fonte_principale": "Guida comunale / directory odontoiatriche",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Candidato da verificare prima della pubblicazione. Presente in guida comunale storica; indirizzo alternativo Via Resistenza 5 in una directory corrente. Verificare sede esatta e attività.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-063",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Dott. Vasja Jarc",
+      "tipo_struttura": "Studio dentistico singolo",
+      "indirizzo": "Aurisina, 142",
+      "cap": "34011",
+      "comune": "Duino-Aurisina",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": null,
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "servizi": null,
+      "convenzionato_asugi": null,
+      "fonte_principale": "Guida comunale / directory odontoiatriche",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Candidato da verificare prima della pubblicazione. Presente in guida comunale; attività e recapiti da ricontrollare.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-064",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Dott. Umari",
+      "tipo_struttura": "Studio dentistico singolo",
+      "indirizzo": "Sistiana, 57/L",
+      "cap": "34011",
+      "comune": "Duino-Aurisina",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": null,
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "servizi": null,
+      "convenzionato_asugi": null,
+      "fonte_principale": "Guida comunale / directory odontoiatriche",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Candidato da verificare prima della pubblicazione. La guida comunale riporta Paolo Umari, mentre una directory corrente riporta Peter Umari: identità e attività da verificare.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-065",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Dental Clinic Sistiana",
+      "tipo_struttura": "Centro odontoiatrico",
+      "indirizzo": "Sistiana, 43",
+      "cap": "34011",
+      "comune": "Duino-Aurisina",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": null,
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "servizi": null,
+      "convenzionato_asugi": null,
+      "fonte_principale": "Guida comunale / directory odontoiatriche",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Candidato da verificare prima della pubblicazione. Directory corrente e fonte associativa riportano la sede; orari non disponibili.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-066",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Grison Postogna",
+      "tipo_struttura": "Studio dentistico singolo",
+      "indirizzo": "Calle Oberdan, 28",
+      "cap": "34015",
+      "comune": "Muggia",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": null,
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": null,
+        "martedi": null,
+        "mercoledi": null,
+        "giovedi": null,
+        "venerdi": null,
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": null,
+      "servizi": null,
+      "convenzionato_asugi": null,
+      "fonte_principale": "Guida comunale / directory odontoiatriche",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Candidato da verificare prima della pubblicazione. Presenza rilevata in una fonte associativa datata; verificare attività corrente.",
+      "data_verifica": "2026-10-06"
+    },
+    {
+      "id": "TS-DEN-067",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "ASUGI – Ambulatori di Odontostomatologia, Ospedale Maggiore",
+      "tipo_struttura": "Servizio odontoiatrico pubblico",
+      "indirizzo": "Piazza dell’Ospitale, 1",
+      "cap": "34129",
+      "comune": "Trieste",
+      "latitudine": null,
+      "longitudine": null,
+      "telefono": "040 3992600; 040 3992020",
+      "email": null,
+      "sito_ufficiale": "https://asugi.sanita.fvg.it/it/strutture/direz_sanitaria/dao/dai_chir_specialistica/sc_chir_maxillo_facciale/ambulatori_odontostoma/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "14:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "14:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "14:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "14:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "14:00"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "servizi": "Odontoiatria conservativa; endodonzia; medicina e patologia orale; odontoiatria pediatrica; ortodonzia; prevenzione parodontale; protesi e gnatologia",
+      "convenzionato_asugi": true,
+      "fonte_principale": "ASUGI",
+      "fonte_orari": "https://asugi.sanita.fvg.it/it/strutture/direz_sanitaria/dao/dai_chir_specialistica/sc_chir_maxillo_facciale/ambulatori_odontostoma/sede1_amb_odont_conservativa.html",
+      "orari_verificati": true,
+      "note": "Servizio pubblico. Il Pronto Soccorso odontoiatrico è gestito separatamente nel riquadro emergenze.",
+      "data_verifica": "2026-10-06"
+    }
+  ]
+}

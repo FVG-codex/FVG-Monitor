@@ -102,7 +102,7 @@ export async function SanitaPage() {
                   {t(`sezioni.${s.key}.nome`)}
                 </div>
                 <div className="text-ink-faint text-xs mt-1">
-                  {s.key === "cliniche" || s.key === "dentisti" ? tChrome("inArrivo") : t(`sezioni.${s.key}.descrizione`)}
+                  {s.key === "cliniche" ? tChrome("inArrivo") : t(`sezioni.${s.key}.descrizione`)}
                 </div>
               </div>
             </Link>

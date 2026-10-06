@@ -181,7 +181,8 @@
         "descrizione": "Veterinary clinics and practices, with any emergency services highlighted"
       },
       "dentisti": {
-        "nome": "Dentists & dental practices"
+        "nome": "Dentists & dental practices",
+        "descrizione": "Directory of dental practices in Friuli Venezia Giulia (initial survey still being verified)."
       }
     }
   },
@@ -569,6 +570,20 @@
     "oggiLabel": "Today:",
     "emergenzeLabel": "Emergencies:",
     "telEmergenzeEtichetta": "Emergency tel.: {telefono}"
+  },
+  "dentisti": {
+    "descrizione": "Dental practices in Friuli Venezia Giulia — an initial survey still being verified (official websites and industry directories), not an official professional register. Always call ahead to confirm hours and availability before visiting a practice.",
+    "datiInArrivo": "Dental data for {provincia} coming in a future phase.",
+    "cercaLabel": "Search by name, municipality or facility type",
+    "cercaPlaceholder": "Search by name, municipality or facility type…",
+    "nessunaStrutturaTrovata": "No facility found{luogo}.",
+    "mappaAriaLabel": "Map of dental practices{luogo} — equivalent text list in the panel alongside",
+    "suAppuntamento": "by appointment",
+    "oggiLabel": "Today:",
+    "orarioNonPubblicato": "Hours not published",
+    "chiuso": "Closed",
+    "convenzionatoAsugi": "ASUGI-affiliated",
+    "nessunaCoordinata": "Coordinates for this survey are not yet available: they will be added with the verified data."
   },
   "sci": {
     "titolo": "Ski — FVG Race Calendar",

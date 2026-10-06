@@ -181,7 +181,8 @@
         "descrizione": "Cliniche e ambulatori veterinari, con le eventuali emergenze in evidenza"
       },
       "dentisti": {
-        "nome": "Dentisti & Odontoiatri"
+        "nome": "Dentisti & Odontoiatri",
+        "descrizione": "Elenco delle strutture odontoiatriche del Friuli Venezia Giulia (primo censimento in fase di verifica)."
       }
     }
   },
@@ -569,6 +570,20 @@
     "oggiLabel": "Oggi:",
     "emergenzeLabel": "Emergenze:",
     "telEmergenzeEtichetta": "Tel. emergenze: {telefono}"
+  },
+  "dentisti": {
+    "descrizione": "Strutture odontoiatriche del Friuli Venezia Giulia — primo censimento in fase di verifica (siti ufficiali e directory di settore), non un albo professionale ufficiale. Verificare sempre telefonicamente orari e disponibilità prima di presentarsi in studio.",
+    "datiInArrivo": "Dati odontoiatrici per {provincia} in arrivo in una prossima fase.",
+    "cercaLabel": "Cerca per nome, comune o tipo di struttura",
+    "cercaPlaceholder": "Cerca per nome, comune o tipo di struttura…",
+    "nessunaStrutturaTrovata": "Nessuna struttura trovata{luogo}.",
+    "mappaAriaLabel": "Mappa degli studi dentistici{luogo} — elenco testuale equivalente nel pannello a fianco",
+    "suAppuntamento": "su appuntamento",
+    "oggiLabel": "Oggi:",
+    "orarioNonPubblicato": "Orario non pubblicato",
+    "chiuso": "Chiuso",
+    "convenzionatoAsugi": "Convenzionato ASUGI",
+    "nessunaCoordinata": "Le coordinate di questo censimento non sono ancora disponibili: verranno aggiunte con i dati verificati."
   },
   "sci": {
     "titolo": "Sci — Calendario gare FVG",

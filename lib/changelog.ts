@@ -22,6 +22,13 @@ export type VoceChangelog = {
 export const CHANGELOG: VoceChangelog[] = [
   {
     data: "06/10/2026",
+    titolo: "Sanità — nuova sezione Dentisti & Odontoiatri (provincia di Trieste)",
+    dettagli: [
+      "Nella pagina Sanità è apparsa la sezione Dentisti & Odontoiatri, finora \"in arrivo\": per la provincia di Trieste mostra 67 strutture (studi privati, poliambulatori e il servizio pubblico ASUGI) con indirizzo, telefono, sito, orari settimanali e indicazione se su appuntamento o convenzionato ASUGI, con ricerca ed elenco/mappa come per Veterinari. Dato iniziale fornito dall'utente e non ancora verificato, verrà sostituito con una versione verificata in una prossima fase: nessuna struttura ha ancora coordinate geografiche, quindi la mappa mostra per ora solo un messaggio invece dei soliti indicatori. A differenza di Veterinari non c'è (ancora) un riquadro Emergenze: a Trieste il pronto soccorso odontoiatrico è un servizio unico centralizzato (Ospedale Maggiore/Cattinara, gestito da ASUGI) e non una dichiarazione per singolo studio, e i suoi dettagli operativi vanno prima riverificati su una fonte ASUGI aggiornata. Le province di Udine, Gorizia e Pordenone restano \"in arrivo\".",
+    ],
+  },
+  {
+    data: "06/10/2026",
     titolo: "Meteo — tradotta anche la descrizione del cielo (\"sereno\", \"variabile\", ecc.)",
     dettagli: [
       "Nel box meteo (homepage e pagina di ogni provincia), la descrizione della copertura del cielo per domani/dopodomani (\"sereno\", \"poco nuvoloso\", \"variabile\", \"nuvoloso\", \"molto nuvoloso\", \"coperto\", \"nubi sparse\") è ora tradotta in inglese, tedesco, sloveno e croato invece di restare sempre in italiano. Un'eventuale descrizione diversa dalle 7 previste (mai osservata finora nel bollettino OSMER) continua a comparire in italiano invece di sparire.",

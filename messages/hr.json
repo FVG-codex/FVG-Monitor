@@ -181,7 +181,8 @@
         "descrizione": "Veterinarske klinike i ordinacije, s istaknutim svim hitnim slučajevima"
       },
       "dentisti": {
-        "nome": "Stomatolozi i odontolozi"
+        "nome": "Stomatolozi i odontolozi",
+        "descrizione": "Popis stomatoloških ordinacija u Furlaniji-Julijskoj krajini (početni popis koji se još provjerava)."
       }
     }
   },
@@ -569,6 +570,20 @@
     "oggiLabel": "Danas:",
     "emergenzeLabel": "Hitni slučajevi:",
     "telEmergenzeEtichetta": "Telefon za hitne slučajeve: {telefono}"
+  },
+  "dentisti": {
+    "descrizione": "Stomatološke ordinacije u Furlaniji-Julijskoj krajini — početni popis koji se još provjerava (službene stranice i imenici sektora), a ne službeni stručni registar. Prije posjeta ordinaciji uvijek telefonski provjerite radno vrijeme i dostupnost.",
+    "datiInArrivo": "Stomatološki podaci za {provincia} dolaze u sljedećoj fazi.",
+    "cercaLabel": "Pretraživanje po nazivu, općini ili vrsti objekta",
+    "cercaPlaceholder": "Traži po nazivu, općini ili vrsti objekta…",
+    "nessunaStrutturaTrovata": "Nema pronađenih objekata{luogo}.",
+    "mappaAriaLabel": "Karta stomatoloških ordinacija{luogo} — ekvivalentni tekstualni popis u susjednoj ploči",
+    "suAppuntamento": "po dogovoru",
+    "oggiLabel": "Danas:",
+    "orarioNonPubblicato": "Radno vrijeme nije objavljeno",
+    "chiuso": "Zatvoreno",
+    "convenzionatoAsugi": "Ugovorni partner ASUGI",
+    "nessunaCoordinata": "Koordinate za ovaj popis još nisu dostupne: bit će dodane s provjerenim podacima."
   },
   "sci": {
     "titolo": "Skijanje — FVG kalendar natjecanja",
