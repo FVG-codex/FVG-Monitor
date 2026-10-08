@@ -21,6 +21,13 @@ export type VoceChangelog = {
 
 export const CHANGELOG: VoceChangelog[] = [
   {
+    data: "08/10/2026",
+    titolo: "Dentisti & Odontoiatri — dati di Trieste aggiornati con la verifica dell'utente",
+    dettagli: [
+      "L'elenco di Trieste passa da 67 a 61 strutture: 6 escluse dopo verifica (duplicati, attività cessate, un professionista non più in attività) e 7 casi di fonti in conflitto risolti. Gli orari sono ora segnati come verificati per una parte delle strutture (in precedenza nessuna lo era). Resta da fare la georeferenziazione: nessuna struttura ha ancora coordinate, quindi la mappa continua a mostrare un messaggio invece dei soliti indicatori — comparirà da sola quando arriveranno le coordinate. Il riquadro Emergenze resta rimandato, in attesa di una fonte ASUGI aggiornata sul Pronto Soccorso Odontoiatrico.",
+    ],
+  },
+  {
     data: "06/10/2026",
     titolo: "Sanità — nuova sezione Dentisti & Odontoiatri (provincia di Trieste)",
     dettagli: [

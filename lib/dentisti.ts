@@ -35,18 +35,29 @@ export type { FasciaOrariaSettimanale };
 // prima di pubblicare orari/contatti/procedura). Fino a quel momento,
 // questa pagina non mostra alcuna sezione emergenze.
 //
-// Dataset iniziale ESPLICITAMENTE NON VERIFICATO (06/10/2026, "ti darò
-// tutti i dati verificati" — l'utente ha fornito un primo censimento
-// ampliato per costruire la pagina, da sostituire con una versione
-// verificata appena pronta): nel file `lib/data/dentisti-trieste.json`,
-// `audit.verifiche_residue` elenca tutti e 67 i record come "verifica
-// aperta" — niente di diverso dal punto di vista del codice (lo schema
-// è comunque completo e valido), ma vale la pena saperlo leggendo
-// questo file. TUTTI i record hanno `latitudine`/`longitudine` a
-// `null` (nessuna struttura georeferenziata nel censimento iniziale):
-// la mappa (DentistiMap.tsx) mostra quindi zero marker per ora e un
-// messaggio invece della mappa vuota — non un bug, cambierà da solo
-// quando arriveranno le coordinate nella versione verificata.
+// Dataset AGGIORNATO con la versione "verificata" fornita dall'utente
+// (08/10/2026, sostituisce il censimento iniziale del 06/10/2026 — vedi
+// doc di progetto per i dettagli di entrambe le consegne). Attenzione a
+// cosa è cambiato e cosa NON è cambiato in questo passaggio, perché il
+// file non è uniformemente "verificato" come l'etichetta suggerirebbe:
+// 61 record (67 → 61, 6 esclusi per duplicati/attività cessate/decesso
+// del professionista — vedi `audit.record_esclusi`), con 7 conflitti di
+// fonte risolti e `data_verifica` compilata per ogni record. `orari_
+// verificati` è ora genuinamente misto (20 true / 41 false, non più
+// tutto un unico valore come nel file iniziale). MA: `audit.
+// verifiche_residue` nel file elenca ancora 66 voci come "verifica
+// aperta" (quasi tutte per "coordinate mancanti") — non sincronizzato
+// con i 61 record attuali (contiene ancora 5 id che non esistono più
+// nei record, es. TS-DEN-053/058/063 — esclusi ma non rimossi da quella
+// lista), e `audit.copertura_comuni` riporta ancora i vecchi conteggi
+// 60/2/5 (totale 67) invece di 55/2/4 (totale 61) — disallineamento
+// interno al file stesso, non usato dal codice di questa pagina
+// (nessun componente legge `audit.*`) ma degno di nota se si ispeziona
+// il file. Soprattutto: TUTTI e 61 i record hanno ancora `latitudine`/
+// `longitudine` a `null` — nessuna struttura georeferenziata nemmeno in
+// questa versione. La mappa (DentistiMap.tsx) continua quindi a
+// mostrare il messaggio invece dei marker; cambierà da solo quando (e
+// se) arriveranno le coordinate in una prossima consegna.
 export type OrarioGiornoDentista = FasciaOrariaSettimanale[] | null;
 
 export type OrariSettimanaDentista = Record<GiornoSettimana, OrarioGiornoDentista>;
