@@ -21,19 +21,24 @@ import { Link } from "@/i18n/navigation";
 // invece che da una stringa fissa qui — `href` resta la chiave unica
 // che non cambia con la lingua (next-intl usa il `Link` locale-aware
 // per anteporre /en quando serve).
+//
+// `emoji` (09/10/2026, richiesto dall'utente): puramente decorativa,
+// non tradotta (le emoji non hanno bisogno di traduzione) e non letta
+// da screen reader — vedi `aria-hidden` sotto, altrimenti un lettore
+// annuncerebbe anche il nome dell'emoji prima dell'etichetta vera.
 const SEZIONI_EXTRA = [
-  { chiave: "meteo", href: "/meteo" },
-  { chiave: "notizie", href: "/notizie" },
-  { chiave: "ambiente", href: "/ambiente" },
-  { chiave: "sport", href: "/sport" },
-  { chiave: "immagini", href: "/fvg-in-immagini" },
-  { chiave: "viabilita", href: "/viabilita" },
-  { chiave: "trasporti", href: "/trasporti" },
-  { chiave: "aviazione", href: "/aviazione" },
-  { chiave: "sanita", href: "/sanita" },
-  { chiave: "turismo", href: "/turismo" },
-  { chiave: "economia", href: "/economia" },
-  { chiave: "commercio", href: "/commercio" },
+  { chiave: "meteo", href: "/meteo", emoji: "🌤️" },
+  { chiave: "notizie", href: "/notizie", emoji: "📰" },
+  { chiave: "ambiente", href: "/ambiente", emoji: "🌿" },
+  { chiave: "sport", href: "/sport", emoji: "⚽" },
+  { chiave: "immagini", href: "/fvg-in-immagini", emoji: "📷" },
+  { chiave: "viabilita", href: "/viabilita", emoji: "🚧" },
+  { chiave: "trasporti", href: "/trasporti", emoji: "🚌" },
+  { chiave: "aviazione", href: "/aviazione", emoji: "✈️" },
+  { chiave: "sanita", href: "/sanita", emoji: "🏥" },
+  { chiave: "turismo", href: "/turismo", emoji: "🧳" },
+  { chiave: "economia", href: "/economia", emoji: "📈" },
+  { chiave: "commercio", href: "/commercio", emoji: "🛒" },
 ] as const;
 
 export function MenuHamburger() {
@@ -91,8 +96,9 @@ export function MenuHamburger() {
               key={s.href}
               href={s.href}
               onClick={() => setAperto(false)}
-              className="block px-4 py-2.5 text-sm text-ink-dim hover:text-ink hover:bg-panel-alt transition-colors"
+              className="flex items-center gap-2.5 px-4 py-2.5 text-sm text-ink-dim hover:text-ink hover:bg-panel-alt transition-colors"
             >
+              <span aria-hidden="true">{s.emoji}</span>
               {t(s.chiave)}
             </Link>
           ))}

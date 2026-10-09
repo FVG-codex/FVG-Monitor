@@ -22,6 +22,13 @@ export type VoceChangelog = {
 export const CHANGELOG: VoceChangelog[] = [
   {
     data: "09/10/2026",
+    titolo: "Intestazione: emoji nel menù, titolo di sezione, selettori ridotti alla sola homepage",
+    dettagli: [
+      "Il menù ad amburger mostra ora un'emoji accanto a ogni voce. L'intestazione, su ogni pagina diversa dalla home, mostra anche il nome della sezione accanto a \"FVG Monitor\" (es. \"FVG Monitor – Viabilità\"). Il selettore di lingua è ora disponibile solo in homepage; il selettore di provincia (\"Tutta la regione / Trieste / Udine / Gorizia / Pordenone\") solo in homepage e nella sezione Meteo. Su schermi stretti questo riduce di molto l'altezza dell'intestazione fissa in cima alla pagina, che su alcuni telefoni Android arrivava a occupare quasi un quarto dello schermo e nascondeva l'inizio del contenuto sotto.",
+    ],
+  },
+  {
+    data: "09/10/2026",
     titolo: "Dentisti & Odontoiatri — attivata la provincia di Udine (34 strutture)",
     dettagli: [
       "Nella sezione Dentisti & Odontoiatri è ora selezionabile anche la provincia di Udine: 34 strutture tra ambulatori ASUFC e studi privati, tutte con coordinate sulla mappa. Nel riquadro Emergenze compaiono i due ambulatori pubblici ASUFC con pronto soccorso odontoiatrico (Udine e Gemona del Friuli). Per alcune strutture (12 su 34) l'orario non è ancora pubblicato: compare \"orario non pubblicato\" invece di un orario, senza che questo venga interpretato come chiusura. Resta \"in arrivo\" solo la provincia di Pordenone.",
