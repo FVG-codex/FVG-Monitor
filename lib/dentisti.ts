@@ -6,6 +6,7 @@ import type { FasciaOrariaSettimanale } from "@/lib/supermercati";
 import datiTrieste from "@/lib/data/dentisti-trieste.json";
 import datiGorizia from "@/lib/data/dentisti-gorizia.json";
 import datiUdine from "@/lib/data/dentisti-udine.json";
+import datiPordenone from "@/lib/data/dentisti-pordenone.json";
 
 export { adessoEuropeRome, giornoSettimana };
 export type { FasciaOrariaSettimanale };
@@ -137,6 +138,36 @@ export type { FasciaOrariaSettimanale };
 // anche 2 sotto-campi in più (`pronto_soccorso`, `accesso_diretto`) non
 // modellati in `GestioneUrgenzeDentista`/`RecordGrezzo`: ignorati, non
 // serve leggerli per il trattamento a 3 livelli già in uso.
+//
+// Pordenone — quarta provincia attivata (09/10/2026), `dentisti-
+// provincia-pordenone-working.json` (29 record, chiave top-level
+// `record` SINGOLARE come Udine). File di qualità molto alta: TUTTI i
+// conteggi dichiarati in `statistiche` (sedi_pubbliche 8, sedi_private
+// 21, orari_verificati 17/12, coordinate 29/29, servizi_urgenza_
+// confermati 4, pronto_soccorso_odontoiatrico_confermato 2) corrispondono
+// esattamente ai dati effettivi, verificato campo per campo prima di
+// integrare — nessun ID duplicato, nessun disallineamento. Zona servita
+// da **ASFO** (Pordenone), un terzo nome di azienda sanitaria oltre ad
+// ASUGI (Trieste/Gorizia) e ASUFC (Udine) — `servizi`/`convenzionato_
+// asugi` sono quindi assenti anche qui (stesso trattamento già usato per
+// Udine: `servizi` → stringa vuota, `convenzionatoAsugi` → `null`).
+// `telefono` ed `email` arrivano qui SEMPRE come array (anche `email`
+// vuoto quando non pubblicata), mai stringa semplice: il caso più
+// semplice finora, già coperto da `normalizzaTelefonoEmail()` esistente
+// senza bisogno di modifiche. `orari` è `null` per l'intero record in
+// 10/29 casi (stesso trattamento "sconosciuto, non chiuso" già usato per
+// Udine). Il file introduce un campo per-record in più non presente
+// altrove, `orari_contatto` (orari di segreteria/centralino, DISTINTI
+// dagli orari clinici — i `note_qualita` del file lo dicono
+// esplicitamente: "Gli orari di contatto e segreteria ASFO non sono
+// stati trasformati in orari clinici"): deliberatamente NON letto da
+// `RecordGrezzo`/`normalizza()`, per non rischiare di mostrarlo come se
+// fosse un orario di apertura clinica. `gestione_urgenze` ha qui un
+// sotto-campo in più, `fascia_pazienti` (es. "tutti", "pediatrici fino a
+// 16 anni" — distingue PN-DEN-001, pronto soccorso generale, da
+// PN-DEN-007, pediatrico): non modellato, stesso trattamento di
+// `pronto_soccorso`/`accesso_diretto` già ignorati per Udine, non serve
+// al trattamento a 3 livelli.
 export type OrarioGiornoDentista = FasciaOrariaSettimanale[] | null;
 
 export type OrariSettimanaDentista = Record<GiornoSettimana, OrarioGiornoDentista>;
@@ -279,19 +310,19 @@ function normalizza(r: RecordGrezzo): VoceDentista {
   };
 }
 
-// Trieste, Gorizia e Udine attive (rollout graduale già fatto per
-// Veterinari/Supermercati/Notizie) — Pordenone resta array vuoto finché
-// l'utente non fornirà i rispettivi dati. Nota: il file di Udine usa la
-// chiave top-level `record` SINGOLARE, a differenza di `records` plurale
-// per Trieste/Gorizia — vedi il commento estesa in testa al file.
+// Tutte e 4 le province attive (rollout graduale già fatto per
+// Veterinari/Supermercati/Notizie). Nota: i file di Udine e Pordenone
+// usano la chiave top-level `record` SINGOLARE, a differenza di
+// `records` plurale per Trieste/Gorizia — vedi il commento estesa in
+// testa al file.
 export const DENTISTI_PER_PROVINCIA: Record<ProvinciaSlug, VoceDentista[]> = {
   trieste: (datiTrieste.records as RecordGrezzo[]).map(normalizza),
   udine: (datiUdine.record as RecordGrezzo[]).map(normalizza),
   gorizia: (datiGorizia.records as RecordGrezzo[]).map(normalizza),
-  pordenone: [],
+  pordenone: (datiPordenone.record as RecordGrezzo[]).map(normalizza),
 };
 
-export const PROVINCE_DENTISTI_ATTIVE: ProvinciaSlug[] = ["trieste", "gorizia", "udine"];
+export const PROVINCE_DENTISTI_ATTIVE: ProvinciaSlug[] = ["trieste", "gorizia", "udine", "pordenone"];
 
 // "Aperta ora"/"Chiusa ora"/"sconosciuto" — stessa identica logica di
 // statoAperturaVeterinario() in lib/veterinari.ts (orari settimanali

@@ -1,0 +1,2034 @@
+{
+  "schema_version": "1.1",
+  "titolo": "Censimento strutture odontoiatriche - provincia di Pordenone",
+  "stato": "database provinciale di lavoro; ampliamento ai privati in corso",
+  "data_verifica": "2026-10-09",
+  "ambito": {
+    "territorio": "Comuni dell ex provincia di Pordenone / EDR Pordenone",
+    "unita_record": "Una sede fisica per record",
+    "criteri": "Fonti ufficiali prioritarie; Google Maps per controllo di indirizzo e coordinate; orari non pubblicati lasciati null."
+  },
+  "statistiche": {
+    "record_totali": 29,
+    "sedi_pubbliche": 8,
+    "sedi_private": 21,
+    "orari_verificati": 17,
+    "orari_non_pubblicati_o_non_verificati": 12,
+    "coordinate_presenti": 29,
+    "coordinate_mancanti": 0,
+    "servizi_urgenza_confermati": 4,
+    "pronto_soccorso_odontoiatrico_confermato": 2
+  },
+  "record": [
+    {
+      "id": "PN-DEN-001",
+      "provincia": "PN",
+      "nome": "ASFO - SSD Odontostomatologia e Pronto Soccorso Odontoiatrico Pordenone",
+      "tipo_struttura": "struttura pubblica ospedaliera",
+      "indirizzo": "Via Montereale 24",
+      "cap": "33170",
+      "comune": "Pordenone",
+      "latitudine": 45.968086,
+      "longitudine": 12.652806,
+      "telefono": [
+        "0434399111"
+      ],
+      "email": [],
+      "sito_ufficiale": "https://asfo.sanita.fvg.it/it/strutture/direzione_sanitaria/dip_chir_spec/odontostomatologia/sededue.html",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "14:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "14:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "14:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "14:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "14:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "12:00"
+          }
+        ],
+        "domenica": []
+      },
+      "orari_riferiti_a": "Pronto Soccorso odontoiatrico",
+      "orari_verificati": true,
+      "su_appuntamento": false,
+      "gestione_urgenze": {
+        "disponibile": true,
+        "pronto_soccorso": true,
+        "h24": false,
+        "accesso_diretto": true,
+        "fascia_pazienti": "tutti",
+        "telefono": "0434399111",
+        "note": "Accesso diretto senza impegnativa; fuori orario rivolgersi al Pronto Soccorso generale."
+      },
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "ASFO",
+      "fonte_orari": "ASFO - Pronto Soccorso Odontoiatrico",
+      "data_verifica": "2026-10-09",
+      "verifica_coordinate": "verificata_da_link_cartografico_ufficiale_ASFO"
+    },
+    {
+      "id": "PN-DEN-002",
+      "provincia": "PN",
+      "nome": "ASFO - Odontostomatologia Cordenons",
+      "tipo_struttura": "ambulatorio pubblico territoriale",
+      "indirizzo": "Via del Mako 10",
+      "cap": "33084",
+      "comune": "Cordenons",
+      "latitudine": 45.97853,
+      "longitudine": 12.698336,
+      "telefono": [
+        "0434369212"
+      ],
+      "email": [],
+      "sito_ufficiale": "https://asfo.sanita.fvg.it/it/strutture/direzione_sanitaria/dip_chir_spec/odontostomatologia/sede1-copy.html",
+      "orari": null,
+      "orari_contatto": {
+        "lunedi": [
+          {
+            "apre": "12:00",
+            "chiude": "13:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "12:00",
+            "chiude": "13:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "12:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "orari_riferiti_a": "informazioni telefoniche; non sono orari clinici",
+      "orari_verificati": false,
+      "su_appuntamento": true,
+      "gestione_urgenze": {
+        "disponibile": false,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": false,
+        "telefono": null,
+        "note": "La fonte non attribuisce alla sede un pronto soccorso odontoiatrico."
+      },
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "ASFO",
+      "fonte_orari": null,
+      "data_verifica": "2026-10-09",
+      "verifica_coordinate": "verificata_da_link_cartografico_ufficiale_ASFO"
+    },
+    {
+      "id": "PN-DEN-003",
+      "provincia": "PN",
+      "nome": "ASFO - Odontostomatologia Porcia",
+      "tipo_struttura": "ambulatorio pubblico territoriale",
+      "indirizzo": "Via delle Risorgive 3",
+      "cap": "33080",
+      "comune": "Porcia",
+      "latitudine": 45.955635,
+      "longitudine": 12.607348,
+      "telefono": [
+        "0434545040"
+      ],
+      "email": [],
+      "sito_ufficiale": "https://asfo.sanita.fvg.it/it/strutture/direzione_sanitaria/dip_chir_spec/odontostomatologia/sede2.html",
+      "orari": null,
+      "orari_contatto": {
+        "lunedi": [
+          {
+            "apre": "12:00",
+            "chiude": "13:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "12:00",
+            "chiude": "13:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "12:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "orari_riferiti_a": "informazioni telefoniche; non sono orari clinici",
+      "orari_verificati": false,
+      "su_appuntamento": true,
+      "gestione_urgenze": {
+        "disponibile": false,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": false,
+        "telefono": null,
+        "note": "La fonte non attribuisce alla sede un pronto soccorso odontoiatrico."
+      },
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "ASFO",
+      "fonte_orari": null,
+      "data_verifica": "2026-10-09",
+      "verifica_coordinate": "verificata_da_link_cartografico_ufficiale_ASFO"
+    },
+    {
+      "id": "PN-DEN-004",
+      "provincia": "PN",
+      "nome": "ASFO - Odontostomatologia Maniago",
+      "tipo_struttura": "ambulatorio pubblico territoriale",
+      "indirizzo": "Via Unita d'Italia 7",
+      "cap": "33085",
+      "comune": "Maniago",
+      "latitudine": 46.17214,
+      "longitudine": 12.715645,
+      "telefono": [
+        "0427735303",
+        "0427735111"
+      ],
+      "email": [],
+      "sito_ufficiale": "https://asfo.sanita.fvg.it/it/strutture/direzione_sanitaria/dip_chir_spec/odontostomatologia/sede3.html",
+      "orari": null,
+      "orari_contatto": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "orari_riferiti_a": "segreteria; non sono orari clinici",
+      "orari_verificati": false,
+      "su_appuntamento": true,
+      "gestione_urgenze": {
+        "disponibile": false,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": false,
+        "telefono": null,
+        "note": "La fonte non attribuisce alla sede un pronto soccorso odontoiatrico."
+      },
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "ASFO",
+      "fonte_orari": null,
+      "data_verifica": "2026-10-09",
+      "verifica_coordinate": "verificata_da_link_cartografico_ufficiale_ASFO"
+    },
+    {
+      "id": "PN-DEN-005",
+      "provincia": "PN",
+      "nome": "ASFO - Odontostomatologia Spilimbergo",
+      "tipo_struttura": "ambulatorio pubblico ospedaliero",
+      "indirizzo": "Via Raffaello Sanzio 1",
+      "cap": "33097",
+      "comune": "Spilimbergo",
+      "latitudine": 46.11204,
+      "longitudine": 12.8916,
+      "telefono": [
+        "0427595722",
+        "0427595595"
+      ],
+      "email": [],
+      "sito_ufficiale": "https://asfo.sanita.fvg.it/it/strutture/direzione_sanitaria/dip_chir_spec/odontostomatologia/sede4.html",
+      "orari": null,
+      "orari_contatto": {
+        "lunedi": [
+          {
+            "apre": "12:00",
+            "chiude": "13:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "12:00",
+            "chiude": "13:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "12:00",
+            "chiude": "13:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "12:00",
+            "chiude": "13:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "12:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "orari_riferiti_a": "segreteria; non sono orari clinici",
+      "orari_verificati": false,
+      "su_appuntamento": true,
+      "gestione_urgenze": {
+        "disponibile": false,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": false,
+        "telefono": null,
+        "note": "La fonte non attribuisce alla sede un pronto soccorso odontoiatrico."
+      },
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "ASFO",
+      "fonte_orari": null,
+      "data_verifica": "2026-10-09",
+      "verifica_coordinate": "verificata_da_link_cartografico_ufficiale_ASFO"
+    },
+    {
+      "id": "PN-DEN-006",
+      "provincia": "PN",
+      "nome": "ASFO - Odontostomatologia Azzano Decimo",
+      "tipo_struttura": "ambulatorio pubblico territoriale",
+      "indirizzo": "Viale XXV Aprile 40",
+      "cap": "33082",
+      "comune": "Azzano Decimo",
+      "latitudine": 45.878727,
+      "longitudine": 12.708367,
+      "telefono": [
+        "0434423312"
+      ],
+      "email": [],
+      "sito_ufficiale": "https://asfo.sanita.fvg.it/it/strutture/direzione_sanitaria/dip_chir_spec/odontostomatologia/sede5.html",
+      "orari": null,
+      "orari_contatto": {
+        "lunedi-venerdi_telefono": [
+          {
+            "apre": "07:45",
+            "chiude": "09:30"
+          }
+        ],
+        "lunedi-venerdi_sportello": [
+          {
+            "apre": "09:30",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "orari_riferiti_a": "prenotazioni telefoniche e allo sportello; non sono orari clinici",
+      "orari_verificati": false,
+      "su_appuntamento": true,
+      "gestione_urgenze": {
+        "disponibile": false,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": false,
+        "telefono": null,
+        "note": "La fonte non attribuisce alla sede un pronto soccorso odontoiatrico."
+      },
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "ASFO",
+      "fonte_orari": null,
+      "data_verifica": "2026-10-09",
+      "verifica_coordinate": "verificata_da_link_cartografico_ufficiale_ASFO"
+    },
+    {
+      "id": "PN-DEN-007",
+      "provincia": "PN",
+      "nome": "ASFO - Odontostomatologia e Pronto Soccorso Odontoiatrico Pediatrico San Vito al Tagliamento",
+      "tipo_struttura": "ambulatorio pubblico territoriale con pronto soccorso odontoiatrico pediatrico",
+      "indirizzo": "Piazzale Linteris 4",
+      "cap": "33078",
+      "comune": "San Vito al Tagliamento",
+      "latitudine": 45.912598,
+      "longitudine": 12.855668,
+      "telefono": [
+        "0434841725"
+      ],
+      "email": [],
+      "sito_ufficiale": "https://asfo.sanita.fvg.it/it/strutture/direzione_sanitaria/dip_chir_spec/odontostomatologia/sede6.html",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "14:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "14:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "14:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "14:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "14:00"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "orari_contatto": {
+        "lunedi-venerdi_telefono": [
+          {
+            "apre": "08:00",
+            "chiude": "09:15"
+          }
+        ],
+        "lunedi-venerdi_sportello": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ]
+      },
+      "orari_riferiti_a": "Pronto Soccorso odontoiatrico pediatrico fino a 16 anni",
+      "orari_verificati": true,
+      "su_appuntamento": false,
+      "gestione_urgenze": {
+        "disponibile": true,
+        "pronto_soccorso": true,
+        "h24": false,
+        "accesso_diretto": true,
+        "fascia_pazienti": "pediatrici fino a 16 anni",
+        "telefono": "0434841725",
+        "note": "Attivo dal lunedi al venerdi 08:00-14:00; fuori orario rivolgersi al Pronto Soccorso generale."
+      },
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "ASFO",
+      "fonte_orari": "ASFO - Pronto Soccorso Odontoiatrico",
+      "data_verifica": "2026-10-09",
+      "verifica_coordinate": "verificata_da_link_cartografico_ufficiale_ASFO"
+    },
+    {
+      "id": "PN-DEN-008",
+      "provincia": "PN",
+      "nome": "ASFO - Odontostomatologia Sacile",
+      "tipo_struttura": "ambulatorio pubblico territoriale",
+      "indirizzo": "Via Ettoreo 4",
+      "cap": "33077",
+      "comune": "Sacile",
+      "latitudine": 45.956127,
+      "longitudine": 12.500838,
+      "telefono": [
+        "0434736442",
+        "0434736111"
+      ],
+      "email": [],
+      "sito_ufficiale": "https://asfo.sanita.fvg.it/it/strutture/direzione_sanitaria/dip_chir_spec/odontostomatologia/sede7.html",
+      "orari": null,
+      "orari_contatto": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          }
+        ]
+      },
+      "orari_riferiti_a": "informazioni telefoniche; non sono orari clinici",
+      "orari_verificati": false,
+      "su_appuntamento": true,
+      "gestione_urgenze": {
+        "disponibile": false,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": false,
+        "telefono": null,
+        "note": "La fonte non attribuisce alla sede un pronto soccorso odontoiatrico."
+      },
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "ASFO",
+      "fonte_orari": null,
+      "data_verifica": "2026-10-09",
+      "verifica_coordinate": "verificata_da_link_cartografico_ufficiale_ASFO"
+    },
+    {
+      "id": "PN-DEN-009",
+      "provincia": "PN",
+      "nome": "MH Dental Studio - Dott. Marco Haberl",
+      "tipo_struttura": "studio dentistico privato",
+      "indirizzo": "Via Colvera 8/D",
+      "cap": "33170",
+      "comune": "Pordenone",
+      "telefono": [
+        "0434366612",
+        "3533138310"
+      ],
+      "email": [],
+      "sito_ufficiale": "https://www.mhdentalstudio.com/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "17:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "17:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "17:00"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "orari_riferiti_a": "apertura studio",
+      "orari_verificati": true,
+      "su_appuntamento": true,
+      "gestione_urgenze": {
+        "disponibile": true,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": false,
+        "telefono": "3533138310",
+        "note": "Numero riservato ai pazienti dello studio, attivo 09:00-17:00 soltanto in alcuni periodi di vacanza, ponti o weekend lunghi quando segnalato sul sito; non e una reperibilita ordinaria."
+      },
+      "fonte_principale": "sito ufficiale MH Dental Studio",
+      "fonte_orari": "sito ufficiale MH Dental Studio",
+      "latitudine": 45.97170699999999,
+      "longitudine": 12.656076,
+      "indirizzo_google_maps": "Studio Dentistico Dott. Marco Haberl - Dentista Pordenone, Via Colvera, 8/D, 33170 Pordenone PN",
+      "verifica_coordinate": "verificata_da_scheda_google_maps_con_nome_e_indirizzo_corrispondenti",
+      "temporaneamente_chiuso": false,
+      "data_verifica": "2026-10-09"
+    },
+    {
+      "id": "PN-DEN-010",
+      "provincia": "PN",
+      "nome": "Studio Dentistico Differdent - Dott.ssa Laura Pittau",
+      "tipo_struttura": "studio dentistico privato",
+      "indirizzo": "Via Lozzetta 20",
+      "cap": "33084",
+      "comune": "Cordenons",
+      "telefono": [
+        "0434532799"
+      ],
+      "email": [],
+      "sito_ufficiale": "https://laurapittau.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "14:30",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "17:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "10:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "11:00",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "14:00"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "orari_riferiti_a": "apertura studio",
+      "orari_verificati": true,
+      "su_appuntamento": true,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": null,
+        "telefono": null,
+        "note": "Gestione delle urgenze non specificata nel sito ufficiale."
+      },
+      "fonte_principale": "sito ufficiale Differdent",
+      "fonte_orari": "sito ufficiale Differdent",
+      "latitudine": 45.9794727,
+      "longitudine": 12.6975038,
+      "indirizzo_google_maps": "Studio dentistico Pittau Differdent, Via Lozzetta, 20, 33084 Cordenons PN",
+      "verifica_coordinate": "verificata_da_scheda_google_maps_con_nome_e_indirizzo_corrispondenti",
+      "temporaneamente_chiuso": false,
+      "data_verifica": "2026-10-09"
+    },
+    {
+      "id": "PN-DEN-011",
+      "provincia": "PN",
+      "nome": "PN Dental - Pordenone",
+      "tipo_struttura": "studio dentistico privato",
+      "indirizzo": "Via Montereale 49",
+      "cap": "33170",
+      "comune": "Pordenone",
+      "telefono": [
+        "0434365402",
+        "3780937375"
+      ],
+      "email": [
+        "clinicapndental@gmail.com"
+      ],
+      "sito_ufficiale": "https://www.studiodentisticopndental.com/",
+      "orari": null,
+      "orari_riferiti_a": null,
+      "orari_verificati": false,
+      "su_appuntamento": true,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": null,
+        "telefono": null,
+        "note": "Non specificata nel sito ufficiale."
+      },
+      "fonte_principale": "sito ufficiale PN Dental",
+      "fonte_orari": null,
+      "latitudine": 45.9699505,
+      "longitudine": 12.6509412,
+      "indirizzo_google_maps": "Pn Dental Studio Dentistico, Via Montereale, 49, 33170 Pordenone PN",
+      "verifica_coordinate": "verificata_da_scheda_google_maps_con_nome_e_indirizzo_corrispondenti",
+      "temporaneamente_chiuso": false,
+      "data_verifica": "2026-10-09"
+    },
+    {
+      "id": "PN-DEN-012",
+      "provincia": "PN",
+      "nome": "PN Dental - Vivaro",
+      "tipo_struttura": "studio dentistico privato",
+      "indirizzo": "Via Garibaldi 7",
+      "cap": "33099",
+      "comune": "Vivaro",
+      "telefono": [
+        "0434365402",
+        "3780937375"
+      ],
+      "email": [
+        "clinicapndental@gmail.com"
+      ],
+      "sito_ufficiale": "https://www.studiodentisticopndental.com/",
+      "orari": null,
+      "orari_riferiti_a": null,
+      "orari_verificati": false,
+      "su_appuntamento": true,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": null,
+        "telefono": null,
+        "note": "Non specificata nel sito ufficiale."
+      },
+      "fonte_principale": "sito ufficiale PN Dental",
+      "fonte_orari": null,
+      "latitudine": 46.07787,
+      "longitudine": 12.777383,
+      "indirizzo_google_maps": "Via Giuseppe Garibaldi, 7, 33099 Vivaro PN",
+      "verifica_coordinate": "civico_google_maps",
+      "temporaneamente_chiuso": false,
+      "data_verifica": "2026-10-09"
+    },
+    {
+      "id": "PN-DEN-013",
+      "provincia": "PN",
+      "nome": "BeDental Studio",
+      "tipo_struttura": "studio dentistico privato",
+      "indirizzo": "Via Santa Caterina 14",
+      "cap": "33170",
+      "comune": "Pordenone",
+      "telefono": [
+        "0434522927"
+      ],
+      "email": [
+        "info@bedental.it"
+      ],
+      "sito_ufficiale": "https://bedental.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "14:30",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "11:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "16:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "14:30",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "16:30"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "orari_riferiti_a": "orari di ricevimento",
+      "orari_verificati": true,
+      "su_appuntamento": true,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": null,
+        "telefono": null,
+        "note": "Non specificata nel sito ufficiale."
+      },
+      "fonte_principale": "sito ufficiale BeDental",
+      "fonte_orari": "sito ufficiale BeDental",
+      "latitudine": 45.9608607,
+      "longitudine": 12.6625602,
+      "indirizzo_google_maps": "Studio Dentistico BeDental Pordenone, Via Santa Caterina, 14, 33170 Pordenone PN",
+      "verifica_coordinate": "verificata_da_scheda_google_maps_con_nome_e_indirizzo_corrispondenti",
+      "temporaneamente_chiuso": false,
+      "data_verifica": "2026-10-09"
+    },
+    {
+      "id": "PN-DEN-014",
+      "provincia": "PN",
+      "nome": "Sorrisi 4.0",
+      "tipo_struttura": "clinica odontoiatrica privata",
+      "indirizzo": "Via Beato Odorico 23/3 - Palazzo Naonis",
+      "cap": "33170",
+      "comune": "Pordenone",
+      "telefono": [
+        "0434241808",
+        "3534269816"
+      ],
+      "email": [
+        "customercare@sorrisipordenone.it"
+      ],
+      "sito_ufficiale": "https://www.sorrisipordenone.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:15"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "10:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "orari_riferiti_a": "apertura clinica",
+      "orari_verificati": true,
+      "su_appuntamento": true,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": null,
+        "telefono": null,
+        "note": "Non specificata nel sito ufficiale."
+      },
+      "fonte_principale": "sito ufficiale Sorrisi 4.0",
+      "fonte_orari": "sito ufficiale Sorrisi 4.0",
+      "latitudine": 45.9621103,
+      "longitudine": 12.6571041,
+      "indirizzo_google_maps": "Dentista Pordenone SORRISI, Via Beato Odorico, 23, 33170 Pordenone PN",
+      "verifica_coordinate": "verificata_da_scheda_google_maps_con_nome_e_indirizzo_corrispondenti",
+      "temporaneamente_chiuso": false,
+      "data_verifica": "2026-10-09"
+    },
+    {
+      "id": "PN-DEN-015",
+      "provincia": "PN",
+      "nome": "Studio Dentistico Dott. Michele Pozzi",
+      "tipo_struttura": "studio dentistico privato",
+      "indirizzo": "Via A. Forniz 20",
+      "cap": "33080",
+      "comune": "Porcia",
+      "telefono": [
+        "0434920865"
+      ],
+      "email": [
+        "godeassipozzi@gmail.com"
+      ],
+      "sito_ufficiale": "https://www.studiodentisticopozzimichele.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ],
+        "domenica": []
+      },
+      "orari_riferiti_a": "ricevimento su appuntamento",
+      "orari_verificati": true,
+      "su_appuntamento": true,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": null,
+        "telefono": null,
+        "note": "Non specificata nel sito ufficiale."
+      },
+      "fonte_principale": "sito ufficiale Studio Pozzi",
+      "fonte_orari": "sito ufficiale Studio Pozzi",
+      "latitudine": 45.9565568,
+      "longitudine": 12.6119793,
+      "indirizzo_google_maps": "Studio Dentistico Pozzi, Via A. Forniz, 20, 33080 Porcia PN",
+      "verifica_coordinate": "verificata_da_scheda_google_maps_con_nome_e_indirizzo_corrispondenti",
+      "temporaneamente_chiuso": false,
+      "data_verifica": "2026-10-09"
+    },
+    {
+      "id": "PN-DEN-016",
+      "provincia": "PN",
+      "nome": "Studio Dentistico Coran",
+      "tipo_struttura": "studio dentistico privato",
+      "indirizzo": "Via Roma 5",
+      "cap": "33080",
+      "comune": "Porcia",
+      "telefono": [
+        "0434921963"
+      ],
+      "email": [
+        "studiodentistico.coran@gmail.com"
+      ],
+      "sito_ufficiale": "https://www.studiodentisticocoran.it/",
+      "orari": null,
+      "orari_riferiti_a": null,
+      "orari_verificati": false,
+      "su_appuntamento": true,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": null,
+        "telefono": null,
+        "note": "Non specificata nel sito ufficiale."
+      },
+      "fonte_principale": "sito ufficiale Studio Coran",
+      "fonte_orari": null,
+      "latitudine": 45.9603802,
+      "longitudine": 12.6131831,
+      "indirizzo_google_maps": "Studio Dentistico Coran Dr. Giancarlo, Via Roma, 5, 33080 Porcia PN",
+      "verifica_coordinate": "verificata_da_scheda_google_maps_con_nome_e_indirizzo_corrispondenti",
+      "temporaneamente_chiuso": false,
+      "data_verifica": "2026-10-09"
+    },
+    {
+      "id": "PN-DEN-017",
+      "provincia": "PN",
+      "nome": "Studio Dentistico Dott. Emanuele Corrado",
+      "tipo_struttura": "studio dentistico privato",
+      "indirizzo": "Via Casarsa 3",
+      "cap": "33170",
+      "comune": "Pordenone",
+      "telefono": [
+        "0434935252",
+        "3481379635"
+      ],
+      "email": [
+        "studio@dentisticorrado.it"
+      ],
+      "sito_ufficiale": "https://www.dentisticorrado.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "14:30",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "orari_riferiti_a": "apertura studio",
+      "orari_verificati": true,
+      "su_appuntamento": true,
+      "gestione_urgenze": {
+        "disponibile": true,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": false,
+        "telefono": "3495647890",
+        "note": "Lo studio dichiara la partecipazione al servizio condiviso di Guardia Medica Odontoiatrica il sabato, la domenica e nei festivi; non e un pronto soccorso interno allo studio."
+      },
+      "fonte_principale": "sito ufficiale Studio Corrado",
+      "fonte_orari": "sito ufficiale Studio Corrado",
+      "latitudine": 45.964684,
+      "longitudine": 12.6427986,
+      "indirizzo_google_maps": "Via Casarsa, 3, 33170 Pordenone PN",
+      "verifica_coordinate": "civico_google_maps",
+      "temporaneamente_chiuso": false,
+      "data_verifica": "2026-10-09"
+    },
+    {
+      "id": "PN-DEN-018",
+      "provincia": "PN",
+      "nome": "Poliambulatorio Centro Smile",
+      "tipo_struttura": "poliambulatorio odontoiatrico privato",
+      "indirizzo": "Via Cairoli 4",
+      "cap": "33097",
+      "comune": "Spilimbergo",
+      "telefono": [
+        "0427926341"
+      ],
+      "email": [
+        "info@poliambulatoriocentrosmile.com"
+      ],
+      "sito_ufficiale": "https://poliambulatoriocentrosmile.com/chi-siamo",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "14:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "orari_riferiti_a": "apertura poliambulatorio",
+      "orari_verificati": true,
+      "su_appuntamento": true,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": null,
+        "telefono": null,
+        "note": "Gestione delle urgenze non specificata dalla fonte."
+      },
+      "fonte_principale": "sito ufficiale Centro Smile",
+      "fonte_orari": "sito ufficiale Centro Smile",
+      "latitudine": 46.1114754,
+      "longitudine": 12.9013319,
+      "indirizzo_google_maps": "POLIAMBULATORIO CENTRO SMILE, Via Cairoli, 4, 33097 Spilimbergo PN",
+      "verifica_coordinate": "verificata_da_scheda_google_maps_con_nome_e_indirizzo_corrispondenti",
+      "temporaneamente_chiuso": false,
+      "data_verifica": "2026-10-09"
+    },
+    {
+      "id": "PN-DEN-019",
+      "provincia": "PN",
+      "nome": "Studio Dentistico Dell'Oste",
+      "tipo_struttura": "studio dentistico privato",
+      "indirizzo": "Via Bagnarola 14 - Savorgnano",
+      "cap": "33078",
+      "comune": "San Vito al Tagliamento",
+      "telefono": [
+        "0434876627",
+        "3276625965"
+      ],
+      "email": [
+        "info@studiodelloste.it"
+      ],
+      "sito_ufficiale": "https://studiodelloste.it/contatti/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "14:30",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "14:30",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "orari_riferiti_a": "apertura studio",
+      "orari_verificati": true,
+      "su_appuntamento": true,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": null,
+        "telefono": null,
+        "note": "Gestione delle urgenze non specificata dalla fonte."
+      },
+      "fonte_principale": "sito ufficiale Studio Dell'Oste",
+      "fonte_orari": "sito ufficiale Studio Dell'Oste",
+      "latitudine": 45.8933775,
+      "longitudine": 12.8514309,
+      "indirizzo_google_maps": "Studio Dentistico Dell'Oste Dr. Cristiano, Via Bagnarola, 14, 33078 San Vito al Tagliamento PN",
+      "verifica_coordinate": "verificata_da_scheda_google_maps_con_nome_e_indirizzo_corrispondenti",
+      "temporaneamente_chiuso": false,
+      "data_verifica": "2026-10-09"
+    },
+    {
+      "id": "PN-DEN-020",
+      "provincia": "PN",
+      "nome": "Poliambulatorio Odontoiatrico Colledani",
+      "tipo_struttura": "struttura sanitaria odontoiatrica privata",
+      "indirizzo": "Via San Rocco 36",
+      "cap": "33085",
+      "comune": "Maniago",
+      "telefono": [
+        "0427730976"
+      ],
+      "email": [
+        "info@studiodentisticocolledani.it"
+      ],
+      "sito_ufficiale": "https://poliambulatoriocolledani.it/area-odontoiatrica/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "orari_riferiti_a": "apertura struttura; sabato su appuntamento senza fascia pubblicata",
+      "orari_verificati": true,
+      "su_appuntamento": true,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": null,
+        "telefono": null,
+        "note": "Gestione delle urgenze non specificata dalla fonte."
+      },
+      "fonte_principale": "sito ufficiale Poliambulatorio Colledani",
+      "fonte_orari": "sito ufficiale Poliambulatorio Colledani",
+      "latitudine": 46.17131209999999,
+      "longitudine": 12.7102744,
+      "indirizzo_google_maps": "Poliambulatorio Colledani, Via S. Rocco, 36, 33085 Maniago PN",
+      "verifica_coordinate": "verificata_da_scheda_google_maps_con_nome_e_indirizzo_corrispondenti",
+      "temporaneamente_chiuso": false,
+      "data_verifica": "2026-10-09"
+    },
+    {
+      "id": "PN-DEN-021",
+      "provincia": "PN",
+      "nome": "Dental Feel Sacile",
+      "tipo_struttura": "centro odontoiatrico privato",
+      "indirizzo": "Viale Europa 1 - Centro Commerciale I Salici",
+      "cap": "33077",
+      "comune": "Sacile",
+      "telefono": [
+        "04341765132",
+        "3801791546"
+      ],
+      "email": [
+        "dentalfeel.sacile@dentalfeel.it"
+      ],
+      "sito_ufficiale": "https://dentalfeel.it/dentista-sacile/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": []
+      },
+      "orari_contatto": {
+        "domenica": [
+          {
+            "apre": "09:00",
+            "chiude": "14:00"
+          }
+        ]
+      },
+      "orari_riferiti_a": "apertura centro; domenica 09:00-14:00 soltanto segreteria",
+      "orari_verificati": true,
+      "su_appuntamento": true,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": null,
+        "telefono": null,
+        "note": "Gestione delle urgenze non specificata dalla fonte."
+      },
+      "fonte_principale": "pagina ufficiale Dental Feel Sacile",
+      "fonte_orari": "pagina ufficiale Dental Feel Sacile",
+      "latitudine": 45.9445574,
+      "longitudine": 12.4651939,
+      "indirizzo_google_maps": "Dental Feel - Sacile, Gallerie Bennet, Viale Europa, 1, 33077 Sacile PN",
+      "verifica_coordinate": "verificata_da_scheda_google_maps_con_nome_e_indirizzo_corrispondenti",
+      "temporaneamente_chiuso": false,
+      "data_verifica": "2026-10-09"
+    },
+    {
+      "id": "PN-DEN-022",
+      "provincia": "PN",
+      "nome": "Sanisystem Sacile - Clinica Odontoiatrica",
+      "tipo_struttura": "poliambulatorio privato con odontoiatria",
+      "indirizzo": "Via San Michele 4",
+      "cap": "33077",
+      "comune": "Sacile",
+      "telefono": [
+        "0434780986"
+      ],
+      "email": [
+        "info@sanisystemgroup.it"
+      ],
+      "sito_ufficiale": "https://www.sanisystemgroup.it/",
+      "orari": null,
+      "orari_contatto": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          }
+        ],
+        "nota": "accettazione; pomeriggio su appuntamento"
+      },
+      "orari_riferiti_a": "accettazione e informazioni, non orari clinici odontoiatrici",
+      "orari_verificati": false,
+      "su_appuntamento": true,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": null,
+        "telefono": null,
+        "note": "Gestione delle urgenze non specificata dalla fonte."
+      },
+      "fonte_principale": "sito ufficiale Sanisystem",
+      "fonte_orari": null,
+      "latitudine": 45.9570955,
+      "longitudine": 12.4930567,
+      "indirizzo_google_maps": "Via San Michele, 4, 33077 Sacile PN",
+      "verifica_coordinate": "civico_google_maps",
+      "temporaneamente_chiuso": false,
+      "data_verifica": "2026-10-09"
+    },
+    {
+      "id": "PN-DEN-023",
+      "provincia": "PN",
+      "nome": "Studio Dentistico Dott. Pierpaolo Mittica",
+      "tipo_struttura": "studio dentistico privato",
+      "indirizzo": "Corso Roma 70",
+      "cap": "33097",
+      "comune": "Spilimbergo",
+      "telefono": [
+        "04273026"
+      ],
+      "email": [],
+      "sito_ufficiale": "https://www.studiodentisticomittica.com/odontoiatria-cl4y",
+      "orari": {
+        "lunedi": [],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "orari_riferiti_a": "apertura studio",
+      "orari_verificati": true,
+      "su_appuntamento": true,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": null,
+        "telefono": null,
+        "note": "Gestione delle urgenze non specificata dalla fonte."
+      },
+      "fonte_principale": "sito ufficiale Studio Mittica",
+      "fonte_orari": "sito ufficiale Studio Mittica",
+      "latitudine": 46.1113278,
+      "longitudine": 12.9023614,
+      "indirizzo_google_maps": "Mittica Dr. Domenico Mittica Dr. Pierpaolo, Corso Roma, 70, 33097 Spilimbergo PN",
+      "verifica_coordinate": "verificata_da_scheda_google_maps_con_nome_e_indirizzo_corrispondenti",
+      "temporaneamente_chiuso": false,
+      "data_verifica": "2026-10-09"
+    },
+    {
+      "id": "PN-DEN-024",
+      "provincia": "PN",
+      "nome": "Studio Feltrin STP",
+      "tipo_struttura": "studio odontoiatrico privato",
+      "indirizzo": "Via Cavour 28",
+      "cap": "33077",
+      "comune": "Sacile",
+      "telefono": [
+        "043471808"
+      ],
+      "email": [
+        "segreteria@studiofeltrinsrl.it"
+      ],
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "18:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "18:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "18:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "18:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "18:00"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "orari_riferiti_a": "apertura studio",
+      "orari_verificati": false,
+      "su_appuntamento": true,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": null,
+        "telefono": null,
+        "note": "Gestione delle urgenze non specificata dalla fonte."
+      },
+      "fonte_principale": "Odontool - directory professionale, fallback",
+      "fonte_orari": "Odontool - da confermare con la struttura",
+      "fonte_url": "https://www.odontool.it/studio-odontoiatrico/studio-dentistico-feltrin",
+      "latitudine": 45.9556127,
+      "longitudine": 12.5029579,
+      "indirizzo_google_maps": "Studio Feltrin Stp Srl, Via Cavour, 28, 33077 Sacile PN",
+      "verifica_coordinate": "verificata_da_scheda_google_maps_con_nome_e_indirizzo_corrispondenti",
+      "temporaneamente_chiuso": false,
+      "data_verifica": "2026-10-09"
+    },
+    {
+      "id": "PN-DEN-025",
+      "provincia": "PN",
+      "nome": "Studio Dentistico Dott. Lucio Englaro",
+      "tipo_struttura": "studio dentistico privato",
+      "indirizzo": "Via Giuseppe Mazzini 5",
+      "cap": "33081",
+      "comune": "Aviano",
+      "telefono": [
+        "0434652794"
+      ],
+      "email": [
+        "info@studioenglaro.it"
+      ],
+      "sito_ufficiale": "https://www.studioenglaro.it/orari.html",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "16:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "15:30",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "16:00"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "orari_riferiti_a": "apertura studio",
+      "orari_verificati": true,
+      "su_appuntamento": true,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": null,
+        "telefono": null,
+        "note": "Gestione delle urgenze non specificata dalla fonte."
+      },
+      "fonte_principale": "sito ufficiale Studio Englaro",
+      "fonte_orari": "sito ufficiale Studio Englaro",
+      "latitudine": 46.0718638,
+      "longitudine": 12.5877466,
+      "indirizzo_google_maps": "Englaro Dr. Lucio, Via Giuseppe Mazzini, 5, 33081 Aviano PN",
+      "verifica_coordinate": "verificata_da_scheda_google_maps_con_nome_e_indirizzo_corrispondenti",
+      "temporaneamente_chiuso": false,
+      "data_verifica": "2026-10-09"
+    },
+    {
+      "id": "PN-DEN-026",
+      "provincia": "PN",
+      "nome": "Bellussi Dentista Aviano - Dott. Dario Bellussi",
+      "tipo_struttura": "studio dentistico privato",
+      "indirizzo": "Via Sacile 32",
+      "cap": "33081",
+      "comune": "Aviano",
+      "telefono": [
+        "3479439734"
+      ],
+      "email": [
+        "info@clinicabellussi.it"
+      ],
+      "sito_ufficiale": "https://bellussidentistaaviano.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "08:00",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "orari_riferiti_a": "disponibilita per appuntamenti, compresi sabato domenica e festivita",
+      "orari_verificati": true,
+      "su_appuntamento": true,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": null,
+        "telefono": null,
+        "note": "Gestione delle urgenze non specificata dalla fonte."
+      },
+      "fonte_principale": "sito ufficiale Bellussi Dentista Aviano",
+      "fonte_orari": "pagina contatti ufficiale Bellussi Dentista Aviano",
+      "latitudine": 46.0675312,
+      "longitudine": 12.5855692,
+      "indirizzo_google_maps": "Bellussi Dentista Aviano - Dott. Dario Bellussi, Via Sacile, 32, 33081 Aviano PN",
+      "verifica_coordinate": "verificata_da_scheda_google_maps_con_nome_e_indirizzo_corrispondenti",
+      "temporaneamente_chiuso": false,
+      "data_verifica": "2026-10-09"
+    },
+    {
+      "id": "PN-DEN-027",
+      "provincia": "PN",
+      "nome": "Dentalcoop Fontanafredda",
+      "tipo_struttura": "centro odontoiatrico privato",
+      "indirizzo": "Viale Venezia 86",
+      "cap": "33074",
+      "comune": "Fontanafredda",
+      "telefono": [
+        "0434997994"
+      ],
+      "email": [
+        "fontanafredda@dentalcoop.it"
+      ],
+      "sito_ufficiale": "https://www.dentalcoop.it/fontanafredda/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          }
+        ],
+        "domenica": []
+      },
+      "orari_riferiti_a": "apertura centro",
+      "orari_verificati": true,
+      "su_appuntamento": true,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": null,
+        "telefono": null,
+        "note": "Gestione delle urgenze non specificata dalla fonte."
+      },
+      "fonte_principale": "pagina ufficiale Dentalcoop Fontanafredda",
+      "fonte_orari": "pagina ufficiale Dentalcoop Fontanafredda",
+      "latitudine": 45.9704335,
+      "longitudine": 12.5508481,
+      "indirizzo_google_maps": "Dentalcoop Fontanafredda, Viale Venezia, 86, 33074 Fontanafredda PN",
+      "verifica_coordinate": "verificata_da_scheda_google_maps_con_nome_e_indirizzo_corrispondenti",
+      "temporaneamente_chiuso": false,
+      "data_verifica": "2026-10-09"
+    },
+    {
+      "id": "PN-DEN-028",
+      "provincia": "PN",
+      "nome": "Studio Dentistico Dott.ssa A. Janeth Espitia",
+      "tipo_struttura": "studio dentistico privato",
+      "indirizzo": "Via Camillo Benso Conte di Cavour 10",
+      "cap": "33074",
+      "comune": "Fontanafredda",
+      "telefono": [
+        "0434998456"
+      ],
+      "email": [
+        "dottssa.espitiajenethann@gmail.com"
+      ],
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "orari_riferiti_a": "apertura studio",
+      "orari_verificati": true,
+      "su_appuntamento": true,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": null,
+        "telefono": null,
+        "note": "Gestione delle urgenze non specificata dalla fonte."
+      },
+      "fonte_principale": "Google Maps; PagineGialle/Virgilio; riscontro di attivita 2026",
+      "fonte_orari": "Oraridiapertura24, scheda aggiornata il 24 marzo 2026; orari non pubblicati su un sito ufficiale",
+      "latitudine": 45.9745974,
+      "longitudine": 12.5668801,
+      "indirizzo_google_maps": "Studio Dentistico Dott.ssa A. Janeth Espitia, Via Camillo Benso Conte di Cavour, 10, 33074 Fontanafredda PN",
+      "verifica_coordinate": "verificata_da_scheda_google_maps_con_nome_e_indirizzo_corrispondenti",
+      "temporaneamente_chiuso": false,
+      "data_verifica": "2026-10-09"
+    },
+    {
+      "id": "PN-DEN-029",
+      "provincia": "PN",
+      "nome": "Studio Dentistico Bomben Igor",
+      "tipo_struttura": "studio dentistico privato",
+      "indirizzo": "Viale Michelangelo Grigoletti 7",
+      "cap": "33074",
+      "comune": "Fontanafredda",
+      "telefono": [
+        "0434997662"
+      ],
+      "email": [],
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": [],
+        "martedi": [],
+        "mercoledi": [],
+        "giovedi": [],
+        "venerdi": [],
+        "sabato": [],
+        "domenica": []
+      },
+      "orari_riferiti_a": null,
+      "orari_verificati": false,
+      "su_appuntamento": true,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": null,
+        "telefono": null,
+        "note": "Gestione delle urgenze non specificata dalla fonte."
+      },
+      "fonte_principale": "Google Maps; directory professionali come riscontro",
+      "fonte_orari": null,
+      "latitudine": 45.972252,
+      "longitudine": 12.5704751,
+      "indirizzo_google_maps": "Studio Dentistico Bomben Igor, Viale Michelangelo Grigoletti, 7, 33074 Fontanafredda PN",
+      "verifica_coordinate": "verificata_da_scheda_google_maps_con_nome_e_indirizzo_corrispondenti",
+      "temporaneamente_chiuso": false,
+      "data_verifica": "2026-10-09"
+    }
+  ],
+  "note_qualita": [
+    "Gli orari di contatto e segreteria ASFO non sono stati trasformati in orari clinici.",
+    "La guardia odontoiatrica condivisa e i numeri straordinari degli studi privati sono distinti dal pronto soccorso pubblico.",
+    "Il censimento privato e ancora in ampliamento territoriale."
+  ]
+}

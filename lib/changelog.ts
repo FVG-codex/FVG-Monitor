@@ -22,6 +22,13 @@ export type VoceChangelog = {
 export const CHANGELOG: VoceChangelog[] = [
   {
     data: "09/10/2026",
+    titolo: "Dentisti & Odontoiatri — attivata la provincia di Pordenone (29 strutture): tutte le province ora coperte",
+    dettagli: [
+      "Nella sezione Dentisti & Odontoiatri è ora selezionabile anche la provincia di Pordenone: 29 strutture tra ambulatori ASFO e studi privati, tutte con coordinate sulla mappa. Nel riquadro Emergenze compaiono 4 strutture con urgenze dichiarate: l'ambulatorio ASFO di Pordenone con pronto soccorso odontoiatrico, quello pediatrico di San Vito al Tagliamento, e due studi privati con reperibilità autodichiarata. Con questa attivazione tutte e quattro le province del Friuli Venezia Giulia sono ora coperte dalla sezione.",
+    ],
+  },
+  {
+    data: "09/10/2026",
     titolo: "Intestazione: emoji nel menù, titolo di sezione, selettori ridotti alla sola homepage",
     dettagli: [
       "Il menù ad amburger mostra ora un'emoji accanto a ogni voce. L'intestazione, su ogni pagina diversa dalla home, mostra anche il nome della sezione accanto a \"FVG Monitor\" (es. \"FVG Monitor – Viabilità\"). Il selettore di lingua è ora disponibile solo in homepage; il selettore di provincia (\"Tutta la regione / Trieste / Udine / Gorizia / Pordenone\") solo in homepage e nella sezione Meteo. Su schermi stretti questo riduce di molto l'altezza dell'intestazione fissa in cima alla pagina, che su alcuni telefoni Android arrivava a occupare quasi un quarto dello schermo e nascondeva l'inizio del contenuto sotto.",
