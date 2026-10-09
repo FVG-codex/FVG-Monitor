@@ -1,0 +1,2130 @@
+{
+  "schema_version": "1.1",
+  "titolo": "Censimento strutture odontoiatriche - provincia di Udine",
+  "stato": "database provinciale consolidato; copertura non equiparabile a un albo professionale esaustivo",
+  "data_verifica": "2026-10-09",
+  "ambito": {
+    "territorio": "Comuni dell'ex provincia di Udine / EDR Udine",
+    "unita_record": "Una sede fisica per record",
+    "criteri": "Priorità alle fonti ufficiali; dati incerti mantenuti null e segnalati; professionisti nella stessa sede non duplicati come strutture."
+  },
+  "statistiche": {
+    "record_totali": 34,
+    "sedi_pubbliche": 14,
+    "sedi_private": 20,
+    "orari_verificati": 22,
+    "orari_non_pubblicati_o_non_verificati": 12,
+    "coordinate_presenti": 34,
+    "coordinate_mancanti": 0,
+    "pronto_soccorso_odontoiatrico_confermato": 2
+  },
+  "record": [
+    {
+      "id": "UD-DEN-001",
+      "provincia": "UD",
+      "nome": "ASUFC - SOSD Odontostomatologia e Pronto Soccorso Odontoiatrico",
+      "tipo_struttura": "struttura pubblica ospedaliera",
+      "indirizzo": "Piazzale Santa Maria della Misericordia, 15",
+      "cap": "33100",
+      "comune": "Udine",
+      "latitudine": 46.077248,
+      "longitudine": 13.228314,
+      "telefono": [
+        "0432552915",
+        "0432552916"
+      ],
+      "email": [
+        "odontostomatologia@asufc.sanita.fvg.it",
+        "ps.odontoiatrico@asufc.sanita.fvg.it"
+      ],
+      "sito_ufficiale": "https://asufc.sanita.fvg.it/it/strutture/dir_sanitaria/dip_assistenza_ospedaliera/dip_testa-collo_neuroscienze/A_DPT_ch-morfologica/ud-odontostomatologia-odontoiatria-sociale/sede1.html",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "13:45"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "13:45"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "13:45"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "13:45"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "13:45"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "11:45"
+          }
+        ],
+        "domenica": []
+      },
+      "orari_riferiti_a": "Pronto Soccorso odontoiatrico; il sabato comprende i prefestivi",
+      "su_appuntamento": false,
+      "orari_verificati": true,
+      "gestione_urgenze": {
+        "disponibile": true,
+        "pronto_soccorso": true,
+        "h24": false,
+        "accesso_diretto": true,
+        "telefono": "0432552916",
+        "note": "Accesso diretto senza impegnativa per urgenze odontostomatologiche negli orari pubblicati."
+      },
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "ASUFC",
+      "fonte_orari": "ASUFC",
+      "data_verifica": "2026-10-09",
+      "verifica_coordinate": "verificata_da_link_cartografico_ufficiale_ASUFC"
+    },
+    {
+      "id": "UD-DEN-002",
+      "provincia": "UD",
+      "nome": "ASUFC - Odontoiatria Cividale del Friuli",
+      "tipo_struttura": "ambulatorio pubblico territoriale",
+      "indirizzo": "Via Carraria, 29",
+      "cap": "33043",
+      "comune": "Cividale del Friuli",
+      "latitudine": 46.090744,
+      "longitudine": 13.440307,
+      "telefono": [
+        "0434223522"
+      ],
+      "email": [],
+      "sito_ufficiale": "https://asufc.sanita.fvg.it/it/strutture/dir_sanitaria/dip_assistenza_territoriale/distretto_cividale/specialistica_ambulatoriale/",
+      "orari": null,
+      "orari_riferiti_a": null,
+      "su_appuntamento": true,
+      "orari_verificati": false,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": null,
+        "telefono": null,
+        "note": "Nessun servizio di pronto soccorso odontoiatrico dichiarato nella pagina della sede."
+      },
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "ASUFC",
+      "fonte_orari": null,
+      "data_verifica": "2026-10-09",
+      "verifica_coordinate": "verificata_da_link_cartografico_ufficiale_ASUFC"
+    },
+    {
+      "id": "UD-DEN-003",
+      "provincia": "UD",
+      "nome": "ASUFC - Odontoiatria Manzano",
+      "tipo_struttura": "ambulatorio pubblico territoriale",
+      "indirizzo": "Via Drusin, 25",
+      "cap": "33044",
+      "comune": "Manzano",
+      "latitudine": 45.98851,
+      "longitudine": 13.387842,
+      "telefono": [
+        "0434223522"
+      ],
+      "email": [],
+      "sito_ufficiale": "https://asufc.sanita.fvg.it/it/strutture/dir_sanitaria/dip_assistenza_territoriale/distretto_cividale/specialistica_ambulatoriale/",
+      "orari": null,
+      "orari_riferiti_a": null,
+      "su_appuntamento": true,
+      "orari_verificati": false,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": null,
+        "telefono": null,
+        "note": "Nessun servizio di pronto soccorso odontoiatrico dichiarato nella pagina della sede."
+      },
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "ASUFC",
+      "fonte_orari": null,
+      "data_verifica": "2026-10-09",
+      "verifica_coordinate": "verificata_da_link_cartografico_ufficiale_ASUFC"
+    },
+    {
+      "id": "UD-DEN-004",
+      "provincia": "UD",
+      "nome": "ASUFC - Odontoiatria e Pronto Soccorso Odontoiatrico Gemona del Friuli",
+      "tipo_struttura": "ambulatorio pubblico territoriale con pronto soccorso odontoiatrico",
+      "indirizzo": "Piazza Rodolone, 2",
+      "cap": "33013",
+      "comune": "Gemona del Friuli",
+      "latitudine": 46.287003,
+      "longitudine": 13.125122,
+      "telefono": [
+        "0432989361"
+      ],
+      "email": [],
+      "sito_ufficiale": "https://asufc.sanita.fvg.it/export/sites/asufc/it/strutture/dir_sanitaria/dip_assistenza_ospedaliera/dip_testa_collo_neuroscienze/ud-odontostomatologia-odontoiatria-sociale/2024_GS_odontoiatria_udine.pdf",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "14:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "14:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "14:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "14:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "14:00"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "orari_riferiti_a": "Pronto Soccorso Odontoiatrico; l'Ambulatorio di Patologia Orale opera il mercoledi 08:00-13:00 su appuntamento",
+      "su_appuntamento": false,
+      "orari_verificati": true,
+      "gestione_urgenze": {
+        "disponibile": true,
+        "pronto_soccorso": true,
+        "h24": false,
+        "accesso_diretto": true,
+        "telefono": "0432989361",
+        "note": "La sottopagina ASUFC del distretto, aggiornata l'8 giugno 2026, conferma accesso diretto lunedi-venerdi 08:00-14:00. La guida generale ASUFC descrive separatamente il solo ambulatorio di Patologia Orale: conflitto documentale conservato nelle note di audit."
+      },
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "ASUFC",
+      "fonte_orari": "Guida servizi ASUFC odontoiatria",
+      "data_verifica": "2026-10-09",
+      "verifica_coordinate": "verificata_da_link_cartografico_ufficiale_ASUFC"
+    },
+    {
+      "id": "UD-DEN-005",
+      "provincia": "UD",
+      "nome": "ASUFC - Odontoiatria Cervignano del Friuli",
+      "tipo_struttura": "ambulatorio pubblico territoriale",
+      "indirizzo": "Via Trieste, 75",
+      "cap": "33052",
+      "comune": "Cervignano del Friuli",
+      "latitudine": 45.820736,
+      "longitudine": 13.341474,
+      "telefono": [
+        "0431387712",
+        "0434223522"
+      ],
+      "email": [],
+      "sito_ufficiale": "https://asufc.sanita.fvg.it/it/strutture/dir_sanitaria/dip_assistenza_ospedaliera/dip_testa-collo_neuroscienze/A_DPT_ch-morfologica/ud-odontostomatologia-odontoiatria-sociale/",
+      "orari": null,
+      "orari_riferiti_a": null,
+      "su_appuntamento": true,
+      "orari_verificati": false,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": null,
+        "telefono": null,
+        "note": "Nessun servizio di pronto soccorso odontoiatrico dichiarato nella pagina della rete."
+      },
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "ASUFC",
+      "fonte_orari": null,
+      "data_verifica": "2026-10-09",
+      "verifica_coordinate": "verificata_da_link_cartografico_ufficiale_ASUFC"
+    },
+    {
+      "id": "UD-DEN-006",
+      "provincia": "UD",
+      "nome": "ODOMED",
+      "tipo_struttura": "studio medico odontoiatrico privato",
+      "indirizzo": "Via Pordenone, 27/29",
+      "cap": "33100",
+      "comune": "Udine",
+      "latitudine": 46.0727666,
+      "longitudine": 13.2332369,
+      "telefono": [
+        "0432547413",
+        "0432425015"
+      ],
+      "email": [
+        "odomed@odomed.it"
+      ],
+      "sito_ufficiale": "https://www.odomed.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "10:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "10:00",
+            "chiude": "17:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "10:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "10:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "10:00",
+            "chiude": "17:00"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "orari_riferiti_a": "apertura studio",
+      "su_appuntamento": true,
+      "orari_verificati": true,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": null,
+        "telefono": null,
+        "note": "Da verificare direttamente con la struttura."
+      },
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "sito ufficiale ODOMED",
+      "fonte_orari": "sito ufficiale ODOMED",
+      "data_verifica": "2026-10-09",
+      "verifica_coordinate": "verificata_da_scheda_google_maps_con_nome_e_indirizzo_corrispondenti",
+      "indirizzo_google_maps": "Odomed, Via Pordenone, 27, 33100 Udine UD",
+      "fonte_coordinate": "Google Maps: corrispondenza verificata di denominazione e indirizzo",
+      "precisione_coordinate": "marker_attivita"
+    },
+    {
+      "id": "UD-DEN-007",
+      "provincia": "UD",
+      "nome": "Studio Dentistico Patriarca",
+      "tipo_struttura": "studio dentistico privato",
+      "indirizzo": "Viale Tricesimo, 103/20",
+      "cap": "33100",
+      "comune": "Udine",
+      "latitudine": 46.0894635,
+      "longitudine": 13.2329597,
+      "telefono": [
+        "0432547563"
+      ],
+      "email": [
+        "dr.stefano@studiopatriarca.com"
+      ],
+      "sito_ufficiale": "https://studiopatriarca.com/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          }
+        ],
+        "domenica": []
+      },
+      "orari_riferiti_a": "apertura studio",
+      "su_appuntamento": true,
+      "orari_verificati": true,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": null,
+        "telefono": null,
+        "note": "Da verificare direttamente con la struttura."
+      },
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "sito ufficiale Studio Patriarca",
+      "fonte_orari": "sito ufficiale Studio Patriarca",
+      "data_verifica": "2026-10-09",
+      "verifica_coordinate": "verificata_da_scheda_google_maps_con_nome_e_indirizzo_corrispondenti",
+      "indirizzo_google_maps": "Studio Dentistico Dott. Patriarca Stefano, Via Tricesimo, 103, 33100 Udine UD",
+      "fonte_coordinate": "Google Maps: corrispondenza verificata di denominazione e indirizzo",
+      "precisione_coordinate": "marker_attivita"
+    },
+    {
+      "id": "UD-DEN-008",
+      "provincia": "UD",
+      "nome": "BIOS Studio Dentale",
+      "tipo_struttura": "struttura sanitaria odontoiatrica privata",
+      "indirizzo": "Via del Bon, 65",
+      "cap": "33100",
+      "comune": "Udine",
+      "latitudine": 46.0633276,
+      "longitudine": 13.2515585,
+      "telefono": [
+        "0432582655"
+      ],
+      "email": [
+        "srl@studiodentalebios.it"
+      ],
+      "sito_ufficiale": "https://studiodentalebios.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "orari_riferiti_a": "apertura struttura",
+      "su_appuntamento": true,
+      "orari_verificati": true,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": null,
+        "telefono": null,
+        "note": "Da verificare direttamente con la struttura."
+      },
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "sito ufficiale BIOS",
+      "fonte_orari": "sito ufficiale BIOS",
+      "data_verifica": "2026-10-09",
+      "verifica_coordinate": "verificata_da_scheda_google_maps_con_nome_e_indirizzo_corrispondenti",
+      "indirizzo_google_maps": "Studio Odontoiatrico Bios, Via del Bon, 65, 33100 Udine UD",
+      "fonte_coordinate": "Google Maps: corrispondenza verificata di denominazione e indirizzo",
+      "precisione_coordinate": "marker_attivita"
+    },
+    {
+      "id": "UD-DEN-009",
+      "provincia": "UD",
+      "nome": "Studio Odontoiatrico Blasone",
+      "tipo_struttura": "studio dentistico privato",
+      "indirizzo": "Viale del Ledra, 56",
+      "cap": "33100",
+      "comune": "Udine",
+      "latitudine": 46.063897,
+      "longitudine": 13.2267369,
+      "telefono": [
+        "0432237481"
+      ],
+      "email": [],
+      "sito_ufficiale": "https://studioblasone.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "18:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "18:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "17:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "18:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "18:00"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "orari_riferiti_a": "apertura studio",
+      "su_appuntamento": true,
+      "orari_verificati": true,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": null,
+        "telefono": null,
+        "note": "Da verificare direttamente con la struttura."
+      },
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "sito ufficiale Studio Blasone",
+      "fonte_orari": "sito ufficiale Studio Blasone",
+      "data_verifica": "2026-10-09",
+      "verifica_coordinate": "verificata_da_scheda_google_maps_con_nome_e_indirizzo_corrispondenti",
+      "indirizzo_google_maps": "Studio Dentistico Blasone Dr. Rodolfo, Viale del Ledra, 56, 33100 Udine UD",
+      "fonte_coordinate": "Google Maps: corrispondenza verificata di denominazione e indirizzo",
+      "precisione_coordinate": "marker_attivita"
+    },
+    {
+      "id": "UD-DEN-010",
+      "provincia": "UD",
+      "nome": "Terminal Nord Medical Center - Odontoiatria",
+      "tipo_struttura": "centro medico odontoiatrico privato",
+      "indirizzo": "Viale Giovanni Paolo II, 15/3",
+      "cap": "33100",
+      "comune": "Udine",
+      "latitudine": 46.0953861,
+      "longitudine": 13.2324633,
+      "telefono": [
+        "0432481849"
+      ],
+      "email": [
+        "terminalnord.medicalcenter@gmail.com"
+      ],
+      "sito_ufficiale": "https://terminalnord.com/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "18:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "18:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "18:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "18:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "18:00"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "orari_riferiti_a": "area odontoiatria",
+      "su_appuntamento": true,
+      "orari_verificati": true,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": null,
+        "telefono": null,
+        "note": "Da verificare direttamente con la struttura."
+      },
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "sito ufficiale Terminal Nord Medical Center",
+      "fonte_orari": "sito ufficiale Terminal Nord Medical Center",
+      "data_verifica": "2026-10-09",
+      "verifica_coordinate": "verificata_da_scheda_google_maps_con_nome_e_indirizzo_corrispondenti",
+      "indirizzo_google_maps": "Poliambulatorio Terminal Nord Medical Center, Viale Giovanni Paolo II, 15/3, 33100 Udine UD",
+      "fonte_coordinate": "Google Maps: corrispondenza verificata di denominazione e indirizzo",
+      "precisione_coordinate": "marker_attivita"
+    },
+    {
+      "id": "UD-DEN-011",
+      "provincia": "UD",
+      "nome": "DentalPro Udine",
+      "tipo_struttura": "centro dentistico privato",
+      "indirizzo": "Viale Tricesimo, c/o Terminal Nord",
+      "cap": "33100",
+      "comune": "Udine",
+      "latitudine": 46.093737,
+      "longitudine": 13.2347191,
+      "telefono": [
+        "04321705151"
+      ],
+      "email": [
+        "rec.udine@dentalpro.it"
+      ],
+      "sito_ufficiale": "https://www.dentalpro.it/centri/dentista-udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": [
+          {
+            "apre": "09:30",
+            "chiude": "20:00"
+          }
+        ]
+      },
+      "orari_riferiti_a": "apertura centro",
+      "su_appuntamento": true,
+      "orari_verificati": true,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": null,
+        "telefono": null,
+        "note": "Apertura domenicale confermata; gestione delle urgenze non esplicitata nella pagina ufficiale."
+      },
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "pagina ufficiale DentalPro Udine",
+      "fonte_orari": "pagina ufficiale DentalPro Udine",
+      "data_verifica": "2026-10-09",
+      "verifica_coordinate": "verificata_da_scheda_google_maps_con_nome_e_indirizzo_corrispondenti",
+      "indirizzo_google_maps": "DentalPro Udine, Via Tricesimo, 33100 Udine UD",
+      "fonte_coordinate": "Google Maps: corrispondenza verificata di denominazione e indirizzo",
+      "precisione_coordinate": "marker_attivita_nel_complesso_commerciale"
+    },
+    {
+      "id": "UD-DEN-012",
+      "provincia": "UD",
+      "nome": "Studio Dentistico Bravin",
+      "tipo_struttura": "studio dentistico privato",
+      "indirizzo": "Via Piave 28/A",
+      "cap": "33033",
+      "comune": "Codroipo",
+      "latitudine": 45.9624198,
+      "longitudine": 12.9732734,
+      "telefono": [
+        "0432820205"
+      ],
+      "email": [],
+      "sito_ufficiale": "https://studiobravin.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "11:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "17:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "11:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "17:00"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "orari_riferiti_a": "orari visite",
+      "su_appuntamento": true,
+      "orari_verificati": true,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": null,
+        "telefono": null,
+        "note": "Non specificata sul sito ufficiale."
+      },
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "sito ufficiale Studio Bravin",
+      "fonte_orari": "sito ufficiale Studio Bravin",
+      "data_verifica": "2026-10-09",
+      "verifica_coordinate": "verificata_da_scheda_google_maps_con_nome_e_indirizzo_corrispondenti",
+      "google_maps": "https://maps.app.goo.gl/Yu92W7Ai7CJnfpux7",
+      "fonte_indirizzo": "Google Maps; conferma manuale dell'utente",
+      "stato_verifica_indirizzo": "verificato",
+      "indirizzo_google_maps": "Studio Dentistico Bravin, Via Piave, 28/A, 33033 Codroipo UD",
+      "fonte_coordinate": "Google Maps: corrispondenza verificata di denominazione e indirizzo",
+      "precisione_coordinate": "marker_attivita"
+    },
+    {
+      "id": "UD-DEN-013",
+      "provincia": "UD",
+      "nome": "FriulDent Codroipo",
+      "tipo_struttura": "centro odontoiatrico privato",
+      "indirizzo": "Viale Venezia, 121/C",
+      "cap": "33033",
+      "comune": "Codroipo",
+      "latitudine": 45.9663849,
+      "longitudine": 12.9718639,
+      "telefono": [
+        "0432901112"
+      ],
+      "email": [
+        "info@friuldent.it"
+      ],
+      "sito_ufficiale": "https://www.friuldent.it/contatti/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "13:30"
+          }
+        ],
+        "domenica": []
+      },
+      "orari_riferiti_a": "apertura centro; sabato solo due aperture mensili",
+      "su_appuntamento": true,
+      "orari_verificati": true,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": null,
+        "telefono": null,
+        "note": "Non specificata sul sito ufficiale."
+      },
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "sito ufficiale FriulDent",
+      "fonte_orari": "sito ufficiale FriulDent",
+      "data_verifica": "2026-10-09",
+      "verifica_coordinate": "verificata_da_scheda_google_maps_con_nome_e_indirizzo_corrispondenti",
+      "indirizzo_google_maps": "Friuldent Srl - Struttura Sanitaria Odontoiatrica, Viale Venezia, 121/C, 33033 Codroipo UD",
+      "fonte_coordinate": "Google Maps: corrispondenza verificata di denominazione e indirizzo",
+      "precisione_coordinate": "marker_attivita"
+    },
+    {
+      "id": "UD-DEN-014",
+      "provincia": "UD",
+      "nome": "Clinica Benato - Udine",
+      "tipo_struttura": "clinica odontoiatrica privata",
+      "indirizzo": "Via del Gelso 46",
+      "cap": "33100",
+      "comune": "Udine",
+      "latitudine": 46.0604781,
+      "longitudine": 13.2335379,
+      "telefono": [
+        "0432502839"
+      ],
+      "email": [
+        "info@clinicabenato.it"
+      ],
+      "sito_ufficiale": "https://www.clinicabenato.it/contattaci/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "11:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "10:00",
+            "chiude": "18:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "10:00",
+            "chiude": "18:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "10:00",
+            "chiude": "18:00"
+          }
+        ],
+        "venerdi": [],
+        "sabato": [],
+        "domenica": []
+      },
+      "orari_riferiti_a": "apertura sede Udine",
+      "su_appuntamento": true,
+      "orari_verificati": true,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": null,
+        "telefono": null,
+        "note": "Non specificata sul sito ufficiale."
+      },
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "sito ufficiale Clinica Benato",
+      "fonte_orari": "sito ufficiale Clinica Benato",
+      "data_verifica": "2026-10-09",
+      "verifica_coordinate": "verificata_da_scheda_google_maps_con_nome_e_indirizzo_corrispondenti",
+      "google_maps": null,
+      "fonte_indirizzo": "Conferma manuale dell'utente; corrispondente al sito ufficiale della struttura",
+      "stato_verifica_indirizzo": "verificato",
+      "precisione_coordinate": "marker_attivita",
+      "fonte_coordinate": "Google Maps: corrispondenza verificata di denominazione e indirizzo",
+      "indirizzo_google_maps": "Studio Dentistico Benato - Udine, Via del Gelso, 46, 33100 Udine UD"
+    },
+    {
+      "id": "UD-DEN-015",
+      "provincia": "UD",
+      "nome": "Clinica Benato - Codroipo",
+      "tipo_struttura": "clinica odontoiatrica privata",
+      "indirizzo": "Via Cesare Battisti, 39",
+      "cap": "33033",
+      "comune": "Codroipo",
+      "latitudine": 45.9649609,
+      "longitudine": 12.9766553,
+      "telefono": [
+        "0432908691"
+      ],
+      "email": [
+        "info@clinicabenato.it"
+      ],
+      "sito_ufficiale": "https://www.clinicabenato.it/contattaci/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "10:00",
+            "chiude": "18:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "11:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "11:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "11:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "16:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "19:00"
+          }
+        ],
+        "domenica": []
+      },
+      "orari_riferiti_a": "apertura sede Codroipo; sabato una volta al mese",
+      "su_appuntamento": true,
+      "orari_verificati": true,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": null,
+        "telefono": null,
+        "note": "Non specificata sul sito ufficiale."
+      },
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "sito ufficiale Clinica Benato",
+      "fonte_orari": "sito ufficiale Clinica Benato",
+      "data_verifica": "2026-10-09",
+      "verifica_coordinate": "verificata_da_scheda_google_maps_con_nome_e_indirizzo_corrispondenti",
+      "indirizzo_google_maps": "Studio Dentistico Benato - Codroipo, Via Cesare Battisti, 39, 33033 Codroipo UD",
+      "fonte_coordinate": "Google Maps: corrispondenza verificata di denominazione e indirizzo",
+      "precisione_coordinate": "marker_attivita"
+    },
+    {
+      "id": "UD-DEN-016",
+      "provincia": "UD",
+      "nome": "Studio Dentistico Meneguzzi",
+      "tipo_struttura": "studio dentistico privato",
+      "indirizzo": "Via Vittorio Veneto 24/C",
+      "cap": "33053",
+      "comune": "Latisana",
+      "latitudine": 45.7773156,
+      "longitudine": 12.9950083,
+      "telefono": [
+        "04311990655",
+        "3938004385"
+      ],
+      "email": [
+        "info@studiodentisticomeneguzzi.it"
+      ],
+      "sito_ufficiale": "https://studiodentisticomeneguzzi.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "18:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "13:30",
+            "chiude": "17:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "13:30",
+            "chiude": "18:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "18:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "13:30",
+            "chiude": "17:30"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "orari_riferiti_a": "apertura studio",
+      "su_appuntamento": true,
+      "orari_verificati": true,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": null,
+        "telefono": null,
+        "note": "Non specificata sul sito ufficiale."
+      },
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "sito ufficiale Studio Meneguzzi",
+      "fonte_orari": "sito ufficiale Studio Meneguzzi",
+      "data_verifica": "2026-10-09",
+      "verifica_coordinate": "verificata_da_scheda_google_maps_con_nome_e_indirizzo_corrispondenti",
+      "google_maps": "https://maps.app.goo.gl/eZ5L8QcbkXAKBBFb6",
+      "fonte_indirizzo": "Conferma manuale dell'utente; sito ufficiale della struttura e relativo collegamento Google Maps",
+      "stato_verifica_indirizzo": "verificato",
+      "indirizzo_google_maps": "Studio Dentistico Meneguzzi Eva, Via Vittorio Veneto, 24/C, 33053 Latisana UD",
+      "fonte_coordinate": "Google Maps: corrispondenza verificata di denominazione e indirizzo",
+      "precisione_coordinate": "marker_attivita"
+    },
+    {
+      "id": "UD-DEN-017",
+      "provincia": "UD",
+      "nome": "Centro Medico by Salus - Odontoiatria",
+      "tipo_struttura": "poliambulatorio privato",
+      "indirizzo": "Via Guglielmo Marconi, 133",
+      "cap": "33053",
+      "comune": "Latisana",
+      "latitudine": 45.7837822,
+      "longitudine": 13.0042667,
+      "telefono": [
+        "0431513086"
+      ],
+      "email": [],
+      "sito_ufficiale": "https://www.bysalus.com/odontoiatria/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:30",
+            "chiude": "12:30"
+          }
+        ],
+        "domenica": []
+      },
+      "orari_riferiti_a": "apertura centro",
+      "su_appuntamento": true,
+      "orari_verificati": true,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": null,
+        "telefono": null,
+        "note": "Non specificata nella pagina odontoiatria."
+      },
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "sito ufficiale Centro Medico by Salus",
+      "fonte_orari": "sito ufficiale Centro Medico by Salus",
+      "data_verifica": "2026-10-09",
+      "verifica_coordinate": "verificata_da_scheda_google_maps_con_nome_e_indirizzo_corrispondenti",
+      "indirizzo_google_maps": "Medical Polispecialistico by Salus Center, Via Guglielmo Marconi, 133, 33053 Latisana UD",
+      "fonte_coordinate": "Google Maps: corrispondenza verificata di denominazione e indirizzo",
+      "precisione_coordinate": "marker_attivita"
+    },
+    {
+      "id": "UD-DEN-018",
+      "provincia": "UD",
+      "nome": "Studio Dentistico Dott. Nicolò Magris",
+      "tipo_struttura": "studio dentistico privato",
+      "indirizzo": "Via della Cooperativa, 11/D",
+      "cap": "33028",
+      "comune": "Tolmezzo",
+      "latitudine": 46.4065097,
+      "longitudine": 13.0129513,
+      "telefono": [
+        "043343188"
+      ],
+      "email": [
+        "staff@studiomagris.it"
+      ],
+      "sito_ufficiale": "https://www.dentista-tolmezzo.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "18:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "orari_riferiti_a": "ricevimento pazienti; sabato solo su appuntamento senza fascia pubblicata",
+      "su_appuntamento": true,
+      "orari_verificati": true,
+      "gestione_urgenze": {
+        "disponibile": false,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": false,
+        "telefono": null,
+        "note": "Il sito rimanda fuori orario alla guardia odontoiatrica ANDI: non si tratta di reperibilità erogata direttamente dallo studio."
+      },
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "sito ufficiale Studio Magris",
+      "fonte_orari": "pagina orari Studio Magris",
+      "data_verifica": "2026-10-09",
+      "verifica_coordinate": "verificata_da_scheda_google_maps_con_nome_e_indirizzo_corrispondenti",
+      "indirizzo_google_maps": "Studio Dentistico Dott. Magris Nicolo, Via della Cooperativa, 11/D, 33028 Tolmezzo UD",
+      "fonte_coordinate": "Google Maps: corrispondenza verificata di denominazione e indirizzo",
+      "precisione_coordinate": "marker_attivita"
+    },
+    {
+      "id": "UD-DEN-019",
+      "provincia": "UD",
+      "nome": "Polodent Tolmezzo",
+      "tipo_struttura": "studio dentistico privato",
+      "indirizzo": "Via Giacomo Matteotti, 53",
+      "cap": "33028",
+      "comune": "Tolmezzo",
+      "latitudine": 46.4084151,
+      "longitudine": 13.0089054,
+      "telefono": [],
+      "email": [],
+      "sito_ufficiale": "https://polodent.it/tolmezzo",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "orari_riferiti_a": "apertura studio",
+      "su_appuntamento": true,
+      "orari_verificati": true,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": null,
+        "telefono": null,
+        "note": "Non specificata nella pagina ufficiale."
+      },
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "pagina ufficiale Polodent Tolmezzo",
+      "fonte_orari": "pagina ufficiale Polodent Tolmezzo",
+      "data_verifica": "2026-10-09",
+      "verifica_coordinate": "verificata_da_scheda_google_maps_con_nome_e_indirizzo_corrispondenti",
+      "indirizzo_google_maps": "Polodent Tolmezzo, Via Giacomo Matteotti, 53, 33028 Tolmezzo UD",
+      "fonte_coordinate": "Google Maps: corrispondenza verificata di denominazione e indirizzo",
+      "precisione_coordinate": "marker_attivita"
+    },
+    {
+      "id": "UD-DEN-020",
+      "provincia": "UD",
+      "nome": "Alfamed Tolmezzo",
+      "tipo_struttura": "struttura sanitaria odontoiatrica privata",
+      "indirizzo": "Via Matteotti, 5/B",
+      "cap": "33028",
+      "comune": "Tolmezzo",
+      "latitudine": 46.4072158,
+      "longitudine": 13.0130467,
+      "telefono": [
+        "043343250"
+      ],
+      "email": [],
+      "sito_ufficiale": "https://www.alfamedfvg.it/contatti/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "orari_riferiti_a": "apertura struttura",
+      "su_appuntamento": true,
+      "orari_verificati": true,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": null,
+        "telefono": "043343250",
+        "note": "Il sito menziona assistenza per urgenze durante una specifica chiusura festiva, ma non descrive una reperibilità ordinaria stabile."
+      },
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "sito ufficiale Alfamed",
+      "fonte_orari": "sito ufficiale Alfamed",
+      "data_verifica": "2026-10-09",
+      "verifica_coordinate": "verificata_da_scheda_google_maps_con_nome_e_indirizzo_corrispondenti",
+      "indirizzo_google_maps": "Alfamed, Via Giacomo Matteotti, 5/B, 33028 Tolmezzo UD",
+      "fonte_coordinate": "Google Maps: corrispondenza verificata di denominazione e indirizzo",
+      "precisione_coordinate": "marker_attivita"
+    },
+    {
+      "id": "UD-DEN-021",
+      "provincia": "UD",
+      "nome": "Alfamed Codroipo",
+      "tipo_struttura": "struttura sanitaria odontoiatrica privata",
+      "indirizzo": "Via Circonvallazione Est, 2",
+      "cap": "33033",
+      "comune": "Codroipo",
+      "latitudine": 45.9564369,
+      "longitudine": 12.9854966,
+      "telefono": [
+        "0432904097"
+      ],
+      "email": [],
+      "sito_ufficiale": "https://www.alfamedfvg.it/dentista-friuli/alfamed-codroipo/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "orari_riferiti_a": "apertura struttura",
+      "su_appuntamento": true,
+      "orari_verificati": true,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": null,
+        "telefono": "0432904097",
+        "note": "Il sito menziona assistenza per urgenze durante una specifica chiusura festiva, ma non descrive una reperibilità ordinaria stabile."
+      },
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "sito ufficiale Alfamed",
+      "fonte_orari": "sito ufficiale Alfamed",
+      "data_verifica": "2026-10-09",
+      "verifica_coordinate": "verificata_da_scheda_google_maps_con_nome_e_indirizzo_corrispondenti",
+      "indirizzo_google_maps": "Alfamed, Via Circonvallazione Est, 2, 33033 Codroipo UD",
+      "fonte_coordinate": "Google Maps: corrispondenza verificata di denominazione e indirizzo",
+      "precisione_coordinate": "marker_attivita"
+    },
+    {
+      "id": "UD-DEN-022",
+      "provincia": "UD",
+      "nome": "Dental Service Clinic",
+      "tipo_struttura": "struttura sanitaria odontoiatrica privata",
+      "indirizzo": "Via Enrico Fermi, 62",
+      "cap": "33010",
+      "comune": "Tavagnacco",
+      "latitudine": 46.1058135,
+      "longitudine": 13.2215768,
+      "telefono": [
+        "0432572166"
+      ],
+      "email": [
+        "info@dentalserviceclinic.com",
+        "dentalserviceclinic@gmail.com"
+      ],
+      "sito_ufficiale": "https://www.dentalserviceclinic.com/contatti/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "orari_riferiti_a": "orari clinica; segreteria 08:30-12:30 e 14:30-19:00",
+      "su_appuntamento": true,
+      "orari_verificati": true,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": null,
+        "telefono": null,
+        "note": "Non specificata sul sito ufficiale."
+      },
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "sito ufficiale Dental Service Clinic",
+      "fonte_orari": "sito ufficiale Dental Service Clinic",
+      "data_verifica": "2026-10-09",
+      "verifica_coordinate": "verificata_da_scheda_google_maps_con_nome_e_indirizzo_corrispondenti",
+      "indirizzo_google_maps": "Dental Service Clinic, Via Enrico Fermi, 62, 33010 Feletto Umberto UD",
+      "fonte_coordinate": "Google Maps: corrispondenza verificata di denominazione e indirizzo",
+      "precisione_coordinate": "marker_attivita"
+    },
+    {
+      "id": "UD-DEN-023",
+      "provincia": "UD",
+      "nome": "HDental Martignacco",
+      "tipo_struttura": "ambulatorio odontoiatrico privato",
+      "indirizzo": "Via Antonio Bardelli, 4 - Centro Commerciale Città Fiera",
+      "cap": "33035",
+      "comune": "Martignacco",
+      "latitudine": 46.0849329,
+      "longitudine": 13.1837376,
+      "telefono": [
+        "0432541943"
+      ],
+      "email": [],
+      "sito_ufficiale": "https://www.hdental.it/ambulatori-odontoiatrici/martignacco-udine/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": []
+      },
+      "orari_riferiti_a": "apertura ambulatorio",
+      "su_appuntamento": true,
+      "orari_verificati": true,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": null,
+        "telefono": null,
+        "note": "Non specificata nella pagina ufficiale."
+      },
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "pagina ufficiale HDental Martignacco",
+      "fonte_orari": "pagina ufficiale HDental Martignacco",
+      "data_verifica": "2026-10-09",
+      "verifica_coordinate": "verificata_da_scheda_google_maps_con_nome_e_indirizzo_corrispondenti",
+      "indirizzo_google_maps": "HDental, Via Antonio Bardelli, 4, 33035 Martignacco UD",
+      "fonte_coordinate": "Google Maps: corrispondenza verificata di denominazione e indirizzo",
+      "precisione_coordinate": "marker_attivita_nel_complesso_commerciale"
+    },
+    {
+      "id": "UD-DEN-024",
+      "provincia": "UD",
+      "nome": "Centro Dentale San Daniele",
+      "tipo_struttura": "centro odontoiatrico privato",
+      "indirizzo": "Via Tagliamento, 83",
+      "cap": "33038",
+      "comune": "San Daniele del Friuli",
+      "latitudine": 46.1611625,
+      "longitudine": 13.0036604,
+      "telefono": [
+        "04321798618",
+        "3756523199"
+      ],
+      "email": [
+        "info@centrodentalesandaniele.it"
+      ],
+      "sito_ufficiale": "https://www.centrodentalesandaniele.it/contatti/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "18:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "18:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "18:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "18:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "18:30"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "orari_riferiti_a": "apertura centro",
+      "su_appuntamento": true,
+      "orari_verificati": true,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": null,
+        "telefono": null,
+        "note": "Non specificata sul sito ufficiale."
+      },
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "sito ufficiale Centro Dentale San Daniele",
+      "fonte_orari": "sito ufficiale Centro Dentale San Daniele",
+      "data_verifica": "2026-10-09",
+      "verifica_coordinate": "verificata_da_scheda_google_maps_con_nome_e_indirizzo_corrispondenti",
+      "indirizzo_google_maps": "Centro Dentale San Daniele, Via Tagliamento, 83, 33038 San Daniele del Friuli UD",
+      "fonte_coordinate": "Google Maps: corrispondenza verificata di denominazione e indirizzo",
+      "precisione_coordinate": "marker_attivita"
+    },
+    {
+      "id": "UD-DEN-025",
+      "provincia": "UD",
+      "nome": "Studio Dentistico Simone Bianchin",
+      "tipo_struttura": "studio dentistico privato",
+      "indirizzo": "Via Daniele Manin, 23 - Gorgo",
+      "cap": "33053",
+      "comune": "Latisana",
+      "latitudine": 45.74702,
+      "longitudine": 13.01779,
+      "telefono": [
+        "043155125"
+      ],
+      "email": [
+        "studiodentisticobianchin@gmail.com"
+      ],
+      "sito_ufficiale": "https://studiodentisticobianchin.it/",
+      "orari": null,
+      "orari_riferiti_a": null,
+      "su_appuntamento": true,
+      "orari_verificati": false,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": null,
+        "telefono": null,
+        "note": "Non specificata sul sito ufficiale."
+      },
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "sito ufficiale Studio Bianchin",
+      "fonte_orari": null,
+      "data_verifica": "2026-10-09",
+      "verifica_coordinate": "verificata_da_scheda_google_maps_con_nome_e_indirizzo_corrispondenti",
+      "indirizzo_google_maps": "Studio Dentistico Dott. Simone Bianchin, Via Daniele Manin, 23, 33053 Gorgo UD",
+      "fonte_coordinate": "Google Maps: corrispondenza verificata di denominazione e indirizzo",
+      "precisione_coordinate": "marker_attivita"
+    },
+    {
+      "id": "UD-DEN-026",
+      "provincia": "UD",
+      "nome": "ASUFC - Chirurgia Ambulatoriale Complessa Cividale del Friuli",
+      "tipo_struttura": "ambulatorio pubblico ospedaliero",
+      "indirizzo": "Via Santa Chiara, 2 - secondo piano, blocco operatorio",
+      "cap": "33043",
+      "comune": "Cividale del Friuli",
+      "latitudine": 46.0917049,
+      "longitudine": 13.4380242,
+      "telefono": [
+        "0432558364"
+      ],
+      "email": [],
+      "sito_ufficiale": "https://asufc.sanita.fvg.it/export/sites/asufc/it/strutture/dir_sanitaria/dip_assistenza_ospedaliera/dip_testa_collo_neuroscienze/ud-odontostomatologia-odontoiatria-sociale/2024_GS_odontoiatria_udine.pdf",
+      "orari": {
+        "lunedi": [],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "14:00"
+          }
+        ],
+        "mercoledi": [],
+        "giovedi": [],
+        "venerdi": [],
+        "sabato": [],
+        "domenica": []
+      },
+      "orari_riferiti_a": "interventi di chirurgia orale in sedazione leggera",
+      "su_appuntamento": true,
+      "orari_verificati": true,
+      "gestione_urgenze": {
+        "disponibile": false,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": false,
+        "telefono": null,
+        "note": "Attivita programmata; non indicata come pronto soccorso."
+      },
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "Guida ai servizi ASUFC Odontoiatria",
+      "fonte_orari": "Guida ai servizi ASUFC Odontoiatria",
+      "data_verifica": "2026-10-09",
+      "verifica_coordinate": "verificata_da_scheda_google_maps_con_nome_e_indirizzo_corrispondenti",
+      "indirizzo_google_maps": "Ex Ospedale Civile di Cividale del Friuli, Via Santa Chiara, 2, 33043 Cividale del Friuli UD",
+      "fonte_coordinate": "Google Maps: corrispondenza verificata di denominazione e indirizzo",
+      "precisione_coordinate": "edificio_sanitario"
+    },
+    {
+      "id": "UD-DEN-027",
+      "provincia": "UD",
+      "nome": "ASUFC - Odontoiatria Tolmezzo",
+      "tipo_struttura": "ambulatorio pubblico territoriale",
+      "indirizzo": "Via Morgagni, 18",
+      "cap": "33028",
+      "comune": "Tolmezzo",
+      "latitudine": 46.40516,
+      "longitudine": 13.0065,
+      "telefono": [
+        "0433488215"
+      ],
+      "email": [],
+      "sito_ufficiale": "https://asufc.sanita.fvg.it/it/strutture/dir_sanitaria/dip_assistenza_ospedaliera/dip_testa-collo_neuroscienze/A_DPT_ch-morfologica/ud-odontostomatologia-odontoiatria-sociale/",
+      "orari": null,
+      "orari_riferiti_a": null,
+      "su_appuntamento": true,
+      "orari_verificati": false,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": null,
+        "telefono": null,
+        "note": "La pagina della rete non attribuisce a questa sede il pronto soccorso odontoiatrico."
+      },
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "ASUFC",
+      "fonte_orari": null,
+      "data_verifica": "2026-10-09",
+      "verifica_coordinate": "verificata_da_link_cartografico_ufficiale_ASUFC"
+    },
+    {
+      "id": "UD-DEN-028",
+      "provincia": "UD",
+      "nome": "ASUFC - Odontoiatria Tarcento",
+      "tipo_struttura": "ambulatorio pubblico territoriale",
+      "indirizzo": "Via Coianiz, 2",
+      "cap": "33017",
+      "comune": "Tarcento",
+      "latitudine": 46.217373,
+      "longitudine": 13.220441,
+      "telefono": [
+        "0432780231"
+      ],
+      "email": [],
+      "sito_ufficiale": "https://asufc.sanita.fvg.it/it/strutture/dir_sanitaria/dip_assistenza_ospedaliera/dip_testa-collo_neuroscienze/A_DPT_ch-morfologica/ud-odontostomatologia-odontoiatria-sociale/",
+      "orari": null,
+      "orari_riferiti_a": null,
+      "su_appuntamento": true,
+      "orari_verificati": false,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": null,
+        "telefono": null,
+        "note": "La pagina della rete non attribuisce a questa sede il pronto soccorso odontoiatrico."
+      },
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "ASUFC",
+      "fonte_orari": null,
+      "data_verifica": "2026-10-09",
+      "verifica_coordinate": "verificata_da_link_cartografico_ufficiale_ASUFC"
+    },
+    {
+      "id": "UD-DEN-029",
+      "provincia": "UD",
+      "nome": "ASUFC - Odontoiatria San Daniele del Friuli",
+      "tipo_struttura": "ambulatorio pubblico territoriale",
+      "indirizzo": "Viale Trento e Trieste, 33",
+      "cap": "33038",
+      "comune": "San Daniele del Friuli",
+      "latitudine": 46.154392,
+      "longitudine": 13.009908,
+      "telefono": [
+        "0432949323"
+      ],
+      "email": [],
+      "sito_ufficiale": "https://asufc.sanita.fvg.it/it/strutture/dir_sanitaria/dip_assistenza_ospedaliera/dip_testa-collo_neuroscienze/A_DPT_ch-morfologica/ud-odontostomatologia-odontoiatria-sociale/",
+      "orari": null,
+      "orari_riferiti_a": null,
+      "su_appuntamento": true,
+      "orari_verificati": false,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": null,
+        "telefono": null,
+        "note": "La pagina della rete non attribuisce a questa sede il pronto soccorso odontoiatrico."
+      },
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "ASUFC",
+      "fonte_orari": null,
+      "data_verifica": "2026-10-09",
+      "verifica_coordinate": "verificata_da_link_cartografico_ufficiale_ASUFC"
+    },
+    {
+      "id": "UD-DEN-030",
+      "provincia": "UD",
+      "nome": "ASUFC - Odontoiatria Codroipo",
+      "tipo_struttura": "ambulatorio pubblico territoriale",
+      "indirizzo": "Viale Duodo, 82",
+      "cap": "33033",
+      "comune": "Codroipo",
+      "latitudine": 45.962593,
+      "longitudine": 12.993892,
+      "telefono": [
+        "0432909143"
+      ],
+      "email": [],
+      "sito_ufficiale": "https://asufc.sanita.fvg.it/it/strutture/dir_sanitaria/dip_assistenza_ospedaliera/dip_testa-collo_neuroscienze/A_DPT_ch-morfologica/ud-odontostomatologia-odontoiatria-sociale/",
+      "orari": null,
+      "orari_riferiti_a": null,
+      "su_appuntamento": true,
+      "orari_verificati": false,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": null,
+        "telefono": null,
+        "note": "La pagina della rete non attribuisce a questa sede il pronto soccorso odontoiatrico."
+      },
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "ASUFC",
+      "fonte_orari": null,
+      "data_verifica": "2026-10-09",
+      "verifica_coordinate": "verificata_da_link_cartografico_ufficiale_ASUFC"
+    },
+    {
+      "id": "UD-DEN-031",
+      "provincia": "UD",
+      "nome": "ASUFC - Odontoiatria Distretto di Udine",
+      "tipo_struttura": "ambulatorio pubblico territoriale",
+      "indirizzo": "Via San Valentino, 18/20",
+      "cap": "33100",
+      "comune": "Udine",
+      "latitudine": 46.066772,
+      "longitudine": 13.24364,
+      "telefono": [
+        "0432553800"
+      ],
+      "email": [],
+      "sito_ufficiale": "https://asufc.sanita.fvg.it/it/strutture/dir_sanitaria/dip_assistenza_ospedaliera/dip_testa-collo_neuroscienze/A_DPT_ch-morfologica/ud-odontostomatologia-odontoiatria-sociale/",
+      "orari": null,
+      "orari_riferiti_a": null,
+      "su_appuntamento": true,
+      "orari_verificati": false,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": null,
+        "telefono": null,
+        "note": "Il numero pubblicato e dell'ufficio informazioni; il pronto soccorso odontoiatrico resta presso l'ospedale di Udine."
+      },
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "ASUFC",
+      "fonte_orari": null,
+      "data_verifica": "2026-10-09",
+      "verifica_coordinate": "verificata_da_link_cartografico_ufficiale_ASUFC"
+    },
+    {
+      "id": "UD-DEN-032",
+      "provincia": "UD",
+      "nome": "Poliambulatorio ASUFC di Tarvisio - Odontoiatria e pedodonzia",
+      "tipo_struttura": "ambulatorio pubblico territoriale",
+      "indirizzo": "Via Vittorio Veneto 74",
+      "cap": "33018",
+      "comune": "Tarvisio",
+      "latitudine": 46.502975,
+      "longitudine": 13.576269,
+      "telefono": "0432989828",
+      "email": [],
+      "sito_ufficiale": "https://asufc.sanita.fvg.it/it/strutture/dir_sanitaria/dip_assistenza_ospedaliera/dip_testa-collo_neuroscienze/A_DPT_ch-morfologica/ud-odontostomatologia-odontoiatria-sociale/tdisb_gemon_valcan_canal_ferro.html",
+      "google_maps": null,
+      "orari": null,
+      "orari_riferiti_a": "Orari clinici non pubblicati. Segreteria telefonica: lunedi 15:00-16:00; martedi-venerdi 11:30-12:30. Prestazioni su appuntamento.",
+      "su_appuntamento": true,
+      "orari_verificati": false,
+      "gestione_urgenze": {
+        "disponibile": false,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": false,
+        "telefono": null,
+        "note": "La fonte ufficiale non attribuisce alla sede un servizio di pronto soccorso odontoiatrico."
+      },
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "ASUFC",
+      "fonte_orari": null,
+      "fonti": [
+        "https://asufc.sanita.fvg.it/it/strutture/dir_sanitaria/dip_assistenza_ospedaliera/dip_testa-collo_neuroscienze/A_DPT_ch-morfologica/ud-odontostomatologia-odontoiatria-sociale/tdisb_gemon_valcan_canal_ferro.html",
+        "https://asufc.sanita.fvg.it/it/strutture/dir_sanitaria/dip_assistenza_ospedaliera/dip_chirurgico/A_DPT_ortopedica/to_ortopedia/sede3.html"
+      ],
+      "data_verifica": "2026-10-09",
+      "verifica_coordinate": "verificata_da_link_cartografico_ufficiale_ASUFC",
+      "precisione_coordinate": "edificio_sanitario_ufficiale"
+    },
+    {
+      "id": "UD-DEN-033",
+      "provincia": "UD",
+      "nome": "Poliambulatori Specialistici ASUFC di Latisana - Odontoiatria",
+      "tipo_struttura": "ambulatorio pubblico territoriale",
+      "indirizzo": "Via Sabbionera 45",
+      "cap": "33053",
+      "comune": "Latisana",
+      "latitudine": 45.769344,
+      "longitudine": 13.002313,
+      "telefono": null,
+      "email": [],
+      "sito_ufficiale": "https://asufc.sanita.fvg.it/it/strutture/dir_sanitaria/dip_assistenza_territoriale/distretto_latisana/poliambulatori/LT_distretto_ovest.html",
+      "google_maps": null,
+      "orari": null,
+      "orari_riferiti_a": "La pagina ufficiale conferma il servizio di odontoiatria, ma non pubblica gli orari dell'ambulatorio.",
+      "su_appuntamento": true,
+      "orari_verificati": false,
+      "gestione_urgenze": {
+        "disponibile": false,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": false,
+        "telefono": null,
+        "note": "La fonte ufficiale non attribuisce alla sede un servizio di pronto soccorso odontoiatrico."
+      },
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "ASUFC",
+      "fonte_orari": null,
+      "fonti": [
+        "https://asufc.sanita.fvg.it/it/strutture/dir_sanitaria/dip_assistenza_territoriale/distretto_latisana/poliambulatori/",
+        "https://asufc.sanita.fvg.it/it/strutture/dir_sanitaria/dip_assistenza_territoriale/distretto_latisana/poliambulatori/LT_distretto_ovest.html"
+      ],
+      "data_verifica": "2026-10-09",
+      "verifica_coordinate": "verificata_da_link_cartografico_ufficiale_ASUFC",
+      "precisione_coordinate": "edificio_sanitario_ufficiale"
+    },
+    {
+      "id": "UD-DEN-034",
+      "provincia": "UD",
+      "nome": "Poliambulatori Specialistici ASUFC di San Giorgio di Nogaro - Odontoiatria",
+      "tipo_struttura": "ambulatorio pubblico territoriale",
+      "indirizzo": "Via Palmanova 1",
+      "cap": "33058",
+      "comune": "San Giorgio di Nogaro",
+      "latitudine": 45.83697,
+      "longitudine": 13.207426,
+      "telefono": [
+        "0431624828",
+        "0431624812"
+      ],
+      "email": [],
+      "sito_ufficiale": "https://asufc.sanita.fvg.it/it/strutture/dir_sanitaria/dip_assistenza_territoriale/distretto_latisana/poliambulatori/SG_distretto-ovest.html",
+      "google_maps": null,
+      "orari": null,
+      "orari_riferiti_a": "La pagina ufficiale conferma il servizio di odontoiatria, ma non pubblica gli orari dell'ambulatorio.",
+      "su_appuntamento": true,
+      "orari_verificati": false,
+      "gestione_urgenze": {
+        "disponibile": false,
+        "pronto_soccorso": false,
+        "h24": false,
+        "accesso_diretto": false,
+        "telefono": null,
+        "note": "La fonte ufficiale non attribuisce alla sede un servizio di pronto soccorso odontoiatrico."
+      },
+      "temporaneamente_chiuso": false,
+      "fonte_principale": "ASUFC",
+      "fonte_orari": null,
+      "fonti": [
+        "https://asufc.sanita.fvg.it/it/strutture/dir_sanitaria/dip_assistenza_territoriale/distretto_latisana/poliambulatori/",
+        "https://asufc.sanita.fvg.it/it/strutture/dir_sanitaria/dip_assistenza_territoriale/distretto_latisana/poliambulatori/SG_distretto-ovest.html"
+      ],
+      "data_verifica": "2026-10-09",
+      "verifica_coordinate": "verificata_da_link_cartografico_ufficiale_ASUFC",
+      "precisione_coordinate": "edificio_sanitario_ufficiale"
+    }
+  ],
+  "note_qualita": [
+    "Le coordinate UD-DEN-026--UD-DEN-031 sono state riallineate dopo avere rilevato uno slittamento nel lotto intermedio.",
+    "UD-DEN-026 usa il marker Google Maps dell'edificio sanitario di Via Santa Chiara 2, non del singolo ambulatorio interno.",
+    "Per le sedi private la scheda Google Maps e stata accettata solo quando denominazione e indirizzo risultavano coerenti con il record e con il sito ufficiale.",
+    "Un collegamento estraneo presente nel sito Clinica Benato puntava a Brooklyn ed e stato escluso; entrambe le sedi Benato usano le rispettive schede italiane.",
+    "Gli orari null non devono essere interpretati come struttura chiusa.",
+    "Gestione urgenze null significa informazione non pubblicata o non verificata; non equivale a servizio disponibile."
+  ]
+}

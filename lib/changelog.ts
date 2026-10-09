@@ -22,6 +22,13 @@ export type VoceChangelog = {
 export const CHANGELOG: VoceChangelog[] = [
   {
     data: "09/10/2026",
+    titolo: "Dentisti & Odontoiatri — attivata la provincia di Udine (34 strutture)",
+    dettagli: [
+      "Nella sezione Dentisti & Odontoiatri è ora selezionabile anche la provincia di Udine: 34 strutture tra ambulatori ASUFC e studi privati, tutte con coordinate sulla mappa. Nel riquadro Emergenze compaiono i due ambulatori pubblici ASUFC con pronto soccorso odontoiatrico (Udine e Gemona del Friuli). Per alcune strutture (12 su 34) l'orario non è ancora pubblicato: compare \"orario non pubblicato\" invece di un orario, senza che questo venga interpretato come chiusura. Resta \"in arrivo\" solo la provincia di Pordenone.",
+    ],
+  },
+  {
+    data: "09/10/2026",
     titolo: "Dentisti & Odontoiatri — nuovo riquadro Emergenze, come per Veterinari",
     dettagli: [
       "La sezione Dentisti & Odontoiatri ha ora, in cima alla pagina, lo stesso riquadro \"Emergenze\" già presente per i Veterinari: le strutture che dichiarano una disponibilità per le urgenze (al momento 6 a Gorizia, tra cui i due ambulatori pubblici ASUGI di Gorizia e Monfalcone) sono messe in evidenza con telefono diretto e nota esplicativa, e sulla mappa i loro marker sono colorati in rosso invece del teal standard. A Trieste, dove questo dato non è ancora disponibile, il riquadro resta vuoto con un messaggio che invita a contattare telefonicamente lo studio più vicino.",
