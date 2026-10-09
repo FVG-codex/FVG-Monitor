@@ -9,6 +9,8 @@ import {
   formattaFasceGiornoDentista,
   giornoSettimana,
   statoAperturaDentista,
+  LIVELLO_URGENZE_DENTISTA,
+  livelloUrgenzeDentista,
 } from "@/lib/dentisti";
 import { StatoApertoBadge } from "@/components/StatoApertoBadge";
 
@@ -64,31 +66,47 @@ export function DentistiMap({
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
       />
-      {conCoordinate.map((v) => (
-        <CircleMarker
-          key={v.id}
-          center={[v.lat, v.lon]}
-          radius={6}
-          pathOptions={{ color: "#5FB3A3", fillColor: "#5FB3A3", fillOpacity: 0.7 }}
-        >
-          <Popup>
-            <strong>{v.nome}</strong> <StatoApertoBadge stato={statoAperturaDentista(v, adesso)} />
-            <br />
-            {v.tipoStruttura}
-            <br />
-            {v.indirizzo}, {v.comune}
-            {v.telefono && (
-              <>
-                <br />
-                {tChrome("telEtichetta", { telefono: v.telefono })}
-              </>
-            )}
-            <br />
-            {t("oggiLabel")}{" "}
-            {formattaFasceGiornoDentista(v.orari[giorno], t("orarioNonPubblicato"), t("chiuso"))}
-          </Popup>
-        </CircleMarker>
-      ))}
+      {conCoordinate.map((v) => {
+        const livello = LIVELLO_URGENZE_DENTISTA[livelloUrgenzeDentista(v)];
+        // Stesso principio di VeterinariMap.tsx: marker in evidenza
+        // (rosso, più grande) per le strutture con un livello di urgenza
+        // reale dichiarato, teal per le altre — per Trieste, dove
+        // `gestioneUrgenze` è sempre `null`, tutti i marker restano teal.
+        const colore = livello.evidenzia ? "#C0392B" : "#5FB3A3";
+        return (
+          <CircleMarker
+            key={v.id}
+            center={[v.lat, v.lon]}
+            radius={livello.evidenzia ? 8 : 6}
+            pathOptions={{ color: colore, fillColor: colore, fillOpacity: 0.7 }}
+          >
+            <Popup>
+              <strong>{v.nome}</strong> <StatoApertoBadge stato={statoAperturaDentista(v, adesso)} />
+              <br />
+              {v.tipoStruttura}
+              <br />
+              {v.indirizzo}, {v.comune}
+              {v.telefono && (
+                <>
+                  <br />
+                  {tChrome("telEtichetta", { telefono: v.telefono })}
+                </>
+              )}
+              <br />
+              {t("oggiLabel")}{" "}
+              {formattaFasceGiornoDentista(v.orari[giorno], t("orarioNonPubblicato"), t("chiuso"))}
+              <br />
+              <strong>{t("emergenzeLabel")}</strong> {t(`livelloUrgenze.${livelloUrgenzeDentista(v)}`)}
+              {v.gestioneUrgenze?.telefono && (
+                <>
+                  <br />
+                  {t("telEmergenzeEtichetta", { telefono: v.gestioneUrgenze.telefono })}
+                </>
+              )}
+            </Popup>
+          </CircleMarker>
+        );
+      })}
     </MapContainer>
   );
 }

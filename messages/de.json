@@ -583,6 +583,16 @@
     "orarioNonPubblicato": "Öffnungszeiten nicht veröffentlicht",
     "chiuso": "Geschlossen",
     "convenzionatoAsugi": "ASUGI-Vertragspartner",
+    "emergenzeTitolo": "Notfälle · {provincia}",
+    "nessunaEmergenza": "Keine Einrichtung in {provincia} gibt in dieser Liste eine Notfallversorgung an. Im dringenden Fall die nächstgelegene Praxis während der Öffnungszeiten telefonisch kontaktieren.",
+    "emergenzeDescrizione": "Einrichtungen mit angegebener Notfallversorgung — vor einem dringenden Besuch trotzdem telefonisch nachfragen.",
+    "emergenzeLabel": "Notfälle:",
+    "telEmergenzeEtichetta": "Notfall-Tel.: {telefono}",
+    "livelloUrgenze": {
+      "pronto_soccorso_24h": "24-Stunden-Notdienst",
+      "urgenze_dichiarate": "Angegebene Notfallverfügbarkeit",
+      "non_dichiarata": "Keine Notfallversorgung angegeben"
+    },
     "nessunaCoordinata": "Die Koordinaten dieser Erhebung sind noch nicht verfügbar: sie werden mit den verifizierten Daten hinzugefügt."
   },
   "sci": {

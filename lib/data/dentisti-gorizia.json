@@ -1,0 +1,2684 @@
+{
+  "schema_version": "1.5",
+  "generated_at": "2026-10-08",
+  "timezone": "Europe/Rome",
+  "scope": "Studi dentistici e odontoiatrici nei 25 comuni dell’ex provincia di Gorizia; esclusi laboratori odontotecnici senza attività clinica",
+  "note_schema": "Censimento in ampliamento. Orari vuoti = non reperiti/non verificati, non chiusura. Le fasce sono pubblicabili solo quando orari_verificati=true. Il campo gestione_urgenze distingue reperibilità dichiarata da pronto soccorso e servizio H24.",
+  "audit": {
+    "comuni_scope": [
+      "Capriva del Friuli",
+      "Cormons",
+      "Doberdò del Lago",
+      "Dolegna del Collio",
+      "Farra d’Isonzo",
+      "Fogliano Redipuglia",
+      "Gorizia",
+      "Gradisca d’Isonzo",
+      "Grado",
+      "Mariano del Friuli",
+      "Medea",
+      "Monfalcone",
+      "Moraro",
+      "Mossa",
+      "Romans d’Isonzo",
+      "Ronchi dei Legionari",
+      "Sagrado",
+      "San Canzian d’Isonzo",
+      "San Floriano del Collio",
+      "San Lorenzo Isontino",
+      "San Pier d’Isonzo",
+      "Savogna d’Isonzo",
+      "Staranzano",
+      "Turriaco",
+      "Villesse"
+    ],
+    "record_esclusi": [
+      {
+        "id": "GO-DEN-033",
+        "nome": "Studio Dentistico Dott. Piero Casciaro – Grado",
+        "motivo": "Il sito ufficiale indica ancora “prossima apertura”. Non è pubblicabile come sede operativa.",
+        "dati_precedenti": {
+          "id": "GO-DEN-033",
+          "provincia": "GO",
+          "temporaneamente_chiuso": null,
+          "nome": "Studio Dentistico Dott. Piero Casciaro – Grado",
+          "tipo_struttura": "Studio o centro odontoiatrico",
+          "indirizzo": "Piazza Carpaccio, 5",
+          "cap": "34073",
+          "comune": "Grado",
+          "latitudine": null,
+          "longitudine": null,
+          "telefono": "0431 82055; 335 1948174",
+          "email": "grado@pierocasciaro.com",
+          "sito_ufficiale": "https://www.pierocasciaro.com/",
+          "orari": {
+            "lunedi": [],
+            "martedi": [],
+            "mercoledi": [],
+            "giovedi": [],
+            "venerdi": [],
+            "sabato": [],
+            "domenica": []
+          },
+          "su_appuntamento": true,
+          "servizi": "Odontoiatria generale",
+          "convenzionato_asugi": null,
+          "fonte_principale": "Sito ufficiale",
+          "fonte_orari": null,
+          "orari_verificati": false,
+          "gestione_urgenze": {
+            "disponibile": null,
+            "h24": false,
+            "telefono": null,
+            "note": "Da verificare"
+          },
+          "note": "Il sito ufficiale indica “prossima apertura”: record da non pubblicare come attivo finché la sede non viene confermata operativa.",
+          "data_verifica": "2026-10-08"
+        }
+      },
+      {
+        "id": "GO-DEN-005",
+        "nome": "Studio Dentistico Dott. Tassilo Del Franco",
+        "motivo": "Nessun sito ufficiale individuato e indirizzi correnti incongruenti: Via Carlo de Morelli 38, Via Lunga 8/8-2 e Via Muggia 8. Escluso dai record attivi fino a conferma diretta.",
+        "evidenze": [
+          {
+            "indirizzo": "Via Carlo de Morelli, 38",
+            "fonte": "Oraridiapertura24, aggiornamento 15/04/2026",
+            "coordinate": [
+              45.9432479,
+              13.6217303
+            ]
+          },
+          {
+            "indirizzo": "Via Lunga, 8",
+            "fonte": "Guida convenzioni CISL FVG 2025"
+          },
+          {
+            "indirizzo": "Via Lunga, 8/2",
+            "fonte": "Albo odontoiatri pubblicato nel 2026; possibile domicilio professionale"
+          },
+          {
+            "indirizzo": "Via Muggia, 8",
+            "fonte": "Virgilio/Pagine Gialle corrente, con telefono differente"
+          }
+        ],
+        "dati_precedenti": {
+          "id": "GO-DEN-005",
+          "provincia": "GO",
+          "temporaneamente_chiuso": false,
+          "nome": "Studio Dentistico Dott. Tassilo Del Franco",
+          "tipo_struttura": "Studio o centro odontoiatrico",
+          "indirizzo": "Via Lunga, 8",
+          "cap": "34170",
+          "comune": "Gorizia",
+          "latitudine": null,
+          "longitudine": null,
+          "telefono": "349 3100886",
+          "email": null,
+          "sito_ufficiale": null,
+          "orari": {
+            "lunedi": [],
+            "martedi": [],
+            "mercoledi": [],
+            "giovedi": [],
+            "venerdi": [],
+            "sabato": [],
+            "domenica": []
+          },
+          "su_appuntamento": true,
+          "servizi": "Odontoiatria; ortodonzia",
+          "convenzionato_asugi": null,
+          "fonte_principale": "Convenzione CISL FVG 2023-2024 e directory correnti concordanti",
+          "fonte_orari": null,
+          "orari_verificati": false,
+          "gestione_urgenze": {
+            "disponibile": null,
+            "h24": false,
+            "telefono": null,
+            "note": "Da verificare"
+          },
+          "note": "Indirizzo aggiornato a Via Lunga 8. Via Morelli 38 compare in elenchi storici e non viene più utilizzata nel record corrente.",
+          "data_verifica": "2026-10-08",
+          "verifica": {
+            "status": "parziale",
+            "identita_verificata": true,
+            "contatti_verificati": true,
+            "orari_verificati": false,
+            "livello_fonte": "secondaria_corrente_concordante",
+            "criticita": [
+              "Orari non verificati"
+            ],
+            "data": "2026-10-08"
+          }
+        }
+      }
+    ],
+    "conflitti_da_verificare": [
+      {
+        "id": "GO-DEN-005",
+        "tema": "Sede professionale non determinabile",
+        "nota": "Necessaria conferma telefonica o dell’Ordine; record mantenuto fuori dal dataset pubblicabile."
+      }
+    ],
+    "verifiche_residue": [
+      "GO-DEN-003",
+      "GO-DEN-004",
+      "GO-DEN-009",
+      "GO-DEN-010",
+      "GO-DEN-012",
+      "GO-DEN-013",
+      "GO-DEN-014",
+      "GO-DEN-016",
+      "GO-DEN-017",
+      "GO-DEN-018",
+      "GO-DEN-022",
+      "GO-DEN-025",
+      "GO-DEN-028",
+      "GO-DEN-032",
+      "GO-DEN-036",
+      "GO-DEN-005"
+    ],
+    "copertura_comuni": {
+      "Capriva del Friuli": 0,
+      "Cormons": 1,
+      "Doberdò del Lago": 0,
+      "Dolegna del Collio": 0,
+      "Farra d’Isonzo": 1,
+      "Fogliano Redipuglia": 0,
+      "Gorizia": 5,
+      "Gradisca d’Isonzo": 5,
+      "Grado": 2,
+      "Mariano del Friuli": 0,
+      "Medea": 0,
+      "Monfalcone": 8,
+      "Moraro": 1,
+      "Mossa": 0,
+      "Romans d’Isonzo": 3,
+      "Ronchi dei Legionari": 4,
+      "Sagrado": 0,
+      "San Canzian d’Isonzo": 1,
+      "San Floriano del Collio": 0,
+      "San Lorenzo Isontino": 0,
+      "San Pier d’Isonzo": 0,
+      "Savogna d’Isonzo": 0,
+      "Staranzano": 1,
+      "Turriaco": 0,
+      "Villesse": 2
+    },
+    "avanzamento_verifica": {
+      "data": "2026-10-08",
+      "fase": "Ispezione siti e metadati cartografici completata",
+      "record_totali": 34,
+      "record_verificati": 19,
+      "record_parziali": 16,
+      "record_esclusi": 2,
+      "comuni_con_almeno_un_record": 12,
+      "comuni_senza_record": [
+        "Capriva del Friuli",
+        "Doberdò del Lago",
+        "Dolegna del Collio",
+        "Fogliano Redipuglia",
+        "Mariano del Friuli",
+        "Medea",
+        "Mossa",
+        "Sagrado",
+        "San Floriano del Collio",
+        "San Lorenzo Isontino",
+        "San Pier d’Isonzo",
+        "Savogna d’Isonzo",
+        "Turriaco"
+      ],
+      "nota": "Verifica documentale su fonti ufficiali, Ordine, registri e reti convenzionate correnti. Coordinate e conferme telefoniche restano una fase separata."
+    },
+    "avanzamento_coordinate": {
+      "data": "2026-10-08",
+      "coordinate_accettate": 34,
+      "coordinate_da_rivedere": 0,
+      "record_non_risolti": [],
+      "criterio": "POI/civico inequivocabile oppure coordinate strutturate associate nella pagina alla medesima attività."
+    },
+    "conflitti_risolti": [
+      {
+        "id": "GO-DEN-009",
+        "esito": "Sede personale confermata e distinta dal ruolo di direttore sanitario presso DentalPro."
+      },
+      {
+        "id": "GO-DEN-008",
+        "esito": "Adottato il prospetto giornaliero specifico pubblicato sul sito Romedio."
+      },
+      {
+        "id": "GO-DEN-034",
+        "esito": "Adottato LUN-SAB 09:00-20:00; domenica non pubblicata a causa del testo generale contraddittorio."
+      },
+      {
+        "id": "GO-DEN-033",
+        "esito": "Sede di Grado mantenuta fuori dai record attivi finché il sito ufficiale riporta “prossima apertura”."
+      }
+    ]
+  },
+  "records": [
+    {
+      "id": "GO-DEN-001",
+      "provincia": "GO",
+      "temporaneamente_chiuso": false,
+      "nome": "ASUGI – Ambulatori e Pronto Soccorso Odontoiatrico, Ospedale di Gorizia",
+      "tipo_struttura": "Servizio odontoiatrico pubblico",
+      "indirizzo": "Via Fatebenefratelli, 34",
+      "cap": "34170",
+      "comune": "Gorizia",
+      "latitudine": 45.9355339,
+      "longitudine": 13.6052592,
+      "telefono": "0481 592248",
+      "email": "odonto@asugi.sanita.fvg.it",
+      "sito_ufficiale": "https://asugi.sanita.fvg.it/it/strutture/direz_sanitaria/dao/dai_chir_specialistica/go_odontostomatologia/PS_odonto_go.html",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "13:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "13:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "13:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "13:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "13:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "08:00",
+            "chiude": "11:30"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "servizi": "Pronto soccorso odontoiatrico; odontoiatria generale; chirurgia orale; patologia orale; igiene; conservativa; endodonzia; pedodonzia; ortodonzia",
+      "convenzionato_asugi": true,
+      "fonte_principale": "ASUGI",
+      "fonte_orari": "https://asugi.sanita.fvg.it/it/strutture/direz_sanitaria/dao/dai_chir_specialistica/go_odontostomatologia/PS_odonto_go.html",
+      "orari_verificati": true,
+      "note": "Servizio pubblico e principale riferimento provinciale per le urgenze odontoiatriche. Non H24.",
+      "data_verifica": "2026-10-08",
+      "gestione_urgenze": {
+        "disponibile": true,
+        "h24": false,
+        "telefono": "0481 592248",
+        "note": "Pronto soccorso odontoiatrico ASUGI negli orari pubblicati; non è un servizio H24."
+      },
+      "verifica": {
+        "status": "verificato",
+        "identita_verificata": true,
+        "contatti_verificati": true,
+        "orari_verificati": true,
+        "livello_fonte": "ufficiale",
+        "criticita": [],
+        "data": "2026-10-08"
+      },
+      "verifica_coordinate": {
+        "status": "verificato_cartografico",
+        "fonte": "OpenStreetMap/Nominatim",
+        "display_name": "Ospedale San Giovanni di Dio, civico 34",
+        "data": "2026-10-08"
+      }
+    },
+    {
+      "id": "GO-DEN-002",
+      "provincia": "GO",
+      "temporaneamente_chiuso": false,
+      "nome": "ASUGI – Ambulatori Odontostomatologia, Ospedale di Monfalcone",
+      "tipo_struttura": "Servizio odontoiatrico pubblico",
+      "indirizzo": "Via Luigi Galvani, 1",
+      "cap": "34074",
+      "comune": "Monfalcone",
+      "latitudine": 45.8159364,
+      "longitudine": 13.5185526,
+      "telefono": "0481 487530",
+      "email": "odonto@asugi.sanita.fvg.it",
+      "sito_ufficiale": "https://asugi.sanita.fvg.it/it/strutture/direz_sanitaria/dao/dai_chir_specialistica/go_odontostomatologia/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "15:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "15:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "15:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "15:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "15:00"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "servizi": "Odontoiatria generale; pedodonzia; ortognatodonzia; urgenze dei pazienti già in cura",
+      "convenzionato_asugi": true,
+      "fonte_principale": "ASUGI",
+      "fonte_orari": "https://asugi.sanita.fvg.it/export/sites/aas1/it/documenti/carte_dei_servizi/go_cds_odontostomatologia_gomf_rev_001_2023.pdf",
+      "orari_verificati": true,
+      "note": "Gli orari delle singole attività possono variare. Le urgenze esterne vengono normalmente indirizzate al servizio di Gorizia.",
+      "data_verifica": "2026-10-08",
+      "gestione_urgenze": {
+        "disponibile": true,
+        "h24": false,
+        "telefono": "0481 487530",
+        "note": "Gestisce urgenze dei pazienti già in cura; le urgenze esterne sono normalmente indirizzate al servizio ASUGI di Gorizia."
+      },
+      "verifica": {
+        "status": "verificato",
+        "identita_verificata": true,
+        "contatti_verificati": true,
+        "orari_verificati": true,
+        "livello_fonte": "ufficiale",
+        "criticita": [],
+        "data": "2026-10-08"
+      },
+      "verifica_coordinate": {
+        "status": "verificato_cartografico",
+        "fonte": "OpenStreetMap/Nominatim",
+        "display_name": "Ospedale San Polo",
+        "data": "2026-10-08"
+      }
+    },
+    {
+      "id": "GO-DEN-003",
+      "provincia": "GO",
+      "temporaneamente_chiuso": false,
+      "nome": "Dental Zen",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Via Terza Armata, 123/A",
+      "cap": "34170",
+      "comune": "Gorizia",
+      "latitudine": 45.9259042,
+      "longitudine": 13.619078,
+      "telefono": "0481 280268; WhatsApp 388 8917268",
+      "email": "info@dentalzensrl.it",
+      "sito_ufficiale": "https://www.dentalzensrl.it/",
+      "orari": {
+        "lunedi": [],
+        "martedi": [],
+        "mercoledi": [],
+        "giovedi": [],
+        "venerdi": [],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "servizi": "Odontoiatria generale; chirurgia orale e maxillofacciale; ortodonzia; implantologia; endodonzia; parodontologia; pedodonzia; protesi; gnatologia",
+      "convenzionato_asugi": null,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Struttura, sede, contatti e prestazioni confermati dal sito ufficiale. Orari ancora da reperire.",
+      "data_verifica": "2026-10-08",
+      "gestione_urgenze": {
+        "disponibile": null,
+        "h24": false,
+        "telefono": null,
+        "note": "Da verificare"
+      },
+      "verifica": {
+        "status": "parziale",
+        "identita_verificata": true,
+        "contatti_verificati": true,
+        "orari_verificati": false,
+        "livello_fonte": "ufficiale",
+        "criticita": [
+          "Orari non pubblicati o non verificati"
+        ],
+        "data": "2026-10-08"
+      },
+      "verifica_coordinate": {
+        "status": "verificato_cartografico",
+        "fonte": "OpenStreetMap/Nominatim",
+        "query": "Via Terza Armata, 123/A, 34170 Gorizia, GO, Italia",
+        "display_name": "123a, Via Terza Armata, Sant'Anna / Sveta Ana, Gorizia, Friuli-Venezia Giulia, 34170, Italia",
+        "data": "2026-10-08"
+      }
+    },
+    {
+      "id": "GO-DEN-004",
+      "provincia": "GO",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Dott. Paolo Arbo",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Viale Gabriele D’Annunzio, 15",
+      "cap": "34170",
+      "comune": "Gorizia",
+      "latitudine": 45.9426564,
+      "longitudine": 13.6261291,
+      "telefono": "0481 533032",
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": [],
+        "martedi": [],
+        "mercoledi": [],
+        "giovedi": [],
+        "venerdi": [],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "servizi": "Odontoiatria generale",
+      "convenzionato_asugi": null,
+      "fonte_principale": "Rete sanitaria convenzionata e Ordine provinciale",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Professionista iscritto all’Ordine e sede presente in rete sanitaria. Sito e orari da verificare.",
+      "data_verifica": "2026-10-08",
+      "gestione_urgenze": {
+        "disponibile": null,
+        "h24": false,
+        "telefono": null,
+        "note": "Da verificare"
+      },
+      "verifica": {
+        "status": "parziale",
+        "identita_verificata": true,
+        "contatti_verificati": false,
+        "orari_verificati": false,
+        "livello_fonte": "ordine_professionale",
+        "criticita": [
+          "La sede privata e il numero telefonico non sono confermati da una fonte ufficiale corrente"
+        ],
+        "data": "2026-10-08"
+      },
+      "verifica_coordinate": {
+        "status": "verificato_cartografico",
+        "fonte": "OpenStreetMap/Nominatim",
+        "query": "Viale Gabriele D’Annunzio, 15, 34170 Gorizia, GO, Italia",
+        "display_name": "15, Viale Gabriele D'Annunzio, Borgo Castello, Gorizia, Friuli-Venezia Giulia, 34170, Italia",
+        "data": "2026-10-08"
+      }
+    },
+    {
+      "id": "GO-DEN-006",
+      "provincia": "GO",
+      "temporaneamente_chiuso": false,
+      "nome": "Centro Dentale Isontino",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Viale Giuseppe Verdi, 15",
+      "cap": "34074",
+      "comune": "Monfalcone",
+      "latitudine": 45.808916,
+      "longitudine": 13.5247656,
+      "telefono": "0481 412790",
+      "email": "centrodentaleisontino@gmail.com",
+      "sito_ufficiale": "https://www.centrodentaleisontino.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "14:30",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "14:30",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "14:30",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "14:30",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "14:30",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "servizi": "Odontoiatria generale",
+      "convenzionato_asugi": null,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": "https://www.centrodentaleisontino.it/contatti",
+      "orari_verificati": true,
+      "note": "Sabato solo su appuntamento e quindi non rappresentato come apertura ordinaria.",
+      "data_verifica": "2026-10-08",
+      "gestione_urgenze": {
+        "disponibile": null,
+        "h24": false,
+        "telefono": null,
+        "note": "Da verificare"
+      },
+      "verifica": {
+        "status": "verificato",
+        "identita_verificata": true,
+        "contatti_verificati": true,
+        "orari_verificati": true,
+        "livello_fonte": "ufficiale",
+        "criticita": [],
+        "data": "2026-10-08"
+      },
+      "verifica_coordinate": {
+        "status": "verificato_cartografico",
+        "fonte": "OpenStreetMap/Nominatim",
+        "query": "Viale Giuseppe Verdi, 15, 34074 Monfalcone, GO, Italia",
+        "display_name": "15, Viale Giuseppe Verdi, Anconetta, Monfalcone, Gorizia, Friuli-Venezia Giulia, 34074, Italia",
+        "data": "2026-10-08"
+      }
+    },
+    {
+      "id": "GO-DEN-007",
+      "provincia": "GO",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Dott. Stefano Reia",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Via Giosuè Carducci, 26/B",
+      "cap": "34074",
+      "comune": "Monfalcone",
+      "latitudine": 45.8052749,
+      "longitudine": 13.5381154,
+      "telefono": "0481 410785; 391 4265454",
+      "email": "info@studioreia.it",
+      "sito_ufficiale": "https://www.studioreia.it/servizi.html",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "17:00"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "servizi": "Odontoiatria generale",
+      "convenzionato_asugi": null,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": "https://www.studioreia.it/servizi.html",
+      "orari_verificati": true,
+      "note": "Sede, contatti e orari confermati dal sito ufficiale.",
+      "data_verifica": "2026-10-08",
+      "gestione_urgenze": {
+        "disponibile": null,
+        "h24": false,
+        "telefono": null,
+        "note": "Da verificare"
+      },
+      "verifica": {
+        "status": "verificato",
+        "identita_verificata": true,
+        "contatti_verificati": true,
+        "orari_verificati": true,
+        "livello_fonte": "ufficiale",
+        "criticita": [],
+        "data": "2026-10-08"
+      },
+      "verifica_coordinate": {
+        "status": "verificato_cartografico",
+        "fonte": "OpenStreetMap/Nominatim",
+        "query": "Via Giosuè Carducci, 26/B, 34074 Monfalcone, GO, Italia",
+        "display_name": "26b, Via Giosuè Carducci, Monfalcone, Gorizia, Friuli-Venezia Giulia, 34074, Italia",
+        "data": "2026-10-08"
+      }
+    },
+    {
+      "id": "GO-DEN-008",
+      "provincia": "GO",
+      "temporaneamente_chiuso": false,
+      "nome": "Romedio Clinic – Studio Dentistico (dir. sanitario Dott. Paolo Paoli)",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Via Duca d’Aosta, 76",
+      "cap": "34074",
+      "comune": "Monfalcone",
+      "latitudine": 45.8094872,
+      "longitudine": 13.5309839,
+      "telefono": "0481 790325",
+      "email": "info@studiodentisticoromedio.it",
+      "sito_ufficiale": "https://www.studiodentisticoromedio.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "16:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "11:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "16:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "11:00",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "15:00"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "servizi": "Odontoiatria generale",
+      "convenzionato_asugi": null,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": "https://www.studiodentisticoromedio.it/studio-dentistico-romedio-il-tuo-dentista-di-fiducia-a-monfalcone/",
+      "orari_verificati": true,
+      "note": "Il sito ufficiale contiene anche un testo generico 08:30-12:30 / 15:30-19:30; sono state adottate le fasce giornaliere dettagliate mostrate nel piè di pagina. Sabato: apertura programmata, senza fascia pubblicata. Conflitto risolto adottando il prospetto giornaliero specifico, più dettagliato della frase generale presente nella stessa pagina.",
+      "data_verifica": "2026-10-08",
+      "gestione_urgenze": {
+        "disponibile": null,
+        "h24": false,
+        "telefono": null,
+        "note": "Da verificare"
+      },
+      "verifica": {
+        "status": "verificato",
+        "identita_verificata": true,
+        "contatti_verificati": true,
+        "orari_verificati": true,
+        "livello_fonte": "ufficiale",
+        "criticita": [],
+        "data": "2026-10-08"
+      },
+      "verifica_coordinate": {
+        "status": "verificato_cartografico",
+        "fonte": "OpenStreetMap/Nominatim",
+        "query": "Via Duca d’Aosta, 76, 34074 Monfalcone, GO, Italia",
+        "display_name": "76, Via Duca d'Aosta, Monfalcone, Gorizia, Friuli-Venezia Giulia, 34074, Italia",
+        "data": "2026-10-08"
+      }
+    },
+    {
+      "id": "GO-DEN-009",
+      "provincia": "GO",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Dott. Mauro Simonich",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Via Aris, 66",
+      "cap": "34074",
+      "comune": "Monfalcone",
+      "latitudine": 45.8104264,
+      "longitudine": 13.5132747,
+      "telefono": "0481 485185",
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": [],
+        "martedi": [],
+        "mercoledi": [],
+        "giovedi": [],
+        "venerdi": [],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "servizi": "Odontoiatria generale",
+      "convenzionato_asugi": null,
+      "fonte_principale": "Rete sanitaria convenzionata e Ordine provinciale",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "La sede personale di Via Aris 66 è confermata da reti convenzionate aggiornate al 2026. È distinta da DentalPro, dove Mauro Simonich svolge il ruolo di direttore sanitario.",
+      "data_verifica": "2026-10-08",
+      "gestione_urgenze": {
+        "disponibile": null,
+        "h24": false,
+        "telefono": null,
+        "note": "Da verificare"
+      },
+      "verifica": {
+        "status": "parziale",
+        "identita_verificata": true,
+        "contatti_verificati": true,
+        "orari_verificati": false,
+        "livello_fonte": "rete_convenzionata_corrente",
+        "criticita": [],
+        "data": "2026-10-08"
+      },
+      "verifica_coordinate": {
+        "status": "verificato_cartografico",
+        "fonte": "OpenStreetMap/Nominatim",
+        "query": "Via Aris, 66, 34074 Monfalcone, GO, Italia",
+        "display_name": "66, Via Aris, Aris / Daris / Darež, Monfalcone, Gorizia, Friuli-Venezia Giulia, 34074, Italia",
+        "data": "2026-10-08"
+      }
+    },
+    {
+      "id": "GO-DEN-010",
+      "provincia": "GO",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Associato Parovel–Zanoner",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Via Cesare Battisti, 12",
+      "cap": "34074",
+      "comune": "Monfalcone",
+      "latitudine": 45.8099755,
+      "longitudine": 13.5323563,
+      "telefono": "0481 413061",
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": [],
+        "martedi": [],
+        "mercoledi": [],
+        "giovedi": [],
+        "venerdi": [],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "servizi": "Odontoiatria generale",
+      "convenzionato_asugi": null,
+      "fonte_principale": "Rete sanitaria convenzionata",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Candidato da verificare prima della pubblicazione.",
+      "data_verifica": "2026-10-08",
+      "gestione_urgenze": {
+        "disponibile": null,
+        "h24": false,
+        "telefono": null,
+        "note": "Da verificare"
+      },
+      "verifica": {
+        "status": "parziale",
+        "identita_verificata": true,
+        "contatti_verificati": true,
+        "orari_verificati": false,
+        "livello_fonte": "secondaria_corrente",
+        "criticita": [
+          "Manca una fonte ufficiale dello studio",
+          "Orari non verificati"
+        ],
+        "data": "2026-10-08"
+      },
+      "verifica_coordinate": {
+        "status": "verificato_cartografico",
+        "fonte": "OpenStreetMap/Nominatim",
+        "query": "Via Cesare Battisti, 12, 34074 Monfalcone, GO, Italia",
+        "display_name": "12, Via Cesare Battisti, Monfalcone, Gorizia, Friuli-Venezia Giulia, 34074, Italia",
+        "data": "2026-10-08"
+      }
+    },
+    {
+      "id": "GO-DEN-011",
+      "provincia": "GO",
+      "temporaneamente_chiuso": false,
+      "nome": "OdontoSalute Ronchi dei Legionari",
+      "tipo_struttura": "Centro odontoiatrico",
+      "indirizzo": "Via Giuseppe Garibaldi, 4/C",
+      "cap": "34077",
+      "comune": "Ronchi dei Legionari",
+      "latitudine": 45.8316384,
+      "longitudine": 13.505877,
+      "telefono": "0481 475450; numero verde 800 864586",
+      "email": "ronchi@odontosalute.it",
+      "sito_ufficiale": "https://www.odontosalute.it/studi-odontoiatrici/odontosalute-ronchi-dei-legionari/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "09:00",
+            "chiude": "17:00"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "servizi": "Odontoiatria generale",
+      "convenzionato_asugi": null,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": "https://www.odontosalute.it/studi-odontoiatrici/odontosalute-ronchi-dei-legionari/",
+      "orari_verificati": true,
+      "note": "Direttore sanitario e autorizzazione sanitaria pubblicati sul sito ufficiale.",
+      "data_verifica": "2026-10-08",
+      "gestione_urgenze": {
+        "disponibile": null,
+        "h24": false,
+        "telefono": null,
+        "note": "Da verificare"
+      },
+      "verifica": {
+        "status": "verificato",
+        "identita_verificata": true,
+        "contatti_verificati": true,
+        "orari_verificati": true,
+        "livello_fonte": "ufficiale",
+        "criticita": [],
+        "data": "2026-10-08"
+      },
+      "verifica_coordinate": {
+        "status": "verificato_cartografico",
+        "fonte": "Google Maps",
+        "display_name": "OdontoSalute Ronchi, Viale G. Garibaldi 4/C",
+        "data": "2026-10-08"
+      }
+    },
+    {
+      "id": "GO-DEN-012",
+      "provincia": "GO",
+      "temporaneamente_chiuso": false,
+      "nome": "Centro Odontoiatrico Santo Stefano",
+      "tipo_struttura": "Centro odontoiatrico",
+      "indirizzo": "Via Giuseppe Garibaldi, 149",
+      "cap": "34077",
+      "comune": "Ronchi dei Legionari",
+      "latitudine": 45.8343918,
+      "longitudine": 13.509096,
+      "telefono": "0481 752802; 329 4912844",
+      "email": null,
+      "sito_ufficiale": "https://centroodontoiatricosantostefano.it/",
+      "orari": {
+        "lunedi": [],
+        "martedi": [],
+        "mercoledi": [],
+        "giovedi": [],
+        "venerdi": [],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "servizi": "Odontoiatria generale",
+      "convenzionato_asugi": null,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Struttura, contatti, direttore sanitario e autorizzazione confermati. Orari da reperire.",
+      "data_verifica": "2026-10-08",
+      "gestione_urgenze": {
+        "disponibile": null,
+        "h24": false,
+        "telefono": null,
+        "note": "Da verificare"
+      },
+      "verifica": {
+        "status": "parziale",
+        "identita_verificata": true,
+        "contatti_verificati": true,
+        "orari_verificati": false,
+        "livello_fonte": "ufficiale",
+        "criticita": [
+          "Orari non pubblicati o non verificati"
+        ],
+        "data": "2026-10-08"
+      },
+      "verifica_coordinate": {
+        "status": "verificato_cartografico",
+        "fonte": "Google Maps",
+        "display_name": "Centro Odontoiatrico Santo Stefano, Via Garibaldi 149",
+        "data": "2026-10-08"
+      }
+    },
+    {
+      "id": "GO-DEN-013",
+      "provincia": "GO",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Dott. Lorenzo Spessot",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Via Roma, 102",
+      "cap": "34077",
+      "comune": "Ronchi dei Legionari",
+      "latitudine": 45.8240538,
+      "longitudine": 13.5001449,
+      "telefono": "0481 795001",
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": [],
+        "martedi": [],
+        "mercoledi": [],
+        "giovedi": [],
+        "venerdi": [],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "servizi": "Odontoiatria generale",
+      "convenzionato_asugi": null,
+      "fonte_principale": "Rete sanitaria convenzionata e Ordine provinciale",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Candidato da verificare prima della pubblicazione.",
+      "data_verifica": "2026-10-08",
+      "gestione_urgenze": {
+        "disponibile": null,
+        "h24": false,
+        "telefono": null,
+        "note": "Da verificare"
+      },
+      "verifica": {
+        "status": "parziale",
+        "identita_verificata": true,
+        "contatti_verificati": true,
+        "orari_verificati": false,
+        "livello_fonte": "cv_ordine_2025",
+        "criticita": [
+          "Studio e indirizzo confermati; orari disponibili solo da directory"
+        ],
+        "data": "2026-10-08"
+      },
+      "verifica_coordinate": {
+        "status": "verificato_cartografico",
+        "fonte": "OpenStreetMap/Nominatim",
+        "query": "Via Roma, 102, 34077 Ronchi dei Legionari, GO, Italia",
+        "display_name": "102, Via Roma, Selz, Ronchi dei Legionari, Gorizia, Friuli-Venezia Giulia, 34077, Italia",
+        "data": "2026-10-08"
+      }
+    },
+    {
+      "id": "GO-DEN-014",
+      "provincia": "GO",
+      "temporaneamente_chiuso": false,
+      "nome": "Centro Dentale Cian",
+      "tipo_struttura": "Centro odontoiatrico",
+      "indirizzo": "Via XXV Maggio, 9/A",
+      "cap": "34076",
+      "comune": "Romans d’Isonzo",
+      "latitudine": 45.891226,
+      "longitudine": 13.4366101,
+      "telefono": "0481 909033; 339 7967120",
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": [],
+        "martedi": [],
+        "mercoledi": [],
+        "giovedi": [],
+        "venerdi": [],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "servizi": "Odontoiatria generale",
+      "convenzionato_asugi": null,
+      "fonte_principale": "Rete sanitaria convenzionata",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Candidato da verificare prima della pubblicazione.",
+      "data_verifica": "2026-10-08",
+      "gestione_urgenze": {
+        "disponibile": null,
+        "h24": false,
+        "telefono": null,
+        "note": "Da verificare"
+      },
+      "verifica": {
+        "status": "parziale",
+        "identita_verificata": true,
+        "contatti_verificati": true,
+        "orari_verificati": false,
+        "livello_fonte": "secondaria_corrente",
+        "criticita": [
+          "Manca una fonte ufficiale dello studio",
+          "Orari non verificati"
+        ],
+        "data": "2026-10-08"
+      },
+      "verifica_coordinate": {
+        "status": "verificato_cartografico",
+        "fonte": "OpenStreetMap/Nominatim",
+        "query": "Via XXV Maggio, 9/A, 34076 Romans d’Isonzo, GO, Italia",
+        "display_name": "9, Via Venticinque Maggio, Versa, Romans d'Isonzo, Gorizia, Friuli-Venezia Giulia, 34076, Italia",
+        "data": "2026-10-08"
+      }
+    },
+    {
+      "id": "GO-DEN-015",
+      "provincia": "GO",
+      "temporaneamente_chiuso": false,
+      "nome": "Smile Center",
+      "tipo_struttura": "Centro odontoiatrico",
+      "indirizzo": "Piazza Dante Alighieri, 22",
+      "cap": "34079",
+      "comune": "Staranzano",
+      "latitudine": 45.8054418,
+      "longitudine": 13.4998977,
+      "telefono": "0481 480065; WhatsApp 391 1427703",
+      "email": "smilecentersrl09@libero.it",
+      "sito_ufficiale": "https://www.smile-center.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "18:00"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "servizi": "Conservativa; endodonzia; protesi; implantologia; parodontologia; ortodonzia; gnatologia; igiene; pedodonzia; estetica dentale",
+      "convenzionato_asugi": null,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": "https://www.smile-center.it/contatti",
+      "orari_verificati": true,
+      "note": "Orario continuato confermato dal sito ufficiale.",
+      "data_verifica": "2026-10-08",
+      "gestione_urgenze": {
+        "disponibile": null,
+        "h24": false,
+        "telefono": null,
+        "note": "Da verificare"
+      },
+      "verifica": {
+        "status": "verificato",
+        "identita_verificata": true,
+        "contatti_verificati": true,
+        "orari_verificati": true,
+        "livello_fonte": "ufficiale",
+        "criticita": [],
+        "data": "2026-10-08"
+      },
+      "verifica_coordinate": {
+        "status": "verificato_cartografico",
+        "fonte": "OpenStreetMap/Nominatim",
+        "query": "Piazza Dante Alighieri, 22, 34079 Staranzano, GO, Italia",
+        "display_name": "22, Piazza Dante Alighieri, Bistrigna, Staranzano, Gorizia, Friuli-Venezia Giulia, 34079, Italia",
+        "data": "2026-10-08"
+      }
+    },
+    {
+      "id": "GO-DEN-016",
+      "provincia": "GO",
+      "temporaneamente_chiuso": false,
+      "nome": "Centro Dentistico GS Dental",
+      "tipo_struttura": "Centro odontoiatrico",
+      "indirizzo": "Via Francesco Petrarca, 1",
+      "cap": "34070",
+      "comune": "Moraro",
+      "latitudine": 45.9309263,
+      "longitudine": 13.495997,
+      "telefono": "0481 80004",
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": [],
+        "martedi": [],
+        "mercoledi": [],
+        "giovedi": [],
+        "venerdi": [],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "servizi": "Odontoiatria generale",
+      "convenzionato_asugi": null,
+      "fonte_principale": "Rete sanitaria convenzionata",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Candidato da verificare prima della pubblicazione.",
+      "data_verifica": "2026-10-08",
+      "gestione_urgenze": {
+        "disponibile": null,
+        "h24": false,
+        "telefono": null,
+        "note": "Da verificare"
+      },
+      "verifica": {
+        "status": "parziale",
+        "identita_verificata": true,
+        "contatti_verificati": true,
+        "orari_verificati": false,
+        "livello_fonte": "secondaria_corrente",
+        "criticita": [
+          "Manca una fonte ufficiale dello studio",
+          "Orari non verificati"
+        ],
+        "data": "2026-10-08"
+      },
+      "verifica_coordinate": {
+        "status": "verificato_cartografico",
+        "fonte": "OpenStreetMap/Nominatim",
+        "query": "Via Francesco Petrarca, 1, 34070 Moraro, GO, Italia",
+        "display_name": "1, Via Francesco Petrarca, Moraro, Gorizia, Friuli-Venezia Giulia, 34070, Italia",
+        "data": "2026-10-08"
+      }
+    },
+    {
+      "id": "GO-DEN-017",
+      "provincia": "GO",
+      "temporaneamente_chiuso": false,
+      "nome": "Centro Odontoiatrico Villesse",
+      "tipo_struttura": "Centro odontoiatrico",
+      "indirizzo": "Via de Iacominis, 23/A",
+      "cap": "34070",
+      "comune": "Villesse",
+      "latitudine": 45.8596229553,
+      "longitudine": 13.4351949692,
+      "telefono": "0481 91234",
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": [],
+        "martedi": [],
+        "mercoledi": [],
+        "giovedi": [],
+        "venerdi": [],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "servizi": "Odontoiatria generale",
+      "convenzionato_asugi": null,
+      "fonte_principale": "Rete sanitaria convenzionata",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Candidato da verificare prima della pubblicazione.",
+      "data_verifica": "2026-10-08",
+      "gestione_urgenze": {
+        "disponibile": null,
+        "h24": false,
+        "telefono": null,
+        "note": "Da verificare"
+      },
+      "verifica": {
+        "status": "parziale",
+        "identita_verificata": true,
+        "contatti_verificati": true,
+        "orari_verificati": false,
+        "livello_fonte": "rete_convenzionata_corrente",
+        "criticita": [
+          "Nessun sito ufficiale o orario confermato"
+        ],
+        "data": "2026-10-08"
+      },
+      "verifica_coordinate": {
+        "status": "verificato_da_metadati_pagina",
+        "fonte": "Padano Vita – pagina del convenzionato",
+        "url": "https://padanovita.it/convenzionati/lookup?brancaSani=&codGeoSani=C%7C31025&nomeSani=",
+        "metodo": "Coordinate associate direttamente nel codice della pagina a nome, indirizzo e telefono del centro",
+        "data": "2026-10-08"
+      }
+    },
+    {
+      "id": "GO-DEN-018",
+      "provincia": "GO",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Dott.ssa Tiziana Castellan",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Piazza Santi Martiri, 5",
+      "cap": "34075",
+      "comune": "San Canzian d’Isonzo",
+      "latitudine": 45.7974878,
+      "longitudine": 13.4643088,
+      "telefono": "0481 769677",
+      "email": null,
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": [],
+        "martedi": [],
+        "mercoledi": [],
+        "giovedi": [],
+        "venerdi": [],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "servizi": "Odontoiatria generale",
+      "convenzionato_asugi": null,
+      "fonte_principale": "Rete sanitaria convenzionata e Ordine provinciale",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "note": "Candidato da verificare prima della pubblicazione.",
+      "data_verifica": "2026-10-08",
+      "gestione_urgenze": {
+        "disponibile": null,
+        "h24": false,
+        "telefono": null,
+        "note": "Da verificare"
+      },
+      "verifica": {
+        "status": "parziale",
+        "identita_verificata": true,
+        "contatti_verificati": true,
+        "orari_verificati": false,
+        "livello_fonte": "rete_convenzionata_corrente",
+        "criticita": [
+          "Orari presenti soltanto in una convenzione meno recente e non importati"
+        ],
+        "data": "2026-10-08"
+      },
+      "verifica_coordinate": {
+        "status": "verificato_cartografico",
+        "fonte": "OpenStreetMap/Nominatim",
+        "query": "Piazza Santi Martiri, 5, 34075 San Canzian d’Isonzo, GO, Italia",
+        "display_name": "5, Piazza Santi Martiri, Marcorina, San Canzian d'Isonzo, Gorizia, Friuli-Venezia Giulia, 34075, Italia",
+        "data": "2026-10-08"
+      }
+    },
+    {
+      "id": "GO-DEN-019",
+      "provincia": "GO",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Dott. Andrea Morassi",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Viale Venezia Giulia, 61",
+      "cap": "34071",
+      "comune": "Cormons",
+      "latitudine": 45.9600485,
+      "longitudine": 13.4632018,
+      "telefono": "0481 61403",
+      "email": "info@studiomorassi.it",
+      "sito_ufficiale": "https://www.studiomorassi.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "17:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "17:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "10:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "17:00"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "servizi": "Odontoiatria generale",
+      "convenzionato_asugi": null,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": "https://www.odontool.it/studio-odontoiatrico/studio-dentistico-morassi",
+      "orari_verificati": true,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "h24": false,
+        "telefono": null,
+        "note": "Da verificare"
+      },
+      "note": "Sede e contatti confermati dal sito ufficiale; orari pubblicati nel profilo professionale Odontool collegato allo studio.",
+      "data_verifica": "2026-10-08",
+      "verifica": {
+        "status": "verificato",
+        "identita_verificata": true,
+        "contatti_verificati": true,
+        "orari_verificati": true,
+        "livello_fonte": "ufficiale",
+        "criticita": [],
+        "data": "2026-10-08"
+      },
+      "verifica_coordinate": {
+        "status": "verificato_cartografico",
+        "fonte": "OpenStreetMap/Nominatim",
+        "query": "Viale Venezia Giulia, 61, 34071 Cormons, GO, Italia",
+        "display_name": "61, Viale Venezia Giulia, Cormons / Krmin, Cormons, Gorizia, Friuli-Venezia Giulia, 34071, Italia",
+        "data": "2026-10-08"
+      }
+    },
+    {
+      "id": "GO-DEN-020",
+      "provincia": "GO",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Dobbiani",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Via Ciotti, 15",
+      "cap": "34072",
+      "comune": "Gradisca d’Isonzo",
+      "latitudine": 45.8885802,
+      "longitudine": 13.5024726,
+      "telefono": "0481 960520",
+      "email": "info@studiodobbiani.it",
+      "sito_ufficiale": "https://www.studiodobbiani.it/gradisca-disonzo/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "18:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "18:00"
+          }
+        ],
+        "mercoledi": [],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "18:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "14:00"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "servizi": "Odontoiatria generale",
+      "convenzionato_asugi": null,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": "https://www.studiodobbiani.it/gradisca-disonzo/",
+      "orari_verificati": true,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "h24": false,
+        "telefono": null,
+        "note": "Da verificare"
+      },
+      "note": "Il sabato è disponibile su richiesta; non rappresentato come apertura ordinaria.",
+      "data_verifica": "2026-10-08",
+      "verifica": {
+        "status": "verificato",
+        "identita_verificata": true,
+        "contatti_verificati": true,
+        "orari_verificati": true,
+        "livello_fonte": "ufficiale",
+        "criticita": [],
+        "data": "2026-10-08"
+      },
+      "verifica_coordinate": {
+        "status": "verificato_cartografico",
+        "fonte": "OpenStreetMap/Nominatim",
+        "query": "Via Ciotti, 15, 34072 Gradisca d’Isonzo, GO, Italia",
+        "display_name": "15, Via Marziano Ciotti, Località Saleti, Gradisca d'Isonzo, Gorizia, Friuli-Venezia Giulia, 34072, Italia",
+        "data": "2026-10-08"
+      }
+    },
+    {
+      "id": "GO-DEN-021",
+      "provincia": "GO",
+      "temporaneamente_chiuso": false,
+      "nome": "Centro Benessere Dentale",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Viale Trieste, 34",
+      "cap": "34072",
+      "comune": "Gradisca d’Isonzo",
+      "latitudine": 45.8871542,
+      "longitudine": 13.4988214,
+      "telefono": "0481 969739; 338 4864815",
+      "email": null,
+      "sito_ufficiale": "https://www.centrobenesseredentale.com/sede-di-gradisca-d-isonzo",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "servizi": "Odontoiatria generale",
+      "convenzionato_asugi": null,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": "https://www.centrobenesseredentale.com/contatti",
+      "orari_verificati": true,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "h24": false,
+        "telefono": null,
+        "note": "Da verificare"
+      },
+      "note": "Orario continuato ufficiale lunedì-venerdì. Il sabato è disponibile solo su appuntamento, senza fascia numerica pubblicata.",
+      "data_verifica": "2026-10-08",
+      "verifica": {
+        "status": "verificato",
+        "identita_verificata": true,
+        "contatti_verificati": true,
+        "orari_verificati": true,
+        "livello_fonte": "ufficiale",
+        "criticita": [],
+        "data": "2026-10-08"
+      },
+      "verifica_coordinate": {
+        "status": "verificato_cartografico",
+        "fonte": "OpenStreetMap/Nominatim",
+        "query": "Viale Trieste, 34, 34072 Gradisca d’Isonzo, GO, Italia",
+        "display_name": "34, Viale Trieste, Borgo Biasol, Gradisca d'Isonzo, Gorizia, Friuli-Venezia Giulia, 34072, Italia",
+        "data": "2026-10-08"
+      }
+    },
+    {
+      "id": "GO-DEN-022",
+      "provincia": "GO",
+      "temporaneamente_chiuso": false,
+      "nome": "ISODONT – Centro Medico Dentale Gradiscano",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Via Leonardo da Vinci, 1/A",
+      "cap": "34072",
+      "comune": "Gradisca d’Isonzo",
+      "latitudine": 45.8899765,
+      "longitudine": 13.4975048,
+      "telefono": "0481 063875",
+      "email": "isodontsnc@gmail.com",
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "servizi": "Odontoiatria generale",
+      "convenzionato_asugi": null,
+      "fonte_principale": "Registro imprese aggiornato e profilo professionale",
+      "fonte_orari": "https://it.nextdoor.com/pages/isodont-gradisca-disonzo-friuli-venezia-giulia/",
+      "orari_verificati": false,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "h24": false,
+        "telefono": null,
+        "note": "Da verificare"
+      },
+      "note": "Attività e sede risultano attive nel 2026. Telefono, email e orari provengono da un profilo professionale non ufficiale: richiedono conferma diretta.",
+      "data_verifica": "2026-10-08",
+      "verifica": {
+        "status": "parziale",
+        "identita_verificata": true,
+        "contatti_verificati": false,
+        "orari_verificati": false,
+        "livello_fonte": "secondaria_corrente",
+        "criticita": [
+          "Contatti e orari da confermare direttamente"
+        ],
+        "data": "2026-10-08"
+      },
+      "verifica_coordinate": {
+        "status": "verificato_cartografico",
+        "fonte": "OpenStreetMap/Nominatim",
+        "query": "Via Leonardo da Vinci, 1/A, 34072 Gradisca d’Isonzo, GO, Italia",
+        "display_name": "1a, Via Leonardo da Vinci, Località Saleti, Gradisca d'Isonzo, Gorizia, Friuli-Venezia Giulia, 34072, Italia",
+        "data": "2026-10-08"
+      }
+    },
+    {
+      "id": "GO-DEN-023",
+      "provincia": "GO",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Dott.ssa Marta Visintin",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Viale Trieste, 82",
+      "cap": "34072",
+      "comune": "Gradisca d’Isonzo",
+      "latitudine": 45.8842122,
+      "longitudine": 13.4920702,
+      "telefono": "0481 99870; WhatsApp 328 2018794",
+      "email": "info@studiodentisticovisintin.it",
+      "sito_ufficiale": "https://www.studiodentisticovisintin.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "15:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "15:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "15:30"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "servizi": "Odontoiatria generale",
+      "convenzionato_asugi": null,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": "https://www.studiodentisticovisintin.it/",
+      "orari_verificati": true,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "h24": false,
+        "telefono": null,
+        "note": "Da verificare"
+      },
+      "note": "Dati confermati dal sito ufficiale.",
+      "data_verifica": "2026-10-08",
+      "verifica": {
+        "status": "verificato",
+        "identita_verificata": true,
+        "contatti_verificati": true,
+        "orari_verificati": true,
+        "livello_fonte": "ufficiale",
+        "criticita": [],
+        "data": "2026-10-08"
+      },
+      "verifica_coordinate": {
+        "status": "verificato_cartografico",
+        "fonte": "OpenStreetMap/Nominatim",
+        "query": "Viale Trieste, 82, 34072 Gradisca d’Isonzo, GO, Italia",
+        "display_name": "82, Viale Trieste, Borgo Biasol, Gradisca d'Isonzo, Gorizia, Friuli-Venezia Giulia, 34072, Italia",
+        "data": "2026-10-08"
+      }
+    },
+    {
+      "id": "GO-DEN-024",
+      "provincia": "GO",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Del Re",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Via della Crociera, 10",
+      "cap": "34074",
+      "comune": "Monfalcone",
+      "latitudine": 45.8019431,
+      "longitudine": 13.524039,
+      "telefono": "0481 483997",
+      "email": "info@studiodentisticodelre.it",
+      "sito_ufficiale": "https://www.studiodentisticodelre.it/contatti",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "14:30"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "servizi": "Odontoiatria generale",
+      "convenzionato_asugi": null,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": "https://www.studiodentisticodelre.it/contatti",
+      "orari_verificati": true,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "h24": false,
+        "telefono": null,
+        "note": "Da verificare"
+      },
+      "note": "Dati confermati dal sito ufficiale.",
+      "data_verifica": "2026-10-08",
+      "verifica": {
+        "status": "verificato",
+        "identita_verificata": true,
+        "contatti_verificati": true,
+        "orari_verificati": true,
+        "livello_fonte": "ufficiale",
+        "criticita": [],
+        "data": "2026-10-08"
+      },
+      "verifica_coordinate": {
+        "status": "verificato_cartografico",
+        "fonte": "OpenStreetMap/Nominatim",
+        "query": "Via della Crociera, 10, 34074 Monfalcone, GO, Italia",
+        "display_name": "10, Via della Crociera, Crosara, Monfalcone, Gorizia, Friuli-Venezia Giulia, 34074, Italia",
+        "data": "2026-10-08"
+      }
+    },
+    {
+      "id": "GO-DEN-025",
+      "provincia": "GO",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Maria Gabriella Grusovin",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Viale XXIV Maggio, 8",
+      "cap": "34170",
+      "comune": "Gorizia",
+      "latitudine": 45.9407514,
+      "longitudine": 13.6188167,
+      "telefono": "0481 531547; 329 4111896",
+      "email": "segreteria@studiogrusovin.it",
+      "sito_ufficiale": "https://www.studiogrusovin.com/",
+      "orari": {
+        "lunedi": [],
+        "martedi": [],
+        "mercoledi": [],
+        "giovedi": [],
+        "venerdi": [],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "servizi": "Implantologia; parodontologia; odontoiatria; ortodonzia; protesi; igiene e prevenzione; sbiancamento",
+      "convenzionato_asugi": null,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "gestione_urgenze": {
+        "disponibile": true,
+        "h24": false,
+        "telefono": null,
+        "note": "Il sito dichiara disponibilità della dottoressa per le urgenze; nessun numero pubblico H24 dedicato."
+      },
+      "note": "Sede e contatti ufficiali; orari ordinari non pubblicati.",
+      "data_verifica": "2026-10-08",
+      "verifica": {
+        "status": "parziale",
+        "identita_verificata": true,
+        "contatti_verificati": true,
+        "orari_verificati": false,
+        "livello_fonte": "ufficiale",
+        "criticita": [
+          "Orari non pubblicati o non verificati"
+        ],
+        "data": "2026-10-08"
+      },
+      "verifica_coordinate": {
+        "status": "verificato_cartografico",
+        "fonte": "OpenStreetMap/Nominatim",
+        "query": "Viale XXIV Maggio, 8, 34170 Gorizia, GO, Italia",
+        "display_name": "8, Viale Ventiquattro Maggio, Studenec / Studenitz, San Rocco / Podturn, Gorizia, Friuli-Venezia Giulia, 34170, Italia",
+        "data": "2026-10-08"
+      }
+    },
+    {
+      "id": "GO-DEN-026",
+      "provincia": "GO",
+      "temporaneamente_chiuso": false,
+      "nome": "DentalPro Monfalcone",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Via G. F. Pocar, 1 – c/o Gran Shopping Belforte",
+      "cap": "34074",
+      "comune": "Monfalcone",
+      "latitudine": 45.8172529,
+      "longitudine": 13.5123978,
+      "telefono": "0481 375131",
+      "email": "rec.monfalcone@dentalpro.it",
+      "sito_ufficiale": "https://www.dentalpro.it/centri/dentista-monfalcone/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:30"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "09:00",
+            "chiude": "20:30"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "servizi": "Odontoiatria generale",
+      "convenzionato_asugi": null,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": "https://www.dentalpro.it/centri/dentista-monfalcone/",
+      "orari_verificati": true,
+      "gestione_urgenze": {
+        "disponibile": true,
+        "h24": false,
+        "telefono": "800 326326",
+        "note": "DentalPro offre prenotazione urgente e ricontatto entro 24 ore; non è pronto soccorso né servizio H24."
+      },
+      "note": "Centro distinto dallo studio personale attribuito al direttore sanitario Mauro Simonich; possibile relazione annotata, non trattata come duplicato.",
+      "data_verifica": "2026-10-08",
+      "verifica": {
+        "status": "verificato",
+        "identita_verificata": true,
+        "contatti_verificati": true,
+        "orari_verificati": true,
+        "livello_fonte": "ufficiale",
+        "criticita": [],
+        "data": "2026-10-08"
+      },
+      "verifica_coordinate": {
+        "status": "verificato_cartografico",
+        "fonte": "OpenStreetMap/Nominatim",
+        "display_name": "Gran Shopping Belforte; centro situato all’interno",
+        "data": "2026-10-08"
+      }
+    },
+    {
+      "id": "GO-DEN-027",
+      "provincia": "GO",
+      "temporaneamente_chiuso": false,
+      "nome": "Medicenter Ronchi dei Legionari",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Via Giuseppe Verdi, 28",
+      "cap": "34077",
+      "comune": "Ronchi dei Legionari",
+      "latitudine": 45.8232113,
+      "longitudine": 13.5012663,
+      "telefono": "0481 777188; WhatsApp 331 6091130",
+      "email": null,
+      "sito_ufficiale": "https://medicentercliniche.it/ronchi-dei-legionari/studio-dentistico-a-ronchi-dei-legionari/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "servizi": "Odontoiatria generale",
+      "convenzionato_asugi": null,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": "https://medicentercliniche.it/ronchi-dei-legionari/studio-dentistico-a-ronchi-dei-legionari/",
+      "orari_verificati": true,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "h24": false,
+        "telefono": null,
+        "note": "Da verificare"
+      },
+      "note": "Sede, contatti e orari confermati dal sito ufficiale.",
+      "data_verifica": "2026-10-08",
+      "verifica": {
+        "status": "verificato",
+        "identita_verificata": true,
+        "contatti_verificati": true,
+        "orari_verificati": true,
+        "livello_fonte": "ufficiale",
+        "criticita": [],
+        "data": "2026-10-08"
+      },
+      "verifica_coordinate": {
+        "status": "verificato_cartografico",
+        "fonte": "OpenStreetMap/Nominatim",
+        "query": "Via Giuseppe Verdi, 28, 34077 Ronchi dei Legionari, GO, Italia",
+        "display_name": "28, Via Giuseppe Verdi, Selz, Ronchi dei Legionari, Gorizia, Friuli-Venezia Giulia, 34077, Italia",
+        "data": "2026-10-08"
+      }
+    },
+    {
+      "id": "GO-DEN-028",
+      "provincia": "GO",
+      "temporaneamente_chiuso": false,
+      "nome": "Medicenter Grado",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Riva Sebastiano Scaramuzza, 9/B",
+      "cap": "34073",
+      "comune": "Grado",
+      "latitudine": 45.678141,
+      "longitudine": 13.389301,
+      "telefono": "0431 84981",
+      "email": "info@medicentercliniche.it",
+      "sito_ufficiale": "https://medicentercliniche.it/medicenter/",
+      "orari": {
+        "lunedi": [],
+        "martedi": [],
+        "mercoledi": [],
+        "giovedi": [],
+        "venerdi": [],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "servizi": "Odontoiatria generale",
+      "convenzionato_asugi": null,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "h24": false,
+        "telefono": null,
+        "note": "Da verificare"
+      },
+      "note": "Indirizzo corretto rispetto alla precedente sede in Piazza XXVI Maggio 19. Orari numerici non pubblicati nella pagina ufficiale corrente.",
+      "data_verifica": "2026-10-08",
+      "verifica": {
+        "status": "parziale",
+        "identita_verificata": true,
+        "contatti_verificati": true,
+        "orari_verificati": false,
+        "livello_fonte": "ufficiale",
+        "criticita": [
+          "Orari della nuova sede non pubblicati"
+        ],
+        "data": "2026-10-08"
+      },
+      "verifica_coordinate": {
+        "status": "verificato_cartografico",
+        "fonte": "OpenStreetMap/Nominatim",
+        "query": "Riva Sebastiano Scaramuzza, 9/B, 34073 Grado, GO, Italia",
+        "display_name": "9b, Riva Sebastiano Scaramuzza, Grado, Gorizia, Friuli-Venezia Giulia, 34073, Italia",
+        "data": "2026-10-08"
+      }
+    },
+    {
+      "id": "GO-DEN-029",
+      "provincia": "GO",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Medico Bigolin – Fossalon di Grado",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Via Eraclea, 4 – Fossalon",
+      "cap": "34073",
+      "comune": "Grado",
+      "latitudine": 45.7308372,
+      "longitudine": 13.4859385,
+      "telefono": "0431 88014",
+      "email": "info@studiobigolin.com",
+      "sito_ufficiale": "https://studiobigolin.com/home",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "servizi": "Odontoiatria generale",
+      "convenzionato_asugi": null,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": "https://studiobigolin.com/home",
+      "orari_verificati": true,
+      "gestione_urgenze": {
+        "disponibile": true,
+        "h24": false,
+        "telefono": "320 9269588",
+        "note": "Numero ufficiale indicato per urgenze e reperibilità nei festivi; non dichiarato H24."
+      },
+      "note": "Orari e reperibilità festiva pubblicati dal sito ufficiale.",
+      "data_verifica": "2026-10-08",
+      "verifica": {
+        "status": "verificato",
+        "identita_verificata": true,
+        "contatti_verificati": true,
+        "orari_verificati": true,
+        "livello_fonte": "ufficiale",
+        "criticita": [],
+        "data": "2026-10-08"
+      },
+      "verifica_coordinate": {
+        "status": "verificato_cartografico",
+        "fonte": "OpenStreetMap/Nominatim",
+        "query": "Via Eraclea, 4, 34073 Grado, GO, Italia",
+        "display_name": "4, Via Eraclea, Fossalon di Grado, Grado, Gorizia, Friuli-Venezia Giulia, 34073, Italia",
+        "data": "2026-10-08"
+      }
+    },
+    {
+      "id": "GO-DEN-030",
+      "provincia": "GO",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Barbara Bigolin – Farra d’Isonzo",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Piazza Vittorio Emanuele III, 1",
+      "cap": "34072",
+      "comune": "Farra d’Isonzo",
+      "latitudine": 45.9070944,
+      "longitudine": 13.5184902,
+      "telefono": "0481 888650",
+      "email": "info@studiobigolin.com",
+      "sito_ufficiale": "https://studiobigolin.com/home",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "servizi": "Odontoiatria generale",
+      "convenzionato_asugi": null,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": "https://studiobigolin.com/home",
+      "orari_verificati": true,
+      "gestione_urgenze": {
+        "disponibile": true,
+        "h24": false,
+        "telefono": "320 9269588",
+        "note": "Numero ufficiale indicato per urgenze e reperibilità nei festivi; non dichiarato H24."
+      },
+      "note": "Orari e reperibilità festiva pubblicati dal sito ufficiale.",
+      "data_verifica": "2026-10-08",
+      "verifica": {
+        "status": "verificato",
+        "identita_verificata": true,
+        "contatti_verificati": true,
+        "orari_verificati": true,
+        "livello_fonte": "ufficiale",
+        "criticita": [],
+        "data": "2026-10-08"
+      },
+      "verifica_coordinate": {
+        "status": "verificato_cartografico",
+        "fonte": "OpenStreetMap/Nominatim",
+        "query": "Piazza Vittorio Emanuele III, 1, 34072 Farra d’Isonzo, GO, Italia",
+        "display_name": "1, Piazza Vittorio Emanuele Terzo, Farra d'Isonzo / Fara, Farra d'Isonzo, Gorizia, Friuli-Venezia Giulia, 34072, Italia",
+        "data": "2026-10-08"
+      }
+    },
+    {
+      "id": "GO-DEN-031",
+      "provincia": "GO",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Odontoiatrico Associato Pettarin Tacchino",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Via Gaetano Donizetti, 36",
+      "cap": "34170",
+      "comune": "Gorizia",
+      "latitudine": 45.9350934,
+      "longitudine": 13.6105317,
+      "telefono": "0481 522271",
+      "email": "info@pettarintacchino.it",
+      "sito_ufficiale": "https://pettarintacchino.it/contatti/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "18:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "18:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "18:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "18:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "18:00"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "servizi": "Odontoiatria generale",
+      "convenzionato_asugi": null,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": "https://pettarintacchino.it/contatti/",
+      "orari_verificati": true,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "h24": false,
+        "telefono": null,
+        "note": "Da verificare"
+      },
+      "note": "Sede di Gorizia e orari confermati dal sito ufficiale.",
+      "data_verifica": "2026-10-08",
+      "verifica": {
+        "status": "verificato",
+        "identita_verificata": true,
+        "contatti_verificati": true,
+        "orari_verificati": true,
+        "livello_fonte": "ufficiale",
+        "criticita": [],
+        "data": "2026-10-08"
+      },
+      "verifica_coordinate": {
+        "status": "verificato_cartografico",
+        "fonte": "OpenStreetMap/Nominatim",
+        "query": "Via Gaetano Donizetti, 36, 34170 Gorizia, GO, Italia",
+        "display_name": "36, Via Gaetano Donizetti, Campagnuzza / Rojce, Gorizia, Friuli-Venezia Giulia, 34170, Italia",
+        "data": "2026-10-08"
+      }
+    },
+    {
+      "id": "GO-DEN-032",
+      "provincia": "GO",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Dott. Piero Casciaro – Gradisca",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Via della Campagnola, 3",
+      "cap": "34072",
+      "comune": "Gradisca d’Isonzo",
+      "latitudine": 45.8900975,
+      "longitudine": 13.501581,
+      "telefono": "0481 960871; 334 7100397",
+      "email": "gradisca@pierocasciaro.com",
+      "sito_ufficiale": "https://www.pierocasciaro.com/",
+      "orari": {
+        "lunedi": [],
+        "martedi": [],
+        "mercoledi": [],
+        "giovedi": [],
+        "venerdi": [],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "servizi": "Odontoiatria generale",
+      "convenzionato_asugi": null,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "h24": false,
+        "telefono": null,
+        "note": "Da verificare"
+      },
+      "note": "Sede e contatti confermati dal sito ufficiale; orari non pubblicati.",
+      "data_verifica": "2026-10-08",
+      "verifica": {
+        "status": "parziale",
+        "identita_verificata": true,
+        "contatti_verificati": true,
+        "orari_verificati": false,
+        "livello_fonte": "ufficiale",
+        "criticita": [
+          "Orari non pubblicati"
+        ],
+        "data": "2026-10-08"
+      },
+      "verifica_coordinate": {
+        "status": "verificato_cartografico",
+        "fonte": "OpenStreetMap/Nominatim",
+        "query": "Via della Campagnola, 3, 34072 Gradisca d’Isonzo, GO, Italia",
+        "display_name": "3, Via della Campagnola, Località Saleti, Gradisca d'Isonzo, Gorizia, Friuli-Venezia Giulia, 34072, Italia",
+        "data": "2026-10-08"
+      }
+    },
+    {
+      "id": "GO-DEN-034",
+      "provincia": "GO",
+      "temporaneamente_chiuso": false,
+      "nome": "Dental Feel Villesse",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Località Maranuz, 2 – c/o Tiare Shopping Center",
+      "cap": "34070",
+      "comune": "Villesse",
+      "latitudine": 45.86516,
+      "longitudine": 13.4312195,
+      "telefono": "0481 063287; 366 7085363",
+      "email": "dentalfeel.villesse@dentalfeel.it",
+      "sito_ufficiale": "https://dentalfeel.it/dentista-villesse/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": [
+          {
+            "apre": "09:00",
+            "chiude": "20:00"
+          }
+        ],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "servizi": "Odontoiatria generale",
+      "convenzionato_asugi": null,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": "https://dentalfeel.it/dentista-villesse/",
+      "orari_verificati": true,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "h24": false,
+        "telefono": null,
+        "note": "Da verificare"
+      },
+      "note": "Conflitto risolto applicando il riquadro orari specifico della sede: lunedì-sabato 09:00-20:00. La frase “sette giorni su sette” è testo generale contraddittorio; domenica non viene indicata come aperta.",
+      "data_verifica": "2026-10-08",
+      "verifica": {
+        "status": "verificato",
+        "identita_verificata": true,
+        "contatti_verificati": true,
+        "orari_verificati": true,
+        "livello_fonte": "ufficiale",
+        "criticita": [],
+        "data": "2026-10-08"
+      },
+      "verifica_coordinate": {
+        "status": "verificato_cartografico",
+        "fonte": "OpenStreetMap/Nominatim",
+        "query": "Dental Feel Villesse, Villesse, Italia",
+        "display_name": "Dental Feel, Località Maranuz, Villesse, Gorizia, Friuli-Venezia Giulia, 34070, Italia",
+        "data": "2026-10-08"
+      }
+    },
+    {
+      "id": "GO-DEN-035",
+      "provincia": "GO",
+      "temporaneamente_chiuso": false,
+      "nome": "Odontoiatrica Goriziana",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Via Modolet, 4/A",
+      "cap": "34076",
+      "comune": "Romans d’Isonzo",
+      "latitudine": 45.8905186,
+      "longitudine": 13.4426433,
+      "telefono": "0481 90560",
+      "email": "info@odontoiatricagoriziana.it",
+      "sito_ufficiale": "https://www.odontoiatricagoriziana.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "15:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "15:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:30",
+            "chiude": "12:30"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "18:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "15:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:30",
+            "chiude": "13:00"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "servizi": "Odontoiatria generale; endodonzia; implantologia; parodontologia; protesi; ortodonzia; estetica dentale",
+      "convenzionato_asugi": null,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": "https://www.odontoiatricagoriziana.it/",
+      "orari_verificati": true,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "h24": false,
+        "telefono": null,
+        "note": "Da verificare"
+      },
+      "note": "Sede, contatti e orari confermati dal sito ufficiale.",
+      "data_verifica": "2026-10-08",
+      "verifica": {
+        "status": "verificato",
+        "identita_verificata": true,
+        "contatti_verificati": true,
+        "orari_verificati": true,
+        "livello_fonte": "ufficiale",
+        "criticita": [],
+        "data": "2026-10-08"
+      },
+      "verifica_coordinate": {
+        "status": "verificato_cartografico",
+        "fonte": "OpenStreetMap/Nominatim",
+        "query": "Via Modolet, 4/A, 34076 Romans d’Isonzo, GO, Italia",
+        "display_name": "4a, Via Modolêt, Romans d'Isonzo, Gorizia, Friuli-Venezia Giulia, 34076, Italia",
+        "data": "2026-10-08"
+      }
+    },
+    {
+      "id": "GO-DEN-036",
+      "provincia": "GO",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Dentistico Medi Lang S.r.l.",
+      "tipo_struttura": "Studio o centro odontoiatrico",
+      "indirizzo": "Via Modolet, 11/4",
+      "cap": "34076",
+      "comune": "Romans d’Isonzo",
+      "latitudine": 45.89025,
+      "longitudine": 13.44307,
+      "telefono": "0481 909427",
+      "email": "studiomedilang@ngi.it",
+      "sito_ufficiale": null,
+      "orari": {
+        "lunedi": [],
+        "martedi": [],
+        "mercoledi": [],
+        "giovedi": [],
+        "venerdi": [],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "servizi": "Odontoiatria generale",
+      "convenzionato_asugi": null,
+      "fonte_principale": "Registro imprese e directory correnti",
+      "fonte_orari": null,
+      "orari_verificati": false,
+      "gestione_urgenze": {
+        "disponibile": null,
+        "h24": false,
+        "telefono": null,
+        "note": "Da verificare"
+      },
+      "note": "Società e sede risultano attive; sito storico non più disponibile. Gli orari reperiti solo su directory non sono pubblicati finché non confermati direttamente.",
+      "data_verifica": "2026-10-08",
+      "verifica": {
+        "status": "parziale",
+        "identita_verificata": true,
+        "contatti_verificati": true,
+        "orari_verificati": false,
+        "livello_fonte": "registro_e_directory",
+        "criticita": [
+          "Orari non confermati"
+        ],
+        "data": "2026-10-08"
+      },
+      "verifica_coordinate": {
+        "status": "verificato_da_metadati_pagina",
+        "fonte": "Pronto Imprese – JSON-LD LocalBusiness",
+        "url": "https://www.prontoimprese.it/impresa/romans-d-isonzo/dentista/studio-dentistico-medi-lang",
+        "metodo": "GeoCoordinates nello stesso oggetto JSON-LD contenente ragione sociale, indirizzo e telefono",
+        "confronto": {
+          "fonte": "Oraridiapertura24",
+          "latitudine": 45.89039,
+          "longitudine": 13.44353,
+          "nota": "Seconda coordinata coerente, circa 39 metri di distanza."
+        },
+        "data": "2026-10-08"
+      }
+    }
+  ]
+}

@@ -583,6 +583,16 @@
     "orarioNonPubblicato": "Orario non pubblicato",
     "chiuso": "Chiuso",
     "convenzionatoAsugi": "Convenzionato ASUGI",
+    "emergenzeTitolo": "Emergenze · {provincia}",
+    "nessunaEmergenza": "Nessuna struttura di {provincia} dichiara una gestione delle urgenze in questo elenco. In caso di urgenza, contattare telefonicamente lo studio più vicino durante l'orario di apertura.",
+    "emergenzeDescrizione": "Strutture con una gestione delle urgenze dichiarata — verificare comunque per telefono prima di un accesso urgente.",
+    "emergenzeLabel": "Urgenze:",
+    "telEmergenzeEtichetta": "Tel. urgenze: {telefono}",
+    "livelloUrgenze": {
+      "pronto_soccorso_24h": "Pronto soccorso 24h",
+      "urgenze_dichiarate": "Urgenze dichiarate",
+      "non_dichiarata": "Nessuna urgenza dichiarata"
+    },
     "nessunaCoordinata": "Le coordinate di questo censimento non sono ancora disponibili: verranno aggiunte con i dati verificati."
   },
   "sci": {

@@ -4,6 +4,7 @@ import { giornoSettimana, type GiornoSettimana } from "@/lib/orario";
 import type { FasciaOrariaSettimanale } from "@/lib/supermercati";
 
 import datiTrieste from "@/lib/data/dentisti-trieste.json";
+import datiGorizia from "@/lib/data/dentisti-gorizia.json";
 
 export { adessoEuropeRome, giornoSettimana };
 export type { FasciaOrariaSettimanale };
@@ -18,49 +19,95 @@ export type { FasciaOrariaSettimanale };
 // trascinerebbe nel bundle client di /dentisti anche l'intero dataset
 // Supermercati, mai usato da questa pagina.
 //
-// Differenza importante rispetto a Veterinari: QUI NON C'È un campo di
-// gestione emergenze per singolo record. Il motivo (vedi sessione di
-// ricognizione dedicata nel doc di progetto, 06/10/2026, prima di
-// scrivere questo file): per i Veterinari ogni clinica si autodichiara
-// su un proprio livello di emergenza (modello distribuito, un enum per
-// struttura). Per gli odontoiatri a Trieste non esiste un equivalente
-// per-struttura — trovato invece un solo servizio centralizzato, il
-// Pronto Soccorso Odontoiatrico dell'Ospedale di Cattinara/Maggiore
-// (gestito da ASUGI insieme alla Clinica Odontoiatrica universitaria),
-// con accesso non libero (serve un codice di urgenza dal medico
-// curante, prenotazione CUP, o invio dal Pronto Soccorso generale) — un
-// caso a sé, da mostrare in un riquadro unico e separato (non ancora
-// costruito: la fonte trovata per i dettagli operativi è un regolamento
-// universitario del 2013, da riverificare su una fonte ASUGI aggiornata
-// prima di pubblicare orari/contatti/procedura). Fino a quel momento,
-// questa pagina non mostra alcuna sezione emergenze.
+// Storia della sezione Emergenze/Urgenze (importante per capire perché
+// il codice sotto esiste, visto che la decisione iniziale era opposta):
+// la ricognizione originale (06/10/2026, prima di scrivere questo file)
+// aveva concluso che QUI NON avrebbe dovuto esserci un campo di gestione
+// emergenze per singolo record come per Veterinari — a Trieste non era
+// emerso un equivalente per-struttura, solo un servizio centralizzato
+// (il Pronto Soccorso Odontoiatrico di Cattinara/Maggiore, fonte un
+// regolamento universitario del 2013 da riverificare). Il dataset di
+// Gorizia (09/10/2026) ha introdotto `gestione_urgenze` per-record — a
+// quel punto conservato nel modello dati ma non ancora mostrato,
+// un'altra AskUserQuestion di mezzo. **Decisione finale (09/10/2026,
+// "possiamo usare la gestione urgenze come abbiamo fatto per i
+// veterinari")**: sì, con lo stesso trattamento visivo di Veterinari —
+// riquadro Emergenze in cima alla pagina, badge per struttura, marker
+// mappa in evidenza — vedi `LIVELLO_URGENZE_DENTISTA`/
+// `vociUrgenzeDentista()` sotto. Differenza voluta rispetto a
+// Veterinari: qui il dato sorgente non è un enum a 9 valori ma un
+// oggetto con solo `disponibile`/`h24` — quindi solo 3 livelli invece di
+// 9, niente "sinonimi da riconciliare" fra province. Il riquadro unico
+// sul Pronto Soccorso Odontoiatrico di Cattinara (Trieste) resta
+// comunque un progetto separato e ancora in sospeso: per Trieste
+// `gestioneUrgenze` è `null` su ogni record (la chiave non esiste nel
+// file), quindi lì il riquadro Emergenze mostrerà sempre "nessuna
+// struttura dichiara" finché non arriveranno dati equivalenti o quel
+// riquadro dedicato.
 //
-// Dataset AGGIORNATO con la versione "verificata" fornita dall'utente
-// (08/10/2026, sostituisce il censimento iniziale del 06/10/2026 — vedi
-// doc di progetto per i dettagli di entrambe le consegne). Attenzione a
-// cosa è cambiato e cosa NON è cambiato in questo passaggio, perché il
-// file non è uniformemente "verificato" come l'etichetta suggerirebbe:
-// 61 record (67 → 61, 6 esclusi per duplicati/attività cessate/decesso
-// del professionista — vedi `audit.record_esclusi`), con 7 conflitti di
-// fonte risolti e `data_verifica` compilata per ogni record. `orari_
-// verificati` è ora genuinamente misto (20 true / 41 false, non più
-// tutto un unico valore come nel file iniziale). MA: `audit.
-// verifiche_residue` nel file elenca ancora 66 voci come "verifica
-// aperta" (quasi tutte per "coordinate mancanti") — non sincronizzato
-// con i 61 record attuali (contiene ancora 5 id che non esistono più
-// nei record, es. TS-DEN-053/058/063 — esclusi ma non rimossi da quella
-// lista), e `audit.copertura_comuni` riporta ancora i vecchi conteggi
-// 60/2/5 (totale 67) invece di 55/2/4 (totale 61) — disallineamento
-// interno al file stesso, non usato dal codice di questa pagina
-// (nessun componente legge `audit.*`) ma degno di nota se si ispeziona
-// il file. Soprattutto: TUTTI e 61 i record hanno ancora `latitudine`/
-// `longitudine` a `null` — nessuna struttura georeferenziata nemmeno in
-// questa versione. La mappa (DentistiMap.tsx) continua quindi a
-// mostrare il messaggio invece dei marker; cambierà da solo quando (e
-// se) arriveranno le coordinate in una prossima consegna.
+// Trieste — dataset AGGIORNATO con la versione "verificata" fornita
+// dall'utente (08/10/2026, sostituisce il censimento iniziale del
+// 06/10/2026 — vedi doc di progetto per i dettagli di entrambe le
+// consegne). Attenzione a cosa è cambiato e cosa NON è cambiato in
+// questo passaggio, perché il file non è uniformemente "verificato"
+// come l'etichetta suggerirebbe: 61 record (67 → 61, 6 esclusi per
+// duplicati/attività cessate/decesso del professionista — vedi `audit.
+// record_esclusi`), con 7 conflitti di fonte risolti e `data_verifica`
+// compilata per ogni record. `orari_verificati` è ora genuinamente
+// misto (20 true / 41 false, non più tutto un unico valore come nel
+// file iniziale). MA: `audit.verifiche_residue` nel file elenca ancora
+// 66 voci come "verifica aperta" (quasi tutte per "coordinate
+// mancanti") — non sincronizzato con i 61 record attuali (contiene
+// ancora 5 id che non esistono più nei record, es. TS-DEN-053/058/063 —
+// esclusi ma non rimossi da quella lista), e `audit.copertura_comuni`
+// riporta ancora i vecchi conteggi 60/2/5 (totale 67) invece di 55/2/4
+// (totale 61) — disallineamento interno al file stesso, non usato dal
+// codice di questa pagina (nessun componente legge `audit.*`) ma degno
+// di nota se si ispeziona il file. Soprattutto: TUTTI e 61 i record
+// hanno ancora `latitudine`/`longitudine` a `null` — nessuna struttura
+// georeferenziata nemmeno in questa versione.
+//
+// Gorizia — seconda provincia attivata (09/10/2026), `dentisti-
+// gorizia-candidati.json` (34 record), consegnata dall'utente con un
+// grado di cautela diverso da Trieste ("dovrebbero essere verificati",
+// non un'affermazione netta). File di qualità sensibilmente più alta
+// del censimento Trieste: `audit.copertura_comuni` qui corrisponde
+// esattamente ai conteggi reali per comune (nessun disallineamento), 2
+// record esclusi con motivazione dettagliata e un conflitto rimasto
+// aperto correttamente escluso dai 34 pubblicati (non incluso nel
+// file). **Prima differenza reale rispetto a Trieste: le coordinate
+// sono presenti su tutti e 34 i record** (`audit.avanzamento_
+// coordinate`: 34/34 "coordinate_accettate") — la mappa di Gorizia
+// mostrerà quindi marker veri, a differenza di Trieste che resta senza.
+// **Seconda differenza: un nuovo campo per-record, `gestione_urgenze`**
+// (oggetto con `disponibile`/`h24`/`telefono`/`note`), compilato su 6
+// dei 34 record — i 2 ambulatori pubblici ASUGI (Gorizia e Monfalcone,
+// fonte ASUGI 2026) più 4 studi privati con reperibilità autodichiarata.
+// Questo è concettualmente il modello DISTRIBUITO già usato per
+// Veterinari (gestione_emergenze per singola struttura), che per
+// Dentisti era stato scartato nella ricognizione originale a favore di
+// un riquadro unico e centralizzato (vedi sopra e doc di progetto).
+// **Decisione del 09/10/2026 (prima AskUserQuestion)**: il campo viene
+// normalizzato e conservato nel modello dati (campo `gestioneUrgenze`
+// su `VoceDentista`, `null` per Trieste che non lo possiede affatto) ma
+// NON ancora mostrato. **Superata subito dopo, stesso giorno** — vedi
+// il commento sopra: l'utente ha chiesto di trattarlo come Veterinari,
+// quindi ora C'È un riquadro Emergenze, badge e colorazione mappa.
 export type OrarioGiornoDentista = FasciaOrariaSettimanale[] | null;
 
 export type OrariSettimanaDentista = Record<GiornoSettimana, OrarioGiornoDentista>;
+
+// Campo per-record "gestione_urgenze" introdotto dal dataset di Gorizia
+// (09/10/2026) — assente del tutto per Trieste (non solo `null`: la
+// chiave non esiste nei suoi record). Normalizzato e conservato qui
+// per i dati, ma deliberatamente NON ancora letto da nessun componente
+// — vedi la nota estesa più sopra sulla decisione presa con l'utente.
+export type GestioneUrgenzeDentista = {
+  disponibile: boolean | null;
+  h24: boolean;
+  telefono: string | null;
+  note: string | null;
+};
 
 export type VoceDentista = {
   id: string;
@@ -82,6 +129,7 @@ export type VoceDentista = {
   orariVerificati: boolean;
   note: string | null;
   temporaneamenteChiuso: boolean;
+  gestioneUrgenze: GestioneUrgenzeDentista | null;
 };
 
 const ABBR_TO_SLUG: Record<string, ProvinciaSlug> = { TS: "trieste", UD: "udine", GO: "gorizia", PN: "pordenone" };
@@ -110,6 +158,17 @@ type RecordGrezzo = {
   convenzionato_asugi: boolean | null;
   orari_verificati: boolean;
   note?: string | null;
+  // Presente solo nei record di Gorizia (assente del tutto in quelli
+  // di Trieste) — vedi il commento estesa sopra. Altri campi del
+  // dataset Gorizia (`verifica`, `verifica_coordinate`, `comuni_scope`
+  // a livello di `audit`) non sono qui: non servono al sito, solo alla
+  // tracciabilità del processo di verifica dell'utente.
+  gestione_urgenze?: {
+    disponibile: boolean | null;
+    h24: boolean;
+    telefono: string | null;
+    note: string | null;
+  } | null;
 };
 
 function normalizza(r: RecordGrezzo): VoceDentista {
@@ -133,20 +192,21 @@ function normalizza(r: RecordGrezzo): VoceDentista {
     orariVerificati: r.orari_verificati,
     note: r.note || null,
     temporaneamenteChiuso: r.temporaneamente_chiuso,
+    gestioneUrgenze: r.gestione_urgenze ?? null,
   };
 }
 
-// Solo Trieste per ora (prima provincia, stesso rollout graduale già
-// fatto per Veterinari/Supermercati/Notizie) — le altre 3 restano array
-// vuoti finché l'utente non fornirà i rispettivi dati verificati.
+// Trieste e Gorizia attive (rollout graduale già fatto per
+// Veterinari/Supermercati/Notizie) — Udine e Pordenone restano array
+// vuoti finché l'utente non fornirà i rispettivi dati.
 export const DENTISTI_PER_PROVINCIA: Record<ProvinciaSlug, VoceDentista[]> = {
   trieste: (datiTrieste.records as RecordGrezzo[]).map(normalizza),
   udine: [],
-  gorizia: [],
+  gorizia: (datiGorizia.records as RecordGrezzo[]).map(normalizza),
   pordenone: [],
 };
 
-export const PROVINCE_DENTISTI_ATTIVE: ProvinciaSlug[] = ["trieste"];
+export const PROVINCE_DENTISTI_ATTIVE: ProvinciaSlug[] = ["trieste", "gorizia"];
 
 // "Aperta ora"/"Chiusa ora"/"sconosciuto" — stessa identica logica di
 // statoAperturaVeterinario() in lib/veterinari.ts (orari settimanali
@@ -180,4 +240,56 @@ export function formattaFasceGiornoDentista(
   if (fasce === null) return testoOrarioNonPubblicato;
   if (fasce.length === 0) return testoChiuso;
   return fasce.map((f) => `${f.apre}–${f.chiude}`).join(", ");
+}
+
+// Livelli derivati da `gestioneUrgenze` (vedi commento esteso in testa
+// al file). A differenza di `GestioneEmergenza` in lib/veterinari.ts
+// (9 valori letti direttamente da un enum nel JSON), qui i livelli sono
+// CALCOLATI da due booleani (`disponibile`/`h24`) invece di letti da
+// un campo enum — il dataset non ne ha uno, quindi non serve una mappa
+// di sinonimi fra province come per Veterinari. Solo 3 livelli: più che
+// sufficiente per il dato disponibile oggi (nessun record ha ancora
+// `h24: true`, ma il codice lo gestisce comunque).
+export type LivelloUrgenzeDentista = "pronto_soccorso_24h" | "urgenze_dichiarate" | "non_dichiarata";
+
+export const LIVELLO_URGENZE_DENTISTA: Record<
+  LivelloUrgenzeDentista,
+  { rango: number; evidenzia: boolean; classeBadge: string }
+> = {
+  pronto_soccorso_24h: {
+    rango: 1,
+    evidenzia: true,
+    classeBadge: "bg-allerta-rossa text-white",
+  },
+  urgenze_dichiarate: {
+    rango: 2,
+    evidenzia: true,
+    classeBadge: "border border-allerta-arancione-ink text-allerta-arancione-ink",
+  },
+  non_dichiarata: {
+    rango: 3,
+    evidenzia: false,
+    classeBadge: "border border-line text-ink-faint",
+  },
+};
+
+export function livelloUrgenzeDentista(v: VoceDentista): LivelloUrgenzeDentista {
+  const gu = v.gestioneUrgenze;
+  if (!gu || gu.disponibile !== true) return "non_dichiarata";
+  return gu.h24 ? "pronto_soccorso_24h" : "urgenze_dichiarate";
+}
+
+// Stessa funzione di vociEmergenza() in lib/veterinari.ts: strutture non
+// temporaneamente chiuse con un livello "in evidenza" (quindi esclude
+// "non_dichiarata", la maggioranza — per Trieste, letteralmente tutte,
+// visto che lì `gestioneUrgenze` è sempre `null`), ordinate dalla più
+// pronta (pronto soccorso 24h) alla meno certa.
+export function vociUrgenzeDentista(voci: VoceDentista[]): VoceDentista[] {
+  return voci
+    .filter((v) => !v.temporaneamenteChiuso && LIVELLO_URGENZE_DENTISTA[livelloUrgenzeDentista(v)].evidenzia)
+    .sort(
+      (a, b) =>
+        LIVELLO_URGENZE_DENTISTA[livelloUrgenzeDentista(a)].rango -
+        LIVELLO_URGENZE_DENTISTA[livelloUrgenzeDentista(b)].rango
+    );
 }

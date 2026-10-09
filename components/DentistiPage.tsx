@@ -10,6 +10,9 @@ import { PROVINCE, PROVINCE_LIST, type ProvinciaSlug } from "@/lib/province";
 import {
   DENTISTI_PER_PROVINCIA,
   PROVINCE_DENTISTI_ATTIVE,
+  LIVELLO_URGENZE_DENTISTA,
+  vociUrgenzeDentista,
+  livelloUrgenzeDentista,
   formattaFasceGiornoDentista,
   giornoSettimana,
   statoAperturaDentista,
@@ -37,15 +40,17 @@ function telHref(telefono: string): string {
 }
 
 // Sanità → Dentisti & Odontoiatri (06/10/2026, vedi commento esteso in
-// lib/dentisti.ts per la differenza rispetto a Veterinari). Struttura
-// di pagina ricalcata su VeterinariPage.tsx (tab provincia → tab
-// comune → ricerca → elenco/mappa) MA senza il riquadro "Emergenze"
-// sempre in cima: qui non c'è un campo di gestione emergenze per
-// singola struttura, e il riquadro unico sul Pronto Soccorso
-// Odontoiatrico di Cattinara non è stato ancora costruito (dettagli
-// operativi da riverificare su fonte ASUGI aggiornata — vedi
-// lib/dentisti.ts). Quando sarà pronto, andrà qui, nella stessa
-// posizione del riquadro Emergenze di VeterinariPage.tsx.
+// lib/dentisti.ts per la storia completa del riquadro Emergenze — una
+// decisione invertita in corsa). Struttura di pagina ricalcata su
+// VeterinariPage.tsx (tab provincia → tab comune → ricerca →
+// elenco/mappa), ORA CON lo stesso riquadro "Emergenze" sempre in cima
+// (09/10/2026, "possiamo usare la gestione urgenze come abbiamo fatto
+// per i veterinari"): stesso stile visivo, stessa posizione, badge per
+// struttura e colorazione marker sulla mappa. Unica differenza dalla
+// controparte Veterinari: qui il riquadro resta vuoto ("nessuna
+// struttura dichiara...") per ogni provincia il cui dataset non ha
+// affatto la chiave `gestione_urgenze` — oggi è il caso di Trieste, non
+// una regressione.
 export function DentistiPage() {
   const [tab, setTab] = useState<ProvinciaSlug>("trieste");
   const [comuneSel, setComuneSel] = useState<string | null>(null);
@@ -69,6 +74,7 @@ export function DentistiPage() {
 
   const attiva = PROVINCE_DENTISTI_ATTIVE.includes(tab);
   const tuttaLaProvincia = DENTISTI_PER_PROVINCIA[tab];
+  const emergenze = useMemo(() => vociUrgenzeDentista(tuttaLaProvincia), [tuttaLaProvincia]);
 
   const comuni = useMemo(() => {
     const conteggio = new Map<string, number>();
@@ -149,6 +155,55 @@ export function DentistiPage() {
           </div>
         ) : (
           <>
+            {/* Riquadro Emergenze — sempre visibile, indipendente dai filtri
+                comune/ricerca sotto, stesso principio di VeterinariPage.tsx:
+                chi ha un'urgenza non deve doverlo scovare in mezzo all'elenco. */}
+            <div className="border-2 border-allerta-rossa rounded p-4 mb-6 bg-panel">
+              <h2 className="font-cond font-bold text-lg uppercase tracking-wide text-allerta-rossa-ink mb-1">
+                {t("emergenzeTitolo", { provincia: nomeProvincia })}
+              </h2>
+              {emergenze.length === 0 ? (
+                <p className="text-ink-dim text-sm">{t("nessunaEmergenza", { provincia: nomeProvincia })}</p>
+              ) : (
+                <>
+                  <p className="text-ink-faint text-xs font-mono mb-3">{t("emergenzeDescrizione")}</p>
+                  <div className="flex flex-col gap-3">
+                    {emergenze.map((v) => {
+                      const livello = LIVELLO_URGENZE_DENTISTA[livelloUrgenzeDentista(v)];
+                      const etichettaLivello = t(`livelloUrgenze.${livelloUrgenzeDentista(v)}`);
+                      const telefonoMostrato = v.gestioneUrgenze?.telefono ?? v.telefono;
+                      return (
+                        <div key={v.id} className="border-t border-line pt-3 first:border-t-0 first:pt-0">
+                          <div className="flex items-baseline justify-between gap-2 flex-wrap">
+                            <span className="text-sm font-semibold">{v.nome}</span>
+                            <span
+                              className={`px-2 py-0.5 rounded text-[10px] font-cond font-bold uppercase tracking-wide ${livello.classeBadge}`}
+                            >
+                              {etichettaLivello}
+                            </span>
+                          </div>
+                          <div className="text-ink-dim text-xs mt-0.5">
+                            {v.tipoStruttura} · {v.indirizzo}, {v.comune}
+                          </div>
+                          {telefonoMostrato && (
+                            <a
+                              href={`tel:${telHref(telefonoMostrato)}`}
+                              className="inline-block mt-1 text-base font-bold text-allerta-rossa-ink hover:underline"
+                            >
+                              📞 {telefonoMostrato}
+                            </a>
+                          )}
+                          {v.gestioneUrgenze?.note && (
+                            <div className="text-ink-dim text-xs mt-1">{v.gestioneUrgenze.note}</div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </>
+              )}
+            </div>
+
             {comuni.length > 0 && (
               <div className="flex gap-1.5 flex-wrap mb-3">
                 <button
@@ -198,7 +253,9 @@ export function DentistiPage() {
                   </p>
                 ) : (
                   <div className="max-h-[460px] overflow-y-auto flex flex-col">
-                    {elenco.map((v, i) => (
+                    {elenco.map((v, i) => {
+                      const livello = LIVELLO_URGENZE_DENTISTA[livelloUrgenzeDentista(v)];
+                      return (
                       <div key={v.id} className={`py-3 ${i > 0 ? "border-t border-line" : ""}`}>
                         <div className="flex items-baseline justify-between gap-2 min-w-0">
                           <span className="text-sm font-semibold truncate">{v.nome}</span>
@@ -252,8 +309,14 @@ export function DentistiPage() {
                           </div>
                         )}
                         {v.servizi && <div className="text-ink-faint text-[10px] mt-1">{v.servizi}</div>}
+                        <div
+                          className={`inline-block mt-1 px-1.5 py-0.5 rounded text-[9px] font-cond font-bold uppercase tracking-wide ${livello.classeBadge}`}
+                        >
+                          {t(`livelloUrgenze.${livelloUrgenzeDentista(v)}`)}
+                        </div>
                       </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 )}
               </Panel>

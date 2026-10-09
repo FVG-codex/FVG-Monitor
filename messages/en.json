@@ -583,6 +583,16 @@
     "orarioNonPubblicato": "Hours not published",
     "chiuso": "Closed",
     "convenzionatoAsugi": "ASUGI-affiliated",
+    "emergenzeTitolo": "Emergencies · {provincia}",
+    "nessunaEmergenza": "No facility in {provincia} declares emergency care in this list. In an urgent case, call the nearest practice by phone during opening hours.",
+    "emergenzeDescrizione": "Facilities with declared emergency care — always verify by phone before an urgent visit.",
+    "emergenzeLabel": "Emergencies:",
+    "telEmergenzeEtichetta": "Emergency tel.: {telefono}",
+    "livelloUrgenze": {
+      "pronto_soccorso_24h": "24h emergency care",
+      "urgenze_dichiarate": "Declared emergency availability",
+      "non_dichiarata": "No emergency care declared"
+    },
     "nessunaCoordinata": "Coordinates for this survey are not yet available: they will be added with the verified data."
   },
   "sci": {

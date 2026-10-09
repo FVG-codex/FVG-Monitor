@@ -583,6 +583,16 @@
     "orarioNonPubblicato": "Radno vrijeme nije objavljeno",
     "chiuso": "Zatvoreno",
     "convenzionatoAsugi": "Ugovorni partner ASUGI",
+    "emergenzeTitolo": "Hitni slučajevi · {provincia}",
+    "nessunaEmergenza": "Nema ordinacija u {provincia} koje na ovom popisu proglašavaju hitnu skrb. U hitnim slučajevima telefonski kontaktirajte najbližu ordinaciju tijekom radnog vremena.",
+    "emergenzeDescrizione": "Ordinacije s proglašenom hitnom skrbi — u svakom slučaju provjerite telefonom prije hitnog posjeta.",
+    "emergenzeLabel": "Hitni slučajevi:",
+    "telEmergenzeEtichetta": "Telefon za hitne slučajeve: {telefono}",
+    "livelloUrgenze": {
+      "pronto_soccorso_24h": "24-satna hitna pomoć",
+      "urgenze_dichiarate": "Proglašena dostupnost za hitne slučajeve",
+      "non_dichiarata": "Nije proglašena hitna skrb"
+    },
     "nessunaCoordinata": "Koordinate za ovaj popis još nisu dostupne: bit će dodane s provjerenim podacima."
   },
   "sci": {

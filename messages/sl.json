@@ -583,6 +583,16 @@
     "orarioNonPubblicato": "Delovni čas ni objavljen",
     "chiuso": "Zaprto",
     "convenzionatoAsugi": "Pogodbenik ASUGI",
+    "emergenzeTitolo": "Nujni primeri · {provincia}",
+    "nessunaEmergenza": "Noben objekt v {provincia} na tem seznamu ne navaja nujne oskrbe. V nujnem primeru telefonsko pokličite najbližjo ordinacijo med delovnim časom.",
+    "emergenzeDescrizione": "Objekti z navedeno nujno oskrbo — pred nujnim obiskom vedno telefonsko preverite.",
+    "emergenzeLabel": "Nujni primeri:",
+    "telEmergenzeEtichetta": "Tel. za nujne primere: {telefono}",
+    "livelloUrgenze": {
+      "pronto_soccorso_24h": "24-urna nujna oskrba",
+      "urgenze_dichiarate": "Navedena razpoložljivost za nujne primere",
+      "non_dichiarata": "Nobena nujna oskrba ni navedena"
+    },
     "nessunaCoordinata": "Koordinate za ta popis še niso na voljo: dodane bodo z preverjenimi podatki."
   },
   "sci": {
