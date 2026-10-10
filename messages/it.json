@@ -174,7 +174,8 @@
         "descrizione": "Tutte le farmacie e le farmacie di turno, per provincia e comune"
       },
       "cliniche": {
-        "nome": "Cliniche & centri medici"
+        "nome": "Cliniche & centri medici",
+        "descrizione": "Cliniche private, centri medici, poliambulatori e centri diagnostici del Friuli Venezia Giulia"
       },
       "veterinari": {
         "nome": "Veterinari & Emergenze",
@@ -593,6 +594,21 @@
       "urgenze_dichiarate": "Urgenze dichiarate",
       "non_dichiarata": "Nessuna urgenza dichiarata"
     },
+    "nessunaCoordinata": "Le coordinate di questo censimento non sono ancora disponibili: verranno aggiunte con i dati verificati."
+  },
+  "cliniche": {
+    "descrizione": "Cliniche private polispecialistiche, centri medici, poliambulatori e centri diagnostici del Friuli Venezia Giulia — primo censimento in fase di verifica (siti ufficiali e directory di settore), non un albo professionale ufficiale. Verificare sempre telefonicamente orari e disponibilità prima di presentarsi.",
+    "datiInArrivo": "Dati di cliniche e centri medici per {provincia} in arrivo in una prossima fase.",
+    "cercaLabel": "Cerca per nome, comune, tipo di struttura o specialità",
+    "cercaPlaceholder": "Cerca per nome, comune, tipo di struttura o specialità…",
+    "nessunaStrutturaTrovata": "Nessuna struttura trovata{luogo}.",
+    "mappaAriaLabel": "Mappa delle cliniche e dei centri medici{luogo} — elenco testuale equivalente nel pannello a fianco",
+    "suAppuntamento": "su appuntamento",
+    "oggiLabel": "Oggi:",
+    "orarioNonPubblicato": "Orario non pubblicato",
+    "chiuso": "Chiuso",
+    "convenzionataSsr": "Convenzionata SSR",
+    "specialitaLabel": "Specialità:",
     "nessunaCoordinata": "Le coordinate di questo censimento non sono ancora disponibili: verranno aggiunte con i dati verificati."
   },
   "sci": {

@@ -79,7 +79,6 @@ const SEZIONI = [
 export async function SanitaPage() {
   const t = await getTranslations("sanita");
   const tNav = await getTranslations("nav");
-  const tChrome = await getTranslations("chrome");
   return (
     <>
       <TopHeader />
@@ -101,9 +100,7 @@ export async function SanitaPage() {
                 <div className="font-cond font-bold text-lg uppercase tracking-wide">
                   {t(`sezioni.${s.key}.nome`)}
                 </div>
-                <div className="text-ink-faint text-xs mt-1">
-                  {s.key === "cliniche" ? tChrome("inArrivo") : t(`sezioni.${s.key}.descrizione`)}
-                </div>
+                <div className="text-ink-faint text-xs mt-1">{t(`sezioni.${s.key}.descrizione`)}</div>
               </div>
             </Link>
           ))}

@@ -174,7 +174,8 @@
         "descrizione": "Sve ljekarne i dežurne ljekarne, po pokrajinama i općinama"
       },
       "cliniche": {
-        "nome": "Klinike i medicinski centri"
+        "nome": "Klinike i medicinski centri",
+        "descrizione": "Privatne klinike, medicinski centri, poliambulante i dijagnostički centri u Furlaniji-Julijskoj krajini"
       },
       "veterinari": {
         "nome": "Veterinari i hitna pomoć",
@@ -593,6 +594,21 @@
       "urgenze_dichiarate": "Proglašena dostupnost za hitne slučajeve",
       "non_dichiarata": "Nije proglašena hitna skrb"
     },
+    "nessunaCoordinata": "Koordinate za ovaj popis još nisu dostupne: bit će dodane s provjerenim podacima."
+  },
+  "cliniche": {
+    "descrizione": "Privatne polispecijalističke klinike, medicinski centri, poliambulante i dijagnostički centri u Furlaniji-Julijskoj krajini — početni popis koji se još provjerava (službene stranice i imenici sektora), a ne službeni stručni registar. Prije posjeta uvijek telefonski provjerite radno vrijeme i dostupnost.",
+    "datiInArrivo": "Podaci o klinikama i medicinskim centrima za {provincia} dolaze u sljedećoj fazi.",
+    "cercaLabel": "Pretraživanje po nazivu, općini, vrsti objekta ili specijalnosti",
+    "cercaPlaceholder": "Traži po nazivu, općini, vrsti objekta ili specijalnosti…",
+    "nessunaStrutturaTrovata": "Nema pronađenih objekata{luogo}.",
+    "mappaAriaLabel": "Karta klinika i medicinskih centara{luogo} — ekvivalentni tekstualni popis u susjednoj ploči",
+    "suAppuntamento": "po dogovoru",
+    "oggiLabel": "Danas:",
+    "orarioNonPubblicato": "Radno vrijeme nije objavljeno",
+    "chiuso": "Zatvoreno",
+    "convenzionataSsr": "Ugovorni partner SSR",
+    "specialitaLabel": "Specijalnosti:",
     "nessunaCoordinata": "Koordinate za ovaj popis još nisu dostupne: bit će dodane s provjerenim podacima."
   },
   "sci": {

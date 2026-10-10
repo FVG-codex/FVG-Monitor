@@ -1,0 +1,1228 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-10-10",
+  "timezone": "Europe/Rome",
+  "scope": "Cliniche private polispecialistiche, centri medici, poliambulatori, centri diagnostici e case di cura della provincia di Trieste. Esclusi studi monospecialistici dentistici e veterinari, farmacie e strutture pubbliche.",
+  "note_schema": "Prima versione provinciale di lavoro. Una sede fisica per record. Gli orari riferiti a centralino, prelievi o segreteria sono esplicitati nelle note e non vanno interpretati automaticamente come disponibilita di ogni specialita.",
+  "audit": {
+    "record_esclusi": [
+      {
+        "nome": "Studio Polonio",
+        "motivo": "Attivita trasferita definitivamente a Pineta City dal 1 gennaio 2025; escluso per evitare duplicazione.",
+        "fonte": "https://www.polifvg.it/news/fisiatria-e-fisioterapia-dallo-studio-polonio-pineta-city"
+      },
+      {
+        "nome": "Studio Radiologico Zucconi - Via Rismondo 3",
+        "motivo": "Indirizzo storico sostituito dalla sede corrente di Via delle Zudecche 1/F.",
+        "fonte": "https://www.studioradiologicozucconi.com/"
+      },
+      {
+        "nome": "RSA Igea, Mademar e Ad Maiores",
+        "motivo": "Strutture residenziali sociosanitarie escluse da questa prima raccolta di cliniche e poliambulatori; valutare una sezione RSA dedicata.",
+        "fonte": "https://www.polifvg.it/sedi"
+      }
+    ],
+    "candidati_da_verificare": [
+      {
+        "nome": "Ekip Poliambulatorio Medico",
+        "indirizzo": "Via Giosue Carducci 5, Trieste",
+        "motivo": "Sito ufficiale in costruzione; specialita e orari non ancora verificati."
+      }
+    ]
+  },
+  "records": [
+    {
+      "id": "TS-CLI-001",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Casa di Cura Salus",
+      "tipo_struttura": "Casa di cura privata medico-chirurgica / poliambulatorio",
+      "specialita": [
+        "Medicina interna",
+        "Chirurgia generale",
+        "Chirurgia plastica",
+        "Ginecologia",
+        "Oculistica",
+        "Ortopedia",
+        "Otorinolaringoiatria",
+        "Urologia",
+        "Diagnostica per immagini",
+        "Laboratorio analisi"
+      ],
+      "indirizzo": "Via Bonaparte 4-6",
+      "cap": "34123",
+      "comune": "Trieste",
+      "latitudine": 45.6448538,
+      "longitudine": 13.7632967,
+      "telefono": [
+        "0403171111"
+      ],
+      "email": [],
+      "sito_ufficiale": "https://www.polifvg.it/sedi/salus",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "07:45",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "07:45",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "07:45",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "07:45",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "07:45",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": {
+          "apre": "07:45",
+          "chiude": "19:30"
+        },
+        "domenica": {
+          "apre": "07:45",
+          "chiude": "19:30"
+        }
+      },
+      "su_appuntamento": true,
+      "convenzionata_ssr": true,
+      "fonte_principale": "Sito ufficiale Policlinico Triestino; elenco ASUGI 2024",
+      "fonte_orari": "https://www.polifvg.it/sedi/salus",
+      "orari_verificati": true,
+      "note": "Orario riferito al centralino/accesso generale; singoli servizi hanno orari propri.",
+      "data_verifica": "2026-10-10"
+    },
+    {
+      "id": "TS-CLI-002",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Pineta del Carso",
+      "tipo_struttura": "Casa di cura privata / poliambulatorio",
+      "specialita": [
+        "Riabilitazione",
+        "Ortopedia",
+        "Fisiatria",
+        "Diagnostica per immagini",
+        "Laboratorio analisi",
+        "Medicina interna"
+      ],
+      "indirizzo": "Viale Stazione 26",
+      "cap": "34011",
+      "comune": "Duino-Aurisina",
+      "latitudine": 45.7514808,
+      "longitudine": 13.6861247,
+      "telefono": [
+        "0403784111"
+      ],
+      "email": [],
+      "sito_ufficiale": "https://www.polifvg.it/sedi/pineta-del-carso",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "07:30",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "07:30",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "07:30",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "07:30",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "07:30",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": {
+          "apre": "07:30",
+          "chiude": "19:00"
+        },
+        "domenica": null
+      },
+      "su_appuntamento": true,
+      "convenzionata_ssr": true,
+      "fonte_principale": "Sito ufficiale Policlinico Triestino; elenco ASUGI 2024",
+      "fonte_orari": "https://www.polifvg.it/prestazioni/ortopedia",
+      "orari_verificati": true,
+      "note": "Orario riferito al centralino e alle prenotazioni ambulatoriali private.",
+      "data_verifica": "2026-10-10"
+    },
+    {
+      "id": "TS-CLI-003",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Pineta City",
+      "tipo_struttura": "Poliambulatorio privato",
+      "specialita": [
+        "Fisiatria",
+        "Fisioterapia",
+        "Medicina dello sport",
+        "Cardiologia",
+        "Ortopedia",
+        "Allergologia",
+        "Dietologia e nutrizione"
+      ],
+      "indirizzo": "Via Bartolomeo D'Alviano 23",
+      "cap": "34144",
+      "comune": "Trieste",
+      "latitudine": 45.635098,
+      "longitudine": 13.780655,
+      "telefono": [
+        "0403784500",
+        "0403784509"
+      ],
+      "email": [
+        "city@polifvg.it",
+        "medsport@polifvg.it"
+      ],
+      "sito_ufficiale": "https://www.polifvg.it/sedi/pineta-city",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": true,
+      "convenzionata_ssr": true,
+      "fonte_principale": "Sito ufficiale Policlinico Triestino; elenco ASUGI 2024",
+      "fonte_orari": "https://www.polifvg.it/sedi/pineta-city",
+      "orari_verificati": true,
+      "note": "Dal 1 gennaio 2025 ospita anche le attività già svolte dallo Studio Polonio.",
+      "data_verifica": "2026-10-10"
+    },
+    {
+      "id": "TS-CLI-004",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Biomedico Trieste Centro",
+      "tipo_struttura": "Poliambulatorio / centro diagnostico e punto prelievi",
+      "specialita": [
+        "Laboratorio analisi",
+        "Diagnostica per immagini",
+        "Oculistica",
+        "Ortopedia",
+        "Pediatria",
+        "Allergologia",
+        "Psichiatria e psicologia",
+        "Endocrinologia",
+        "Medicina interna",
+        "Urologia e andrologia",
+        "Logopedia"
+      ],
+      "indirizzo": "Via Giacinto Gallina 4",
+      "cap": "34122",
+      "comune": "Trieste",
+      "latitudine": 45.6506484,
+      "longitudine": 13.7768344,
+      "telefono": [
+        "040371280",
+        "040361462"
+      ],
+      "email": [],
+      "sito_ufficiale": "https://www.polifvg.it/sedi/studio-biomedico-trieste-centro",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "07:00",
+            "chiude": "10:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "07:00",
+            "chiude": "10:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "07:00",
+            "chiude": "10:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "07:00",
+            "chiude": "10:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "07:00",
+            "chiude": "10:00"
+          }
+        ],
+        "sabato": {
+          "apre": "07:00",
+          "chiude": "10:00"
+        },
+        "domenica": null
+      },
+      "su_appuntamento": false,
+      "convenzionata_ssr": true,
+      "fonte_principale": "Sito ufficiale Policlinico Triestino; elenco ASUGI 2024",
+      "fonte_orari": "https://www.polifvg.it/sedi/studio-biomedico-trieste-centro",
+      "orari_verificati": true,
+      "note": "Orario riportato per i prelievi; prenotazioni e attività specialistiche hanno fasce differenti.",
+      "data_verifica": "2026-10-10"
+    },
+    {
+      "id": "TS-CLI-005",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Biomedico Opicina",
+      "tipo_struttura": "Punto prelievi / poliambulatorio",
+      "specialita": [
+        "Laboratorio analisi"
+      ],
+      "indirizzo": "Strada per Vienna 9/A",
+      "cap": "34151",
+      "comune": "Trieste",
+      "latitudine": 45.687981,
+      "longitudine": 13.7895842,
+      "telefono": [
+        "0403171311"
+      ],
+      "email": [],
+      "sito_ufficiale": "https://www.polifvg.it/sedi/studio-biomedico-opicina",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "07:00",
+            "chiude": "09:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "07:00",
+            "chiude": "09:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "07:00",
+            "chiude": "09:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "07:00",
+            "chiude": "09:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "07:00",
+            "chiude": "09:30"
+          }
+        ],
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": false,
+      "convenzionata_ssr": true,
+      "fonte_principale": "Sito ufficiale Policlinico Triestino; elenco ASUGI 2024",
+      "fonte_orari": "https://www.polifvg.it/sedi/studio-biomedico-opicina",
+      "orari_verificati": true,
+      "note": "Orario riferito ai prelievi; ritiro referti in fasce separate.",
+      "data_verifica": "2026-10-10"
+    },
+    {
+      "id": "TS-CLI-006",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Biomedico Roiano",
+      "tipo_struttura": "Punto prelievi / poliambulatorio",
+      "specialita": [
+        "Laboratorio analisi"
+      ],
+      "indirizzo": "Via Barbariga 7/B",
+      "cap": "34135",
+      "comune": "Trieste",
+      "latitudine": 45.6642243,
+      "longitudine": 13.7713001,
+      "telefono": [
+        "0403171313"
+      ],
+      "email": [],
+      "sito_ufficiale": "https://www.polifvg.it/sedi/studio-biomedico-roiano",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "07:00",
+            "chiude": "09:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "07:00",
+            "chiude": "09:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "07:00",
+            "chiude": "09:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "07:00",
+            "chiude": "09:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "07:00",
+            "chiude": "09:30"
+          }
+        ],
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": false,
+      "convenzionata_ssr": true,
+      "fonte_principale": "Sito ufficiale Policlinico Triestino; elenco ASUGI 2024",
+      "fonte_orari": "https://www.polifvg.it/sedi/studio-biomedico-roiano",
+      "orari_verificati": true,
+      "note": "Orario riferito ai prelievi; ritiro referti in fasce separate.",
+      "data_verifica": "2026-10-10"
+    },
+    {
+      "id": "TS-CLI-007",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Biomedico Muggia",
+      "tipo_struttura": "Punto prelievi / poliambulatorio",
+      "specialita": [
+        "Laboratorio analisi"
+      ],
+      "indirizzo": "Via Signolo 3",
+      "cap": "34015",
+      "comune": "Muggia",
+      "latitudine": 45.6023476,
+      "longitudine": 13.7692762,
+      "telefono": [
+        "0403171318"
+      ],
+      "email": [],
+      "sito_ufficiale": "https://www.polifvg.it/sedi/studio-biomedico-muggia",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "07:00",
+            "chiude": "09:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "07:00",
+            "chiude": "09:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "07:00",
+            "chiude": "09:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "07:00",
+            "chiude": "09:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "07:00",
+            "chiude": "09:30"
+          }
+        ],
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": false,
+      "convenzionata_ssr": true,
+      "fonte_principale": "Sito ufficiale Policlinico Triestino; elenco ASUGI 2024",
+      "fonte_orari": "https://www.polifvg.it/sedi/studio-biomedico-muggia",
+      "orari_verificati": true,
+      "note": "Sede corrente verificata in via Signolo 3; precedenti documenti riportavano via Battisti 7/B.",
+      "data_verifica": "2026-10-10"
+    },
+    {
+      "id": "TS-CLI-008",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Sanatorio Triestino",
+      "tipo_struttura": "Casa di cura privata medico-chirurgica / poliambulatorio",
+      "specialita": [
+        "Chirurgia",
+        "Chirurgia della mano",
+        "Chirurgia plastica",
+        "Ginecologia",
+        "Medicina e cardiologia",
+        "Ortopedia",
+        "Urologia",
+        "Gastroenterologia",
+        "Neurologia",
+        "Psichiatria",
+        "Terapia del dolore",
+        "Laboratorio analisi"
+      ],
+      "indirizzo": "Via Domenico Rossetti 62",
+      "cap": "34141",
+      "comune": "Trieste",
+      "latitudine": 45.6463447,
+      "longitudine": 13.7893646,
+      "telefono": [
+        "0409409511",
+        "0409409556"
+      ],
+      "email": [
+        "info@sanatoriotriestino.it",
+        "urp@sanatoriotriestino.it"
+      ],
+      "sito_ufficiale": "https://www.ghcspa.com/sanatoriotriestino/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "07:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "07:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "07:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "07:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "07:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": {
+          "apre": "07:00",
+          "chiude": "19:00"
+        },
+        "domenica": null
+      },
+      "su_appuntamento": true,
+      "convenzionata_ssr": true,
+      "fonte_principale": "Sito ufficiale Sanatorio Triestino; elenco ASUGI 2024",
+      "fonte_orari": "https://www.ghcspa.com/sanatoriotriestino/contatti",
+      "orari_verificati": true,
+      "note": "Orario riferito al centralino; ufficio prenotazioni lun-gio 08:00-17:00 e ven 08:00-16:00.",
+      "data_verifica": "2026-10-10"
+    },
+    {
+      "id": "TS-CLI-009",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Eutonia Sanità e Salute - Rossetti",
+      "tipo_struttura": "Centro fisioterapico / poliambulatorio",
+      "specialita": [
+        "Fisioterapia",
+        "Riabilitazione",
+        "Fisiatria",
+        "Ortopedia",
+        "Nutrizione"
+      ],
+      "indirizzo": "Via Domenico Rossetti 62",
+      "cap": "34141",
+      "comune": "Trieste",
+      "latitudine": 45.6463039,
+      "longitudine": 13.7888539,
+      "telefono": [
+        "040360430"
+      ],
+      "email": [
+        "info@eutoniasanitaesalute.it",
+        "urp@eutoniasanitaesalute.it"
+      ],
+      "sito_ufficiale": "https://www.eutoniasanitaesalute.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "17:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "17:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "17:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "17:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "17:00"
+          }
+        ],
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": true,
+      "convenzionata_ssr": true,
+      "fonte_principale": "Sito ufficiale Eutonia; elenco ASUGI 2024",
+      "fonte_orari": "https://www.eutoniasanitaesalute.it/contatti/",
+      "orari_verificati": true,
+      "note": "Orario riferito al centralino della sede presso Sanatorio Triestino.",
+      "data_verifica": "2026-10-10"
+    },
+    {
+      "id": "TS-CLI-010",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Eutonia Sanità e Salute - Coroneo",
+      "tipo_struttura": "Centro fisioterapico / poliambulatorio",
+      "specialita": [
+        "Fisioterapia",
+        "Riabilitazione",
+        "Fisiatria",
+        "Ortopedia",
+        "Logopedia",
+        "Medicina dello sport",
+        "Podologia"
+      ],
+      "indirizzo": "Via del Coroneo 5",
+      "cap": "34133",
+      "comune": "Trieste",
+      "latitudine": 45.6532587,
+      "longitudine": 13.777921,
+      "telefono": [
+        "040360430"
+      ],
+      "email": [
+        "coroneo@eutoniasanitaesalute.it"
+      ],
+      "sito_ufficiale": "https://www.eutoniasanitaesalute.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "17:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "17:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "17:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "17:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "17:00"
+          }
+        ],
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": true,
+      "convenzionata_ssr": true,
+      "fonte_principale": "Sito ufficiale Eutonia; elenco ASUGI 2024",
+      "fonte_orari": "https://www.eutoniasanitaesalute.it/contatti/",
+      "orari_verificati": true,
+      "note": "La scheda cartografica conserva ancora una denominazione storica; indirizzo e sede corrente sono confermati dal sito ufficiale.",
+      "data_verifica": "2026-10-10"
+    },
+    {
+      "id": "TS-CLI-011",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Radiologico Catania",
+      "tipo_struttura": "Centro diagnostico",
+      "specialita": [
+        "Radiologia digitale",
+        "Ecografia",
+        "Risonanza magnetica",
+        "TC",
+        "Senologia",
+        "Densitometria",
+        "Cardiologia diagnostica"
+      ],
+      "indirizzo": "Via Trento 18",
+      "cap": "34132",
+      "comune": "Trieste",
+      "latitudine": 45.6556672,
+      "longitudine": 13.7727069,
+      "telefono": [
+        "040662695"
+      ],
+      "email": [
+        "info@studioradiologicocatania.it"
+      ],
+      "sito_ufficiale": "https://www.studioradiologicocatania.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "14:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "14:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "14:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "14:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "14:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "convenzionata_ssr": true,
+      "fonte_principale": "Sito ufficiale; elenco ASUGI 2024",
+      "fonte_orari": "https://www.studioradiologicocatania.it/orari-e-accessi/",
+      "orari_verificati": true,
+      "note": null,
+      "data_verifica": "2026-10-10"
+    },
+    {
+      "id": "TS-CLI-012",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Istituto Radiologico Gortan",
+      "tipo_struttura": "Centro diagnostico",
+      "specialita": [
+        "Radiologia",
+        "Ecografia ed ecocolordoppler",
+        "TC",
+        "Risonanza magnetica",
+        "Densitometria",
+        "Agoaspirati ecoguidati",
+        "Ozonoterapia"
+      ],
+      "indirizzo": "Via Cesare Beccaria 8",
+      "cap": "34133",
+      "comune": "Trieste",
+      "latitudine": 45.6538423,
+      "longitudine": 13.7778529,
+      "telefono": [
+        "040361721"
+      ],
+      "email": [
+        "info@gortanradiologia.com"
+      ],
+      "sito_ufficiale": "https://radiologiagortan.com/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "18:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "18:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "18:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "18:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "18:00"
+          }
+        ],
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": true,
+      "convenzionata_ssr": true,
+      "fonte_principale": "Sito ufficiale; elenco ASUGI 2024",
+      "fonte_orari": "https://radiologiagortan.com/",
+      "orari_verificati": true,
+      "note": null,
+      "data_verifica": "2026-10-10"
+    },
+    {
+      "id": "TS-CLI-013",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Fisioterapia Rinaldi",
+      "tipo_struttura": "Centro fisioterapico e riabilitativo",
+      "specialita": [
+        "Fisioterapia",
+        "Riabilitazione",
+        "Medicina fisica"
+      ],
+      "indirizzo": "Via San Lazzaro 1",
+      "cap": "34122",
+      "comune": "Trieste",
+      "latitudine": 45.6498523,
+      "longitudine": 13.7749691,
+      "telefono": [
+        "040632108"
+      ],
+      "email": [
+        "info@fisioterapia-rinaldi.it"
+      ],
+      "sito_ufficiale": "https://fisioterapia-rinaldi.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "07:30",
+            "chiude": "18:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "07:30",
+            "chiude": "18:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "07:30",
+            "chiude": "18:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "07:30",
+            "chiude": "18:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "07:30",
+            "chiude": "18:30"
+          }
+        ],
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": true,
+      "convenzionata_ssr": true,
+      "fonte_principale": "Sito ufficiale; Albo regionale 2026; accordi ASUGI 2026",
+      "fonte_orari": "https://fisioterapia-rinaldi.it/",
+      "orari_verificati": true,
+      "note": "Orario riferito alle terapie. La segreteria e aperta da lunedi a venerdi 08:00-15:00.",
+      "data_verifica": "2026-10-10"
+    },
+    {
+      "id": "TS-CLI-014",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Istituto Fisioterapico Magri",
+      "tipo_struttura": "Centro fisioterapico e riabilitativo",
+      "specialita": [
+        "Medicina fisica",
+        "Fisioterapia",
+        "Riabilitazione ortopedica",
+        "Tecarterapia",
+        "Laserterapia",
+        "Onde d urto"
+      ],
+      "indirizzo": "Via Silvio Pellico 8",
+      "cap": "34122",
+      "comune": "Trieste",
+      "latitudine": 45.6490478,
+      "longitudine": 13.7766887,
+      "telefono": [
+        "040370530"
+      ],
+      "email": [
+        "fisioterapia-magri@libero.it"
+      ],
+      "sito_ufficiale": "https://www.istitutofisioterapicomagri.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "15:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "15:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "15:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "15:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "15:30"
+          }
+        ],
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": true,
+      "convenzionata_ssr": true,
+      "fonte_principale": "Sito ufficiale; elenco ASUGI 2024",
+      "fonte_orari": "https://www.istitutofisioterapicomagri.it/",
+      "orari_verificati": true,
+      "note": null,
+      "data_verifica": "2026-10-10"
+    },
+    {
+      "id": "TS-CLI-015",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Studio Radiologico Zucconi",
+      "tipo_struttura": "Centro diagnostico",
+      "specialita": [
+        "Radiologia digitale",
+        "Ecografia",
+        "TC multistrato",
+        "Risonanza magnetica"
+      ],
+      "indirizzo": "Via delle Zudecche 1/F",
+      "cap": "34131",
+      "comune": "Trieste",
+      "latitudine": 45.6488605,
+      "longitudine": 13.7774912,
+      "telefono": [
+        "040635434",
+        "0409827668"
+      ],
+      "email": [
+        "posta@studioradiologicozucconi.com"
+      ],
+      "sito_ufficiale": "https://www.studioradiologicozucconi.com/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "17:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "17:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "17:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "17:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "17:00"
+          }
+        ],
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": true,
+      "convenzionata_ssr": true,
+      "fonte_principale": "Sito ufficiale; elenco ASUGI 2024",
+      "fonte_orari": "https://www.studioradiologicozucconi.com/",
+      "orari_verificati": true,
+      "note": "Sede corrente in via delle Zudecche 1/F; la precedente sede di via Rismondo 3 non va importata come record separato.",
+      "data_verifica": "2026-10-10"
+    },
+    {
+      "id": "TS-CLI-016",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Casa della Salute Ippocrate",
+      "tipo_struttura": "Centro medico polispecialistico privato",
+      "specialita": [
+        "Medicina dello sport",
+        "Ginecologia e ostetricia",
+        "Cardiologia",
+        "Fisiatria",
+        "Fisioterapia",
+        "Chiropratica",
+        "Otorinolaringoiatria",
+        "Dermatologia"
+      ],
+      "indirizzo": "Via Fabio Severo 122",
+      "cap": "34127",
+      "comune": "Trieste",
+      "latitudine": 45.6590721,
+      "longitudine": 13.7902769,
+      "telefono": [
+        "0405700322",
+        "3357006024"
+      ],
+      "email": [
+        "casadellasalute@live.it"
+      ],
+      "sito_ufficiale": "https://www.casadellasaluteippocrate.com/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": {
+          "apre": "09:00",
+          "chiude": "13:00"
+        },
+        "domenica": null
+      },
+      "su_appuntamento": true,
+      "convenzionata_ssr": false,
+      "fonte_principale": "Sito ufficiale della struttura",
+      "fonte_orari": "https://www.casadellasaluteippocrate.com/",
+      "orari_verificati": true,
+      "note": "Sabato aperto soltanto su appuntamento. Struttura autorizzata; non trovata nell elenco ASUGI 2024 delle strutture convenzionate.",
+      "data_verifica": "2026-10-10"
+    },
+    {
+      "id": "TS-CLI-017",
+      "provincia": "TS",
+      "temporaneamente_chiuso": false,
+      "nome": "Poliambulatorio Poligardelli",
+      "tipo_struttura": "Poliambulatorio medico specialistico e fisioterapico",
+      "specialita": [
+        "Fisioterapia",
+        "Riabilitazione",
+        "Dermatologia",
+        "Ortopedia",
+        "Otorinolaringoiatria",
+        "Medicina legale",
+        "Terapia del dolore",
+        "Medicina dello sport",
+        "Nutrizione"
+      ],
+      "indirizzo": "Via Marco Tullio Cicerone 6/A",
+      "cap": "34133",
+      "comune": "Trieste",
+      "latitudine": 45.6544403,
+      "longitudine": 13.7782063,
+      "telefono": [
+        "040371155"
+      ],
+      "email": [
+        "poligardelli@gmail.com"
+      ],
+      "sito_ufficiale": "https://www.fisioterapiagardelli.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": null,
+        "domenica": null
+      },
+      "su_appuntamento": true,
+      "convenzionata_ssr": false,
+      "fonte_principale": "Sito ufficiale Poliambulatorio Poligardelli",
+      "fonte_orari": "https://www.fisioterapiagardelli.it/",
+      "orari_verificati": true,
+      "note": "Non trovato nell elenco ASUGI 2024 delle strutture convenzionate; classificato come privato non convenzionato.",
+      "data_verifica": "2026-10-10"
+    }
+  ]
+}

@@ -174,7 +174,8 @@
         "descrizione": "Alle Apotheken und Bereitschaftsapotheken, nach Provinz und Gemeinde"
       },
       "cliniche": {
-        "nome": "Kliniken & Ärztezentren"
+        "nome": "Kliniken & Ärztezentren",
+        "descrizione": "Private Kliniken, Ärztezentren, Polyambulatorien und Diagnosezentren in Friuli Venezia Giulia"
       },
       "veterinari": {
         "nome": "Tierärzte & Notfälle",
@@ -593,6 +594,21 @@
       "urgenze_dichiarate": "Angegebene Notfallverfügbarkeit",
       "non_dichiarata": "Keine Notfallversorgung angegeben"
     },
+    "nessunaCoordinata": "Die Koordinaten dieser Erhebung sind noch nicht verfügbar: sie werden mit den verifizierten Daten hinzugefügt."
+  },
+  "cliniche": {
+    "descrizione": "Private polyspezialisierte Kliniken, Ärztezentren, Polyambulatorien und Diagnosezentren in Friuli Venezia Giulia — eine erste Erhebung, die noch verifiziert wird (offizielle Websites und Branchenverzeichnisse), kein offizielles Berufsregister. Vor dem Besuch immer vorher telefonisch Öffnungszeiten und Verfügbarkeit bestätigen.",
+    "datiInArrivo": "Daten zu Kliniken und Ärztezentren für {provincia} folgen in einer späteren Phase.",
+    "cercaLabel": "Suche nach Name, Gemeinde, Einrichtungstyp oder Fachgebiet",
+    "cercaPlaceholder": "Suche nach Name, Gemeinde, Einrichtungstyp oder Fachgebiet…",
+    "nessunaStrutturaTrovata": "Keine Einrichtung gefunden{luogo}.",
+    "mappaAriaLabel": "Karte der Kliniken und Ärztezentren{luogo} — entsprechende Textliste im Feld daneben",
+    "suAppuntamento": "nach Vereinbarung",
+    "oggiLabel": "Heute:",
+    "orarioNonPubblicato": "Öffnungszeiten nicht veröffentlicht",
+    "chiuso": "Geschlossen",
+    "convenzionataSsr": "SSR-Vertragspartner",
+    "specialitaLabel": "Fachgebiete:",
     "nessunaCoordinata": "Die Koordinaten dieser Erhebung sind noch nicht verfügbar: sie werden mit den verifizierten Daten hinzugefügt."
   },
   "sci": {

@@ -174,7 +174,8 @@
         "descrizione": "All pharmacies and on-duty pharmacies, by province and municipality"
       },
       "cliniche": {
-        "nome": "Clinics & medical centres"
+        "nome": "Clinics & medical centres",
+        "descrizione": "Private clinics, medical centres, outpatient clinics and diagnostic centres in Friuli Venezia Giulia"
       },
       "veterinari": {
         "nome": "Vets & Emergencies",
@@ -593,6 +594,21 @@
       "urgenze_dichiarate": "Declared emergency availability",
       "non_dichiarata": "No emergency care declared"
     },
+    "nessunaCoordinata": "Coordinates for this survey are not yet available: they will be added with the verified data."
+  },
+  "cliniche": {
+    "descrizione": "Private multi-specialty clinics, medical centres, outpatient clinics and diagnostic centres in Friuli Venezia Giulia — an initial survey still being verified (official websites and industry directories), not an official professional register. Always call ahead to confirm hours and availability before visiting.",
+    "datiInArrivo": "Clinic and medical centre data for {provincia} coming in a future phase.",
+    "cercaLabel": "Search by name, municipality, facility type or specialty",
+    "cercaPlaceholder": "Search by name, municipality, facility type or specialty…",
+    "nessunaStrutturaTrovata": "No facility found{luogo}.",
+    "mappaAriaLabel": "Map of clinics and medical centres{luogo} — equivalent text list in the panel alongside",
+    "suAppuntamento": "by appointment",
+    "oggiLabel": "Today:",
+    "orarioNonPubblicato": "Hours not published",
+    "chiuso": "Closed",
+    "convenzionataSsr": "SSR-affiliated",
+    "specialitaLabel": "Specialties:",
     "nessunaCoordinata": "Coordinates for this survey are not yet available: they will be added with the verified data."
   },
   "sci": {

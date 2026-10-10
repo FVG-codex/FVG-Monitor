@@ -21,6 +21,13 @@ export type VoceChangelog = {
 
 export const CHANGELOG: VoceChangelog[] = [
   {
+    data: "10/10/2026",
+    titolo: "Sanità — nuova sezione Cliniche & centri medici (provincia di Trieste, 17 strutture)",
+    dettagli: [
+      "Nuova sezione in Sanità con cliniche private polispecialistiche, centri medici, poliambulatori, centri diagnostici e case di cura della provincia di Trieste: 17 strutture, tutte con indirizzo, telefono, sito, orari e le specialità offerte (es. cardiologia, fisioterapia, diagnostica per immagini). A differenza di Dentisti e Veterinari, questa sezione non ha un riquadro Emergenze: non è prevista alcuna gestione delle urgenze per singola struttura. Udine, Gorizia e Pordenone restano \"in arrivo\".",
+    ],
+  },
+  {
     data: "09/10/2026",
     titolo: "Dentisti & Odontoiatri — attivata la provincia di Pordenone (29 strutture): tutte le province ora coperte",
     dettagli: [

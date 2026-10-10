@@ -48,7 +48,7 @@ const TITOLO_SEZIONE_CHIAVE: Record<string, string> = {
   "/farmacie": "sanita.sezioni.farmacie.nome",
   "/farmacie-di-turno": "farmacie.titoloTurno",
   "/farmacie-tutte": "farmacie.titoloTutte",
-  "/cliniche": "inArrivoPages.cliniche",
+  "/cliniche": "sanita.sezioni.cliniche.nome",
   // Turismo
   "/eventi": "turismo.sezioni.eventi.nome",
   "/neve-impianti": "turismo.sezioni.neveImpianti.nome",
