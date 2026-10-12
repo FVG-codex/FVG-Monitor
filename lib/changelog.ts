@@ -22,6 +22,20 @@ export type VoceChangelog = {
 export const CHANGELOG: VoceChangelog[] = [
   {
     data: "12/10/2026",
+    titolo: "Sanità — nuova sezione Guardie Mediche (Continuità Assistenziale)",
+    dettagli: [
+      "Nuova sezione nell'hub Sanità: sedi del servizio di Continuità Assistenziale (guardia medica) per provincia e comune, con mappa e orari del servizio (uguali in tutta la regione: feriale, prefestivo, festivo) e il numero unico 116117 mostrati una sola volta in evidenza. Fonte: Regione Autonoma FVG (sapi.sanita.fvg.it).",
+    ],
+  },
+  {
+    data: "12/10/2026",
+    titolo: "Ambiente — nuova sezione Siti inquinati (1.659 procedimenti censiti)",
+    dettagli: [
+      "Nuova sezione nell'hub Ambiente: censimento regionale 2025 dei procedimenti di bonifica dei siti inquinati, filtrabile per provincia, comune e stato del procedimento (istruttoria in atto/archiviata), con ricerca per codice sito o comune. Il dataset non ha coordinate, quindi la sezione è a elenco, non a mappa. Fonte: Regione Friuli Venezia Giulia (dati.friuliveneziagiulia.it).",
+    ],
+  },
+  {
+    data: "12/10/2026",
     titolo: "Cliniche & centri medici — attivata la provincia di Udine (29 strutture): tutte le province ora coperte",
     dettagli: [
       "Nella sezione Cliniche & centri medici è ora selezionabile anche la provincia di Udine: 29 strutture tra centri medici polispecialistici, poliambulatori, centri diagnostici, termali e riabilitativi, con specialità, orari e indicazione delle strutture convenzionate con il Servizio Sanitario Regionale. Con questa attivazione tutte e 4 le province sono coperte.",

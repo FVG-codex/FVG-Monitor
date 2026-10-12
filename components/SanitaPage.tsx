@@ -38,6 +38,16 @@ const SEZIONI = [
     ),
   },
   {
+    key: "guardieMediche",
+    href: "/guardie-mediche",
+    icona: (
+      <svg viewBox="0 0 48 48" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <circle cx="24" cy="24" r="16" />
+        <path d="M24 14v10l7 5" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
+  },
+  {
     key: "cliniche",
     href: "/cliniche",
     icona: (

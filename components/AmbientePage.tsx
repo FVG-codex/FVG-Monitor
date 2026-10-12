@@ -73,6 +73,25 @@ const SEZIONI = [
       </svg>
     ),
   },
+  {
+    // Siti inquinati (12/10/2026, dataset regionale "Censimento dei siti
+    // inquinati 2025" fornito dall'utente) — vedi lib/sitiinquinati.ts e
+    // components/SitiInquinatiPage.tsx. Nessuna coordinata nel dataset:
+    // pagina a elenco/tabella, non a mappa.
+    key: "sitiInquinati",
+    href: "/siti-inquinati",
+    icona: (
+      <svg viewBox="0 0 48 48" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <path d="M24 6v8M24 34v8M10 24h8M30 24h8" strokeLinecap="round" />
+        <path
+          d="M24 16a8 8 0 0 1 8 8c0 5-4 7-8 12-4-5-8-7-8-12a8 8 0 0 1 8-8z"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <circle cx="24" cy="24" r="2.5" fill="currentColor" stroke="none" />
+      </svg>
+    ),
+  },
 ];
 
 export async function AmbientePage() {

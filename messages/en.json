@@ -159,6 +159,10 @@
       "servizi": {
         "nome": "Services",
         "descrizione": "Municipal and public utility services — starting with waste collection"
+      },
+      "sitiInquinati": {
+        "nome": "Polluted sites",
+        "descrizione": "Regional census of remediation procedures, by municipality"
       }
     }
   },
@@ -172,6 +176,10 @@
       "farmacie": {
         "nome": "Pharmacies",
         "descrizione": "All pharmacies and on-duty pharmacies, by province and municipality"
+      },
+      "guardieMediche": {
+        "nome": "On-Call Doctors",
+        "descrizione": "Continuity-of-care (out-of-hours GP) locations, by province and municipality, with hours and the single number 116117"
       },
       "cliniche": {
         "nome": "Clinics & medical centres",
@@ -408,6 +416,24 @@
     "andamentoAriaLabel": "Today's sea level trend in Trieste, Grado and Lignano — numeric values in the panels below",
     "legendaTrattoOsservatoPrevisione": "solid line = observed · dashed line = forecast"
   },
+  "sitiInquinati": {
+    "titolo": "Polluted sites",
+    "descrizione": "Friuli Venezia Giulia Region's 2025 census of polluted sites — municipal, regional and national remediation procedures, by municipality. Source: dati.friuliveneziagiulia.it, \"Censimento dei siti inquinati 2025\" dataset. No coordinates in the original dataset.",
+    "disclaimerArchiviata": "\"Archiviata\" (archived) means the procedure was closed, not that the site was necessarily remediated: the stage reached (e.g. \"Certification of completed remediation\" vs. a plain \"Procedure closure\") indicates the real outcome, when given.",
+    "cercaLabel": "Search by site code or municipality",
+    "cercaPlaceholder": "Search by site code or municipality…",
+    "statoTutti": "All statuses",
+    "statoIstruttoria": "Ongoing",
+    "statoArchiviata": "Archived",
+    "categoria": {
+      "comunale": "municipal procedure",
+      "regionale": "regional procedure",
+      "nazionale": "national procedure"
+    },
+    "stadioLabel": "Stage: {stadio}",
+    "inquinanteLabel": "Pollutant: {inquinante}",
+    "nessunRisultato": "No sites found{luogo} with the current filters."
+  },
   "baseball": {
     "titoloFallback": "Baseball & Softball",
     "descrizione": "FVG baseball and softball — featured teams — source: live.baseballfvg.it",
@@ -473,6 +499,17 @@
     "nessunaTrovata": "No pharmacy found{luogo}.",
     "orarioNonDisponibile": "Hours not available",
     "mappaAriaLabel": "Map of pharmacies{luogo} — equivalent text listing in the panel alongside"
+  },
+  "guardieMediche": {
+    "titolo": "On-Call Doctors",
+    "descrizione": "Continuity-of-care (out-of-hours GP) locations in Friuli Venezia Giulia, by province and municipality — source: Friuli Venezia Giulia Region (sapi.sanita.fvg.it).",
+    "orarioTitolo": "Service hours (the same throughout the region)",
+    "feriale": "Weekdays: {orario}",
+    "prefestivo": "Days before a holiday: {orario}",
+    "festivo": "Holidays: {orario}",
+    "nessunaTrovata": "No location found{luogo}.",
+    "mappaAriaLabel": "Map of on-call doctor locations{luogo} — equivalent text list in the panel alongside",
+    "comuniCompresi": "Municipalities covered: {elenco}"
   },
   "colonnineElettriche": {
     "descrizione": "Electric vehicle charging stations in Friuli Venezia Giulia — source: OpenChargeMap, a community register. The data may be incomplete for the most recent installations: check each station's verification date.",

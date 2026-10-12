@@ -159,6 +159,10 @@
       "servizi": {
         "nome": "Servizi",
         "descrizione": "Servizi comunali e di pubblica utilità — si parte con la raccolta differenziata"
+      },
+      "sitiInquinati": {
+        "nome": "Siti inquinati",
+        "descrizione": "Censimento regionale dei procedimenti di bonifica, per comune"
       }
     }
   },
@@ -172,6 +176,10 @@
       "farmacie": {
         "nome": "Farmacie",
         "descrizione": "Tutte le farmacie e le farmacie di turno, per provincia e comune"
+      },
+      "guardieMediche": {
+        "nome": "Guardie Mediche",
+        "descrizione": "Sedi della Continuità Assistenziale (ex guardia medica), per provincia e comune, con orari e numero unico 116117"
       },
       "cliniche": {
         "nome": "Cliniche & centri medici",
@@ -408,6 +416,24 @@
     "andamentoAriaLabel": "Andamento del livello del mare oggi a Trieste, Grado e Lignano — valori numerici nei pannelli sotto",
     "legendaTrattoOsservatoPrevisione": "tratto continuo = osservato · tratteggiato = previsione"
   },
+  "sitiInquinati": {
+    "titolo": "Siti inquinati",
+    "descrizione": "Censimento dei siti inquinati 2025 della Regione Friuli Venezia Giulia — procedimenti di bonifica comunali, regionali e nazionali, per comune. Fonte: dati.friuliveneziagiulia.it, dataset \"Censimento dei siti inquinati 2025\". Nessuna coordinata nel dataset originale.",
+    "disclaimerArchiviata": "\"Archiviata\" significa che il procedimento è stato chiuso, non che il sito sia stato necessariamente bonificato: la fase raggiunta (es. \"Certificazione di avvenuta bonifica\" vs. una semplice \"Chiusura procedimento\") indica l'esito reale, quando indicata.",
+    "cercaLabel": "Cerca per codice sito o comune",
+    "cercaPlaceholder": "Cerca per codice sito o comune…",
+    "statoTutti": "Tutti gli stati",
+    "statoIstruttoria": "Istruttoria in atto",
+    "statoArchiviata": "Archiviata",
+    "categoria": {
+      "comunale": "procedimento comunale",
+      "regionale": "procedimento regionale",
+      "nazionale": "procedimento nazionale"
+    },
+    "stadioLabel": "Fase: {stadio}",
+    "inquinanteLabel": "Inquinante: {inquinante}",
+    "nessunRisultato": "Nessun sito trovato{luogo} con i filtri attuali."
+  },
   "baseball": {
     "titoloFallback": "Baseball & Softball",
     "descrizione": "Baseball e softball FVG — squadre in evidenza — fonte: live.baseballfvg.it",
@@ -473,6 +499,17 @@
     "nessunaTrovata": "Nessuna farmacia trovata{luogo}.",
     "orarioNonDisponibile": "Orario non disponibile",
     "mappaAriaLabel": "Mappa delle farmacie{luogo} — elenco testuale equivalente nel pannello a fianco"
+  },
+  "guardieMediche": {
+    "titolo": "Guardie Mediche",
+    "descrizione": "Sedi della Continuità Assistenziale del Friuli Venezia Giulia, per provincia e comune — fonte: Regione Autonoma FVG (sapi.sanita.fvg.it).",
+    "orarioTitolo": "Orari del servizio (uguali in tutta la regione)",
+    "feriale": "Nei giorni feriali: {orario}",
+    "prefestivo": "Nei giorni prefestivi: {orario}",
+    "festivo": "Nei giorni festivi: {orario}",
+    "nessunaTrovata": "Nessuna sede trovata{luogo}.",
+    "mappaAriaLabel": "Mappa delle sedi di guardia medica{luogo} — elenco testuale equivalente nel pannello a fianco",
+    "comuniCompresi": "Comuni compresi: {elenco}"
   },
   "colonnineElettriche": {
     "descrizione": "Colonnine di ricarica per veicoli elettrici in Friuli Venezia Giulia — fonte: OpenChargeMap, registro comunitario. Il dato può essere incompleto per le installazioni più recenti: controlla la data di verifica di ciascuna colonnina.",

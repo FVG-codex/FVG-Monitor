@@ -159,6 +159,10 @@
       "servizi": {
         "nome": "Dienste",
         "descrizione": "Kommunale und öffentliche Versorgungsdienste — beginnend mit der Mülltrennung"
+      },
+      "sitiInquinati": {
+        "nome": "Belastete Standorte",
+        "descrizione": "Regionale Zählung der Sanierungsverfahren, nach Gemeinde"
       }
     }
   },
@@ -172,6 +176,10 @@
       "farmacie": {
         "nome": "Apotheken",
         "descrizione": "Alle Apotheken und Bereitschaftsapotheken, nach Provinz und Gemeinde"
+      },
+      "guardieMediche": {
+        "nome": "Ärztlicher Bereitschaftsdienst",
+        "descrizione": "Standorte des ärztlichen Bereitschaftsdienstes (Continuità Assistenziale), nach Provinz und Gemeinde, mit Öffnungszeiten und der einheitlichen Nummer 116117"
       },
       "cliniche": {
         "nome": "Kliniken & Ärztezentren",
@@ -408,6 +416,24 @@
     "andamentoAriaLabel": "Heutiger Meeresspiegelverlauf in Trieste, Grado und Lignano — numerische Werte in den Feldern unten",
     "legendaTrattoOsservatoPrevisione": "durchgezogene Linie = beobachtet · gestrichelte Linie = Vorhersage"
   },
+  "sitiInquinati": {
+    "titolo": "Belastete Standorte",
+    "descrizione": "Zählung der belasteten Standorte 2025 der Region Friaul-Julisch Venetien — kommunale, regionale und nationale Sanierungsverfahren, nach Gemeinde. Quelle: dati.friuliveneziagiulia.it, Datensatz \"Censimento dei siti inquinati 2025\". Keine Koordinaten im Originaldatensatz.",
+    "disclaimerArchiviata": "\"Archiviert\" bedeutet, dass das Verfahren abgeschlossen wurde, nicht dass der Standort zwangsläufig saniert wurde: Die erreichte Phase (z. B. \"Bescheinigung der abgeschlossenen Sanierung\" gegenüber einem einfachen \"Verfahrensabschluss\") zeigt, wenn angegeben, das tatsächliche Ergebnis.",
+    "cercaLabel": "Suche nach Standortcode oder Gemeinde",
+    "cercaPlaceholder": "Suche nach Standortcode oder Gemeinde…",
+    "statoTutti": "Alle Status",
+    "statoIstruttoria": "Verfahren läuft",
+    "statoArchiviata": "Archiviert",
+    "categoria": {
+      "comunale": "kommunales Verfahren",
+      "regionale": "regionales Verfahren",
+      "nazionale": "nationales Verfahren"
+    },
+    "stadioLabel": "Phase: {stadio}",
+    "inquinanteLabel": "Schadstoff: {inquinante}",
+    "nessunRisultato": "Keine Standorte gefunden{luogo} mit den aktuellen Filtern."
+  },
   "baseball": {
     "titoloFallback": "Baseball & Softball",
     "descrizione": "FVG Baseball und Softball — ausgewählte Mannschaften — Quelle: live.baseballfvg.it",
@@ -473,6 +499,17 @@
     "nessunaTrovata": "Keine Apotheke gefunden{luogo}.",
     "orarioNonDisponibile": "Öffnungszeiten nicht verfügbar",
     "mappaAriaLabel": "Karte der Apotheken{luogo} — entsprechende Textliste im Feld daneben"
+  },
+  "guardieMediche": {
+    "titolo": "Ärztlicher Bereitschaftsdienst",
+    "descrizione": "Standorte des ärztlichen Bereitschaftsdienstes in Friaul-Julisch Venetien, nach Provinz und Gemeinde — Quelle: Region Friaul-Julisch Venetien (sapi.sanita.fvg.it).",
+    "orarioTitolo": "Dienstzeiten (in der ganzen Region gleich)",
+    "feriale": "Werktags: {orario}",
+    "prefestivo": "An Tagen vor Feiertagen: {orario}",
+    "festivo": "An Feiertagen: {orario}",
+    "nessunaTrovata": "Kein Standort gefunden{luogo}.",
+    "mappaAriaLabel": "Karte der Standorte des Bereitschaftsdienstes{luogo} — entsprechende Textliste im Feld daneben",
+    "comuniCompresi": "Umfasste Gemeinden: {elenco}"
   },
   "colonnineElettriche": {
     "descrizione": "Ladestationen für Elektrofahrzeuge in Friuli Venezia Giulia — Quelle: OpenChargeMap, ein Gemeinschaftsregister. Die Daten können für die neuesten Installationen unvollständig sein: das Verifizierungsdatum jeder Station prüfen.",

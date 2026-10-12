@@ -2903,6 +2903,139 @@ async function ingestFarmacie() {
 }
 
 // ---------------------------------------------------------------------
+// GUARDIE MEDICHE (Continuità Assistenziale) — 12/10/2026, nuova sezione
+// sotto Sanità richiesta dall'utente, che ha fornito direttamente l'URL
+// di questo endpoint JSON pubblico di sapi.sanita.fvg.it (non scoperto
+// da questa sessione, a differenza dell'endpoint non documentato di
+// ingestProntoSoccorso()). Il parametro APID nell'URL sembra un token
+// applicativo stabile (l'utente l'ha condiviso come link fisso, non una
+// sessione personale) — se l'endpoint iniziasse a rispondere 401/403, il
+// token potrebbe essere stato ruotato e andrebbe richiesto di nuovo.
+//
+// Schema verificato manualmente il 12/10/2026 su 35 record osservati
+// (accesso diretto al dominio bloccato dall'ambiente di sviluppo usato
+// per la ricognizione — ricostruito interrogando un sottoinsieme di
+// record alla volta tramite uno strumento di lettura pagine web, non con
+// una chiamata diretta): nessuna chiamata reale a questo endpoint è mai
+// stata eseguita da questa sessione, la prima esecuzione vera sarà
+// quella di GitHub Actions dopo il prossimo deploy.
+//
+// Due note importanti sullo schema:
+// 1) `comune.id` è quasi sempre un codice ISTAT a 6 CIFRE (non 5 come in
+//    farmacie — prefisso provincia a 3 cifre: "030" Udine, "031"
+//    Gorizia, "032" Trieste, "093" Pordenone), ma 2 dei 35 record
+//    osservati hanno invece un nome di località testuale ("Duino
+//    Aurisina", azienda ASU Giuliano Isontina; "Palmanova-frazione
+//    Jalmicco", azienda ASU Friuli Centrale) — gestiti con una mappa di
+//    fallback per nome, vedi PROVINCIA_GUARDIAMEDICA_FALLBACK_PER_NOME.
+//    Lo stesso problema si ripete, ancora più disordinato, dentro
+//    `comuniCompresi` (presente solo su ~15/35 record, soprattutto sedi
+//    montane della Carnia con più comuni per un unico presidio): qui gli
+//    id sono troppo inconsistenti per essere usati (a volte ISTAT, a
+//    volte nomi di località, a volte descrizioni composite come "Val
+//    Chiarsò (compreso Cedarchis)") — si usa quindi SOLO il nome
+//    visualizzato, mai l'id, di ciascuna voce di comuniCompresi.
+// 2) Tutti i 35 record osservati condividono LO STESSO orario
+//    (feriale/prefestivo/festivo) e LO STESSO numero di telefono
+//    (116117) — non è un dato per singola sede ma il servizio unico
+//    regionale di Continuità Assistenziale. Estratto una sola volta (dal
+//    primo record valido) in un campo separato `orari`, invece di essere
+//    ripetuto identico su tutte le 35 sedi — vedi lib/guardiemediche.ts.
+// ---------------------------------------------------------------------
+
+const GUARDIE_MEDICHE_URL = "https://sapi.sanita.fvg.it/amp/guardiemediche?APID=A47jgmNGaTtTDdlp4X4zcn1dQfK9wxue";
+
+const PROVINCIA_DA_PREFISSO_ISTAT_GUARDIAMEDICA = {
+  "030": "udine",
+  "031": "gorizia",
+  "032": "trieste",
+  "093": "pordenone",
+};
+
+const PROVINCIA_GUARDIAMEDICA_FALLBACK_PER_NOME = {
+  "Duino Aurisina": "trieste",
+  "Palmanova-frazione Jalmicco": "udine",
+};
+
+function provinciaDaComuneGuardiaMedica(comune) {
+  if (!comune || typeof comune !== "object") return null;
+  const id = comune.id !== undefined && comune.id !== null ? String(comune.id) : null;
+  if (id && /^\d{6}$/.test(id)) {
+    const provincia = PROVINCIA_DA_PREFISSO_ISTAT_GUARDIAMEDICA[id.slice(0, 3)];
+    if (provincia) return provincia;
+  }
+  const nome = testo(comune.comune);
+  if (nome && PROVINCIA_GUARDIAMEDICA_FALLBACK_PER_NOME[nome]) {
+    return PROVINCIA_GUARDIAMEDICA_FALLBACK_PER_NOME[nome];
+  }
+  return null;
+}
+
+async function ingestGuardieMediche() {
+  const res = await fetchConRetry(GUARDIE_MEDICHE_URL);
+  if (!res.ok) {
+    console.warn(`Guardie mediche non disponibili (HTTP ${res.status})`);
+    return;
+  }
+
+  const payload = await res.json();
+  const righe = Array.isArray(payload) ? payload : Array.isArray(payload?.data) ? payload.data : null;
+  if (!righe || righe.length === 0) {
+    console.warn("Dataset guardie mediche vuoto o in formato inatteso");
+    return;
+  }
+
+  let orari = null;
+  const perProvincia = {};
+
+  for (const r of righe) {
+    const provincia = provinciaDaComuneGuardiaMedica(r.comune);
+    const nomeComune = testo(r.comune?.comune);
+    if (!provincia || !nomeComune) continue; // non dovrebbe capitare, vedi mappa di fallback sopra
+
+    if (!orari) {
+      orari = {
+        feriale: testo(r.feriale),
+        prefestivo: testo(r.prefestivo),
+        festivo: testo(r.festivo),
+        telefono: testo(r.telefono),
+      };
+    }
+
+    const comuniCompresi = Array.isArray(r.comuniCompresi)
+      ? r.comuniCompresi.map((c) => testo(c?.comune)).filter((nome) => nome !== null)
+      : null;
+
+    if (!perProvincia[provincia]) perProvincia[provincia] = { totale: 0, sedi: [] };
+    const p = perProvincia[provincia];
+    p.totale++;
+    p.sedi.push({
+      azienda: testo(r.azienda),
+      distretto: testo(r.distretto),
+      via: testo(r.via),
+      presso: testo(r.presso),
+      comune: nomeComune,
+      comuniCompresi: comuniCompresi && comuniCompresi.length > 0 ? comuniCompresi : null,
+      lat: r.latitudine ? Number(r.latitudine) : null,
+      lon: r.longitudine ? Number(r.longitudine) : null,
+    });
+  }
+
+  for (const p of Object.values(perProvincia)) {
+    p.sedi.sort((a, b) => a.comune.localeCompare(b.comune, "it") || (a.azienda ?? "").localeCompare(b.azienda ?? "", "it"));
+  }
+
+  if (!orari || Object.keys(perProvincia).length === 0) {
+    console.warn("Nessuna sede guardia medica utilizzabile trovata");
+    return;
+  }
+
+  await upsertSnapshot("guardiemediche", "guardiemediche", null, { orari, per_provincia: perProvincia });
+  const totaleSedi = Object.values(perProvincia).reduce((n, p) => n + p.totale, 0);
+  console.log(`Guardie mediche aggiornate: ${totaleSedi} sedi totali`);
+}
+
+// ---------------------------------------------------------------------
 // PRONTO SOCCORSO — tempi di attesa in tempo reale (16/09/2026,
 // richiesto dall'utente). Endpoint pubblico NON documentato di
 // servizionline.sanita.fvg.it, individuato dall'utente stesso via
@@ -13173,6 +13306,7 @@ async function main() {
     ["maree-previste", ingestMareePreviste()],
     ["balneazione", ingestBalneazione()],
     ["farmacie", ingestFarmacie()],
+    ["guardie-mediche", ingestGuardieMediche()],
     ["pronto-soccorso", ingestProntoSoccorso()],
     ["neve-impianti", ingestNeveImpianti()],
     ["strutture-ricettive", ingestStruttureRicettive()],

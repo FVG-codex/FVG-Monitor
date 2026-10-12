@@ -49,6 +49,7 @@ const TITOLO_SEZIONE_CHIAVE: Record<string, string> = {
   "/farmacie-di-turno": "farmacie.titoloTurno",
   "/farmacie-tutte": "farmacie.titoloTutte",
   "/cliniche": "sanita.sezioni.cliniche.nome",
+  "/guardie-mediche": "sanita.sezioni.guardieMediche.nome",
   // Turismo
   "/eventi": "turismo.sezioni.eventi.nome",
   "/neve-impianti": "turismo.sezioni.neveImpianti.nome",
@@ -66,6 +67,7 @@ const TITOLO_SEZIONE_CHIAVE: Record<string, string> = {
   "/dati-ambientali": "datiAmbientali.titolo",
   "/terremoti": "ambiente.sezioni.terremoti.nome",
   "/maree": "ambiente.sezioni.maree.nome",
+  "/siti-inquinati": "ambiente.sezioni.sitiInquinati.nome",
   // Servizi
   "/servizi": "servizi.titolo",
   "/rifiuti": "servizi.sezioni.rifiuti.nome",

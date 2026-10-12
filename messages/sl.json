@@ -159,6 +159,10 @@
       "servizi": {
         "nome": "Storitve",
         "descrizione": "Občinske in javne komunalne storitve — začenši z odvozom odpadkov"
+      },
+      "sitiInquinati": {
+        "nome": "Onesnažena območja",
+        "descrizione": "Deželni popis postopkov sanacije, po občinah"
       }
     }
   },
@@ -172,6 +176,10 @@
       "farmacie": {
         "nome": "Lekarne",
         "descrizione": "Vse lekarne in dežurne lekarne, po pokrajinah in občinah"
+      },
+      "guardieMediche": {
+        "nome": "Dežurna zdravstvena služba",
+        "descrizione": "Lokacije dežurne zdravstvene službe (nadaljevanje zdravstvene oskrbe), po pokrajinah in občinah, z urniki in enotno številko 116117"
       },
       "cliniche": {
         "nome": "Klinike in zdravstveni centri",
@@ -408,6 +416,24 @@
     "andamentoAriaLabel": "Današnje gibanje gladine morja v Trieste, Grado in Lignano — numerične vrednosti v ploščah spodaj",
     "legendaTrattoOsservatoPrevisione": "polna črta = opazovano · črtkana črta = napoved"
   },
+  "sitiInquinati": {
+    "titolo": "Onesnažena območja",
+    "descrizione": "Popis onesnaženih območij 2025 Dežele Furlanije - Julijske krajine — občinski, deželni in državni postopki sanacije, po občinah. Vir: dati.friuliveneziagiulia.it, nabor podatkov \"Censimento dei siti inquinati 2025\". V izvirnem naboru podatkov ni koordinat.",
+    "disclaimerArchiviata": "\"Arhivirano\" pomeni, da je bil postopek zaključen, ne pa nujno, da je bilo območje dejansko sanirano: dosežena faza (npr. \"Potrdilo o zaključeni sanaciji\" v primerjavi z enostavnim \"Zaključkom postopka\") kaže dejanski izid, kadar je naveden.",
+    "cercaLabel": "Iskanje po kodi območja ali občini",
+    "cercaPlaceholder": "Iskanje po kodi območja ali občini…",
+    "statoTutti": "Vsi statusi",
+    "statoIstruttoria": "Postopek v teku",
+    "statoArchiviata": "Arhivirano",
+    "categoria": {
+      "comunale": "občinski postopek",
+      "regionale": "deželni postopek",
+      "nazionale": "državni postopek"
+    },
+    "stadioLabel": "Faza: {stadio}",
+    "inquinanteLabel": "Onesnaževalo: {inquinante}",
+    "nessunRisultato": "Ni najdenih območij{luogo} z izbranimi filtri."
+  },
   "baseball": {
     "titoloFallback": "Baseball in softball",
     "descrizione": "Baseball in softball FVG — izbrane ekipe — vir: live.baseballfvg.it",
@@ -473,6 +499,17 @@
     "nessunaTrovata": "Ni bila najdena nobena lekarna{luogo}.",
     "orarioNonDisponibile": "Delovni čas ni na voljo",
     "mappaAriaLabel": "Zemljevid lekarn{luogo} — enakovreden besedilni seznam v sosednji plošči"
+  },
+  "guardieMediche": {
+    "titolo": "Dežurna zdravstvena služba",
+    "descrizione": "Lokacije dežurne zdravstvene službe v Furlaniji-Julijski krajini, po pokrajinah in občinah — vir: Avtonomna dežela Furlanija-Julijska krajina (sapi.sanita.fvg.it).",
+    "orarioTitolo": "Urnik službe (enak v celotni deželi)",
+    "feriale": "Ob delavnikih: {orario}",
+    "prefestivo": "Na dneve pred prazniki: {orario}",
+    "festivo": "Na praznike: {orario}",
+    "nessunaTrovata": "Ni bila najdena nobena lokacija{luogo}.",
+    "mappaAriaLabel": "Zemljevid lokacij dežurne zdravstvene službe{luogo} — enakovreden besedilni seznam v stranski plošči",
+    "comuniCompresi": "Vključene občine: {elenco}"
   },
   "colonnineElettriche": {
     "descrizione": "Polnilne postaje za električna vozila v Friuli Venezia Giulia — vir: OpenChargeMap, skupnostni register. Podatki so lahko nepopolni za najnovejše namestitve: preverite datum preverjanja posamezne postaje.",
