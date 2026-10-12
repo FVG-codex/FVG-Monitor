@@ -4,6 +4,9 @@ import { giornoSettimana, type GiornoSettimana } from "@/lib/orario";
 import type { FasciaOrariaSettimanale } from "@/lib/supermercati";
 
 import datiTrieste from "@/lib/data/cliniche-trieste.json";
+import datiGorizia from "@/lib/data/cliniche-gorizia.json";
+import datiPordenone from "@/lib/data/cliniche-pordenone.json";
+import datiUdine from "@/lib/data/cliniche-udine.json";
 
 export { adessoEuropeRome, giornoSettimana };
 export type { FasciaOrariaSettimanale };
@@ -51,6 +54,60 @@ export type { FasciaOrariaSettimanale };
 // `"sabato": [{ "apre": "07:45", "chiude": "19:30" }]`. Un oggetto
 // singolo viene incapsulato in un array di un elemento invece di
 // rifiutare il file o far crashare `formattaFasceGiornoClinica()`.
+//
+// Gorizia — seconda provincia attivata (10/10/2026),
+// `cliniche-centri-medici-provincia-gorizia.json` (13 record). File
+// pulito: nessun ID duplicato, coordinate presenti su tutti e 13 i
+// record, nessuna delle anomalie di schema trovate a Trieste (nessun
+// `orari[giorno]` come oggetto singolo invece di array). Un solo record
+// (`GO-CLI-010`, "Centro Salute") ha `orari` interamente `null` — già
+// gestito dal fallback a `ORARI_SCONOSCIUTI` in `normalizzaOrari()`
+// sotto, nessuna modifica di codice necessaria. Da notare (non un
+// errore, solo una curiosità del dato): `GO-CLI-001` ("Nova Salus - Via
+// Generale Cascino") e `GO-CLI-012` ("Salus - Poliambulatorio
+// Gorizia") condividono le stesse coordinate — il file stesso lo spiega
+// nel campo `note` di GO-CLI-012: due operatori distinti con partita
+// IVA diversa, ubicati nello stesso edificio.
+//
+// Pordenone — terza provincia attivata (12/10/2026),
+// `cliniche-centri-medici-provincia-pordenone.json` (21 record, ASFO
+// come azienda sanitaria di riferimento territoriale per questa zona —
+// stesso ente già visto nel rollout Dentisti per Pordenone). File
+// pulito: nessun ID duplicato, coordinate presenti su tutti i 21
+// record, nessuna anomalia `orari[giorno]` come oggetto singolo (tutti
+// array o `null`, come il file di Gorizia). 3 record (`PN-CLI-001`
+// "Policlinico San Giorgio", `PN-CLI-014` "UILDM Pordenone - Centro
+// riabilitativo", `PN-CLI-019` "MAD Medical") hanno `orari` interamente
+// `null` — stesso fallback a `ORARI_SCONOSCIUTI` già usato per
+// `GO-CLI-010`, nessuna modifica di codice necessaria. Curiosità non
+// problematica (stesso schema già visto a Gorizia): `PN-CLI-015`
+// ("Centro Medico Torre") e `PN-CLI-016` ("Raymed") condividono
+// l'indirizzo "Via Nazario Sauro 1" — spiegato nel campo `note` di
+// entrambi i record come due operatori distinti co-localizzati nello
+// stesso edificio.
+//
+// Udine — quarta e ultima provincia attivata (12/10/2026),
+// `cliniche-centri-medici-provincia-udine.json` (29 record, azienda
+// sanitaria di riferimento ASUFC). File ricevuto con un difetto di
+// codifica genuino (non introdotto da questo rollout): 27 stringhe —
+// soprattutto in `nome` (es. "Policlinico CittÃ  di Udine" invece di
+// "Policlinico Città di Udine"), `indirizzo`, `note`, `fonte_principale`
+// e nel blocco informativo `audit.*` — erano doppiamente codificate
+// (UTF-8 letto come Windows-1252 e poi ri-salvato in UTF-8, es. "â€™"
+// invece di "'", "Ã¨" invece di "è"). Corrette tutte e 27 con un
+// round-trip cp1252→UTF-8 prima di salvare questo file, nessuna persa.
+// **Anomalia di schema**: qui ricompare (e si estende) quella di
+// Trieste — "sabato" arriva come oggetto singolo invece di array su 23
+// record su 29, già gestita da `normalizzaGiorno()` sotto. Novità vista
+// per la prima volta in questo file: 6 di quei 23 oggetti sono VUOTI
+// (`{}`, non `{apre,chiude}`) — significano "chiuso il sabato", non una
+// fascia da mostrare. `normalizzaGiorno()` è stata estesa per
+// riconoscere questo caso e restituire `[]` invece di incapsulare `{}`
+// in un array (che avrebbe prodotto "undefined–undefined" in
+// `formattaFasceGiornoClinica()`). Nessun record con `orari`
+// interamente `null`, coordinate presenti su tutti i 29 record, nessun
+// ID duplicato. Con questa attivazione tutte e 4 le province sono
+// coperte per questa sezione.
 export type OrarioGiornoClinica = FasciaOrariaSettimanale[] | null;
 
 export type OrariSettimanaClinica = Record<GiornoSettimana, OrarioGiornoClinica>;
@@ -135,15 +192,22 @@ function normalizzaTelefonoEmail(valore: string | string[] | null | undefined): 
 
 // Un giorno può arrivare come array di fasce, un singolo oggetto fascia
 // (anomalia del file di Trieste — "sabato"/"domenica" su 6 record, vedi
-// commento esteso in testa al file) o `null`. Un oggetto singolo viene
-// incapsulato in un array di un elemento, così il resto del codice (qui
-// e nei componenti) può sempre assumere "array o null", mai un oggetto
-// nudo.
+// commento esteso in testa al file) o `null`. Un oggetto singolo con
+// `apre`/`chiude` viene incapsulato in un array di un elemento, così il
+// resto del codice (qui e nei componenti) può sempre assumere "array o
+// null", mai un oggetto nudo. Il file di Udine ha introdotto una terza
+// forma per lo stesso campo: un oggetto VUOTO `{}` (23 record su 29
+// hanno "sabato" come oggetto nudo, di cui 6 letteralmente `{}`) — a
+// differenza dell'oggetto con `apre`/`chiude` di Trieste, qui significa
+// "chiuso quel giorno", non "una fascia da mostrare". Senza questo
+// controllo, `[valore]` incapsulerebbe `{}` producendo un `undefined–
+// undefined` in `formattaFasceGiornoClinica()`.
 function normalizzaGiorno(
   valore: FasciaOrariaSettimanale[] | FasciaOrariaSettimanale | null | undefined
 ): OrarioGiornoClinica {
   if (valore === null || valore === undefined) return null;
   if (Array.isArray(valore)) return valore;
+  if (!("apre" in valore) || !("chiude" in valore)) return [];
   return [valore];
 }
 
@@ -180,17 +244,16 @@ function normalizza(r: RecordGrezzo): VoceClinica {
   };
 }
 
-// Solo Trieste attiva per ora (rollout graduale già fatto per Dentisti/
-// Veterinari/Supermercati) — le altre 3 restano array vuoto finché
-// l'utente non fornirà i rispettivi dati.
+// Tutte e 4 le province attive (rollout graduale completato, stesso
+// traguardo già raggiunto per Dentisti/Veterinari/Supermercati).
 export const CLINICHE_PER_PROVINCIA: Record<ProvinciaSlug, VoceClinica[]> = {
   trieste: (datiTrieste.records as RecordGrezzo[]).map(normalizza),
-  udine: [],
-  gorizia: [],
-  pordenone: [],
+  gorizia: (datiGorizia.records as RecordGrezzo[]).map(normalizza),
+  udine: (datiUdine.records as RecordGrezzo[]).map(normalizza),
+  pordenone: (datiPordenone.records as RecordGrezzo[]).map(normalizza),
 };
 
-export const PROVINCE_CLINICHE_ATTIVE: ProvinciaSlug[] = ["trieste"];
+export const PROVINCE_CLINICHE_ATTIVE: ProvinciaSlug[] = ["trieste", "gorizia", "udine", "pordenone"];
 
 // Stessa identica logica di statoAperturaDentista() in lib/dentisti.ts
 // e statoAperturaVeterinario() in lib/veterinari.ts (orari settimanali

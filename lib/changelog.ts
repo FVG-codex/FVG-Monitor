@@ -21,6 +21,27 @@ export type VoceChangelog = {
 
 export const CHANGELOG: VoceChangelog[] = [
   {
+    data: "12/10/2026",
+    titolo: "Cliniche & centri medici — attivata la provincia di Udine (29 strutture): tutte le province ora coperte",
+    dettagli: [
+      "Nella sezione Cliniche & centri medici è ora selezionabile anche la provincia di Udine: 29 strutture tra centri medici polispecialistici, poliambulatori, centri diagnostici, termali e riabilitativi, con specialità, orari e indicazione delle strutture convenzionate con il Servizio Sanitario Regionale. Con questa attivazione tutte e 4 le province sono coperte.",
+    ],
+  },
+  {
+    data: "12/10/2026",
+    titolo: "Cliniche & centri medici — attivata la provincia di Pordenone (21 strutture)",
+    dettagli: [
+      "Nella sezione Cliniche & centri medici è ora selezionabile anche la provincia di Pordenone: 21 strutture tra centri medici polispecialistici, poliambulatori, centri diagnostici e riabilitativi, con specialità, orari e indicazione delle strutture convenzionate con il Servizio Sanitario Regionale. Resta \"in arrivo\" solo Udine.",
+    ],
+  },
+  {
+    data: "10/10/2026",
+    titolo: "Cliniche & centri medici — attivata la provincia di Gorizia (13 strutture)",
+    dettagli: [
+      "Nella sezione Cliniche & centri medici è ora selezionabile anche la provincia di Gorizia: 13 strutture tra centri medici polispecialistici, poliambulatori, centri diagnostici e riabilitativi, con specialità, orari e indicazione delle strutture convenzionate con il Servizio Sanitario Regionale. Udine e Pordenone restano \"in arrivo\".",
+    ],
+  },
+  {
     data: "10/10/2026",
     titolo: "Sanità — nuova sezione Cliniche & centri medici (provincia di Trieste, 17 strutture)",
     dettagli: [

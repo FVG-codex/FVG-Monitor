@@ -1,0 +1,2121 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-10-12",
+  "timezone": "Europe/Rome",
+  "scope": "Cliniche private polispecialistiche, centri medici, poliambulatori, centri diagnostici, strutture termali sanitarie e centri riabilitativi della provincia di Udine. Esclusi studi esclusivamente dentistici o veterinari, farmacie, strutture residenziali e strutture pubbliche.",
+  "note_schema": "Prima ricognizione provinciale. Una sede fisica per record; gli orari di segreteria, accettazione o di specifici servizi sono precisati nelle note.",
+  "audit": {
+    "record_esclusi": [
+      {
+        "nome": "Presidi ospedalieri e poliambulatori ASUFC",
+        "motivo": "Strutture pubbliche fuori dal perimetro.",
+        "fonte": "https://asufc.sanita.fvg.it/"
+      },
+      {
+        "nome": "Strutture residenziali, RSA e hospice",
+        "motivo": "Categoria distinta dalle cliniche e dai centri medici.",
+        "fonte": "Criterio editoriale Monitor FVG"
+      }
+    ],
+    "candidati_da_verificare": [
+      {
+        "nome": "Friulmedica - Via Veneto 29",
+        "indirizzo": "Via Veneto 29, Codroipo",
+        "motivo": "Compare nell’elenco ASUFC/Albo, ma il sito ufficiale corrente presenta come sede di Codroipo solo Viale Venezia 121/B; verificare se sia ancora una sede sanitaria autonoma."
+      }
+    ],
+    "conflitti_indirizzo": [
+      {
+        "nome": "Carnia Salus",
+        "valore_corrente": "Via Val di Gorto 40, Tolmezzo",
+        "valore_pregresso": "Via Matteotti 8/2, Tolmezzo",
+        "decisione": "Usato l’indirizzo della pagina ufficiale corrente; richiede controllo cartografico."
+      }
+    ]
+  },
+  "records": [
+    {
+      "id": "UD-CLI-001",
+      "provincia": "UD",
+      "temporaneamente_chiuso": false,
+      "nome": "La Nostra Famiglia - Pasian di Prato",
+      "tipo_struttura": "Presidio di riabilitazione ambulatoriale e diurno",
+      "specialita": [
+        "Neuropsichiatria infantile",
+        "Riabilitazione",
+        "Psicologia",
+        "Logopedia",
+        "Terapia occupazionale"
+      ],
+      "indirizzo": "Via Enrico Cialdini 29",
+      "cap": "33037",
+      "comune": "Pasian di Prato",
+      "latitudine": 46.0554611,
+      "longitudine": 13.1910724,
+      "telefono": [
+        "0432693111",
+        "0432693106"
+      ],
+      "email": [
+        "pasian@lanostrafamiglia.it"
+      ],
+      "sito_ufficiale": "https://lanostrafamiglia.it/dove-siamo/in-italia/friuli-venezia-giulia/pasian-di-prato",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "07:45",
+            "chiude": "18:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "07:45",
+            "chiude": "18:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "07:45",
+            "chiude": "18:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "07:45",
+            "chiude": "18:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "07:45",
+            "chiude": "18:30"
+          }
+        ],
+        "sabato": {
+          "apre": "07:45",
+          "chiude": "13:00"
+        },
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "convenzionata_ssr": true,
+      "fonte_principale": "Albo regionale delle strutture sanitarie private accreditate 2026; elenco ASUFC delle strutture accreditate",
+      "fonte_orari": "Sito ufficiale della sede",
+      "orari_verificati": true,
+      "note": "Orario generale del presidio; i servizi ambulatoriale e diurno hanno fasce proprie.",
+      "data_verifica": "2026-10-12"
+    },
+    {
+      "id": "UD-CLI-002",
+      "provincia": "UD",
+      "temporaneamente_chiuso": false,
+      "nome": "Carnia Salus",
+      "tipo_struttura": "Poliambulatorio",
+      "specialita": [
+        "Cardiologia",
+        "Dermatologia",
+        "Oculistica",
+        "Chirurgia ambulatoriale",
+        "Medicina dello sport",
+        "Diagnostica per immagini"
+      ],
+      "indirizzo": "Via Val di Gorto 40",
+      "cap": "33028",
+      "comune": "Tolmezzo",
+      "latitudine": 46.39826,
+      "longitudine": 13.0080922,
+      "telefono": [
+        "043343114",
+        "3342609900"
+      ],
+      "email": [
+        "amministrazione@carniasalus.it"
+      ],
+      "sito_ufficiale": "https://www.polifvg.it/sedi/carnia-salus",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "07:30",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "07:30",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "07:30",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "07:30",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "07:30",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": {},
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "convenzionata_ssr": true,
+      "fonte_principale": "Albo regionale delle strutture sanitarie private accreditate 2026; elenco ASUFC delle strutture accreditate",
+      "fonte_orari": "Pagina ufficiale del gruppo Policlinico Triestino",
+      "orari_verificati": true,
+      "note": "La pagina ufficiale corrente indica via Val di Gorto 40; via Matteotti 8/2 compare ancora in documenti e indicazioni pregresse.",
+      "data_verifica": "2026-10-12"
+    },
+    {
+      "id": "UD-CLI-003",
+      "provincia": "UD",
+      "temporaneamente_chiuso": false,
+      "nome": "Centro Medico Università Castrense",
+      "tipo_struttura": "Centro medico polispecialistico e diagnostico",
+      "specialita": [
+        "Diagnostica per immagini",
+        "Ambulatori specialistici",
+        "Chirurgia oculistica",
+        "Fisioterapia",
+        "Medicina dello sport",
+        "Laboratorio analisi"
+      ],
+      "indirizzo": "Via Fratel Giorgio Bigotto 4",
+      "cap": "33058",
+      "comune": "San Giorgio di Nogaro",
+      "latitudine": 45.8371921,
+      "longitudine": 13.2070386,
+      "telefono": [
+        "0431620990",
+        "0431620471"
+      ],
+      "email": [
+        "info@cmuc.it"
+      ],
+      "sito_ufficiale": "https://www.cmuc.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "07:30",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "07:30",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "07:30",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "07:30",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "07:30",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": {
+          "apre": "07:30",
+          "chiude": "12:00"
+        },
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "convenzionata_ssr": true,
+      "fonte_principale": "Albo regionale delle strutture sanitarie private accreditate 2026; elenco ASUFC delle strutture accreditate",
+      "fonte_orari": "Sito ufficiale",
+      "orari_verificati": true,
+      "note": "Il servizio prelievi osserva orari più ristretti.",
+      "data_verifica": "2026-10-12"
+    },
+    {
+      "id": "UD-CLI-004",
+      "provincia": "UD",
+      "temporaneamente_chiuso": false,
+      "nome": "Centro Medico San Leone - Amaro",
+      "tipo_struttura": "Centro medico polispecialistico e diagnostico",
+      "specialita": [
+        "Diagnostica per immagini",
+        "Cardiologia",
+        "Dermatologia",
+        "Ginecologia",
+        "Ortopedia",
+        "Riabilitazione",
+        "Urologia"
+      ],
+      "indirizzo": "Via Cooperativa Carnica 1/A",
+      "cap": "33020",
+      "comune": "Amaro",
+      "latitudine": 46.3695747,
+      "longitudine": 13.0704794,
+      "telefono": [
+        "043344154"
+      ],
+      "email": [
+        "info.amaro@centromedicosanleone.it"
+      ],
+      "sito_ufficiale": "https://amaro.centromedicosanleone.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "18:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "18:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "18:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "18:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "18:00"
+          }
+        ],
+        "sabato": {
+          "apre": "08:30",
+          "chiude": "12:30"
+        },
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "convenzionata_ssr": true,
+      "fonte_principale": "Albo regionale delle strutture sanitarie private accreditate 2026; elenco ASUFC delle strutture accreditate",
+      "fonte_orari": "Sito ufficiale della sede, blocco Orario struttura ripetuto nelle pagine operative",
+      "orari_verificati": true,
+      "note": "Usato il blocco esplicitamente denominato Orario struttura. Un secondo riquadro del sito riporta lunedì e giovedì fino alle 19:00 e sabato chiuso, considerato secondario/non aggiornato.",
+      "data_verifica": "2026-10-12"
+    },
+    {
+      "id": "UD-CLI-005",
+      "provincia": "UD",
+      "temporaneamente_chiuso": false,
+      "nome": "Friulmedica - Codroipo",
+      "tipo_struttura": "Centro medico polispecialistico e riabilitativo",
+      "specialita": [
+        "Visite specialistiche",
+        "Fisioterapia",
+        "Diagnostica",
+        "Medicina dello sport"
+      ],
+      "indirizzo": "Viale Venezia 121/B",
+      "cap": "33033",
+      "comune": "Codroipo",
+      "latitudine": 45.9663403,
+      "longitudine": 12.9718096,
+      "telefono": [
+        "0432905679"
+      ],
+      "email": [
+        "info@friulmedica.it"
+      ],
+      "sito_ufficiale": "https://www.friulmedica.it/contatti",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "07:30",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "07:30",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "07:30",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "07:30",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "07:30",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": {
+          "apre": "07:30",
+          "chiude": "12:30"
+        },
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "convenzionata_ssr": true,
+      "fonte_principale": "Albo regionale delle strutture sanitarie private accreditate 2026; elenco ASUFC delle strutture accreditate",
+      "fonte_orari": "Sito ufficiale, pagina contatti",
+      "orari_verificati": true,
+      "note": "Orari della segreteria.",
+      "data_verifica": "2026-10-12"
+    },
+    {
+      "id": "UD-CLI-006",
+      "provincia": "UD",
+      "temporaneamente_chiuso": false,
+      "nome": "Friuli Coram",
+      "tipo_struttura": "Poliambulatorio e centro diagnostico",
+      "specialita": [
+        "Laboratorio analisi",
+        "Diagnostica per immagini",
+        "Cardiologia",
+        "Medicina dello sport",
+        "Endocrinologia",
+        "Diabetologia",
+        "Dermatologia"
+      ],
+      "indirizzo": "Via Teobaldo Ciconi 10/2",
+      "cap": "33100",
+      "comune": "Udine",
+      "latitudine": 46.0578843,
+      "longitudine": 13.2393696,
+      "telefono": [
+        "0432585211"
+      ],
+      "email": [],
+      "sito_ufficiale": "https://coram.it/orari/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "07:30",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "07:30",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "07:30",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "07:30",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "07:30",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": {
+          "apre": "07:30",
+          "chiude": "13:00"
+        },
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "convenzionata_ssr": true,
+      "fonte_principale": "Albo regionale delle strutture sanitarie private accreditate 2026; elenco ASUFC delle strutture accreditate",
+      "fonte_orari": "Sito ufficiale, orario poliambulatorio",
+      "orari_verificati": true,
+      "note": "La stessa sede ospita servizi con fasce specifiche; non sono creati duplicati.",
+      "data_verifica": "2026-10-12"
+    },
+    {
+      "id": "UD-CLI-007",
+      "provincia": "UD",
+      "temporaneamente_chiuso": false,
+      "nome": "Istituto di Radiologia Imago",
+      "tipo_struttura": "Centro diagnostico radiologico",
+      "specialita": [
+        "Diagnostica per immagini",
+        "Radiologia"
+      ],
+      "indirizzo": "Via Stiria 36/12",
+      "cap": "33100",
+      "comune": "Udine",
+      "latitudine": 46.0387469,
+      "longitudine": 13.2446128,
+      "telefono": [
+        "0432526209"
+      ],
+      "email": [
+        "info@istitutoradiologia.it"
+      ],
+      "sito_ufficiale": "https://www.istitutoradiologia.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": {
+          "apre": "08:00",
+          "chiude": "12:00"
+        },
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "convenzionata_ssr": true,
+      "fonte_principale": "Albo regionale delle strutture sanitarie private accreditate 2026; elenco ASUFC delle strutture accreditate",
+      "fonte_orari": "Sito ufficiale",
+      "orari_verificati": true,
+      "note": "Numero interno normalizzato secondo l’Albo regionale; il sito indica sinteticamente Via Stiria 36.",
+      "data_verifica": "2026-10-12"
+    },
+    {
+      "id": "UD-CLI-008",
+      "provincia": "UD",
+      "temporaneamente_chiuso": false,
+      "nome": "Nova Salus - Cervignano del Friuli",
+      "tipo_struttura": "Poliambulatorio e centro diagnostico",
+      "specialita": [
+        "Visite specialistiche",
+        "Diagnostica",
+        "Infermieristica"
+      ],
+      "indirizzo": "Via del Mercato 23/25",
+      "cap": "33052",
+      "comune": "Cervignano del Friuli",
+      "latitudine": 45.8207226,
+      "longitudine": 13.3296933,
+      "telefono": [
+        "0431370285"
+      ],
+      "email": [
+        "info@novasalus.it"
+      ],
+      "sito_ufficiale": "https://novasalus.it/contatti/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "17:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "17:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "17:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "17:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "17:00"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "convenzionata_ssr": true,
+      "fonte_principale": "Albo regionale delle strutture sanitarie private accreditate 2026; elenco ASUFC delle strutture accreditate",
+      "fonte_orari": "Sito ufficiale, pagina contatti",
+      "orari_verificati": true,
+      "note": "Orario di segreteria con pausa 13:00-14:00; nel prossimo passaggio sarà trasformato in due fasce giornaliere.",
+      "data_verifica": "2026-10-12"
+    },
+    {
+      "id": "UD-CLI-009",
+      "provincia": "UD",
+      "temporaneamente_chiuso": false,
+      "nome": "Olomed",
+      "tipo_struttura": "Poliambulatorio",
+      "specialita": [
+        "Diagnostica per immagini",
+        "Medicina dello sport",
+        "Endocrinologia",
+        "Diabetologia",
+        "Dermatologia",
+        "Visite specialistiche"
+      ],
+      "indirizzo": "Via Terzo Drusin 25",
+      "cap": "33044",
+      "comune": "Manzano",
+      "latitudine": 45.988369,
+      "longitudine": 13.3869653,
+      "telefono": [
+        "0432938211"
+      ],
+      "email": [],
+      "sito_ufficiale": "https://www.olomed.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "18:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "18:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "18:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "18:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "18:00"
+          }
+        ],
+        "sabato": {},
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "convenzionata_ssr": true,
+      "fonte_principale": "Albo regionale delle strutture sanitarie private accreditate 2026; elenco ASUFC delle strutture accreditate",
+      "fonte_orari": "Sito ufficiale, reperibilità per informazioni e prenotazioni",
+      "orari_verificati": true,
+      "note": "La fascia indica la disponibilità per informazioni e prenotazioni; il punto prelievi opera su appuntamento il martedì 07:30-09:00.",
+      "data_verifica": "2026-10-12"
+    },
+    {
+      "id": "UD-CLI-010",
+      "provincia": "UD",
+      "temporaneamente_chiuso": false,
+      "nome": "Policlinico Città di Udine - Polo 1",
+      "tipo_struttura": "Casa di cura privata e poliambulatorio",
+      "specialita": [
+        "Ricovero privato",
+        "Chirurgia",
+        "Visite specialistiche",
+        "Diagnostica per immagini",
+        "Laboratorio analisi"
+      ],
+      "indirizzo": "Viale Venezia 410",
+      "cap": "33100",
+      "comune": "Udine",
+      "latitudine": 46.0522892,
+      "longitudine": 13.2105185,
+      "telefono": [
+        "0432239215",
+        "0432239216"
+      ],
+      "email": [],
+      "sito_ufficiale": "https://www.policlinicoudine.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "07:30",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "07:30",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "07:30",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "07:30",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "07:30",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": {
+          "apre": "07:30",
+          "chiude": "12:00"
+        },
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "convenzionata_ssr": true,
+      "fonte_principale": "Albo regionale delle strutture sanitarie private accreditate 2026; elenco ASUFC delle strutture accreditate",
+      "fonte_orari": "Sito ufficiale, orari accettazione Polo 1",
+      "orari_verificati": true,
+      "note": "Orario dell’accettazione; il CUP risponde lun-ven 08:00-18:30 e sab 08:00-12:00.",
+      "data_verifica": "2026-10-12"
+    },
+    {
+      "id": "UD-CLI-011",
+      "provincia": "UD",
+      "temporaneamente_chiuso": false,
+      "nome": "Policlinico Città di Udine - Polo 2",
+      "tipo_struttura": "Poliambulatorio",
+      "specialita": [
+        "Visite specialistiche",
+        "Diagnostica",
+        "Prestazioni ambulatoriali"
+      ],
+      "indirizzo": "Via Giuseppe Joppi 33",
+      "cap": "33100",
+      "comune": "Udine",
+      "latitudine": 46.0552926,
+      "longitudine": 13.2232747,
+      "telefono": [
+        "0432239215",
+        "0432239600"
+      ],
+      "email": [],
+      "sito_ufficiale": "https://www.policlinicoudine.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "07:30",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "07:30",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "07:30",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "07:30",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "07:30",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": {
+          "apre": "07:30",
+          "chiude": "13:00"
+        },
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "convenzionata_ssr": true,
+      "fonte_principale": "Albo regionale delle strutture sanitarie private accreditate 2026; elenco ASUFC delle strutture accreditate",
+      "fonte_orari": "Sito ufficiale, orari accettazione Polo 2",
+      "orari_verificati": true,
+      "note": "Orario dell’accettazione; il CUP è condiviso con il Polo 1.",
+      "data_verifica": "2026-10-12"
+    },
+    {
+      "id": "UD-CLI-012",
+      "provincia": "UD",
+      "temporaneamente_chiuso": false,
+      "nome": "Polimedica Centro Pasteur",
+      "tipo_struttura": "Poliambulatorio e centro riabilitativo",
+      "specialita": [
+        "Visite specialistiche",
+        "Fisioterapia",
+        "Riabilitazione",
+        "Medicina dello sport"
+      ],
+      "indirizzo": "Via Bariglaria 60/3",
+      "cap": "33040",
+      "comune": "Pradamano",
+      "latitudine": 46.0363147,
+      "longitudine": 13.2964648,
+      "telefono": [
+        "0432641063",
+        "3371547197"
+      ],
+      "email": [
+        "info@polimedica.it"
+      ],
+      "sito_ufficiale": "https://polimedica.info/contatti/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "07:30",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "07:30",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "07:30",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "07:30",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "07:30",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": {},
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "convenzionata_ssr": true,
+      "fonte_principale": "Albo regionale delle strutture sanitarie private accreditate 2026; elenco ASUFC delle strutture accreditate",
+      "fonte_orari": "Sito ufficiale e carta dei servizi",
+      "orari_verificati": true,
+      "note": "Orario continuato di segreteria e prestazioni.",
+      "data_verifica": "2026-10-12"
+    },
+    {
+      "id": "UD-CLI-013",
+      "provincia": "UD",
+      "temporaneamente_chiuso": false,
+      "nome": "Radiologia Cervignanese",
+      "tipo_struttura": "Centro diagnostico radiologico",
+      "specialita": [
+        "Radiologia",
+        "Diagnostica per immagini",
+        "Punto prelievi"
+      ],
+      "indirizzo": "Via Demanio 6",
+      "cap": "33052",
+      "comune": "Cervignano del Friuli",
+      "latitudine": 45.8254111,
+      "longitudine": 13.3314792,
+      "telefono": [
+        "0431373116"
+      ],
+      "email": [
+        "info@radiologiacervignanese.it"
+      ],
+      "sito_ufficiale": "https://radiologiacervignanese.it/it/informazioni/orari",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "18:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "18:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "18:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "18:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "18:00"
+          }
+        ],
+        "sabato": {
+          "apre": "09:00",
+          "chiude": "12:00"
+        },
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "convenzionata_ssr": true,
+      "fonte_principale": "Albo regionale delle strutture sanitarie private accreditate 2026; elenco ASUFC delle strutture accreditate",
+      "fonte_orari": "Sito ufficiale, pagina orari",
+      "orari_verificati": true,
+      "note": "Il punto prelievi osserva lun-sab 07:30-09:45.",
+      "data_verifica": "2026-10-12"
+    },
+    {
+      "id": "UD-CLI-014",
+      "provincia": "UD",
+      "temporaneamente_chiuso": false,
+      "nome": "Riabimed",
+      "tipo_struttura": "Centro di fisioterapia e riabilitazione",
+      "specialita": [
+        "Fisioterapia",
+        "Riabilitazione",
+        "Fisiatria",
+        "Ortopedia",
+        "Dermatologia",
+        "Nutrizione"
+      ],
+      "indirizzo": "Viale Venezia 100",
+      "cap": "33100",
+      "comune": "Udine",
+      "latitudine": 46.055657,
+      "longitudine": 13.2179597,
+      "telefono": [
+        "0432237329"
+      ],
+      "email": [
+        "segreteria@riabimed.it"
+      ],
+      "sito_ufficiale": "https://www.riabimed.com/contatti",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "18:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "18:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "18:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "18:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "18:00"
+          }
+        ],
+        "sabato": {},
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "convenzionata_ssr": true,
+      "fonte_principale": "Albo regionale delle strutture sanitarie private accreditate 2026; elenco ASUFC delle strutture accreditate",
+      "fonte_orari": "Sito ufficiale, pagina contatti",
+      "orari_verificati": true,
+      "note": "Orari della segreteria.",
+      "data_verifica": "2026-10-12"
+    },
+    {
+      "id": "UD-CLI-015",
+      "provincia": "UD",
+      "temporaneamente_chiuso": false,
+      "nome": "Salus Alpe Adria",
+      "tipo_struttura": "Struttura sanitaria polispecialistica",
+      "specialita": [
+        "Visite specialistiche",
+        "Diagnostica",
+        "Chirurgia ambulatoriale",
+        "Medicina dello sport",
+        "Medicina del lavoro"
+      ],
+      "indirizzo": "Via Gabriele D’Annunzio 29",
+      "cap": "33010",
+      "comune": "Tavagnacco",
+      "latitudine": 46.1159646,
+      "longitudine": 13.2155168,
+      "telefono": [
+        "0432574163"
+      ],
+      "email": [
+        "info@salusalpeadria.it"
+      ],
+      "sito_ufficiale": "https://www.salusalpeadria.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": {
+          "apre": "08:30",
+          "chiude": "13:00"
+        },
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "convenzionata_ssr": true,
+      "fonte_principale": "Albo regionale delle strutture sanitarie private accreditate 2026; elenco ASUFC delle strutture accreditate",
+      "fonte_orari": "Homepage, FAQ e pagine dei servizi del sito ufficiale",
+      "orari_verificati": true,
+      "note": "Sede nella località Branco. La fascia è ripetuta coerentemente nella maggior parte delle pagine ufficiali; un solo riquadro della pagina contatti mostra una fascia diversa.",
+      "data_verifica": "2026-10-12"
+    },
+    {
+      "id": "UD-CLI-016",
+      "provincia": "UD",
+      "temporaneamente_chiuso": false,
+      "nome": "Sanirad",
+      "tipo_struttura": "Centro diagnostico e poliambulatorio",
+      "specialita": [
+        "Diagnostica per immagini",
+        "Visite specialistiche",
+        "Riabilitazione"
+      ],
+      "indirizzo": "Via John Fitzgerald Kennedy 3",
+      "cap": "33019",
+      "comune": "Tricesimo",
+      "latitudine": 46.1559954,
+      "longitudine": 13.2157553,
+      "telefono": [
+        "0432854123",
+        "0432851321"
+      ],
+      "email": [
+        "sanirad@sanirad.it"
+      ],
+      "sito_ufficiale": "https://www.sanirad.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": {
+          "apre": "08:00",
+          "chiude": "15:30"
+        },
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "convenzionata_ssr": true,
+      "fonte_principale": "Albo regionale delle strutture sanitarie private accreditate 2026; elenco ASUFC delle strutture accreditate",
+      "fonte_orari": "Homepage ufficiale, orari di segreteria",
+      "orari_verificati": true,
+      "note": "Orario della segreteria. La carta dei servizi indica per apertura e accoglienza 08:30-19:30 dal lunedì al venerdì e 08:30-16:00 il sabato.",
+      "data_verifica": "2026-10-12"
+    },
+    {
+      "id": "UD-CLI-017",
+      "provincia": "UD",
+      "temporaneamente_chiuso": false,
+      "nome": "Sanitas Friuli",
+      "tipo_struttura": "Centro medico e riabilitativo",
+      "specialita": [
+        "Medicina fisica",
+        "Riabilitazione",
+        "Visite specialistiche"
+      ],
+      "indirizzo": "Via Taboga 113/115",
+      "cap": "33013",
+      "comune": "Gemona del Friuli",
+      "latitudine": 46.2645017,
+      "longitudine": 13.1075908,
+      "telefono": [
+        "0432972318"
+      ],
+      "email": [],
+      "sito_ufficiale": "https://sanitasfriuligemona2012.jimdofree.com/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "17:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "17:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "17:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "17:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "17:30"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "convenzionata_ssr": true,
+      "fonte_principale": "Albo regionale delle strutture sanitarie private accreditate 2026; elenco ASUFC delle strutture accreditate",
+      "fonte_orari": "Sito ufficiale, pagina Come prenotare",
+      "orari_verificati": true,
+      "note": "Prenotazioni allo sportello o telefoniche lun-ven 09:00-13:00 e 14:00-17:30; le fasce vengono impostate dopo la costruzione dei record.",
+      "data_verifica": "2026-10-12"
+    },
+    {
+      "id": "UD-CLI-018",
+      "provincia": "UD",
+      "temporaneamente_chiuso": false,
+      "nome": "Terme di Arta",
+      "tipo_struttura": "Stabilimento termale e centro riabilitativo",
+      "specialita": [
+        "Cure termali",
+        "Fisioterapia",
+        "Riabilitazione",
+        "Visite mediche"
+      ],
+      "indirizzo": "Via Nazionale 1",
+      "cap": "33022",
+      "comune": "Arta Terme",
+      "latitudine": 46.4764685,
+      "longitudine": 13.017756,
+      "telefono": [
+        "0433929320"
+      ],
+      "email": [
+        "termediarta@termefvg.it"
+      ],
+      "sito_ufficiale": "https://termediarta.it/contatti/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": {
+          "apre": "08:00",
+          "chiude": "19:30"
+        },
+        "domenica": [
+          {
+            "apre": "10:00",
+            "chiude": "19:30"
+          }
+        ]
+      },
+      "su_appuntamento": true,
+      "convenzionata_ssr": true,
+      "fonte_principale": "Albo regionale delle strutture sanitarie private accreditate 2026; elenco ASUFC delle strutture accreditate",
+      "fonte_orari": "Carta dei servizi ufficiale 2025",
+      "orari_verificati": true,
+      "note": "Orario di informazioni, cassa e accettazione; domenica 10:00-19:30. Cure e fisioterapia sono su appuntamento con fasce proprie.",
+      "data_verifica": "2026-10-12"
+    },
+    {
+      "id": "UD-CLI-019",
+      "provincia": "UD",
+      "temporaneamente_chiuso": false,
+      "nome": "ImagoMed",
+      "tipo_struttura": "Centro medico polispecialistico",
+      "specialita": [
+        "Visite specialistiche",
+        "Diagnostica ecografica",
+        "Prevenzione"
+      ],
+      "indirizzo": "Via Stiria 36/C",
+      "cap": "33100",
+      "comune": "Udine",
+      "latitudine": 46.0400083,
+      "longitudine": 13.2435993,
+      "telefono": [
+        "0432522417"
+      ],
+      "email": [
+        "info@imagomed.it"
+      ],
+      "sito_ufficiale": "https://www.imagomed.it/contatti",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": {
+          "apre": "08:00",
+          "chiude": "12:00"
+        },
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "convenzionata_ssr": false,
+      "fonte_principale": "Sito ufficiale; autorizzazione sanitaria pubblicata dalla struttura",
+      "fonte_orari": "Sito ufficiale, pagina contatti",
+      "orari_verificati": true,
+      "note": "Struttura distinta dall’Istituto di Radiologia Imago, nello stesso complesso ma con civico interno e recapiti differenti.",
+      "data_verifica": "2026-10-12"
+    },
+    {
+      "id": "UD-CLI-020",
+      "provincia": "UD",
+      "temporaneamente_chiuso": false,
+      "nome": "In Salute Poliambulatorio",
+      "tipo_struttura": "Poliambulatorio e centro infermieristico",
+      "specialita": [
+        "Visite specialistiche",
+        "Fisioterapia",
+        "Servizi infermieristici",
+        "Punto prelievi",
+        "Ecografia",
+        "Cardiologia"
+      ],
+      "indirizzo": "Strada Statale 54 del Friuli 45",
+      "cap": "33047",
+      "comune": "Remanzacco",
+      "latitudine": 46.0799214,
+      "longitudine": 13.3059244,
+      "telefono": [
+        "04321792192"
+      ],
+      "email": [
+        "info@insalutepoliambulatorio.it"
+      ],
+      "sito_ufficiale": "https://insalutepoliambulatorio.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": {
+          "apre": "08:00",
+          "chiude": "12:00"
+        },
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "convenzionata_ssr": false,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": "Sito ufficiale",
+      "orari_verificati": true,
+      "note": "Orario degli altri servizi; il punto prelievi opera lun-ven 07:30-10:00 e sabato con orario variabile.",
+      "data_verifica": "2026-10-12"
+    },
+    {
+      "id": "UD-CLI-021",
+      "provincia": "UD",
+      "temporaneamente_chiuso": false,
+      "nome": "MyMed Fagagna",
+      "tipo_struttura": "Centro medico polispecialistico e chirurgico ambulatoriale",
+      "specialita": [
+        "Oculistica",
+        "Cardiologia",
+        "Ginecologia",
+        "Gastroenterologia",
+        "Medicina dello sport",
+        "Urologia",
+        "Chirurgia ambulatoriale"
+      ],
+      "indirizzo": "Via delle Acacie 1",
+      "cap": "33034",
+      "comune": "Fagagna",
+      "latitudine": 46.1261556,
+      "longitudine": 13.0685754,
+      "telefono": [
+        "0432812630"
+      ],
+      "email": [],
+      "sito_ufficiale": "https://www.mymedsrl.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "14:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "14:00"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "convenzionata_ssr": false,
+      "fonte_principale": "Sito ufficiale; sito del Gruppo Policlinico Città di Udine",
+      "fonte_orari": "Google Business, riportato da directory cartografiche aggiornate nel 2026",
+      "orari_verificati": false,
+      "note": "Il sito ufficiale non pubblica l’orario ordinario. Le fonti cartografiche concordano su lun-mar 09:00-19:00, mer 14:00-19:00, gio 09:00-19:00, ven 09:00-14:00; mantenuto come dato non verificato.",
+      "data_verifica": "2026-10-12"
+    },
+    {
+      "id": "UD-CLI-022",
+      "provincia": "UD",
+      "temporaneamente_chiuso": false,
+      "nome": "Terminal Nord Medical Center",
+      "tipo_struttura": "Poliambulatorio e centro chirurgico ambulatoriale",
+      "specialita": [
+        "Visite specialistiche",
+        "Oncologia",
+        "Chirurgia ricostruttiva",
+        "Diagnostica per immagini",
+        "Riabilitazione",
+        "Odontoiatria"
+      ],
+      "indirizzo": "Viale Giovanni Paolo II 15/3",
+      "cap": "33100",
+      "comune": "Udine",
+      "latitudine": 46.0966142,
+      "longitudine": 13.2384024,
+      "telefono": [
+        "0432481849"
+      ],
+      "email": [
+        "terminalnord.medicalcenter@gmail.com"
+      ],
+      "sito_ufficiale": "https://terminalnord.com/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "15:00",
+            "chiude": "20:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "15:00",
+            "chiude": "20:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "15:00",
+            "chiude": "20:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "15:00",
+            "chiude": "20:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "15:00",
+            "chiude": "20:00"
+          }
+        ],
+        "sabato": {},
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "convenzionata_ssr": false,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": "Sito ufficiale, orari area medica",
+      "orari_verificati": true,
+      "note": "Orario dell’area medica; l’area odontoiatrica osserva lun-ven 09:00-18:00.",
+      "data_verifica": "2026-10-12"
+    },
+    {
+      "id": "UD-CLI-023",
+      "provincia": "UD",
+      "temporaneamente_chiuso": false,
+      "nome": "3D Diagnostic Images",
+      "tipo_struttura": "Studio radiologico",
+      "specialita": [
+        "Radiologia dentale",
+        "Diagnostica maxillo-facciale",
+        "Densitometria ossea"
+      ],
+      "indirizzo": "Via Tavagnacco 131",
+      "cap": "33100",
+      "comune": "Udine",
+      "latitudine": 46.0964687,
+      "longitudine": 13.2285229,
+      "telefono": [
+        "04321792495"
+      ],
+      "email": [
+        "info@3diagnostic.it"
+      ],
+      "sito_ufficiale": "https://www.3diagnostic.it/orari",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "18:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "18:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "18:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "18:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "18:30"
+          }
+        ],
+        "sabato": {},
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "convenzionata_ssr": false,
+      "fonte_principale": "Sito ufficiale; sito del Gruppo Policlinico Città di Udine",
+      "fonte_orari": "Sito ufficiale, pagina orari",
+      "orari_verificati": true,
+      "note": "Prestazioni su appuntamento.",
+      "data_verifica": "2026-10-12"
+    },
+    {
+      "id": "UD-CLI-024",
+      "provincia": "UD",
+      "temporaneamente_chiuso": false,
+      "nome": "Polimedica Latisana",
+      "tipo_struttura": "Centro medico polispecialistico",
+      "specialita": [
+        "Visite specialistiche",
+        "Diagnostica",
+        "Analisi cliniche",
+        "Fisioterapia",
+        "Medicina dello sport"
+      ],
+      "indirizzo": "Via Egregis Gaspari 71",
+      "cap": "33053",
+      "comune": "Latisana",
+      "latitudine": 45.7810791,
+      "longitudine": 12.9945889,
+      "telefono": [
+        "0431476679"
+      ],
+      "email": [
+        "info@polimedicalatisana.it"
+      ],
+      "sito_ufficiale": "https://www.polimedicalatisana.it/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": {
+          "apre": "08:30",
+          "chiude": "12:30"
+        },
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "convenzionata_ssr": false,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": "Sito ufficiale",
+      "orari_verificati": true,
+      "note": "Prestazioni esclusivamente private; la struttura dichiara di non accettare prescrizioni SSR.",
+      "data_verifica": "2026-10-12"
+    },
+    {
+      "id": "UD-CLI-025",
+      "provincia": "UD",
+      "temporaneamente_chiuso": false,
+      "nome": "Centro Medico by Salus",
+      "tipo_struttura": "Centro medico polispecialistico",
+      "specialita": [
+        "Visite specialistiche",
+        "Fisiatria",
+        "Diagnostica",
+        "Medicina del lavoro"
+      ],
+      "indirizzo": "Via Guglielmo Marconi 133",
+      "cap": "33053",
+      "comune": "Latisana",
+      "latitudine": 45.7835953,
+      "longitudine": 13.0045282,
+      "telefono": [
+        "0431513086"
+      ],
+      "email": [
+        "info@bysalus.com"
+      ],
+      "sito_ufficiale": "https://www.bysalus.com/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": {
+          "apre": "08:30",
+          "chiude": "12:30"
+        },
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "convenzionata_ssr": false,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": "Sito ufficiale",
+      "orari_verificati": true,
+      "note": "Centro distinto da Polimedica Latisana, con indirizzo e recapiti differenti.",
+      "data_verifica": "2026-10-12"
+    },
+    {
+      "id": "UD-CLI-026",
+      "provincia": "UD",
+      "temporaneamente_chiuso": false,
+      "nome": "Cormedica - Cividale del Friuli",
+      "tipo_struttura": "Poliambulatorio medico e fisioterapico",
+      "specialita": [
+        "Fisioterapia",
+        "Riabilitazione",
+        "Visite specialistiche",
+        "Ecografia",
+        "Punto prelievi"
+      ],
+      "indirizzo": "Via Sanguarzo 5",
+      "cap": "33043",
+      "comune": "Cividale del Friuli",
+      "latitudine": 46.0984087,
+      "longitudine": 13.4394061,
+      "telefono": [
+        "0432730708"
+      ],
+      "email": [
+        "cividale@cormedica.it"
+      ],
+      "sito_ufficiale": "https://cormedica.it/locations/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:30",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "convenzionata_ssr": false,
+      "fonte_principale": "Sito ufficiale; autorizzazione sanitaria indicata dalla struttura",
+      "fonte_orari": "Sito ufficiale",
+      "orari_verificati": true,
+      "note": "Aperto lun-ven 08:30-13:00 e 14:00-19:30; le fasce vengono impostate dopo la costruzione dei record.",
+      "data_verifica": "2026-10-12"
+    },
+    {
+      "id": "UD-CLI-027",
+      "provincia": "UD",
+      "temporaneamente_chiuso": false,
+      "nome": "SaniPro Ambulatori",
+      "tipo_struttura": "Poliambulatorio e centro riabilitativo",
+      "specialita": [
+        "Visite specialistiche",
+        "Fisioterapia",
+        "Riabilitazione",
+        "Analisi del sangue",
+        "Medicina dello sport"
+      ],
+      "indirizzo": "Viale Giuseppe Tullio 7",
+      "cap": "33100",
+      "comune": "Udine",
+      "latitudine": 46.0563273,
+      "longitudine": 13.2343265,
+      "telefono": [
+        "04321597413"
+      ],
+      "email": [
+        "ambulatori@sanipro.org"
+      ],
+      "sito_ufficiale": "https://sanipro.org/ambulatori/contatti",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "19:30"
+          }
+        ],
+        "sabato": {
+          "apre": "09:00",
+          "chiude": "12:00"
+        },
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "convenzionata_ssr": false,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": "Sito ufficiale, pagina Analisi del sangue: reperibilità per prenotazioni",
+      "orari_verificati": true,
+      "note": "Fascia ufficiale per contattare e prenotare; le singole prestazioni sono erogate su appuntamento.",
+      "data_verifica": "2026-10-12"
+    },
+    {
+      "id": "UD-CLI-028",
+      "provincia": "UD",
+      "temporaneamente_chiuso": false,
+      "nome": "Salus Service",
+      "tipo_struttura": "Struttura sanitaria polispecialistica e punto prelievi",
+      "specialita": [
+        "Medicina del lavoro",
+        "Medicina legale",
+        "Medicina dello sport",
+        "Laboratorio analisi",
+        "Cardiologia",
+        "Ambulatorio infermieristico"
+      ],
+      "indirizzo": "Via Tricesimo 250/F",
+      "cap": "33100",
+      "comune": "Udine",
+      "latitudine": 46.0894869,
+      "longitudine": 13.2319288,
+      "telefono": [
+        "0432545792",
+        "3887580576"
+      ],
+      "email": [
+        "info@salusservice.com"
+      ],
+      "sito_ufficiale": "https://salusservice.com/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "08:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "17:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "08:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "17:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "08:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "17:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "08:00",
+            "chiude": "12:00"
+          },
+          {
+            "apre": "14:00",
+            "chiude": "17:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "08:00",
+            "chiude": "12:00"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "convenzionata_ssr": false,
+      "fonte_principale": "Sito ufficiale",
+      "fonte_orari": "Sito ufficiale",
+      "orari_verificati": true,
+      "note": "Aperto lun-gio 08:00-12:00 e 14:00-17:00; venerdì 08:00-12:00. Le fasce vengono impostate dopo la costruzione dei record.",
+      "data_verifica": "2026-10-12"
+    },
+    {
+      "id": "UD-CLI-029",
+      "provincia": "UD",
+      "temporaneamente_chiuso": false,
+      "nome": "Città della Salute",
+      "tipo_struttura": "Poliambulatorio specialistico",
+      "specialita": [
+        "Visite specialistiche",
+        "Diagnostica per immagini",
+        "Fisioterapia",
+        "Area pediatrica",
+        "Punto prelievi"
+      ],
+      "indirizzo": "Via Antonio Bardelli 4",
+      "cap": "33035",
+      "comune": "Martignacco",
+      "latitudine": 46.09825,
+      "longitudine": 13.13255,
+      "telefono": [
+        "04321833574"
+      ],
+      "email": [
+        "info@cittasalute.it"
+      ],
+      "sito_ufficiale": "https://cittasalute.it/chi-siamo/",
+      "orari": {
+        "lunedi": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:00"
+          }
+        ],
+        "martedi": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:00"
+          }
+        ],
+        "mercoledi": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:00"
+          }
+        ],
+        "giovedi": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:00"
+          }
+        ],
+        "venerdi": [
+          {
+            "apre": "09:00",
+            "chiude": "13:00"
+          },
+          {
+            "apre": "15:00",
+            "chiude": "19:00"
+          }
+        ],
+        "sabato": [],
+        "domenica": []
+      },
+      "su_appuntamento": true,
+      "convenzionata_ssr": false,
+      "fonte_principale": "Sito ufficiale; pagina ufficiale del Centro Commerciale Città Fiera",
+      "fonte_orari": "Sito ufficiale e pagina Città Fiera",
+      "orari_verificati": true,
+      "note": "Sede al secondo e terzo piano della Piramide Direzionale di Città Fiera. Aperto lun-ven 09:00-13:00 e 15:00-19:00.",
+      "data_verifica": "2026-10-12"
+    }
+  ]
+}
