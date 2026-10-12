@@ -133,6 +133,10 @@
       "eventi": {
         "nome": "Eventi",
         "descrizione": "Sagre, mostre, concerti e manifestazioni nei prossimi 14 giorni in tutta la regione"
+      },
+      "parchiGiardini": {
+        "nome": "Parchi e giardini",
+        "descrizione": "Censimento regionale di parchi, giardini storici, orti botanici e uccellande (roccoli), per provincia e comune"
       }
     }
   },
@@ -433,6 +437,19 @@
     "stadioLabel": "Fase: {stadio}",
     "inquinanteLabel": "Inquinante: {inquinante}",
     "nessunRisultato": "Nessun sito trovato{luogo} con i filtri attuali."
+  },
+  "parchiGiardini": {
+    "titolo": "Parchi e giardini",
+    "descrizione": "Censimento regionale di parchi, giardini storici, orti botanici e uccellande (roccoli tradizionali) del Friuli Venezia Giulia, per provincia e comune — fonte: Regione Autonoma FVG (dati.friuliveneziagiulia.it).",
+    "tipoTutti": "Tutte le tipologie",
+    "tipo": {
+      "giardino": "Giardino",
+      "parco": "Parco",
+      "uccellanda": "Uccellanda",
+      "orto botanico": "Orto botanico"
+    },
+    "nessunaTrovata": "Nessun sito trovato{luogo}.",
+    "mappaAriaLabel": "Mappa dei parchi e giardini{luogo} — elenco testuale equivalente nel pannello a fianco"
   },
   "baseball": {
     "titoloFallback": "Baseball & Softball",

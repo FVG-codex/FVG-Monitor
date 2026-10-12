@@ -133,6 +133,10 @@
       "eventi": {
         "nome": "Događaji",
         "descrizione": "Festivali, izložbe, koncerti i događanja u sljedećih 14 dana diljem regije"
+      },
+      "parchiGiardini": {
+        "nome": "Parkovi i vrtovi",
+        "descrizione": "Regionalni registar parkova, povijesnih vrtova, botaničkih vrtova i tradicionalnih lovišta za ptice (uccellande), po pokrajinama i općinama"
       }
     }
   },
@@ -433,6 +437,19 @@
     "stadioLabel": "Faza: {stadio}",
     "inquinanteLabel": "Onečišćivač: {inquinante}",
     "nessunRisultato": "Nije pronađeno nijedno područje{luogo} s trenutnim filtrima."
+  },
+  "parchiGiardini": {
+    "titolo": "Parkovi i vrtovi",
+    "descrizione": "Regionalni registar parkova, povijesnih vrtova, botaničkih vrtova i tradicionalnih lovišta za ptice (uccellande) u Furlaniji-Julijskoj krajini, po pokrajinama i općinama — izvor: Autonomna regija Furlanija-Julijska krajina (dati.friuliveneziagiulia.it).",
+    "tipoTutti": "Sve vrste",
+    "tipo": {
+      "giardino": "Vrt",
+      "parco": "Park",
+      "uccellanda": "Lovište za ptice",
+      "orto botanico": "Botanički vrt"
+    },
+    "nessunaTrovata": "Nije pronađena nikakva lokacija{luogo}.",
+    "mappaAriaLabel": "Karta parkova i vrtova{luogo} — odgovarajući tekstualni popis u susjednoj ploči"
   },
   "baseball": {
     "titoloFallback": "Bejzbol i softbol",

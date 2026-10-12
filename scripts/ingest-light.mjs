@@ -2979,7 +2979,26 @@ async function ingestGuardieMediche() {
   }
 
   const payload = await res.json();
-  const righe = Array.isArray(payload) ? payload : Array.isArray(payload?.data) ? payload.data : null;
+  // BUG trovato il 12/10/2026 (segnalato dall'utente: la sezione
+  // mostrava "Dati non disponibili" dopo il deploy, prima esecuzione
+  // reale di GitHub Actions su questo modulo): la risposta vera non è
+  // un array nudo né un oggetto con chiave "data" come ipotizzato in
+  // ricognizione, ma `{ metadati: {...}, dati: [...] }` — chiave
+  // "dati" (italiano), non "data". Verificato di nuovo il 12/10/2026
+  // interrogando l'endpoint reale: `metadati` contiene
+  // `versione`/`dataAggiornamento`, `dati` è l'array dei 35 record.
+  // La ricognizione iniziale aveva descritto solo "un array di 35
+  // record" senza riportare il nome esatto della chiave contenitore —
+  // da qui l'errore. Si mantiene comunque il controllo su un array
+  // nudo come fallback, nel caso la fonte cambi di nuovo forma in
+  // futuro.
+  const righe = Array.isArray(payload)
+    ? payload
+    : Array.isArray(payload?.dati)
+      ? payload.dati
+      : Array.isArray(payload?.data)
+        ? payload.data
+        : null;
   if (!righe || righe.length === 0) {
     console.warn("Dataset guardie mediche vuoto o in formato inatteso");
     return;
@@ -3033,6 +3052,120 @@ async function ingestGuardieMediche() {
   await upsertSnapshot("guardiemediche", "guardiemediche", null, { orari, per_provincia: perProvincia });
   const totaleSedi = Object.values(perProvincia).reduce((n, p) => n + p.totale, 0);
   console.log(`Guardie mediche aggiornate: ${totaleSedi} sedi totali`);
+}
+
+// ---------------------------------------------------------------------
+// PARCHI E GIARDINI (storici, censimento regionale) — 12/10/2026, nuova
+// sezione sotto Ambiente richiesta dall'utente. Fonte: dataset Socrata
+// "efx9-g469" su dati.friuliveneziagiulia.it — l'utente ha fornito
+// l'URL della vista d'esportazione v3
+// (.../api/v3/views/efx9-g469/query.json), ma qui si usa invece
+// l'endpoint SODA standard /resource/efx9-g469.json?$limit=5000 —
+// STESSO dataset, stessa piattaforma Socrata, stesso dominio già usato
+// con successo da Farmacie/Balneazione/Ozono/NO2/PM2.5/Pollini/Piste
+// ciclabili (vedi le relative *_DATASET_URL sopra). Cambio fatto per
+// coerenza con il resto del codice e perché più affidabile in
+// ricognizione: l'export v3/views non supporta paginazione con gli
+// strumenti usati per verificare lo schema ed è risultato troncato più
+// volte, mentre /resource/ con $limit/$offset ha restituito in modo
+// pulito tutti i 226 record, confermati da una query SoQL
+// `$select=count(*)` indipendente (226) e da conteggi per provincia e
+// per tipologia che corrispondono esattamente alla somma dei record
+// osservati.
+//
+// 226 siti osservati il 12/10/2026 — non solo parchi/giardini in senso
+// stretto: la categoria `dettaglio1` "uccellanda" (49 siti, quasi tutti
+// in provincia di Udine) sono "roccoli", strutture storiche per la
+// cattura tradizionale degli uccelli, non parchi — ma fanno parte dello
+// stesso dataset regionale (codice interno sempre "PG" nel campo
+// `atsk`) e vengono mostrati con lo stesso meccanismo, con la
+// tipologia originale sempre visibile.
+//
+// Il campo `provincia` è già una sigla (UD/GO/TS/PN): niente prefissi
+// ISTAT da interpretare qui, diversamente da Farmacie/Guardie Mediche.
+//
+// `dettaglio1` è testo libero con valori anche composti separati da
+// "/ " (es. "giardino/ parco", "giardino/ parco/ braida", "giardino/
+// pomario") — split e normalizzato in un array `tipi` (minuscolo, trim)
+// per permettere il filtro UI sulle 4 categorie principali (giardino/
+// parco/uccellanda/orto botanico), mantenendo comunque il testo
+// originale (`tipoEtichetta`) per la visualizzazione. "braida" e
+// "pomario" restano nell'array `tipi` ma non hanno un proprio tastino
+// filtro (1 solo sito ciascuno, sempre in combinazione con
+// giardino/parco).
+// ---------------------------------------------------------------------
+
+const PARCHI_GIARDINI_DATASET_URL = "https://www.dati.friuliveneziagiulia.it/resource/efx9-g469.json";
+
+const PROVINCIA_DA_SIGLA_PARCHI_GIARDINI = {
+  UD: "udine",
+  GO: "gorizia",
+  TS: "trieste",
+  PN: "pordenone",
+};
+
+async function ingestParchiGiardini() {
+  const res = await fetchConRetry(`${PARCHI_GIARDINI_DATASET_URL}?$limit=5000`);
+  if (!res.ok) {
+    console.warn(`Parchi e giardini non disponibili (HTTP ${res.status})`);
+    return;
+  }
+
+  const righe = await res.json();
+  if (!Array.isArray(righe) || righe.length === 0) {
+    console.warn("Dataset parchi e giardini vuoto");
+    return;
+  }
+
+  const perProvincia = {};
+
+  for (const r of righe) {
+    if (r.isvalidate && testo(r.isvalidate) !== "PUBBLICATA") continue; // non dovrebbe capitare (226/226 "PUBBLICATA" osservati), filtro per sicurezza
+    const provincia = PROVINCIA_DA_SIGLA_PARCHI_GIARDINI[testo(r.provincia)];
+    const nome = testo(r.dettaglio2);
+    const comune = testo(r.comune);
+    if (!provincia || !nome || !comune) continue;
+
+    const tipoGrezzo = testo(r.dettaglio1) ?? "";
+    const tipi = tipoGrezzo
+      .split("/")
+      .map((s) => s.trim().toLowerCase())
+      .filter((s) => s.length > 0);
+
+    const coord = r.the_geom?.coordinates;
+    const lon = Array.isArray(coord) && typeof coord[0] === "number" ? coord[0] : null;
+    const lat = Array.isArray(coord) && typeof coord[1] === "number" ? coord[1] : null;
+
+    const localitaGrezza = testo(r.localita);
+    const localita = localitaGrezza && localitaGrezza.length > 0 ? localitaGrezza : null;
+
+    if (!perProvincia[provincia]) perProvincia[provincia] = { totale: 0, voci: [] };
+    const p = perProvincia[provincia];
+    p.totale++;
+    p.voci.push({
+      pk: testo(r.pk) ?? `${provincia}-${p.totale}`,
+      comune,
+      localita,
+      nome,
+      tipi,
+      tipoEtichetta: tipoGrezzo,
+      lat,
+      lon,
+    });
+  }
+
+  for (const p of Object.values(perProvincia)) {
+    p.voci.sort((a, b) => a.comune.localeCompare(b.comune, "it") || a.nome.localeCompare(b.nome, "it"));
+  }
+
+  if (Object.keys(perProvincia).length === 0) {
+    console.warn("Nessun sito parchi/giardini utilizzabile trovato");
+    return;
+  }
+
+  await upsertSnapshot("parchigiardini", "parchigiardini", null, { per_provincia: perProvincia });
+  const totaleSiti = Object.values(perProvincia).reduce((n, p) => n + p.totale, 0);
+  console.log(`Parchi e giardini aggiornati: ${totaleSiti} siti totali`);
 }
 
 // ---------------------------------------------------------------------
@@ -13307,6 +13440,7 @@ async function main() {
     ["balneazione", ingestBalneazione()],
     ["farmacie", ingestFarmacie()],
     ["guardie-mediche", ingestGuardieMediche()],
+    ["parchi-giardini", ingestParchiGiardini()],
     ["pronto-soccorso", ingestProntoSoccorso()],
     ["neve-impianti", ingestNeveImpianti()],
     ["strutture-ricettive", ingestStruttureRicettive()],

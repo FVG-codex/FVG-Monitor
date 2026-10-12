@@ -133,6 +133,10 @@
       "eventi": {
         "nome": "Veranstaltungen",
         "descrizione": "Feste, Ausstellungen, Konzerte und Veranstaltungen in den nächsten 14 Tagen in der gesamten Region"
+      },
+      "parchiGiardini": {
+        "nome": "Parks & Gärten",
+        "descrizione": "Regionales Verzeichnis von Parks, historischen Gärten, botanischen Gärten und traditionellen Vogelfangstätten (uccellande), nach Provinz und Gemeinde"
       }
     }
   },
@@ -433,6 +437,19 @@
     "stadioLabel": "Phase: {stadio}",
     "inquinanteLabel": "Schadstoff: {inquinante}",
     "nessunRisultato": "Keine Standorte gefunden{luogo} mit den aktuellen Filtern."
+  },
+  "parchiGiardini": {
+    "titolo": "Parks & Gärten",
+    "descrizione": "Regionales Verzeichnis von Parks, historischen Gärten, botanischen Gärten und traditionellen Vogelfangstätten (uccellande) in Friaul-Julisch Venetien, nach Provinz und Gemeinde — Quelle: Region Friaul-Julisch Venetien (dati.friuliveneziagiulia.it).",
+    "tipoTutti": "Alle Typen",
+    "tipo": {
+      "giardino": "Garten",
+      "parco": "Park",
+      "uccellanda": "Vogelfangstätte",
+      "orto botanico": "Botanischer Garten"
+    },
+    "nessunaTrovata": "Kein Standort gefunden{luogo}.",
+    "mappaAriaLabel": "Karte der Parks und Gärten{luogo} — entsprechende Textliste im Feld daneben"
   },
   "baseball": {
     "titoloFallback": "Baseball & Softball",

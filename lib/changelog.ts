@@ -22,6 +22,20 @@ export type VoceChangelog = {
 export const CHANGELOG: VoceChangelog[] = [
   {
     data: "12/10/2026",
+    titolo: "Guardie Mediche — corretto un errore che impediva ai dati di caricarsi",
+    dettagli: [
+      "La sezione Guardie Mediche (Sanità), appena aggiunta, mostrava \"Dati non disponibili\" per un errore nella lettura del formato della fonte — corretto: ora i dati delle sedi di Continuità Assistenziale si caricano correttamente.",
+    ],
+  },
+  {
+    data: "12/10/2026",
+    titolo: "Turismo — nuova sezione Parchi e giardini (226 siti censiti)",
+    dettagli: [
+      "Nuova sezione nell'hub Turismo: censimento regionale di parchi, giardini storici, orti botanici e uccellande (roccoli tradizionali), filtrabile per provincia, comune e tipologia, con ricerca e mappa. Fonte: Regione Autonoma FVG (dati.friuliveneziagiulia.it).",
+    ],
+  },
+  {
+    data: "12/10/2026",
     titolo: "Sanità — nuova sezione Guardie Mediche (Continuità Assistenziale)",
     dettagli: [
       "Nuova sezione nell'hub Sanità: sedi del servizio di Continuità Assistenziale (guardia medica) per provincia e comune, con mappa e orari del servizio (uguali in tutta la regione: feriale, prefestivo, festivo) e il numero unico 116117 mostrati una sola volta in evidenza. Fonte: Regione Autonoma FVG (sapi.sanita.fvg.it).",

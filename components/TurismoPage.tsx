@@ -56,6 +56,22 @@ const SEZIONI = [
       </svg>
     ),
   },
+  {
+    // Parchi e giardini (12/10/2026, dataset regionale "efx9-g469" su
+    // dati.friuliveneziagiulia.it) — spostata qui da Ambiente il
+    // 12/10/2026 su indicazione dell'utente (appartiene a Turismo, non
+    // ad Ambiente). Vedi lib/parchigiardini.ts e
+    // components/ParchiGiardiniPage.tsx. Pattern live (come Farmacie):
+    // il dataset ha coordinate, quindi c'è anche una mappa.
+    key: "parchiGiardini",
+    href: "/parchi-giardini",
+    icona: (
+      <svg viewBox="0 0 48 48" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <path d="M24 6c6 6 10 12 10 18a10 10 0 0 1-20 0c0-6 4-12 10-18z" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M24 30v12M18 42h12" strokeLinecap="round" />
+      </svg>
+    ),
+  },
 ];
 
 export async function TurismoPage() {

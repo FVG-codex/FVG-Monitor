@@ -133,6 +133,10 @@
       "eventi": {
         "nome": "Events",
         "descrizione": "Festivals, exhibitions, concerts and events in the next 14 days across the region"
+      },
+      "parchiGiardini": {
+        "nome": "Parks & Gardens",
+        "descrizione": "Regional register of parks, historic gardens, botanical gardens and traditional bird-trapping sites (uccellande), by province and municipality"
       }
     }
   },
@@ -433,6 +437,19 @@
     "stadioLabel": "Stage: {stadio}",
     "inquinanteLabel": "Pollutant: {inquinante}",
     "nessunRisultato": "No sites found{luogo} with the current filters."
+  },
+  "parchiGiardini": {
+    "titolo": "Parks & Gardens",
+    "descrizione": "Regional register of parks, historic gardens, botanical gardens and traditional bird-trapping sites (uccellande) in Friuli Venezia Giulia, by province and municipality — source: Friuli Venezia Giulia Region (dati.friuliveneziagiulia.it).",
+    "tipoTutti": "All types",
+    "tipo": {
+      "giardino": "Garden",
+      "parco": "Park",
+      "uccellanda": "Bird-trapping site",
+      "orto botanico": "Botanical garden"
+    },
+    "nessunaTrovata": "No site found{luogo}.",
+    "mappaAriaLabel": "Map of parks and gardens{luogo} — equivalent text list in the panel alongside"
   },
   "baseball": {
     "titoloFallback": "Baseball & Softball",
