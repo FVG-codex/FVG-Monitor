@@ -141,6 +141,10 @@
       "musei": {
         "nome": "Museen",
         "descrizione": "Regionaler Museumskatalog: Name, Beschreibung, Website und, soweit verfügbar, Öffnungszeiten und Eintrittskarten"
+      },
+      "osmize": {
+        "nome": "Osmize",
+        "descrizione": "Die Osmize (Hofschänken) des Triestiner Karsts: Name, Adresse, Produkte und ein Link zur offiziellen Seite für Öffnungszeiten"
       }
     }
   },
@@ -469,6 +473,19 @@
     "visitaIlSito": "Website besuchen ↗",
     "schedaUfficiale": "Offizieller ERPAC-Eintrag ↗",
     "fonteLabel": "Quelle: {fonte}. Daten erhoben am {data}."
+  },
+  "osmize": {
+    "titolo": "Osmize",
+    "descrizione": "Die Osmize (saisonale Hofschänken) des Triestiner Karsts ({totale} Einträge in 42 Ortschaften). Quelle: osmize.com.",
+    "disclaimerDateApertura": "Osmize öffnen abwechselnd für wenige Tage oder Wochen im Jahr, und diese Termine ändern sich oft: deshalb werden hier KEINE Öffnungstermine oder ein offen/geschlossen-Status angezeigt — jeder Eintrag verlinkt stattdessen direkt auf die offizielle Seite, wo die aktuellen Termine geprüft werden können.",
+    "tutteLeLocalita": "Alle Ortschaften",
+    "cercaLabel": "Suche nach Name oder Ortschaft",
+    "cercaPlaceholder": "Suche nach Name oder Ortschaft…",
+    "nessunRisultato": "Keine Osmiza gefunden {luogo} mit den aktuellen Filtern.",
+    "prodottiLabel": "Produkte",
+    "schedaUfficiale": "Offizielle osmize.com-Seite ↗",
+    "fonteLabel": "Quelle: {fonte}. Daten erhoben am {data}.",
+    "mappaAriaLabel": "Karte der Osmize {luogo}"
   },
   "baseball": {
     "titoloFallback": "Baseball & Softball",

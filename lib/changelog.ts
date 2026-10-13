@@ -22,6 +22,13 @@ export type VoceChangelog = {
 export const CHANGELOG: VoceChangelog[] = [
   {
     data: "13/10/2026",
+    titolo: "Turismo — nuova sezione Osmize (92 schede, con mappa)",
+    dettagli: [
+      "Nuova sezione nell'hub Turismo: le osmize (taverne contadine stagionali) del Carso triestino, con nome, indirizzo, prodotti venduti, descrizione e mappa, filtrabile per località e ricerca. Fonte: osmize.com. Le date di apertura stagionale non sono riportate, perché cambiano spesso e il sito non ha un'API: ogni scheda ha invece un link diretto alla pagina ufficiale, dove verificare gli orari aggiornati.",
+    ],
+  },
+  {
+    data: "13/10/2026",
     titolo: "Turismo — nuova sezione Musei (188 schede)",
     dettagli: [
       "Nuova sezione nell'hub Turismo: catalogo dei musei e delle collezioni della regione con nome, descrizione, sito web e link alla scheda ufficiale, filtrabile per provincia, comune e ricerca. Fonte: catalogo del patrimonio culturale ERPAC. Orari e biglietti non sono riportati in questa fonte e quindi non compaiono per nessuna scheda (nessun dato inventato).",

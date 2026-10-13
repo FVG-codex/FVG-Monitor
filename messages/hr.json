@@ -141,6 +141,10 @@
       "musei": {
         "nome": "Muzeji",
         "descrizione": "Regionalni katalog muzeja: naziv, opis, web-stranica i, kad su dostupni, radno vrijeme i ulaznice"
+      },
+      "osmize": {
+        "nome": "Osmice",
+        "descrizione": "Osmice Tršćanskog Krasa: naziv, adresa, proizvodi i poveznica na službenu stranicu za radno vrijeme"
       }
     }
   },
@@ -469,6 +473,19 @@
     "visitaIlSito": "Posjeti web-stranicu ↗",
     "schedaUfficiale": "Službeni unos ERPAC ↗",
     "fonteLabel": "Izvor: {fonte}. Podaci prikupljeni {data}."
+  },
+  "osmize": {
+    "titolo": "Osmice",
+    "descrizione": "Osmice (sezonske seljačke točionice) Tršćanskog Krasa ({totale} unosa u 42 mjesta). Izvor: osmize.com.",
+    "disclaimerDateApertura": "Osmice se otvaraju naizmjenično samo nekoliko dana ili tjedana godišnje i ti se datumi često mijenjaju: zbog toga ovdje NISU prikazani datumi otvaranja niti status otvoreno/zatvoreno — svaki unos umjesto toga ima poveznicu izravno na službenu stranicu, gdje se mogu provjeriti aktualni datumi.",
+    "tutteLeLocalita": "Sva mjesta",
+    "cercaLabel": "Pretraži po nazivu ili mjestu",
+    "cercaPlaceholder": "Pretraži po nazivu ili mjestu…",
+    "nessunRisultato": "Nije pronađena nijedna osmica {luogo} s trenutnim filtrima.",
+    "prodottiLabel": "Proizvodi",
+    "schedaUfficiale": "Službena stranica osmize.com ↗",
+    "fonteLabel": "Izvor: {fonte}. Podaci prikupljeni {data}.",
+    "mappaAriaLabel": "Karta osmica {luogo}"
   },
   "baseball": {
     "titoloFallback": "Bejzbol i softbol",

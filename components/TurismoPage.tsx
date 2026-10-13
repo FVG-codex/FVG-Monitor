@@ -92,6 +92,28 @@ const SEZIONI = [
       </svg>
     ),
   },
+  {
+    // Osmize (13/10/2026, richiesto dall'utente: "Riesci a recuperare i
+    // dati per creare un elenco delle 'osmize' da qui?
+    // https://www.osmize.com/"). Dataset STATICO raccolto una tantum (92
+    // osmize su 42 località del Carso triestino, enumerate visitando le
+    // pagine /<localita>/ del sito — il sitemap.xml è risultato
+    // inaffidabile) — vedi lib/osmize.ts per la nota estesa. Niente date
+    // di apertura stagionale (scelta esplicita dell'utente, cambiano in
+    // pochi giorni e il sito non ha API): ogni scheda linka invece alla
+    // pagina ufficiale osmize.com. A differenza di Musei, qui ci sono le
+    // coordinate (dalla mappa incorporata in ogni pagina di dettaglio),
+    // quindi la pagina ha anche una mappa — vedi components/OsmizePage.tsx
+    // e components/OsmizeMap.tsx.
+    key: "osmize",
+    href: "/osmize",
+    icona: (
+      <svg viewBox="0 0 48 48" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <path d="M24 44c8-9 14-16.5 14-23A14 14 0 0 0 10 21c0 6.5 6 14 14 23z" strokeLinecap="round" strokeLinejoin="round" />
+        <circle cx="24" cy="21" r="5" />
+      </svg>
+    ),
+  },
 ];
 
 export async function TurismoPage() {

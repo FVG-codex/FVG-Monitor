@@ -141,6 +141,10 @@
       "musei": {
         "nome": "Museums",
         "descrizione": "Regional catalogue of museums: name, description, website and, when available, opening hours and tickets"
+      },
+      "osmize": {
+        "nome": "Osmize",
+        "descrizione": "The osmize (farmhouse taverns) of the Trieste Karst: name, address, products and a link to the official page for hours"
       }
     }
   },
@@ -469,6 +473,19 @@
     "visitaIlSito": "Visit website ↗",
     "schedaUfficiale": "Official ERPAC record ↗",
     "fonteLabel": "Source: {fonte}. Data collected on {data}."
+  },
+  "osmize": {
+    "titolo": "Osmize",
+    "descrizione": "The osmize (seasonal farmhouse taverns) of the Trieste Karst ({totale} entries across 42 localities). Source: osmize.com.",
+    "disclaimerDateApertura": "Osmize open on a rotating basis for a few days or weeks a year and these dates change often: for this reason opening dates and open/closed status are NOT shown here — each entry instead links directly to the official page, where current dates can be checked.",
+    "tutteLeLocalita": "All localities",
+    "cercaLabel": "Search by name or locality",
+    "cercaPlaceholder": "Search by name or locality…",
+    "nessunRisultato": "No osmiza found {luogo} with the current filters.",
+    "prodottiLabel": "Products",
+    "schedaUfficiale": "Official osmize.com page ↗",
+    "fonteLabel": "Source: {fonte}. Data collected on {data}.",
+    "mappaAriaLabel": "Map of osmize {luogo}"
   },
   "baseball": {
     "titoloFallback": "Baseball & Softball",

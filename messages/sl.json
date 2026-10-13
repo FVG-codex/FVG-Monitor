@@ -141,6 +141,10 @@
       "musei": {
         "nome": "Muzeji",
         "descrizione": "Deželni katalog muzejev: ime, opis, spletna stran in, kjer so na voljo, delovni čas in vstopnice"
+      },
+      "osmize": {
+        "nome": "Ozmice",
+        "descrizione": "Ozmice Tržaškega Krasa: ime, naslov, izdelki in povezava na uradno stran za delovni čas"
       }
     }
   },
@@ -469,6 +473,19 @@
     "visitaIlSito": "Obišči spletno stran ↗",
     "schedaUfficiale": "Uradni vnos ERPAC ↗",
     "fonteLabel": "Vir: {fonte}. Podatki zbrani {data}."
+  },
+  "osmize": {
+    "titolo": "Ozmice",
+    "descrizione": "Ozmice (sezonske kmečke točilnice) Tržaškega Krasa ({totale} vnosov v 42 krajih). Vir: osmize.com.",
+    "disclaimerDateApertura": "Ozmice so odprte izmenično le nekaj dni ali tednov na leto in ti datumi se pogosto spreminjajo: zato tukaj NISO prikazani datumi odprtja niti status odprto/zaprto — vsak vnos ima namesto tega povezavo neposredno na uradno stran, kjer lahko preverite aktualne datume.",
+    "tutteLeLocalita": "Vsi kraji",
+    "cercaLabel": "Iskanje po imenu ali kraju",
+    "cercaPlaceholder": "Iskanje po imenu ali kraju…",
+    "nessunRisultato": "Ni najdenih ozmic {luogo} z izbranimi filtri.",
+    "prodottiLabel": "Izdelki",
+    "schedaUfficiale": "Uradna stran osmize.com ↗",
+    "fonteLabel": "Vir: {fonte}. Podatki zbrani {data}.",
+    "mappaAriaLabel": "Zemljevid ozmic {luogo}"
   },
   "baseball": {
     "titoloFallback": "Baseball in softball",

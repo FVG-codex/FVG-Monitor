@@ -141,6 +141,10 @@
       "musei": {
         "nome": "Musei",
         "descrizione": "Catalogo regionale dei musei: nome, descrizione, sito web e, quando disponibili, orari e biglietti"
+      },
+      "osmize": {
+        "nome": "Osmize",
+        "descrizione": "Le osmize del Carso triestino: nome, indirizzo, prodotti e link alla pagina ufficiale per gli orari"
       }
     }
   },
@@ -469,6 +473,19 @@
     "visitaIlSito": "Visita il sito ↗",
     "schedaUfficiale": "Scheda ufficiale ERPAC ↗",
     "fonteLabel": "Fonte: {fonte}. Dati raccolti il {data}."
+  },
+  "osmize": {
+    "titolo": "Osmize",
+    "descrizione": "Le osmize (taverne contadine stagionali) del Carso triestino ({totale} schede su 42 località). Fonte: osmize.com.",
+    "disclaimerDateApertura": "Le osmize aprono a rotazione per pochi giorni o settimane all'anno e queste date cambiano spesso: per questo motivo qui NON sono riportate date di apertura né lo stato aperta/chiusa — ogni scheda ha invece un link diretto alla pagina ufficiale, dove verificare le date aggiornate.",
+    "tutteLeLocalita": "Tutte le località",
+    "cercaLabel": "Cerca per nome o località",
+    "cercaPlaceholder": "Cerca per nome o località…",
+    "nessunRisultato": "Nessuna osmiza trovata {luogo} con i filtri attuali.",
+    "prodottiLabel": "Prodotti",
+    "schedaUfficiale": "Pagina ufficiale osmize.com ↗",
+    "fonteLabel": "Fonte: {fonte}. Dati raccolti il {data}.",
+    "mappaAriaLabel": "Mappa delle osmize {luogo}"
   },
   "baseball": {
     "titoloFallback": "Baseball & Softball",
