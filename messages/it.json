@@ -137,6 +137,10 @@
       "parchiGiardini": {
         "nome": "Parchi e giardini",
         "descrizione": "Censimento regionale di parchi, giardini storici, orti botanici e uccellande (roccoli), per provincia e comune"
+      },
+      "musei": {
+        "nome": "Musei",
+        "descrizione": "Catalogo regionale dei musei: nome, descrizione, sito web e, quando disponibili, orari e biglietti"
       }
     }
   },
@@ -450,6 +454,21 @@
     },
     "nessunaTrovata": "Nessun sito trovato{luogo}.",
     "mappaAriaLabel": "Mappa dei parchi e giardini{luogo} — elenco testuale equivalente nel pannello a fianco"
+  },
+  "musei": {
+    "titolo": "Musei",
+    "descrizione": "Catalogo dei musei e delle collezioni della Friuli Venezia Giulia ({totale} schede). Fonte: catalogo del patrimonio culturale ERPAC (patrimonioculturale.regione.fvg.it).",
+    "disclaimerOrariBiglietti": "Questo catalogo è una scheda di catalogazione scientifica del patrimonio, non un portale turistico: non riporta orari di apertura né link per biglietti/prenotazione per nessuna voce. Questi campi, quando assenti, non vengono mai inventati.",
+    "provinciaNonSpecificata": "Non specificata",
+    "cercaLabel": "Cerca per nome museo o comune",
+    "cercaPlaceholder": "Cerca per nome museo o comune…",
+    "nessunRisultato": "Nessun museo trovato{luogo} con i filtri attuali.",
+    "orariLabel": "Orari",
+    "bigliettiLabel": "Biglietti",
+    "nonDisponibileCatalogo": "non disponibili in questo catalogo",
+    "visitaIlSito": "Visita il sito ↗",
+    "schedaUfficiale": "Scheda ufficiale ERPAC ↗",
+    "fonteLabel": "Fonte: {fonte}. Dati raccolti il {data}."
   },
   "baseball": {
     "titoloFallback": "Baseball & Softball",

@@ -21,6 +21,13 @@ export type VoceChangelog = {
 
 export const CHANGELOG: VoceChangelog[] = [
   {
+    data: "13/10/2026",
+    titolo: "Turismo — nuova sezione Musei (188 schede)",
+    dettagli: [
+      "Nuova sezione nell'hub Turismo: catalogo dei musei e delle collezioni della regione con nome, descrizione, sito web e link alla scheda ufficiale, filtrabile per provincia, comune e ricerca. Fonte: catalogo del patrimonio culturale ERPAC. Orari e biglietti non sono riportati in questa fonte e quindi non compaiono per nessuna scheda (nessun dato inventato).",
+    ],
+  },
+  {
     data: "12/10/2026",
     titolo: "Guardie Mediche — corretto un errore che impediva ai dati di caricarsi",
     dettagli: [

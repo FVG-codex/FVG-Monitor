@@ -137,6 +137,10 @@
       "parchiGiardini": {
         "nome": "Parks & Gärten",
         "descrizione": "Regionales Verzeichnis von Parks, historischen Gärten, botanischen Gärten und traditionellen Vogelfangstätten (uccellande), nach Provinz und Gemeinde"
+      },
+      "musei": {
+        "nome": "Museen",
+        "descrizione": "Regionaler Museumskatalog: Name, Beschreibung, Website und, soweit verfügbar, Öffnungszeiten und Eintrittskarten"
       }
     }
   },
@@ -450,6 +454,21 @@
     },
     "nessunaTrovata": "Kein Standort gefunden{luogo}.",
     "mappaAriaLabel": "Karte der Parks und Gärten{luogo} — entsprechende Textliste im Feld daneben"
+  },
+  "musei": {
+    "titolo": "Museen",
+    "descrizione": "Katalog der Museen und Sammlungen in Friaul-Julisch Venetien ({totale} Einträge). Quelle: ERPAC-Kulturerbekatalog (patrimonioculturale.regione.fvg.it).",
+    "disclaimerOrariBiglietti": "Dieser Katalog ist eine wissenschaftliche Erbe-Katalogisierung, kein touristisches Portal: Er enthält für keinen Eintrag Öffnungszeiten oder Links für Tickets/Reservierungen. Diese Felder werden, wenn sie fehlen, niemals erfunden.",
+    "provinciaNonSpecificata": "Nicht angegeben",
+    "cercaLabel": "Suche nach Museumsname oder Gemeinde",
+    "cercaPlaceholder": "Suche nach Museumsname oder Gemeinde…",
+    "nessunRisultato": "Keine Museen gefunden{luogo} mit den aktuellen Filtern.",
+    "orariLabel": "Öffnungszeiten",
+    "bigliettiLabel": "Eintrittskarten",
+    "nonDisponibileCatalogo": "in diesem Katalog nicht verfügbar",
+    "visitaIlSito": "Website besuchen ↗",
+    "schedaUfficiale": "Offizieller ERPAC-Eintrag ↗",
+    "fonteLabel": "Quelle: {fonte}. Daten erhoben am {data}."
   },
   "baseball": {
     "titoloFallback": "Baseball & Softball",

@@ -56,6 +56,7 @@ const TITOLO_SEZIONE_CHIAVE: Record<string, string> = {
   "/piste-ciclabili": "turismo.sezioni.pisteCiclabili.nome",
   "/strutture-ricettive": "turismo.sezioni.struttureRicettive.nome",
   "/parchi-giardini": "turismo.sezioni.parchiGiardini.nome",
+  "/musei": "turismo.sezioni.musei.nome",
   "/agriturismi": "struttureRicettive.tipi.agriturismi.nome",
   "/affittacamere": "struttureRicettive.tipi.affittacamere.nome",
   "/alberghi-diffusi": "struttureRicettive.tipi.alberghi-diffusi.nome",

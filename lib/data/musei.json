@@ -1,0 +1,2769 @@
+{
+  "fonte": "Catalogo del patrimonio culturale ERPAC (patrimonioculturale.regione.fvg.it), sezione Musei",
+  "data_raccolta": "2026-10-13",
+  "totale_musei_dichiarati_dal_sito": 189,
+  "totale_record_raccolti": 188,
+  "nota_raccolta": "Dataset raccolto una tantum (scrape assistito da sottoagenti paralleli, non un'API ufficiale) a partire dall'elenco paginato del catalogo ERPAC. Il sito indica 189 musei/collezioni in totale; durante la raccolta uno stesso s_id (440541) è apparso con due nomi diversi su due pagine elenco differenti per un errore di estrazione automatica — verificato due volte in modo indipendente sulla pagina di dettaglio, che riporta un solo nome reale ('Fondo calotipi cerati'); il nome alternativo è stato scartato, portando il totale di record unici a 188. Questo catalogo NON riporta orari di apertura né link per biglietti/prenotazione per nessuna delle voci raccolte: i campi corrispondenti restano sempre null, mai inventati. Le descrizioni sono riassunti originali (non copie letterali) scritti a partire dal contenuto di ciascuna scheda, per motivi di tutela del copyright. Alcune voci del catalogo non sono musei in senso stretto ma siti archeologici/monumenti o fondi/archivi fotografici conservati da un museo — segnalato caso per caso nel campo note quando rilevato.",
+  "records": [
+    {
+      "s_id": "440560",
+      "nome": "Museo di documentazione della civiltà contadina",
+      "comune": "Farra d'Isonzo",
+      "provincia": "GO",
+      "descrizione": "Il museo ha sede in un borgo rurale a corte chiusa del Settecento, in località Colmello di Grotta, e raccoglie circa mille oggetti e documenti datati tra fine Seicento e inizio Novecento. Il percorso si articola in 14 sezioni che ricostruiscono ambienti domestici e attività agricole come la viticoltura e l'allevamento del baco da seta; è stato istituito nel 1981 e aperto al pubblico nel 1993.",
+      "siti_web": [
+        "https://www.comune.farradisonzo.go.it/it/cultura-14714/museo-di-documentazione-della-civilta-contadina-friulana-14715",
+        "https://www.turismofvg.it/musei/museo-di-documentazione-della-civilta-contadina-friulana",
+        "https://cultura.gov.it/luogo/museo-di-documentazione-della-civilta-contadina-friulana-di-colmello-di-grotta"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440560"
+    },
+    {
+      "s_id": "440659",
+      "nome": "Archivio della Direzione del Sacrario militare di Redipuglia",
+      "comune": "Fogliano Redipuglia",
+      "provincia": "GO",
+      "descrizione": "L'archivio è legato alla Direzione del Sacrario di Redipuglia e al Commissariato generale per le onoranze ai Caduti, ente che gestisce sepolture e zone monumentali di guerra e custodisce l'Albo d'Oro della Prima guerra mondiale. Il materiale catalogato è di tipo fotografico e storico, con ritratti di militari risalenti al periodo 1915-1918.",
+      "siti_web": [
+        "https://sacrarioredipuglia.it/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "Archivio storico-fotografico legato al Sacrario militare, non un museo in senso tradizionale.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440659"
+    },
+    {
+      "s_id": "440484",
+      "nome": "Collezione del Comune di Gorizia. Donazione Dora Bassi",
+      "comune": "Gorizia",
+      "provincia": "GO",
+      "descrizione": "Nel 2009 le figlie della pittrice Dora Bassi donarono al Comune di Gorizia quattordici suoi dipinti, esposti dal 2011 in una sala del Teatro Verdi a lei dedicata. Tredici opere appartengono a un ciclo del 2002 ispirato alle poesie che Pier Paolo Pasolini scrisse a Casarsa, mentre un quattordicesimo dipinto del 1992 richiama i viaggi dell'artista verso l'Accademia di Brera.",
+      "siti_web": [
+        "https://donazionedorabassi.it/",
+        "https://letsgo.gorizia.it/it/sagome/dora-bassi/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440484"
+    },
+    {
+      "s_id": "440491",
+      "nome": "Fondazione Palazzo Coronini Cronberg",
+      "comune": "Gorizia",
+      "provincia": "GO",
+      "descrizione": "Il museo occupa una dimora storica cinquecentesca nel centro di Gorizia, con un percorso di quindici sale tra ambienti arredati e spazi espositivi, tra cui una sala dedicata permanentemente alle sculture di Franz Xaver Messerschmidt. La collezione, ereditata dal conte Guglielmo Coronini Cronberg, comprende anche stampe, disegni, monete, armi, gioielli e tessili.",
+      "siti_web": [
+        "http://www.coronini.it"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440491"
+    },
+    {
+      "s_id": "440567",
+      "nome": "Musei Provinciali di Borgo Castello",
+      "comune": "Gorizia",
+      "provincia": "GO",
+      "descrizione": "Il museo ha sede in un complesso di palazzi a Borgo Castello e raccoglie materiali sulla storia, l'arte e il costume di Gorizia e del suo territorio. Il piano terra e il primo piano ospitano dipinti anteriori al Novecento, il seminterrato una collezione etnografica con ambienti domestici e botteghe artigiane ricostruiti, mentre i piani superiori sono dedicati a tessitura, filati, moda e costume.",
+      "siti_web": [
+        "https://musei.regione.fvg.it/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440567"
+    },
+    {
+      "s_id": "440565",
+      "nome": "Musei Provinciali di Gorizia",
+      "comune": "Gorizia",
+      "provincia": "GO",
+      "descrizione": "Nati nel 1861 sotto il dominio austriaco e riordinati nel 1919 e nel 1939, i Musei Provinciali conservano e valorizzano il patrimonio storico-artistico di Gorizia. Dopo l'alluvione del 1983, che ne costrinse a ripensare le sedi, le collezioni - dall'archeologia all'arte contemporanea - sono oggi distribuite tra Borgo Castello, Palazzo Attems-Petzenstein e la Galleria Spazzapan di Gradisca d'Isonzo; la gestione è affidata all'ERPAC dal 2016.",
+      "siti_web": [
+        "https://musei.regione.fvg.it/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440565"
+    },
+    {
+      "s_id": "871967",
+      "nome": "Musei Provinciali. Collezione Arturo Avanzini",
+      "comune": "Gorizia",
+      "provincia": "GO",
+      "descrizione": "Comprende l'erbario di Arturo Avanzini (1882-1954), commerciante di mercerie, botanico autodidatta e alpinista, fondatore della sezione goriziana del CAI, insieme a un erbario ottocentesco di campioni europei, materiale fotografico, quaderni di campo e volumi di botanica. Documenta la flora delle Alpi Giulie e Carniche e del Carso isontino; la raccolta fu acquistata nel 1956 dagli eredi con il sostegno di enti locali.",
+      "siti_web": [],
+      "orari": null,
+      "biglietti": null,
+      "note": "Sede: Palazzo Alvarez. Nessun link al sito del museo, solo link generici a ERPAC.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=871967"
+    },
+    {
+      "s_id": "440636",
+      "nome": "Musei Provinciali. Collezione archeologica",
+      "comune": "Gorizia",
+      "provincia": "GO",
+      "descrizione": "Allestita in quattro sale di Casa Simone Tasso, la collezione raccoglie reperti rinvenuti per caso o durante scavi nel territorio goriziano tra la metà dell'Ottocento e gli anni Settanta del Novecento, illustrando la storia locale dalla preistoria al Rinascimento. Tra i pezzi più significativi figurano strumenti in pietra, materiali dei castellieri e delle necropoli dell'età del Ferro, manufatti romani e, per l'epoca longobarda, la crocetta e le armi in ferro dalla Rocca di Monfalcone.",
+      "siti_web": [
+        "https://museiprovincialigorizia.regione.fvg.it/",
+        "https://www.turismofvg.it/musei/musei-provinciali-di-gorizia%E2%80%93collezione-archeologica",
+        "https://www.archeocartafvg.it/portfolio-articoli/gorizia-musei-provinciali-collezione-archeologica/",
+        "https://letsgo.gorizia.it/it/punti-di-interesse/musei-provinciali-di-borgo-castello/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440636"
+    },
+    {
+      "s_id": "759906",
+      "nome": "Musei Provinciali. Fototeca",
+      "comune": "Gorizia",
+      "provincia": "GO",
+      "descrizione": "La Fototeca dei Musei Provinciali di Gorizia (Palazzo Attems Petzenstein) si è formata a partire dalla fine dell'Ottocento, con una raccolta sistematica avviata negli anni Venti del Novecento. Conserva ritratti legati alla storia locale, vedute della città, immagini della Prima guerra mondiale e documentazione del patrimonio artistico del museo, incluso un fondo di circa 4.000 fotografie dell'archivio Diaz.",
+      "siti_web": [
+        "https://fototecagorizia.regione.fvg.it/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=759906"
+    },
+    {
+      "s_id": "440566",
+      "nome": "Musei Provinciali. Museo della Grande Guerra",
+      "comune": "Gorizia",
+      "provincia": "GO",
+      "descrizione": "Il museo è nato nel primo dopoguerra, quando il territorio intorno a Gorizia, teatro di numerosi scontri, offriva un grande numero di reperti bellici. Il riallestimento attuale, risalente al 1990, si trova nei sotterranei di Casa Dornberg e Casa Simone Tasso e ripercorre la guerra sul fronte dell'Isonzo, con attenzione anche alle conseguenze umane e sociali del conflitto.",
+      "siti_web": [
+        "https://musei.regione.fvg.it/it/museo-della-grande-guerra-69794",
+        "https://www.turismofvg.it/museo-della-grande-guerra-di-gorizia",
+        "https://www.youtube.com/watch?v=dm-eO4-R5jQ"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "Recuperato in un secondo tentativo dopo un errore di rate-limit sul primo fetch.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440566"
+    },
+    {
+      "s_id": "440492",
+      "nome": "Musei Provinciali. Pinacoteca",
+      "comune": "Gorizia",
+      "provincia": "GO",
+      "descrizione": "La pinacoteca, ospitata a Palazzo Attems Petzenstein, conserva una ricca raccolta di dipinti che copre un arco dal XVI al XXI secolo. Il nucleo del Novecento, formatosi negli anni Trenta grazie a donazioni di artisti, comprende opere di aeropittura e pittura futurista giuliana e lavori di autori come Vittorio Bolaffio e Luigi Spazzapan.",
+      "siti_web": [
+        "https://palazzoattems.regione.fvg.it/",
+        "https://www.turismofvg.it/ville-e-palazzi/palazzo-attems-petzenstein",
+        "https://letsgo.gorizia.it/it/punti-di-interesse/palazzo-attems-petzenstein-pinacoteca-dei-musei-provinciali/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440492"
+    },
+    {
+      "s_id": "440562",
+      "nome": "Museo documentario della città",
+      "comune": "Gradisca d'Isonzo",
+      "provincia": "GO",
+      "descrizione": "Il museo, ospitato in un'ala di Palazzo Torriani insieme alla Galleria regionale d'arte contemporanea Luigi Spazzapan, racconta la storia di Gradisca d'Isonzo dai primi insediamenti romani e medievali fino allo splendore asburgico sotto la famiglia Eggenberg. Conserva reperti archeologici (frammenti ceramici, monete, armi) e opere d'arte, tra cui affreschi barocchi provenienti dal Duomo.",
+      "siti_web": [
+        "https://www.comune.gradiscadisonzo.go.it/it/cultura-41137/casa-maccari-41139/museo-documentario-della-citta-41141",
+        "http://www.turismofvg.it/musei/museo-documentario-di-gradisca",
+        "https://cultura.gov.it/luogo/museo-documentario-della-citta"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440562"
+    },
+    {
+      "s_id": "440561",
+      "nome": "Museo lapidario civico",
+      "comune": "Gradisca d'Isonzo",
+      "provincia": "GO",
+      "descrizione": "Il lapidario occupa il piano terra della Loggia dei Mercanti, edificio di fine Seicento sorto su una loggia più antica del 1488. Raccoglie epigrafi e lapidi del territorio gradiscano, catalogate nei primi anni Novanta e poi digitalizzate con relativa trascrizione. Conserva inoltre i resti della tomba del conte Francesco Ulderico della Torre.",
+      "siti_web": [],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440561"
+    },
+    {
+      "s_id": "440564",
+      "nome": "Fondo Tranquillo Marangoni",
+      "comune": "Monfalcone",
+      "provincia": "GO",
+      "descrizione": "Il fondo raccoglie opere e documenti dell'artista Tranquillo Marangoni (1912-1992), conservati presso l'Ex Mercato del Pesce di Monfalcone, tra stampe, matrici e fotografie. Il materiale documenta in particolare la sua attività legata al cantiere navale locale e ai suoi contatti artistici internazionali.",
+      "siti_web": [
+        "http://marangoni.altervista.org/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "Pagina relativa a un fondo d'archivio/collezione, non a un museo in senso proprio.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440564"
+    },
+    {
+      "s_id": "440563",
+      "nome": "Galleria comunale d'arte contemporanea",
+      "comune": "Monfalcone",
+      "provincia": "GO",
+      "descrizione": "Inaugurata nel 2002 nel vecchio Mercato del Pesce, la galleria promuove la ricerca sulle arti visive contemporanee tramite mostre, pubblicazioni e attività didattiche. Dal 2004 costruisce una collezione di opere su carta di giovani artisti e conserva il fondo dell'xilografo Tranquillo Marangoni.",
+      "siti_web": [
+        "https://www.galleriacomunaleartemonfalcone.it/",
+        "https://www.turismofvg.it/arte-e-cultura/galleria-d-arte-contemporanea-di-monfalcone"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440563"
+    },
+    {
+      "s_id": "440638",
+      "nome": "Antiquarium di Ronchi dei Legionari",
+      "comune": "Ronchi dei Legionari",
+      "provincia": "GO",
+      "descrizione": "L'Antiquarium comunale, inaugurato nel 2012 in un fienile ristrutturato di una villa settecentesca, espone su due piani soprattutto reperti dalla villa romana scoperta nel 1987: mosaici, monete, ceramiche e vetri, insieme a materiali sulla storia del territorio. Il sito e i mosaici sono stati documentati nell'ambito del progetto transfrontaliero PArSJAd.",
+      "siti_web": [
+        "https://www.ccm.it/it/16489/Antiquarium-di-Ronchi",
+        "https://ronchicultura.it/territorio/antiquarium/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440638"
+    },
+    {
+      "s_id": "440596",
+      "nome": "Archivio fotografico Consorzio culturale del monfalconese",
+      "comune": "Ronchi dei Legionari",
+      "provincia": "GO",
+      "descrizione": "Archivio fotografico attivo dal 1978 presso Villa Vicentini Minussi, che conserva circa 12.000 fotografie di collezioni private e familiari sul territorio tra Isonzo e Timavo (la \"Bisiacaria\"). Comprende anche una sezione bibliografica specializzata e una collezione di fotocamere e accessori, con fondi catalogati come quelli di Giovanni Cividini e Agostino Pennisi.",
+      "siti_web": [
+        "https://www.ccm.it/fototeca"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440596"
+    },
+    {
+      "s_id": "440597",
+      "nome": "Archivio fotografico Consorzio di bonifica pianura Isontina",
+      "comune": "Ronchi dei Legionari",
+      "provincia": "GO",
+      "descrizione": "L'archivio raccoglie circa 3.950 fotografie prodotte dai consorzi di bonifica attivi nella pianura isontina fino al 1989, documentando le trasformazioni del paesaggio a partire dalla fine dell'Ottocento. Il materiale è organizzato in cinque fondi principali più uno miscellaneo, e include un album dedicato alla Mostra nazionale delle bonifiche del 1925.",
+      "siti_web": [
+        "http://www.pianuraisontina.it/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "Si tratta di un archivio fotografico, non di un museo visitabile.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440597"
+    },
+    {
+      "s_id": "440667",
+      "nome": "Ecomuseo Territori. Genti e memorie tra Carso e Isonzo",
+      "comune": "Ronchi dei Legionari",
+      "provincia": "GO",
+      "descrizione": "Istituito nel 2012 dal Consorzio Culturale del Monfalconese e con sede a Villa Vicentini Minussi, l'ecomuseo studia la storia e le comunità del territorio meridionale della regione. Le sue attività principali comprendono un archivio della memoria con interviste e fotografie storiche e lo studio del quartiere operaio di Panzano, legato alla cantieristica navale, insieme a una documentazione del patrimonio immateriale locale, tra cui pesca e cucina tradizionale.",
+      "siti_web": [
+        "https://www.ecomuseoterritori.it/",
+        "http://www.ccm.it/Home"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440667"
+    },
+    {
+      "s_id": "440618",
+      "nome": "Fondo Agostino Pennisi",
+      "comune": "Ronchi dei Legionari",
+      "provincia": "GO",
+      "descrizione": "Fondo fotografico di 199 negativi su pellicola realizzati da Agostino Pennisi di Floristella, conservato dai famigliari (le stampe sono nella Fototeca del CCM, a Villa Vicentini Minussi). Documenta soldati e civili nelle retrovie della Prima guerra mondiale tra la Bassa Friulana e l'Isontino; circa ottanta immagini sono in SIRPAC e il fondo è stato oggetto di una mostra nel 2014.",
+      "siti_web": [
+        "https://www.ccm.it/Photogallery/Details?category=FundsAndCollections&provider=Edvara&imageId=23639"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440618"
+    },
+    {
+      "s_id": "440622",
+      "nome": "Fondo Consorzio Agro cormonese gradiscano",
+      "comune": "Ronchi dei Legionari",
+      "provincia": "GO",
+      "descrizione": "Fondo fotografico che conserva negativi su pellicola e positivi in bianco e nero e a colori prodotti dal Consorzio Agro Cormonese Gradiscano, istituito nel 1950. Le immagini documentano le attività del consorzio tra il 1955 e il 1969, in particolare la gestione dell'irrigazione in diversi comuni dell'area isontina; 2.315 immagini sono state catalogate e sono consultabili nel SIRPAC.",
+      "siti_web": [],
+      "orari": null,
+      "biglietti": null,
+      "note": "Si tratta di un fondo fotografico, non un museo in senso stretto; nessun sito web specifico indicato.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440622"
+    },
+    {
+      "s_id": "440619",
+      "nome": "Fondo Consorzio acque dell'Agro monfalconese",
+      "comune": "Ronchi dei Legionari",
+      "provincia": "GO",
+      "descrizione": "Il fondo fotografico documenta l'attività del Consorzio Acque dell'Agro Monfalconese, ente nato nel 1873 per la gestione irrigua e la bonifica del territorio tra Sagrado e Monfalcone, con immagini di opere di presa sull'Isonzo, canali e centrali idroelettriche. Il catalogo SIRPAC conta 42 schede fotografiche datate tra il 1894 e il 1955, alcune su carta albuminata recanti il marchio dello studio Emblemi & Ballarini.",
+      "siti_web": [],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440619"
+    },
+    {
+      "s_id": "440620",
+      "nome": "Fondo Consorzio di bonifica del Brancolo",
+      "comune": "Ronchi dei Legionari",
+      "provincia": "GO",
+      "descrizione": "Il fondo comprende negativi su lastra di vetro e positivi del Consorzio di Bonifica del Brancolo, attivo dal 1925 nella sistemazione idraulica dell'area monfalconese, con immagini datate tra il 1927 e il 1951. Le fotografie documentano opere di scolo delle acque, arginature e la costruzione dell'idrovora \"Sacchetti\" a Staranzano; 176 immagini sono state catalogate nel 2004 e sono consultabili nella banca dati SIRPAC.",
+      "siti_web": [],
+      "orari": null,
+      "biglietti": null,
+      "note": "Soggetto conservatore: Consorzio di Bonifica Pianura Isontina. Nessun link 'Visita il sito' trovato (solo link istituzionali generici di ERPAC/Regione).",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440620"
+    },
+    {
+      "s_id": "440621",
+      "nome": "Fondo Consorzio di bonifica del Lisert",
+      "comune": "Ronchi dei Legionari",
+      "provincia": "GO",
+      "descrizione": "Il fondo fotografico documenta l'attività del Consorzio di bonifica del Lisert, istituito nel 1926, con immagini delle opere di bonifica della palude del Lisert realizzate soprattutto tra il 1932 e il 1935 per il risanamento idraulico e antimalarico dell'area. 116 immagini sono state catalogate nel 2004 e nel 2010.",
+      "siti_web": [],
+      "orari": null,
+      "biglietti": null,
+      "note": "Fondo fotografico gestito dal Consorzio di bonifica pianura Isontina; non è un museo e non riporta un sito web dedicato.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440621"
+    },
+    {
+      "s_id": "440617",
+      "nome": "Fondo Giovanni Cividini",
+      "comune": "Ronchi dei Legionari",
+      "provincia": "GO",
+      "descrizione": "Fondo fotografico di circa 2.300 immagini realizzate dal fotografo Giovanni Cividini (1879-1959) e collaboratori negli studi di Trieste, Pordenone e Monfalcone, conservato presso Villa Vicentini Minussi. Documenta soprattutto il Cantiere Navale di Monfalcone tra il 1920 e il 1950, il quartiere operaio di Panzano e il relativo dopolavoro; quasi 1.930 fotografie sono state catalogate nel 2002-2004, e un album sulla Prima guerra mondiale è stato approfondito nel 2011.",
+      "siti_web": [
+        "https://www.ccm.it/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440617"
+    },
+    {
+      "s_id": "440600",
+      "nome": "Villa romana di Ronchi dei Legionari",
+      "comune": "Ronchi dei Legionari",
+      "provincia": "GO",
+      "descrizione": "Il sito archeologico conserva il settore orientale di una villa rustica romana, articolata in una zona residenziale e una produttiva, in uso dalla metà del I secolo a.C. al III secolo d.C. Il percorso di visita attraversa strutture murarie e pavimenti musivi, alcuni ricollocati in situ, mentre presso il municipio è allestito un piccolo Antiquarium con una selezione di reperti dal sito.",
+      "siti_web": [
+        "https://www.comuneronchi.it/it/cultura-5268/villa-rustica-romana-17613",
+        "https://sabapfvg.cultura.gov.it/la-villa-romana-di-ronchi-dei-legionari/",
+        "https://www.archeocartafvg.it/portfolio-articoli/ronchi-dei-legionari-go-villa-romana/",
+        "http://musei.beniculturali.it/musei?mid=3895&nome=villa-romana-di-ronchi-dei-legionari"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440600"
+    },
+    {
+      "s_id": "440548",
+      "nome": "Museo dell'arte e civiltà contadina di Andreis",
+      "comune": "Andreis",
+      "provincia": "PN",
+      "descrizione": "Inaugurato nel 1981 nell'ex palazzo comunale, il museo raccoglie oggetti della vita quotidiana e del lavoro della comunità della Valcellina tra fine Ottocento e metà Novecento. Le sale ricostruiscono ambienti domestici, botteghe artigiane e attività agricole e pastorali, con una catalogazione del 2004-2005 che ha documentato circa 450 beni.",
+      "siti_web": [
+        "https://www.comune.andreis.pn.it/it/vivere-il-comune-28961/luoghi-29782/il-museo-della-civilta-contadina-29981",
+        "https://www.ecomuseolisaganis.it/it/c/87/museo_dellarte_e_della_civilta_contadina_di_andre.html"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440548"
+    },
+    {
+      "s_id": "440593",
+      "nome": "Collezione privata - Progetto Budoia",
+      "comune": "Budoia",
+      "provincia": "PN",
+      "descrizione": "Nel 2002 il Centro regionale, in collaborazione con il Comune, ha raccolto circa 900 fotografie di famiglie e cittadini di Budoia, poi digitalizzate, catalogate con l'ausilio di testimonianze orali e restituite ai proprietari. Le immagini documentano soprattutto il Novecento (emigrazione, paesaggio, infrastrutture, vita quotidiana, eventi pubblici e familiari) e hanno portato alla riscoperta del fotografo Angelo Bernardis (1844-1937).",
+      "siti_web": [],
+      "orari": null,
+      "biglietti": null,
+      "note": "Collezione fotografica conservata presso la Biblioteca civica \"Mons. G. Lozer\"; nessun link a sito esterno presente nella pagina.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440593"
+    },
+    {
+      "s_id": "440482",
+      "nome": "Museo casa clautana \"Eugenio Borsatti\"",
+      "comune": "Claut",
+      "provincia": "PN",
+      "descrizione": "Il museo, ospitato nel Centro visite del Parco naturale Dolomiti Friulane, ricostruisce gli ambienti di un'abitazione popolare con oggetti raccolti dai volontari a partire dagli anni Ottanta. Il percorso, pensato come un racconto guidato da una donna della Valcellina, illustra il lavoro, la vita domestica e i valori sociali delle famiglie clautane di un tempo.",
+      "siti_web": [
+        "https://www.parcodolomitifriulane.it/centro-visite/centro-visite-di-claut-pn/",
+        "https://cultura.gov.it/luogo/museo-casa-clautana"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440482"
+    },
+    {
+      "s_id": "440642",
+      "nome": "Museo della Grotta di Pradis",
+      "comune": "Clauzetto",
+      "provincia": "PN",
+      "descrizione": "Istituito nel 2001, raccoglie reperti archeologici, faunistici e paleontologici delle grotte preistoriche dell'altopiano di Pradis. Il percorso espositivo presenta l'orso delle caverne, le grotte frequentate da Neandertaliani e Sapiens nel Paleolitico, tecniche di lavorazione della selce e caccia, oltre a una sezione su fossili e minerali. Fa parte dell'Ecomuseo Lis Aganis.",
+      "siti_web": [
+        "http://grottedipradis.it/museo-della-grotta/",
+        "https://www.ecomuseolisaganis.it/it/c/76/grotte_di_pradis_e_museo_della_grotta.html",
+        "https://www.valdarzino.info/grotte-di-pradis"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "Località Pradis di Sotto, comune di Clauzetto.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440642"
+    },
+    {
+      "s_id": "440549",
+      "nome": "Museo caseificio di Poffabro",
+      "comune": "Frisanco",
+      "provincia": "PN",
+      "descrizione": "Il museo occupa l'antico caseificio di Poffabro, nella piazza del borgo, e ospita anche il Centro Visite del Parco delle Dolomiti Friulane. Al piano terra conserva la sala di lavorazione con i macchinari originali, utilizzati fino alla metà degli anni Sessanta, mentre al piano superiore un ambiente di malga introduce alla natura e al paesaggio del parco.",
+      "siti_web": [
+        "https://www.parcodolomitifriulane.it/centro-visite/centro-visite-di-poffabro-pn/",
+        "https://www.turismofvg.it/musei/centro-visite-del-parco-naturale-delle-dolomiti-friulane-di-poffabro"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440549"
+    },
+    {
+      "s_id": "440663",
+      "nome": "Lis Aganis Ecomuseo delle Dolomiti friulane",
+      "comune": "Maniago",
+      "provincia": "PN",
+      "descrizione": "Nato nel 2004 su iniziativa del GAL Montagna Leader, l'ecomuseo riunisce enti, associazioni e scuole del pordenonese pedemontano e montano, con sede nell'ex CO.RI.CA.MA. di Maniago. Il suo patrimonio, distribuito in diverse \"cellule\" tematiche dedicate a beni ambientali, paesaggistici, storici e culturali, è organizzato in percorsi su acqua, mestieri e sassi, e comprende attività di catalogazione e studio dei beni dei soci.",
+      "siti_web": [
+        "https://www.ecomuseolisaganis.it/",
+        "https://museocoltelleriemaniago.it/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440663"
+    },
+    {
+      "s_id": "440550",
+      "nome": "Museo dell'arte fabbrile e delle coltellerie",
+      "comune": "Maniago",
+      "provincia": "PN",
+      "descrizione": "Allestito nell'ex stabilimento delle Coltellerie Riunite Caslino-Maniago, il museo racconta la centenaria tradizione artigianale e industriale delle coltellerie locali attraverso tre sezioni dedicate alle materie prime e ai saperi, al mestiere del coltellinaio e alla produzione commerciale. Una collaborazione con il Centro regionale di catalogazione avviata nel 2005 ha prodotto circa mille schede sul patrimonio del museo.",
+      "siti_web": [
+        "https://museocoltelleriemaniago.it/",
+        "https://www.maniago.it/it/home-54372/cultura-54379/museo-dellarte-fabbrile-e-delle-coltellerie-75640",
+        "https://www.turismofvg.it/musei/museo-dell-arte-fabbril-e-delle-coltellerie"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440550"
+    },
+    {
+      "s_id": "440551",
+      "nome": "Museo provinciale della vita contadina Diogene Penzi - Sezioni lavorazione del legno e del ferro",
+      "comune": "Maniago",
+      "provincia": "PN",
+      "descrizione": "Sezioni del museo dedicate alla lavorazione del legno e del ferro, ospitate al piano terra dell'ex stabilimento CO.RI.CA.MA. Espongono strumenti di mestieri come fabbro, falegname, bottaio, taglialegna e carradore, perlopiù prodotti nella prima metà del Novecento (il pezzo più antico è una pialla del 1709); integra il vicino Museo dell'Arte Fabbrile e delle Coltellerie.",
+      "siti_web": [
+        "http://www.provincia.pordenone.it/?q=node/1033",
+        "http://turismo.maniago.it/museo/",
+        "http://www.museifriuliveneziagiulia.it/scheda_museo.html?id=43"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440551"
+    },
+    {
+      "s_id": "440644",
+      "nome": "Area archeologica dell'acquedotto",
+      "comune": "Montereale Valcellina",
+      "provincia": "PN",
+      "descrizione": "Nella parte settentrionale di Montereale Valcellina, il sito conserva i resti di un'abitazione usata e ricostruita più volte per oltre mille anni, dall'età del Bronzo finale all'epoca romana; alcuni studiosi la associano alla città scomparsa di Caelina, citata da Plinio il Vecchio. I reperti emersi dagli scavi sono custoditi nel vicino Museo Archeologico di Montereale Valcellina.",
+      "siti_web": [
+        "https://www.beniculturali.it/luogo/area-dell-acquedotto-di-montereale-valcellina",
+        "https://www.ecomuseolisaganis.it/it/c/1646/2-montereale.html",
+        "https://www.archeocartafvg.it/portfolio-articoli/montereale-valcellina-pn-area-dellacquedotto/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440644"
+    },
+    {
+      "s_id": "440633",
+      "nome": "Museo archeologico di Montereale Valcellina",
+      "comune": "Montereale Valcellina",
+      "provincia": "PN",
+      "descrizione": "Il museo ha sede a Palazzo Toffoli, edificio seicentesco che ospitava la Biblioteca Civica, e il suo percorso in quattro sale ripercorre la storia del territorio dall'età del bronzo al medioevo. Le collezioni derivano dagli scavi di un insediamento protostorico alla confluenza del torrente Cellina con la pianura e includono reperti e monete, tra cui materiali della vicina villa romana di Malnisio.",
+      "siti_web": [
+        "http://www.eupolis.info/montereale/mamv/",
+        "http://www.archeocartafvg.it/portfolio/montereale-valcellina-pn-museo-archeologico/",
+        "http://www.ecomuseolisaganis.it/it/c/ah0hzj/apertura_del_museo_archeo.html"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440633"
+    },
+    {
+      "s_id": "440552",
+      "nome": "Museo della Centrale idroelettrica di Malnisio",
+      "comune": "Montereale Valcellina",
+      "provincia": "PN",
+      "descrizione": "Il museo ha sede nell'ex centrale idroelettrica \"A. Pitter\", attiva dal 1905 al 1988 e oggi considerata un esempio di archeologia industriale. Inaugurato nel 2006, racconta la storia dell'impianto attraverso turbine, strumenti tecnici e fotografie d'epoca, frutto anche di una catalogazione realizzata con il contributo degli ex dipendenti.",
+      "siti_web": [
+        "https://www.eupolis.info/centrale_malnisio/",
+        "https://www.turismofvg.it/musei/museo-della-centrale-idroelettrica-di-malnisio-montereale-valcellina",
+        "https://www.beniculturali.it/luogo/museo-centrale-di-malnisio-nuovo-centro"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "Frazione Malnisio, presso la ex Centrale elettrica A. Pitter.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440552"
+    },
+    {
+      "s_id": "440640",
+      "nome": "Necropoli del Dominu",
+      "comune": "Montereale Valcellina",
+      "provincia": "PN",
+      "descrizione": "Si tratta di un sito archeologico, non di un museo in senso stretto, nel parco del Dominu, con i resti in parte ricostruiti di una piccola necropoli protostorica dell'età del Ferro. Le venti tombe a incinerazione, scavate negli anni Ottanta, contenevano corredi oggi conservati nel Museo Archeologico di Montereale Valcellina; il sito fu usato per circa un secolo tra l'VIII e il VII secolo a.C.",
+      "siti_web": [
+        "https://www.beniculturali.it/luogo/necropoli-del-dominu-di-montereale-valcellina",
+        "https://www.archeocartafvg.it/portfolio-articoli/montereale-valcellina-pn-necropoli-del-dominu/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "Si tratta di un'area archeologica/sito, non di un museo propriamente detto.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440640"
+    },
+    {
+      "s_id": "440645",
+      "nome": "Sito palafitticolo del Palù di Livenza",
+      "comune": "Polcenigo",
+      "provincia": "PN",
+      "descrizione": "Villaggio neolitico su palude con resti di palafitte presso le sorgenti del fiume Livenza, ai piedi del Cansiglio, risalente a circa il 4500-3500 a.C. Il sito è stato inserito nel 2011 nella lista UNESCO dei siti palafitticoli preistorici dell'arco alpino, e i suoi reperti sono conservati nel Museo archeologico del Friuli occidentale a Torre di Pordenone.",
+      "siti_web": [
+        "https://unesco.cultura.gov.it/projects/siti-palafitticoli-preistorici-dellarco-alpino/",
+        "http://www.turismofvg.it/Siti-archeologici/Sito-palafitticolo-di-Palu-di-Livenza",
+        "http://palu.incaneva.it/",
+        "https://whc.unesco.org/en/list/1363"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "È un sito archeologico/area protetta, non un museo propriamente detto; il testo cita anche il comune limitrofo di Caneva.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440645"
+    },
+    {
+      "s_id": "440486",
+      "nome": "Collezione della Fondazione Concordia Sette",
+      "comune": "Pordenone",
+      "provincia": "PN",
+      "descrizione": "Appartiene alla Fondazione Concordia Sette, costituita nel 2010, e comprende oltre mille opere del Novecento (dipinti, sculture, incisioni, fotografie), donate da artisti e collezionisti durante l'attività della Galleria Sagittaria. Collocata presso il Centro Culturale Casa Antonio Zanussi, ogni opera è catalogata nel SIRPAC e un volume del 2011 documenta un primo nucleo di 500 pezzi.",
+      "siti_web": [
+        "http://www.centroculturapordenone.it/centro"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440486"
+    },
+    {
+      "s_id": "440594",
+      "nome": "Fondo Bachmann",
+      "comune": "Pordenone",
+      "provincia": "PN",
+      "descrizione": "Il fondo fotografico, conservato presso l'Archivio Fotografico Cinemazero di Pordenone, nasce dall'acquisto di materiali del giornalista e fotografo Gideon Bachmann, con immagini legate al cinema internazionale, interviste sonore e documenti personali. Il nucleo catalogato, circa 14.000 immagini, riguarda in particolare i registi Pier Paolo Pasolini e Federico Fellini.",
+      "siti_web": [
+        "https://cinemazero.it/cinemazero-e/zeroimage-archivio-fotografico/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "Il tag <title> HTML della pagina non corrisponde al contenuto (errore del CMS); nome e descrizione ricavati dal contenuto effettivo della scheda.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440594"
+    },
+    {
+      "s_id": "440601",
+      "nome": "Musei civici di Pordenone",
+      "comune": "Pordenone",
+      "provincia": "PN",
+      "descrizione": "Sistema museale che conserva e racconta la storia di Pordenone e del Friuli Occidentale tramite collezioni artistiche, archeologiche, naturalistiche e scientifiche distribuite in cinque sedi: Museo Civico d'Arte (Palazzo Ricchieri, nato da un lascito del pittore Michelangelo Grigoletti), Museo di Storia Naturale 'Silvia Zenari', Museo Archeologico del Friuli Occidentale, Galleria d'Arte Moderna e Contemporanea 'Armando Pizzinato' e Galleria Harry Bertoia.",
+      "siti_web": [
+        "http://www.comune.pordenone.it/it/eventi/musei",
+        "http://www.pordenonewithlove.it/it/cosa-fare/cultura/musei"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "Sede principale di riferimento: Palazzo Ricchieri.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440601"
+    },
+    {
+      "s_id": "440634",
+      "nome": "Museo archeologico del Friuli occidentale",
+      "comune": "Pordenone",
+      "provincia": "PN",
+      "descrizione": "Il museo occupa il Castello di Torre, fortezza duecentesca poi trasformata in residenza dalla famiglia Ragogna, e il suo percorso su 24 sale presenta reperti dalla Preistoria al Rinascimento provenienti dall'alta pianura pordenonese occidentale. Espone inoltre materiali sulla storia del castello e sul conte Giuseppe Ragogna, scopritore della vicina villa romana di Torre.",
+      "siti_web": [
+        "http://www.comune.pordenone.it/it/comune/in-comune/strutture/museoarcheologico",
+        "https://www.beniculturali.it/luogo/museo-archeologico-del-friuli-occidentale",
+        "http://www.pordenonewithlove.it/cosa-fare/Cultura-487/Musei-199/Museo-Archeologico-del-Friuli-Occidentale-172"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440634"
+    },
+    {
+      "s_id": "440555",
+      "nome": "Museo civico d'arte di Pordenone",
+      "comune": "Pordenone",
+      "provincia": "PN",
+      "descrizione": "Il museo ha sede nel medievale Palazzo Ricchieri, nel centro storico di Pordenone, e raccoglie dipinti, affreschi, sculture, opere lignee e oreficerie legati soprattutto alla pittura veneto-friulana. Le sue origini risalgono al lascito dell'artista Michelangelo Grigoletti e ai beni confluiti dalle soppressioni napoleoniche di ordini religiosi e confraternite; è aperto al pubblico dal 1972.",
+      "siti_web": [
+        "https://www.comune.pordenone.it",
+        "https://www.turismofvg.it"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440555"
+    },
+    {
+      "s_id": "440553",
+      "nome": "Museo civico di storia naturale Silvia Zenari",
+      "comune": "Pordenone",
+      "provincia": "PN",
+      "descrizione": "Il museo ha sede nel Palazzo Amalteo, un edificio del Cinquecento, ed è stato aperto nel 1972. Dal recente intitolamento porta il nome della naturalista pordenonese Silvia Zenari. Le collezioni, in gran parte donate da studiosi e appassionati, spaziano dalla zoologia (vertebrati, insetti, diorami) alla mineralogia, alla botanica, alla paleontologia e ad altri ambiti.",
+      "siti_web": [
+        "http://www.comune.pordenone.it/it/comune/in-comune/strutture/museostorianaturale",
+        "http://www.pordenonewithlove.it/cosa-fare/Cultura-487/Musei-199/Museo-Civico-di-Storia-Naturale-Silvia-Zenari-166",
+        "https://cultura.gov.it/luogo/museo-civico-di-storia-naturale-silvia-zenari"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "Recuperato in un secondo tentativo dopo un errore di rate-limit sul primo fetch.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440553"
+    },
+    {
+      "s_id": "440554",
+      "nome": "Museo diocesano di arte sacra",
+      "comune": "Pordenone",
+      "provincia": "PN",
+      "descrizione": "Il museo, allestito nel Centro Attività Pastorali di Pordenone, raccoglie opere provenienti dalle parrocchie della Diocesi di Concordia-Pordenone insieme ad acquisti, donazioni e depositi, documentando la pratica di culto e la devozione delle comunità cristiane locali dal VII secolo all'età contemporanea. Il museo conserva anche una biblioteca e una fototeca.",
+      "siti_web": [
+        "https://diocesi.concordia-pordenone.it/museo/",
+        "https://www.turismofvg.it/musei/museo-diocesano-di-arte-sacra"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440554"
+    },
+    {
+      "s_id": "440657",
+      "nome": "Museo provinciale della vita contadina Diogene Penzi",
+      "comune": "San Vito al Tagliamento",
+      "provincia": "PN",
+      "descrizione": "Dedicato allo studioso Diogene Penzi, che dal 1950 raccolse oggetti del mondo contadino del Friuli occidentale (1850-1950), il museo occupa la barchessa nord della seicentesca Palazzo Tullio Altan. Aperta nel 1997, la sede di San Vito è la principale delle tre in cui è distribuita la collezione, articolata in 17 sezioni su due piani, oggetto di campagne di catalogazione negli anni Ottanta-Novanta e poi nel 2003, 2007 e 2009.",
+      "siti_web": [
+        "https://museovitacontadina-sanvito.regione.fvg.it/",
+        "http://www.pordenonewithlove.it/cosa-fare/Cultura-487/Musei-199/Museo-Provinciale-della-Vita-Contadina-Diogene-Penzi-158",
+        "https://www.turismofvg.it/musei/museo-provinciale-della-vita-contadina-diogene-penzi"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440657"
+    },
+    {
+      "s_id": "440556",
+      "nome": "Museo provinciale della vita contadina Diogene Penzi",
+      "comune": "San Vito al Tagliamento",
+      "provincia": "PN",
+      "descrizione": "Il museo è ospitato nella barchessa nord di Palazzo Tullio Altan, dimora signorile del Seicento, e raccoglie oggetti della civiltà contadina del Friuli occidentale datati tra il 1850 e il 1950. La collezione, dedicata al professor Diogene Penzi, è articolata in 17 sezioni su due piani dedicate a casa, campi, allevamento, bachicoltura e tessitura.",
+      "siti_web": [
+        "https://museovitacontadina-sanvito.regione.fvg.it/",
+        "https://www.turismofvg.it/musei/museo-provinciale-della-vita-contadina-diogene-penzi"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "Esiste anche s_id 440657 con nome identico: verificato, risulta riferito allo stesso museo e allo stesso comune (San Vito al Tagliamento); probabile scheda duplicata o relativa a una sede/collezione associata.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440556"
+    },
+    {
+      "s_id": "440557",
+      "nome": "Museo della SOMSI - Eco del lavoro",
+      "comune": "Sequals",
+      "provincia": "PN",
+      "descrizione": "Collezione etnografica allestita dalla SOMSI (Società Operaia di Mutuo Soccorso e Istruzione) di Lestans, formata con oggetti raccolti tramite donazioni dal 1998. L'esposizione è organizzata per temi legati al lavoro, tra cui mestieri contadini e professioni locali come terrazziere e mosaicista; una campagna di catalogazione (2010-2012) ha documentato oltre 300 oggetti legati a cucina e attività domestiche.",
+      "siti_web": [
+        "https://www.somsilestans.it/it/ivecchimestieri",
+        "http://www.ecomuseolisaganis.it/it/c/113g8bc/museo_vecchi_mestieri_e_c.html"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "Frazione Lestans, comune di Sequals.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440557"
+    },
+    {
+      "s_id": "440635",
+      "nome": "Museo lapidario Abbazia di Sesto al Reghena",
+      "comune": "Sesto al Reghena",
+      "provincia": "PN",
+      "descrizione": "Il lapidario raccoglie reperti emersi da restauri e scavi nel complesso dell'abbazia benedettina di Santa Maria in Sylvis, con un nucleo principale di sculture altomedievali legate agli arredi liturgici. Sono presenti anche materiali che documentano la storia del sito a partire dall'epoca romana.",
+      "siti_web": [
+        "http://www.abbaziasestoalreghena.it/",
+        "https://www.turismofvg.it/monumenti-religiosi/abbazia-benedettina-di-santa-maria-in-sylvis"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440635"
+    },
+    {
+      "s_id": "440595",
+      "nome": "Centro di ricerca e archiviazione della Fotografia",
+      "comune": "Spilimbergo",
+      "provincia": "PN",
+      "descrizione": "Fondato nel 1993, si occupa di ricerca, conservazione e valorizzazione della fotografia, conservando oltre 500.000 immagini organizzate in fondi tematici di interesse storico, regionale e nazionale, insieme a opere di autori contemporanei. Dispone anche di una biblioteca specializzata di circa 3.000 volumi e conduce un progetto di catalogazione partecipata avviato nel 2004 con l'Università di Udine.",
+      "siti_web": [
+        "https://www.craf-fvg.it/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "Sede principale a Palazzo Tadea (Spilimbergo, PN); la biblioteca specializzata si trova a Villa Ciani, Lestans, comune di Sequals (PN).",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440595"
+    },
+    {
+      "s_id": "440673",
+      "nome": "Collezione privata Pro Spilimbergo",
+      "comune": "Spilimbergo",
+      "provincia": "PN",
+      "descrizione": "La scheda del catalogo ERPAC classifica questa raccolta come collezione privata di tipo artistico legata a Spilimbergo. La pagina non fornisce dettagli descrittivi sulle opere o sui temi della collezione, limitandosi all'inquadramento catalografico.",
+      "siti_web": [],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440673"
+    },
+    {
+      "s_id": "440613",
+      "nome": "Fondo Autori",
+      "comune": "Spilimbergo",
+      "provincia": "PN",
+      "descrizione": "Il fondo, conservato a Palazzo Tadea presso il CRAF, raccoglie fotografie di autori che hanno collaborato con il centro in workshop, campagne fotografiche e mostre. Comprende due campagne sul territorio friulano: una del 1995 ispirata a Pasolini e una del 1996 dedicata ai paesi ricostruiti dopo il terremoto.",
+      "siti_web": [
+        "http://fototeca.craf-fvg.it/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "Il link 'Visita il sito' originale puntava a una pagina di risultati di ricerca; riportato l'indirizzo base della fototeca CRAF.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440613"
+    },
+    {
+      "s_id": "440614",
+      "nome": "Fondo Emigrazione, fotografico",
+      "comune": "Spilimbergo",
+      "provincia": "PN",
+      "descrizione": "Conservato al CRAF presso Palazzo Tadea, il fondo raccoglie fotografie e documenti sull'emigrazione friulana all'estero, comprese le immagini dello scalpellino Giovanni Ciani tra Ottocento e Novecento e la raccolta della famiglia Melocco emigrata a Praga. Include anche materiali sul pugile Primo Carnera e documentazione contemporanea su friulani emigrati a New York e ad Avellaneda, in Argentina.",
+      "siti_web": [
+        "https://fototeca.craf-fvg.it/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "Fondo fotografico, non un museo in senso stretto.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440614"
+    },
+    {
+      "s_id": "440610",
+      "nome": "Fondo Friuli storico",
+      "comune": "Spilimbergo",
+      "provincia": "PN",
+      "descrizione": "Conservato a Palazzo Tadea, il fondo raccoglie fotografie documentarie realizzate negli anni Venti e Trenta del Novecento per ricerche linguistiche sul Friuli e sull'Istria, tra cui immagini di Ugo Pellis e Paul Scheuermeier. Oltre al valore scientifico, le immagini restituiscono uno spaccato della vita e della società contadina dell'epoca, con una sezione dedicata all'Istria basata su stampe tratte da negativi conservati a Graz.",
+      "siti_web": [
+        "http://fototeca.craf-fvg.it/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440610"
+    },
+    {
+      "s_id": "440616",
+      "nome": "Fondo Tullio Stravisi, fotografico",
+      "comune": "Spilimbergo",
+      "provincia": "PN",
+      "descrizione": "Il fondo raccoglie l'opera del fotografo amatoriale triestino Tullio Stravisi (1922-2003), presidente del Circolo Fotografico Triestino dal 1972 al 1993. Comprende oltre 2.000 stampe e più di 10.000 negativi, con ritratti di artisti, immagini di Trieste e soprattutto paesaggi carsici, anche con tecniche di viraggio. Dal 2005 l'archivio, di proprietà della famiglia, è in comodato d'uso al CRAF presso Palazzo Tadea.",
+      "siti_web": [
+        "https://fototeca.craf-fvg.it/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "Si tratta di un fondo fotografico (non un museo in senso stretto), conservato dal CRAF.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440616"
+    },
+    {
+      "s_id": "440612",
+      "nome": "Fondo storico-didattico",
+      "comune": "Spilimbergo",
+      "provincia": "PN",
+      "descrizione": "Conservato presso il CRAF a Palazzo Tadea, il fondo è una raccolta eterogenea di fotografie che documenta tecniche storiche, dal dagherrotipo ai processi del primo Novecento. Formatosi dal 1994 tramite acquisti e donazioni, comprende anche cartes de visite e album di famiglia degli anni Trenta.",
+      "siti_web": [
+        "http://fototeca.craf-fvg.it/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440612"
+    },
+    {
+      "s_id": "440558",
+      "nome": "Galleria e archivio Scuola mosaicisti del Friuli",
+      "comune": "Spilimbergo",
+      "provincia": "PN",
+      "descrizione": "La Scuola Mosaicisti del Friuli, fondata a Spilimbergo nel 1922, forma professionisti del mosaico e realizza opere musive in Italia e all'estero. L'archivio storico conserva circa 2000 disegni preparatori, 1500 fotografie e 100 stampe, catalogati tra il 1996 e il 2008, che documentano la produzione didattica e artistica dell'istituto.",
+      "siti_web": [
+        "http://scuolamosaicistifriuli.it/",
+        "https://www.turismofvg.it/musei/scuola-mosaicisti-del-friuli"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440558"
+    },
+    {
+      "s_id": "440611",
+      "nome": "Gruppo friulano per una nuova fotografia",
+      "comune": "Spilimbergo",
+      "provincia": "PN",
+      "descrizione": "Il Gruppo friulano per una nuova fotografia nasce a Spilimbergo nel 1955 attorno a Italo Zannier, ai fratelli Borghesan e ad altri fotografi, segnando una stagione innovativa della fotografia friulana. Il CRAF conserva i materiali legati al gruppo, tra cui i pannelli della prima mostra e gli archivi fotografici di Carlo Bevilacqua, Aldo Beltrame e dei fratelli Borghesan.",
+      "siti_web": [
+        "http://fototeca.craf-fvg.it/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440611"
+    },
+    {
+      "s_id": "440559",
+      "nome": "Galleria civica d'arte del Comune di Zoppola",
+      "comune": "Zoppola",
+      "provincia": "PN",
+      "descrizione": "La galleria, istituita nel 2002, raccoglie opere d'arte locali e nazionali acquisite soprattutto durante le mostre estemporanee avviate nel 1968. Dal 2011 ha sede in Casa Costantini, che conserva anche documenti e opere dei fratelli Costantini.",
+      "siti_web": [],
+      "orari": null,
+      "biglietti": null,
+      "note": "Nessun sito web dedicato individuato nella pagina.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440559"
+    },
+    {
+      "s_id": "440655",
+      "nome": "Chiesa paleocristiana di San Giovanni in Tuba",
+      "comune": "Duino Aurisina",
+      "provincia": "TS",
+      "descrizione": "Il complesso comprende la chiesa tardogotica di San Giovanni di Duino (XV secolo), nota come San Giovanni in Tuba, presso le risorgive del Timavo, sotto la quale sono emersi i resti di una basilica paleocristiana del V secolo con pavimenti a mosaico e le fondazioni di un battistero circolare. L'area era già centro di culti pagani in epoca romana, come documentato da lapidi rinvenute nella zona.",
+      "siti_web": [
+        "https://www.beniculturali.it/luogo/chiesa-di-san-giovanni-in-tuba",
+        "https://www.comune.duino-aurisina.ts.it/it/turismo-14716/itinerario-enogastronomico-culturale-14729/chiesa-di-san-giovanni-in-tuba-14733",
+        "http://www.percorsiprovinciats.it/home/dettagliomap/403"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "Classificato nel catalogo come 'area, sito o monumento' più che come museo propriamente detto.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440655"
+    },
+    {
+      "s_id": "440641",
+      "nome": "Grotta del Mitreo",
+      "comune": "Duino Aurisina",
+      "provincia": "TS",
+      "descrizione": "Grotta sul Monte Ermada, nel Carso triestino, frequentata dalla preistoria all'età del Ferro. In epoca imperiale romana ospitò un piccolo tempio dedicato al dio Mitra, con rilievi, iscrizioni, lampade e monete votive; oggi è visitabile con calchi dei rilievi e delle iscrizioni ed è collegata all'area sacra delle risorgive del Timavo.",
+      "siti_web": [
+        "https://cultura.gov.it/luogo/grotta-del-mitreo-duino-aurisina",
+        "https://criga.divulgando.eu/scheda.php?anagrafe=1255"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440641"
+    },
+    {
+      "s_id": "440652",
+      "nome": "Villa romana del Randaccio",
+      "comune": "Duino Aurisina",
+      "provincia": "TS",
+      "descrizione": "Area archeologica nel Parco dell'Acquedotto \"G. Randaccio\", presso le risorgive del Timavo: una grande villa marittima romana su tre livelli lungo un pendio carsico. Gli scavi del 1988-1991 hanno portato alla luce circa 1.300 mq con una quarantina di ambienti residenziali e produttivi, in uso dal I secolo a.C. al III-IV secolo d.C., forse anche come stazione di sosta sulla via tra Aquileia e Tergeste.",
+      "siti_web": [
+        "https://www.beniculturali.it/luogo/villa-romana-parco-randaccio"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440652"
+    },
+    {
+      "s_id": "440568",
+      "nome": "Museo della casa carsica",
+      "comune": "Monrupino",
+      "provincia": "TS",
+      "descrizione": "Occupa una casa tipica dell'architettura spontanea del Carso triestino (Kraška hiša), arredata con mobili, attrezzi e oggetti ottocenteschi donati dalle famiglie locali. Propone uno sguardo sulla vita rurale del passato, con cantina, granaio e spazi abitativi su due piani; catalogato nel 1989 e aggiornato nel 2008.",
+      "siti_web": [
+        "http://www.kraskahisa.com/ita/index.php",
+        "http://www.monrupino-repentabor.it/tourism/musei/detail/26",
+        "https://www.beniculturali.it/luogo/museo-etnografico-della-casa-carsica-kraska-hisa",
+        "https://www.turismofvg.it/musei/museo-della-casa-carsica-kraska-hisa"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "Frazione Rupingrande, comune di Monrupino.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440568"
+    },
+    {
+      "s_id": "440670",
+      "nome": "Collezione Ugo Carà",
+      "comune": "Muggia",
+      "provincia": "TS",
+      "descrizione": "Collezione del Museo d'arte moderna Ugo Carà, inaugurato nel 2006 nel centro storico di Muggia: oltre 100 opere (sculture, disegni, dipinti, stampe, medaglie e oggetti di design) donate al Comune nel 1999 dall'artista Ugo Carà. Oltre alla raccolta permanente, il museo organizza ogni anno mostre temporanee su arte moderna e contemporanea, con un'attenzione particolare all'illustrazione per l'infanzia.",
+      "siti_web": [],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440670"
+    },
+    {
+      "s_id": "440656",
+      "nome": "Acquedotto romano della Val Rosandra",
+      "comune": "San Dorligo della Valle",
+      "provincia": "TS",
+      "descrizione": "Resti di un acquedotto romano del I secolo d.C. che portava l'acqua dalla fonte Oppia, ai piedi del Monte Carso, fino a Tergeste (Trieste). È una condotta interrata rivestita di pietre e laterizi, impermeabilizzata con malta e dotata di pozzetti d'ispezione; resti visibili lungo il sentiero della Val Rosandra, con un tratto esposto nell'antiquarium di Borgo San Sergio.",
+      "siti_web": [
+        "https://www.beniculturali.it/luogo/acquedotto-romano-della-val-rosandra",
+        "http://www.percorsiprovinciats.it/home/dettagliomap/447"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "Località Bagnoli della Rosandra. Sito archeologico (categoria 'aree, siti e monumenti'), non un museo in senso stretto.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440656"
+    },
+    {
+      "s_id": "440579",
+      "nome": "Album Cozzi",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "descrizione": "La scheda documenta un taccuino autografo di Napoleone Cozzi (1867-1916), alpinista, pittore decoratore e irredentista triestino, composto da fotografie e acquerelli che raccontano le sue ascensioni con la Squadra Volante sulle Alpi Giulie, Carniche e Dolomiti. Il materiale, conservato nel sistema dei Civici Musei di storia ed arte di Trieste presso la Casa del Combattente, fu oggetto di una mostra dedicata all'autore nel 2007.",
+      "siti_web": [
+        "http://museodelrisorgimentotrieste.it/",
+        "https://www.triestecultura.it/luoghi/index/id/40/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440579"
+    },
+    {
+      "s_id": "440649",
+      "nome": "Arco di Riccardo",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "descrizione": "La scheda descrive una porta monumentale di epoca romana situata sul versante nord-occidentale del colle di San Giusto a Trieste, nota come Arco di Riccardo. È interpretata come porta urbica o varco di collegamento tra quartieri della città romana di Tergeste; le indagini del 1913 hanno portato alla luce ulteriori strutture romane nell'area circostante.",
+      "siti_web": [
+        "http://itinerari.comune.trieste.it/itinerario-archeologico/#arco"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "Monumento/area archeologica, non un museo in senso tradizionale.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440649"
+    },
+    {
+      "s_id": "440648",
+      "nome": "Basilica paleocristiana di via Madonna del Mare",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "descrizione": "Basilica cimiteriale paleocristiana scoperta nel 1963 nel quartiere di Cittavecchia, costruita fuori dalle mura romane su una necropoli. Ne restano visibili i resti sotto un palazzo moderno, con pavimenti musivi di epoche diverse e iscrizioni che citano donatori e la prima comunità cristiana triestina; la chiesa fu poi ricostruita nel Medioevo e dal XIII secolo è dedicata alla Madonna del Mare.",
+      "siti_web": [
+        "https://cultura.gov.it/luogo/basilica-paleocristiana-di-via-madonna-del-mare"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "Si tratta di un sito archeologico/monumento, non un museo in senso stretto.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440648"
+    },
+    {
+      "s_id": "876470",
+      "nome": "Biblioteca civica A. Hortis. Fondo Achille Bertarelli",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "descrizione": "Il fondo, conservato presso la Biblioteca Civica Attilio Hortis (Palazzo Biserini), comprende un centinaio di stampe dal XV al XIX secolo donate da Achille Bertarelli dopo l'annessione di Trieste all'Italia, oltre a stampe di ritratti e circa 2.500 tra volumi e opuscoli sul Risorgimento. Le stampe sono state catalogate e pubblicate in un catalogo del 2000.",
+      "siti_web": [],
+      "orari": null,
+      "biglietti": null,
+      "note": "Nessun sito web specifico indicato, solo link generici del portale ERPAC.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=876470"
+    },
+    {
+      "s_id": "440574",
+      "nome": "Biblioteca civica A. Hortis. Museo petrarchesco piccolomineo",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "descrizione": "Istituito nel 2003 presso Palazzo Biserini, il museo valorizza la collezione donata nel 1842 dal conte Domenico Rossetti de Scander alla Biblioteca civica Hortis. Le raccolte ruotano attorno a Francesco Petrarca ed Enea Silvio Piccolomini (Papa Pio II), comprendendo fondi librari, documenti e opere d'arte, tra cui disegni settecenteschi preparatori per un'edizione delle Rime.",
+      "siti_web": [
+        "http://www.museopetrarchesco.it/museo-petrarchesco-piccolomineo/",
+        "https://www.triestecultura.it/luoghi/index/id/39/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440574"
+    },
+    {
+      "s_id": "440598",
+      "nome": "Biblioteca del Consiglio regionale \"Livio Paladin\"",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "descrizione": "La pagina presenta l'Archivio Fotografico del Consiglio Regionale del Friuli Venezia Giulia, costituito nel 2006 e conservato nella biblioteca. Raccoglie circa 160.000 fotografie che documentano la vita istituzionale e territoriale della Regione dal 1964 al 2008; il progetto di catalogazione, avviato nel 2007, ha reso consultabili online oltre 10.000 immagini nel SIRPAC.",
+      "siti_web": [
+        "https://www.consiglio.regione.fvg.it/cms/pagine/paladin/catalogo-collezioni/Archivio-fotografico/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "La scheda riguarda un archivio fotografico più che un museo in senso proprio.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440598"
+    },
+    {
+      "s_id": "440650",
+      "nome": "Cattedrale di San Giusto martire",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "descrizione": "Sorta sul colle di San Giusto, antica acropoli della città romana di Tergeste, la cattedrale nasce dalla fusione di una basilica vescovile e di un sacello martiriale e conserva tracce delle fasi costruttive precedenti, come mosaici pavimentali e colonne paleocristiane, mosaici medievali e un portale di reimpiego da un monumento funerario romano. Fanno parte del complesso anche la torre campanaria e il battistero, di rilievo archeologico.",
+      "siti_web": [
+        "http://www.sangiustomartire.it/",
+        "http://www.fvg.tv/WebTV/dettaglio?video.id=1103&video.lingua.id=IT",
+        "https://itinerari.comune.trieste.it/colledisangiusto/",
+        "https://www.archeocartafvg.it/portfolio-articoli/trieste-la-basilica-di-san-giusto/",
+        "https://www.turismofvg.it/monumenti-religiosi/cattedrale-di-san-giusto"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440650"
+    },
+    {
+      "s_id": "440602",
+      "nome": "Civici musei di storia ed arte",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "descrizione": "La rete dei musei civici triestini propone un percorso su storia e arte cittadina attraverso esposizioni e raccolte tematiche, con sedi spesso progettate da importanti architetti della regione e legate alla storia locale, nazionale ed europea. Il sistema si articola in cinque ambiti: arte e storia, scienze, letteratura, dimore storiche e teatro, con sede principale sul Colle di San Giusto.",
+      "siti_web": [
+        "https://www.triestecultura.it/luoghi/categoria/ic/4/",
+        "https://beniculturali.comune.trieste.it/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440602"
+    },
+    {
+      "s_id": "440577",
+      "nome": "Civici musei di storia ed arte. Museo Morpurgo",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "descrizione": "Occupa l'appartamento al secondo piano di Palazzo Morpurgo, nel Borgo Teresiano, lasciato dalla famiglia Morpurgo al Comune di Trieste nel 1941. Arredi, collezioni d'arte e oggetti originali ricostruiscono la vita quotidiana e l'ascesa sociale di una famiglia borghese di fine Ottocento; alcune stanze ospitarono in passato depositi, tra cui manufatti tessili della Cattedrale di San Giusto.",
+      "siti_web": [
+        "http://www.museomorpurgo.it/",
+        "https://www.triestecultura.it/luoghi/index/id/36/",
+        "https://www.turismofvg.it/musei/museo-civico-morpurgo-de-nilma",
+        "https://www.beniculturali.it/luogo/civico-museo-morpurgo"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440577"
+    },
+    {
+      "s_id": "440576",
+      "nome": "Civici musei di storia ed arte. Museo teatrale Carlo Schmidl",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "descrizione": "Il museo, nato nel 1924 da un accordo tra il Comune di Trieste e il collezionista ed editore musicale Carlo Schmidl, raccoglie libretti, manifesti, manoscritti e cimeli che documentano la storia del teatro e della musica triestini dal Settecento a oggi. Ha una sezione dedicata al liutaio Francesco Zapelli, con la ricostruzione del suo laboratorio.",
+      "siti_web": [
+        "http://www.museoschmidl.it/",
+        "https://www.triestecultura.it/luoghi/index/id/49/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "Il nome nella lista di partenza riportava 'Schimdl'; la grafia corretta usata nel testo della pagina è 'Schmidl'.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440576"
+    },
+    {
+      "s_id": "440575",
+      "nome": "Civico museo Revoltella. Galleria d'arte moderna",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "descrizione": "Fondato nel 1872 grazie al lascito del barone Pasquale Revoltella, che donò alla città la sua dimora, le opere e un patrimonio per la gestione, il museo ha collezioni di respiro internazionale con artisti dell'Ottocento e del Novecento. Oggi occupa tre palazzi di un isolato del centro di Trieste, ristrutturati da Carlo Scarpa (conclusione 1991); la pagina descrive anche la catalogazione della donazione Kurländer, circa cinquanta opere legate a Trieste e al territorio giuliano.",
+      "siti_web": [
+        "http://www.museorevoltella.it/index.php",
+        "https://www.triestecultura.it/luoghi/index/id/32/",
+        "https://www.turismofvg.it/musei/museo-civico-revoltella",
+        "https://www.beniculturali.it/luogo/civico-museo-revoltella-e-galleria-d-arte-moderna"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440575"
+    },
+    {
+      "s_id": "440637",
+      "nome": "Civico museo di storia ed arte. Orto lapidario e Lapidario tergestino",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "descrizione": "Parte dei Civici Musei di Storia ed Arte di Trieste, sul colle di San Giusto, comprende un Orto lapidario con sculture e sarcofagi romani da Trieste, Aquileia e Istria e un Lapidario tergestino allestito nel Bastione Lalio del castello. Il complesso ospita inoltre reperti dalla preistoria all'altomedioevo, collezioni egizie, vasi greci e magnogreci e raccolte numismatiche e di gemme incise.",
+      "siti_web": [
+        "https://www.triestecultura.it/luoghi/categoria/ic/4/",
+        "https://www.comune.trieste.it/it/cultura-13623/musei-13626",
+        "https://beniculturali.comune.trieste.it/",
+        "https://serviziodidattico.it/musei/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440637"
+    },
+    {
+      "s_id": "440669",
+      "nome": "Collezione della provincia di Trieste",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "descrizione": "La raccolta, nata nel 1926 soprattutto da acquisti in esposizioni locali, comprende anche donazioni e commissioni dirette. Include opere di artisti come Ugo Flumiani, Vito Timmel e Giorgio Celiberti, e riflette il carattere di confine di Trieste, sospeso tra tradizione mitteleuropea e identità italiana.",
+      "siti_web": [],
+      "orari": null,
+      "biglietti": null,
+      "note": "Sede: Palazzo Galatti. Recuperato in un secondo tentativo dopo un errore di rate-limit sul primo fetch.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440669"
+    },
+    {
+      "s_id": "440599",
+      "nome": "Collezione privata Società alpina delle Giulie",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "descrizione": "Raccolta fotografica della Società Alpina delle Giulie, nata a Trieste nel 1883 come sezione sportiva di un'unione ginnastica, conservata presso il palazzo dell'ex Banco di Napoli. Il nucleo principale è costituito da circa 7.800 diapositive su vetro donate nel 1981 dal socio Renato Timeus, insieme a stampe, album e negativi. Il materiale documenta le Alpi Giulie, i primi sci e arrampicate e l'evoluzione dei sentieri montani.",
+      "siti_web": [
+        "http://www.caisag.ts.it/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440599"
+    },
+    {
+      "s_id": "440573",
+      "nome": "Galleria nazionale d'arte antica di Trieste",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "descrizione": "La galleria nasce nel secondo dopoguerra per valorizzare il patrimonio artistico italiano della città, a partire dalla Collezione Mentasti acquistata tra il 1955 e il 1957 e poi ampliata a circa 85 opere, incluse alcune di Canaletto. Ospitata dal 1984 a Palazzo Economo, oggi ha sede nelle Scuderie del Castello di Miramare; tra le opere di rilievo figura un dipinto di Lucas Cranach il Vecchio.",
+      "siti_web": [
+        "https://sabapfvg.cultura.gov.it/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440573"
+    },
+    {
+      "s_id": "440578",
+      "nome": "Museo di guerra per la pace \"Diego de Henriquez\"",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "descrizione": "Il museo nasce dalla collezione che Diego de Henriquez raccolse nel corso della vita, passata al Comune di Trieste nel 1997, e comprende migliaia di oggetti tra armi, fotografie, diari, libri, manifesti e documenti bellici relativi alla Prima e alla Seconda guerra mondiale. Il percorso espositivo, distribuito in tre hangar della Caserma Duca delle Puglie, affronta il tema della guerra con l'obiettivo di promuovere la pace più che celebrare il conflitto.",
+      "siti_web": [
+        "https://www.museodiegodehenriquez.it/",
+        "https://www.triestecultura.it/luoghi/index/id/43/",
+        "https://www.asimusei.it/museo/civico-museo-diego-de-henriquez/",
+        "https://www.turismofvg.it/musei/museo-civico-di-guerra-per-la-pace-diego-de-henriquez"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440578"
+    },
+    {
+      "s_id": "440580",
+      "nome": "Museo etnografico di Servola",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "descrizione": "Istituito nel 1975, il museo raccoglie testimonianze della storia e delle tradizioni del rione di Servola, un tempo villaggio autonomo noto per la produzione domestica del pane. Al piano terra sono ricostruiti una cucina con forno e una camera da letto, mentre al primo piano sono esposti cartoline, stampe, documenti e costumi tradizionali femminili.",
+      "siti_web": [
+        "http://www.skedenj.net/ITA/",
+        "https://www.triestecultura.it/luoghi/index/id/117/",
+        "https://www.beniculturali.it/luogo/museo-etnografico-di-servola"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440580"
+    },
+    {
+      "s_id": "440581",
+      "nome": "Museo storico del Castello di Miramare",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "descrizione": "Il museo comprende il castello e il parco di 22 ettari fatti costruire a partire dal 1855 dall'arciduca Massimiliano d'Asburgo su un promontorio sul mare. Gli interni conservano gli arredi originali; il complesso divenne museo dopo la Prima Guerra Mondiale, con inaugurazione nel 1929 e restauri dopo la Seconda. È noto anche per i soggiorni dell'imperatrice Sissi, e un progetto in corso sta catalogando opere, arredi e il parco.",
+      "siti_web": [
+        "https://miramare.cultura.gov.it/",
+        "https://www.beniculturali.it/luogo/museo-storico-e-il-parco-del-castello-di-miramare"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440581"
+    },
+    {
+      "s_id": "440651",
+      "nome": "Propileo romano e cd. Basilica civile",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "descrizione": "La scheda descrive i resti di un propileo di epoca romana (seconda metà del I secolo d.C.) sul colle di San Giusto a Trieste, parzialmente visibili nel campanile della cattedrale. Il monumento è collegato a un vicino edificio, interpretato tradizionalmente come basilica civile o, secondo studi più recenti, come tempio della triade capitolina.",
+      "siti_web": [
+        "https://www.triestecultura.it/luoghi/index/id/38/",
+        "http://www.sangiustomartire.it"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "Si tratta di un'area archeologica/monumento, non di un museo in senso tradizionale.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440651"
+    },
+    {
+      "s_id": "440646",
+      "nome": "Teatro romano",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "descrizione": "Teatro romano ai piedi del colle di San Giusto, costruito alla fine del I secolo a.C. in epoca augustea e riportato alla luce negli anni Trenta del Novecento. Se ne vedono oggi la cavea (capienza stimata di circa 3.500 spettatori), l'orchestra e la scena; le iscrizioni e sculture originali sono conservate nel Lapidario tergestino, nel castello di San Giusto.",
+      "siti_web": [
+        "https://www.beniculturali.it/luogo/teatro-romano-di-trieste",
+        "http://itinerari.comune.trieste.it/itinerario-archeologico/",
+        "http://www.fvg.tv/WebTV/dettaglio?video.id=1103&video.lingua.id=IT"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "Sito archeologico (categoria 'aree, siti e monumenti'), non un museo in senso stretto.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440646"
+    },
+    {
+      "s_id": "440604",
+      "nome": "smaTs. Archivio degli scrittori e della cultura regionale. Lascito Fonda Savio",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "descrizione": "La scheda descrive la sezione iconografica del Lascito Fonda Savio, donato all'Archivio degli scrittori e della cultura regionale dalla vedova di Letizia Fonda Savio, figlia di Italo Svevo, e comprendente libri, fotografie, stampe, dipinti e disegni. Il progetto di catalogazione nasce da un accordo con il Dipartimento di Studi Umanistici dell'Università di Trieste; nel 2014 è stato avviato il quarto progetto dedicato a questa raccolta nel database SIRPAC.",
+      "siti_web": [
+        "https://smats.units.it/collezioni-fondi/dettaglio-collezioni/?s_id=824239",
+        "https://www.openstarts.units.it/entities/publication/add27241-2c27-4c51-93f5-1ce8dbc3d9ab/details"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440604"
+    },
+    {
+      "s_id": "824238",
+      "nome": "smaTs. Museo di mineralogia e petrografia",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "descrizione": "Il museo, ospitato nella Palazzina O, dispone di tre sale espositive con circa mille campioni in vetrine e bacheche. La sala centrale presenta caratteristiche mineralogiche generali, minerali tipici delle Tre Venezie e forme di calcite delle grotte del Carso triestino, mentre le sale laterali ospitano le collezioni sistematiche di minerali e di rocce; nel 2023 sono state inserite nel catalogo regionale oltre 1000 schede della collezione mineralogica.",
+      "siti_web": [
+        "https://www.dmg.units.it/node/12764",
+        "https://www.smats.units.it/mineralogia"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=824238"
+    },
+    {
+      "s_id": "440569",
+      "nome": "smaTs. Sistema museale dell'ateneo di Trieste",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "descrizione": "Istituito nel 2005, il sistema raccoglie il patrimonio storico, artistico, documentario e scientifico dell'Università di Trieste conservato nei vari edifici dell'ateneo, coordinando le strutture espositive e offrendo servizi di catalogazione, conservazione e promozione. Ne fanno parte un archivio di scrittori e cultura regionale, quattro musei (Scienze Sanitarie, Mineralogia e Petrografia, Joyciano e Antartide), il sistema bibliotecario e diversi dipartimenti.",
+      "siti_web": [
+        "http://www.smats.units.it/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "Il tag <title> della pagina era disallineato (relativo a un'altra ricerca); nome ricavato da intestazione e metadati Open Graph.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440569"
+    },
+    {
+      "s_id": "440570",
+      "nome": "smaTs. Sistema museale dell'ateneo di Trieste. Collezione Marussi",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "descrizione": "La Collezione Marussi, conservata nel Dipartimento di Geoscienze dell'Università di Trieste, comprende strumenti per rilevamenti geodetici, topografici, fotogrammetrici e geofisici tra fine Ottocento e seconda metà del Novecento. Gli strumenti, acquisiti soprattutto da Antonio Marussi e Giorgio Manzoni, furono impiegati per ricerca e didattica; una catalogazione del 2011 ne ha documentato 161 esemplari.",
+      "siti_web": [
+        "http://www.smats.units.it/",
+        "https://dmg.units.it/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440570"
+    },
+    {
+      "s_id": "440571",
+      "nome": "smaTs. Sistema museale dell'ateneo di Trieste. Fisica",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "descrizione": "La collezione, custodita presso il Dipartimento di Fisica dell'Università di Trieste, raccoglie strumenti scientifici acquisiti tra il 1946 e il 1999 e catalogati a partire dal 2010. Gli apparati coprono meccanica, termologia, acustica, elettromagnetismo, ottica, rilevazione di radiazioni e analisi del segnale, con una destinazione prevalentemente didattica e di ricerca piuttosto che espositiva.",
+      "siti_web": [
+        "https://www.smats.units.it/NEW",
+        "https://df.units.it/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440571"
+    },
+    {
+      "s_id": "440572",
+      "nome": "smaTs. Sistema museale dell'ateneo di Trieste. Mostra 1953-1954",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "descrizione": "La collezione raccoglie dipinti e arredi d'arte dell'Università di Trieste, acquisiti dal 1938 per gli spazi di rappresentanza e gli uffici, insieme a un gruppo di opere comprate nel 1953-1954 durante un'esposizione nazionale di pittura italiana contemporanea. Nel 2008 queste ultime sono state catalogate e restaurate, dando origine a una mostra dedicata a quell'evento.",
+      "siti_web": [
+        "https://www.smats.units.it/NEW"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440572"
+    },
+    {
+      "s_id": "440668",
+      "nome": "smaTs. Sistema museale dell'ateneo di Trieste. Scienza delle costruzioni",
+      "comune": "Trieste",
+      "provincia": "TS",
+      "descrizione": "Collezione del sistema museale dell'Università di Trieste, presso il Dipartimento di Ingegneria e Architettura. Raccoglie strumenti storici del Laboratorio Prove Materiali e Strutture, usati per didattica e prove su commissione esterna, oggi in gran parte sostituiti dalle simulazioni; conservati come testimonianza dei metodi e interessi scientifici del passato. La schedatura partecipata è iniziata nell'autunno 2019.",
+      "siti_web": [
+        "https://dia.units.it/it/ricerca/node/29905"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440668"
+    },
+    {
+      "s_id": "440508",
+      "nome": "Museo della civiltà contadina del Friuli imperiale",
+      "comune": "Aiello del Friuli",
+      "provincia": "UD",
+      "descrizione": "Fondato nel 1992 presso l'azienda agricola storica Teuffenbach (già de Fin), documenta la vita quotidiana e la cultura materiale contadina del Friuli orientale, soprattutto nelle contee di Gorizia e Gradisca, tra il 1500 e il 1918. Conserva quasi 20.000 oggetti in trenta sezioni tematiche, descritta come la maggiore collezione etnografica privata della regione, con un rilevante nucleo di tessili domestici tra fine Ottocento e primo Novecento.",
+      "siti_web": [
+        "https://museiformentini.com"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440508"
+    },
+    {
+      "s_id": "440502",
+      "nome": "Museo pinacoteca Marco Davanzo",
+      "comune": "Ampezzo",
+      "provincia": "UD",
+      "descrizione": "Allestita a Palazzo Angelo Unfer, la pinacoteca è dedicata al pittore ampezzino Marco Davanzo, le cui opere sono state lasciate per testamento allo Stato. Il percorso comprende un allestimento permanente sulle fasi della sua carriera, la ricostruzione del suo atelier e una sezione temporanea rinnovata ogni anno, con un corpus dedicato soprattutto a studi di paesaggio montano della Carnia.",
+      "siti_web": [
+        "https://www.ampezzocarnico.it/2020/02/27/pinacoteca-davanzo-ampezzo-carnico/",
+        "https://www.carniamusei.org/it/scopri-i-musei-9495/area-artistica-9500/pinacoteca-marco-davanzo-ampezzo-9924",
+        "https://www.turismofvg.it/musei/pinacoteca-davanzo",
+        "https://www.beniculturali.it/luogo/pinacoteca-marco-davanzo"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440502"
+    },
+    {
+      "s_id": "440629",
+      "nome": "Museo archeologico nazionale di Aquileia",
+      "comune": "Aquileia",
+      "provincia": "UD",
+      "descrizione": "Ospitato dal 1882 in Villa Faraone-Cassis, il museo documenta la cultura materiale della città romana di Aquileia attraverso lapidari, sculture, gemme, ambre, vetri, monete e mosaici. Collabora inoltre con il Centro regionale di catalogazione per la documentazione di monete, reperti, iscrizioni funerarie paleocristiane e fotografie d'archivio.",
+      "siti_web": [
+        "http://www.museoarcheologicoaquileia.beniculturali.it/",
+        "https://www.fondazioneaquileia.it/it/cosa-vedere/museo-archeologico-nazionale",
+        "https://www.turismofvg.it/musei/museo-archeologico-di-aquileia"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440629"
+    },
+    {
+      "s_id": "440630",
+      "nome": "Museo nazionale paleocristiano di Aquileia",
+      "comune": "Aquileia",
+      "provincia": "UD",
+      "descrizione": "Il museo occupa un edificio che fu in origine una basilica paleocristiana, di cui conserva resti di mosaici e strutture. Raccoglie reperti dal IV al X secolo provenienti da luoghi di culto e necropoli cristiane, tra cui oltre 130 iscrizioni funerarie.",
+      "siti_web": [
+        "https://museoarcheologicoaquileia.beniculturali.it/il-museo-paleocristiano/",
+        "https://www.fondazioneaquileia.it/it/cosa-vedere/museo-paleocristiano"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440630"
+    },
+    {
+      "s_id": "440493",
+      "nome": "Collezione del Comune di Artegna",
+      "comune": "Artegna",
+      "provincia": "UD",
+      "descrizione": "Raccolta di dipinti conservata nel palazzo comunale, formata dalle opere premiate nel concorso annuale per giovani artisti under 30 \"ArteinARTEgna - Presente Futuro\", attivo dal 2000 e aperto a pittura, mosaico, collage e tecniche miste senza tema imposto. La giuria comprende un artista, un critico e la direttrice della Galleria d'arte moderna di Udine; promotori sono il Comune, l'associazione Grop Pignot e la Pro Loco Artegna.",
+      "siti_web": [],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440493"
+    },
+    {
+      "s_id": "440626",
+      "nome": "Museo archeologico medioevale",
+      "comune": "Attimis",
+      "provincia": "UD",
+      "descrizione": "Ospitato nell'ex latteria di Attimis, il museo raccoglie testimonianze materiali dei nove castelli medievali della zona, attivi tra il X e il XV secolo nell'ambito del Patriarcato di Aquileia. Il percorso illustra la vita quotidiana e le attività produttive castellane attraverso reperti originali come utensili, oggetti d'uso comune e armi dei secoli XIII-XIV, insieme a rare ceramiche medievali e due oggetti devozionali (una Maestà lignea e una Madonnina in osso).",
+      "siti_web": [
+        "https://www.museoattimis.it/",
+        "http://www.archeocartafvg.it/portfolio/attimis-ud-museo-archeologico-medievale/",
+        "https://www.turismofvg.it/musei/museo-archeologico-medioevale-di-attimis"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440626"
+    },
+    {
+      "s_id": "440503",
+      "nome": "Museo d'arte della Medaglia e della Città di Buja",
+      "comune": "Buja",
+      "provincia": "UD",
+      "descrizione": "Inaugurato nel 1998 e ospitato dal 2006 in una casa rurale settecentesca nell'antico Borgo di San Lorenzo, il museo si articola in due sezioni: una archeologica, con reperti dal periodo romano all'inizio dell'Ottocento, e una dedicata alla medaglia moderna legata agli incisori bujesi. Comprende anche una sala dedicata al terremoto del 1976, con opere di cinquanta artisti italiani.",
+      "siti_web": [
+        "https://www.comune.buja.ud.it/it/museo-della-medaglia-75352",
+        "https://www.tourismfriulicollinare.it/musei/buja/museo-d-arte-della-medaglia-e-della-citta-di-buja",
+        "https://www.archeocartafvg.it/portfolio-articoli/buja-ud-museo-d%E2%80%99arte-della-medaglia-e-della-citta-di-buja/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440503"
+    },
+    {
+      "s_id": "440506",
+      "nome": "Museo della civiltà del vino",
+      "comune": "Buttrio",
+      "provincia": "UD",
+      "descrizione": "Istituito nel 1998 dal Comune di Buttrio per valorizzare la tradizione vitivinicola locale, è allestito nei locali di un'ex scuola in un complesso di villa settecentesca. Il percorso illustra le fasi della produzione del vino, dalla coltivazione alla vinificazione, al commercio e alla degustazione, con attrezzature contro la fillossera e ambienti ricostruiti come la bottega del bottaio e un'osteria friulana.",
+      "siti_web": [
+        "https://www.buri.it/museo-della-civilta-del-vino/",
+        "https://www.archeocartafvg.it/portfolio-articoli/buttrio-ud-museo-della-civilta-del-vino/",
+        "https://www.beniculturali.it/luogo/museo-della-civilta-del-vino"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440506"
+    },
+    {
+      "s_id": "440483",
+      "nome": "Collezione del Comune di Cassacco",
+      "comune": "Cassacco",
+      "provincia": "UD",
+      "descrizione": "Raccolta di dipinti, incisioni e fotografie di artisti friulani, donati nel corso di circa vent'anni e distribuiti negli uffici del Municipio di Cassacco. Comprende anche una piccola sala con reperti archeologici del territorio e cimeli della prima metà del Novecento; la catalogazione inventariale è stata avviata nel 2010.",
+      "siti_web": [],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440483"
+    },
+    {
+      "s_id": "440509",
+      "nome": "Museo Fàrie di Checo",
+      "comune": "Cercivento",
+      "provincia": "UD",
+      "descrizione": "Il museo occupa un'antica fucina idraulica di Cercivento di Sotto, attiva dal 1902 al 1966 e tra le poche rimaste in Carnia, con il mulino annesso alimentato da una roggia del torrente But. Dopo la donazione del proprietario, la Comunità Montana l'ha restaurata a partire dal 1990 (con un ulteriore intervento nel 2013-2014) riportandola alle condizioni di lavoro del fabbro Francesco Dassi, detto Checo; la collezione comprende attrezzi per la lavorazione del ferro, strumenti agricoli e da maniscalco.",
+      "siti_web": [
+        "https://www.carniamusei.org/it/scopri-i-musei-9495/area-etnografica-9499/cercivento-una-bibbia-a-cielo-aperto-9516",
+        "https://www.archeocartafvg.it/portfolio-articoli/cercivento-ud-la-farie-checo/",
+        "https://www.beniculturali.it/luogo/farie-di-checo"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "Tag <title> della pagina disallineato; nome preso dall'intestazione principale. Località: Cercivento di Sotto.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440509"
+    },
+    {
+      "s_id": "440654",
+      "nome": "Ipogeo celtico",
+      "comune": "Cividale del Friuli",
+      "provincia": "UD",
+      "descrizione": "Complesso sotterraneo scavato nella roccia lungo l'argine del fiume Natisone, risalente probabilmente all'epoca preromana. Presenta ambienti su più livelli collegati da gradini, con sedili, nicchie e tre volti stilizzati scolpiti nella roccia. La funzione originaria resta dibattuta: si ipotizza un uso funerario, forse derivato da una precedente cisterna d'acqua.",
+      "siti_web": [
+        "https://www.beniculturali.it/luogo/ipogeo-celtico",
+        "https://www.turismofvg.it/siti-archeologici/ipogeo-celtico"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "Si tratta di un sito archeologico/monumento, non un museo in senso stretto.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440654"
+    },
+    {
+      "s_id": "440631",
+      "nome": "Museo archeologico nazionale di Cividale",
+      "comune": "Cividale del Friuli",
+      "provincia": "UD",
+      "descrizione": "Istituito nel 1817 e ospitato nel Palazzo dei Provveditori Veneti, il museo conserva collezioni che vanno dalla protostoria al Romanico, con un nucleo centrale dedicato ai Longobardi e alla loro oreficeria sacra. Il patrimonio comprende inoltre una vasta sezione lapidaria, monete, opere d'arte e codici miniati.",
+      "siti_web": [
+        "http://www.museoarcheologicocividale.beniculturali.it/",
+        "http://www.museifriuliveneziagiulia.it/scheda_museo.html?id=132",
+        "http://www.provincia.udine.it/musei/italiano/Pages/CividaledelFriuli4.aspx",
+        "http://www.archeocartafvg.it/portfolio/cividale-del-friuli-ud-museo-archeologico-nazionale/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440631"
+    },
+    {
+      "s_id": "440632",
+      "nome": "Museo cristiano e Tesoro del duomo di Cividale",
+      "comune": "Cividale del Friuli",
+      "provincia": "UD",
+      "descrizione": "Nato nel 1946 in un annesso del Duomo di Santa Maria Assunta, il museo si è ampliato nel 2008 con una sezione dedicata al Tesoro del Duomo. Il percorso su tre piani unisce opere altomedievali longobarde, come l'altare del duca Ratchis e il fonte battesimale del patriarca Callisto, a oreficerie, dipinti, codici e paramenti sacri.",
+      "siti_web": [
+        "https://www.mucris.com/",
+        "https://www.turismofvg.it/musei/museo-del-duomo",
+        "https://www.palazzodenordis.it/mucris/",
+        "http://www.archeocartafvg.it/portfolio/cividale-del-friuli-ud-museo-cristiano/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440632"
+    },
+    {
+      "s_id": "440582",
+      "nome": "Progetto Archivi fotografici cividalesi",
+      "comune": "Cividale del Friuli",
+      "provincia": "UD",
+      "descrizione": "Progetto avviato nei primi anni 2000 dal Centro regionale in collaborazione con la SOMSI di Cividale, che ha raccolto e digitalizzato fotografie conservate da famiglie locali. Oltre 7000 immagini, catalogate nella banca dati SIRPAC, coprono dalla metà dell'Ottocento alla Seconda Guerra Mondiale, documentando la storia della città e della comunità.",
+      "siti_web": [
+        "http://www.somsicividale.it/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440582"
+    },
+    {
+      "s_id": "440653",
+      "nome": "Tempietto longobardo",
+      "comune": "Cividale del Friuli",
+      "provincia": "UD",
+      "descrizione": "Oratorio altomedievale, forse una cappella palatina, inserito nel complesso monastico di Santa Maria in Valle lungo il Natisone. È noto soprattutto per gli stucchi in altorilievo dell'VIII secolo, tra cui una serie di figure femminili, accompagnati da resti di affreschi coevi. La committenza viene talvolta associata al duca longobardo Astolfo e alla moglie Giseltrude, pur restando un'ipotesi.",
+      "siti_web": [
+        "http://www.tempiettolongobardo.it/",
+        "https://provincia.udine.it/musei/italiano/Pages/CividaledelFriuli3.aspx"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440653"
+    },
+    {
+      "s_id": "440625",
+      "nome": "Museo archeologico di Codroipo",
+      "comune": "Codroipo",
+      "provincia": "UD",
+      "descrizione": "Il museo occupa l'ottocentesca ex prigione mandamentale di Codroipo, restaurata nel 2003 mantenendone le caratteristiche originali, e le sue sale espongono reperti protostorici, romani, medievali e rinascimentali del territorio del Medio Friuli. Tra i materiali figurano insediamenti dell'età del bronzo e del ferro, il sito romano di Quadruvium, la necropoli di Iutizzo e ceramiche legate a una fornace locale del XVI secolo.",
+      "siti_web": [
+        "https://www.comune.codroipo.ud.it/it/cultura-42099/musei-78585/museo-archeologico-78587",
+        "https://www.beniculturali.it/luogo/museo-civico-archeologico-di-codroipo",
+        "http://www.archeocartafvg.it/portfolio/codroipo-ud-museo-archeologico-e-villa-manin-di-passariano/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440625"
+    },
+    {
+      "s_id": "440510",
+      "nome": "Museo civico delle carrozze d'epoca",
+      "comune": "Codroipo",
+      "provincia": "UD",
+      "descrizione": "Il museo, ospitato nell'ex barchessa occidentale di Villa Kechler (località San Martino), nasce dall'acquisizione nel 1998 da parte del Comune della collezione di carrozze del collezionista Antonio Lauda. Dal 2006 la raccolta è esposta su tre piani e comprende circa 44 vetture dei secoli XIX e XX ancora funzionanti, presentate con cavalli a grandezza naturale, finimenti e accessori da viaggio.",
+      "siti_web": [
+        "https://www.comune.codroipo.ud.it/it/cultura-42099/musei-78585/museo-civico-delle-carrozze-depoca-78620",
+        "https://www.turismofvg.it/musei/museo-civico-delle-carrozze-di-epoca"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440510"
+    },
+    {
+      "s_id": "440487",
+      "nome": "Collezione del Comune di Coseano",
+      "comune": "Coseano",
+      "provincia": "UD",
+      "descrizione": "La collezione nasce dal \"Premio Arte Coseano\", rassegna internazionale di pittura organizzata dal Comune dal 2000, i cui premi di acquisto arricchiscono il patrimonio comunale con le opere selezionate. Le opere sono oggi distribuite tra gli uffici del palazzo municipale, mentre è in corso una catalogazione partecipata che documenterà la storia della rassegna.",
+      "siti_web": [
+        "http://premio-arte-coseano.com/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440487"
+    },
+    {
+      "s_id": "440662",
+      "nome": "Il Cavalîr Ecomuseo della gente di collina",
+      "comune": "Fagagna",
+      "provincia": "UD",
+      "descrizione": "L'ecomuseo, riconosciuto a livello regionale nel 2017, nasce dalle attività del Museo della Vita Contadina Cjase Cocèl di Fagagna e si dedica alla cultura rurale della collina friulana, tra studio degli oggetti d'uso quotidiano, laboratori didattici e recupero di antiche pratiche agricole e artigianali grazie a un gruppo di volontari. Il territorio comprende anche un biotopo naturalistico legato alla tradizione dell'allevamento del baco da seta.",
+      "siti_web": [
+        "http://www.ecomuseoilcavalir.it/",
+        "http://www.museocjasecocel.it/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440662"
+    },
+    {
+      "s_id": "440511",
+      "nome": "Museo della vita contadina Cjase Cocèl",
+      "comune": "Fagagna",
+      "provincia": "UD",
+      "descrizione": "Il museo etnografico ricostruisce la vita quotidiana di una famiglia friulana tra la fine dell'Ottocento e la prima metà del Novecento in un'antica casa rurale appartenuta alla famiglia Chiarvesio, con ambienti domestici, spazi per il lavoro agricolo e attrezzi d'epoca. Volontari mostrano dal vivo antichi mestieri come quelli del fabbro, del cestaio e della merlettaia, mentre il Centro regionale ha catalogato parte delle collezioni, tra cui merletti, giocattoli e strumenti del calzolaio, in campagne svolte tra il 2001 e il 2010.",
+      "siti_web": [
+        "http://www.museocjasecocel.it/",
+        "https://www.turismofvg.it/musei/museo-della-vita-contadina-cjase-cocel"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440511"
+    },
+    {
+      "s_id": "440583",
+      "nome": "Collezione privata Del Fabbro Gino",
+      "comune": "Forni Avoltri",
+      "provincia": "UD",
+      "descrizione": "La collezione raccoglie l'archivio fotografico di Gino Del Fabbro (1931-2014), considerato il principale fotografo di Forni Avoltri e della Carnia nella seconda metà del Novecento. Comprende immagini di paesaggi, lavoro, tradizioni, ritratti ed eventi comunitari; nel 2010 ne è iniziata la catalogazione, che ha selezionato circa 200 scatti rappresentativi.",
+      "siti_web": [],
+      "orari": null,
+      "biglietti": null,
+      "note": "Nessun sito web ufficiale indicato nella pagina.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440583"
+    },
+    {
+      "s_id": "440512",
+      "nome": "Museo Cemùot chi érin",
+      "comune": "Forni Avoltri",
+      "provincia": "UD",
+      "descrizione": "Il museo etnografico, allestito nell'ex palazzo municipale di Forni Avoltri, nasce da un presepe natalizio del 1992 con oggetti recuperati dalla comunità locale. Ricostruisce cucina, camera da letto e una stanza dei mestieri tradizionali, documentando la vita in Carnia tra fine Ottocento e Seconda Guerra Mondiale, con un apparato fotografico di Gino Del Fabbro.",
+      "siti_web": [
+        "http://www.forniavoltri.eu/musei/",
+        "https://www.carniamusei.org/it/scopri-i-musei-9495/area-etnografica-9499/forni-avoltri-collezione-etnografica-9508"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440512"
+    },
+    {
+      "s_id": "440489",
+      "nome": "Collezione etnografica Enrico Pecoraro",
+      "comune": "Gemona del Friuli",
+      "provincia": "UD",
+      "descrizione": "Raccoglie circa 400 attrezzi e oggetti legati al lavoro agricolo e artigianale, databili tra fine Ottocento e metà Novecento, recuperati dopo il terremoto del 1976 da Enrico Pecoraro e collaboratori. Catalogata e gestita dall'Ecomuseo delle Acque del Gemonese, che ne cura anche la valorizzazione didattica.",
+      "siti_web": [
+        "http://www.ecomuseodelleacque.it"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440489"
+    },
+    {
+      "s_id": "440664",
+      "nome": "Ecomuseo Val del Lago",
+      "comune": "Gemona del Friuli",
+      "provincia": "UD",
+      "descrizione": "Riconosciuto di interesse regionale nel 2012, l'ecomuseo è promosso dalla Comunità Montana del Gemonese, Canal del Ferro e Val Canale insieme ai Comuni di Bordano, Trasaghis e Cavazzo Carnico, in un territorio segnato dallo spopolamento e dalle trasformazioni legate alla creazione del bacino idrico del lago di Cavazzo nel 1957. Il suo impegno principale è costruire un rapporto diretto con le comunità locali, con alcune esperienze di catalogazione avviate dal 2017 sulle preparazioni alimentari tradizionali del territorio.",
+      "siti_web": [
+        "http://www.ecomuseovaldellago.it/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "L'ecomuseo riguarda in realtà il territorio di più comuni (Bordano, Trasaghis, Cavazzo Carnico, area del lago di Cavazzo); comune indicato come riferimento territoriale nella pagina.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440664"
+    },
+    {
+      "s_id": "440661",
+      "nome": "Ecomuseo delle Acque del Gemonese",
+      "comune": "Gemona del Friuli",
+      "provincia": "UD",
+      "descrizione": "Primo ecomuseo della regione, nato dal recupero di un vecchio mulino e diffuso sul territorio del bacino idrografico del Gemonese, distribuito su sei comuni. Comprende diverse raccolte, tra cui il Museo dell'arte molitoria Mulino Cocconi, e ha promosso campagne di catalogazione partecipata del patrimonio naturalistico e demoetnoantropologico locale, come quelle su mulini e roccoli.",
+      "siti_web": [
+        "http://www.ecomuseodelleacque.it/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440661"
+    },
+    {
+      "s_id": "440515",
+      "nome": "Museo Renato Raffaelli",
+      "comune": "Gemona del Friuli",
+      "provincia": "UD",
+      "descrizione": "Inaugurato nel 2008 nel complesso francescano del Santuario di Sant'Antonio a Gemona, ricostruito dopo il terremoto del 1976, ed è intitolato a un ingegnere locale benefattore. Espone dipinti perlopiù di ambito veneto e istriano dal XV al XIX secolo, tra cui dodici quadri votivi seicenteschi sui miracoli di Sant'Antonio, distribuiti in cinque sale al piano seminterrato.",
+      "siti_web": [
+        "http://www.santantoniogemona.it/",
+        "https://www.beniculturali.it/luogo/museo-renato-raffaelli-santuario-sant-antonio"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440515"
+    },
+    {
+      "s_id": "440513",
+      "nome": "Museo civico di Gemona",
+      "comune": "Gemona del Friuli",
+      "provincia": "UD",
+      "descrizione": "Ospitato in Palazzo Elti, il museo documenta la storia della città e il recupero del patrimonio artistico dopo il terremoto del 1976. Le opere esposte provengono in gran parte da chiese distrutte e non ricostruite, disposte in sezioni cronologiche su due piani, insieme ai ritratti della famiglia Elti.",
+      "siti_web": [
+        "https://visitgemona.com/scopri/arte-e-cultura/museo-civico/",
+        "https://www.beniculturali.it/luogo/museo-civico-di-gemona"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440513"
+    },
+    {
+      "s_id": "440516",
+      "nome": "Museo dell'arte molitoria Mulino Cocconi",
+      "comune": "Gemona del Friuli",
+      "provincia": "UD",
+      "descrizione": "Il museo occupa il piano terra del Mulino Cocconi, edificio ottocentesco nel borgo di Ospedaletto, ed espone gli antichi macchinari di macinazione, tra cui un mulino ad acqua e uno a cilindri in ghisa. La collezione, vincolata dalla Soprintendenza, è stata catalogata nel 2007 con il supporto di testimonianze orali e filmate, e il museo fa parte dell'Ecomuseo delle Acque del Gemonese.",
+      "siti_web": [
+        "https://www.ecomuseodelleacque.it/collezione-ecomuseale/luoghi-della-memoria/gemona-mulino-cocconi/",
+        "https://fondoambiente.it/luoghi/mulino-cocconi"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440516"
+    },
+    {
+      "s_id": "440514",
+      "nome": "Museo della pieve e Tesoro del duomo",
+      "comune": "Gemona del Friuli",
+      "provincia": "UD",
+      "descrizione": "Il museo occupa la Canonica Vecchia, edificio del XIV secolo restaurato dopo il terremoto del 1976, e fu inaugurato nel 2006. Espone opere di pittura, scultura, oreficeria, miniature e tessili provenienti in gran parte dalle chiese gemonesi distrutte dal sisma, tra cui frammenti di affreschi, un ostensorio del XV secolo e antifonari di fine Duecento.",
+      "siti_web": [
+        "https://visitgemona.com/scopri/arte-e-cultura/museo-della-pieve/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440514"
+    },
+    {
+      "s_id": "440504",
+      "nome": "Museo etnografico Mario Ruttar",
+      "comune": "Grimacco",
+      "provincia": "UD",
+      "descrizione": "La collezione etnografica privata, raccolta da Mario Ruttar negli anni Cinquanta e Sessanta nella frazione di Clodig per documentare la cultura contadina locale prima della sua scomparsa, è esposta in cinque ambienti di un'abitazione tradizionale. Comprende attrezzi domestici, agricoli e artigianali, fotografie, immagini sacre e documenti legati all'emigrazione, catalogati tra il 1988 e il 2008 con fondi europei e della Comunità Montana.",
+      "siti_web": [
+        "https://www.turismofvg.it/musei/collezione-etnografica-ruttar",
+        "https://www.beniculturali.it/luogo/collezione-etnografica-mario-ruttar",
+        "https://www.youtube.com/watch?v=aYykJVWeRBo"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440504"
+    },
+    {
+      "s_id": "440495",
+      "nome": "Collezione della Associazion cultural Colonos",
+      "comune": "Lestizza",
+      "provincia": "UD",
+      "descrizione": "Allestita nell'aia dell'Agriturismo ai Colonos, a Villacaccia di Lestizza, la raccolta riunisce opere d'arte contemporanea liberamente accessibili, realizzate da artisti che hanno partecipato agli eventi culturali dell'Associazione Colonos. Dal 2005 il catalogo regionale segue le nuove acquisizioni in collaborazione con l'associazione.",
+      "siti_web": [
+        "https://colonos.it/arti-visive/la-corte-dellarte/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440495"
+    },
+    {
+      "s_id": "440584",
+      "nome": "Biblioteca comunale \"Bruna Lizzi De Minicis\"",
+      "comune": "Lignano Sabbiadoro",
+      "provincia": "UD",
+      "descrizione": "La biblioteca, istituita nel 1974 nell'ex edificio delle scuole elementari, conserva circa 37.000 volumi e un fondo di circa 1.500 cartoline storiche di Lignano, dai primi del Novecento agli anni Settanta, che documentano lo sviluppo urbanistico e turistico della località. Un progetto di catalogazione del 2009 ha riguardato oltre mille immagini dei fondi Simeoni e Bartolucci.",
+      "siti_web": [
+        "https://www.lignano.org/il-comune/uffici/cultura-biblioteca/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "Sede presso il Centro Civico \"Sandro Pertini\".",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440584"
+    },
+    {
+      "s_id": "440499",
+      "nome": "Museo etnografico di Palazzo Veneziano",
+      "comune": "Malborghetto Valbruna",
+      "provincia": "UD",
+      "descrizione": "Il museo occupa un edificio di fine Cinquecento e al piano terra ospita una sala di geologia e paleontologia del Valcanale e una sezione sulla miniera di Cave del Predil. Due sale raccontano la storia e la vita tradizionale di Malborghetto e della valle, mentre il primo piano accoglie una sala conferenze e una biblioteca; l'ultimo piano è dedicato a mostre temporanee, tra cui una sulla foresta di Tarvisio, e a un'area su agricoltura e mestieri di montagna.",
+      "siti_web": [
+        "https://www.comune.malborghettovalbruna.ud.it/",
+        "https://www.visitvalcanale.it/",
+        "https://www.geoparcoalpicarniche.org/",
+        "https://www.archeocartafvg.it/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "Tag <title> della pagina disallineato; nome preso dall'intestazione principale.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440499"
+    },
+    {
+      "s_id": "440518",
+      "nome": "Collezione del Comune di Manzano",
+      "comune": "Manzano",
+      "provincia": "UD",
+      "descrizione": "Collezione etnografica del Comune di Manzano che documenta la tradizione della produzione di sedie nel \"Triangolo della sedia\", distretto artigianale e industriale attivo dalla fine dell'Ottocento. Comprende una raccolta storica di sedie e attrezzi per impagliatura e lavorazione del legno, insieme a una sezione moderna con donazioni di designer e materiali legati a Promosedia e ai concorsi di progettazione. La catalogazione, avviata nel 2006, mira alla creazione futura di un museo o centro di documentazione.",
+      "siti_web": [],
+      "orari": null,
+      "biglietti": null,
+      "note": "Nessun link 'Visita il sito' specifico; solo link generici del portale ERPAC.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440518"
+    },
+    {
+      "s_id": "440623",
+      "nome": "Museo archeologico della laguna",
+      "comune": "Marano Lagunare",
+      "provincia": "UD",
+      "descrizione": "Istituito nel 2007 presso il Centro Civico di Marano Lagunare, il museo raccoglie oltre cinquecento oggetti recuperati in mare, in laguna, lungo la costa e nel fiume Stella. Il percorso espositivo copre un arco cronologico dal Neolitico al Rinascimento, con sezioni principali dedicate all'epoca romana e al basso Medioevo.",
+      "siti_web": [
+        "http://www.museolaguna.it/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440623"
+    },
+    {
+      "s_id": "440519",
+      "nome": "Museo fondazione de Claricini-Dornpacher",
+      "comune": "Moimacco",
+      "provincia": "UD",
+      "descrizione": "Il museo ha sede nella seicentesca Villa de Claricini-Dornpacher, che ospita l'omonima fondazione istituita nel 1971 per lascito testamentario della contessa Giuditta de Claricini. La villa funziona come casa museo, con arredi d'epoca e una quadreria che include opere attribuite ad artisti come Carneo, Palma il Giovane e Pordenone, insieme a importanti manufatti tessili, in un patrimonio che copre prevalentemente il XVIII-XX secolo.",
+      "siti_web": [
+        "http://www.declaricini.it/",
+        "https://www.turismofvg.it/dimore-storiche/villa-de-claricini-dornpacher"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "Località Bottenicco.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440519"
+    },
+    {
+      "s_id": "440520",
+      "nome": "Museo della ex miniera di carbone di Cludinico",
+      "comune": "Ovaro",
+      "provincia": "UD",
+      "descrizione": "Il museo racconta la storia economica e sociale della miniera di carbone di Cludinico, illustrando la geologia del territorio, l'organizzazione del lavoro e le condizioni di vita dei minatori. La collezione, nata da donazioni e da attrezzi recuperati nelle gallerie, comprende anche oggetti personali e devozionali, arricchita da testimonianze orali di ex minatori.",
+      "siti_web": [
+        "https://www.carniamusei.org/it/scopri-i-musei-9495/area-della-scienza-e-della-tecnica-9501/museo-ex-miniera-di-carbone-di-cludinico-9536"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "Frazione Cludinico, comune di Ovaro.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440520"
+    },
+    {
+      "s_id": "440521",
+      "nome": "Museo di vita contadina di Fontanabona",
+      "comune": "Pagnacco",
+      "provincia": "UD",
+      "descrizione": "Il museo occupa annessi rustici e una casa colonica del XVI secolo nel compendio di Fontanabona. Il percorso, a carattere didattico, illustra la vita quotidiana, il lavoro agricolo e l'artigianato locale, con ricostruzioni di ambienti e strumenti di falegnami, boscaioli e fabbri documentati da una campagna di catalogazione del 2003.",
+      "siti_web": [
+        "https://www.comune.pagnacco.ud.it/it/page/museo-di-storia-contadina",
+        "https://www.turismofvg.it/musei/museo-di-storia-contadina-di-pagnacco"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440521"
+    },
+    {
+      "s_id": "440624",
+      "nome": "Museo dello Stella",
+      "comune": "Palazzolo dello Stella",
+      "provincia": "UD",
+      "descrizione": "Le collezioni, provenienti quasi integralmente dagli scavi di un vicino villaggio neolitico indagato dal 1992, documentano un insediamento di primi agricoltori di circa settemila anni fa e la lavorazione locale della selce. I reperti, attualmente in fase di riordino, sono conservati presso la Casa del Marinaretto, nella frazione di Piancada.",
+      "siti_web": [
+        "http://www.archeocartafvg.it/portfolio/palazzolo-dello-stella-ud-il-sito-neolitico-di-piancada/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440624"
+    },
+    {
+      "s_id": "440522",
+      "nome": "Civico museo storico di Palmanova",
+      "comune": "Palmanova",
+      "provincia": "UD",
+      "descrizione": "Dal 1974 ha sede in Palazzo Trevisan e raccoglie documenti e materiali storici riuniti dal Comune a partire dagli inizi del Novecento per custodire la memoria della città-fortezza. L'allestimento segue un percorso cronologico attraverso le epoche veneziana, napoleonica, austriaca e italiana, includendo una raccolta di armi e armature in deposito dal Museo di Castel Sant'Angelo e disegni sullo sviluppo urbanistico della fortezza.",
+      "siti_web": [
+        "https://www.comune.palmanova.ud.it/it/cultura-2801/civico-museo-storico-3650",
+        "https://www.visitpalmanova.it/civico-museo-storico-info-point/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440522"
+    },
+    {
+      "s_id": "440666",
+      "nome": "Ecomuseo I Mistîrs",
+      "comune": "Paularo",
+      "provincia": "UD",
+      "descrizione": "L'ecomuseo nasce dalla manifestazione \"Mistîrs\", che da oltre vent'anni rievoca a Paularo le attività lavorative tradizionali del territorio, come il lavoro nei boschi, l'alpeggio e l'artigianato femminile. Comune e associazioni locali ne hanno promosso il riconoscimento per estendere l'esperienza a tutto l'anno, mettendo in rete iniziative culturali e artigianali; il patrimonio catalogato comprende beni di cultura materiale e interviste sulle tecniche tradizionali.",
+      "siti_web": [
+        "http://www.ecomuseomistirs.it/",
+        "http://www.comune.paularo.ud.it/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440666"
+    },
+    {
+      "s_id": "440643",
+      "nome": "Centro visite storico-archeologico",
+      "comune": "Pozzuolo del Friuli",
+      "provincia": "UD",
+      "descrizione": "Il centro, aperto nel 1998, documenta la storia antica di Pozzuolo del Friuli, in particolare il sito neolitico di Sammardenchia e il castelliere protostorico di Cjastei. L'allestimento è pensato a fini didattici, con reperti, ricostruzioni e laboratori di archeologia sperimentale per i più piccoli.",
+      "siti_web": [
+        "https://www.archeocartafvg.it/portfolio-articoli/pozzuolo-del-friuli-ud-centro-visite-storico-archeologico/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440643"
+    },
+    {
+      "s_id": "440523",
+      "nome": "Piccolo museo della casa carnica, Casa Bruseschi",
+      "comune": "Prato Carnico",
+      "provincia": "UD",
+      "descrizione": "Allestito nell'antica abitazione della famiglia Bruseschi, a Pesariis, donata alla parrocchia nel 1963, il museo conserva arredi, suppellettili, documenti, fotografie, dipinti e corredi originali che restituiscono intatta un'abitazione carnica dei secoli XVI-XVIII, senza ricostruzioni. La catalogazione del patrimonio risale alla fine degli anni Ottanta e all'inizio dei Novanta.",
+      "siti_web": [
+        "https://www.carniamusei.org/it/scopri-i-musei-9495/area-etnografica-9499/casa-bruseschi-9520",
+        "http://www.museifriuliveneziagiulia.it/scheda_museo.html?id=165",
+        "https://valpesarina.it/conosci-e-scopri/arte-e-cultura/categoria-musei/piccolo-museo-della-casa-carnica-casa-bruseschi/",
+        "https://museodolom.it/museo/item/4407/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440523"
+    },
+    {
+      "s_id": "440627",
+      "nome": "Museo civico di Ragogna (Antonio Cerutti)",
+      "comune": "Ragogna",
+      "provincia": "UD",
+      "descrizione": "Nato nel 1981 da una mostra archeologica permanente, il museo custodisce reperti rinvenuti dal 1975 nell'area del Castello di Ragogna: ceramiche, monili, oggetti d'uso quotidiano e monete dall'epoca romana al Medioevo, che documentano il popolamento del territorio fin dal VI millennio a.C. Una sezione naturalistica è dedicata alla geomorfologia dell'anfiteatro morenico del Tagliamento.",
+      "siti_web": [
+        "https://www.comune.ragogna.ud.it/index.php/it/point-of-interests/331350",
+        "https://www.archeocartafvg.it/portfolio-articoli/ragogna-ud-museo-civico-archeonaturalistico/",
+        "https://www.prolocoragogna.it/musei/",
+        "https://www.tourismfriulicollinare.it/musei/ragogna/museo-civico-archeologico-naturalistico",
+        "https://www.beniculturali.it/luogo/museo-civico-antonio-cerutti"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440627"
+    },
+    {
+      "s_id": "440525",
+      "nome": "Museo del cartoccio e del vimine",
+      "comune": "Reana del Rojale",
+      "provincia": "UD",
+      "descrizione": "Allestito in un'ex scuola elementare, conserva manufatti e memoria della lavorazione del cartoccio (le brattee della pannocchia) e del vimine, attività artigianale di grande rilievo sociale ed economico locale. Il percorso, al primo piano, documenta anche la produzione industriale tra gli anni Sessanta e Ottanta grazie a una cooperativa artigiana, con calzature, abbigliamento, arredi, strumenti del mestiere e oggetti decorativi.",
+      "siti_web": [
+        "https://www.comune.reanadelrojale.ud.it/vivere-il-comune/mostra-del-cartoccio/",
+        "https://www.beniculturali.it/luogo/mostra-del-cartoccio-e-del-vimine"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440525"
+    },
+    {
+      "s_id": "440586",
+      "nome": "Archivio fotografico Caravello",
+      "comune": "Remanzacco",
+      "provincia": "UD",
+      "descrizione": "Raccoglie le fotografie di Corrado Caravello, astrofilo e fotografo amatoriale tra i fondatori dell'A.F.A.M. nel 1969. Prevalgono immagini in bianco e nero di Sole, Via Lattea, cielo profondo e comete, spesso con annotazioni tecniche. Gran parte della produzione è stata catalogata nel 2009.",
+      "siti_web": [
+        "http://www.afamweb.com/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "Il link esterno rimanda al sito dell'associazione A.F.A.M., non a un sito dedicato del museo.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440586"
+    },
+    {
+      "s_id": "440665",
+      "nome": "Ecomuseo Val Resia",
+      "comune": "Resia",
+      "provincia": "UD",
+      "descrizione": "Nato nel 2007 con il sostegno del Parco delle Prealpi Giulie, l'ecomuseo si dedica ad attività didattiche con le scuole della valle e alla valorizzazione della memoria locale, tra cui mappe di comunità e una varietà di aglio tradizionale riconosciuta come presidio Slow Food. Il suo patrimonio documentato comprende inoltre il mestiere dell'arrotino e il repertorio musicale e coreutico legato al carnevale resiano.",
+      "siti_web": [
+        "https://www.ecomuseovalresia.it/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440665"
+    },
+    {
+      "s_id": "440526",
+      "nome": "Museo raccolta etnografica sul mestiere dell'arrotino",
+      "comune": "Resia",
+      "provincia": "UD",
+      "descrizione": "Istituito nel 1999, conserva la memoria del mestiere di arrotino tramandato per generazioni dagli abitanti di Resia; dal 2005 ha sede nell'ex scuola elementare di Stolvizza. Le collezioni comprendono mole, attrezzi da taglio, biciclette e fotografie, documentando l'evoluzione della molatrice portatile dal trasporto a piedi a quello in bicicletta.",
+      "siti_web": [
+        "https://arrotinivalresia.it/sample-page/",
+        "http://www.resianet.org/site/museo-dellarrotino-2/",
+        "https://www.turismofvg.it/musei/museo-dell-arrotino",
+        "https://www.ecomuseovalresia.it/cultura/musei/museo-dell-arrotino/",
+        "http://www.comune.resia.ud.it/index.php?id=2641"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "Località Stolvizza, frazione di Resia.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440526"
+    },
+    {
+      "s_id": "440507",
+      "nome": "Archivio Storico Comunale - Fotografie",
+      "comune": "San Daniele del Friuli",
+      "provincia": "UD",
+      "descrizione": "La scheda documenta una raccolta fotografica dell'Archivio Storico Comunale di San Daniele del Friuli, oggi conservata presso il Museo del Territorio. Le circa 69 immagini, catalogate tra il 2007 e il 2009, ritraggono la San Daniele rurale della prima metà del Novecento e le trasformazioni legate alla modernità, come infrastrutture, tramvia, scuole e teatro, insieme a ritratti di figure del Risorgimento.",
+      "siti_web": [],
+      "orari": null,
+      "biglietti": null,
+      "note": "Fondo fotografico dell'Archivio Storico Comunale, conservato al Museo del Territorio di San Daniele del Friuli.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440507"
+    },
+    {
+      "s_id": "440603",
+      "nome": "Fondo Giuseppe Vidoni",
+      "comune": "San Daniele del Friuli",
+      "provincia": "UD",
+      "descrizione": "Il fondo fotografico appartiene al lascito della famiglia Vidoni, donato al Comune di San Daniele tra il 1980 e il 1990 dal figlio Giacomo, e raccoglie documenti legati al legame della famiglia con la propria terra d'origine. Giuseppe Vidoni, medico condotto poi trasferitosi a Genova per insegnare psicologia, è ricordato in una sezione del museo che ricostruisce un ambiente familiare ligure attraverso le fotografie.",
+      "siti_web": [
+        "https://www.museosandaniele.it/sezione-lasciti/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "Il fondo fa parte del Museo del Territorio di San Daniele del Friuli.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440603"
+    },
+    {
+      "s_id": "440505",
+      "nome": "Museo del territorio",
+      "comune": "San Daniele del Friuli",
+      "provincia": "UD",
+      "descrizione": "Ospitato in un convento domenicano seicentesco, il museo conserva circa 23.000 oggetti, in parte esposti in cinque sezioni dedicate a personaggi illustri, arte sacra, archeologia, etnografia e alla comunità ebraica locale. Tra i pezzi più noti figurano altari lignei e reperti archeologici da necropoli della zona, insieme a strumenti di artigiani locali come falegnami, calzolai e norcini; dal 2007 le collezioni sono catalogate in rete con altri musei del territorio collinare.",
+      "siti_web": [
+        "http://www.museosandaniele.it/",
+        "https://www.tourismfriulicollinare.it/musei/san-daniele-del-friuli/museo-del-territorio",
+        "https://www.comune.sandanieledelfriuli.ud.it/territorio/museo-del-territorio",
+        "https://www.turismofvg.it/musei/museo-del-territorio",
+        "https://www.archeocartafvg.it/portfolio-articoli/san-daniele-del-friuli-ud-museo-del-territorio/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "Il titolo pagina indica anche 'archeologico' come qualifica; presenti anche due link YouTube non riportati come siti ufficiali.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440505"
+    },
+    {
+      "s_id": "440585",
+      "nome": "Biblioteca civica di San Giovanni al Natisone",
+      "comune": "San Giovanni al Natisone",
+      "provincia": "UD",
+      "descrizione": "Nel 1984 la contessa Caterina de Brandis lasciò in eredità al Comune la Villa de Brandis con il suo patrimonio: arredi originali, una quadreria, una collezione di stampe, una biblioteca, carte d'archivio e l'archivio fotografico di famiglia, che copre dalla seconda metà dell'Ottocento al 1982. La catalogazione è iniziata nel 1996-97; oggi l'ala ottocentesca ospita la biblioteca, mentre altre sale sono usate per esposizioni.",
+      "siti_web": [
+        "https://www.comune.sangiovannialnatisone.ud.it/it/cultura-1929/biblioteca-civica-villa-de-brandis-31919"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "Tipologia indicata nella pagina: fotografico/artistico; sede in Villa de Brandis.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440585"
+    },
+    {
+      "s_id": "440496",
+      "nome": "Collezione del Comune di San Giovanni al Natisone. Donazione Mucchiut",
+      "comune": "San Giovanni al Natisone",
+      "provincia": "UD",
+      "descrizione": "Comprende circa 120 opere dello scultore Pino Mucchiut (1924-1992), donate nel 2002 dai suoi eredi al Comune: sculture in legno e bronzo, medaglie, vetri, bozzetti e disegni realizzati tra fine anni Cinquanta e anni Ottanta. Dopo una mostra nel 2003, la raccolta è stata catalogata nel 2010 e collocata a Villa de Brandis; un totem scolpito dell'artista si trova in un parco pubblico a Romans d'Isonzo.",
+      "siti_web": [],
+      "orari": null,
+      "biglietti": null,
+      "note": "Sede: Villa de Brandis. Nessun link al sito del museo, solo link generici a ERPAC/Regione.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440496"
+    },
+    {
+      "s_id": "440527",
+      "nome": "Museo pinacoteca comunale di Villa de Brandis",
+      "comune": "San Giovanni al Natisone",
+      "provincia": "UD",
+      "descrizione": "Il museo ha sede a Villa de Brandis, complesso settecentesco-ottocentesco donato al Comune nel 1984 dall'ultima discendente della famiglia insieme ad arredo, quadreria, stampe, biblioteca e archivi. Le sale ospitano anche la collezione di opere dello scultore Pino Mucchiut, donata dai suoi eredi, mentre la villa conserva un parco all'inglese di fine Ottocento.",
+      "siti_web": [
+        "https://www.comune.sangiovannialnatisone.ud.it/it/turismo-e-storia-1940",
+        "https://www.turismofvg.it/musei/villa-de-brandis",
+        "https://www.turismoaccessibile.fvg.it/sito/listing/villa-de-brandis/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440527"
+    },
+    {
+      "s_id": "440658",
+      "nome": "Centro Studi Nediža",
+      "comune": "San Pietro al Natisone",
+      "provincia": "UD",
+      "descrizione": "Associazione attiva dal 1972 nelle Valli del Natisone, che dalla fine degli anni Novanta lavora su campagne fotografiche e sul recupero di archivi familiari e filmati amatoriali in 8mm e super8 degli anni Sessanta-Settanta. L'archivio conta decine di migliaia di immagini dal primo Novecento a oggi, tra cui ritratti del fotografo Tin Piernu, riutilizzate in mostre, pubblicazioni e documentari.",
+      "siti_web": [
+        "http://nediza.org/htbin/app.py?act=Page&idx=home"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440658"
+    },
+    {
+      "s_id": "440672",
+      "nome": "Casa - Museo della civiltà contadina",
+      "comune": "Sappada",
+      "provincia": "UD",
+      "descrizione": "Il museo occupa un'antica casa rurale di fine Ottocento, acquisita dal Comune di Sappada nel 1990 e restaurata secondo criteri conservativi, che ricrea la vita quotidiana delle famiglie sappadine del passato attraverso gli ambienti domestici, una stalla-fienile annessa e un orto con colture di montagna. Il patrimonio è stato catalogato in un progetto comunale realizzato tra il 2011 e il 2013.",
+      "siti_web": [
+        "https://www.plodn.info/casa-museo-della-civilta-contadina/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "Borgata Cretta.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440672"
+    },
+    {
+      "s_id": "440671",
+      "nome": "Museo etnografico M.to Giuseppe Fontana",
+      "comune": "Sappada",
+      "provincia": "UD",
+      "descrizione": "Il museo, ospitato in un ex edificio scolastico in Borgata Cima Sappada, nasce da una raccolta di oggetti agricoli, domestici e di uso quotidiano avviata negli anni Sessanta-Settanta dal maestro Giuseppe Fontana, a cui fu intitolato dopo la sua morte nel 1975. Trasferito nella sede attuale nel 2009, il percorso espositivo tocca l'ambiente naturale, la storia della comunità, la cultura del legno, la vita quotidiana, la religiosità popolare e le maschere del Carnevale.",
+      "siti_web": [
+        "https://www.plodn.info/museo-etnografico/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "Sappada è passata amministrativamente dal Veneto al Friuli Venezia Giulia (provincia di Udine) in seguito a referendum (2017-2018).",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440671"
+    },
+    {
+      "s_id": "440497",
+      "nome": "Collezione del Comune di Tolmezzo. Pinacoteca Corbellini",
+      "comune": "Tolmezzo",
+      "provincia": "UD",
+      "descrizione": "La Pinacoteca Corbellini, ospitata al piano terra di Palazzo Frisacco a Tolmezzo, raccoglie circa trenta dipinti donati dall'artista locale Cornelia Corbellini. Le opere, esposte a rotazione, ripercorrono la sua carriera dai paesaggi e ritratti fino alle tele astratte successive al 2000.",
+      "siti_web": [
+        "https://www.comune.tolmezzo.ud.it/it/palazzo-frisacco-4087",
+        "https://www.carniamusei.org/it/scopri-i-musei-9495/area-artistica-9500/pinacoteca-cornelia-corbellini-tolmezzo-9528"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440497"
+    },
+    {
+      "s_id": "440528",
+      "nome": "Fondazione Museo Carnico delle Arti Popolari Michele Gortani",
+      "comune": "Tolmezzo",
+      "provincia": "UD",
+      "descrizione": "Il museo, ospitato a Palazzo Campeis con oltre trenta sale, raccoglie oggetti etnografici, artistici e artigianali del territorio carnico dal XIII al XX secolo. La collezione nacque dalle ricerche del naturalista Michele Gortani a partire dal 1920; la catalogazione, avviata nel 1975, ha privilegiato i beni demoetnoantropologici e i dipinti, con oltre 2000 schede consultabili online nel SIRPAC.",
+      "siti_web": [
+        "https://museocarnico.it/it/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "Denominazione alternativa: 'Museo Carnico delle Arti e Tradizioni popolari Luigi e Michele Gortani'.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440528"
+    },
+    {
+      "s_id": "440606",
+      "nome": "Fondo Archivio Schiava",
+      "comune": "Tolmezzo",
+      "provincia": "UD",
+      "descrizione": "L'archivio conserva il materiale del fotografo Giuseppe Schiava (1879-1963), comprendente 1.407 fotografie tra negativi e positivi, in gran parte opera sua insieme a scatti di altri fotografi. Ceduto dagli eredi al Comune di Sutrio, che lo ha studiato e catalogato nel 2008, è oggi in deposito presso la Fototeca Territoriale CarniaFotografia, con sede a Palazzo Frisacco.",
+      "siti_web": [],
+      "orari": null,
+      "biglietti": null,
+      "note": "Nessun link 'Visita il sito' trovato nella pagina (solo link istituzionali generici di ERPAC/Regione).",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440606"
+    },
+    {
+      "s_id": "440605",
+      "nome": "Fondo Gortani",
+      "comune": "Tolmezzo",
+      "provincia": "UD",
+      "descrizione": "Il fondo fotografico, composto da poco più di trecento negativi, appartiene alla Fondazione Museo Carnico arti e tradizioni popolari \"L. e M. Gortani\" ed è custodito dalla Fototeca Territoriale CarniaFotografia presso Palazzo Frisacco. Gran parte delle immagini documenta la collezione etnografica del museo, raccolta a partire dagli anni Venti dal fondatore Michele Gortani.",
+      "siti_web": [
+        "https://museocarnico.it/it/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "La pagina descrive un fondo fotografico legato al Museo Carnico Gortani, non un museo autonomo.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440605"
+    },
+    {
+      "s_id": "440587",
+      "nome": "Fototeca Territoriale CarniaFotografia",
+      "comune": "Tolmezzo",
+      "provincia": "UD",
+      "descrizione": "Ospitata a Palazzo Frisacco, la fototeca raccoglie, conserva e valorizza il patrimonio fotografico storico e contemporaneo della Carnia, nato nel 2007 da un progetto della Comunità Montana con il supporto di un circolo fotografico locale. Ha censito decine di fondi di fotografi locali e privati, catalogando tra l'altro gli archivi di Giuseppe Schiava e il fondo Gortani.",
+      "siti_web": [
+        "https://www.carniamusei.org/",
+        "http://www.censimento.fotografia.italia.it/enti/fototeca-carnia-fotografia/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440587"
+    },
+    {
+      "s_id": "440588",
+      "nome": "Archivio fotografico Caffaro",
+      "comune": "Torviscosa",
+      "provincia": "UD",
+      "descrizione": "L'archivio raccoglie circa 3.000 fotografie, soprattutto negativi su lastra e pellicola, che documentano la nascita della città-fabbrica di Torviscosa e i suoi primi anni fino al 1967, in gran parte opera del fotografo Francesco Aragozzini. Il materiale, catalogato nel 2003, è attualmente conservato nella sala consiliare del Municipio in attesa del completamento dei lavori al CID.",
+      "siti_web": [
+        "http://cid.comune.torviscosa.ud.it/archivi/fondi-conservati/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440588"
+    },
+    {
+      "s_id": "440529",
+      "nome": "Museo pinacoteca Enrico De Cillia",
+      "comune": "Treppo Ligosullo",
+      "provincia": "UD",
+      "descrizione": "Nato nel 1975 dalla donazione di circa cinquanta opere da parte del pittore e collezionista Enrico De Cillia, il museo ha visto crescere la raccolta fino a oltre duecento pezzi tra dipinti, disegni, stampe e sculture del Novecento, con alcune opere ottocentesche di rilievo. Dal 1987 è ospitato nell'ex edificio scolastico della biblioteca comunale, e dal 2006 le opere sono catalogate e consultabili online.",
+      "siti_web": [
+        "http://www.comune.treppocarnico.ud.it/index.php?id=6893",
+        "https://www.carniamusei.org/it/scopri-i-musei-9495/area-artistica-9500/galleria-darte-moderna-enrico-de-cillia-treppo-ligosullo-9525",
+        "https://www.turismofvg.it/musei/galleria-di-arte-moderna-enrico-de-cillia",
+        "https://treppocarnico.org/cultura/pinacoteca/",
+        "https://www.beniculturali.it/luogo/galleria-d-arte-moderna-pinacoteca-enrico-de-cillia"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "Comune indicato nella pagina anche come Treppo Carnico; sede in Palazzo della Biblioteca.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440529"
+    },
+    {
+      "s_id": "863385",
+      "nome": "Archivio Etnotesti del Centro Internazionale sul Plurilinguismo",
+      "comune": "Udine",
+      "provincia": "UD",
+      "descrizione": "L'archivio, ospitato presso Palazzo Falconeri dal Centro Internazionale sul Plurilinguismo dell'Università di Udine, raccoglie testimonianze orali registrate dagli anni Settanta su storia sociale, tradizioni e saperi locali. Conta circa 1570 ore di registrazioni audio digitalizzate, in parte confluite in pubblicazioni scientifiche open access.",
+      "siti_web": [
+        "https://archivioetnotesti.uniud.it/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=863385"
+    },
+    {
+      "s_id": "440540",
+      "nome": "Archivio Friuli",
+      "comune": "Udine",
+      "provincia": "UD",
+      "descrizione": "Nucleo principale della Fototeca dei Civici Musei di Udine, conservato al Castello di Udine, raccoglie oltre 34.000 fotografie e cartoline d'epoca di paesi del Friuli, ordinate alfabeticamente e in gran parte accompagnate dai negativi. Documenta panorami, monumenti, opere d'arte ed eventi con autori perlopiù friulani; dal 1993 sono state catalogate 3.350 immagini relative a località delle province di Udine, Gorizia, Pordenone e Venezia.",
+      "siti_web": [
+        "https://www.civicimuseiudine.it/it/servizi/fototeca"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "Tag <title> della pagina disallineato (relativo a un'altra ricerca); nome preso dal corpo della scheda.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440540"
+    },
+    {
+      "s_id": "440591",
+      "nome": "Archivio fotografico Deputazione di storia patria",
+      "comune": "Udine",
+      "provincia": "UD",
+      "descrizione": "L'archivio appartiene alla Deputazione di Storia Patria per il Friuli, con sede a Palazzo Mantica, associazione culturale fondata nel 1918. Il nucleo principale è il fondo Brusin, fotografie delle iscrizioni di Aquileia raccolte dall'archeologo Giovanni Battista Brusin, catalogato nel 2006 e oggi composto da circa 2.716 immagini consultabili online.",
+      "siti_web": [
+        "https://culturafriuli.it/la-rete/deputazione-di-storia-patria-per-il-friuli/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440591"
+    },
+    {
+      "s_id": "440592",
+      "nome": "Archivio fotografico Soprintendenza ABAP - Ufficio di Udine",
+      "comune": "Udine",
+      "provincia": "UD",
+      "descrizione": "Fa parte del fondo fotografico della Soprintendenza ABAP del FVG, sede di Udine (Palazzo Clabassi). Conserva il nucleo storico detto 'Fondo Venezia', circa 1.100 immagini del periodo 1903-1967 che documentano il patrimonio artistico della provincia di Udine, inclusi monumenti, opere d'arte e architettura rurale; catalogato tra il 2006 e il 2007.",
+      "siti_web": [
+        "https://sabapfvg.cultura.gov.it/servizi/archivi/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440592"
+    },
+    {
+      "s_id": "440537",
+      "nome": "Casa Cavazzini Museo d'arte moderna e contemporanea",
+      "comune": "Udine",
+      "provincia": "UD",
+      "descrizione": "Il museo occupa l'ex Casa Cavazzini, palazzo del centro storico di Udine lasciato in eredità al Comune, ed espone al primo e secondo piano le collezioni Astaldi, dedicata a maestri del Novecento italiano, e FRIAM, di arte americana, oltre a una sezione permanente sui fratelli Dino, Mirko e Afro Basaldella. Il piano terra è riservato a mostre temporanee, mentre nell'edificio sono visibili resti storici come una cisterna del XVI secolo.",
+      "siti_web": [
+        "https://www.civicimuseiudine.it/it/musei-civici/casa-cavazzini",
+        "https://www.turismofvg.it/musei/casa-cavazzini-sede-del-museo-di-arte-moderna-e-contemporanea"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440537"
+    },
+    {
+      "s_id": "440532",
+      "nome": "Civici musei e gallerie di storia e arte",
+      "comune": "Udine",
+      "provincia": "UD",
+      "descrizione": "Collezioni civiche ospitate nel Castello di Udine. La Galleria d'Arte Antica occupa tredici sale e mostra la pittura friulana dal Trecento alla metà dell'Ottocento, insieme al Salone del Parlamento della Patria del Friuli. Il patrimonio comprende anche circa 8.000 disegni e stampe, prevalentemente di autori veneti dei secoli XVII-XVIII, oltre a carte geografiche e vedute.",
+      "siti_web": [
+        "https://www.civicimuseiudine.it/it/musei-civici/musei-civici-del-castello/galleria-d-arte-antica",
+        "https://www.comune.udine.it/it/turismo-22649/musei-a-udine-34856/galleria-darte-antica-34857",
+        "https://www.turismoaccessibile.fvg.it/sito/listing/museo-civico-del-castello-galleria-darte-antica/",
+        "https://www.turismofvg.it/musei/musei-del-castello"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440532"
+    },
+    {
+      "s_id": "440531",
+      "nome": "Civici musei e gallerie di storia e arte",
+      "comune": "Udine",
+      "provincia": "UD",
+      "descrizione": "Il sistema dei Civici musei e gallerie di storia e arte di Udine comprende nove sezioni distribuite tra il Castello di Udine e alcune sedi distaccate. Le raccolte spaziano da archeologia, arte antica e moderna, disegni e stampe, fotografia ed etnografia fino al Risorgimento, con una storia di catalogazione che risale alla fine dell'Ottocento.",
+      "siti_web": [
+        "https://www.civicimuseiudine.it/it/",
+        "https://www.comune.udine.it/it/cultura-e-tempo-libero-22638/cultura-49715/musei-72161"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440531"
+    },
+    {
+      "s_id": "440534",
+      "nome": "Civici musei e gallerie di storia e arte. Gabinetto numismatico",
+      "comune": "Udine",
+      "provincia": "UD",
+      "descrizione": "Fa parte del Museo Archeologico di Udine, al Castello, e conserva oltre 60.000 pezzi tra monete, medaglie, sigilli, banconote e documenti provenienti da donazioni, lasciti e scavi. Tra i fondi principali figurano quelli del conte Augusto de' Brandis e del marchese Rodolfo di Colloredo Mels. La catalogazione, avviata alla fine degli anni Settanta, conta oggi quasi 2.000 schede nella banca dati SIRPAC; l'allestimento risulta attualmente in revisione.",
+      "siti_web": [
+        "https://www.civicimuseiudine.it/index.php?option=com_content&view=article&id=2&Itemid=180&lang=it",
+        "https://consorziocastelli.it/visitare/itinerari-tematici/musei/udine_numismatico"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440534"
+    },
+    {
+      "s_id": "440533",
+      "nome": "Civici musei e gallerie di storia e arte. Museo archeologico",
+      "comune": "Udine",
+      "provincia": "UD",
+      "descrizione": "Il museo, ospitato nel Castello di Udine, raccoglie oltre 100.000 reperti tra ceramiche, vetri, metalli, gemme e manufatti in osso, provenienti in gran parte da donazioni e dalle ricerche di eruditi e nobili friulani tra Ottocento e Novecento. Le collezioni comprendono anche materiali di scavi urbani e friulani, esposti in cinque sale al piano terra oltre a un lapidario romano nel sottoportico del Castello.",
+      "siti_web": [
+        "https://www.civicimuseiudine.it/it/musei-civici/musei-civici-del-castello/museo-archeologico",
+        "https://www.archeocartafvg.it/portfolio-articoli/udine-museo-archeologico/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440533"
+    },
+    {
+      "s_id": "440535",
+      "nome": "Civici musei e gallerie di storia e arte. Museo etnografico del Friuli",
+      "comune": "Udine",
+      "provincia": "UD",
+      "descrizione": "Fondato nel 1963 come Museo friulano di arti e tradizioni popolari, dal 2010 ha sede nel cinquecentesco Palazzo Giacomelli, nel Borgo Grazzano di Udine. Le collezioni, formate soprattutto da donazioni private, spaziano dalla vita rurale e domestica all'artigianato, dal costume alla religiosità popolare, fino a musica e maschere, su un percorso di tre piani integrato da mostre temporanee.",
+      "siti_web": [
+        "https://www.civicimuseiudine.it/it/musei-civici/museo-etnografico-del-friuli",
+        "https://www.turismofvg.it/musei/museo-etnografico-del-friuli"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440535"
+    },
+    {
+      "s_id": "440485",
+      "nome": "Collezione dell'Università degli studi di Udine",
+      "comune": "Udine",
+      "provincia": "UD",
+      "descrizione": "La collezione, nata da donazioni di artisti locali legati all'ateneo, comprende circa cinquanta opere tra dipinti, sculture e grafiche esposte negli uffici e negli spazi comuni delle sedi universitarie. Tra gli autori figurano artisti friulani e una serie di stampe di Valerio Pilon dedicate agli edifici dell'università. La catalogazione inventariale è stata completata nel 2007.",
+      "siti_web": [
+        "https://arte.uniud.it/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440485"
+    },
+    {
+      "s_id": "440500",
+      "nome": "Collezione dell'ex Consorzio universitario del Friuli",
+      "comune": "Udine",
+      "provincia": "UD",
+      "descrizione": "Piccola collezione d'arte appartenuta al Consorzio universitario del Friuli (fondato nel 1967), con opere acquisite tra il 1970 e il 1980 tramite i fondi della legge del 2%, tra cui lavori di Fred Pittino, Albino Lucatello e Luciano Ceschia. È oggi in comodato all'Università di Udine, ospitata negli uffici del Dipartimento di Lettere a Palazzo Florio.",
+      "siti_web": [
+        "https://www.cuf-ancun.it/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440500"
+    },
+    {
+      "s_id": "440501",
+      "nome": "Collezione della Fondazione Friuli, già Fondazione CRUP",
+      "comune": "Udine",
+      "provincia": "UD",
+      "descrizione": "La collezione, appartenente alla Fondazione Friuli (nata nel 1992 come Fondazione CRUP), conta oltre cinquecento opere tra sculture, incisioni, disegni e dipinti dal XVI secolo a oggi, con lavori di artisti friulani del Novecento. È esposta principalmente nelle sedi della Fondazione a Udine (Palazzo Antonini Stringher) e in altri luoghi della regione, con una catalogazione partecipata avviata nel 2008.",
+      "siti_web": [
+        "https://fondazionefriuli.it/patrimonio-culturale/patrimonio-artistico/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "Il tag <title> della pagina risultava disallineato (\"Lista esperti catalogazione...\"); nome preso dal titolo principale della scheda.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440501"
+    },
+    {
+      "s_id": "440590",
+      "nome": "Fondo Egger",
+      "comune": "Udine",
+      "provincia": "UD",
+      "descrizione": "Fondo fotografico di circa 500 immagini, donato dal governo viennese e conservato dal Museo diocesano d'arte sacra e Gallerie del Tiepolo (Palazzo Patriarcale). Le fotografie, realizzate tra il 1915 e il 1945 soprattutto da Rudolf Egger, documentano il patrimonio storico-artistico friulano e derivano in parte da un incarico di censimento dei monumenti assegnato a Egger prima della Prima Guerra Mondiale.",
+      "siti_web": [
+        "https://www.musdioc-tiepolo.it/it/homepage"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "Il museo che lo conserva è il Museo diocesano d'arte sacra e Gallerie del Tiepolo.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440590"
+    },
+    {
+      "s_id": "440546",
+      "nome": "Fondo Paesaggi e costumi",
+      "comune": "Udine",
+      "provincia": "UD",
+      "descrizione": "Il fondo raccoglie fotografie scattate dal fotografo Umberto Antonelli tra gli anni Venti e Trenta del Novecento, che ritraggono costumi popolari e lavori tradizionali friulani, in particolare carnici, in scenari come Enemonzo e Forni di Sotto. Le immagini furono stampate come cartoline dallo studio dei fratelli Pignat di Udine, mentre le lastre di vetro originali sono conservate nella Fototeca dei Civici Musei di Udine.",
+      "siti_web": [
+        "https://www.civicimuseiudine.it/it/servizi/fototeca"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "Il fondo è conservato presso il Castello di Udine.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440546"
+    },
+    {
+      "s_id": "440545",
+      "nome": "Fondo Personaggi e avvenimenti",
+      "comune": "Udine",
+      "provincia": "UD",
+      "descrizione": "Conservato al Castello di Udine, il fondo fotografico raccoglie 925 immagini che documentano la storia udinese e friulana tra il 1850 e il 1950, con scatti dei fotografi Carlo Pignat e Attilio Brisighelli. Comprende ritratti di figure illustri e documentazione di cerimonie, visite reali ed eventi cittadini, catalogati nel 1996 nella banca dati SIRPAC.",
+      "siti_web": [
+        "https://www.civicimuseiudine.it/it/servizi/fototeca"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440545"
+    },
+    {
+      "s_id": "440543",
+      "nome": "Fondo Prima Guerra Mondiale",
+      "comune": "Udine",
+      "provincia": "UD",
+      "descrizione": "Conservato presso il Castello di Udine, il fondo fotografico raccoglie immagini attribuite a fotografi austriaci e italiani, tra cui i friulani Carlo Pignat e Attilio Brisighelli, oltre a numerosi scatti anonimi. Catalogato nel 1996 con 992 schede, documenta luoghi in Friuli, Veneto, Slovenia e Croazia legati al primo conflitto mondiale.",
+      "siti_web": [
+        "https://www.civicimuseiudine.it/it/servizi/fototeca"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440543"
+    },
+    {
+      "s_id": "440544",
+      "nome": "Fondo Seconda Guerra Mondiale",
+      "comune": "Udine",
+      "provincia": "UD",
+      "descrizione": "Fondo fotografico conservato nell'Archivio Friuli presso il Castello di Udine, parte del sistema dei Civici musei e gallerie di storia e arte. Le immagini documentano la messa in sicurezza di opere d'arte, l'attività del Comitato di Liberazione Nazionale, l'arrivo di alleati e partigiani e i danni dei bombardamenti in diversi comuni friulani; il fondo è stato catalogato nel 1996 in 428 schede.",
+      "siti_web": [
+        "https://www.civicimuseiudine.it/it/servizi/fototeca"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "Non è un museo autonomo ma un fondo fotografico conservato nei Civici Musei di Udine.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440544"
+    },
+    {
+      "s_id": "440547",
+      "nome": "Fondo Società alpina friulana, fotografico",
+      "comune": "Udine",
+      "provincia": "UD",
+      "descrizione": "Conservato presso il Castello di Udine, il fondo raccoglie circa 2.400 fotografie scattate tra Ottocento e Novecento che documentano l'attività della Società Alpina Friulana, fondata a Tolmezzo nel 1874. Oltre a immagini di montagna e alpinismo, include paesaggi, vedute urbane e ritratti di protagonisti della cultura friulana, con un valore sia documentario che estetico.",
+      "siti_web": [
+        "https://www.alpinafriulana.it/storia/archivio_fotografico_storico/",
+        "https://www.civicimuseiudine.it/it/servizi/fototeca"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "Fondo fotografico conservato nei Civici Musei di Udine.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440547"
+    },
+    {
+      "s_id": "440542",
+      "nome": "Fondo Valentinis",
+      "comune": "Udine",
+      "provincia": "UD",
+      "descrizione": "Raccolta fotografica dei Civici Musei di Udine, conservata al Castello di Udine, ricomposta nel 1941 dopo la dispersione subita durante la Prima guerra mondiale. Il nucleo principale è il Fondo Gualtiero Valentinis, 256 immagini in quattro album che documentano architetture e opere d'arte del Friuli realizzate per un volume del 1894. È stato catalogato nel 2001 e digitalizzato nel 2010.",
+      "siti_web": [
+        "https://www.civicimuseiudine.it/it/servizi/fototeca"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440542"
+    },
+    {
+      "s_id": "440541",
+      "nome": "Fondo calotipi cerati",
+      "comune": "Udine",
+      "provincia": "UD",
+      "descrizione": "Comprende 14 negativi su carta realizzati con la tecnica del calotipo cerato, databili tra il 1854 e il 1857 dal conte Augusto Agricola, di formato insolitamente grande e recentemente restaurati. Le immagini documentano Udine, il Duomo di Gemona con le sue oreficerie, il Duomo di Venzone e il Palazzo Municipale.",
+      "siti_web": [
+        "https://civicimuseiudine.it/it/servizi/fototeca"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "Il nome reale corrispondente a questo s_id, confermato dal contenuto della pagina di dettaglio, è 'Fondo calotipi cerati' (conservato presso il Castello di Udine). Il nome 'Archivio Giuseppe Marchetti', apparso in un'altra pagina elenco, NON corrisponde a questo s_id.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440541"
+    },
+    {
+      "s_id": "440539",
+      "nome": "Fototeca dei Civici musei e gallerie di storia e arte",
+      "comune": "Udine",
+      "provincia": "UD",
+      "descrizione": "La fototeca, legata al Castello di Udine, è una raccolta fotografica dedicata alla storia, all'arte e alla cultura della città e del Friuli. Ampliatasi nel corso del Novecento con acquisti, donazioni e depositi di archivi fotografici professionali e amatoriali, conta oggi oltre 9.000 immagini catalogate nella banca dati SIRPAC.",
+      "siti_web": [
+        "https://www.civicimuseiudine.it/it/servizi/fototeca"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440539"
+    },
+    {
+      "s_id": "440589",
+      "nome": "Fototeca del Dipartimento di storia e tutela dei beni culturali",
+      "comune": "Udine",
+      "provincia": "UD",
+      "descrizione": "Nata nel 1995 presso Palazzo Caiselli, la fototeca universitaria supporta didattica e ricerca con un ampio archivio di riproduzioni fotografiche. Il catalogo, avviato nel 1996, documenta soprattutto beni artistici e architettonici del Nord Italia tra XI e XVIII secolo, con prevalenza friulana e veneta, oltre alle immagini delle ricerche archeologiche del Dipartimento.",
+      "siti_web": [
+        "https://dium.uniud.it/it/dium/locali-e-strutture/laboratori/fototeca/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "Fototeca universitaria, non un museo aperto al pubblico in senso tradizionale.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440589"
+    },
+    {
+      "s_id": "440530",
+      "nome": "Museo del duomo di Udine. Raccolta del Beato Bertrando",
+      "comune": "Udine",
+      "provincia": "UD",
+      "descrizione": "Il museo è dedicato al Beato Bertrando di Saint Geniès, patriarca di Aquileia (1334-1350), e documenta l'arte e la cultura del Patriarcato. Ospitato in cappelle trecentesche e nel Battistero del duomo, comprende affreschi di Vitale da Bologna, l'arca marmorea del patriarca, paramenti liturgici, oreficerie e opere dal XIII al XVIII secolo.",
+      "siti_web": [
+        "http://www.cattedraleudine.it/museo/",
+        "https://www.turismofvg.it/musei/museo-del-duomo-cattedrale-di-udine"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440530"
+    },
+    {
+      "s_id": "440517",
+      "nome": "Museo diocesano d'arte sacra e Gallerie del Tiepolo",
+      "comune": "Udine",
+      "provincia": "UD",
+      "descrizione": "Ospitato dal 1995 nel Palazzo Patriarcale di Udine, il museo unisce una collezione diocesana di circa 700 opere agli apparati decorativi settecenteschi realizzati da Giambattista Tiepolo. Il percorso comprende scultura lignea, oreficerie liturgiche, ex voto e monete dei patriarchi di Aquileia.",
+      "siti_web": [
+        "https://www.musdioc-tiepolo.it/it/homepage",
+        "https://www.turismofvg.it/musei/museo-diocesano-e-gallerie-del-tiepolo"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440517"
+    },
+    {
+      "s_id": "440536",
+      "nome": "Museo friulano di storia naturale",
+      "comune": "Udine",
+      "provincia": "UD",
+      "descrizione": "Fondato nel 1866 su iniziativa del naturalista Giulio Andrea Pirona, il museo conserva collezioni di quasi un milione di reperti tra geopaleontologia, mineralogia, botanica, entomologia e zoologia, con biblioteca e mediateca specializzate. È attualmente chiuso al pubblico in attesa di un trasferimento in una nuova sede, ma prosegue l'attività di ricerca e divulgazione.",
+      "siti_web": [
+        "https://www.museofriulanostorianaturale.it"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "Il testo precisa che il museo è attualmente chiuso al pubblico.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440536"
+    },
+    {
+      "s_id": "440639",
+      "nome": "Tumulo di Sant'Osvaldo",
+      "comune": "Udine",
+      "provincia": "UD",
+      "descrizione": "Struttura funeraria preistorica circolare, di circa 26 metri di diametro e 3 di altezza, alla periferia sud di Udine sul torrente Cormor. Al suo interno fu sepolto, circa quattromila anni fa durante l'età del Bronzo antica, un uomo adulto senza corredo funerario. Dopo gli scavi del 2000-2002 è stato ricostruito e reso visitabile, con una replica in resina dello scheletro nella posizione originaria.",
+      "siti_web": [
+        "https://www.archeocartafvg.it/portfolio-articoli/udine-tumulo-di-santosvaldo/",
+        "https://aziendagraria.uniud.it/ricerca/il-tumulo-di-s-osvaldo"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440639"
+    },
+    {
+      "s_id": "440538",
+      "nome": "Museo all'aperto. Art park di Egidio Marzona",
+      "comune": "Verzegnis",
+      "provincia": "UD",
+      "descrizione": "Si tratta di un museo di arte contemporanea all'aperto, ideato dal collezionista Egidio Marzona, che dal 1989 ha invitato artisti internazionali legati a Minimalismo, Land Art, Arte Concettuale e Arte Povera a realizzare opere per il parco e per la casa di Villa, frazione di Verzegnis. Le installazioni sono pensate per dialogare con il paesaggio, in un contesto senza confini netti tra abitato e campagna.",
+      "siti_web": [
+        "http://www.mapfvg.com/collezione-egidio-marzona-art-park-verzegnis/",
+        "https://luoghidelcontemporaneo.beniculturali.it/art-park-verzegnis"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440538"
+    },
+    {
+      "s_id": "440647",
+      "nome": "Foro romano",
+      "comune": "Zuglio",
+      "provincia": "UD",
+      "descrizione": "Il sito conserva il Foro romano di Iulium Carnicum, scavato a partire dall'Ottocento, che mostra le fasi edilizie dall'epoca augustea al II secolo d.C. con piazza, portici, basiliche e tempio. I reperti rinvenuti negli scavi sono custoditi nel vicino Civico Museo Archeologico Iulium Carnicum.",
+      "siti_web": [
+        "https://www.comune.zuglio.ud.it/it/home-2611/cultura-2614/il-foro-romano-6508",
+        "https://www.beniculturali.it/luogo/civico-museo-archeologico-iulium-carnicum",
+        "https://www.turismofvg.it/siti-archeologici/area-archeologica-di-zuglio",
+        "https://www.archeocartafvg.it/portfolio-articoli/zuglio-ud-il-foro-romano/"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440647"
+    },
+    {
+      "s_id": "440628",
+      "nome": "Museo archeologico Iulium Carnicum",
+      "comune": "Zuglio",
+      "provincia": "UD",
+      "descrizione": "Allestito nel Palazzo Tommasi Leschiutta, il museo ricostruisce la storia antica del territorio carnico, dalle prime tracce di insediamento fino al Medioevo, con particolare attenzione alla città romana di Iulium Carnicum. Le collezioni comprendono reperti romani come mosaici, statuette bronzee e frammenti epigrafici, insieme a materiali tardoantichi e altomedievali legati alla sede episcopale.",
+      "siti_web": [
+        "https://www.carniamusei.org"
+      ],
+      "orari": null,
+      "biglietti": null,
+      "note": "",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440628"
+    },
+    {
+      "s_id": "440498",
+      "nome": "Collezione della Regione Autonoma Friuli Venezia Giulia",
+      "comune": null,
+      "provincia": null,
+      "descrizione": "Raccoglie beni artistici acquistati dalla Regione nel tempo, prevalentemente opere di autori contemporanei locali, collocati in uffici e sedi di rappresentanza regionali. Un numero ristretto di opere di pregio, anche antiche, è affidato in comodato a gallerie e musei per ragioni di conservazione e sicurezza; la schedatura informatizzata, avviata nel 1998, è ancora in corso.",
+      "siti_web": [],
+      "orari": null,
+      "biglietti": null,
+      "note": "Collezione distribuita su più sedi regionali, senza un comune o sede unica indicata nella pagina.",
+      "scheda_erpac": "https://patrimonioculturale.regione.fvg.it/museo/?s_id=440498"
+    }
+  ]
+}

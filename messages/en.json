@@ -137,6 +137,10 @@
       "parchiGiardini": {
         "nome": "Parks & Gardens",
         "descrizione": "Regional register of parks, historic gardens, botanical gardens and traditional bird-trapping sites (uccellande), by province and municipality"
+      },
+      "musei": {
+        "nome": "Museums",
+        "descrizione": "Regional catalogue of museums: name, description, website and, when available, opening hours and tickets"
       }
     }
   },
@@ -450,6 +454,21 @@
     },
     "nessunaTrovata": "No site found{luogo}.",
     "mappaAriaLabel": "Map of parks and gardens{luogo} — equivalent text list in the panel alongside"
+  },
+  "musei": {
+    "titolo": "Museums",
+    "descrizione": "Catalogue of museums and collections in Friuli Venezia Giulia ({totale} entries). Source: ERPAC cultural heritage catalogue (patrimonioculturale.regione.fvg.it).",
+    "disclaimerOrariBiglietti": "This catalogue is a scientific heritage-cataloguing record, not a tourist portal: it does not include opening hours or ticket/booking links for any entry. These fields, when missing, are never invented.",
+    "provinciaNonSpecificata": "Not specified",
+    "cercaLabel": "Search by museum name or municipality",
+    "cercaPlaceholder": "Search by museum name or municipality…",
+    "nessunRisultato": "No museums found{luogo} with the current filters.",
+    "orariLabel": "Opening hours",
+    "bigliettiLabel": "Tickets",
+    "nonDisponibileCatalogo": "not available in this catalogue",
+    "visitaIlSito": "Visit website ↗",
+    "schedaUfficiale": "Official ERPAC record ↗",
+    "fonteLabel": "Source: {fonte}. Data collected on {data}."
   },
   "baseball": {
     "titoloFallback": "Baseball & Softball",

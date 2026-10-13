@@ -72,6 +72,26 @@ const SEZIONI = [
       </svg>
     ),
   },
+  {
+    // Musei (13/10/2026, richiesto dall'utente: "una pagina... nome del
+    // museo, descrizione, orari, sito web e link ai biglietti"). Dataset
+    // STATICO raccolto una tantum dal catalogo ERPAC
+    // (patrimonioculturale.regione.fvg.it) — vedi lib/musei.ts per la
+    // nota estesa su fonte/raccolta/limiti (orari e biglietti assenti
+    // nella fonte per ogni voce, mai inventati). Nessuna mappa (la fonte
+    // non ha coordinate per le schede-museo), stesso schema tab
+    // provincia/comune + ricerca di SitiInquinatiPage.tsx. Vedi
+    // components/MuseiPage.tsx.
+    key: "musei",
+    href: "/musei",
+    icona: (
+      <svg viewBox="0 0 48 48" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <path d="M6 18l18-12 18 12" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M8 18h32v4H8zM11 22v18M19 22v18M29 22v18M37 22v18" strokeLinecap="round" />
+        <path d="M6 40h36" strokeLinecap="round" />
+      </svg>
+    ),
+  },
 ];
 
 export async function TurismoPage() {

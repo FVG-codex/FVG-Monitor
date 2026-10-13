@@ -137,6 +137,10 @@
       "parchiGiardini": {
         "nome": "Parkovi i vrtovi",
         "descrizione": "Regionalni registar parkova, povijesnih vrtova, botaničkih vrtova i tradicionalnih lovišta za ptice (uccellande), po pokrajinama i općinama"
+      },
+      "musei": {
+        "nome": "Muzeji",
+        "descrizione": "Regionalni katalog muzeja: naziv, opis, web-stranica i, kad su dostupni, radno vrijeme i ulaznice"
       }
     }
   },
@@ -450,6 +454,21 @@
     },
     "nessunaTrovata": "Nije pronađena nikakva lokacija{luogo}.",
     "mappaAriaLabel": "Karta parkova i vrtova{luogo} — odgovarajući tekstualni popis u susjednoj ploči"
+  },
+  "musei": {
+    "titolo": "Muzeji",
+    "descrizione": "Katalog muzeja i zbirki u Furlaniji-Julijskoj krajini ({totale} unosa). Izvor: katalog kulturne baštine ERPAC (patrimonioculturale.regione.fvg.it).",
+    "disclaimerOrariBiglietti": "Ovaj katalog znanstveni je katalog baštine, a ne turistički portal: ne sadrži radno vrijeme ni poveznice za ulaznice/rezervacije za nijedan unos. Ta polja, kad nedostaju, nikada se ne izmišljaju.",
+    "provinciaNonSpecificata": "Nije navedeno",
+    "cercaLabel": "Pretraži po nazivu muzeja ili općini",
+    "cercaPlaceholder": "Pretraži po nazivu muzeja ili općini…",
+    "nessunRisultato": "Nije pronađen nijedan muzej{luogo} s trenutnim filtrima.",
+    "orariLabel": "Radno vrijeme",
+    "bigliettiLabel": "Ulaznice",
+    "nonDisponibileCatalogo": "nije dostupno u ovom katalogu",
+    "visitaIlSito": "Posjeti web-stranicu ↗",
+    "schedaUfficiale": "Službeni unos ERPAC ↗",
+    "fonteLabel": "Izvor: {fonte}. Podaci prikupljeni {data}."
   },
   "baseball": {
     "titoloFallback": "Bejzbol i softbol",
