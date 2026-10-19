@@ -1,6 +1,7 @@
-"""Genera le icone di FVG Monitor (PWA + base per le app native).
+r"""Genera le icone di FVG Monitor (PWA + base per le app native).
 
-Uso:  python3 mobile/scripts/genera-icone.py
+Uso (Windows):  py mobile\scripts\genera-icone.py
+Uso (Mac):      python3 mobile/scripts/genera-icone.py
 Richiede Pillow (pip install pillow).
 
 Disegno: sfondo "Adriatico notturno" (#0E2529), linee di livello

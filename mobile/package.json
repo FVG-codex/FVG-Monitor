@@ -4,8 +4,9 @@
   "private": true,
   "description": "App Android e iOS di FVG Monitor (Capacitor) — vedi README.md",
   "scripts": {
-    "icone": "capacitor-assets generate --assetPath assets --iconBackgroundColor '#0E2529' --iconBackgroundColorDark '#0E2529' --splashBackgroundColor '#0E2529' --splashBackgroundColorDark '#0E2529'",
+    "icone": "capacitor-assets generate --ios --android --assetPath assets --iconBackgroundColor \"#0E2529\" --iconBackgroundColorDark \"#0E2529\" --splashBackgroundColor \"#0E2529\" --splashBackgroundColorDark \"#0E2529\"",
     "sync": "cap sync",
+    "sync:android": "cap sync android",
     "ios": "cap open ios",
     "android": "cap open android"
   },
