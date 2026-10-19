@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
+import { LogoutButton } from "@/components/LogoutButton";
 
 // Footer condiviso da tutte le pagine del sito (stesso pattern di
 // TopHeader: importato e reso da ogni pagina, non da app/layout.tsx —
@@ -25,6 +26,7 @@ export function Footer({ extra }: { extra?: ReactNode }) {
         <Link href="/changelog" className="hover:text-cool-ink transition-colors">
           {t("changelog")}
         </Link>
+        <LogoutButton />
       </div>
       {extra}
     </footer>

@@ -1,35 +1,45 @@
 import { getTranslations } from "next-intl/server";
 import { AlertBannerLive } from "@/components/AlertBannerLive";
 import { AllertaZonePanel } from "@/components/AllertaZonePanel";
-import { AriaQualitaPanel } from "@/components/AriaQualitaPanel";
-import { BalneazionePanel } from "@/components/BalneazionePanel";
+import { BlsdHomeRiepilogo } from "@/components/BlsdHomeRiepilogo";
 import { CarburantiPanel } from "@/components/CarburantiPanel";
 import { EventiPanel } from "@/components/EventiPanel";
-import { FiumeOverview } from "@/components/FiumeOverview";
 import { MeteoOverview } from "@/components/MeteoPanel";
 import { NotiziePanel } from "@/components/NotiziePanel";
 import { Panel } from "@/components/Panel";
-import { MarePanel } from "@/components/MarePanel";
-import { PioggiaPanel } from "@/components/PioggiaPanel";
-import { PolliniPanel } from "@/components/PolliniPanel";
 import { SoleLunaPanel } from "@/components/SoleLunaPanel";
 import { TgrCard } from "@/components/TgrCard";
 import { TopHeader } from "@/components/TopHeader";
 import { Footer } from "@/components/Footer";
-import { VentoPanel } from "@/components/VentoPanel";
 import { ViabilitaPanel } from "@/components/ViabilitaPanel";
 import { VoliPanel } from "@/components/VoliPanel";
 import { PROVINCE_LIST } from "@/lib/province";
 import { Link } from "@/i18n/navigation";
 
 // Fase 1 — Multilingua (03/10/2026): solo il "guscio" della homepage è
-// tradotto (titolo invisibile, etichette dei pannelli, sezione
-// Ambiente, riga fonti nel footer) — i pannelli importati sopra
-// (MeteoOverview, NotiziePanel, ecc.) restano con contenuto in
-// italiano perché derivano da fonti esterne (OSMER, ANSA, Protezione
-// Civile...) che non vengono tradotte in questa fase, come deciso con
-// l'utente. Diventato Server Component async per usare
-// getTranslations (prima era una funzione sincrona).
+// tradotto (titolo invisibile, etichette dei pannelli, riga fonti nel
+// footer) — i pannelli importati sopra (MeteoOverview, NotiziePanel,
+// ecc.) restano con contenuto in italiano perché derivano da fonti
+// esterne (OSMER, ANSA, Protezione Civile...) che non vengono tradotte
+// in questa fase, come deciso con l'utente. Diventato Server Component
+// async per usare getTranslations (prima era una funzione sincrona).
+//
+// Sezione "Ambiente" rimossa dalla homepage (15/10/2026, richiesto
+// dall'utente: "Togli dalla homepage tutti i dati ambientali e fa in
+// modo che i dati rimangano solamente nella sezione ambiente"). I
+// pannelli Vento/Pioggia/Qualità aria/Pollini/Mare/Fiumi/Balneazione
+// non sono spariti dal sito: restano disponibili sotto l'hub Ambiente,
+// già duplicati per provincia in DatiAmbientaliPage.tsx (/dati-ambientali)
+// da quando quella pagina è stata introdotta — qui in homepage c'era
+// solo una vista aggregata ridondante. Il pannello "Meteo" (MeteoOverview)
+// resta in homepage con il bollettino previsionale OSMER (cielo/pioggia
+// prevista in testo libero, non i dati in tempo reale di Vento/Pioggia).
+//
+// Pannello "DAE · Defibrillatori" (15/10/2026, richiesto dall'utente:
+// "censimento dei BLSD... un modulo in homepage ed una pagina dedicata in
+// sanità") — qui solo un riepilogo (conteggio totale + per provincia) con
+// link alla pagina dedicata /blsd; il contenuto completo con scheda per
+// dispositivo vive lì, vedi BlsdPage.tsx e lib/blsd.ts per fonte e limiti.
 export default async function Home() {
   const t = await getTranslations("home");
 
@@ -70,6 +80,10 @@ export default async function Home() {
             </div>
           </Panel>
 
+          <Panel title={t("panels.blsd")}>
+            <BlsdHomeRiepilogo />
+          </Panel>
+
           <Panel title={t("panels.notizie")} linkLabel={t("panels.notizieLink")} linkHref="https://www.ansa.it/friuliveneziagiulia/">
             <NotiziePanel />
           </Panel>
@@ -108,57 +122,6 @@ export default async function Home() {
 
           <Panel title={t("panels.eventi")} linkLabel={t("panels.eventiLink")} linkHref="https://www.turismofvg.it/eventi" span={2}>
             <EventiPanel />
-          </Panel>
-        </div>
-
-        {/* Sezione Ambiente (04/09/2026): raggruppa i dati ambientali che
-            prima erano sparsi nella griglia principale — stesso pattern
-            h2 + griglia separata già usato in ViabilitaPage.tsx per
-            "Webcam autostradali". Bora/vento e pioggia restano anche qui
-            (oltre che nella sezione Meteo) perché "tempo" in senso stretto,
-            ma l'utente li ha chiesti esplicitamente anche sotto Ambiente. */}
-        <h2 className="font-cond font-bold text-xl uppercase tracking-wide mb-1">{t("ambiente.title")}</h2>
-        <p className="text-ink-faint text-xs font-mono mb-4">
-          {t("ambiente.description")}
-        </p>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-line border border-line">
-          <Panel
-            title={t("ambiente.bora")}
-            linkLabel={t("ambiente.boraLink")}
-            linkHref="https://monitor.protezionecivile.fvg.it"
-          >
-            <VentoPanel compatto />
-            <div className="border-t border-line my-4" />
-            <PioggiaPanel compatto />
-          </Panel>
-
-          <Panel title={t("ambiente.aria")} linkLabel={t("ambiente.ariaLink")} linkHref="https://www.arpa.fvg.it">
-            <AriaQualitaPanel />
-          </Panel>
-
-          <Panel title={t("ambiente.pollini")} linkLabel={t("ambiente.polliniLink")} linkHref="https://www.arpa.fvg.it/temi/temi/pollini/">
-            <PolliniPanel />
-          </Panel>
-
-          <Panel
-            title={t("ambiente.livelli")}
-            linkLabel={t("ambiente.livelliLink")}
-            linkHref="https://monitor.protezionecivile.fvg.it"
-          >
-            <p className="font-mono text-[10px] uppercase text-ink-faint mb-1.5">{t("ambiente.mare")}</p>
-            <MarePanel />
-            <p className="font-mono text-[10px] uppercase text-ink-faint mb-1.5 mt-4">{t("ambiente.fiumi")}</p>
-            <FiumeOverview />
-          </Panel>
-
-          <Panel
-            title={t("ambiente.balneazione")}
-            linkLabel={t("ambiente.balneazioneLink")}
-            linkHref="https://www.arpa.fvg.it/temi/temi/acqua/sezioni-principali/balneazione/"
-            span={2}
-          >
-            <BalneazionePanel />
           </Panel>
         </div>
       </main>

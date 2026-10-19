@@ -44,7 +44,8 @@
     "commercio": "Retail"
   },
   "footer": {
-    "changelog": "Changelog →"
+    "changelog": "Changelog →",
+    "esci": "Log out"
   },
   "inArrivo": {
     "messaggio": "Section coming in a future phase, as soon as verified data is available."
@@ -90,6 +91,10 @@
       "rifiuti": {
         "nome": "Waste collection",
         "descrizione": "Door-to-door calendar, collection centre and glass bins for 28 municipalities (Isontino/Carso)"
+      },
+      "comuni": {
+        "nome": "Municipalities",
+        "descrizione": "Address, phone, PEC and website for the 215 municipalities of Friuli Venezia Giulia"
       }
     }
   },
@@ -204,6 +209,10 @@
       "dentisti": {
         "nome": "Dentists & dental practices",
         "descrizione": "Directory of dental practices in Friuli Venezia Giulia (initial survey still being verified)."
+      },
+      "blsd": {
+        "nome": "AEDs · Defibrillators",
+        "descrizione": "Map and addresses of defibrillators (AEDs) mapped in the region, with a note on the data source"
       }
     }
   },
@@ -614,26 +623,24 @@
       "voliLink": "All flights →",
       "tgr": "TGR FVG",
       "eventi": "Events in the region",
-      "eventiLink": "All →"
-    },
-    "ambiente": {
-      "title": "Environment",
-      "description": "Wind, rain, air, pollen, sea, rivers and bathing water — source: Protezione Civile FVG, ARPA FVG",
-      "bora": "Bora · Wind and Rain",
-      "boraLink": "Protezione Civile FVG →",
-      "aria": "Air quality",
-      "ariaLink": "ARPA FVG →",
-      "pollini": "Pollen",
-      "polliniLink": "ARPA FVG →",
-      "livelli": "Sea and river levels",
-      "livelliLink": "Protezione Civile FVG →",
-      "mare": "Sea",
-      "fiumi": "Rivers",
-      "balneazione": "Bathing water quality",
-      "balneazioneLink": "ARPA FVG →"
+      "eventiLink": "All →",
+      "blsd": "AEDs · Defibrillators"
     },
     "fonti": "Sources: OSMER ARPA FVG · ANSA FVG · Protezione Civile FVG (CC BY 4.0) · InfoViaggiando · Turismo FVG · RAI TGR FVG · Trieste Airport",
-    "tgrCta": "Watch the latest newscast"
+    "tgrCta": "Watch the latest newscast",
+    "ambiente": {
+      "bora": "Bora · Wind and Rain",
+      "aria": "Air quality",
+      "pollini": "Pollen",
+      "livelli": "Sea and river levels",
+      "mare": "Sea",
+      "balneazione": "Bathing water quality"
+    },
+    "blsd": {
+      "sottotitolo": "devices mapped in the region",
+      "disclaimerBreve": "Open OpenStreetMap data, not the official regional census",
+      "vaiAllaPagina": "List and map"
+    }
   },
   "veterinari": {
     "descrizione": "Veterinary facilities in Friuli Venezia Giulia — data collected and manually verified (official websites and industry directories), not an official professional register. In an emergency, always call ahead to confirm real availability before going to the facility.",
@@ -817,6 +824,21 @@
     "calendarioNonDisponibile": "Calendar not available right now.",
     "nessunaRaccoltaIndirizzo": "No collection on the calendar in the coming days for this address.",
     "esposizioneOrario": " — put out {orario}"
+  },
+  "comuni": {
+    "titolo": "Municipalities",
+    "descrizione": "Official contacts for the 215 municipalities of Friuli Venezia Giulia ({totale} entries): office address, phone, PEC and website.",
+    "disclaimerFonte": "Data collected from a third-party portal (amministrazionicomunali.it), which does not explicitly state an open-data licence. For up-to-date or official information, always check the municipality's own website.",
+    "cercaLabel": "Search by municipality name",
+    "cercaPlaceholder": "Search by municipality name…",
+    "nessunRisultato": "No municipality found{luogo} with the current filters.",
+    "indirizzoLabel": "Address",
+    "telefonoLabel": "Phone",
+    "faxLabel": "Fax",
+    "pecLabel": "PEC",
+    "visitaSito": "Official website ↗",
+    "nonDisponibile": "No contact details available in this source.",
+    "fonteLabel": "Source: {fonte}. Data collected on {data}."
   },
   "qualitaAria": {
     "caricamento": "Loading air quality…",
@@ -1022,5 +1044,41 @@
       "secondary": "Secondary route",
       "minor": "Minor crossing"
     }
+  },
+  "blsd": {
+    "titolo": "AEDs · Defibrillators",
+    "descrizione": "{totale} defibrillators (AEDs) mapped in Friuli Venezia Giulia, by province and municipality",
+    "disclaimerFonte": "Open data from OpenStreetMap (community mapping, ODbL license), not the official regional census: that one exists (over 2,100 devices declared in March 2025) but lives only inside the \"DAE FVG\" app for volunteer first responders, run by SORES/118, and is not published as open data. This list is therefore likely incomplete: if a device you know about isn't here, that doesn't mean it's not there.",
+    "cercaLabel": "Search by municipality or address",
+    "cercaPlaceholder": "Search by municipality or address…",
+    "nessunRisultato": "No defibrillator found {luogo}.",
+    "fonteLabel": "Source: {fonte} · updated as of {data}",
+    "senzaNome": "Defibrillator",
+    "accessoLabel": "Access",
+    "accessoValori": {
+      "yes": "public",
+      "private": "private",
+      "customers": "customers only",
+      "permissive": "tolerated (not guaranteed)",
+      "unknown": "unknown"
+    },
+    "nonNoto": "unknown",
+    "posizioneLabel": "Location",
+    "alCoperto": "indoor",
+    "allesterno": "outdoor",
+    "orarioLabel": "Hours",
+    "operatoreLabel": "Operator",
+    "posizioneApprossimataAvviso": "Approximate position (geocoded from the address): verify on site.",
+    "ultimaVerificaLabel": "Checked on {data}",
+    "vediSuOsm": "View on OpenStreetMap →"
+  },
+  "login": {
+    "titolo": "Restricted access",
+    "sottotitolo": "Enter your username and password to continue",
+    "utenteLabel": "Username",
+    "passwordLabel": "Password",
+    "bottone": "Sign in",
+    "bottoneInCorso": "Checking…",
+    "erroreCredenziali": "Incorrect username or password."
   }
 }

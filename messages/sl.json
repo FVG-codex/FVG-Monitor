@@ -44,7 +44,8 @@
     "commercio": "Trgovina"
   },
   "footer": {
-    "changelog": "Dnevnik sprememb →"
+    "changelog": "Dnevnik sprememb →",
+    "esci": "Odjava"
   },
   "inArrivo": {
     "messaggio": "Razdelek bo na voljo v prihodnji fazi, takoj ko bodo na voljo preverjeni podatki."
@@ -90,6 +91,10 @@
       "rifiuti": {
         "nome": "Odvoz odpadkov",
         "descrizione": "Koledar odvoza od vrat do vrat, zbirni center in zabojniki za steklo za 28 občin (Isontino/Carso)"
+      },
+      "comuni": {
+        "nome": "Občine",
+        "descrizione": "Naslov, telefon, PEC in spletna stran 215 občin Furlanije-Julijske krajine"
       }
     }
   },
@@ -204,6 +209,10 @@
       "dentisti": {
         "nome": "Zobozdravniki in zobne ordinacije",
         "descrizione": "Seznam zobozdravstvenih ordinacij v Furlaniji-Julijski krajini (prvotni popis, še v fazi preverjanja)."
+      },
+      "blsd": {
+        "nome": "AED · Defibrilatorji",
+        "descrizione": "Zemljevid in naslovi defibrilatorjev (AED), popisanih v deželi, z opombo o viru podatkov"
       }
     }
   },
@@ -614,26 +623,24 @@
       "voliLink": "Vsi leti →",
       "tgr": "TGR FVG",
       "eventi": "Prireditve v regiji",
-      "eventiLink": "Vse →"
-    },
-    "ambiente": {
-      "title": "Okolje",
-      "description": "Veter, dež, zrak, cvetni prah, morje, reke in kakovost kopalnih voda — vir: Protezione Civile FVG, ARPA FVG",
-      "bora": "Burja · Veter in dež",
-      "boraLink": "Protezione Civile FVG →",
-      "aria": "Kakovost zraka",
-      "ariaLink": "ARPA FVG →",
-      "pollini": "Cvetni prah",
-      "polliniLink": "ARPA FVG →",
-      "livelli": "Vodostaj morja in rek",
-      "livelliLink": "Protezione Civile FVG →",
-      "mare": "Morje",
-      "fiumi": "Reke",
-      "balneazione": "Kakovost kopalnih voda",
-      "balneazioneLink": "ARPA FVG →"
+      "eventiLink": "Vse →",
+      "blsd": "AED · Defibrilatorji"
     },
     "fonti": "Viri: OSMER ARPA FVG · ANSA FVG · Protezione Civile FVG (CC BY 4.0) · InfoViaggiando · Turismo FVG · RAI TGR FVG · Trieste Airport",
-    "tgrCta": "Oglejte si zadnjo informativno oddajo"
+    "tgrCta": "Oglejte si zadnjo informativno oddajo",
+    "ambiente": {
+      "bora": "Burja · Veter in dež",
+      "aria": "Kakovost zraka",
+      "pollini": "Cvetni prah",
+      "livelli": "Vodostaj morja in rek",
+      "mare": "Morje",
+      "balneazione": "Kakovost kopalnih voda"
+    },
+    "blsd": {
+      "sottotitolo": "popisanih naprav v deželi",
+      "disclaimerBreve": "Odprti podatki OpenStreetMap, ne uradni deželni popis",
+      "vaiAllaPagina": "Seznam in zemljevid"
+    }
   },
   "veterinari": {
     "descrizione": "Veterinarski objekti v Friuli Venezia Giulia — podatki zbrani in ročno preverjeni (uradne spletne strani in panožni imeniki), ne gre za uradni poklicni register. V nujnem primeru vedno najprej telefonsko preverite dejansko razpoložljivost, preden se odpravite v objekt.",
@@ -817,6 +824,21 @@
     "calendarioNonDisponibile": "Koledar trenutno ni na voljo.",
     "nessunaRaccoltaIndirizzo": "Za ta naslov v prihodnjih dneh v koledarju ni predvidenega odvoza.",
     "esposizioneOrario": " — postavite {orario}"
+  },
+  "comuni": {
+    "titolo": "Občine",
+    "descrizione": "Uradni kontakti 215 občin Furlanije-Julijske krajine ({totale} vnosov): naslov sedeža, telefon, PEC in spletna stran.",
+    "disclaimerFonte": "Podatki zbrani s portala tretje osebe (amministrazionicomunali.it), ki ne navaja izrecno odprte licence za podatke. Za posodobljene ali uradne informacije vedno preverite spletno stran občine.",
+    "cercaLabel": "Iskanje po imenu občine",
+    "cercaPlaceholder": "Iskanje po imenu občine…",
+    "nessunRisultato": "Ni najdene občine{luogo} z trenutnimi filtri.",
+    "indirizzoLabel": "Naslov",
+    "telefonoLabel": "Telefon",
+    "faxLabel": "Faks",
+    "pecLabel": "PEC",
+    "visitaSito": "Uradna spletna stran ↗",
+    "nonDisponibile": "V tem viru ni razpoložljivih kontaktnih podatkov.",
+    "fonteLabel": "Vir: {fonte}. Podatki zbrani dne {data}."
   },
   "qualitaAria": {
     "caricamento": "Nalaganje kakovosti zraka…",
@@ -1022,5 +1044,41 @@
       "secondary": "Stranska pot",
       "minor": "Majhen prehod"
     }
+  },
+  "blsd": {
+    "titolo": "AED · Defibrilatorji",
+    "descrizione": "{totale} defibrilatorjev (AED), popisanih v Furlaniji - Julijski krajini, po pokrajinah in občinah",
+    "disclaimerFonte": "Odprti podatki OpenStreetMap (skupnostno kartiranje, licenca ODbL), ne uradni deželni popis: ta obstaja (več kot 2.100 prijavljenih naprav marca 2025), vendar je na voljo samo v aplikaciji \"DAE FVG\" za prostovoljne prve posredovalce, ki jo upravlja SORES/118, in ni objavljen kot odprti podatek. Ta seznam je zato verjetno nepopoln: če naprave, za katero veste, da obstaja, tu ni, to ne pomeni, da je ni.",
+    "cercaLabel": "Išči po občini ali naslovu",
+    "cercaPlaceholder": "Išči po občini ali naslovu…",
+    "nessunRisultato": "Noben defibrilator ni bil najden {luogo}.",
+    "fonteLabel": "Vir: {fonte} · posodobljeno na dan {data}",
+    "senzaNome": "Defibrilator",
+    "accessoLabel": "Dostop",
+    "accessoValori": {
+      "yes": "javen",
+      "private": "zaseben",
+      "customers": "samo za stranke",
+      "permissive": "dovoljen (ni zagotovljen)",
+      "unknown": "neznan"
+    },
+    "nonNoto": "neznano",
+    "posizioneLabel": "Lega",
+    "alCoperto": "v notranjosti",
+    "allesterno": "na prostem",
+    "orarioLabel": "Urnik",
+    "operatoreLabel": "Upravljavec",
+    "posizioneApprossimataAvviso": "Približna lega (geokodirana iz naslova): preverite na kraju samem.",
+    "ultimaVerificaLabel": "Preverjeno dne {data}",
+    "vediSuOsm": "Poglej na OpenStreetMap →"
+  },
+  "login": {
+    "titolo": "Omejen dostop",
+    "sottotitolo": "Za nadaljevanje vnesite uporabniško ime in geslo",
+    "utenteLabel": "Uporabniško ime",
+    "passwordLabel": "Geslo",
+    "bottone": "Prijava",
+    "bottoneInCorso": "Preverjanje…",
+    "erroreCredenziali": "Napačno uporabniško ime ali geslo."
   }
 }

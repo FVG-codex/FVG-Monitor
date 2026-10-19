@@ -44,7 +44,8 @@
     "commercio": "Einzelhandel"
   },
   "footer": {
-    "changelog": "Änderungsprotokoll →"
+    "changelog": "Änderungsprotokoll →",
+    "esci": "Abmelden"
   },
   "inArrivo": {
     "messaggio": "Dieser Bereich kommt in einer späteren Phase, sobald verifizierte Daten verfügbar sind."
@@ -90,6 +91,10 @@
       "rifiuti": {
         "nome": "Mülltrennung",
         "descrizione": "Abholkalender, Wertstoffhof und Glascontainer für 28 Gemeinden (Isontino/Carso)"
+      },
+      "comuni": {
+        "nome": "Gemeinden",
+        "descrizione": "Adresse, Telefon, PEC und Website der 215 Gemeinden von Friaul-Julisch Venetien"
       }
     }
   },
@@ -204,6 +209,10 @@
       "dentisti": {
         "nome": "Zahnärzte & Zahnarztpraxen",
         "descrizione": "Verzeichnis der Zahnarztpraxen in Friuli Venezia Giulia (erste Erhebung, noch in Verifizierung)."
+      },
+      "blsd": {
+        "nome": "AED · Defibrillatoren",
+        "descrizione": "Karte und Adressen der in der Region erfassten Defibrillatoren (AED), mit Hinweis zur Datenquelle"
       }
     }
   },
@@ -614,26 +623,24 @@
       "voliLink": "Alle Flüge →",
       "tgr": "TGR FVG",
       "eventi": "Veranstaltungen in der Region",
-      "eventiLink": "Alle →"
-    },
-    "ambiente": {
-      "title": "Umwelt",
-      "description": "Wind, Regen, Luft, Pollen, Meer, Flüsse und Badewasser — Quelle: Protezione Civile FVG, ARPA FVG",
-      "bora": "Bora · Wind und Regen",
-      "boraLink": "Protezione Civile FVG →",
-      "aria": "Luftqualität",
-      "ariaLink": "ARPA FVG →",
-      "pollini": "Pollen",
-      "polliniLink": "ARPA FVG →",
-      "livelli": "Meeres- und Flusspegel",
-      "livelliLink": "Protezione Civile FVG →",
-      "mare": "Meer",
-      "fiumi": "Flüsse",
-      "balneazione": "Badewasserqualität",
-      "balneazioneLink": "ARPA FVG →"
+      "eventiLink": "Alle →",
+      "blsd": "AED · Defibrillatoren"
     },
     "fonti": "Quellen: OSMER ARPA FVG · ANSA FVG · Protezione Civile FVG (CC BY 4.0) · InfoViaggiando · Turismo FVG · RAI TGR FVG · Trieste Airport",
-    "tgrCta": "Die neueste Nachrichtensendung ansehen"
+    "tgrCta": "Die neueste Nachrichtensendung ansehen",
+    "ambiente": {
+      "bora": "Bora · Wind und Regen",
+      "aria": "Luftqualität",
+      "pollini": "Pollen",
+      "livelli": "Meeres- und Flusspegel",
+      "mare": "Meer",
+      "balneazione": "Badewasserqualität"
+    },
+    "blsd": {
+      "sottotitolo": "in der Region erfasste Geräte",
+      "disclaimerBreve": "Offene OpenStreetMap-Daten, nicht die offizielle regionale Erfassung",
+      "vaiAllaPagina": "Liste und Karte"
+    }
   },
   "veterinari": {
     "descrizione": "Tierärztliche Einrichtungen in Friuli Venezia Giulia — Daten erhoben und manuell verifiziert (offizielle Websites und Branchenverzeichnisse), kein offizielles Berufsregister. Im Notfall immer vorher telefonisch die tatsächliche Verfügbarkeit bestätigen, bevor man zur Einrichtung geht.",
@@ -817,6 +824,21 @@
     "calendarioNonDisponibile": "Kalender derzeit nicht verfügbar.",
     "nessunaRaccoltaIndirizzo": "Keine Abholung im Kalender für die kommenden Tage für diese Adresse.",
     "esposizioneOrario": " — bereitstellen {orario}"
+  },
+  "comuni": {
+    "titolo": "Gemeinden",
+    "descrizione": "Offizielle Kontakte der 215 Gemeinden von Friaul-Julisch Venetien ({totale} Einträge): Adresse des Sitzes, Telefon, PEC und Website.",
+    "disclaimerFonte": "Daten von einem Drittanbieter-Portal (amministrazionicomunali.it) erhoben, das keine ausdrückliche Open-Data-Lizenz angibt. Für aktuelle oder offizielle Informationen stets die Website der jeweiligen Gemeinde prüfen.",
+    "cercaLabel": "Suche nach Gemeindename",
+    "cercaPlaceholder": "Suche nach Gemeindename…",
+    "nessunRisultato": "Keine Gemeinde gefunden{luogo} mit den aktuellen Filtern.",
+    "indirizzoLabel": "Adresse",
+    "telefonoLabel": "Telefon",
+    "faxLabel": "Fax",
+    "pecLabel": "PEC",
+    "visitaSito": "Offizielle Website ↗",
+    "nonDisponibile": "In dieser Quelle sind keine Kontaktdaten verfügbar.",
+    "fonteLabel": "Quelle: {fonte}. Daten erhoben am {data}."
   },
   "qualitaAria": {
     "caricamento": "Luftqualität wird geladen…",
@@ -1022,5 +1044,41 @@
       "secondary": "Nebenroute",
       "minor": "Kleinerer Übergang"
     }
+  },
+  "blsd": {
+    "titolo": "AED · Defibrillatoren",
+    "descrizione": "{totale} Defibrillatoren (AED) in Friaul-Julisch Venetien erfasst, nach Provinz und Gemeinde",
+    "disclaimerFonte": "Offene Daten von OpenStreetMap (Gemeinschaftskartierung, ODbL-Lizenz), nicht die offizielle regionale Erfassung: Diese existiert (über 2.100 im März 2025 gemeldete Geräte), ist aber nur in der App \"DAE FVG\" für freiwillige Ersthelfer von SORES/118 verfügbar und wird nicht als offene Daten veröffentlicht. Diese Liste ist daher wahrscheinlich unvollständig: Fehlt ein Ihnen bekanntes Gerät, heißt das nicht, dass es nicht vorhanden ist.",
+    "cercaLabel": "Suche nach Gemeinde oder Adresse",
+    "cercaPlaceholder": "Suche nach Gemeinde oder Adresse…",
+    "nessunRisultato": "Kein Defibrillator gefunden {luogo}.",
+    "fonteLabel": "Quelle: {fonte} · Stand {data}",
+    "senzaNome": "Defibrillator",
+    "accessoLabel": "Zugang",
+    "accessoValori": {
+      "yes": "öffentlich",
+      "private": "privat",
+      "customers": "nur für Kunden",
+      "permissive": "geduldet (nicht garantiert)",
+      "unknown": "unbekannt"
+    },
+    "nonNoto": "unbekannt",
+    "posizioneLabel": "Lage",
+    "alCoperto": "innen",
+    "allesterno": "außen",
+    "orarioLabel": "Öffnungszeiten",
+    "operatoreLabel": "Betreiber",
+    "posizioneApprossimataAvviso": "Ungefähre Position (aus der Adresse geokodiert): vor Ort zu überprüfen.",
+    "ultimaVerificaLabel": "Überprüft am {data}",
+    "vediSuOsm": "Auf OpenStreetMap ansehen →"
+  },
+  "login": {
+    "titolo": "Zugang beschränkt",
+    "sottotitolo": "Benutzername und Passwort eingeben, um fortzufahren",
+    "utenteLabel": "Benutzername",
+    "passwordLabel": "Passwort",
+    "bottone": "Anmelden",
+    "bottoneInCorso": "Wird geprüft…",
+    "erroreCredenziali": "Benutzername oder Passwort falsch."
   }
 }

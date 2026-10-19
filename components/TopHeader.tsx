@@ -74,6 +74,7 @@ const TITOLO_SEZIONE_CHIAVE: Record<string, string> = {
   // Servizi
   "/servizi": "servizi.titolo",
   "/rifiuti": "servizi.sezioni.rifiuti.nome",
+  "/comuni": "servizi.sezioni.comuni.nome",
   // FVG in immagini
   "/webcam": "fvgInImmagini.sezioni.webcam.nome",
   "/galleria": "inArrivoPages.galleria",

@@ -21,6 +21,35 @@ export type VoceChangelog = {
 
 export const CHANGELOG: VoceChangelog[] = [
   {
+    data: "19/10/2026",
+    titolo: "Accesso protetto da password su tutto il sito",
+    dettagli: [
+      "Ora serve utente e password per entrare: nuova pagina di accesso, link \"Esci\" in fondo a ogni pagina per uscire. Il resto del sito (pagine, pannelli, contenuti) non è cambiato.",
+    ],
+  },
+  {
+    data: "15/10/2026",
+    titolo: "Nuova sezione DAE/Defibrillatori in Sanità, con modulo riassuntivo in homepage",
+    dettagli: [
+      "Nuova pagina \"DAE · Defibrillatori\" nell'hub Sanità (/blsd): 397 defibrillatori mappati nel Friuli Venezia Giulia, con indirizzo, tipo di accesso, al coperto/esterno, orario e gestore dove disponibili. Un modulo in homepage mostra il conteggio totale e per provincia con link alla pagina completa.",
+      "Dato aperto da OpenStreetMap (licenza ODbL), non il censimento ufficiale regionale — quello esiste (oltre 2.100 dispositivi) ma vive solo nell'app \"DAE FVG\" per volontari soccorritori, non pubblicata come dato aperto. L'elenco qui è quindi probabilmente incompleto: avviso ben visibile in pagina.",
+    ],
+  },
+  {
+    data: "15/10/2026",
+    titolo: "Homepage — rimossa la sezione Ambiente, dati ora solo sotto Ambiente",
+    dettagli: [
+      "La sezione \"Ambiente\" (vento, pioggia, qualità dell'aria, pollini, mare, fiumi, balneazione) non compare più in homepage: erano una vista aggregata ridondante, già disponibile per provincia sotto l'hub Ambiente (/dati-ambientali). Nessun dato è stato rimosso dal sito, solo tolto dalla homepage.",
+    ],
+  },
+  {
+    data: "14/10/2026",
+    titolo: "Servizi — nuova sezione Comuni (215 schede)",
+    dettagli: [
+      "Nuova sezione nell'hub Servizi: contatti ufficiali dei 215 Comuni del Friuli Venezia Giulia (indirizzo della sede, telefono, PEC, sito web), filtrabile per provincia e ricerca per nome. Fonte: amministrazionicomunali.it, un portale di terze parti che non dichiara esplicitamente una licenza open data — per informazioni aggiornate o ufficiali, verificare sempre il sito web del comune.",
+    ],
+  },
+  {
     data: "13/10/2026",
     titolo: "Turismo — nuova sezione Osmize (92 schede, con mappa)",
     dettagli: [

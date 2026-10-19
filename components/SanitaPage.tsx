@@ -15,7 +15,9 @@ import { Footer } from "@/components/Footer";
 // (16/09/2026) è la voce con dati in tempo reale più richiesta
 // dall'utente ("probabilmente una delle pagine con maggiore utilità
 // reale del portale") — messa per prima nell'elenco per questo motivo,
-// vedi lib/prontosoccorso.ts.
+// vedi lib/prontosoccorso.ts. DAE/BLSD (15/10/2026) — richiesta dall'utente,
+// messa subito dopo Pronto Soccorso perché è anch'essa un'informazione di
+// emergenza — vedi lib/blsd.ts per fonte e limiti del dato.
 const SEZIONI = [
   {
     key: "prontoSoccorso",
@@ -24,6 +26,16 @@ const SEZIONI = [
       <svg viewBox="0 0 48 48" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.5">
         <path d="M24 8l14 6v10c0 10-6 17-14 16-8-1-14-8-14-16V14z" strokeLinecap="round" strokeLinejoin="round" />
         <path d="M24 18v12M18 24h12" strokeLinecap="round" />
+      </svg>
+    ),
+  },
+  {
+    key: "blsd",
+    href: "/blsd",
+    icona: (
+      <svg viewBox="0 0 48 48" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <path d="M24 6l16 7v11c0 11-7 19-16 18-9-1-16-9-16-18V13z" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M18 24h5l2-5 4 10 2-5h5" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
   },

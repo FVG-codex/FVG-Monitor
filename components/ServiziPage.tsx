@@ -12,6 +12,9 @@ import { Footer } from "@/components/Footer";
 //
 // Multilingua — testo fisso (05/10/2026): nome/descrizione delle
 // SEZIONI spostati sotto messages (`servizi.sezioni.<key>`).
+//
+// Comuni (14/10/2026) — prima parte della sezione "Contatti utili FVG"
+// (backlog #68.1): vedi lib/comuni.ts per fonte/schema/note sulla raccolta.
 const SEZIONI = [
   {
     key: "rifiuti",
@@ -21,6 +24,18 @@ const SEZIONI = [
         <path d="M14 12h20l-2 28a2 2 0 0 1-2 2H18a2 2 0 0 1-2-2L14 12z" strokeLinecap="round" strokeLinejoin="round" />
         <path d="M10 12h28M19 12V8a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v4" strokeLinecap="round" strokeLinejoin="round" />
         <path d="M20 19v14M28 19v14" strokeLinecap="round" />
+      </svg>
+    ),
+  },
+  {
+    key: "comuni",
+    href: "/comuni",
+    icona: (
+      <svg viewBox="0 0 48 48" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <path d="M8 42h32" strokeLinecap="round" />
+        <path d="M11 42V20l13-10 13 10v22" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M20 42V28h8v14" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M24 10V5M20 7h8" strokeLinecap="round" />
       </svg>
     ),
   },

@@ -44,7 +44,8 @@
     "commercio": "Commercio"
   },
   "footer": {
-    "changelog": "Registro modifiche →"
+    "changelog": "Registro modifiche →",
+    "esci": "Esci"
   },
   "inArrivo": {
     "messaggio": "Sezione in arrivo in una prossima fase, non appena saranno disponibili dati verificati."
@@ -90,6 +91,10 @@
       "rifiuti": {
         "nome": "Raccolta differenziata",
         "descrizione": "Calendario porta a porta, centro di raccolta e campane del vetro per 28 comuni (Isontino/Carso)"
+      },
+      "comuni": {
+        "nome": "Comuni",
+        "descrizione": "Indirizzo, telefono, PEC e sito web dei 215 Comuni del Friuli Venezia Giulia"
       }
     }
   },
@@ -204,6 +209,10 @@
       "dentisti": {
         "nome": "Dentisti & Odontoiatri",
         "descrizione": "Elenco delle strutture odontoiatriche del Friuli Venezia Giulia (primo censimento in fase di verifica)."
+      },
+      "blsd": {
+        "nome": "DAE · Defibrillatori",
+        "descrizione": "Mappa e indirizzi dei defibrillatori (DAE) mappati nel FVG, con avviso sulla fonte dei dati"
       }
     }
   },
@@ -614,26 +623,24 @@
       "voliLink": "Tutti i voli →",
       "tgr": "TGR FVG",
       "eventi": "Eventi in regione",
-      "eventiLink": "Tutti →"
-    },
-    "ambiente": {
-      "title": "Ambiente",
-      "description": "Vento, pioggia, aria, pollini, mare, fiumi e balneazione — fonte: Protezione Civile FVG, ARPA FVG",
-      "bora": "Bora · Vento e Pioggia",
-      "boraLink": "Protezione Civile FVG →",
-      "aria": "Qualità dell'aria",
-      "ariaLink": "ARPA FVG →",
-      "pollini": "Pollini",
-      "polliniLink": "ARPA FVG →",
-      "livelli": "Livelli mare e fiumi",
-      "livelliLink": "Protezione Civile FVG →",
-      "mare": "Mare",
-      "fiumi": "Fiumi",
-      "balneazione": "Qualità acque di balneazione",
-      "balneazioneLink": "ARPA FVG →"
+      "eventiLink": "Tutti →",
+      "blsd": "DAE · Defibrillatori"
     },
     "fonti": "Fonti: OSMER ARPA FVG · ANSA FVG · Protezione Civile FVG (CC BY 4.0) · InfoViaggiando · Turismo FVG · RAI TGR FVG · Trieste Airport",
-    "tgrCta": "Guarda l'ultimo notiziario"
+    "tgrCta": "Guarda l'ultimo notiziario",
+    "ambiente": {
+      "bora": "Bora · Vento e Pioggia",
+      "aria": "Qualità dell'aria",
+      "pollini": "Pollini",
+      "livelli": "Livelli mare e fiumi",
+      "mare": "Mare",
+      "balneazione": "Qualità acque di balneazione"
+    },
+    "blsd": {
+      "sottotitolo": "dispositivi mappati nel FVG",
+      "disclaimerBreve": "Dato aperto OpenStreetMap, non il censimento ufficiale regionale",
+      "vaiAllaPagina": "Elenco e mappa"
+    }
   },
   "veterinari": {
     "descrizione": "Strutture veterinarie del Friuli Venezia Giulia — dato raccolto e verificato manualmente (siti ufficiali e directory di settore), non un albo professionale ufficiale. In caso di emergenza, verificare sempre telefonicamente la disponibilità reale prima di presentarsi in struttura.",
@@ -817,6 +824,21 @@
     "calendarioNonDisponibile": "Calendario non disponibile al momento.",
     "nessunaRaccoltaIndirizzo": "Nessuna raccolta a calendario nei prossimi giorni per questo indirizzo.",
     "esposizioneOrario": " — esposizione {orario}"
+  },
+  "comuni": {
+    "titolo": "Comuni",
+    "descrizione": "Contatti ufficiali dei 215 Comuni del Friuli Venezia Giulia ({totale} schede): indirizzo della sede, telefono, PEC e sito web.",
+    "disclaimerFonte": "Dati raccolti da un portale di terze parti (amministrazionicomunali.it), che non dichiara esplicitamente una licenza open data. Per informazioni aggiornate o ufficiali, verificare sempre il sito web del comune.",
+    "cercaLabel": "Cerca per nome comune",
+    "cercaPlaceholder": "Cerca per nome comune…",
+    "nessunRisultato": "Nessun comune trovato{luogo} con i filtri attuali.",
+    "indirizzoLabel": "Indirizzo",
+    "telefonoLabel": "Telefono",
+    "faxLabel": "Fax",
+    "pecLabel": "PEC",
+    "visitaSito": "Sito ufficiale ↗",
+    "nonDisponibile": "Nessun dato di contatto disponibile in questa fonte.",
+    "fonteLabel": "Fonte: {fonte}. Dati raccolti il {data}."
   },
   "qualitaAria": {
     "caricamento": "Caricamento qualità aria…",
@@ -1022,5 +1044,41 @@
       "secondary": "Direttrice secondaria",
       "minor": "Valico minore"
     }
+  },
+  "blsd": {
+    "titolo": "DAE · Defibrillatori",
+    "descrizione": "{totale} defibrillatori (DAE) mappati nel Friuli Venezia Giulia, per provincia e comune",
+    "disclaimerFonte": "Dato aperto da OpenStreetMap (mappatura comunitaria, licenza ODbL), non il censimento ufficiale regionale: quello esiste (oltre 2.100 dispositivi dichiarati a marzo 2025) ma vive solo nell'app \"DAE FVG\" di SORES/118, riservata ai volontari soccorritori, e non è pubblicato come dato aperto. Questo elenco è quindi probabilmente incompleto: se non trovi un dispositivo che sai essere presente, non significa che non ci sia.",
+    "cercaLabel": "Cerca per comune o indirizzo",
+    "cercaPlaceholder": "Cerca per comune o indirizzo…",
+    "nessunRisultato": "Nessun defibrillatore trovato {luogo}.",
+    "fonteLabel": "Fonte: {fonte} · aggiornato al {data}",
+    "senzaNome": "Defibrillatore",
+    "accessoLabel": "Accesso",
+    "accessoValori": {
+      "yes": "pubblico",
+      "private": "privato",
+      "customers": "riservato ai clienti",
+      "permissive": "tollerato (non garantito)",
+      "unknown": "non noto"
+    },
+    "nonNoto": "non noto",
+    "posizioneLabel": "Posizione",
+    "alCoperto": "al coperto",
+    "allesterno": "all'esterno",
+    "orarioLabel": "Orario",
+    "operatoreLabel": "Gestore",
+    "posizioneApprossimataAvviso": "Posizione approssimata (geocodificata dall'indirizzo): da verificare sul posto.",
+    "ultimaVerificaLabel": "Verificato il {data}",
+    "vediSuOsm": "Vedi su OpenStreetMap →"
+  },
+  "login": {
+    "titolo": "Accesso riservato",
+    "sottotitolo": "Inserisci utente e password per continuare",
+    "utenteLabel": "Utente",
+    "passwordLabel": "Password",
+    "bottone": "Entra",
+    "bottoneInCorso": "Verifica…",
+    "erroreCredenziali": "Utente o password non corretti."
   }
 }
