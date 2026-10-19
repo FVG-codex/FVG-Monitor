@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>FVG Monitor — non raggiungibile</title>
+  <style>
+    html, body { margin: 0; height: 100%; background: #0E2529; color: #EDE8DD; }
+    body {
+      display: flex; align-items: center; justify-content: center;
+      font: 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      padding: env(safe-area-inset-top) 24px env(safe-area-inset-bottom);
+      text-align: center;
+    }
+    img { width: 96px; height: 96px; border-radius: 22px; margin-bottom: 20px; }
+    h1 { font-size: 20px; margin: 0 0 8px; letter-spacing: .04em; text-transform: uppercase; }
+    p { margin: 0 0 24px; color: #9DB3AE; max-width: 300px; }
+    button {
+      font: inherit; font-weight: 600; color: #0E2529; background: #5FB3A3;
+      border: 0; border-radius: 8px; padding: 12px 28px;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <img src="icon.png" alt="" />
+    <h1 id="titolo">Nessuna connessione</h1>
+    <p id="testo">FVG Monitor ha bisogno di internet per mostrare i dati aggiornati. Controlla la connessione e riprova.</p>
+    <button id="riprova" type="button">Riprova</button>
+  </main>
+  <script>
+    // Testi nella lingua del telefono (le stesse lingue del sito).
+    var T = {
+      en: ["No connection", "FVG Monitor needs internet to show live data. Check your connection and try again.", "Try again"],
+      de: ["Keine Verbindung", "FVG Monitor braucht Internet für aktuelle Daten. Prüfe die Verbindung und versuche es erneut.", "Erneut versuchen"],
+      sl: ["Ni povezave", "FVG Monitor potrebuje internet za prikaz svežih podatkov. Preverite povezavo in poskusite znova.", "Poskusi znova"],
+      hr: ["Nema veze", "FVG Monitor treba internet za prikaz ažurnih podataka. Provjerite vezu i pokušajte ponovno.", "Pokušaj ponovno"]
+    };
+    var l = T[(navigator.language || "it").slice(0, 2)];
+    if (l) {
+      document.getElementById("titolo").textContent = l[0];
+      document.getElementById("testo").textContent = l[1];
+      document.getElementById("riprova").textContent = l[2];
+    }
+    function riprova() { window.location.href = "https://monitor.fvg.it/"; }
+    document.getElementById("riprova").addEventListener("click", riprova);
+    window.addEventListener("online", riprova);
+  </script>
+</body>
+</html>
