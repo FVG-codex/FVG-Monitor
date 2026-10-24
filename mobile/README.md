@@ -1,7 +1,7 @@
 # FVG Monitor — app Android e iOS
 
 App nativa costruita con **Capacitor 8**. È un guscio che carica il sito
-di produzione **https://monitor.fvg.it** (`server.url` in
+di produzione **https://www.monitor.fvg.it** (`server.url` in
 `capacitor.config.ts`): ogni deploy su Vercel aggiorna anche le app,
 senza ripassare dalla revisione degli store. Serve una nuova versione
 sugli store solo quando cambia la parte nativa (plugin, icone, permessi).

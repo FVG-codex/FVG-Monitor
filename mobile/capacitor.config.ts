@@ -22,7 +22,10 @@ const config: CapacitorConfig = {
   appendUserAgent: "FVGMonitorApp",
   backgroundColor: "#0E2529",
   server: {
-    url: "https://monitor.fvg.it",
+    // Il dominio canonico su Vercel è www.monitor.fvg.it: monitor.fvg.it
+    // risponde 308 verso il www (verificato con curl il 24/10/2026).
+    // Si punta direttamente al www per evitare il redirect all'avvio.
+    url: "https://www.monitor.fvg.it",
     errorPath: "offline.html",
     androidScheme: "https",
     allowNavigation: ["monitor.fvg.it", "www.monitor.fvg.it"],
