@@ -7,9 +7,12 @@ import type { CapacitorConfig } from "@capacitor/cli";
 // passare dalla revisione degli store. www/ contiene solo la pagina di
 // riserva mostrata quando il sito non si raggiunge (errorPath).
 //
-// Link verso altri domini: Capacitor li apre nel browser di sistema
-// (non sono in allowNavigation), quindi le fonti esterne non
-// "rubano" la finestra dell'app.
+// Link verso altri domini: Capacitor li apre nel browser di sistema,
+// quindi le fonti esterne non "rubano" la finestra dell'app. Restano
+// DENTRO l'app solo i due nomi del sito (allowNavigation): se Vercel
+// reindirizza monitor.fvg.it <-> www.monitor.fvg.it, senza questa
+// lista il redirect verrebbe aperto in Chrome invece che nell'app
+// (successo nella prima prova su emulatore, 24/10/2026).
 const config: CapacitorConfig = {
   appId: "it.fvg.monitor",
   appName: "FVG Monitor",
@@ -22,6 +25,7 @@ const config: CapacitorConfig = {
     url: "https://monitor.fvg.it",
     errorPath: "offline.html",
     androidScheme: "https",
+    allowNavigation: ["monitor.fvg.it", "www.monitor.fvg.it"],
   },
   ios: {
     // Le safe area le gestisce il sito via CSS (viewport-fit=cover).
