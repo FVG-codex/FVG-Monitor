@@ -83,6 +83,7 @@ const TITOLO_SEZIONE_CHIAVE: Record<string, string> = {
   "/colonnine-elettriche": "viabilita.colonnineElettriche",
   // Altro
   "/changelog": "changelogPage.titolo",
+  "/contatti": "contattiPage.titolo",
 };
 
 // Le 5 pagine sotto "Sport" (09/10/2026): a differenza di tutte le

@@ -45,7 +45,8 @@
   },
   "footer": {
     "changelog": "Änderungsprotokoll →",
-    "esci": "Abmelden"
+    "esci": "Abmelden",
+    "contatti": "Kontakt →"
   },
   "inArrivo": {
     "messaggio": "Dieser Bereich kommt in einer späteren Phase, sobald verifizierte Daten verfügbar sind."
@@ -1080,5 +1081,17 @@
     "bottone": "Anmelden",
     "bottoneInCorso": "Wird geprüft…",
     "erroreCredenziali": "Benutzername oder Passwort falsch."
+  },
+  "contattiPage": {
+    "titolo": "Kontakt",
+    "descrizione": "Für Hinweise, Datenkorrekturen oder Fragen zu FVG Monitor schreiben Sie uns über das folgende Formular — es geht direkt an unsere E-Mail-Adresse.",
+    "nomeLabel": "Name",
+    "emailLabel": "E-Mail",
+    "messaggioLabel": "Nachricht",
+    "bottone": "Senden",
+    "bottoneInCorso": "Wird gesendet…",
+    "successoTitolo": "Nachricht gesendet",
+    "successoTesto": "Danke, Ihre Nachricht wurde gesendet. Wir antworten an die angegebene E-Mail-Adresse.",
+    "erroreInvio": "Senden fehlgeschlagen. Versuchen Sie es in ein paar Minuten erneut oder schreiben Sie direkt an info@monitor.fvg.it."
   }
 }

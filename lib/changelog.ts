@@ -21,6 +21,13 @@ export type VoceChangelog = {
 
 export const CHANGELOG: VoceChangelog[] = [
   {
+    data: "24/11/2026",
+    titolo: "Nuova pagina Contatti, con modulo per scrivere al webmaster",
+    dettagli: [
+      "Nuova voce \"Contatti\" in fondo a ogni pagina: un modulo per segnalazioni, correzioni ai dati o domande, che arriva direttamente alla nostra casella email.",
+    ],
+  },
+  {
     data: "19/10/2026",
     titolo: "Accesso protetto da password su tutto il sito",
     dettagli: [

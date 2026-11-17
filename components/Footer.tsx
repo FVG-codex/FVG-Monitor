@@ -9,7 +9,10 @@ import { Link } from "@/i18n/navigation";
 //
 // Contiene il link al registro modifiche (/changelog, vedi
 // lib/changelog.ts) — richiesto dall'utente il 25/08/2026 per avere
-// una cronologia sempre aggiornata di cosa cambia sul sito.
+// una cronologia sempre aggiornata di cosa cambia sul sito — e il link
+// a Contatti (/contatti, 24/11/2026, vedi ContattiPage.tsx), la pagina
+// del modulo di contatto del sito stesso: per questo vive solo qui nel
+// footer, non nel menu hamburger degli hub dati (MenuHamburger.tsx).
 //
 // Fase 1 — Multilingua (03/10/2026): "FVG Monitor" resta invariato
 // (nome proprio del sito, non si traduce) mentre il link al registro
@@ -24,6 +27,9 @@ export function Footer({ extra }: { extra?: ReactNode }) {
         <span>FVG Monitor</span>
         <Link href="/changelog" className="hover:text-cool-ink transition-colors">
           {t("changelog")}
+        </Link>
+        <Link href="/contatti" className="hover:text-cool-ink transition-colors">
+          {t("contatti")}
         </Link>
       </div>
       {extra}

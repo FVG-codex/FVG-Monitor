@@ -45,7 +45,8 @@
   },
   "footer": {
     "changelog": "Changelog →",
-    "esci": "Log out"
+    "esci": "Log out",
+    "contatti": "Contact →"
   },
   "inArrivo": {
     "messaggio": "Section coming in a future phase, as soon as verified data is available."
@@ -1080,5 +1081,17 @@
     "bottone": "Sign in",
     "bottoneInCorso": "Checking…",
     "erroreCredenziali": "Incorrect username or password."
+  },
+  "contattiPage": {
+    "titolo": "Contact",
+    "descrizione": "For reports, data corrections or questions about FVG Monitor, write using the form below — it goes straight to our email address.",
+    "nomeLabel": "Name",
+    "emailLabel": "Email",
+    "messaggioLabel": "Message",
+    "bottone": "Send",
+    "bottoneInCorso": "Sending…",
+    "successoTitolo": "Message sent",
+    "successoTesto": "Thank you, your message has been sent. We'll reply to the email address you provided.",
+    "erroreInvio": "Sending failed. Please try again in a few minutes, or write directly to info@monitor.fvg.it."
   }
 }

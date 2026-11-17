@@ -45,7 +45,8 @@
   },
   "footer": {
     "changelog": "Dnevnik promjena →",
-    "esci": "Odjava"
+    "esci": "Odjava",
+    "contatti": "Kontakt →"
   },
   "inArrivo": {
     "messaggio": "Odjeljak dolazi u sljedećoj fazi, kako provjereni podaci postanu dostupni."
@@ -1080,5 +1081,17 @@
     "bottone": "Prijava",
     "bottoneInCorso": "Provjera…",
     "erroreCredenziali": "Netočno korisničko ime ili lozinka."
+  },
+  "contattiPage": {
+    "titolo": "Kontakt",
+    "descrizione": "Za prijave, ispravke podataka ili pitanja o FVG Monitor pišite nam putem obrasca ispod — poruka stiže izravno na našu e-mail adresu.",
+    "nomeLabel": "Ime",
+    "emailLabel": "E-mail",
+    "messaggioLabel": "Poruka",
+    "bottone": "Pošalji",
+    "bottoneInCorso": "Slanje…",
+    "successoTitolo": "Poruka poslana",
+    "successoTesto": "Hvala, vaša poruka je poslana. Odgovorit ćemo na navedenu e-mail adresu.",
+    "erroreInvio": "Slanje nije uspjelo. Pokušajte ponovno za nekoliko minuta ili pišite izravno na info@monitor.fvg.it."
   }
 }

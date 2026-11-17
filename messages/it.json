@@ -45,7 +45,8 @@
   },
   "footer": {
     "changelog": "Registro modifiche →",
-    "esci": "Esci"
+    "esci": "Esci",
+    "contatti": "Contatti →"
   },
   "inArrivo": {
     "messaggio": "Sezione in arrivo in una prossima fase, non appena saranno disponibili dati verificati."
@@ -1080,5 +1081,17 @@
     "bottone": "Entra",
     "bottoneInCorso": "Verifica…",
     "erroreCredenziali": "Utente o password non corretti."
+  },
+  "contattiPage": {
+    "titolo": "Contatti",
+    "descrizione": "Per segnalazioni, correzioni ai dati o domande su FVG Monitor, scrivi usando il modulo qui sotto — arriva direttamente al nostro indirizzo email.",
+    "nomeLabel": "Nome",
+    "emailLabel": "Email",
+    "messaggioLabel": "Messaggio",
+    "bottone": "Invia",
+    "bottoneInCorso": "Invio…",
+    "successoTitolo": "Messaggio inviato",
+    "successoTesto": "Grazie, il tuo messaggio è stato inviato. Ti risponderemo all'indirizzo email che hai indicato.",
+    "erroreInvio": "Invio non riuscito. Riprova tra qualche minuto, o scrivi direttamente a info@monitor.fvg.it."
   }
 }
