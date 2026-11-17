@@ -5,6 +5,10 @@
     {
       "path": "/api/cron/rifiuti-acegas",
       "schedule": "0 3 * * *"
+    },
+    {
+      "path": "/api/cron/carburanti",
+      "schedule": "0 8 * * *"
     }
   ]
 }

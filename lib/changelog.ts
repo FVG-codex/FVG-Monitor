@@ -22,6 +22,13 @@ export type VoceChangelog = {
 export const CHANGELOG: VoceChangelog[] = [
   {
     data: "24/11/2026",
+    titolo: "Prezzo dei carburanti sbloccato (era fermo da un mese)",
+    dettagli: [
+      "Il prezzo medio di benzina/gasolio/GPL torna ad aggiornarsi ogni giorno: il meccanismo di lettura è stato spostato per aggirare un blocco di rete che impediva l'aggiornamento automatico dal 16 ottobre.",
+    ],
+  },
+  {
+    data: "24/11/2026",
     titolo: "Nuova pagina Contatti, con modulo per scrivere al webmaster",
     dettagli: [
       "Nuova voce \"Contatti\" in fondo a ogni pagina: un modulo per segnalazioni, correzioni ai dati o domande, che arriva direttamente alla nostra casella email.",

@@ -1777,69 +1777,34 @@ async function ingestConfiniPrometsi() {
 // verificato manualmente, nessun bisogno di una libreria CSV per un
 // formato così semplice (solo ";" come separatore, nessun campo
 // quotato).
+//
+// SPOSTATO su Vercel il 24/11/2026 — questa sezione non fa più fetch
+// da qui. L'utente ha segnalato il prezzo fermo al 16/10/2026; il log
+// della relativa esecuzione GitHub Actions mostra `ConnectTimeoutError`
+// (10s) verso www.mimit.gov.it:443 — non un errore HTTP, la connessione
+// TCP/TLS non si stabilisce affatto. Lo stesso URL, scaricato
+// dall'utente dal proprio browser lo stesso giorno, risponde
+// normalmente con dati aggiornati — stesso pattern già noto per
+// Acegas/TPL FVG (19/09/2026): un sito istituzionale italiano che
+// filtra per IP/ASN datacenter-cloud, qui manifestato come connessione
+// lasciata cadere invece di un 403 esplicito. Il fetch (stesso URL,
+// stessa logica di estrazione documentata sopra) vive ora in
+// app/api/cron/carburanti/route.ts, richiamato una volta al giorno da
+// un Vercel Cron Job (vedi vercel.json, orario scelto dopo le 8:00
+// italiane di pubblicazione del file in entrambi i fusi stagionali).
+// Dettagli: claude/fvgmonitor-stato.md, sezione "Sessione del
+// 24/11/2026 — Prezzo carburanti fermo, spostato su Vercel".
+//
+// A differenza di Rifiuti/Acegas (snapshot condiviso fra più gestori,
+// serve un read-modify-write), qui non c'è nulla da ripresentare: lo
+// snapshot "carburanti" ha un solo scrittore. Questa funzione non fa
+// quindi più nulla, lasciata solo come promemoria nell'elenco job di
+// main() — rimuoverla del tutto cambierebbe il numero di job attesi
+// senza alcun beneficio.
 // ---------------------------------------------------------------------
 
-const CARBURANTI_CSV_URL = "https://www.mimit.gov.it/images/stories/carburanti/MediaRegionaleStradale.csv";
-const REGIONE_CARBURANTI = "Friuli Venezia Giulia";
-
-const CARBURANTI_TIPI = [
-  { chiave: "benzina", tipologia: "Benzina", erogazione: "SELF" },
-  { chiave: "gasolio", tipologia: "Gasolio", erogazione: "SELF" },
-  { chiave: "gpl", tipologia: "GPL", erogazione: "SERVITO" },
-];
-
 async function ingestCarburanti() {
-  const res = await fetchConRetry(CARBURANTI_CSV_URL);
-  if (!res.ok) {
-    console.warn(`CSV prezzi carburanti MIMIT non disponibile (HTTP ${res.status})`);
-    return;
-  }
-
-  const testo = await res.text();
-  const righe = testo.split("\n").map((r) => r.trim()).filter(Boolean);
-  if (righe.length < 2) {
-    console.warn("CSV prezzi carburanti vuoto o troppo corto");
-    return;
-  }
-
-  const matchData = righe[0].match(/(\d{2})-(\d{2})-(\d{4})/);
-  const aggiornatoAl = matchData ? `${matchData[3]}-${matchData[2]}-${matchData[1]}` : null;
-
-  const righeDati = righe.slice(2).map((r) => r.split(";")); // salta "Aggiornamento ..." e l'intestazione
-
-  const carburanti = {};
-  for (const t of CARBURANTI_TIPI) {
-    const riga = righeDati.find(
-      ([regione, tipologia, erogazione]) =>
-        regione === REGIONE_CARBURANTI && tipologia === t.tipologia && erogazione === t.erogazione
-    );
-    if (!riga) {
-      console.warn(`Riga ${t.tipologia} non trovata per "${REGIONE_CARBURANTI}" nel CSV MIMIT`);
-      continue;
-    }
-    const prezzo = Number(riga[3]);
-    if (!Number.isFinite(prezzo)) {
-      console.warn(`Prezzo ${t.tipologia} non numerico nel CSV MIMIT: "${riga[3]}"`);
-      continue;
-    }
-    carburanti[t.chiave] = {
-      prezzo_medio_eur_litro: Math.round(prezzo * 1000) / 1000,
-      erogazione: t.erogazione === "SELF" ? "self" : "servito",
-    };
-  }
-
-  if (Object.keys(carburanti).length === 0) {
-    console.warn("Nessun prezzo carburante trovato nel CSV MIMIT");
-    return;
-  }
-
-  await upsertSnapshot("carburanti", "carburanti", null, {
-    carburanti,
-    aggiornato_al: aggiornatoAl,
-  });
-  console.log(
-    `Prezzi medi carburanti FVG aggiornati (${Object.keys(carburanti).length}): ${aggiornatoAl}`
-  );
+  return;
 }
 
 // ---------------------------------------------------------------------
