@@ -2,6 +2,17 @@ import Link from "next/link";
 import { TopHeader } from "@/components/TopHeader";
 import { Footer } from "@/components/Footer";
 
+import { metadataPagina } from "@/lib/seo";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  return metadataPagina({ pathname: "/farmacie", locale });
+}
+
 // Stesso pattern hub di app/sport/page.tsx e app/strutture-ricettive/page.tsx
 // (26/08/2026, richiesto dall'utente): card statiche, nessun fetch dati
 // qui — le due pagine figlie leggono la stessa snapshot Supabase

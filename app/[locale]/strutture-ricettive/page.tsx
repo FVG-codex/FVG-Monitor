@@ -3,6 +3,17 @@ import { getTranslations } from "next-intl/server";
 import { TopHeader } from "@/components/TopHeader";
 import { Footer } from "@/components/Footer";
 
+import { metadataPagina } from "@/lib/seo";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  return metadataPagina({ pathname: "/strutture-ricettive", locale });
+}
+
 // Stesso pattern hub di app/sport/page.tsx: card statiche con icona SVG,
 // nessun fetch dati qui (i conteggi live sono sulla pagina di ciascun
 // tipo). Icone in stile lineare coerente con quelle già in uso (viewBox

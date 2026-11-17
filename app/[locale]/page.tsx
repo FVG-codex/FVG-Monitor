@@ -15,6 +15,22 @@ import { ViabilitaPanel } from "@/components/ViabilitaPanel";
 import { VoliPanel } from "@/components/VoliPanel";
 import { PROVINCE_LIST } from "@/lib/province";
 import { Link } from "@/i18n/navigation";
+import { metadataPagina } from "@/lib/seo";
+
+// SEO/metadata per-pagina (17/11/2026) — vedi lib/seo.ts. La home non
+// aveva finora canonical/hreflang/Open Graph/Twitter (solo il <title>
+// fisso ereditato dal layout, vedi app/[locale]/layout.tsx) — con
+// questa aggiunta li ottiene come ogni altra pagina del sito, senza
+// toccare title/description/manifest/icone già impostati dal layout
+// (restano quelli, Next.js unisce i campi non ripetuti qui).
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  return metadataPagina({ pathname: "/", locale });
+}
 
 // Fase 1 — Multilingua (03/10/2026): solo il "guscio" della homepage è
 // tradotto (titolo invisibile, etichette dei pannelli, riga fonti nel

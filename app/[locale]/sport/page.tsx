@@ -2,6 +2,17 @@ import Link from "next/link";
 import { TopHeader } from "@/components/TopHeader";
 import { Footer } from "@/components/Footer";
 
+import { metadataPagina } from "@/lib/seo";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  return metadataPagina({ pathname: "/sport", locale });
+}
+
 const SPORT = [
   {
     nome: "Calcio",

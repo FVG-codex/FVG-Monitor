@@ -5,6 +5,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
+import { SITE_URL, DESCRIZIONE_GENERICA } from "@/lib/seo";
 import "../globals.css";
 
 // Google Analytics (05/09/2026): id fornito dall'utente, GA4.
@@ -103,14 +104,13 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "home" });
-  const DESCRIZIONI: Record<string, string> = {
-    en: "Weather, alerts, traffic, transport and news for Friuli Venezia Giulia in a single page.",
-    de: "Wetter, Warnungen, Verkehr, Transport und Nachrichten für Friuli Venezia Giulia auf einer einzigen Seite.",
-    sl: "Vreme, opozorila, prometne razmere, javni prevoz in novice za Friuli Venezia Giulia na eni strani.",
-    hr: "Vrijeme, upozorenja, promet, prijevoz i vijesti iz Friuli Venezia Giulia na jednom mjestu.",
-  };
   return {
+    // `metadataBase` (17/11/2026, SEO/metadata per-pagina — vedi
+    // lib/seo.ts): richiesto da Next.js per risolvere in assoluto le
+    // URL relative di `openGraph.images`/`alternates.canonical` quando
+    // non vengono scritte già assolute — unico posto dove serve
+    // impostarlo, ogni pagina figlia lo eredita automaticamente.
+    metadataBase: new URL(SITE_URL),
     title: "FVG Monitor",
     // Icone e PWA (19/10/2026): il manifest è app/manifest.ts, le icone
     // sono in public/icons (generate da mobile/scripts/genera-icone.py).
@@ -127,9 +127,13 @@ export async function generateMetadata({
       title: "FVG Monitor",
       statusBarStyle: "black-translucent",
     },
-    description:
-      DESCRIZIONI[locale] ??
-      "Meteo, allerte, viabilità, trasporti e notizie del Friuli Venezia Giulia in un'unica pagina.",
+    // Fallback: resta usata solo dalle pagine senza una propria
+    // generateMetadata() (oggi solo /login, apposta — vedi
+    // app/robots.ts). Spostata in lib/seo.ts (DESCRIZIONE_GENERICA) il
+    // 17/11/2026 per essere riusata anche da ogni altra pagina del
+    // sito come descrizione generica di partenza, invece di restare
+    // duplicata qui.
+    description: DESCRIZIONE_GENERICA[locale] ?? DESCRIZIONE_GENERICA[routing.defaultLocale],
   };
 }
 

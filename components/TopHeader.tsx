@@ -8,101 +8,24 @@ import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { PROVINCE_LIST } from "@/lib/province";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { intlLocale } from "@/lib/intlLocale";
+import { TITOLO_SEZIONE_CHIAVE, TITOLO_SEZIONE_FISSO } from "@/lib/seo";
 
 // Titolo di sezione accanto a "FVG MONITOR" (09/10/2026, richiesto
 // dall'utente: "FVG MONITOR - VIABILITÀ"). Il sito NON ha un albero di
 // route annidato sotto app/[locale]/ — ogni pagina, anche quelle
 // concettualmente "dentro" un hub come Sanità o Turismo, è una route di
 // primo livello (es. /dentisti, non /sanita/dentisti, vedi
-// app/[locale]/dentisti/page.tsx) — quindi questa tabella è
-// deliberatamente piatta, una voce per ogni pagina del sito, invece di
+// app/[locale]/dentisti/page.tsx) — quindi le due tabelle sotto sono
+// deliberatamente piatte, una voce per ogni pagina del sito, invece di
 // provare a derivare il titolo dalla struttura dell'URL.
 //
-// Ogni voce è la chiave puntata da passare al traduttore "radice"
-// (`useTranslations()` senza namespace — restituisce l'intero albero
-// `messages/it.json`, vedi use-intl/dist/types/react/useTranslations.d.ts:
-// "If no namespace is provided, all available messages are returned")
-// invece di un'etichetta fissa, per restare tradotto nelle 5 lingue.
-// Scelta la stessa chiave già usata dall'intestazione <h1> di quella
-// pagina (vedi i rispettivi componenti in components/*.tsx) così il
-// sottotitolo nell'header corrisponde sempre al titolo della pagina.
-const TITOLO_SEZIONE_CHIAVE: Record<string, string> = {
-  // Hub principali (stessa chiave "nav.*" usata dall'hamburger — vedi
-  // MenuHamburger.tsx)
-  "/meteo": "nav.meteo",
-  "/notizie": "nav.notizie",
-  "/ambiente": "nav.ambiente",
-  "/sport": "nav.sport",
-  "/fvg-in-immagini": "nav.immagini",
-  "/viabilita": "nav.viabilita",
-  "/trasporti": "nav.trasporti",
-  "/aviazione": "nav.aviazione",
-  "/sanita": "nav.sanita",
-  "/turismo": "nav.turismo",
-  "/economia": "nav.economia",
-  "/commercio": "nav.commercio",
-  // Sanità
-  "/dentisti": "sanita.sezioni.dentisti.nome",
-  "/veterinari": "sanita.sezioni.veterinari.nome",
-  "/pronto-soccorso": "sanita.sezioni.prontoSoccorso.nome",
-  "/farmacie": "sanita.sezioni.farmacie.nome",
-  "/farmacie-di-turno": "farmacie.titoloTurno",
-  "/farmacie-tutte": "farmacie.titoloTutte",
-  "/cliniche": "sanita.sezioni.cliniche.nome",
-  "/guardie-mediche": "sanita.sezioni.guardieMediche.nome",
-  // Turismo
-  "/eventi": "turismo.sezioni.eventi.nome",
-  "/neve-impianti": "turismo.sezioni.neveImpianti.nome",
-  "/piste-ciclabili": "turismo.sezioni.pisteCiclabili.nome",
-  "/strutture-ricettive": "turismo.sezioni.struttureRicettive.nome",
-  "/parchi-giardini": "turismo.sezioni.parchiGiardini.nome",
-  "/musei": "turismo.sezioni.musei.nome",
-  "/osmize": "turismo.sezioni.osmize.nome",
-  "/agriturismi": "struttureRicettive.tipi.agriturismi.nome",
-  "/affittacamere": "struttureRicettive.tipi.affittacamere.nome",
-  "/alberghi-diffusi": "struttureRicettive.tipi.alberghi-diffusi.nome",
-  "/bed-and-breakfast": "struttureRicettive.tipi.bb.nome",
-  "/campeggi": "struttureRicettive.tipi.campeggi.nome",
-  "/marina": "struttureRicettive.tipi.marina.nome",
-  "/rifugi": "struttureRicettive.tipi.rifugi.nome",
-  "/strutture-sociali": "struttureRicettive.tipi.sociali.nome",
-  // Ambiente
-  "/dati-ambientali": "datiAmbientali.titolo",
-  "/terremoti": "ambiente.sezioni.terremoti.nome",
-  "/maree": "ambiente.sezioni.maree.nome",
-  "/siti-inquinati": "ambiente.sezioni.sitiInquinati.nome",
-  // Servizi
-  "/servizi": "servizi.titolo",
-  "/rifiuti": "servizi.sezioni.rifiuti.nome",
-  "/comuni": "servizi.sezioni.comuni.nome",
-  // FVG in immagini
-  "/webcam": "fvgInImmagini.sezioni.webcam.nome",
-  "/galleria": "inArrivoPages.galleria",
-  // Commercio
-  "/supermercati": "commercio.categorie.supermercati.nome",
-  "/colonnine-elettriche": "viabilita.colonnineElettriche",
-  // Altro
-  "/changelog": "changelogPage.titolo",
-  "/contatti": "contattiPage.titolo",
-};
-
-// Le 5 pagine sotto "Sport" (09/10/2026): a differenza di tutte le
-// altre, qui non esiste una chiave di traduzione breve e stabile da
-// riusare — il loro namespace ha solo un titolo lungo e descrittivo
-// (es. sci.titolo = "Sci — Calendario gare FVG") o, per calcio/basket/
-// baseball, un titolo CALCOLATO a runtime dai dati del campionato
-// (`dati.campionato`, non disponibile qui in TopHeader). La stessa
-// pagina hub (app/[locale]/sport/page.tsx) non è ancora stata
-// multilingua (testo fisso "Calcio"/"Basket"/ecc., coerente con questa
-// scelta) — stessa etichetta breve riusata qui, invece di inventare
-// chiavi di traduzione nuove per un solo sottotitolo d'intestazione.
-const TITOLO_SEZIONE_FISSO: Record<string, string> = {
-  "/calcio": "Calcio",
-  "/basket": "Basket",
-  "/baseball": "Baseball & Softball",
-  "/tennis": "Tennis",
-  "/sci": "Sci",
-};
+// Spostate in lib/seo.ts il 17/11/2026 (SEO/metadata per-pagina: vedi
+// claude/fvgmonitor-stato.md, sessione del 17/11/2026): lo stesso
+// <title> di ogni pagina ora riusa queste identiche chiavi, quindi
+// restano qui importate invece che duplicate — un solo posto da
+// aggiornare se una pagina cambia nome, niente rischio che il <title>
+// e il sottotitolo in pagina finiscano disallineati. Vedi lib/seo.ts
+// per i commenti completi su entrambe le tabelle.
 
 export function TopHeader({ paginaAttiva }: { paginaAttiva?: "regione" | string }) {
   const t = useTranslations("chrome");
