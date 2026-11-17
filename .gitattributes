@@ -1,0 +1,12 @@
+# Fine riga (19/10/2026, app mobile): il repo si modifica da Windows e si
+# compila anche su Mac. Senza queste regole Git su Windows (autocrlf)
+# può salvare gli script con fine riga CRLF, e sul Mac `gradlew` e gli
+# script shell non partono più ("bad interpreter").
+* text=auto
+*.sh text eol=lf
+gradlew text eol=lf
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.png binary
+*.jpg binary
+*.jar binary

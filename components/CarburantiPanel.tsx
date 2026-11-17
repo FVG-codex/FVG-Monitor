@@ -64,7 +64,13 @@ export function CarburantiPanel() {
 
   return (
     <div>
-      <div className="flex gap-6 mb-1 flex-wrap">
+      {/* Pannello portato a tutta larghezza in homepage (24/11/2026,
+          vedi page.tsx) — `md:justify-between` distribuisce i 3 numeri
+          sull'intera riga invece di lasciarli ammassati a sinistra con
+          spazio vuoto a destra; sotto `md` (colonna singola stretta,
+          qui o nella pagina /viabilita) il comportamento resta quello
+          di sempre, a sinistra con `flex-wrap` di sicurezza. */}
+      <div className="flex gap-10 mb-1 flex-wrap md:justify-between md:gap-6">
         {disponibili.map((chiave) => {
           const p = dati.carburanti[chiave]!;
           return (

@@ -183,7 +183,7 @@ export function TopHeader({ paginaAttiva }: { paginaAttiva?: "regione" | string 
   }, [isHomepage, pathname, tTutto]);
 
   return (
-    <header className="sticky top-0 z-20 border-b border-line bg-bg/95 backdrop-blur">
+    <header className="safe-top sticky top-0 z-20 border-b border-line bg-bg/95 backdrop-blur">
       <div className="max-w-[1180px] mx-auto px-5 py-3.5 flex items-center justify-between gap-3 flex-wrap">
         <div className="flex items-center gap-2.5 min-w-0">
           <MenuHamburger />

@@ -74,6 +74,27 @@ body {
   color: rgb(var(--color-ink));
 }
 
+/*
+ * Safe area (19/10/2026, app mobile): con viewport-fit=cover (vedi
+ * `viewport` in app/[locale]/layout.tsx) la pagina si estende sotto
+ * notch, isola dinamica e barre di sistema. Qui si restituiscono gli
+ * spazi: lati e fondo sul body, alto sull'header sticky (.safe-top, in
+ * TopHeader.tsx) così lo sfondo dell'header copre la zona della status
+ * bar invece di lasciare il contenuto scorrere sotto l'orologio.
+ * --safe-area-inset-* è la variabile che Capacitor 8 inietta su Android
+ * (SystemBars insetsHandling "css", per le WebView in cui env() non
+ * funziona); altrove si usa env(). Su desktop tutto vale 0.
+ */
+body {
+  padding-left: var(--safe-area-inset-left, env(safe-area-inset-left, 0px));
+  padding-right: var(--safe-area-inset-right, env(safe-area-inset-right, 0px));
+  padding-bottom: var(--safe-area-inset-bottom, env(safe-area-inset-bottom, 0px));
+}
+
+.safe-top {
+  padding-top: var(--safe-area-inset-top, env(safe-area-inset-top, 0px));
+}
+
 ::selection {
   background: rgb(var(--color-warm));
   color: rgb(var(--color-bg));

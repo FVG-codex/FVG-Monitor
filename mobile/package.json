@@ -1,0 +1,27 @@
+{
+  "name": "fvg-monitor-mobile",
+  "version": "1.0.0",
+  "private": true,
+  "description": "App Android e iOS di FVG Monitor (Capacitor) — vedi README.md",
+  "scripts": {
+    "icone": "capacitor-assets generate --ios --android --assetPath assets --iconBackgroundColor \"#0E2529\" --iconBackgroundColorDark \"#0E2529\" --splashBackgroundColor \"#0E2529\" --splashBackgroundColorDark \"#0E2529\"",
+    "sync": "cap sync",
+    "sync:android": "cap sync android",
+    "ios": "cap open ios",
+    "android": "cap open android"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@capacitor/android": "^8.5.3",
+    "@capacitor/core": "^8.5.3",
+    "@capacitor/ios": "^8.5.3",
+    "@capacitor/splash-screen": "^8.0.2"
+  },
+  "devDependencies": {
+    "@capacitor/assets": "^3.0.5",
+    "@capacitor/cli": "^8.5.3",
+    "typescript": "^5.9.3"
+  }
+}

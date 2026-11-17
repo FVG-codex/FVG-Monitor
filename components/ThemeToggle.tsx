@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
+import { aggiornaBarreDiSistema } from "@/lib/appNativa";
 
 // Tema chiaro/scuro (04/09/2026). Il default resta il tema scuro storico
 // del sito ("Adriatico notturno") — questo pulsante è l'unico modo per
@@ -32,12 +33,17 @@ export function ThemeToggle() {
   const [tema, setTema] = useState<Tema | null>(null);
 
   useEffect(() => {
-    setTema(leggiTemaAttuale());
+    const attuale = leggiTemaAttuale();
+    setTema(attuale);
+    // App mobile (24/10/2026): allinea il colore di ora/batteria al tema
+    // salvato — nel browser non fa nulla (vedi lib/appNativa.ts).
+    aggiornaBarreDiSistema(attuale);
   }, []);
 
   function toggle() {
     const nuovo: Tema = tema === "chiaro" ? "scuro" : "chiaro";
     setTema(nuovo);
+    aggiornaBarreDiSistema(nuovo);
     if (nuovo === "chiaro") {
       document.documentElement.setAttribute("data-theme", "light");
     } else {

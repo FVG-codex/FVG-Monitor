@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import { Barlow_Condensed, Newsreader, JetBrains_Mono } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
@@ -84,6 +84,19 @@ const jetbrainsMono = JetBrains_Mono({
 // applicato qui al livello del layout invece che per singola route.
 export const dynamic = "force-dynamic";
 
+// App mobile (19/10/2026): viewportFit "cover" fa occupare alla pagina
+// tutto lo schermo anche sotto notch/barra di sistema di iPhone e
+// Android edge-to-edge (app Capacitor e PWA installata). Gli spazi
+// vengono poi restituiti con le safe area in globals.css (classe
+// .safe-top sull'header sticky + padding laterali/inferiore sul body).
+// Su un browser desktop le safe area valgono 0: nessun cambiamento.
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#0E2529",
+};
+
 export async function generateMetadata({
   params,
 }: {
@@ -99,6 +112,21 @@ export async function generateMetadata({
   };
   return {
     title: "FVG Monitor",
+    // Icone e PWA (19/10/2026): il manifest è app/manifest.ts, le icone
+    // sono in public/icons (generate da mobile/scripts/genera-icone.py).
+    manifest: "/manifest.webmanifest",
+    icons: {
+      icon: [
+        { url: "/icons/favicon-32.png", sizes: "32x32", type: "image/png" },
+        { url: "/icons/icon-192.png", sizes: "192x192", type: "image/png" },
+      ],
+      apple: [{ url: "/icons/apple-touch-icon.png", sizes: "180x180" }],
+    },
+    appleWebApp: {
+      capable: true,
+      title: "FVG Monitor",
+      statusBarStyle: "black-translucent",
+    },
     description:
       DESCRIZIONI[locale] ??
       "Meteo, allerte, viabilità, trasporti e notizie del Friuli Venezia Giulia in un'unica pagina.",

@@ -57,6 +57,23 @@ export default async function Home() {
             homepage non aveva nessun heading, solo il logo testuale
             nell'header (non marcato come h1). Design visivo invariato. */}
         <h1 className="sr-only">{t("title")}</h1>
+        {/* Ordine dei pannelli (24/11/2026) — riordinato per chiudere
+            ogni riga della griglia a 3 colonne senza buchi grigi vuoti
+            (segnalato dall'utente con screenshot: celle vuote dopo
+            "Viabilità"+"Carburanti" e dopo "Eventi in regione"). La
+            griglia CSS riempie le righe nell'ordine del markup: un
+            pannello a 2 colonne (span={2}) che non trova più 2 colonne
+            libere nella riga corrente va a capo, lasciando vuota la
+            cella che non riesce a occupare. Somma delle "unità" di
+            colonna dei 10 pannelli = 13, non divisibile per 3: un resto
+            di una riga incompleta a fine griglia è quindi inevitabile a
+            parità di contenuti — ma posizionato qui in fondo, appena
+            prima del Footer, è molto meno percepibile di un buco in
+            mezzo alla pagina. Ogni pannello a span={2} (Meteo/Voli/
+            Eventi) è stato affiancato a esattamente un pannello a 1
+            colonna così da chiudere sempre la riga; Viabilità e
+            Carburanti (entrambi semplici) sono stati spostati in coda.
+            Nessun contenuto cambiato, solo l'ordine. */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-line border border-line mb-8">
           <Panel title={t("panels.meteo")} linkLabel={t("panels.meteoLink")} linkHref="https://www.meteo.fvg.it" span={2}>
             <MeteoOverview />
@@ -95,18 +112,6 @@ export default async function Home() {
             <SoleLunaPanel />
           </Panel>
 
-          <Panel title={t("panels.viabilita")} linkLabel={t("panels.viabilitaLink")} linkHref="https://infoviaggiando.it">
-            <ViabilitaPanel />
-          </Panel>
-
-          <Panel
-            title={t("panels.carburanti")}
-            linkLabel={t("panels.carburantiLink")}
-            linkHref="https://www.mimit.gov.it/it/prezzo-medio-carburanti/regioni"
-          >
-            <CarburantiPanel />
-          </Panel>
-
           <Panel
             title={t("panels.voli")}
             linkLabel={t("panels.voliLink")}
@@ -122,6 +127,27 @@ export default async function Home() {
 
           <Panel title={t("panels.eventi")} linkLabel={t("panels.eventiLink")} linkHref="https://www.turismofvg.it/eventi" span={2}>
             <EventiPanel />
+          </Panel>
+
+          <Panel title={t("panels.viabilita")} linkLabel={t("panels.viabilitaLink")} linkHref="https://infoviaggiando.it">
+            <ViabilitaPanel />
+          </Panel>
+
+          {/* A tutta larghezza (span={3}, 24/11/2026): con tutti gli
+              altri 9 pannelli le "unità" di colonna sommano a 12
+              (divisibile per 3 solo se questo resta a 1 colonna, con un
+              resto di 2 celle vuote in fondo). Portandolo a piena
+              larghezza il totale sale a 15, esattamente 5 righe da 3 —
+              zero celle vuote in tutta la griglia. Il contenuto
+              (3 numeri fissi) è stato adattato per distribuirsi
+              sull'intera larghezza, vedi CarburantiPanel.tsx. */}
+          <Panel
+            title={t("panels.carburanti")}
+            linkLabel={t("panels.carburantiLink")}
+            linkHref="https://www.mimit.gov.it/it/prezzo-medio-carburanti/regioni"
+            span={3}
+          >
+            <CarburantiPanel />
           </Panel>
         </div>
       </main>
