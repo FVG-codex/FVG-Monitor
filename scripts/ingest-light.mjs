@@ -971,19 +971,54 @@ async function ingestNotizieFonteRainews(fonte) {
 // comunicati della Regione) — trattate come una notizia qualunque di
 // oggi a mezzanotte, nessun filtro: sono comunque elencate dal sito
 // nella stessa pagina "Ultim'ora", non è compito di questo aggregatore
-// fare una scelta editoriale su cosa sia "vera" cronaca. Offset
-// Italia/UTC approssimato per mese via `offsetItaliaPerMese()` sotto
-// (+02:00 aprile-settembre, +01:00 il resto dell'anno) — sufficiente per
-// ordinare le notizie fra loro, non per un orario al minuto esatto nei
-// giorni di cambio ora legale. (RaiNews non usa più questa
-// approssimazione dal 06/09/2026: la sua nuova fonte via API restituisce
-// già un orario ISO esatto con offset — vedi `ingestNotizieFonteRainews()`
-// sopra.)
+// fare una scelta editoriale su cosa sia "vera" cronaca. (RaiNews non
+// usa più questo offset dal 06/09/2026: la sua nuova fonte via API
+// restituisce già un orario ISO esatto con offset — vedi
+// `ingestNotizieFonteRainews()` sopra.)
+//
+// **Fix del 17/11/2026** (bug segnalato dall'utente tramite un
+// cross-check esterno, poi verificato riga per riga su questo file
+// prima di toccare nulla — mai un fix scritto sull'ipotesi che un
+// riassunto fosse corretto): la versione precedente di questa funzione
+// (`offsetItaliaPerMese()`, rinominata qui in `offsetItaliaReale()`)
+// approssimava l'offset
+// Italia/UTC per MESE FISSO (+02:00 aprile-settembre, +01:00 il resto
+// dell'anno), col commento che la dava imprecisa solo "nei giorni di
+// cambio ora legale". In realtà l'ora legale europea va dall'ultima
+// domenica di marzo all'ultima domenica di ottobre — non dai confini
+// del mese — quindi quella approssimazione era sbagliata per ~25
+// giorni ogni ottobre (1 ottobre → ultima domenica, offset reale
+// +02:00 CEST, funzione restituiva +01:00) e per gli ultimi 3-4 giorni
+// di marzo (offset reale +02:00 dopo il cambio, funzione restituiva
+// +01:00). Un offset troppo piccolo applicato a un orario locale fa
+// risultare l'istante UTC calcolato 1 ora AVANTI rispetto a quello
+// reale — per un articolo pubblicato da meno di un'ora, questo fa
+// risultare "nel futuro" il suo orario agli occhi di
+// `tempoRelativo()`/`tempoRelativoChiave()` (vedi
+// NotizieProvinciaPage.tsx/NotiziePanel.tsx), che mostravano un "tempo
+// fa" negativo — esattamente il sintomo segnalato. Corretto usando il
+// vero calendario dell'ora legale via `Intl.DateTimeFormat` sulla
+// timezone IANA `Europe/Rome` (stesso meccanismo già usato
+// correttamente da `oggiEuropeRome()` per la *data*, qui esteso anche
+// all'*offset*), verificato contro le date reali del cambio 2026
+// (25/10 e 29/03): `GMT+2`/`GMT+1` risultano corretti su entrambi i
+// lati del cambio, a differenza della vecchia tabella per mese.
 const GIORNI_ABBR_ITA_NOTIZIE = { dom: 0, lun: 1, mar: 2, mer: 3, gio: 4, ven: 5, sab: 6 };
 
-function offsetItaliaPerMese() {
-  const meseIdx = new Date().getMonth();
-  return meseIdx >= 3 && meseIdx <= 8 ? "+02:00" : "+01:00";
+function offsetItaliaReale() {
+  const parti = new Intl.DateTimeFormat("en-US", {
+    timeZone: "Europe/Rome",
+    timeZoneName: "shortOffset",
+  }).formatToParts(new Date());
+  const tz = parti.find((p) => p.type === "timeZoneName")?.value || "";
+  const match = tz.match(/GMT([+-])(\d{1,2})/);
+  // Fallback defensivo (mai dovrebbe scattare, Europe/Rome è sempre
+  // GMT+1 o GMT+2): stesso principio "mai un valore inventato" già
+  // applicato altrove nel progetto — se il formato cambia, si usa il
+  // vecchio +01:00 invece di un offset a caso.
+  if (!match) return "+01:00";
+  const [, segno, ore] = match;
+  return `${segno}${ore.padStart(2, "0")}:00`;
 }
 
 function parseDataCitynews(testoData) {
@@ -1001,13 +1036,13 @@ function parseDataCitynews(testoData) {
     if (diff <= 0) diff += 7;
     oggiUtc.setUTCDate(oggiUtc.getUTCDate() - diff);
     const dataStr = oggiUtc.toISOString().slice(0, 10);
-    return `${dataStr}T${ore.padStart(2, "0")}:${minuti}:00${offsetItaliaPerMese()}`;
+    return `${dataStr}T${ore.padStart(2, "0")}:${minuti}:00${offsetItaliaReale()}`;
   }
 
   const soloOra = t.match(/^(\d{1,2}):(\d{2})$/);
   if (soloOra) {
     const [, ore, minuti] = soloOra;
-    return `${oggiEuropeRome()}T${ore.padStart(2, "0")}:${minuti}:00${offsetItaliaPerMese()}`;
+    return `${oggiEuropeRome()}T${ore.padStart(2, "0")}:${minuti}:00${offsetItaliaReale()}`;
   }
 
   return null;
@@ -1063,7 +1098,7 @@ function parseDataDaSlugIlGoriziano(href) {
   const giorno = Number(giornoStr);
   const anno = Number(annoStr);
   const dataStr = `${anno}-${String(mese + 1).padStart(2, "0")}-${String(giorno).padStart(2, "0")}`;
-  return `${dataStr}T12:00:00${offsetItaliaPerMese()}`;
+  return `${dataStr}T12:00:00${offsetItaliaReale()}`;
 }
 
 // Il Goriziano — struttura verificata su outerHTML reale il 06/09/2026:

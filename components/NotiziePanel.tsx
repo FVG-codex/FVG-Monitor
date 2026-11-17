@@ -14,7 +14,15 @@ type NotizieData = { fonte: string; fonte_url: string; items: NotiziaItem[] };
 // il testo arriva da `t()` nel componente sotto.
 function tempoRelativoChiave(dataStr: string): { chiave: "minFa" | "oreFa" | "giorniFa"; n: number } {
   const diffMs = Date.now() - new Date(dataStr).getTime();
-  const minuti = Math.floor(diffMs / 60000);
+  // Rete di sicurezza (17/11/2026, bug reale corretto alla fonte in
+  // scripts/ingest-light.mjs/offsetItaliaReale()): un articolo con
+  // timestamp calcolato anche solo di poco nel futuro mostrava "-N
+  // minuti fa". Oltre al fix a monte, qui si evita comunque un valore
+  // negativo per qualunque altra causa di scarto futuro non prevista
+  // (es. piccolo disallineamento dell'orologio del dispositivo) — mai
+  // mostrare un tempo relativo che non ha senso, stesso principio già
+  // applicato altrove nel progetto (mai un valore inventato).
+  const minuti = Math.max(0, Math.floor(diffMs / 60000));
   if (minuti < 60) return { chiave: "minFa", n: minuti };
   const ore = Math.floor(minuti / 60);
   if (ore < 24) return { chiave: "oreFa", n: ore };

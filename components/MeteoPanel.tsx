@@ -173,6 +173,18 @@ export function MeteoOverview() {
       )}
       {domani && (
         <div className="space-y-0">
+          {/* Intestazione aggiunta il 17/11/2026 (cross-check esterno,
+              verificato prima di intervenire): questo pannello mostra da
+              sempre le previsioni di "domani" per provincia (scelta del
+              09/09/2026), ma l'unico indizio era la scritta piccola e
+              sbiadita in fondo al pannello — nessuna riga provincia
+              portava un'etichetta. Un'intestazione visibile qui, subito
+              sopra l'elenco, chiarisce il contenuto al primo sguardo
+              senza cambiare il comportamento esistente (la scritta in
+              fondo resta, con data e fonte). */}
+          <p className="font-cond font-semibold text-xs uppercase tracking-wide text-ink-faint mb-2">
+            {t("titoloPrevisioniDomani")}
+          </p>
           {PROVINCE_LIST.map((p, i) => {
             const c = domani.per_citta[p.slug];
             const icona = c ? iconaCielo(c.cielo) : undefined;

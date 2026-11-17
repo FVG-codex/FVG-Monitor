@@ -21,7 +21,9 @@ type SchedaNotizie = ProvinciaSlug | "sport";
 
 function tempoRelativo(dataStr: string, t: ReturnType<typeof useTranslations>): string {
   const diffMs = Date.now() - new Date(dataStr).getTime();
-  const minuti = Math.floor(diffMs / 60000);
+  // Rete di sicurezza, stesso motivo di tempoRelativoChiave() in
+  // NotiziePanel.tsx (vedi lì) — mai un "tempo fa" negativo.
+  const minuti = Math.max(0, Math.floor(diffMs / 60000));
   if (minuti < 60) return t("minFa", { n: minuti });
   const ore = Math.floor(minuti / 60);
   if (ore < 24) return t("oreFa", { n: ore });

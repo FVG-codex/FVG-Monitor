@@ -259,6 +259,7 @@
     "aggiornamentoOggiLabel": "Today's update — ",
     "aggiornamentoBadge": "Update",
     "dettagli": "Details",
+    "titoloPrevisioniDomani": "Tomorrow's forecast",
     "bollettinoDiDomani": "Tomorrow's bulletin ({data}) — source:",
     "giorno": {
       "OGGI": "Today",
