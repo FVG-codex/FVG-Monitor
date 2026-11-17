@@ -626,7 +626,8 @@
       "tgr": "TGR FVG",
       "eventi": "Prireditve v regiji",
       "eventiLink": "Vse →",
-      "blsd": "AED · Defibrilatorji"
+      "blsd": "AED · Defibrilatorji",
+      "farmacie": "Dežurne lekarne"
     },
     "fonti": "Viri: OSMER ARPA FVG · ANSA FVG · Protezione Civile FVG (CC BY 4.0) · InfoViaggiando · Turismo FVG · RAI TGR FVG · Trieste Airport",
     "tgrCta": "Oglejte si zadnjo informativno oddajo",
@@ -642,6 +643,10 @@
       "sottotitolo": "popisanih naprav v deželi",
       "disclaimerBreve": "Odprti podatki OpenStreetMap, ne uradni deželni popis",
       "vaiAllaPagina": "Seznam in zemljevid"
+    },
+    "farmacieTurno": {
+      "sottotitolo": "danes dežurnih v deželi",
+      "vaiAllaPagina": "Seznam in urniki"
     }
   },
   "veterinari": {

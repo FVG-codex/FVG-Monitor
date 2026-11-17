@@ -626,7 +626,8 @@
       "tgr": "TGR FVG",
       "eventi": "Veranstaltungen in der Region",
       "eventiLink": "Alle →",
-      "blsd": "AED · Defibrillatoren"
+      "blsd": "AED · Defibrillatoren",
+      "farmacie": "Bereitschaftsapotheken"
     },
     "fonti": "Quellen: OSMER ARPA FVG · ANSA FVG · Protezione Civile FVG (CC BY 4.0) · InfoViaggiando · Turismo FVG · RAI TGR FVG · Trieste Airport",
     "tgrCta": "Die neueste Nachrichtensendung ansehen",
@@ -642,6 +643,10 @@
       "sottotitolo": "in der Region erfasste Geräte",
       "disclaimerBreve": "Offene OpenStreetMap-Daten, nicht die offizielle regionale Erfassung",
       "vaiAllaPagina": "Liste und Karte"
+    },
+    "farmacieTurno": {
+      "sottotitolo": "heute in der Region im Bereitschaftsdienst",
+      "vaiAllaPagina": "Liste und Öffnungszeiten"
     }
   },
   "veterinari": {

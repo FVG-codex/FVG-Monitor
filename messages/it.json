@@ -626,7 +626,8 @@
       "tgr": "TGR FVG",
       "eventi": "Eventi in regione",
       "eventiLink": "Tutti →",
-      "blsd": "DAE · Defibrillatori"
+      "blsd": "DAE · Defibrillatori",
+      "farmacie": "Farmacie di turno"
     },
     "fonti": "Fonti: OSMER ARPA FVG · ANSA FVG · Protezione Civile FVG (CC BY 4.0) · InfoViaggiando · Turismo FVG · RAI TGR FVG · Trieste Airport",
     "tgrCta": "Guarda l'ultimo notiziario",
@@ -642,6 +643,10 @@
       "sottotitolo": "dispositivi mappati nel FVG",
       "disclaimerBreve": "Dato aperto OpenStreetMap, non il censimento ufficiale regionale",
       "vaiAllaPagina": "Elenco e mappa"
+    },
+    "farmacieTurno": {
+      "sottotitolo": "di turno oggi nel FVG",
+      "vaiAllaPagina": "Elenco e orari"
     }
   },
   "veterinari": {

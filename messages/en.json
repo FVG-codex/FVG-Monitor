@@ -626,7 +626,8 @@
       "tgr": "TGR FVG",
       "eventi": "Events in the region",
       "eventiLink": "All →",
-      "blsd": "AEDs · Defibrillators"
+      "blsd": "AEDs · Defibrillators",
+      "farmacie": "Pharmacies on duty"
     },
     "fonti": "Sources: OSMER ARPA FVG · ANSA FVG · Protezione Civile FVG (CC BY 4.0) · InfoViaggiando · Turismo FVG · RAI TGR FVG · Trieste Airport",
     "tgrCta": "Watch the latest newscast",
@@ -642,6 +643,10 @@
       "sottotitolo": "devices mapped in the region",
       "disclaimerBreve": "Open OpenStreetMap data, not the official regional census",
       "vaiAllaPagina": "List and map"
+    },
+    "farmacieTurno": {
+      "sottotitolo": "on duty today in the region",
+      "vaiAllaPagina": "List and hours"
     }
   },
   "veterinari": {
