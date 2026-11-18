@@ -322,11 +322,31 @@ async function ingestMeteo() {
       };
     }
 
+    // Tutte le zone A1–A9 (18/11/2026, card social con la mappa — vedi
+    // lib/social/meteoMattino.tsx): oltre ai 4 capoluoghi servono le zone
+    // montane. Codici verificati sull'XML reale (commento in fondo al file
+    // OSMER): A1 Alpi Carniche, A2 Alpi Giulie, A3 Prealpi Carniche,
+    // A4 Prealpi Giulie, A5 Pordenone, A6 Udine, A7 Gorizia, A8 Lignano,
+    // A9 Trieste. I campi assenti nell'XML arrivano come elementi vuoti.
+    const perZona = {};
+    for (const codice of ["A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "A9"]) {
+      const z = zoneByNome[codice];
+      if (!z) continue;
+      perZona[codice] = {
+        nome: testo(z["@_descrizione"])?.replace(/_/g, " ") ?? null,
+        cielo: testo(z.CIELO_DESCRIZIONE),
+        pioggia: testo(z.PIOGGIA_DESCRIZIONE),
+        temporale: testo(z.TEMPORALE_DESCRIZIONE),
+        nebbia: testo(z.NEBBIA_DESCRIZIONE),
+      };
+    }
+
     return {
       giorno: testo(s["@_giorno"]), // "DOMANI" | "DOPODOMANI"
       data_validita: testo(s["@_data_validita"]),
       regione_testo: testo(zoneByNome.REGIONE?.TESTO),
       per_citta: perCitta,
+      per_zona: perZona,
     };
   });
 
