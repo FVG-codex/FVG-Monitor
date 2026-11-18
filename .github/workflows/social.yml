@@ -1,0 +1,70 @@
+name: Social (post programmati)
+
+# Pubblicazione automatica su Telegram / Facebook / Instagram + bozza
+# WhatsApp (18/11/2026) — vedi scripts/social-publish.mjs e
+# docs/social.md.
+#
+# Gli orari dei post sono in PROGRAMMA dentro lo script, in ora
+# italiana: il workflow si limita a "bussare" ogni 15 minuti nella
+# fascia utile e lo script decide se è il momento. Fascia attuale
+# 05:05–09:50 UTC = 06:05–10:50 (ora solare) / 07:05–11:50 (ora legale),
+# che copre il meteo delle 07:30 in entrambe le stagioni. Ristretta di
+# proposito per non consumare minuti di GitHub Actions inutilmente: se
+# si aggiungono post in altri orari, allargarla qui.
+
+on:
+  schedule:
+    - cron: "5,20,35,50 5-9 * * *"
+  workflow_dispatch:
+    inputs:
+      modo:
+        description: "auto = rispetta orari | anteprima = tutto solo in privato su Telegram | forza = pubblica subito (senza doppioni)"
+        type: choice
+        options: [anteprima, forza, auto]
+        default: anteprima
+      tipo:
+        description: "Solo questo tipo di post (vuoto = tutti), es. meteo-mattino"
+        type: string
+        default: ""
+      piattaforme:
+        description: "Solo queste piattaforme, separate da virgola (vuoto = tutte), es. telegram,facebook"
+        type: string
+        default: ""
+
+# Un'esecuzione alla volta, MA senza cancellare quella in corso (a
+# differenza di ingest-light.yml): interrompere una pubblicazione a metà
+# potrebbe lasciare un post pubblicato e non registrato.
+concurrency:
+  group: social
+  cancel-in-progress: false
+
+jobs:
+  pubblica:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+        # Nessun `npm install`: lo script usa solo fetch/FormData nativi.
+
+      - name: Pubblica
+        env:
+          SOCIAL_MODO: ${{ inputs.modo || 'auto' }}
+          SOCIAL_TIPO: ${{ inputs.tipo }}
+          SOCIAL_PIATTAFORME: ${{ inputs.piattaforme }}
+          SOCIAL_SITE_URL: ${{ vars.SOCIAL_SITE_URL }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
+          TELEGRAM_ADMIN_CHAT_ID: ${{ secrets.TELEGRAM_ADMIN_CHAT_ID }}
+          META_PAGE_ID: ${{ secrets.META_PAGE_ID }}
+          META_PAGE_TOKEN: ${{ secrets.META_PAGE_TOKEN }}
+          META_IG_USER_ID: ${{ secrets.META_IG_USER_ID }}
+          META_GRAPH_VERSION: ${{ vars.META_GRAPH_VERSION }}
+        run: node scripts/social-publish.mjs
